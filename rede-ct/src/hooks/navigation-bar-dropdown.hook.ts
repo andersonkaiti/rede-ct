@@ -22,13 +22,12 @@ export function useNavigationBarDropdown() {
 
     let leftOffset = element.offsetLeft;
 
-    const dropdownWidth = 600;
     const viewportWidth = window.innerWidth;
 
-    const totalOffset = leftOffset + dropdownWidth;
+    const totalOffset = leftOffset;
 
     if (totalOffset > viewportWidth) {
-      leftOffset = Math.max(0, viewportWidth - dropdownWidth - 16);
+      leftOffset = Math.max(0, viewportWidth - 16);
     }
 
     setLeftOffset(leftOffset);

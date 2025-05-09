@@ -122,35 +122,35 @@ export function MissaoValoresTabs() {
             <p className="font-bold">Foto</p>
             <p className="font-bold">/</p>
             <p className="text-gray-500">
-              Ribeirinho Amazônico, na Comunidade Tradicional de Ribeirinhos do
-              Povoado Senhor do Bonfim, Araguacema/TO/Brasil (crédito: Nelson
-              Moraes)
+              Reunião de orientação quanto ao associativismo, pela equipe
+              UNESP/RedeCT junto à Comunidade Tradicional de Ribeirinhos do
+              Povoado Senhor do Bonfim, Araguacema/TO/Brasil (crédito: Valdemir
+              Neto).
             </p>
           </div>
         </div>
         <div className="flex-1 space-y-4 text-[18px] text-gray-500">
-          <p className="font-bold">Valores centrais:</p>
-          <ul className="ml-5 list-disc">
-            <li>Vida e meio ambiente;</li>
-            <li>Bem-viver dos Povos Tradicionais;</li>
-            <li>Ética em pesquisa;</li>
-            <li>Direitos Humanos.</li>
-          </ul>
-
-          <p className="font-bold">Valores operacionais:</p>
+          <p className="font-bold">Objetivos da RedeCT:</p>
           <ul className="ml-5 list-disc">
             <li>
-              Cooperação para o ensino, a pesquisa e a extensão universitária;
+              Promover a aproximação, o diálogo e a articulação
+              acadêmico-científica dentre os pesquisadores filiados;
             </li>
             <li>
-              Promoção do etnodesenvolvimento e do desenvolvimento sustentável;
+              Contribuir para a produção de parcerias em projetos de pesquisa,
+              ensino ou extensão universitária;
             </li>
             <li>
-              Respeito à opinião e à decisão dos Povos Tradicionais quanto aos
-              trabalhos acadêmico-científicos propostos;
+              Potencializar a visibilidade dos trabalhos acadêmico-científicos
+              produzidos pelos pesquisadores filiados;
             </li>
             <li>
-              Transparência, legalidade e legitimidade dos processos de gestão.
+              Facilitar o controle social, da sociedade de modo geral e das
+              comunidades em específico, sobre as produções científicas acerca
+              dos Povos Tradicionais;
+            </li>
+            <li>
+              Promover a cooperação internacional sobre as temáticas da RedeCT.
             </li>
           </ul>
         </div>

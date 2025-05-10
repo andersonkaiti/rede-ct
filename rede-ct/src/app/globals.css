@@ -7,6 +7,12 @@
   --breakpoint-2lg: 1300px;
 }
 
+p,
+li,
+aside {
+  @apply text-[18px];
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -120,5 +126,11 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .custom-marker li::marker {
+    font-weight: bold;
   }
 }

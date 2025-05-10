@@ -60,7 +60,7 @@ export default function EquipeDeGestao() {
           <h1 className="text-center text-5xl font-extrabold">
             {section.title}
           </h1>
-          <div className="flex flex-col gap-10 md:flex-row">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
             {section.members.map((member, index: number) => (
               <MembroCard.Root key={index}>
                 <MembroCard.Image

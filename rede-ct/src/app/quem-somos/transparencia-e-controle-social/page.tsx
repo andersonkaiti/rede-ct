@@ -1,7 +1,7 @@
 import { OrderedList } from "@components/ordered-list";
 import { MembroCard } from "@components/membro-card";
 import { Link } from "lucide-react";
-import { getComiteLegitimador } from "@api/comite-legitimador/route";
+import { getComiteLegitimador } from "@actions/comite-legitimador";
 
 export default async function TransparenciaEControleSocial() {
   const comiteLegitimador = await getComiteLegitimador();

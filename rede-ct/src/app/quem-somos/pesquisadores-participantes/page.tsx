@@ -2,9 +2,9 @@ import Link from "next/link";
 import * as Tabs from "@components/ui/tabs";
 import { MembroCard } from "@components/membro-card";
 import { OrderedList } from "@components/ordered-list";
-import { getPesquisadores } from "@api/pesquisadores/route";
-import { getInMemorianPesquisadores } from "@api/in-memorian-pesquisadores/route";
-import { getInMemorianLideresPovosTradicionais } from "@api/in-memorian-lideres-tradicionais/route";
+import { getCategoriasPesquisadores } from "@actions/pesquisadores";
+import { getInMemorianPesquisadores } from "@actions/in-memorian-pesquisadores";
+import { getInMemorianLideresPovosTradicionais } from "@actions/in-memorian-lideres-tradicionais";
 
 export default async function PesquisadoresParticipantes() {
   const [
@@ -12,7 +12,7 @@ export default async function PesquisadoresParticipantes() {
     inMemorianPesquisadores,
     inMemorianLideresPovosTradicionais,
   ] = await Promise.all([
-    getPesquisadores(),
+    getCategoriasPesquisadores(),
     getInMemorianPesquisadores(),
     getInMemorianLideresPovosTradicionais(),
   ]);

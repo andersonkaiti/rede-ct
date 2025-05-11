@@ -1,82 +1,22 @@
 import Link from "next/link";
 import * as Tabs from "@components/ui/tabs";
-import { IMembroEquipe } from "../equipe-de-gestao/page";
 import { MembroCard } from "@components/membro-card";
+import { OrderedList } from "@components/ordered-list";
+import { getPesquisadores } from "@api/pesquisadores/route";
+import { getInMemorianPesquisadores } from "@api/in-memorian-pesquisadores/route";
+import { getInMemorianLideresPovosTradicionais } from "@api/in-memorian-lideres-tradicionais/route";
 
-export interface IInMemorian extends Omit<IMembroEquipe, "lattesUrl"> {
-  date: string;
-}
+export default async function PesquisadoresParticipantes() {
+  const [
+    pesquisadores,
+    inMemorianPesquisadores,
+    inMemorianLideresPovosTradicionais,
+  ] = await Promise.all([
+    getPesquisadores(),
+    getInMemorianPesquisadores(),
+    getInMemorianLideresPovosTradicionais(),
+  ]);
 
-const inMemorianPesquisadores: IInMemorian[] = [
-  {
-    name: "Prof. Dr. José Ronaldo Fassheber",
-    date: "(- nononon +07/10/2023)",
-    role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
-    image: {
-      src: "/images/in-memorian-1.png",
-      alt: "Prof. Dr. José Ronaldo Fassheber",
-    },
-  },
-  {
-    name: "Prof. Dr. Marcelo Alves Terra",
-    date: "(- nononon +07/10/2023)",
-    role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
-    image: {
-      src: "/images/in-memorian-2.png",
-      alt: "Prof. Dr. Marcelo Alves Terra",
-    },
-  },
-  {
-    name: "Prof. Dr. Carlos Rodrigues Brandão",
-    date: "(-14/04/1940 +11/07/2023)",
-    role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
-    image: {
-      src: "/images/in-memorian-3.png",
-      alt: "Prof. Dr. Carlos Rodrigues Brandão",
-    },
-  },
-  {
-    name: "Prof. Rodrigo Pasquarelli Dalmédico",
-    date: "(nono nonono nonnno)",
-    role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
-    image: {
-      src: "/images/in-memorian-4.png",
-      alt: "Prof. Rodrigo Pasquarelli Dalmédico",
-    },
-  },
-  {
-    name: "Prof. Waldir Araújo Souza",
-    date: "(nono nonono nonnno)",
-    role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
-    image: {
-      src: "/images/placeholder.png",
-      alt: "Prof. Waldir Araújo Souza",
-    },
-  },
-];
-
-const inMemorianLideresPovosTradicionais: IInMemorian[] = [
-  {
-    name: "Nonon ononon noononononn no",
-    date: "(- nononon +nonono)",
-    role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
-    image: {
-      src: "/images/placeholder.png",
-      alt: "Nonon ononon noononononn no",
-    },
-  },
-  {
-    name: "Nonon ononoon noonn",
-    date: "(- nononon +nononon)",
-    role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
-    image: {
-      src: "/images/placeholder.png",
-      alt: "Nonon ononoon noonn",
-    },
-  },
-];
-
-export default function PesquisadoresParticipantes() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
       <section className="space-y-14">
@@ -92,12 +32,12 @@ export default function PesquisadoresParticipantes() {
       </section>
       <section className="space-y-8">
         <h1 className="text-4xl font-bold">COMO SE FILIAR À REDECT?</h1>
-        <ol className="custom-marker ml-10 list-decimal space-y-4">
-          <li>
+        <OrderedList.Root>
+          <OrderedList.Item>
             Conheça a RedeCT, sua missão, seus objetivos e o seu Regimento
             Interno;
-          </li>
-          <li>
+          </OrderedList.Item>
+          <OrderedList.Item>
             Preencha o formulário de pedido de filiação pelo link 
             <Link
               href="https://forms.gle/Mnwrmq3NCC2QmQcy5"
@@ -105,17 +45,17 @@ export default function PesquisadoresParticipantes() {
             >
               https://forms.gle/Mnwrmq3NCC2QmQcy5
             </Link>
-          </li>
-          <li>
+          </OrderedList.Item>
+          <OrderedList.Item>
             Realizar o pagamento de sua 1ª anuidade (referente ao ano de 2025 -
             de acordo com sua classificação de Pesquisador Filiado). Pela chave
             pix da231105-2947-4343-9214-064b15e45313 (Alexandre de Castro
             Campos).
-          </li>
+          </OrderedList.Item>
           <aside className="-ml-10">
-            <span className="font-bold">Atenção:</span> SUGERIMOS que você faça
-            primeiro o pagamento de sua inscrição no COLÓQUIO INTERN. DA REDECT
-            2025 (VI Congresso Científico Internacional sobre Povos e
+            <span className="font-bold text-black">Atenção:</span> SUGERIMOS que
+            você faça primeiro o pagamento de sua inscrição no COLÓQUIO INTERN.
+            DA REDECT 2025 (VI Congresso Científico Internacional sobre Povos e
             Comunidades Tradicionais) pelo link 
             <Link
               href="https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/"
@@ -127,14 +67,14 @@ export default function PesquisadoresParticipantes() {
             anuidade a ser depositada via pix (se fizer o inverso, a RedeCT não
             realizará a devolução do valor da inscrição).
           </aside>
-          <li>
+          <OrderedList.Item>
             Envie os comprovantes de pagamentos para o e-mail 
             <span className="text-indigo-500">filiados@redect.org</span>
-          </li>
-          <li>
-            <span className="font-bold">Atenção:</span> SUGERIMOS que você faça
-            primeiro o pagamento de sua inscrição no COLÓQUIO INTERN. DA REDECT
-            2025 (VI Congresso Científico Internacional sobre Povos e
+          </OrderedList.Item>
+          <OrderedList.Item>
+            <span className="font-bold text-black">Atenção:</span> SUGERIMOS que
+            você faça primeiro o pagamento de sua inscrição no COLÓQUIO INTERN.
+            DA REDECT 2025 (VI Congresso Científico Internacional sobre Povos e
             Comunidades Tradicionais) pelo link 
             <Link
               href="https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/s"
@@ -145,8 +85,8 @@ export default function PesquisadoresParticipantes() {
             , e então, desconte R$50,00 (cinquenta reais) do valor de sua
             anuidade a ser depositada via pix (se fizer o inverso, a RedeCT não
             realizará a devolução do valor da inscrição).
-          </li>
-        </ol>
+          </OrderedList.Item>
+        </OrderedList.Root>
       </section>
       <section className="space-y-8">
         <h1 className="text-4xl font-bold">
@@ -206,32 +146,21 @@ export default function PesquisadoresParticipantes() {
       <section>
         <Tabs.Root defaultValue="Pesquisador Sênior">
           <Tabs.List className="w-full">
-            <Tabs.Trigger value="Pesquisador Sênior">
-              Pesquisador Sênior
-            </Tabs.Trigger>
-            <Tabs.Trigger value="Pesquisador">Pesquisador</Tabs.Trigger>
-            <Tabs.Trigger value="Pesquisador Júnior">
-              Pesquisador Júnior
-            </Tabs.Trigger>
-            <Tabs.Trigger value="Membro Honorário">
-              Membro Honorário
-            </Tabs.Trigger>
+            {pesquisadores.map(({ type }, index: number) => (
+              <Tabs.Trigger key={index} value={type}>
+                {type}
+              </Tabs.Trigger>
+            ))}
           </Tabs.List>
-          <Tabs.Content value="Pesquisador Sênior">
-            <p>
-              <span className="font-bold">Alceu Zoia, Dr</span> (UNEMAT -
-              Sinop/MT) - cadastro 031
-              - alceuzoia@gmail.com - currículo - orcid - ETPs de maior
-              interesse: 3, 4 e 13. Formação: Doutor em Educação (UFG); Mestre
-              em Educação (UFMT); Graduação em Filosofia (UNIJUI). Atuação:
-              Docente da UNEMAT e pesquisador de etnoeducação.
-            </p>
-          </Tabs.Content>
-          <Tabs.Content value="Pesquisador">Pesquisador</Tabs.Content>
-          <Tabs.Content value="Pesquisador Júnior">
-            Pesquisador Júnior
-          </Tabs.Content>
-          <Tabs.Content value="Membro Honorário">Membro Honorário</Tabs.Content>
+          {pesquisadores.map(({ members, type }, index: number) =>
+            members.map(({ name, info }) => (
+              <Tabs.Content key={`${index}-${name}`} value={type}>
+                <p className="text-gray-500">
+                  <span className="font-bold text-black">{name}</span> {info}
+                </p>
+              </Tabs.Content>
+            )),
+          )}
         </Tabs.Root>
       </section>
       <section className="space-y-14">

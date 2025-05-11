@@ -1,58 +1,9 @@
+import { getEquipeGestao } from "@api/equipe-gestao/route";
 import { MembroCard } from "@components/membro-card";
 
-export interface IMembroEquipe {
-  name: string;
-  role: string;
-  image: {
-    src: string;
-    alt: string;
-  };
-  lattesUrl: string;
-}
+export default async function EquipeDeGestao() {
+  const sections = await getEquipeGestao();
 
-export interface ISecaoEquipe {
-  title: string;
-  members: IMembroEquipe[];
-}
-
-const sections: ISecaoEquipe[] = [
-  {
-    title: "Coordenadoria Geral da RedeCT",
-    members: [
-      {
-        name: "Profª. Me. Laurenita Gualberto Pereira Alves (LAURINHA GUALBERTO)",
-        role: "Coordenadora Geral da RedeCT",
-        image: {
-          src: "/images/coordenadoria-geral-redect-1.png",
-          alt: "Profª. Me. Laurenita Gualberto Pereira Alves (LAURINHA GUALBERTO)",
-        },
-        lattesUrl:
-          "https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K8183620Z2",
-      },
-      {
-        name: "Prof. Dr. Edson Machado de Brito (EDSON KAYAPÓ)",
-        role: "Vice-coordenador Geral da RedeCT",
-        image: {
-          src: "/images/coordenadoria-geral-redect-2.png",
-          alt: "Prof. Dr. Edson Machado de Brito (EDSON KAYAPÓ)",
-        },
-        lattesUrl: "http://lattes.cnpq.br/0433710450942228",
-      },
-      {
-        name: "Prof. Victor Hugo Silva Souza",
-        role: "Secretário Geral da RedeCT",
-        image: {
-          src: "/images/coordenadoria-geral-redect-3.png",
-          alt: "Prof. Victor Hugo Silva Souza",
-        },
-        lattesUrl:
-          "http://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K2796479E7",
-      },
-    ],
-  },
-];
-
-export default function EquipeDeGestao() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
       {sections.map((section, index: number) => (

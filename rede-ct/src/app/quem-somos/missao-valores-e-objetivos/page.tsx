@@ -3,13 +3,11 @@ import { MissaoValoresTabs } from "@components/missao-valores-tabs/missao-valore
 export default function MissaoValoresEObjetivos() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
-      <h1 className="text-5xl font-bold">
+      <h1 className="title-1 text-center">
         Missão, valores, objetivos e grandes desafios da RedeCT
       </h1>
       <section className="space-y-4">
-        <h2 className="text-center text-4xl font-bold">
-          Quem são os Povos Tradicionais
-        </h2>
+        <h2 className="title-2 text-center">Quem são os Povos Tradicionais</h2>
         <p className="text-justify text-[18px] text-gray-500">
           A RedeCT, seguindo a orientação dada por diversos autores,
           considera POVOS TRADICIONAIS o conjunto formado pelos Povos

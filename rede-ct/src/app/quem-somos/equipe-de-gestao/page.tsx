@@ -8,9 +8,7 @@ export default async function EquipeDeGestao() {
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
       {sections.map((section, index: number) => (
         <section key={index} className="space-y-8 md:space-y-14">
-          <h1 className="text-center text-5xl font-extrabold">
-            {section.title}
-          </h1>
+          <h1 className="title-1 text-center">{section.title}</h1>
           <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
             {section.members.map((member, index: number) => (
               <MembroCard.Root key={index}>

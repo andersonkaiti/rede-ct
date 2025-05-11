@@ -505,6 +505,6 @@ const categorias: ICategoria[] = [
   },
 ];
 
-export async function getPesquisadores() {
+export async function getCategoriasPesquisadores() {
   return categorias;
 }

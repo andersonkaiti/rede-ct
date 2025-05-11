@@ -1,7 +1,7 @@
 "use server";
 
 import "server-only";
-import { IInMemorian } from "../in-memorian-pesquisadores/route";
+import { IInMemorian } from "./in-memorian-pesquisadores";
 
 const inMemorianLideresPovosTradicionais: IInMemorian[] = [
   {

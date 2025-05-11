@@ -1,4 +1,4 @@
-import { getEquipeGestao } from "@api/equipe-gestao/route";
+import { getEquipeGestao } from "@actions/equipe-gestao";
 import { MembroCard } from "@components/membro-card";
 
 export default async function EquipeDeGestao() {

@@ -9,9 +9,7 @@ export default async function TransparenciaEControleSocial() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
       <section className="space-y-14">
-        <h1 className="text-center text-5xl font-extrabold">
-          CONTROLE SOCIAL E TRANSPARÊNCIA
-        </h1>
+        <h1 className="title-1 text-center">CONTROLE SOCIAL E TRANSPARÊNCIA</h1>
         <p className="text-justify text-gray-500">
           Esta seção é subdividida em 2 áreas que são estruturantes para o
           processo da legalidade, transparência e legitimação. Primeiro temos o
@@ -22,10 +20,10 @@ export default async function TransparenciaEControleSocial() {
         </p>
       </section>
       <section className="space-y-8">
-        <h2 className="text-4xl font-bold">
+        <h2 className="title-2">
           CONTROLE SOCIAL - Comitê Legitimador da RedeCT
         </h2>
-        <h3 className="text-2xl font-bold">
+        <h3 className="title-3">
           O que é o Comitê de Legitimação (ou Comitê Legitimador) da RedeCT?
         </h3>
         <p className="text-justify text-gray-500">
@@ -76,9 +74,7 @@ export default async function TransparenciaEControleSocial() {
             instância pela Coordenação Geral da RedeCT.
           </OrderedList.Item>
         </OrderedList.Root>
-        <h2 className="text-4xl font-bold">
-          Como é composto o Comitê Legitimador?
-        </h2>
+        <h2 className="title-2">Como é composto o Comitê Legitimador?</h2>
         <p className="text-justify text-gray-500">
           Sob responsabilidade da Vice-coordenadoria de Extensão Universitária e
           Cultura, o Comitê Legitimador é composto pelo Vice-coordenador de
@@ -92,9 +88,7 @@ export default async function TransparenciaEControleSocial() {
         </p>
       </section>
       <section className="space-y-8">
-        <h2 className="text-4xl font-bold">
-          Composição do Comitê Legitimador da RedeCT
-        </h2>
+        <h2 className="title-2">Composição do Comitê Legitimador da RedeCT</h2>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {comiteLegitimador.map((member, index: number) => (
             <MembroCard.Root key={index}>
@@ -108,7 +102,7 @@ export default async function TransparenciaEControleSocial() {
         </div>
       </section>
       <section className="space-y-8">
-        <h2 className="text-4xl font-bold">TRANSPARÊNCIA DE CONTAS</h2>
+        <h2 className="title-2">TRANSPARÊNCIA DE CONTAS</h2>
         <p className="text-justify text-gray-500">
           Sob responsabilidade da Vice-coordenadoria Administrativa da RedeCT,
           nesta seção você encontrará o saldo atual da RedeCT, o saldo em conta

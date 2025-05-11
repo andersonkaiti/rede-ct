@@ -4,7 +4,7 @@ export default function ParceirosEFinanciadores() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
       <section className="space-y-14">
-        <h1 className="text-center text-5xl font-extrabold">
+        <h1 className="title-1 text-center">
           PARCERIAS INSTITUCIONAIS E FINANCIAMENTOS
         </h1>
         <p className="text-justify text-gray-500">
@@ -14,8 +14,8 @@ export default function ParceirosEFinanciadores() {
         </p>
       </section>
       <section className="space-y-14">
-        <div className="flex items-center gap-4">
-          <div className="relative h-48 flex-1">
+        <div className="flex flex-col items-center gap-4 lg:flex-row">
+          <div className="relative h-48 w-full lg:flex-1">
             <Image
               src="/images/parceiro-1.png"
               alt="CITeBauru"

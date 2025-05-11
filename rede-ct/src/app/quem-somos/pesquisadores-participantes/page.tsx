@@ -20,9 +20,7 @@ export default async function PesquisadoresParticipantes() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
       <section className="space-y-14">
-        <h1 className="text-5xl font-extrabold">
-          Pesquisadores Filiados à RedeCT
-        </h1>
+        <h1 className="title-1 text-center">Pesquisadores Filiados à RedeCT</h1>
         <p className="text-justify text-gray-500">
           Nesta seção você encontra informações sobre como se filiar à Rede,
           sobre a classificação dos Pesquisadores Filiados segundo o Regimento
@@ -31,7 +29,7 @@ export default async function PesquisadoresParticipantes() {
         </p>
       </section>
       <section className="space-y-8">
-        <h1 className="text-4xl font-bold">COMO SE FILIAR À REDECT?</h1>
+        <h2 className="title-2">COMO SE FILIAR À REDECT?</h2>
         <OrderedList.Root>
           <OrderedList.Item>
             Conheça a RedeCT, sua missão, seus objetivos e o seu Regimento
@@ -89,10 +87,10 @@ export default async function PesquisadoresParticipantes() {
         </OrderedList.Root>
       </section>
       <section className="space-y-8">
-        <h1 className="text-4xl font-bold">
+        <h2 className="title-2">
           CATEGORIAS DE PESQUISADORES FILIADOS, VALOR DE ANUIDADE E PESO DO
           VOTO:
-        </h1>
+        </h2>
         <p className="text-justify text-gray-500">
           De acordo com o Art. 13 do Regimento Interno, os PESQUISADORES
           FILIADOS à RedeCT são classificados segundo sua titulação e conforme
@@ -164,9 +162,9 @@ export default async function PesquisadoresParticipantes() {
         </Tabs.Root>
       </section>
       <section className="space-y-14">
-        <h1 className="text-4xl font-bold">
+        <h2 className="title-2">
           GALERIA IN MEMORIAM DE PESQUISADORES DA REDECT
-        </h1>
+        </h2>
         <p className="text-justify text-gray-500">
           Nesta seção você encontra informações sobre como se filiar à Rede,
           sobre a classificação dos Pesquisadores Filiados segundo o Regimento
@@ -186,9 +184,9 @@ export default async function PesquisadoresParticipantes() {
         </div>
       </section>
       <section className="space-y-14">
-        <h1 className="text-4xl font-bold">
+        <h2 className="title-2">
           GALERIA IN MEMORIAM DE LÍDERES DE POVOS TRADICIONAIS
-        </h1>
+        </h2>
         <p className="text-justify text-gray-500">
           Nesta seção, mantemos nossa homenagem aos líderes de Povos
           Tradicionais falecidos e que deixaram sua contribuição e legado na

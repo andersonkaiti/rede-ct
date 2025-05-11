@@ -2,7 +2,7 @@ export default function RegimentosEAtas() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
       <section className="space-y-14">
-        <h1 className="text-center text-5xl font-extrabold">
+        <h1 className="title-1 text-center">
           REGIMENTO, CONVOCAÇÕES, PAUTAS E ATAS
         </h1>
         <p className="text-justify text-gray-500">
@@ -14,7 +14,7 @@ export default function RegimentosEAtas() {
       </section>
       <section className="grid grid-cols-1 gap-14 md:grid-cols-3">
         <div className="space-y-4">
-          <h2 className="text-4xl font-bold">REGIMENTO INTERNO DA REDECT</h2>
+          <h2 className="title-2 text-center">REGIMENTO INTERNO DA REDECT</h2>
 
           <p className="text-justify text-gray-500">
             Esta é a 1ª versão (já válida) do Regimento Interno da RedeCT,
@@ -27,7 +27,7 @@ export default function RegimentosEAtas() {
           </p>
         </div>
         <div className="space-y-4">
-          <h2 className="text-4xl font-bold">
+          <h2 className="title-2 text-center">
             CONVOCAÇÕES E PAUTAS DE REUNIÕES AGENDADAS
           </h2>
 
@@ -40,7 +40,7 @@ export default function RegimentosEAtas() {
           </p>
         </div>
         <div className="space-y-4">
-          <h2 className="text-4xl font-bold">ATAS DE REUNIÕES</h2>
+          <h2 className="title-2 text-center">ATAS DE REUNIÕES</h2>
 
           <p className="text-justify text-gray-500">
             Nonono nononn nonon ono nn nnononon nonono onno nonon ono on
@@ -49,7 +49,7 @@ export default function RegimentosEAtas() {
         </div>
       </section>
       <section>
-        <h2 className="text-4xl font-bold">ATAS DE REUNIÕES</h2>
+        <h2 className="title-2 text-center">ATAS DE REUNIÕES</h2>
       </section>
     </main>
   );

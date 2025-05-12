@@ -27,59 +27,59 @@ export function Footer() {
               <div className="grid gap-4 sm:grid-cols-2 sm:gap-8">
                 <ul className="space-y-4 text-gray-400">
                   <li>
-                    <Link href="/" className="hover:underline">
+                    <Link href="/" target="_blank" className="hover:underline">
                       HOME
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="hover:underline">
+                    <Link href="/" target="_blank" className="hover:underline">
                       Apresentação, história e logomarca da RedeCT
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="hover:underline">
+                    <Link href="/" target="_blank" className="hover:underline">
                       Missão, valores e objetivos da RedeCT
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="hover:underline">
+                    <Link href="/" target="_blank" className="hover:underline">
                       Equipe voluntária de gestão
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="hover:underline">
+                    <Link href="/" target="_blank" className="hover:underline">
                       Pesquisadores participantes
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="hover:underline">
+                    <Link href="/" target="_blank" className="hover:underline">
                       Eixos Temáticos Permanente (ETPs)
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="hover:underline">
+                    <Link href="/" target="_blank" className="hover:underline">
                       Regimento e atas
                     </Link>
                   </li>
                 </ul>
                 <ul className="space-y-4 text-gray-400">
                   <li>
-                    <Link href="/" className="hover:underline">
+                    <Link href="/" target="_blank" className="hover:underline">
                       Parceiros e financiadores
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="hover:underline">
+                    <Link href="/" target="_blank" className="hover:underline">
                       Controle Social e Transparência
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="hover:underline">
+                    <Link href="/" target="_blank" className="hover:underline">
                       Instituto de Pesquisas Amazônicas e de Povos Tradicionais
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="hover:underline">
+                    <Link href="/" target="_blank" className="hover:underline">
                       NOTÍCIAS
                     </Link>
                   </li>

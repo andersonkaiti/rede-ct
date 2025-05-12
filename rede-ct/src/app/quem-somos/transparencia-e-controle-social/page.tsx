@@ -86,9 +86,7 @@ export default async function TransparenciaEControleSocial() {
           caso de empate). O Secretário Geral tem direito à palavra, mas não tem
           direito ao voto.
         </p>
-      </section>
-      <section className="space-y-8">
-        <h2 className="title-2">Composição do Comitê Legitimador da RedeCT</h2>
+        <h2 className="title-3">Composição do Comitê Legitimador da RedeCT</h2>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {comiteLegitimador.map((member, index: number) => (
             <MembroCard.Root key={index}>

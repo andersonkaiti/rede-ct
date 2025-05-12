@@ -39,6 +39,7 @@ export default async function PesquisadoresParticipantes() {
             Preencha o formulário de pedido de filiação pelo link 
             <Link
               href="https://forms.gle/Mnwrmq3NCC2QmQcy5"
+              target="_blank"
               className="text-indigo-500 hover:underline"
             >
               https://forms.gle/Mnwrmq3NCC2QmQcy5
@@ -57,6 +58,7 @@ export default async function PesquisadoresParticipantes() {
             Comunidades Tradicionais) pelo link 
             <Link
               href="https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/"
+              target="_blank"
               className="text-indigo-500 hover:underline"
             >
               https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/
@@ -76,6 +78,7 @@ export default async function PesquisadoresParticipantes() {
             Comunidades Tradicionais) pelo link 
             <Link
               href="https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/s"
+              target="_blank"
               className="text-indigo-500 hover:underline"
             >
               https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/
@@ -166,10 +169,9 @@ export default async function PesquisadoresParticipantes() {
           GALERIA IN MEMORIAM DE PESQUISADORES DA REDECT
         </h2>
         <p className="text-justify text-gray-500">
-          Nesta seção você encontra informações sobre como se filiar à Rede,
-          sobre a classificação dos Pesquisadores Filiados segundo o Regimento
-          Interno da Rede e ainda o acesso à listagem dos Pesquisadores Filiados
-          da RedeCT.
+          Nesta seção, mantemos nossa homenagem aos saudosos Pesquisadores
+          Filiados falecidos que deixaram sua contribuição e legado junto à
+          RedeCT.
         </p>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {inMemorianPesquisadores.map((member, index: number) => (
@@ -177,6 +179,7 @@ export default async function PesquisadoresParticipantes() {
               <MembroCard.Image src={member.image.src} alt={member.image.alt} />
               <div className="flex flex-grow flex-col items-center justify-between gap-4">
                 <h1 className="text-center text-xl font-bold">{member.name}</h1>
+                <h2 className="text-center font-bold">{member.date}</h2>
                 <h2 className="text-center font-bold">{member.role}</h2>
               </div>
             </MembroCard.Root>
@@ -199,6 +202,7 @@ export default async function PesquisadoresParticipantes() {
               <MembroCard.Image src={member.image.src} alt={member.image.alt} />
               <div className="flex flex-grow flex-col items-center justify-between gap-4">
                 <h1 className="text-center text-xl font-bold">{member.name}</h1>
+                <h2 className="text-center font-bold">{member.date}</h2>
                 <h2 className="text-center font-bold">{member.role}</h2>
               </div>
             </MembroCard.Root>

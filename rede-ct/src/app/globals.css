@@ -137,13 +137,13 @@ aside {
 }
 
 .title-1 {
-  @apply text-3xl font-extrabold lg:text-5xl;
+  @apply text-3xl font-extrabold break-all whitespace-normal lg:text-5xl;
 }
 
 .title-2 {
-  @apply text-2xl font-bold lg:text-4xl;
+  @apply text-2xl font-bold break-all whitespace-normal lg:text-4xl;
 }
 
 .title-3 {
-  @apply text-xl font-bold lg:text-2xl;
+  @apply text-xl font-bold break-all whitespace-normal lg:text-2xl;
 }

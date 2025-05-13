@@ -33,7 +33,9 @@ export default function RootLayout({
         <NavigationBar />
         {children}
         <Footer />
-        <Toaster />
+        <div className="fixed right-0 bottom-0 z-50">
+          <Toaster />
+        </div>
       </body>
     </html>
   );

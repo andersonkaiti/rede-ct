@@ -51,11 +51,6 @@ export const navLinks: NavLink[] = [
         icon: Info,
       },
       {
-        path: "/quem-somos/missao-valores-e-objetivos",
-        label: "Missão, Valores e Objetivos",
-        icon: ScrollText,
-      },
-      {
         path: "/quem-somos/equipe-de-gestao",
         label: "Equipe de Gestão",
         icon: Users,

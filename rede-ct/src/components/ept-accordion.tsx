@@ -8,14 +8,15 @@ export async function EPTAccordion() {
   return (
     <Accordion.Root type="single" collapsible>
       {etps.map(({ name, description, members, text }, index: number) => (
-        <Accordion.Item key={index} value="item-1">
+        <Accordion.Item key={index} value={name}>
           <Accordion.Trigger>
             <h3 className="title-3">
               {name} / {description}
             </h3>
           </Accordion.Trigger>
           <Accordion.Content className="space-y-7">
-            <p>{description}</p>
+            <p className="text-justify">{description}</p>
+            <p className="text-justify">{text}</p>
             <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
               {members.map((member, index: number) => (
                 <MembroCard.Root key={index}>

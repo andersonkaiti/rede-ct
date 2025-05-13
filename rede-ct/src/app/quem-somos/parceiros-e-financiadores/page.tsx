@@ -1,8 +1,7 @@
 import { IParceria } from "@/types/parceria";
 import { getParcerias } from "@actions/parcerias";
 import { Parceria } from "@components/parceria";
-import { Building2, Calendar, Handshake } from "lucide-react";
-import Image from "next/image";
+import { Handshake } from "lucide-react";
 import Link from "next/link";
 
 export default async function ParceirosEFinanciadores() {

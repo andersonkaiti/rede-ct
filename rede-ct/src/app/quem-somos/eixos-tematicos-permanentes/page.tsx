@@ -35,9 +35,10 @@ export default function EixosTematicosPermanentes() {
           <h3 className="title-3">O que são os ETPs?</h3>
           <p className="text-justify">
             O EIXO TEMÁTICO PERMANENTE - ETP assemelha-se e funciona como um
-            "grupo de pesquisa", se constituindo em um espaço imaterial que,
-            orientando-se a uma determinada temática, se destina a planejar,
-            articular, organizar e desenvolver a produção do conhecimento.
+            &quot;grupo de pesquisa&quot;, se constituindo em um espaço
+            imaterial que, orientando-se a uma determinada temática, se destina
+            a planejar, articular, organizar e desenvolver a produção do
+            conhecimento.
           </p>
           <p className="text-justify">
             Por exemplo, o ETP-04 Produção do conhecimento e educação escolar
@@ -211,10 +212,10 @@ export default function EixosTematicosPermanentes() {
             </OrderedList.Item>
             <OrderedList.Item>
               Manter o limite máximo de 20% de trabalhos que versem sobre a
-              temática do GT, mas não dialoguem diretamente com o tema "Povos
-              Tradicionais" (nas seções dos congressos da RedeCT, no conjunto de
-              capítulos de livros organizados e ainda em dossiês produzidos para
-              revistas científicas);
+              temática do GT, mas não dialoguem diretamente com o tema
+              &quot;Povos Tradicionais&quot; (nas seções dos congressos da
+              RedeCT, no conjunto de capítulos de livros organizados e ainda em
+              dossiês produzidos para revistas científicas);
             </OrderedList.Item>
             <OrderedList.Item>
               Orientar os diferentes públicos e vetar trabalhos que não atendam

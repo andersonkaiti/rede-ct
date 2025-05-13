@@ -1,16 +1,15 @@
 import Link from "next/link";
 import { OrderedList } from "@components/ordered-list";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, Heart, Users } from "lucide-react";
 
 export default async function PesquisadoresParticipantes() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       {/* Pesquisadores */}
       <h1 className="title-1 text-center">Pesquisadores da RedeCT</h1>
       <section className="space-y-8">
-        <h2 className="title-3">
-          CATEGORIAS DE PESQUISADORES FILIADOS, VALOR DE ANUIDADE E PESO DO
-          VOTO:
+        <h2 className="title-2">
+          CATEGORIAS DE PESQUISADORES FILIADOS, VALOR DE ANUIDADE E PESO DO VOTO
         </h2>
         <p className="text-justify">
           De acordo com o Art. 13 do Regimento Interno, os PESQUISADORES
@@ -83,7 +82,10 @@ export default async function PesquisadoresParticipantes() {
       <section className="flex flex-col gap-8 md:flex-row">
         <Link href="/quem-somos/pesquisadores-participantes/pesquisadores">
           <div className="space-y-4 rounded-md p-6 text-justify shadow-md transition-all duration-300 hover:shadow-xl">
-            <h2 className="title-3 font-bold">Pesquisadores Participantes</h2>
+            <h2 className="title-3 flex items-center gap-2 font-bold">
+              <Users className="text-indigo-500" />
+              Pesquisadores Participantes
+            </h2>
             <p>
               Conheça os pesquisadores ativos que fazem parte daRedeCT e suas
               contribuições para o desenvolvimento depesquisas sobre povos
@@ -93,7 +95,9 @@ export default async function PesquisadoresParticipantes() {
         </Link>
         <Link href="/quem-somos/pesquisadores-participantes/in-memorian">
           <div className="space-y-4 rounded-md p-6 text-justify shadow-md transition-all duration-300 hover:shadow-xl">
-            <h2 className="title-3 font-bold">Galeria in memorian</h2>
+            <h2 className="title-3 flex items-center gap-2 font-bold">
+              <Heart className="text-indigo-500" /> Galeria in memorian
+            </h2>
             <p>
               Homenageamos aqueles que deixaram sua contribuição e legado junto
               à RedeCT, tanto pesquisadores quanto líderes de povos
@@ -132,24 +136,8 @@ export default async function PesquisadoresParticipantes() {
             Envie os comprovantes de pagamentos para o e-mail 
             <span className="text-indigo-500">filiados@redect.org</span>;
           </OrderedList.Item>
-          <OrderedList.Item>
-            <span className="font-bold text-black">Atenção:</span> SUGERIMOS que
-            você faça primeiro o pagamento de sua inscrição no COLÓQUIO INTERN.
-            DA REDECT 2025 (VI Congresso Científico Internacional sobre Povos e
-            Comunidades Tradicionais) pelo link 
-            <Link
-              href="https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/s"
-              target="_blank"
-              className="text-indigo-500 hover:underline"
-            >
-              https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/
-            </Link>
-            , e então, desconte R$50,00 (cinquenta reais) do valor de sua
-            anuidade a ser depositada via pix (se fizer o inverso, a RedeCT não
-            realizará a devolução do valor da inscrição);
-          </OrderedList.Item>
         </OrderedList.Root>
-        <aside className="rounded-md bg-yellow-200/40 p-6">
+        <aside className="rounded-md bg-yellow-200/40 p-6 break-all">
           <span className="font-bold text-black">⚠️ Atenção:</span> SUGERIMOS
           que você faça primeiro o pagamento de sua inscrição no COLÓQUIO
           INTERN. DA REDECT 2025 (VI Congresso Científico Internacional sobre

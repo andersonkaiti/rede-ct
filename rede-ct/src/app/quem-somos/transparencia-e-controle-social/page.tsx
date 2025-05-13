@@ -1,11 +1,17 @@
 import { Copy } from "@components/copy";
 import { OrderedList } from "@components/ordered-list";
-import { Banknote, FileText, Link as LinkIcon, PiggyBank } from "lucide-react";
+import {
+  ArrowRightIcon,
+  Banknote,
+  FileText,
+  Link as LinkIcon,
+  PiggyBank,
+} from "lucide-react";
 import Link from "next/link";
 
 export default function TransparenciaEControleSocial() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
       {/* INTRODUÇÃO */}
       <section className="space-y-14">
         <h1 className="title-1 text-center">
@@ -112,7 +118,7 @@ export default function TransparenciaEControleSocial() {
           atividade da RedeCT ou mesmo de prestação de contas ainda em curso).
         </p>
 
-        <section className="space-y-8">
+        <section>
           <Link href="/quem-somos/transparencia-e-controle-social/comite-legitimador">
             <div className="flex items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-xl">
               <div className="rounded-full bg-indigo-500/20 p-2">
@@ -125,6 +131,9 @@ export default function TransparenciaEControleSocial() {
                   contribuições para o desenvolvimento de pesquisas sobre povos
                   tradicionais.
                 </p>
+              </div>
+              <div className="ml-auto">
+                <ArrowRightIcon className="text-indigo-500" />
               </div>
             </div>
           </Link>
@@ -197,7 +206,7 @@ export default function TransparenciaEControleSocial() {
               <h3 className="text-gray-500">Titular</h3>
               <h3 className="title-3">Alexandre de Castro Campos</h3>
             </div>
-            <div className="flex flex-col justify-center gap-8 lg:flex-row">
+            <div className="flex flex-col justify-center gap-8 lg:col-span-3 lg:flex-row">
               <div className="space-y-2">
                 <h3 className="title-3">Conta corrente</h3>
                 <Copy className="text-gray-500">02-028318-0</Copy>

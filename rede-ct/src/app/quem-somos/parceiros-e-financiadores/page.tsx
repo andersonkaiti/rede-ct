@@ -1,6 +1,13 @@
+import { IParceria } from "@/types/parceria";
+import { getParcerias } from "@actions/parcerias";
+import { Parceria } from "@components/parceria";
+import { Building2, Calendar, Handshake } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function ParceirosEFinanciadores() {
+export default async function ParceirosEFinanciadores() {
+  const parcerias = await getParcerias();
+
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
       <section className="space-y-14">
@@ -14,35 +21,25 @@ export default function ParceirosEFinanciadores() {
         </p>
       </section>
       <section className="space-y-14">
-        <div className="flex flex-col items-center gap-4 lg:flex-row">
-          <div className="relative h-48 w-full lg:flex-1">
-            <Image
-              src="/images/parceiro-1.png"
-              alt="CITeBauru"
-              className="absolute object-contain"
-              fill
-            />
-          </div>
-          <p className="flex-2 text-justify text-gray-500">
-            No Edital 01/2024{" "}
-            <span className="font-bold text-black">
-              da Saruê Incubadora/CITEB Bauru
-            </span>
-            , instituições ligadas à 
-            <span className="font-bold text-black">FUNDUNESP</span> e
-            localizadas na UNESP Bauru (e em parceria com a 
-            <span className="font-bold text-black">Whadawani Foundation</span>),
-            um projeto da RedeCT foi selecionado para ser pré-incubado na
-            perspectiva de estrutura, fluxo e sustentabilidade negocial liagado
-            à inovação. Trata-se da proposta de criação do Selo de Indicador de
-            Procedência Tradicional pela RedeCT (no sentido de auxiliar os povos
-            e comunidades tradicionais na organização de seus projetos de
-            geração de renda). Também via SARUÊ Incubadora/CITEB/UNESP, a RedeCT
-            está sendo preparada para ser incubada enquanto Organização Social
-            na perspectiva de gestão de tecnologias e redes sociais on-line.
-            Parceria iniciada em 28/03/2024
-          </p>
-        </div>
+        {parcerias.map((parceira: IParceria, index: number) => (
+          <Parceria key={index} parceria={parceira} />
+        ))}
+      </section>
+      <section className="space-y-6 rounded-md bg-gradient-to-br from-indigo-500 via-indigo-600 to-indigo-700 p-10 text-white md:p-10">
+        <h2 className="title-3 flex items-center gap-2">
+          <Handshake />
+          Interessado em ser um parceiro?
+        </h2>
+        <p>
+          Entre em contato conosco para saber mais sobre como podemos colaborar
+          para o sucesso da RedeCT.
+        </p>
+        <Link
+          href="/contato"
+          className="rounded-md bg-white px-4 py-3 font-bold text-indigo-500"
+        >
+          Entre em contato
+        </Link>
       </section>
     </main>
   );

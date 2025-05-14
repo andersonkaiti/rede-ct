@@ -134,7 +134,7 @@ export default async function ApresentacaoEHistoria() {
           <div className="flex flex-col items-center justify-center gap-4 lg:flex-row">
             <div className="relative w-1/2 items-center justify-center lg:flex-1">
               <Image
-                src="/rede-ct-1.png"
+                src="/images/rede-ct-1.png"
                 alt="Logomarca antiga da RedeCT"
                 width={1000}
                 height={1000}
@@ -142,7 +142,7 @@ export default async function ApresentacaoEHistoria() {
             </div>
             <div className="relative w-1/2 items-center justify-center lg:flex-1">
               <Image
-                src="/rede-ct-2.png"
+                src="/images/rede-ct-2.png"
                 alt="Logomarca antiga da RedeCT"
                 width={1000}
                 height={1000}
@@ -150,7 +150,7 @@ export default async function ApresentacaoEHistoria() {
             </div>
             <div className="relative w-1/2 items-center justify-center lg:flex-1">
               <Image
-                src="/rede-ct-3.png"
+                src="/images/rede-ct-3.png"
                 alt="Logomarca antiga da RedeCT"
                 width={1000}
                 height={1000}

@@ -16,7 +16,7 @@ export function MissaoValoresTabs() {
         <div className="flex-1 space-y-4">
           <div className="relative h-100 w-full">
             <Image
-              src="/images/missao.png"
+              src="/images/missao-valores-objetivos/missao.png"
               alt="Missão"
               className="absolute rounded-xl object-cover"
               fill
@@ -62,7 +62,7 @@ export function MissaoValoresTabs() {
         <div className="flex-1 space-y-4">
           <div className="relative h-100 w-full">
             <Image
-              src="/images/valores.png"
+              src="/images/missao-valores-objetivos/valores.png"
               alt="Valores"
               className="absolute rounded-xl object-cover"
               fill
@@ -112,7 +112,7 @@ export function MissaoValoresTabs() {
         <div className="flex-1 space-y-4">
           <div className="relative h-100 w-full">
             <Image
-              src="/images/objetivos.png"
+              src="/images/missao-valores-objetivos/objetivos.png"
               alt="Objetivos"
               className="absolute rounded-xl object-cover"
               fill
@@ -162,7 +162,7 @@ export function MissaoValoresTabs() {
         <div className="flex-1 space-y-4">
           <div className="relative h-100 w-full">
             <Image
-              src="/images/grandes-desafios.png"
+              src="/images/missao-valores-objetivos/grandes-desafios.png"
               alt="Grandes desafios da RedeCT"
               className="absolute rounded-xl object-cover"
               fill

@@ -37,7 +37,7 @@ export function NavigationBar() {
         setShowNavigationBar={setShowNavigationBar}
       />
 
-      <Image src="/logo.png" width={100} height={100} alt="Rede CT" />
+      <Image src="/images/logo.png" width={100} height={100} alt="Rede CT" />
 
       <nav
         onMouseLeave={() => setHovering(null)}

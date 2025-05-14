@@ -8,7 +8,14 @@ export function Footer() {
       <div className="mx-auto w-full max-w-screen-xl space-y-8 p-4 py-6 sm:space-y-20 lg:py-8">
         <div className="gap-8 space-y-10 md:flex md:justify-between">
           <div className="space-y-8">
-            <Image src="/image.png" width={100} height={100} alt="Rede CT" />
+            <div className="relative h-10 w-10">
+              <Image
+                src="/images/favicon.png"
+                fill
+                className="object-cover"
+                alt="Rede CT"
+              />
+            </div>
             <h1 className="text-[#9CA3AF]">
               RedeCT - Rede Internacional de Pesquisadores sobre Povos
               Originários e Comunidades Tradicionais

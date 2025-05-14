@@ -1,8 +1,6 @@
 import Image, { ImageProps } from "next/image";
 
-export type MembroCardImageProps = ImageProps;
-
-export function MembroCardImage({ alt, src, ...rest }: MembroCardImageProps) {
+export function UserCardImage({ alt, src, ...rest }: ImageProps) {
   return (
     <div className="relative h-48 w-48">
       <Image

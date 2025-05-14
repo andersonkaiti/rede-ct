@@ -1,9 +1,9 @@
 "use server";
 
 import "server-only";
-import { IMembroEquipe } from "@/types/membro";
+import { IUser } from "types/user";
 
-export interface IInMemorian extends Omit<IMembroEquipe, "lattesUrl"> {
+export interface IInMemorian extends Omit<IUser, "lattesUrl"> {
   date: string;
 }
 
@@ -56,5 +56,7 @@ const inMemorianPesquisadores: IInMemorian[] = [
 ];
 
 export async function getInMemorianPesquisadores() {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
   return inMemorianPesquisadores;
 }

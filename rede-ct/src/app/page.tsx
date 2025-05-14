@@ -1,4 +1,6 @@
-import { MissaoValoresTabs } from "@components/missao-valores-tabs/missao-valores-tabs";
+import { HeroSection } from "@components/home/hero-section";
+import { MissaoValoresTabs } from "@components/home/missao-valores-tabs";
+import { NavigationCard } from "@components/navigation-card";
 import {
   ArrowRightIcon,
   Handshake,
@@ -7,51 +9,14 @@ import {
   BookOpen,
   Globe,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex flex-col justify-center">
+    <>
       {/* Hero Section */}
-      <section className="relative h-[500px] w-full overflow-hidden">
-        <Image
-          src="/images/hero-bg.png"
-          alt="RedeCT"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 mx-auto grid h-full max-w-7xl px-4 py-8 lg:gap-8 lg:py-16 xl:gap-0">
-          <div className="col-span-6 place-self-center">
-            <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-white md:text-5xl xl:text-6xl">
-              RedeCT
-            </h1>
-            <p className="mb-6 max-w-2xl text-lg font-light text-white md:text-xl lg:mb-8">
-              Contribuindo para a melhoria contínua das produções científicas e
-              das relações entre a academia e os povos tradicionais
-            </p>
-            <div className="flex gap-4">
-              <Link
-                href="/quem-somos/apresentacao-e-historia"
-                className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-3 text-center text-base font-medium text-white hover:bg-indigo-700"
-              >
-                Conheça a RedeCT
-                <ArrowRightIcon className="ml-2 h-5 w-5" />
-              </Link>
-              <Link
-                href="/divisao-cientifica/congresso-cientifico-internacional"
-                className="inline-flex items-center justify-center rounded-lg border border-white px-5 py-3 text-center text-base font-medium text-white hover:bg-white/10"
-              >
-                Participe dos Eventos
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl gap-12.5 space-y-14 p-4 py-10 lg:p-25">
+      <HeroSection />
+      <main className="mx-auto flex max-w-7xl flex-col justify-center gap-2 space-y-14 p-4 py-10 sm:gap-12.5 lg:p-25">
         {/* Apresentação Section */}
         <section className="space-y-8">
           <h1 className="title-1 text-center">
@@ -117,7 +82,7 @@ export default function Home() {
             </div>
             <div className="grid gap-4 md:grid-cols-2">
               <Link href="/quem-somos/pesquisadores-participantes">
-                <div className="rounded-lg bg-indigo-50 p-6 text-center">
+                <div className="h-full rounded-lg bg-indigo-50 p-6 text-center transition-all hover:shadow-xl">
                   <Users className="mx-auto mb-4 h-12 w-12 text-indigo-600" />
                   <h3 className="mb-2 text-lg font-semibold">Pesquisadores</h3>
                   <p className="text-sm text-gray-600">
@@ -126,7 +91,7 @@ export default function Home() {
                 </div>
               </Link>
               <Link href="/quem-somos/periodico-e-revistas-parceiras">
-                <div className="rounded-lg bg-indigo-50 p-6 text-center">
+                <div className="h-full rounded-lg bg-indigo-50 p-6 text-center transition-all hover:shadow-xl">
                   <BookOpen className="mx-auto mb-4 h-12 w-12 text-indigo-600" />
                   <h3 className="mb-2 text-lg font-semibold">Publicações</h3>
                   <p className="text-sm text-gray-600">
@@ -135,7 +100,7 @@ export default function Home() {
                 </div>
               </Link>
               <Link href="/quem-somos/congresso-cientifico-internacional">
-                <div className="rounded-lg bg-indigo-50 p-6 text-center">
+                <div className="rounded-lg bg-indigo-50 p-6 text-center transition-all hover:shadow-xl">
                   <Globe className="mx-auto mb-4 h-12 w-12 text-indigo-600" />
                   <h3 className="mb-2 text-lg font-semibold">Eventos</h3>
                   <p className="text-sm text-gray-600">
@@ -144,7 +109,7 @@ export default function Home() {
                 </div>
               </Link>
               <Link href="/noticias">
-                <div className="rounded-lg bg-indigo-50 p-6 text-center">
+                <div className="h-full rounded-lg bg-indigo-50 p-6 text-center transition-all hover:shadow-xl">
                   <Newspaper className="mx-auto mb-4 h-12 w-12 text-indigo-600" />
                   <h3 className="mb-2 text-lg font-semibold">Notícias</h3>
                   <p className="text-sm text-gray-600">
@@ -166,30 +131,26 @@ export default function Home() {
 
         {/* CTA Section */}
         <div className="grid gap-8 md:grid-cols-2">
-          <Link href="/quem-somos/parceiros-e-financiadores">
-            <section className="flex items-center justify-between rounded-md bg-gradient-to-br from-indigo-500 via-indigo-600 to-indigo-700 p-10 text-white md:p-10">
-              <h2 className="title-3 flex items-center gap-2">
-                <Handshake />
-                Parceiros e financiadores
-              </h2>
-              <div className="ml-auto">
-                <ArrowRightIcon className="text-white" />
-              </div>
-            </section>
-          </Link>
-          <Link href="/noticias">
-            <section className="flex items-center justify-between rounded-md bg-gradient-to-br from-indigo-500 via-indigo-600 to-indigo-700 p-10 text-white md:p-10">
-              <h2 className="title-3 flex items-center gap-2">
-                <Newspaper />
-                Últimas notícias
-              </h2>
-              <div className="ml-auto">
-                <ArrowRightIcon className="text-white" />
-              </div>
-            </section>
-          </Link>
+          <NavigationCard.BlueRoot href="/quem-somos/parceiros-e-financiadores">
+            <h2 className="title-3 flex items-center gap-2">
+              <Handshake />
+              Parceiros e financiadores
+            </h2>
+            <div className="ml-auto">
+              <ArrowRightIcon className="text-white" />
+            </div>
+          </NavigationCard.BlueRoot>
+          <NavigationCard.BlueRoot href="/noticias">
+            <h2 className="title-3 flex items-center gap-2">
+              <Newspaper />
+              Últimas notícias
+            </h2>
+            <div className="ml-auto">
+              <ArrowRightIcon className="text-white" />
+            </div>
+          </NavigationCard.BlueRoot>
         </div>
-      </section>
-    </main>
+      </main>
+    </>
   );
 }

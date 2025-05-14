@@ -1,6 +1,6 @@
-import { IMembroEquipe } from "@/types/membro";
+import { IUser } from "types/user";
 
-const equipeSdhc: Omit<IMembroEquipe, "lattesUrl">[] = [
+const equipeSdhc: Omit<IUser, "lattesUrl">[] = [
   {
     name: "Joicileia Juliate Fonseca",
     role: "Presidenta",
@@ -76,5 +76,7 @@ const equipeSdhc: Omit<IMembroEquipe, "lattesUrl">[] = [
 ];
 
 export async function getEquipeSdhc() {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
   return equipeSdhc;
 }

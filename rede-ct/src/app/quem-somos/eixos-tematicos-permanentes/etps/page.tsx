@@ -1,8 +1,10 @@
-import { EPTAccordion } from "@components/ept-accordion";
+import { BackArrow } from "@components/back-arrow";
+import { EPTAccordion } from "@components/etp-accordion";
 
 export default function EixosTematicosPermanentesETPs() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
+      <BackArrow />
       <h2 className="title-1 text-center">
         Eixos Temáticos Permanentes (ETPs)
       </h2>

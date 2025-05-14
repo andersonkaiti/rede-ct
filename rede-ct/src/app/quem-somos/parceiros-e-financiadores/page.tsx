@@ -1,14 +1,14 @@
-import { IParceria } from "@/types/parceria";
+import { IParceria } from "types/parceria";
 import { getParcerias } from "@actions/parcerias";
 import { Parceria } from "@components/parceria";
 import { Handshake } from "lucide-react";
-import Link from "next/link";
+import { NavigationCard } from "@components/navigation-card";
 
 export default async function ParceirosEFinanciadores() {
   const parcerias = await getParcerias();
 
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <section className="space-y-14">
         <h1 className="title-1 text-center">
           PARCERIAS INSTITUCIONAIS E FINANCIAMENTOS
@@ -24,22 +24,18 @@ export default async function ParceirosEFinanciadores() {
           <Parceria key={index} parceria={parceira} />
         ))}
       </section>
-      <section className="space-y-6 rounded-md bg-gradient-to-br from-indigo-500 via-indigo-600 to-indigo-700 p-10 text-white md:p-10">
-        <h2 className="title-3 flex items-center gap-2">
-          <Handshake />
-          Interessado em ser um parceiro?
-        </h2>
-        <p>
-          Entre em contato conosco para saber mais sobre como podemos colaborar
-          para o sucesso da RedeCT.
-        </p>
-        <Link
-          href="/contato"
-          className="rounded-md bg-white px-4 py-3 font-bold text-indigo-500"
-        >
-          Entre em contato
-        </Link>
-      </section>
+      <NavigationCard.BlueRoot href="/contato">
+        <div className="flex flex-col gap-4">
+          <h2 className="title-3 flex items-center gap-2">
+            <Handshake />
+            Interessado em ser um parceiro?
+          </h2>
+          <p>
+            Entre em contato conosco para saber mais sobre como podemos
+            colaborar para o sucesso da RedeCT.
+          </p>
+        </div>
+      </NavigationCard.BlueRoot>
     </main>
   );
 }

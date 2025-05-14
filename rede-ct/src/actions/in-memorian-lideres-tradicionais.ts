@@ -25,5 +25,7 @@ const inMemorianLideresPovosTradicionais: IInMemorian[] = [
 ];
 
 export async function getInMemorianLideresPovosTradicionais() {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
   return inMemorianLideresPovosTradicionais;
 }

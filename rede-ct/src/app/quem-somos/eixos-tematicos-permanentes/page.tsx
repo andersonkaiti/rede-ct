@@ -1,16 +1,11 @@
+import { Container } from "@components/container";
+import { NavigationCard } from "@components/navigation-card";
 import { OrderedList } from "@components/ordered-list";
-import {
-  ArrowRightIcon,
-  Axis3DIcon,
-  BookOpen,
-  Check,
-  Users,
-} from "lucide-react";
-import Link from "next/link";
+import { Axis3DIcon, BookOpen, Check, Users } from "lucide-react";
 
 export default function EixosTematicosPermanentes() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <section className="space-y-14">
         <h1 className="title-1">
           Eixos Temáticos Permanentes (ETPs) e Grupos de Trabalho Científico
@@ -25,7 +20,7 @@ export default function EixosTematicosPermanentes() {
 
       <section className="flex flex-col gap-10 lg:flex-row">
         {/* ETP - EIXO TEMÁTICO PERMANENTE */}
-        <section className="flex-1 space-y-4 rounded-md p-8 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+        <Container>
           <h2 className="title-2 flex items-center gap-2">
             <div className="mr-2 rounded-full bg-indigo-500/20 p-2">
               <BookOpen className="text-indigo-500" />
@@ -60,10 +55,10 @@ export default function EixosTematicosPermanentes() {
             nesta seção, o detalhamento de cada ETP, inclusive com a composição
             de seu GTC).
           </p>
-        </section>
+        </Container>
 
         {/* GTC - GRUPO DE TRABALHO CIENTÍFICO */}
-        <section className="flex-1 space-y-4 rounded-md p-8 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+        <Container>
           <h2 className="title-2 flex items-center gap-2">
             <div className="mr-2 rounded-full bg-indigo-500/20 p-2">
               <Users className="text-indigo-500" />
@@ -81,7 +76,7 @@ export default function EixosTematicosPermanentes() {
             Assim, não existe um ETP sem que haja um GTC para a sua
             sustentação. Cada ETP é planejado e conduzido por um GTC.
           </p>
-        </section>
+        </Container>
       </section>
 
       {/* LISTAGEM DOS 22 ETPs DA REDECT */}
@@ -100,23 +95,20 @@ export default function EixosTematicosPermanentes() {
       </section>
 
       <section>
-        <Link href="/quem-somos/eixos-tematicos-permanentes/etps">
-          <div className="flex items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-xl">
-            <div className="rounded-full bg-indigo-500/20 p-2">
-              <Axis3DIcon className="text-indigo-500" />
-            </div>
-            <div>
+        <NavigationCard.Root href="/quem-somos/eixos-tematicos-permanentes/etps">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-4">
+              <div className="rounded-full bg-indigo-500/20 p-2">
+                <Axis3DIcon className="text-indigo-500" />
+              </div>
               <h2 className="title-3 font-bold">ETPS</h2>
-              <p>Confira os Eixos Temáticos Permanentes (ETPs) da RedeCT.</p>
             </div>
-            <div className="ml-auto">
-              <ArrowRightIcon className="text-indigo-500" />
-            </div>
+            <p>Confira os Eixos Temáticos Permanentes (ETPs) da RedeCT.</p>
           </div>
-        </Link>
+        </NavigationCard.Root>
       </section>
 
-      <section className="space-y-4 rounded-md p-8 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+      <Container>
         <h2 className="title-2 flex items-center gap-2">
           <div className="mr-2 rounded-full bg-indigo-500/20 p-2">
             <Check className="text-indigo-500" />
@@ -150,7 +142,7 @@ export default function EixosTematicosPermanentes() {
             ou Certificado de Graduação).
           </OrderedList.Item>
         </OrderedList.Root>
-      </section>
+      </Container>
 
       <section className="space-y-7">
         <h2 className="title-2">
@@ -179,7 +171,7 @@ export default function EixosTematicosPermanentes() {
         </p>
       </section>
 
-      <section className="space-y-4 rounded-md p-8 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+      <Container>
         <section className="space-y-7">
           <h2 className="title-2 flex items-center gap-2">
             <div className="mr-2 rounded-full bg-indigo-500/20 p-2">
@@ -296,7 +288,7 @@ export default function EixosTematicosPermanentes() {
             </OrderedList.Item>
           </OrderedList.Root>
         </section>
-      </section>
+      </Container>
     </main>
   );
 }

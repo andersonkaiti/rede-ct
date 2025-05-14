@@ -1,9 +1,9 @@
 "use server";
 
 import "server-only";
-import { IMembroEquipe } from "@/types/membro";
+import { IUser } from "types/user";
 
-export type ComiteLegitimador = Omit<IMembroEquipe, "lattesUrl">;
+export type ComiteLegitimador = Omit<IUser, "lattesUrl">;
 
 const comiteLegitimador: ComiteLegitimador[] = [
   {
@@ -81,5 +81,7 @@ const comiteLegitimador: ComiteLegitimador[] = [
 ];
 
 export async function getComiteLegitimador() {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
   return comiteLegitimador;
 }

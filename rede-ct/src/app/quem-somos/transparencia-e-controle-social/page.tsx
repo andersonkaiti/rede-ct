@@ -1,14 +1,7 @@
 import { Copy } from "@components/copy";
 import { NavigationCard } from "@components/navigation-card";
 import { OrderedList } from "@components/ordered-list";
-import {
-  ArrowRightIcon,
-  Banknote,
-  FileText,
-  Link as LinkIcon,
-  PiggyBank,
-} from "lucide-react";
-import Link from "next/link";
+import { Banknote, FileText, Link as LinkIcon, PiggyBank } from "lucide-react";
 
 export default function TransparenciaEControleSocial() {
   return (

@@ -1,9 +1,9 @@
 "use server";
 
 import "server-only";
-import { IMembroEquipe } from "types/user";
+import { IUser } from "types/user";
 
-export type ComiteLegitimador = Omit<IMembroEquipe, "lattesUrl">;
+export type ComiteLegitimador = Omit<IUser, "lattesUrl">;
 
 const comiteLegitimador: ComiteLegitimador[] = [
   {

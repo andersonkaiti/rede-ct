@@ -10,7 +10,6 @@ import {
   Image as ImageIcon,
   ArrowRightIcon,
 } from "lucide-react";
-import Link from "next/link";
 import { NavigationCard } from "@components/navigation-card";
 
 export default async function ApresentacaoEHistoria() {

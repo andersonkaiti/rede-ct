@@ -2,7 +2,6 @@ import { IParceria } from "types/parceria";
 import { getParcerias } from "@actions/parcerias";
 import { Parceria } from "@components/parceria";
 import { Handshake } from "lucide-react";
-import Link from "next/link";
 import { NavigationCard } from "@components/navigation-card";
 
 export default async function ParceirosEFinanciadores() {

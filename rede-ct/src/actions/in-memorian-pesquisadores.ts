@@ -1,9 +1,9 @@
 "use server";
 
 import "server-only";
-import { IMembroEquipe } from "types/user";
+import { IUser } from "types/user";
 
-export interface IInMemorian extends Omit<IMembroEquipe, "lattesUrl"> {
+export interface IInMemorian extends Omit<IUser, "lattesUrl"> {
   date: string;
 }
 

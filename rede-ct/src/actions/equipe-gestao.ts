@@ -1,11 +1,11 @@
 "use server";
 
 import "server-only";
-import { IMembroEquipe } from "@/types/membro";
+import { IUser } from "types/user";
 
 export interface ISecaoEquipe {
   title: string;
-  members: IMembroEquipe[];
+  members: IUser[];
 }
 
 const sections: ISecaoEquipe[] = [
@@ -46,5 +46,7 @@ const sections: ISecaoEquipe[] = [
 ];
 
 export async function getEquipeGestao() {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
   return sections;
 }

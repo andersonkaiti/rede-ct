@@ -1,7 +1,7 @@
 "use server";
 
 import "server-only";
-import { IParceria } from "@/types/parceria";
+import { IParceria } from "types/parceria";
 
 const parcerias: IParceria[] = [
   {

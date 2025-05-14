@@ -1,4 +1,5 @@
 import { Copy } from "@components/copy";
+import { NavigationCard } from "@components/navigation-card";
 import { OrderedList } from "@components/ordered-list";
 import {
   ArrowRightIcon,
@@ -90,7 +91,6 @@ export default function TransparenciaEControleSocial() {
       </section>
 
       {/* COMITÊ LEGITIMADOR */}
-
       <section className="space-y-8">
         <h2 className="title-2">TRANSPARÊNCIA DE CONTAS</h2>
         <p className="text-justify">
@@ -119,24 +119,21 @@ export default function TransparenciaEControleSocial() {
         </p>
 
         <section>
-          <Link href="/quem-somos/transparencia-e-controle-social/comite-legitimador">
-            <div className="flex items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-xl">
-              <div className="rounded-full bg-indigo-500/20 p-2">
-                <FileText className="text-indigo-500" />
-              </div>
-              <div>
+          <NavigationCard.Root href="/quem-somos/transparencia-e-controle-social/comite-legitimador">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-4">
+                <div className="rounded-full bg-indigo-500/20 p-2">
+                  <FileText className="text-indigo-500" />
+                </div>
                 <h2 className="title-3 font-bold">Comitê Legitimador</h2>
-                <p>
-                  Conheça os membros do Comitê Legitimador da RedeCT e suas
-                  contribuições para o desenvolvimento de pesquisas sobre povos
-                  tradicionais.
-                </p>
               </div>
-              <div className="ml-auto">
-                <ArrowRightIcon className="text-indigo-500" />
-              </div>
+              <p>
+                Conheça os membros do Comitê Legitimador da RedeCT e suas
+                contribuições para o desenvolvimento de pesquisas sobre povos
+                tradicionais.
+              </p>
             </div>
-          </Link>
+          </NavigationCard.Root>
         </section>
 
         <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
@@ -164,9 +161,7 @@ export default function TransparenciaEControleSocial() {
             </div>
             <div>
               <p className="text-justify">
-                O saldo atual, em conta corrente exclusiva da RedeCT é
-                de R$21.788,57 (vinte e um mil e setecentos e oitenta e oito
-                reais e cincoenta e sete centavos) em 03/04/2025 (7h53min).
+                Saldo atual: R$21.788,57 (03/04/2025 - 7h53min)
               </p>
             </div>
           </div>
@@ -180,12 +175,9 @@ export default function TransparenciaEControleSocial() {
             </div>
             <div>
               <p className="text-justify">
-                O saldo total da RedeCT (somando-se o saldo da conta corrente de
-                uso exclusivo da RedeCT (R$21.788,57), os valores disponíveis
-                na conta eventos (R$4.131,00), o saldo disponível no Even3 -
-                Colóquio Internacional de 2025 (R$ 135,00) é de R$
-                26.054,00 (vinte e seis mil e ciquenta e quatro reais).
-                Atualizado em 03/04/2025 (7h53min).
+                Saldo total: R$26.054,00 (conta corrente: R$21.788,57 + eventos:
+                R$4.131,00 + Even3: R$135,00). Atualizado em 03/04/2025
+                (7h53min).
               </p>
             </div>
           </div>

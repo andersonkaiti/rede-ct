@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { OrderedList } from "@components/ordered-list";
 import { GraduationCap, Heart, Users } from "lucide-react";
+import { NavigationCard } from "@components/navigation-card";
 
 export default async function PesquisadoresParticipantes() {
   return (
@@ -80,8 +81,8 @@ export default async function PesquisadoresParticipantes() {
 
       {/* Cards */}
       <section className="flex flex-col gap-8 md:flex-row">
-        <Link href="/quem-somos/pesquisadores-participantes/pesquisadores">
-          <div className="space-y-4 rounded-md p-6 text-justify shadow-md transition-all duration-300 hover:shadow-xl">
+        <NavigationCard.Root href="/quem-somos/pesquisadores-participantes/pesquisadores">
+          <div className="flex flex-col gap-4">
             <h2 className="title-3 flex items-center gap-2 font-bold">
               <Users className="text-indigo-500" />
               Pesquisadores Participantes
@@ -92,9 +93,9 @@ export default async function PesquisadoresParticipantes() {
               tradicionais.
             </p>
           </div>
-        </Link>
-        <Link href="/quem-somos/pesquisadores-participantes/in-memorian">
-          <div className="space-y-4 rounded-md p-6 text-justify shadow-md transition-all duration-300 hover:shadow-xl">
+        </NavigationCard.Root>
+        <NavigationCard.Root href="/quem-somos/pesquisadores-participantes/in-memorian">
+          <div className="flex flex-col gap-4">
             <h2 className="title-3 flex items-center gap-2 font-bold">
               <Heart className="text-indigo-500" /> Galeria in memorian
             </h2>
@@ -104,7 +105,7 @@ export default async function PesquisadoresParticipantes() {
               tradicionais.
             </p>
           </div>
-        </Link>
+        </NavigationCard.Root>
       </section>
 
       {/* COMO SE FILIAR À REDECT? */}

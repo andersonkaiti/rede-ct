@@ -1,10 +1,10 @@
 import { Copy } from "@components/copy";
-import { ArrowRightIcon, FileText } from "lucide-react";
-import Link from "next/link";
+import { NavigationCard } from "@components/navigation-card";
+import { FileText } from "lucide-react";
 
 export default async function InstitutoDePesquisasAmazonicas() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <section className="space-y-14">
         <h1 className="title-1">
           Instituto de Pesquisas Amazônicas e de Povos Tradicionais
@@ -72,26 +72,23 @@ export default async function InstitutoDePesquisasAmazonicas() {
         </div>
       </section>
 
-      <section className="space-y-14">
-        <Link href="/quem-somos/instituto-de-pesquisas-amazonicas-e-de-povos-tradicionais/equipe-sdhc">
-          <div className="flex items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-xl">
-            <div className="rounded-full bg-indigo-500/20 p-2">
-              <FileText className="text-indigo-500" />
-            </div>
-            <div>
+      <section>
+        <NavigationCard.Root href="/quem-somos/instituto-de-pesquisas-amazonicas-e-de-povos-tradicionais/equipe-sdhc">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-4">
+              <div className="rounded-full bg-indigo-500/20 p-2">
+                <FileText className="text-indigo-500" />
+              </div>
               <h2 className="title-3 font-bold">
                 Conheça nossa equipe de gestão
               </h2>
-              <p>
-                Descubra os membros da atual equipe de gestão da associação
-                Social Desenvolvimento Humano e Comunitário.
-              </p>
             </div>
-            <div className="ml-auto">
-              <ArrowRightIcon className="text-indigo-500" />
-            </div>
+            <p>
+              Descubra os membros da atual equipe de gestão da associação Social
+              Desenvolvimento Humano e Comunitário.
+            </p>
           </div>
-        </Link>
+        </NavigationCard.Root>
       </section>
 
       <section className="space-y-7">

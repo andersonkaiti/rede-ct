@@ -1,25 +1,22 @@
-import { getComiteLegitimador } from "@actions/comite-legitimador";
-import { MembroCard } from "@components/membro-card";
+import { BackArrow } from "@components/back-arrow";
+import { SkeletonCards } from "@components/skeleton/skeleton-cards";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+const DynamicComiteLegitimador = dynamic(() =>
+  import("./comite-legitimador").then((m) => m.ComiteLegitimador),
+);
 
 export default async function ComiteLegitimador() {
-  const comiteLegitimador = await getComiteLegitimador();
-
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
+      <BackArrow />
       <h2 className="title-1 text-center">
         Composição do Comitê Legitimador da RedeCT
       </h2>
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-        {comiteLegitimador.map((member, index: number) => (
-          <MembroCard.Root key={index}>
-            <MembroCard.Image src={member.image.src} alt={member.image.alt} />
-            <div className="flex flex-grow flex-col items-center justify-between gap-4">
-              <h1 className="text-center text-xl font-bold">{member.name}</h1>
-              <h2 className="text-center font-bold">{member.role}</h2>
-            </div>
-          </MembroCard.Root>
-        ))}
-      </div>
+      <Suspense fallback={<SkeletonCards />}>
+        <DynamicComiteLegitimador />
+      </Suspense>
       <p className="text-justify">
         Sob responsabilidade da Vice-coordenadoria de Extensão Universitária e
         Cultura, o Comitê Legitimador é composto pelo Vice-coordenador de

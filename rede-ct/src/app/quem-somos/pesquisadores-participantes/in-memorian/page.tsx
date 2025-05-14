@@ -1,16 +1,20 @@
-import { getInMemorianLideresPovosTradicionais } from "@actions/in-memorian-lideres-tradicionais";
-import { getInMemorianPesquisadores } from "@actions/in-memorian-pesquisadores";
-import { MembroCard } from "@components/membro-card";
+import { SkeletonCards } from "@components/skeleton/skeleton-cards";
+import { BackArrow } from "@components/back-arrow";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
-export default async function InMemorian() {
-  const [inMemorianPesquisadores, inMemorianLideresPovosTradicionais] =
-    await Promise.all([
-      getInMemorianPesquisadores(),
-      getInMemorianLideresPovosTradicionais(),
-    ]);
+const DynamicPesquisadores = dynamic(() =>
+  import("../pesquisadores/pesquisadores").then((m) => m.Pesquisadores),
+);
 
+const DynamicPovosTradicionais = dynamic(() =>
+  import("./povos-tradicionais").then((m) => m.PovosTradicionais),
+);
+
+export default function InMemorian() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-10 lg:p-25">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
+      <BackArrow />
       <h1 className="title-1 text-center">Galeria in memoriam 💐</h1>
       <section className="space-y-8">
         <h2 className="title-2">Pesquisadores da RedeCT 🎓</h2>
@@ -20,18 +24,11 @@ export default async function InMemorian() {
           RedeCT.
         </p>
       </section>
-      <section className="grid grid-cols-1 gap-10 md:grid-cols-3">
-        {inMemorianPesquisadores.map((member, index: number) => (
-          <MembroCard.Root key={index}>
-            <MembroCard.Image src={member.image.src} alt={member.image.alt} />
-            <div className="flex flex-grow flex-col items-center justify-between gap-4">
-              <h1 className="text-center text-xl font-bold">{member.name}</h1>
-              <h2 className="text-center font-bold">{member.date}</h2>
-              <h2 className="text-center font-bold">{member.role}</h2>
-            </div>
-          </MembroCard.Root>
-        ))}
-      </section>
+      <Suspense fallback={<SkeletonCards />}>
+        <section className="grid grid-cols-1 gap-10 md:grid-cols-3">
+          <DynamicPesquisadores />
+        </section>
+      </Suspense>
       <section className="space-y-8">
         <h2 className="title-2">Povos Tradicionais 🌎</h2>
 
@@ -42,18 +39,11 @@ export default async function InMemorian() {
           comunidades.
         </p>
       </section>
-      <section className="grid grid-cols-1 gap-10 md:grid-cols-3">
-        {inMemorianLideresPovosTradicionais.map((member, index: number) => (
-          <MembroCard.Root key={index}>
-            <MembroCard.Image src={member.image.src} alt={member.image.alt} />
-            <div className="flex flex-grow flex-col items-center justify-between gap-4">
-              <h1 className="text-center text-xl font-bold">{member.name}</h1>
-              <h2 className="text-center font-bold">{member.date}</h2>
-              <h2 className="text-center font-bold">{member.role}</h2>
-            </div>
-          </MembroCard.Root>
-        ))}
-      </section>
+      <Suspense fallback={<SkeletonCards />}>
+        <section className="grid grid-cols-1 gap-10 md:grid-cols-3">
+          <DynamicPovosTradicionais />
+        </section>
+      </Suspense>
     </main>
   );
 }

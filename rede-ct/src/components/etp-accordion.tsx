@@ -1,6 +1,7 @@
 import { getEtp } from "@actions/etp";
-import { MembroCard } from "@components/membro-card";
+import { UserCard } from "@components/user-card";
 import * as Accordion from "@components/ui/accordion";
+import { CardButtonLattes } from "./user-card/card-button-lattes";
 
 export async function EPTAccordion() {
   const etps = await getEtp();
@@ -15,12 +16,11 @@ export async function EPTAccordion() {
             </h3>
           </Accordion.Trigger>
           <Accordion.Content className="space-y-7">
-            <p className="text-justify">{description}</p>
             <p className="text-justify">{text}</p>
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+            <UserCard.Wrapper>
               {members.map((member, index: number) => (
-                <MembroCard.Root key={index}>
-                  <MembroCard.Image
+                <UserCard.Root key={index}>
+                  <UserCard.Image
                     src={member.image.src}
                     alt={member.image.alt}
                   />
@@ -29,10 +29,11 @@ export async function EPTAccordion() {
                       {member.name}
                     </h1>
                     <h2 className="text-center font-bold">{member.role}</h2>
+                    <CardButtonLattes href={member.lattesUrl} />
                   </div>
-                </MembroCard.Root>
+                </UserCard.Root>
               ))}
-            </div>
+            </UserCard.Wrapper>
           </Accordion.Content>
         </Accordion.Item>
       ))}

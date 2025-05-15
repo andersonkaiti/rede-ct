@@ -1,14 +1,7 @@
 import { HeroSection } from "@components/home/hero-section";
 import { MissaoValoresTabs } from "@components/home/missao-valores-tabs";
 import { NavigationCard } from "@components/navigation-card";
-import {
-  ArrowRightIcon,
-  Handshake,
-  Newspaper,
-  Users,
-  BookOpen,
-  Globe,
-} from "lucide-react";
+import { Handshake, Newspaper, Users, BookOpen, Globe } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -136,18 +129,12 @@ export default function Home() {
               <Handshake />
               Parceiros e financiadores
             </h2>
-            <div className="ml-auto">
-              <ArrowRightIcon className="text-white" />
-            </div>
           </NavigationCard.BlueRoot>
           <NavigationCard.BlueRoot href="/noticias">
             <h2 className="title-3 flex items-center gap-2">
               <Newspaper />
               Últimas notícias
             </h2>
-            <div className="ml-auto">
-              <ArrowRightIcon className="text-white" />
-            </div>
           </NavigationCard.BlueRoot>
         </div>
       </main>

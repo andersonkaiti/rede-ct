@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { NavLink, navLinks } from "./navigation-links";
 import { useNavigationBar } from "@hooks/navigation-bar.hook";
-import { cn } from "@lib/utils";
+import { cn } from "@/utils/cn";
 import { Menu } from "./menu";
 import { Dropdown } from "./dropdown";
 import { NavigationLink } from "./navigation-link";

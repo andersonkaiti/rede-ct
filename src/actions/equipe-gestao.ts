@@ -16,7 +16,7 @@ const sections: ISecaoEquipe[] = [
         name: "Profª. Me. Laurenita Gualberto Pereira Alves (LAURINHA GUALBERTO)",
         role: "Coordenadora Geral da RedeCT",
         image: {
-          src: "/images/coordenadoria-geral-redect-1.png",
+          src: "/images/equipe-de-gestao/coordenadoria-geral-redect/coordenadoria-geral-redect-1.png",
           alt: "Profª. Me. Laurenita Gualberto Pereira Alves (LAURINHA GUALBERTO)",
         },
         lattesUrl:
@@ -26,7 +26,7 @@ const sections: ISecaoEquipe[] = [
         name: "Prof. Dr. Edson Machado de Brito (EDSON KAYAPÓ)",
         role: "Vice-coordenador Geral da RedeCT",
         image: {
-          src: "/images/coordenadoria-geral-redect-2.png",
+          src: "/images/equipe-de-gestao/coordenadoria-geral-redect/coordenadoria-geral-redect-2.png",
           alt: "Prof. Dr. Edson Machado de Brito (EDSON KAYAPÓ)",
         },
         lattesUrl: "http://lattes.cnpq.br/0433710450942228",
@@ -35,7 +35,7 @@ const sections: ISecaoEquipe[] = [
         name: "Prof. Victor Hugo Silva Souza",
         role: "Secretário Geral da RedeCT",
         image: {
-          src: "/images/coordenadoria-geral-redect-3.png",
+          src: "/images/equipe-de-gestao/coordenadoria-geral-redect/coordenadoria-geral-redect-3.png",
           alt: "Prof. Victor Hugo Silva Souza",
         },
         lattesUrl:

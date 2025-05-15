@@ -10,7 +10,7 @@ const comiteLegitimador: ComiteLegitimador[] = [
     name: "Profa. Dra. Ana D'Arc Martins de Azevedo",
     role: "Vice-coordenadora de Extensão Universitária e Cultura",
     image: {
-      src: "/images/comite-legitimador-1.png",
+      src: "/images/comite-legitimador/comite-legitimador-1.png",
       alt: "Profa. Dra. Ana D'Arc Martins de Azevedo",
     },
   },
@@ -18,7 +18,7 @@ const comiteLegitimador: ComiteLegitimador[] = [
     name: "Luis Fernando Marques",
     role: "Secretário Geral do Comitê Legitimador da RedeCT",
     image: {
-      src: "/images/comite-legitimador-2.png",
+      src: "/images/comite-legitimador/comite-legitimador-2.png",
       alt: "Profa. Dra. Ana D'Arc Martins de Azevedo",
     },
   },
@@ -26,7 +26,7 @@ const comiteLegitimador: ComiteLegitimador[] = [
     name: "Profa. Celenita Gualberto Pereira Bernieri",
     role: "Representante de Comunidade Quilombola",
     image: {
-      src: "/images/comite-legitimador-3.png",
+      src: "/images/comite-legitimador/comite-legitimador-3.png",
       alt: "Profa. Dra. Ana D'Arc Martins de Azevedo",
     },
   },
@@ -34,7 +34,7 @@ const comiteLegitimador: ComiteLegitimador[] = [
     name: "Valdivino Marques Sobrinho",
     role: "Representante de Comunidade Tradicional Geraizeira",
     image: {
-      src: "/images/comite-legitimador-4.png",
+      src: "/images/comite-legitimador/comite-legitimador-4.png",
       alt: "Profa. Dra. Ana D'Arc Martins de Azevedo",
     },
   },
@@ -42,7 +42,7 @@ const comiteLegitimador: ComiteLegitimador[] = [
     name: "Prof. Dr. Adriano Batista Castorino",
     role: "Pesquisador da área de Antropologia",
     image: {
-      src: "/images/comite-legitimador-5.png",
+      src: "/images/comite-legitimador/comite-legitimador-5.png",
       alt: "Profa. Dra. Ana D'Arc Martins de Azevedo",
     },
   },
@@ -50,7 +50,7 @@ const comiteLegitimador: ComiteLegitimador[] = [
     name: "Me. Isaltina Santos da Costa Oliveira (Tina)",
     role: "Pesquisadora da área de Museologia",
     image: {
-      src: "/images/comite-legitimador-6.png",
+      src: "/images/comite-legitimador/comite-legitimador-6.png",
       alt: "Profa. Dra. Ana D'Arc Martins de Azevedo",
     },
   },

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ChevronDownIcon } from "lucide-react";
-import { cn } from "@lib/utils";
+import { cn } from "@/utils/cn";
 import { NavLink } from "./navigation-links";
 import { NavigationBarIcon } from "./navigation-bar-icon";
 

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "Rede Internacional de Pesquisadores sobre Povos Originários e Comunidades Tradicionais",
   icons: {
-    icon: "/favicon.png",
+    icon: "/images/favicon.png",
   },
 };
 

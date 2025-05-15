@@ -1,7 +1,7 @@
-import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
-import { INavigationCardProps } from ".";
 import { cn } from "@/utils/cn";
+import { ArrowRightIcon } from "lucide-react";
+import { INavigationCardProps } from ".";
 
 export function NavigationCardRoot({
   children,

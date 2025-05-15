@@ -1,6 +1,6 @@
 import { getEtp } from "@actions/etp";
-import { UserCard } from "@components/user-card";
 import * as Accordion from "@components/ui/accordion";
+import { UserCard } from "@components/user-card";
 import { CardButtonLattes } from "./user-card/card-button-lattes";
 
 export async function EPTAccordion() {

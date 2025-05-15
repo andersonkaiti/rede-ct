@@ -3,6 +3,7 @@ import { Input } from "@components/input";
 import { Noticia } from "@components/noticia";
 import { PaginationContainer } from "@components/noticias/pagination";
 import { Search } from "lucide-react";
+
 import { INoticia } from "types/noticia";
 
 export default async function Noticias() {

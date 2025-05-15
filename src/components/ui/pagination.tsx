@@ -1,4 +1,7 @@
 import * as React from "react";
+
+import { Button, buttonVariants } from "@components/ui/button";
+import { cn } from "@utils/cn";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -6,9 +9,6 @@ import {
   ChevronsRightIcon,
   MoreHorizontalIcon,
 } from "lucide-react";
-
-import { cn } from "@utils/cn";
-import { Button, buttonVariants } from "@components/ui/button";
 
 function Root({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -68,7 +68,12 @@ function Link({
 
 function First({ className, ...props }: React.ComponentProps<typeof Link>) {
   return (
-    <Link aria-label="Ir para a primeira página" size="default" {...props}>
+    <Link
+      aria-label="Ir para a primeira página"
+      className={cn(className)}
+      size="default"
+      {...props}
+    >
       <ChevronsLeftIcon className="size-4" />
     </Link>
   );
@@ -76,7 +81,12 @@ function First({ className, ...props }: React.ComponentProps<typeof Link>) {
 
 function Last({ className, ...props }: React.ComponentProps<typeof Link>) {
   return (
-    <Link aria-label="Ir para a última página" size="default" {...props}>
+    <Link
+      aria-label="Ir para a última página"
+      className={cn(className)}
+      size="default"
+      {...props}
+    >
       <ChevronsRightIcon className="size-4" />
     </Link>
   );

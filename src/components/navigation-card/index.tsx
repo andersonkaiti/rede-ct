@@ -1,6 +1,6 @@
 import { LinkProps } from "next/link";
-import { NavigationCardRoot } from "./navigation-card";
 import { BlueNavigationCard } from "./blue-navigation-card";
+import { NavigationCardRoot } from "./navigation-card";
 
 export interface INavigationCardProps
   extends LinkProps,

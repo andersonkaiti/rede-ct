@@ -1,7 +1,7 @@
-import { formatDate } from "@utils/format-date";
-import { Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { formatDate } from "@utils/format-date";
+import { Calendar } from "lucide-react";
 import { INoticia } from "types/noticia";
 
 export function Noticia({

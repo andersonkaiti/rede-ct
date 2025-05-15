@@ -1,8 +1,8 @@
-import { IParceria } from "types/parceria";
 import { getParcerias } from "@actions/parcerias";
+import { NavigationCard } from "@components/navigation-card";
 import { Parceria } from "@components/parceria";
 import { Handshake } from "lucide-react";
-import { NavigationCard } from "@components/navigation-card";
+import { IParceria } from "types/parceria";
 
 export default async function ParceirosEFinanciadores() {
   const parcerias = await getParcerias();

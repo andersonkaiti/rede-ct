@@ -1,7 +1,7 @@
 "use client";
 
-import { ArrowLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { ArrowLeftIcon } from "lucide-react";
 
 export function BackArrow() {
   const router = useRouter();

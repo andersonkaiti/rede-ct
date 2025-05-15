@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { NavLink, navLinks } from "./navigation-links";
-import { useNavigationBar } from "@hooks/navigation-bar.hook";
 import { cn } from "@/utils/cn";
-import { Menu } from "./menu";
-import { Dropdown } from "./dropdown";
-import { NavigationLink } from "./navigation-link";
 import { useNavigationBarDropdown } from "@hooks/navigation-bar-dropdown.hook";
+import { useNavigationBar } from "@hooks/navigation-bar.hook";
+import { Dropdown } from "./dropdown";
+import { Menu } from "./menu";
+import { NavigationLink } from "./navigation-link";
+import { NavLink, navLinks } from "./navigation-links";
 
 export function NavigationBar() {
   const {

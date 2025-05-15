@@ -1,6 +1,6 @@
+import Link, { LinkProps } from "next/link";
 import { Button } from "@components/ui/button";
 import { ArrowRightIcon, ScrollText } from "lucide-react";
-import Link, { LinkProps } from "next/link";
 
 export interface ICardButtonLattesProps extends LinkProps {
   children?: string;

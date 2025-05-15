@@ -1,5 +1,5 @@
-import * as Tabs from "@components/ui/tabs";
 import Image from "next/image";
+import * as Tabs from "@components/ui/tabs";
 
 export function MissaoValoresTabs() {
   return (

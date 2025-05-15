@@ -1,6 +1,7 @@
-import { getTimelineRedeCT } from "@actions/timeline-rede-ct";
-import { Timeline } from "@components/ui/timeline";
 import Image from "next/image";
+import { getTimelineRedeCT } from "@actions/timeline-rede-ct";
+import { NavigationCard } from "@components/navigation-card";
+import { Timeline } from "@components/ui/timeline";
 import {
   History,
   Users,
@@ -10,7 +11,6 @@ import {
   Image as ImageIcon,
   ArrowRightIcon,
 } from "lucide-react";
-import { NavigationCard } from "@components/navigation-card";
 
 export default async function ApresentacaoEHistoria() {
   const timelineData = await getTimelineRedeCT();

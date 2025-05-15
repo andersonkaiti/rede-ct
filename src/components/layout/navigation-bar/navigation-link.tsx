@@ -1,8 +1,8 @@
 import Link from "next/link";
+import { cn } from "@/utils/cn";
 import { ChevronDownIcon } from "lucide-react";
-import { cn } from "@lib/utils";
-import { NavLink } from "./navigation-links";
 import { NavigationBarIcon } from "./navigation-bar-icon";
+import { NavLink } from "./navigation-links";
 
 export interface INavLinkProps {
   link: NavLink;

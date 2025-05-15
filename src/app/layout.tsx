@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+
 import "./globals.css";
-import { NavigationBar } from "@components/layout/navigation-bar/navigation-bar";
 import { Footer } from "@components/layout/footer/footer";
+import { NavigationBar } from "@components/layout/navigation-bar/navigation-bar";
 import { Toaster } from "sonner";
 
 const poppins = Poppins({
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   description:
     "Rede Internacional de Pesquisadores sobre Povos Originários e Comunidades Tradicionais",
   icons: {
-    icon: "/favicon.png",
+    icon: "/images/favicon.png",
   },
 };
 

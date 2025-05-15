@@ -1,6 +1,6 @@
-import { IParceria } from "types/parceria";
-import { Building2, Calendar } from "lucide-react";
 import Image from "next/image";
+import { Building2, Calendar } from "lucide-react";
+import { IParceria } from "types/parceria";
 
 export function Parceria({
   parceria: {

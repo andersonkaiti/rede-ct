@@ -1,7 +1,7 @@
-import { cn } from "@lib/utils";
-import { NavLink } from "./navigation-links";
 import Link from "next/link";
+import { cn } from "@/utils/cn";
 import { NavigationBarIcon } from "./navigation-bar-icon";
+import { NavLink } from "./navigation-links";
 
 export interface IDropdownProps {
   leftOffset: number | null;

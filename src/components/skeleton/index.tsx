@@ -1,8 +1,8 @@
-import { SkeletonImage } from "./skeleton-image";
 import { SkeletonRoot } from "./skeleton";
-import { SkeletonTitle } from "./skeleton-title";
-import { SkeletonText } from "./skeleton-text";
 import { SkeletonButton } from "./skeleton-button";
+import { SkeletonImage } from "./skeleton-image";
+import { SkeletonText } from "./skeleton-text";
+import { SkeletonTitle } from "./skeleton-title";
 
 export interface ISkeletonProps
   extends React.HTMLAttributes<HTMLDivElement | HTMLButtonElement> {

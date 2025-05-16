@@ -9,7 +9,6 @@ import {
   Globe,
   Landmark,
   Image as ImageIcon,
-  ArrowRightIcon,
 } from "lucide-react";
 
 export default async function ApresentacaoEHistoria() {

@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { BackArrow } from "@components/back-arrow";
 import { OrderedList } from "@components/ordered-list";
-import { FileText, Users, Building2, Mail, ArrowLeft } from "lucide-react";
+import { FileText, Users, Building2, Mail } from "lucide-react";
 
 export default function Filiacao() {
   return (
@@ -114,14 +113,6 @@ export default function Filiacao() {
           </OrderedList.Root>
         </div>
       </section>
-
-      <Link
-        href="/quem-somos/apresentacao-e-historia"
-        className="flex items-center gap-2 text-indigo-500 hover:text-indigo-600"
-      >
-        <ArrowLeft className="h-5 w-5" />
-        Voltar para a página de apresentação e história
-      </Link>
     </main>
   );
 }

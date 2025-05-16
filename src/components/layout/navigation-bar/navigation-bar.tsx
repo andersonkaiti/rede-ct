@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { cn } from "@/utils/cn";
 import { useNavigationBarDropdown } from "@hooks/navigation-bar-dropdown.hook";
 import { useNavigationBar } from "@hooks/navigation-bar.hook";
@@ -37,7 +38,9 @@ export function NavigationBar() {
         setShowNavigationBar={setShowNavigationBar}
       />
 
-      <Image src="/images/logo.png" width={100} height={100} alt="Rede CT" />
+      <Link href="/">
+        <Image src="/images/logo.png" width={100} height={100} alt="Rede CT" />
+      </Link>
 
       <nav
         onMouseLeave={() => setHovering(null)}

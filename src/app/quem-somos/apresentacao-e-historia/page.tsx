@@ -176,9 +176,6 @@ export default async function ApresentacaoEHistoria() {
             <Users />
             Como se filiar à RedeCT?
           </h2>
-          <div className="ml-auto">
-            <ArrowRightIcon className="text-white" />
-          </div>
         </NavigationCard.BlueRoot>
       </section>
     </main>

@@ -114,14 +114,6 @@ export default function Filiacao() {
           </OrderedList.Root>
         </div>
       </section>
-
-      <Link
-        href="/quem-somos/apresentacao-e-historia"
-        className="flex items-center gap-2 text-indigo-500 hover:text-indigo-600"
-      >
-        <ArrowLeft className="h-5 w-5" />
-        Voltar para a página de apresentação e história
-      </Link>
     </main>
   );
 }

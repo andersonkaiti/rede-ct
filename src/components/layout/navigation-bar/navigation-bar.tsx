@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/utils/cn";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { useNavigationBarDropdown } from "@hooks/navigation-bar-dropdown.hook";
 import { useNavigationBar } from "@hooks/navigation-bar.hook";
 import { Dropdown } from "./dropdown";
@@ -61,6 +62,24 @@ export function NavigationBar() {
             setActiveIndex={setActiveIndex}
           />
         ))}
+
+        <SignedOut>
+          <Link
+            href="/sign-in"
+            className="group 2lg:rounded-full bg-background hover:text-red-200-foreground focus:text-red-200-foreground data-[state=open]:text-red-200-foreground focus-visible:ring-ring/50 inline-flex h-9 w-fit items-center justify-between rounded-md px-4 py-2 text-sm font-medium transition-[color,box-shadow] outline-none hover:bg-gray-400/25 focus:bg-gray-400/25 focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25 data-[state=open]:focus:bg-gray-400/25"
+          >
+            ENTRAR
+          </Link>
+        </SignedOut>
+
+        <SignedIn>
+          <Link
+            href="/dashboard"
+            className="group 2lg:rounded-full bg-background hover:text-red-200-foreground focus:text-red-200-foreground data-[state=open]:text-red-200-foreground focus-visible:ring-ring/50 inline-flex h-9 w-fit items-center justify-between rounded-md px-4 py-2 text-sm font-medium transition-[color,box-shadow] outline-none hover:bg-gray-400/25 focus:bg-gray-400/25 focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25 data-[state=open]:focus:bg-gray-400/25"
+          >
+            Dashboard
+          </Link>
+        </SignedIn>
 
         {hovering && (
           <Dropdown

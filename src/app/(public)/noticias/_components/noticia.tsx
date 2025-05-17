@@ -4,7 +4,7 @@ import { formatDate } from "@utils/format-date";
 import { Calendar } from "lucide-react";
 import { INews } from "types/news";
 
-export function News({
+export function Noticia({
   news: {
     title,
     content,

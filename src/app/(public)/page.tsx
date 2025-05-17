@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { HeroSection } from "@components/home/hero-section";
-import { MissaoValoresTabs } from "@components/home/missao-valores-tabs";
 import { NavigationCard } from "@components/navigation-card";
 import { Handshake, Newspaper, Users, BookOpen, Globe } from "lucide-react";
+import { HeroSection } from "./_components/hero-section";
+import { MissaoValoresTabs } from "./_components/missao-valores-tabs";
 
 export default function Home() {
   return (

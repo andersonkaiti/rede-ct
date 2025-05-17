@@ -1,8 +1,8 @@
 import { getPartnerships } from "@actions/partnerships";
 import { NavigationCard } from "@components/navigation-card";
-import { Partnership } from "@components/partnetship";
 import { Handshake } from "lucide-react";
 import { IPartnership } from "types/partnership";
+import { Partnership } from "./_components/partnetship";
 
 export default async function ParceirosEFinanciadores() {
   const partnerships = await getPartnerships();

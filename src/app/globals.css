@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --breakpoint-2lg: 1300px;
+  --breakpoint-2lg: 1380px;
 }
 
 p,

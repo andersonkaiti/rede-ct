@@ -1,10 +1,9 @@
 import { getNews } from "@actions/news";
 import { Input } from "@components/input";
-import { News } from "@components/news";
-import { PaginationContainer } from "@components/noticias/pagination";
 import { Search } from "lucide-react";
-
 import { INews } from "types/news";
+import { Noticia } from "./_components/noticia";
+import { PaginationContainer } from "./_components/pagination";
 
 export default async function Noticias() {
   const news = await getNews();
@@ -19,7 +18,7 @@ export default async function Noticias() {
       </Input>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {news.map((news: INews, index: number) => (
-          <News key={index} news={news} />
+          <Noticia key={index} news={news} />
         ))}
       </div>
 

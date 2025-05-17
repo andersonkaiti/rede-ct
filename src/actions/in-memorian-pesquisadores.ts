@@ -13,7 +13,7 @@ const inMemorianPesquisadores: IInMemorian[] = [
     date: "(- nononon +07/10/2023)",
     role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
     image: {
-      src: "/images/in-memorian-1.png",
+      src: "/images/in-memorian/in-memorian-1.png",
       alt: "Prof. Dr. José Ronaldo Fassheber",
     },
   },
@@ -22,7 +22,7 @@ const inMemorianPesquisadores: IInMemorian[] = [
     date: "(- nononon +07/10/2023)",
     role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
     image: {
-      src: "/images/in-memorian-2.png",
+      src: "/images/in-memorian/in-memorian-2.png",
       alt: "Prof. Dr. Marcelo Alves Terra",
     },
   },
@@ -31,7 +31,7 @@ const inMemorianPesquisadores: IInMemorian[] = [
     date: "(-14/04/1940 +11/07/2023)",
     role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
     image: {
-      src: "/images/in-memorian-3.png",
+      src: "/images/in-memorian/in-memorian-3.png",
       alt: "Prof. Dr. Carlos Rodrigues Brandão",
     },
   },
@@ -40,7 +40,7 @@ const inMemorianPesquisadores: IInMemorian[] = [
     date: "(nono nonono nonnno)",
     role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
     image: {
-      src: "/images/in-memorian-4.png",
+      src: "/images/in-memorian/in-memorian-4.png",
       alt: "Prof. Rodrigo Pasquarelli Dalmédico",
     },
   },

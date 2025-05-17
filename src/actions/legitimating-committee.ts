@@ -3,9 +3,9 @@
 import "server-only";
 import { IUser } from "types/user";
 
-export type ComiteLegitimador = Omit<IUser, "lattesUrl">;
+export type LegitimatingCommittee = Omit<IUser, "lattesUrl">;
 
-const comiteLegitimador: ComiteLegitimador[] = [
+const legitimatingCommittee: LegitimatingCommittee[] = [
   {
     name: "Profa. Dra. Ana D'Arc Martins de Azevedo",
     role: "Vice-coordenadora de Extensão Universitária e Cultura",
@@ -80,8 +80,8 @@ const comiteLegitimador: ComiteLegitimador[] = [
   },
 ];
 
-export async function getComiteLegitimador() {
+export async function getLegitimatingCommittee() {
   await new Promise((resolve) => setTimeout(resolve, 500));
 
-  return comiteLegitimador;
+  return legitimatingCommittee;
 }

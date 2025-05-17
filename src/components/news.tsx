@@ -2,17 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@utils/format-date";
 import { Calendar } from "lucide-react";
-import { INoticia } from "types/noticia";
+import { INews } from "types/news";
 
-export function Noticia({
-  noticia: {
+export function News({
+  news: {
     title,
     content,
     author: { name, image },
     date,
   },
 }: {
-  noticia: INoticia;
+  news: INews;
 }) {
   return (
     <article className="flex flex-1 flex-col items-start justify-between rounded-md p-10 shadow-md transition-all duration-300 hover:shadow-lg">

@@ -1,4 +1,4 @@
-export interface IParceria {
+export interface IPartnership {
   name: string;
   image: {
     src: string;

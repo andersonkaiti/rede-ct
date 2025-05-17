@@ -1,16 +1,16 @@
 import Image from "next/image";
 import { Building2, Calendar } from "lucide-react";
-import { IParceria } from "types/parceria";
+import { IPartnership } from "types/partnership";
 
-export function Parceria({
-  parceria: {
+export function Partnership({
+  partnership: {
     name,
     image: { src, alt },
     description,
     startDate,
   },
 }: {
-  parceria: IParceria;
+  partnership: IPartnership;
 }) {
   return (
     <div className="flex flex-col items-center gap-4 lg:flex-row">

@@ -6,10 +6,11 @@ import { cn } from "@/utils/cn";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { useNavigationBarDropdown } from "@hooks/navigation-bar-dropdown.hook";
 import { useNavigationBar } from "@hooks/navigation-bar.hook";
+import { NavigationLink as NavigationLinkType } from "types/navigation-link";
 import { Dropdown } from "./dropdown";
 import { Menu } from "./menu";
 import { NavigationLink } from "./navigation-link";
-import { NavLink, navLinks } from "./navigation-links";
+import { navigationLinks } from "./navigation-links";
 
 export function NavigationBar() {
   const {
@@ -50,7 +51,7 @@ export function NavigationBar() {
           !showNavigationBar && "-left-full",
         )}
       >
-        {navLinks.map((link: NavLink, index: number) => (
+        {navigationLinks.map((link: NavigationLinkType, index: number) => (
           <NavigationLink
             link={link}
             hovering={hovering}
@@ -74,10 +75,10 @@ export function NavigationBar() {
 
         <SignedIn>
           <Link
-            href="/dashboard"
+            href="/area-restrita"
             className="group 2lg:rounded-full bg-background hover:text-red-200-foreground focus:text-red-200-foreground data-[state=open]:text-red-200-foreground focus-visible:ring-ring/50 inline-flex h-9 w-fit items-center justify-between rounded-md px-4 py-2 text-sm font-medium transition-[color,box-shadow] outline-none hover:bg-gray-400/25 focus:bg-gray-400/25 focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25 data-[state=open]:focus:bg-gray-400/25"
           >
-            Dashboard
+            ÁREA RESTRITA
           </Link>
         </SignedIn>
 
@@ -86,7 +87,7 @@ export function NavigationBar() {
             leftOffset={leftOffset}
             heightOffset={heightOffset}
             hovering={hovering}
-            navLinks={navLinks}
+            navigationLinks={navigationLinks}
             refs={refs}
           />
         )}

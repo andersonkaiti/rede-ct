@@ -1,4 +1,4 @@
-export interface INoticia {
+export interface INews {
   title: string;
   content: string;
   author: {

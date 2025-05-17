@@ -20,23 +20,9 @@ import {
   FilePlus,
   Newspaper,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { NavigationLink as NavigationLinkType } from "types/navigation-link";
 
-export type NavLink =
-  | {
-      path: string;
-      label: string;
-      icon: LucideIcon;
-      children?: never;
-    }
-  | {
-      path?: never;
-      label: string;
-      icon?: never;
-      children: NavLink[];
-    };
-
-export const navLinks: NavLink[] = [
+export const navigationLinks: NavigationLinkType[] = [
   {
     path: "/",
     label: "HOME",

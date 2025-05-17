@@ -1,9 +1,9 @@
 "use server";
 
 import "server-only";
-import { IParceria } from "types/parceria";
+import { IPartnership } from "types/partnership";
 
-const parcerias: IParceria[] = [
+const partnerships: IPartnership[] = [
   {
     name: "CITeBauru",
     image: {
@@ -196,6 +196,6 @@ const parcerias: IParceria[] = [
   },
 ];
 
-export async function getParcerias() {
-  return parcerias;
+export async function getPartnerships() {
+  return partnerships;
 }

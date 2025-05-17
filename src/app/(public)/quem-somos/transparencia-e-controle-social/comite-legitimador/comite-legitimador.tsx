@@ -1,12 +1,12 @@
-import { getComiteLegitimador } from "@actions/comite-legitimador";
+import { getLegitimatingCommittee } from "@actions/legitimating-committee";
 import { UserCard } from "@components/user-card";
 
 export async function ComiteLegitimador() {
-  const comiteLegitimador = await getComiteLegitimador();
+  const legitimatingCommittee = await getLegitimatingCommittee();
 
   return (
     <UserCard.Wrapper>
-      {comiteLegitimador.map((member, index: number) => (
+      {legitimatingCommittee.map((member, index: number) => (
         <UserCard.Root key={index}>
           <UserCard.Image src={member.image.src} alt={member.image.alt} />
           <div className="flex flex-grow flex-col items-center justify-between gap-4">

@@ -1,6 +1,6 @@
-import { INoticia } from "types/noticia";
+import { INews } from "types/news";
 
-const noticias: INoticia[] = [
+const news: INews[] = [
   {
     title: "Mapeamento da política territorial em Alagoas",
     content:
@@ -29,6 +29,6 @@ const noticias: INoticia[] = [
   },
 ];
 
-export async function getNoticias() {
-  return noticias;
+export async function getNews() {
+  return news;
 }

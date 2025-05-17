@@ -1,11 +1,11 @@
-import { getParcerias } from "@actions/parcerias";
+import { getPartnerships } from "@actions/partnerships";
 import { NavigationCard } from "@components/navigation-card";
-import { Parceria } from "@components/parceria";
+import { Partnership } from "@components/partnetship";
 import { Handshake } from "lucide-react";
-import { IParceria } from "types/parceria";
+import { IPartnership } from "types/partnership";
 
 export default async function ParceirosEFinanciadores() {
-  const parcerias = await getParcerias();
+  const partnerships = await getPartnerships();
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
@@ -20,8 +20,8 @@ export default async function ParceirosEFinanciadores() {
         </p>
       </section>
       <section className="space-y-14">
-        {parcerias.map((parceira: IParceria, index: number) => (
-          <Parceria key={index} parceria={parceira} />
+        {partnerships.map((partnership: IPartnership, index: number) => (
+          <Partnership key={index} partnership={partnership} />
         ))}
       </section>
       <NavigationCard.BlueRoot href="/contato">

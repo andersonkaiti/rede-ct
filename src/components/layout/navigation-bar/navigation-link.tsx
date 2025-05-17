@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { cn } from "@/utils/cn";
 import { ChevronDownIcon } from "lucide-react";
+import { NavigationLink as NavigationLinkType } from "types/navigation-link";
 import { NavigationBarIcon } from "./navigation-bar-icon";
-import { NavLink } from "./navigation-links";
 
 export interface INavLinkProps {
-  link: NavLink;
+  link: NavigationLinkType;
   onMouseEnter: (index: number, element: HTMLElement) => void;
   hovering: number | null;
   index: number;
@@ -70,16 +70,18 @@ export function NavigationLink({
             isActived ? "max-h-120 opacity-100" : "max-h-0 opacity-0",
           )}
         >
-          {children.map(({ path, label, icon }: NavLink, index: number) => (
-            <Link
-              key={index}
-              href={path!}
-              className="2lg:rounded-full mt-2 flex w-full items-center gap-2 rounded-md p-2 text-center text-sm hover:bg-gray-400/25"
-            >
-              <NavigationBarIcon icon={icon} />
-              {label}
-            </Link>
-          ))}
+          {children.map(
+            ({ path, label, icon }: NavigationLinkType, index: number) => (
+              <Link
+                key={index}
+                href={path!}
+                className="2lg:rounded-full mt-2 flex w-full items-center gap-2 rounded-md p-2 text-center text-sm hover:bg-gray-400/25"
+              >
+                <NavigationBarIcon icon={icon} />
+                {label}
+              </Link>
+            ),
+          )}
         </div>
       )}
     </div>

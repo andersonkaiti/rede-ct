@@ -3,11 +3,11 @@ import { Suspense } from "react";
 import { BackArrow } from "@components/back-arrow";
 import { SkeletonCards } from "@components/skeleton/skeleton-cards";
 
-const DynamicLegitimatingCommittee = dynamic(() =>
-  import("./comite-legitimador").then((m) => m.LegitimatingCommittee),
+const DynamicComiteLegitimador = dynamic(() =>
+  import("./comite-legitimador").then((m) => m.ComiteLegitimador),
 );
 
-export default async function LegitimatingCommittee() {
+export default async function ComiteLegitimador() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <BackArrow />
@@ -15,7 +15,7 @@ export default async function LegitimatingCommittee() {
         Composição do Comitê Legitimador da RedeCT
       </h2>
       <Suspense fallback={<SkeletonCards />}>
-        <DynamicLegitimatingCommittee />
+        <DynamicComiteLegitimador />
       </Suspense>
       <p className="text-justify">
         Sob responsabilidade da Vice-coordenadoria de Extensão Universitária e

@@ -1,5 +1,5 @@
-import { SidebarContainer } from "@components/restrict-area-sidebar/sidebar";
 import { Provider, Trigger } from "@components/ui/sidebar";
+import { SidebarContainer } from "./_components/sidebar/sidebar";
 
 export default function DashboardLayout({
   children,
@@ -11,6 +11,7 @@ export default function DashboardLayout({
       <SidebarContainer />
 
       <Trigger className="mt-4 ml-4 cursor-pointer" />
+
       {children}
     </Provider>
   );

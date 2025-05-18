@@ -10,6 +10,6 @@ export type NavigationLink =
   | {
       path?: never;
       label: string;
-      icon?: never;
-      children: Navigation[];
+      icon?: LucideIcon;
+      children: NavigationLink[];
     };

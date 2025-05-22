@@ -1,16 +1,16 @@
-import { getEquipeGestao } from "@actions/equipe-gestao";
+import { getManagementTeam } from "@actions/management-team";
 import { UserCard } from "@components/user-card";
 
 export default async function EquipeDeGestao() {
-  const sections = await getEquipeGestao();
+  const teamsSections = await getManagementTeam();
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      {sections.map((section, index: number) => (
+      {teamsSections.map((teamSection, index: number) => (
         <section key={index} className="space-y-8 md:space-y-14">
-          <h1 className="title-1 text-center">{section.title}</h1>
+          <h1 className="title-1 text-center">{teamSection.title}</h1>
           <UserCard.Wrapper>
-            {section.members.map((member, index: number) => (
+            {teamSection.members.map((member, index: number) => (
               <UserCard.Root key={index}>
                 <UserCard.Image src={member.image.src} alt={member.image.alt} />
                 <div className="flex flex-grow flex-col items-center justify-between gap-4">

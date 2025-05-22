@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { BackArrow } from "@components/back-arrow";
-import { SkeletonCards } from "@components/skeleton/skeleton-cards";
+import { SkeletonCards } from "@components/user-card/skeleton-cards";
 
 const DynamicEquipeSdhc = dynamic(() =>
   import("./equipe-sdhc").then((m) => m.EquipeSdhc),

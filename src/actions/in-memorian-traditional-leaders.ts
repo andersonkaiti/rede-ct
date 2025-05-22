@@ -1,9 +1,9 @@
 "use server";
 
 import "server-only";
-import { IInMemorian } from "./in-memorian-pesquisadores";
+import { IInMemorian } from "./in-memorian-researchers";
 
-const inMemorianLideresPovosTradicionais: IInMemorian[] = [
+const inMemorianTraditionalLeaders: IInMemorian[] = [
   {
     name: "Nonon ononon noononononn no",
     date: "(- nononon +nonono)",
@@ -24,8 +24,6 @@ const inMemorianLideresPovosTradicionais: IInMemorian[] = [
   },
 ];
 
-export async function getInMemorianLideresPovosTradicionais() {
-  await new Promise((resolve) => setTimeout(resolve, 500));
-
-  return inMemorianLideresPovosTradicionais;
+export async function getInMemorianTraditionalLeaders() {
+  return inMemorianTraditionalLeaders;
 }

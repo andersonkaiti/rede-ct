@@ -1,6 +1,8 @@
 import { IUser } from "types/user";
 
-const equipeSdhc: Omit<IUser, "lattesUrl">[] = [
+export type ISdhcTeam = Omit<IUser, "lattesUrl">;
+
+const sdhcTeam: ISdhcTeam[] = [
   {
     name: "Joicileia Juliate Fonseca",
     role: "Presidenta",
@@ -75,8 +77,6 @@ const equipeSdhc: Omit<IUser, "lattesUrl">[] = [
   },
 ];
 
-export async function getEquipeSdhc() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  return equipeSdhc;
+export async function getSdhcTeam() {
+  return sdhcTeam;
 }

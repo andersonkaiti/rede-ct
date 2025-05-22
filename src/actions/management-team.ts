@@ -3,12 +3,12 @@
 import "server-only";
 import { IUser } from "types/user";
 
-export interface ISecaoEquipe {
+export interface IManagementTeam {
   title: string;
   members: IUser[];
 }
 
-const sections: ISecaoEquipe[] = [
+const teamsSections: IManagementTeam[] = [
   {
     title: "Coordenadoria Geral da RedeCT",
     members: [
@@ -45,8 +45,6 @@ const sections: ISecaoEquipe[] = [
   },
 ];
 
-export async function getEquipeGestao() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  return sections;
+export async function getManagementTeam() {
+  return teamsSections;
 }

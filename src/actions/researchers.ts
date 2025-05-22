@@ -1,18 +1,14 @@
 "use server";
 
 import "server-only";
+import { IResearcher } from "types/researcher";
 
-export interface IPesquisador {
-  name: string;
-  info: string;
-}
-
-export interface ICategoria {
+export interface ICategory {
   type: string;
-  members: IPesquisador[];
+  members: IResearcher[];
 }
 
-const categorias: ICategoria[] = [
+const researcherCategories: ICategory[] = [
   {
     type: "Pesquisador Sênior",
     members: [
@@ -505,6 +501,6 @@ const categorias: ICategoria[] = [
   },
 ];
 
-export async function getCategoriasPesquisadores() {
-  return categorias;
+export async function getResearcherCategories() {
+  return researcherCategories;
 }

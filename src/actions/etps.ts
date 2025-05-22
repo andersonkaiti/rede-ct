@@ -1,6 +1,6 @@
 import { IETP } from "types/etp";
 
-const etp: IETP[] = [
+const etps: IETP[] = [
   {
     name: "ETP-01",
     description:
@@ -747,6 +747,6 @@ const etp: IETP[] = [
   },
 ];
 
-export async function getEtp() {
-  return etp;
+export async function getEtps() {
+  return etps;
 }

@@ -7,7 +7,7 @@ export interface IInMemorian extends Omit<IUser, "lattesUrl"> {
   date: string;
 }
 
-const inMemorianPesquisadores: IInMemorian[] = [
+const inMemorianResearchers: IInMemorian[] = [
   {
     name: "Prof. Dr. José Ronaldo Fassheber",
     date: "(- nononon +07/10/2023)",
@@ -55,8 +55,6 @@ const inMemorianPesquisadores: IInMemorian[] = [
   },
 ];
 
-export async function getInMemorianPesquisadores() {
-  await new Promise((resolve) => setTimeout(resolve, 500));
-
-  return inMemorianPesquisadores;
+export async function getInMemorianResearchers() {
+  return inMemorianResearchers;
 }

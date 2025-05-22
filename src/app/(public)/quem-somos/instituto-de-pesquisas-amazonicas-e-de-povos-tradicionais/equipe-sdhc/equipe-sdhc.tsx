@@ -1,12 +1,12 @@
-import { getEquipeSdhc } from "@actions/equipe-sdhc";
+import { getSdhcTeam } from "@actions/sdhc-team";
 import { UserCard } from "@components/user-card";
 
 export async function EquipeSdhc() {
-  const equipeSdhc = await getEquipeSdhc();
+  const sdhcTeam = await getSdhcTeam();
 
   return (
     <UserCard.Wrapper>
-      {equipeSdhc.map((member, index: number) => (
+      {sdhcTeam.map((member, index: number) => (
         <UserCard.Root key={index}>
           <UserCard.Image src={member.image.src} alt={member.image.alt} />
           <div className="flex flex-grow flex-col items-center justify-between gap-4">

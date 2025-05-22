@@ -1,13 +1,12 @@
-import { getInMemorianLideresPovosTradicionais } from "@actions/in-memorian-lideres-tradicionais";
+import { getInMemorianTraditionalLeaders } from "@actions/in-memorian-traditional-leaders";
 import { UserCard } from "@components/user-card";
 
 export async function PovosTradicionais() {
-  const inMemorianLideresPovosTradicionais =
-    await getInMemorianLideresPovosTradicionais();
+  const inMemorianTraditionalLeaders = await getInMemorianTraditionalLeaders();
 
   return (
     <>
-      {inMemorianLideresPovosTradicionais.map((member, index: number) => (
+      {inMemorianTraditionalLeaders.map((member, index: number) => (
         <UserCard.Root key={index}>
           <UserCard.Image src={member.image.src} alt={member.image.alt} />
           <div className="flex flex-grow flex-col items-center justify-between gap-4">

@@ -1,12 +1,12 @@
-import { getInMemorianPesquisadores } from "@actions/in-memorian-pesquisadores";
+import { getInMemorianResearchers } from "@actions/in-memorian-researchers";
 import { UserCard } from "@components/user-card";
 
 export async function Pesquisadores() {
-  const inMemorianPesquisadores = await getInMemorianPesquisadores();
+  const inMemorianResearchers = await getInMemorianResearchers();
 
   return (
     <>
-      {inMemorianPesquisadores.map((member, index: number) => (
+      {inMemorianResearchers.map((member, index: number) => (
         <UserCard.Root key={index}>
           <UserCard.Image src={member.image.src} alt={member.image.alt} />
           <div className="flex flex-grow flex-col items-center justify-between gap-4">

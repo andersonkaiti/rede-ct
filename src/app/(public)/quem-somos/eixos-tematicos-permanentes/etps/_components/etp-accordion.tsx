@@ -1,10 +1,10 @@
-import { getEtp } from "@actions/etp";
+import { getEtps } from "@actions/etps";
 import * as Accordion from "@components/ui/accordion";
 import { UserCard } from "@components/user-card";
 import { CardButtonLattes } from "@components/user-card/card-button-lattes";
 
 export async function EPTAccordion() {
-  const etps = await getEtp();
+  const etps = await getEtps();
 
   return (
     <Accordion.Root type="single" collapsible>

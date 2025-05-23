@@ -1,7 +1,41 @@
-export default function Certificados() {
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import { Input } from "@components/input";
+import { Skeleton } from "@components/ui/skeleton";
+import { Search } from "lucide-react";
+
+const DynamicCertificados = dynamic(() =>
+  import("./certificados").then((m) => m.Certificados),
+);
+
+export default function CertificadosPage() {
   return (
-    <div className="mx-auto flex max-w-7xl flex-col justify-center gap-2 space-y-14 p-4 py-10 sm:gap-12.5 lg:p-25">
-      <h1>Certificados</h1>
+    <div className="mx-auto flex w-full flex-col justify-center gap-2 p-4 py-10 md:gap-12.5">
+      <h1 className="title-2">Certificados</h1>
+      <Input placeholder="Buscar">
+        <Search className="mr-2 h-4 w-4 text-gray-400" />
+      </Input>
+      <Suspense fallback={<LoadingSkeleton />}>
+        <DynamicCertificados />
+      </Suspense>
     </div>
+  );
+}
+
+function LoadingSkeleton() {
+  return (
+    <section className="grid w-full grid-cols-1 gap-4 xl:grid-cols-2 2xl:grid-cols-3">
+      {[...Array(6)].map((_, index) => (
+        <Skeleton
+          key={index}
+          className="h-fit w-full space-y-4 rounded-sm border border-gray-200 p-10 shadow-sm"
+        >
+          <div className="h-8 w-30 rounded-md bg-gray-200" />
+          <div className="h-6.5 w-full rounded-md bg-gray-200" />
+          <div className="h-6 w-26 rounded-md bg-gray-200" />
+          <div className="h-9 max-w-40 rounded-md bg-gray-200" />
+        </Skeleton>
+      ))}
+    </section>
   );
 }

@@ -1,4 +1,4 @@
-import { getLegitimatingCommittee } from "@actions/legitimating-committee";
+import { getLegitimatingCommittee } from "@/services/legitimating-committee";
 import { UserCard } from "@components/user-card";
 
 export async function ComiteLegitimador() {

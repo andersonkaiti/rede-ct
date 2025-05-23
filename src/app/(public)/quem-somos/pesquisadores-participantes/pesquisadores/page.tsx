@@ -1,4 +1,4 @@
-import { getResearcherCategories } from "@actions/researchers";
+import { getResearcherCategories } from "@/services/researchers";
 import { BackArrow } from "@components/back-arrow";
 import * as Tabs from "@components/ui/tabs";
 

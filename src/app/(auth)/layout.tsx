@@ -10,9 +10,11 @@ export default function DashboardLayout({
     <Provider>
       <SidebarContainer />
 
-      <Trigger className="mt-4 ml-4 cursor-pointer" />
+      <div className="flex w-full flex-col">
+        <Trigger className="mt-4 ml-4 cursor-pointer" />
 
-      {children}
+        {children}
+      </div>
     </Provider>
   );
 }

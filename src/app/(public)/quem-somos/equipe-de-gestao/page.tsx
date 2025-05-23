@@ -1,4 +1,4 @@
-import { getManagementTeam } from "@actions/management-team";
+import { getManagementTeam } from "@/services/management-team";
 import { UserCard } from "@components/user-card";
 
 export default async function EquipeDeGestao() {

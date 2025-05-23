@@ -1,4 +1,4 @@
-import { getSdhcTeam } from "@actions/sdhc-team";
+import { getSdhcTeam } from "@/services/sdhc-team";
 import { UserCard } from "@components/user-card";
 
 export async function EquipeSdhc() {

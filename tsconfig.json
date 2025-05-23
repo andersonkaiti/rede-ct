@@ -21,6 +21,7 @@
     "paths": {
       "@api/*": ["./src/app/api/*"],
       "@actions/*": ["./src/actions/*"],
+      "@services/*": ["./src/services/*"],
       "@components/*": ["./src/components/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@utils/*": ["./src/utils/*"],

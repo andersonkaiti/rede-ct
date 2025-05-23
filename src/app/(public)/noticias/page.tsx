@@ -1,4 +1,4 @@
-import { getNews } from "@actions/news";
+import { getNews } from "@/services/news";
 import { Input } from "@components/input";
 import { Search } from "lucide-react";
 import { INews } from "types/news";

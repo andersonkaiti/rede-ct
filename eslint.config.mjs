@@ -25,6 +25,7 @@ const eslintConfig = [
             "module",
             "/^types/",
             "/^actions/",
+            "/^services/",
             "/^hooks/",
             "/^components/",
             "/^utils/",

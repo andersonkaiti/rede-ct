@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getTimelineRedeCT } from "@actions/timeline-rede-ct";
+import { getTimelineRedeCT } from "@/services/timeline-rede-ct";
 import { NavigationCard } from "@components/navigation-card";
 import { Timeline } from "@components/ui/timeline";
 import {

@@ -1,4 +1,4 @@
-import { getInMemorianTraditionalLeaders } from "@actions/in-memorian-traditional-leaders";
+import { getInMemorianTraditionalLeaders } from "@/services/in-memorian-traditional-leaders";
 import { UserCard } from "@components/user-card";
 
 export async function PovosTradicionais() {

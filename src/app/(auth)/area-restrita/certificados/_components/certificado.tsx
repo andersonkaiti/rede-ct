@@ -1,4 +1,4 @@
-import { ICertification } from "@actions/certifications";
+import { ICertification } from "@/services/certifications";
 import { formatDate } from "@utils/format-date";
 import { Award, Calendar } from "lucide-react";
 import { CertificadoButton } from "./certificado-button";

@@ -1,4 +1,4 @@
-import { getInMemorianResearchers } from "@actions/in-memorian-researchers";
+import { getInMemorianResearchers } from "@/services/in-memorian-researchers";
 import { UserCard } from "@components/user-card";
 
 export async function Pesquisadores() {

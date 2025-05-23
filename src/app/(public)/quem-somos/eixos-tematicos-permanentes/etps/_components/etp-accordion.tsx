@@ -1,4 +1,4 @@
-import { getEtps } from "@actions/etps";
+import { getEtps } from "@/services/etps";
 import * as Accordion from "@components/ui/accordion";
 import { UserCard } from "@components/user-card";
 import { CardButtonLattes } from "@components/user-card/card-button-lattes";

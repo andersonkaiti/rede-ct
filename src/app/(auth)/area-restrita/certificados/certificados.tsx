@@ -1,4 +1,4 @@
-import { getCertifications } from "@actions/certifications";
+import { getCertifications } from "@/services/certifications";
 import { Certificado } from "./_components/certificado";
 
 export async function Certificados() {

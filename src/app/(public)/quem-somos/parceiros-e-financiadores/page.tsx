@@ -1,4 +1,4 @@
-import { getPartnerships } from "@actions/partnerships";
+import { getPartnerships } from "@/services/partnerships";
 import { NavigationCard } from "@components/navigation-card";
 import { Handshake } from "lucide-react";
 import { IPartnership } from "types/partnership";

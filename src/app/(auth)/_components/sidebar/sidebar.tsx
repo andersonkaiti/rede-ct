@@ -14,12 +14,7 @@ const DynamicUserProfile = dynamic(() =>
 
 export function SidebarContainer() {
   return (
-    <Sidebar.Root
-      className="sticky top-0 left-0"
-      side="left"
-      variant="sidebar"
-      collapsible="offcanvas"
-    >
+    <Sidebar.Root side="left" variant="sidebar">
       <Sidebar.Header className="py-4">
         <Suspense fallback={<LoadingSkeleton />}>
           <DynamicUserProfile />

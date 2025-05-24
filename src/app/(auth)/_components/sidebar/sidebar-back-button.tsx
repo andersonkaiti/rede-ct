@@ -8,7 +8,7 @@ export function SidebarBackButton() {
 
   return (
     <Button
-      onClick={() => router.back()}
+      onClick={() => router.replace("/")}
       className="w-full cursor-pointer bg-white text-black hover:bg-gray-200"
     >
       Voltar

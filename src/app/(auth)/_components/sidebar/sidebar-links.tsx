@@ -1,4 +1,4 @@
-import { Award, File, History, Newspaper } from "lucide-react";
+import { Award, Banknote, File, History, Newspaper } from "lucide-react";
 import { NavigationLink } from "types/navigation-link";
 
 export const sidebarLinks: NavigationLink[] = [
@@ -6,6 +6,11 @@ export const sidebarLinks: NavigationLink[] = [
     label: "Notícias",
     path: "/area-restrita/noticias",
     icon: Newspaper,
+  },
+  {
+    label: "Pendências",
+    path: "/area-restrita/pendencias",
+    icon: Banknote,
   },
   {
     label: "Arquivos",

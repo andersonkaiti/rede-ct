@@ -1,7 +1,7 @@
 export default function Noticias() {
   return (
-    <div className="mx-auto flex max-w-7xl flex-col justify-center gap-2 space-y-14 p-4 py-10 sm:gap-12.5 lg:p-25">
-      <h1>Notícias</h1>
+    <div className="mx-auto flex w-full flex-col justify-center gap-2 p-4 py-10 md:gap-12.5">
+      <h1 className="title-2">Notícias</h1>
     </div>
   );
 }

@@ -9,7 +9,7 @@ export default function Dashboard() {
         Bem-vindo(a) de volta à área restrita do site. Aqui você encontrará
         informações exclusivas e recursos para gerenciar sua conta.
       </p>
-      <section>
+      <section className="flex flex-col gap-2">
         <NavigationCard.Root href="/area-restrita/noticias">
           <div className="flex items-center gap-2">
             <div className="rounded-full bg-indigo-500/20 p-2">
@@ -34,7 +34,7 @@ export default function Dashboard() {
             <h3 className="text-lg font-semibold">Certificados</h3>
           </div>
         </NavigationCard.Root>
-        <NavigationCard.Root href="/area-restrita/historico">
+        <NavigationCard.Root href="/area-restrita/historico-de-contribuicoes">
           <div className="flex items-center gap-2">
             <div className="rounded-full bg-orange-500/20 p-2">
               <History className="text-orange-500" />

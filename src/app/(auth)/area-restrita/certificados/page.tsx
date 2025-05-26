@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import { Input } from "@components/input";
+import { Input } from "@components/ui/input";
 import { Skeleton } from "@components/ui/skeleton";
 import { Search } from "lucide-react";
 
@@ -12,8 +12,8 @@ export default function CertificadosPage() {
   return (
     <div className="mx-auto flex w-full flex-col justify-center gap-2 p-4 py-10 md:gap-12.5">
       <h1 className="title-2">Certificados</h1>
-      <Input placeholder="Buscar">
-        <Search className="mr-2 h-4 w-4 text-gray-400" />
+      <Input placeholder="Buscar" className="w-full sm:w-fit">
+        <Search className="h-4 w-4 text-[#B6B6B6]" />
       </Input>
       <Suspense fallback={<LoadingSkeleton />}>
         <DynamicCertificados />

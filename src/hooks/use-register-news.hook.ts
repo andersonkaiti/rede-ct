@@ -11,7 +11,10 @@ export function useRegisterNews() {
 
   useEffect(() => {
     if (state && "success" in state) {
-      toast.success(state.success);
+      toast.success(state.success, {
+        description: "Notícia cadastrada com sucesso",
+      });
+
       redirect("/area-restrita/noticias");
     }
   }, [state]);

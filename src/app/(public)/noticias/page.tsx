@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Input } from "@components/ui/input";
 import { getNews } from "@services/news/news";
 import { Search } from "lucide-react";
@@ -7,8 +9,6 @@ import { PaginationContainer } from "./_components/pagination";
 
 export default async function Noticias() {
   const news = await getNews();
-
-  console.log(news);
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-10 p-5 py-8 lg:p-25">

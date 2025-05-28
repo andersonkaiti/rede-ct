@@ -1,16 +1,11 @@
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@utils/format-date";
 import { Calendar } from "lucide-react";
 import { INews } from "types/news";
 
 export function Noticia({
-  news: {
-    title,
-    content,
-    author: { name, image },
-    date,
-  },
+  news: { title, content, updated_at },
 }: {
   news: INews;
 }) {
@@ -18,8 +13,8 @@ export function Noticia({
     <article className="flex flex-1 flex-col items-start justify-between rounded-md p-10 shadow-md transition-all duration-300 hover:shadow-lg">
       <div className="flex items-center gap-x-2 text-xs">
         <Calendar className="h-4 w-4 text-gray-500" />
-        <time dateTime={date} className="text-gray-500">
-          {formatDate(date)}
+        <time dateTime={updated_at} className="text-gray-500">
+          {formatDate(updated_at)}
         </time>
       </div>
       <div className="group relative">
@@ -29,9 +24,11 @@ export function Noticia({
             {title}
           </Link>
         </h3>
-        <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{content}</p>
+        <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600 group-hover:text-indigo-400">
+          {content}
+        </p>
       </div>
-      <div className="relative mt-8 flex items-center gap-x-4">
+      {/* <div className="relative mt-8 flex items-center gap-x-4">
         <div className="relative size-10">
           <Image
             src={image.src}
@@ -43,7 +40,7 @@ export function Noticia({
         <div className="text-sm/6">
           <p className="font-semibold text-gray-900">{name}</p>
         </div>
-      </div>
+      </div> */}
     </article>
   );
 }

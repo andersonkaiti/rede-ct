@@ -2,24 +2,29 @@
 
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
-import { useRegisterNews } from "@hooks/use-register-news.hook";
-import { ErrorMessage } from "../_components/error-message";
+import { useUpdateNews } from "@hooks/use-update-news.hook";
+import { INews } from "types/news";
+import { ErrorMessage } from "../../../_components/error-message";
 
-export default function CadastrarNoticia() {
-  const { state, formAction, isLoading } = useRegisterNews();
+export interface IUpdateFormProps {
+  news: INews;
+}
+
+export function UpdateForm({ news: { title, content, id } }: IUpdateFormProps) {
+  const { state, formAction, isLoading } = useUpdateNews(id);
 
   const hasErrors = state && "errors" in state;
 
   return (
     <div className="mx-auto flex w-full flex-col justify-center gap-2 p-4 py-10 md:gap-12.5">
       <header className="space-y-4">
-        <h1 className="title-2">Cadastrar Notícia</h1>
+        <h1 className="title-2">Editar Notícia</h1>
       </header>
       <main>
         <form action={formAction}>
           <div className="grid grid-cols-1 gap-4">
             <div className="space-y-2">
-              <Input placeholder="Título" name="title" />
+              <Input placeholder="Título" name="title" defaultValue={title} />
 
               {hasErrors && state?.errors?.title && (
                 <ErrorMessage state={state} inputName="title" />
@@ -27,23 +32,23 @@ export default function CadastrarNoticia() {
             </div>
 
             <div className="space-y-2">
-              <Input placeholder="Texto" name="content" />
+              <Input
+                placeholder="Texto"
+                name="content"
+                defaultValue={content}
+              />
 
               {hasErrors && state?.errors?.content && (
                 <ErrorMessage state={state} inputName="content" />
               )}
             </div>
 
-            <Button
-              type="submit"
-              className="cursor-pointer"
-              disabled={isLoading}
-            >
+            <Button type="submit" className="cursor-pointer">
               {!isLoading ? (
-                "Cadastrar notícia"
+                "Editar notícia"
               ) : (
                 <div className="flex items-center gap-2">
-                  Cadastrando notícia...
+                  Editando notícia...
                   <div
                     role="status"
                     className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"

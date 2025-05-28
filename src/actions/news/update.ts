@@ -1,18 +1,36 @@
 "use server";
 
-import { State } from "@/@types/news-form-state";
+import { api } from "@adapters/index";
+import { BASE_URL } from "@config/index";
 import { newsSchema } from "@validators/news";
+import { INews } from "types/news";
+import { State } from "types/news-form-state";
 
-export async function updateNews(_: unknown, formData: FormData) {
-  const data = newsSchema.safeParse(Object.fromEntries(formData));
+export async function updateNews(id: string, _: unknown, formData: FormData) {
+  console.log(formData.get("title"));
+  console.log(formData.get("content"));
 
-  if (!data.success) {
+  const { success, data, error } = newsSchema.safeParse(
+    Object.fromEntries(formData),
+  );
+
+  if (!success) {
     return {
-      errors: data.error.flatten().fieldErrors,
+      errors: error.flatten().fieldErrors,
     } as State;
   }
 
+  const { title, content } = data;
+
+  console.log(title, content, id);
+
+  await api.put<INews>(`${BASE_URL}/news/${id}`, {
+    title,
+    content,
+    id,
+  });
+
   return {
-    success: "Notícia atualizada com sucesso!",
+    success: true,
   } as State;
 }

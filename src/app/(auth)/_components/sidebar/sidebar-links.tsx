@@ -9,7 +9,7 @@ export const sidebarLinks: NavigationLink[] = [
   },
   {
     label: "Portfólio",
-    path: "/area-restrita/portifolio",
+    path: "/area-restrita/portfolio",
     icon: Icons.FileText,
   },
   {

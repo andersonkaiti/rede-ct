@@ -4,7 +4,11 @@ import { Button } from "@components/ui/button";
 import * as Dialog from "@components/ui/dialog";
 import { Trash } from "lucide-react";
 
-export function DeleteDialog() {
+export interface IDeleteDialogProps {
+  onDelete: () => void;
+}
+
+export function DeleteDialog({ onDelete }: IDeleteDialogProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -26,7 +30,11 @@ export function DeleteDialog() {
               Cancelar
             </Button>
           </Dialog.Close>
-          <Button variant="default" className="cursor-pointer">
+          <Button
+            variant="default"
+            className="cursor-pointer"
+            onClick={onDelete}
+          >
             Excluir
           </Button>
         </Dialog.Footer>

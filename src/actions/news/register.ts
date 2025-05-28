@@ -1,18 +1,33 @@
 "use server";
 
-import { State } from "@/@types/news-form-state";
+import { api } from "@adapters/index";
+import { currentUser } from "@clerk/nextjs/server";
+import { BASE_URL } from "@config/index";
 import { newsSchema } from "@validators/news";
+import { State } from "types/news-form-state";
 
 export async function registerNews(_: unknown, formData: FormData) {
-  const data = newsSchema.safeParse(Object.fromEntries(formData));
+  const { success, data, error } = newsSchema.safeParse(
+    Object.fromEntries(formData),
+  );
 
-  if (!data.success) {
+  if (!success) {
     return {
-      errors: data.error.flatten().fieldErrors,
+      errors: error.flatten().fieldErrors,
     } as State;
   }
 
+  const { title, content } = data;
+
+  const user = await currentUser();
+
+  await api.post(`${BASE_URL}/news`, {
+    title,
+    content,
+    author_id: user?.id,
+  });
+
   return {
-    success: "Notícia cadastrada com sucesso!",
+    success: true,
   } as State;
 }

@@ -8,7 +8,7 @@ export interface IErrors {
 }
 
 export interface ISuccess {
-  success: string;
+  success: boolean;
 }
 
 export type State = IErrors | ISuccess | null;

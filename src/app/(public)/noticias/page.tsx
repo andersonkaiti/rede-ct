@@ -18,10 +18,18 @@ export default async function Noticias() {
       <Input placeholder="Buscar" className="w-fit">
         <Search className="mr-2 h-4 w-4 text-gray-400" />
       </Input>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {news.map((news: INews, index: number) => (
           <Noticia key={index} news={news} />
         ))}
+
+        {news.length === 0 && (
+          <div className="flex w-full items-center justify-center">
+            <p className="text-center text-gray-500">
+              Nenhuma notícia encontrada
+            </p>
+          </div>
+        )}
       </div>
 
       <PaginationContainer />

@@ -2,11 +2,14 @@
 
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
+import { Textarea } from "@components/ui/textarea";
 import { useRegisterNews } from "@hooks/use-register-news.hook";
 import { ErrorMessage } from "../_components/error-message";
+import { ImageInput } from "../_components/image-input";
 
 export default function CadastrarNoticia() {
-  const { state, formAction, isLoading } = useRegisterNews();
+  const { state, formAction, isLoading, preview, handleImage } =
+    useRegisterNews();
 
   const hasErrors = state && "errors" in state;
 
@@ -27,10 +30,18 @@ export default function CadastrarNoticia() {
             </div>
 
             <div className="space-y-2">
-              <Input placeholder="Texto" name="content" />
+              <Textarea placeholder="Texto" name="content" />
 
               {hasErrors && state?.errors?.content && (
                 <ErrorMessage state={state} inputName="content" />
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <ImageInput preview={preview} handleImage={handleImage} />
+
+              {hasErrors && state?.errors?.image && (
+                <ErrorMessage state={state} inputName="image" />
               )}
             </div>
 

@@ -8,7 +8,16 @@ const nextConfig: NextConfig = {
         hostname: "img.clerk.com",
         protocol: "https",
       },
+      {
+        hostname: "storage.googleapis.com",
+        protocol: "https",
+      },
     ],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "50mb",
+    },
   },
 };
 

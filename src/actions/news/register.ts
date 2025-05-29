@@ -7,9 +7,7 @@ import { newsSchema } from "@validators/news";
 import { State } from "types/news-form-state";
 
 export async function registerNews(_: unknown, formData: FormData) {
-  const { success, data, error } = newsSchema.safeParse(
-    Object.fromEntries(formData),
-  );
+  const { success, error } = newsSchema.safeParse(Object.fromEntries(formData));
 
   if (!success) {
     return {
@@ -17,14 +15,19 @@ export async function registerNews(_: unknown, formData: FormData) {
     } as State;
   }
 
-  const { title, content } = data;
-
   const user = await currentUser();
 
-  await api.post(`${BASE_URL}/news`, {
-    title,
-    content,
-    author_id: user?.id,
+  const news = new FormData();
+
+  news.append("title", formData.get("title") as string);
+  news.append("content", formData.get("content") as string);
+  news.append("author_id", user?.id || "");
+  news.append("image", formData.get("image") as File);
+
+  await api.post(`${BASE_URL}/news`, news, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
   });
 
   return {

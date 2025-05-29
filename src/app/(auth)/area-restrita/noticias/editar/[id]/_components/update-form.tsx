@@ -5,13 +5,19 @@ import { Input } from "@components/ui/input";
 import { useUpdateNews } from "@hooks/use-update-news.hook";
 import { INews } from "types/news";
 import { ErrorMessage } from "../../../_components/error-message";
+import { ImageInput } from "../../../_components/image-input";
 
 export interface IUpdateFormProps {
   news: INews;
 }
 
-export function UpdateForm({ news: { title, content, id } }: IUpdateFormProps) {
-  const { state, formAction, isLoading } = useUpdateNews(id);
+export function UpdateForm({
+  news: { title, content, id, image_url },
+}: IUpdateFormProps) {
+  const { state, formAction, isLoading, preview, handleImage } = useUpdateNews({
+    id,
+    image_url,
+  });
 
   const hasErrors = state && "errors" in state;
 
@@ -41,6 +47,14 @@ export function UpdateForm({ news: { title, content, id } }: IUpdateFormProps) {
               {hasErrors && state?.errors?.content && (
                 <ErrorMessage state={state} inputName="content" />
               )}
+            </div>
+
+            <div className="space-y-2">
+              <ImageInput
+                image_url={image_url}
+                preview={preview}
+                handleImage={handleImage}
+              />
             </div>
 
             <Button type="submit" className="cursor-pointer">

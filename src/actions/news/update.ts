@@ -1,18 +1,19 @@
 "use server";
 
 import { api } from "@adapters/index";
+import { currentUser } from "@clerk/nextjs/server";
 import { BASE_URL } from "@config/index";
 import { newsSchema } from "@validators/news";
 import { INews } from "types/news";
 import { State } from "types/news-form-state";
 
-export async function updateNews(id: string, _: unknown, formData: FormData) {
-  console.log(formData.get("title"));
-  console.log(formData.get("content"));
-
-  const { success, data, error } = newsSchema.safeParse(
-    Object.fromEntries(formData),
-  );
+export async function updateNews(
+  id: string,
+  image_url: string | undefined,
+  _: unknown,
+  formData: FormData,
+) {
+  const { success, error } = newsSchema.safeParse(Object.fromEntries(formData));
 
   if (!success) {
     return {
@@ -20,15 +21,24 @@ export async function updateNews(id: string, _: unknown, formData: FormData) {
     } as State;
   }
 
-  const { title, content } = data;
+  const user = await currentUser();
 
-  console.log(title, content, id);
+  if (!user) {
+    throw new Error("Não autorizado!");
+  }
 
-  await api.put<INews>(`${BASE_URL}/news/${id}`, {
-    title,
-    content,
-    id,
-  });
+  const news = new FormData();
+
+  news.append("title", formData.get("title") as string);
+  news.append("content", formData.get("content") as string);
+  news.append("image", formData.get("image") as File);
+  news.append("author_id", user?.id || "");
+
+  if (image_url) {
+    news.append("image_url", image_url);
+  }
+
+  await api.put<INews>(`${BASE_URL}/news/${id}`, news);
 
   return {
     success: true,

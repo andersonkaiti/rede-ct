@@ -23,31 +23,49 @@ export class FetchAdapter implements IFetchAdapter {
     });
   }
 
-  async post<T>(url: string, body: object): Promise<T> {
+  async post<T>(
+    url: string,
+    body: object | FormData,
+    config?: RequestInit,
+  ): Promise<T> {
+    const headers =
+      body instanceof FormData
+        ? undefined
+        : {
+            "Content-Type": "application/json",
+          };
+
     return await this.request<T>(url, {
+      ...config,
       method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: body instanceof FormData ? body : JSON.stringify(body),
+      headers,
     });
   }
 
-  async put<T>(url: string, body: object): Promise<T> {
+  async put<T>(url: string, body: object | FormData): Promise<T> {
+    const headers =
+      body instanceof FormData
+        ? undefined
+        : {
+            "Content-Type": "application/json",
+          };
+
     return await this.request<T>(url, {
       method: "PUT",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: body instanceof FormData ? body : JSON.stringify(body),
+      headers,
     });
   }
 
-  async delete<T>(url: string): Promise<T> {
+  async delete<T>(url: string, body: object | FormData): Promise<T> {
+    const isFormData = body instanceof FormData;
+
     return await this.request<T>(url, {
       method: "DELETE",
+      body: isFormData ? body : JSON.stringify(body),
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": isFormData ? "multipart/form-data" : "application/json",
       },
     });
   }

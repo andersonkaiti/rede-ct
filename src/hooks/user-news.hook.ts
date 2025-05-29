@@ -38,7 +38,8 @@ export function useUserNews() {
   async function handleRemoveNews({
     id,
     author_id: newsAuthorId,
-  }: Pick<INews, "id" | "author_id">) {
+    image_url,
+  }: Pick<INews, "id" | "author_id" | "image_url">) {
     if (userId !== newsAuthorId) {
       throw new Error("Você não tem permissão para deletar esta notícia!");
     }
@@ -47,7 +48,7 @@ export function useUserNews() {
       updateOptimisticNews(id);
     });
 
-    await deleteNewsById(id);
+    await deleteNewsById(id, image_url);
 
     queryClient.invalidateQueries({
       queryKey: QUERY_KEY,

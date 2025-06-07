@@ -31,7 +31,7 @@ export function useUserNews() {
 
   const [optimisticNews, updateOptimisticNews] = useOptimistic(
     news || [],
-    (prevNews: INews[], newsId: string) =>
+    (prevNews: INews[], newsId: INews["id"]) =>
       prevNews?.filter((news) => news.id !== newsId),
   );
 

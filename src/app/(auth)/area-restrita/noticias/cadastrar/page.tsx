@@ -1,9 +1,11 @@
 "use client";
 
+import { useRegisterNews } from "@/app/(auth)/area-restrita/noticias/_hooks/use-register-news.hook";
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
+import { Label } from "@components/ui/label";
 import { Textarea } from "@components/ui/textarea";
-import { useRegisterNews } from "@hooks/use-register-news.hook";
+import { Loader2 } from "lucide-react";
 import { ErrorMessage } from "../_components/error-message";
 import { ImageInput } from "../_components/image-input";
 
@@ -22,6 +24,7 @@ export default function CadastrarNoticia() {
         <form action={formAction}>
           <div className="grid grid-cols-1 gap-4">
             <div className="space-y-2">
+              <Label>Título</Label>
               <Input placeholder="Título" name="title" />
 
               {hasErrors && state?.errors?.title && (
@@ -30,6 +33,7 @@ export default function CadastrarNoticia() {
             </div>
 
             <div className="space-y-2">
+              <Label>Texto</Label>
               <Textarea placeholder="Texto" name="content" />
 
               {hasErrors && state?.errors?.content && (
@@ -38,6 +42,7 @@ export default function CadastrarNoticia() {
             </div>
 
             <div className="space-y-2">
+              <Label>Imagem</Label>
               <ImageInput preview={preview} handleImage={handleImage} />
 
               {hasErrors && state?.errors?.image && (
@@ -50,19 +55,8 @@ export default function CadastrarNoticia() {
               className="cursor-pointer"
               disabled={isLoading}
             >
-              {!isLoading ? (
-                "Cadastrar notícia"
-              ) : (
-                <div className="flex items-center gap-2">
-                  Cadastrando notícia...
-                  <div
-                    role="status"
-                    className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-                  >
-                    <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !border-0 !p-0 !whitespace-nowrap ![clip:rect(0,0,0,0)]"></span>
-                  </div>
-                </div>
-              )}
+              {isLoading && <Loader2 className="size-4 animate-spin" />}
+              Cadastrar notícia
             </Button>
           </div>
         </form>

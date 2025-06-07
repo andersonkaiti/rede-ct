@@ -20,6 +20,7 @@ export function useUpdateNews({ id, image_url }: IUseUpdateNewsProps) {
 
   function handleImage(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
+
     if (file) {
       const imageUrl = URL.createObjectURL(file);
 

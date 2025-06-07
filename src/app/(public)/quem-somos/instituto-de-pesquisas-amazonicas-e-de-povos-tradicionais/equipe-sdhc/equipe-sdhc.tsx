@@ -1,5 +1,5 @@
-import { getSdhcTeam } from "@/services/sdhc-team";
 import { UserCard } from "@components/user-card";
+import { getSdhcTeam } from "@services/sdhc-team";
 
 export async function EquipeSdhc() {
   const sdhcTeam = await getSdhcTeam();

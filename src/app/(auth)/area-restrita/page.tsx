@@ -1,5 +1,5 @@
 import { NavigationCard } from "@components/navigation-card";
-import { Award, Banknote, History, Newspaper } from "lucide-react";
+import { Award, Banknote, History, Newspaper, Users } from "lucide-react";
 
 export default function Dashboard() {
   return (
@@ -40,6 +40,14 @@ export default function Dashboard() {
               <History className="text-orange-500" />
             </div>
             <h3 className="text-lg font-semibold">Histórico</h3>
+          </div>
+        </NavigationCard.Root>
+        <NavigationCard.Root href="/area-restrita/equipes">
+          <div className="flex items-center gap-2">
+            <div className="rounded-full bg-purple-500/20 p-2">
+              <Users className="text-purple-500" />
+            </div>
+            <h3 className="text-lg font-semibold">Equipes</h3>
           </div>
         </NavigationCard.Root>
       </section>

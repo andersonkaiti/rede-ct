@@ -1,8 +1,9 @@
 "use client";
 
+import { useUpdateNews } from "@/app/(auth)/area-restrita/noticias/_hooks/use-update-news.hook";
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
-import { useUpdateNews } from "@hooks/use-update-news.hook";
+import { Loader2 } from "lucide-react";
 import { INews } from "types/news";
 import { ErrorMessage } from "../../../_components/error-message";
 import { ImageInput } from "../../../_components/image-input";
@@ -58,19 +59,8 @@ export function UpdateForm({
             </div>
 
             <Button type="submit" className="cursor-pointer">
-              {!isLoading ? (
-                "Editar notícia"
-              ) : (
-                <div className="flex items-center gap-2">
-                  Editando notícia...
-                  <div
-                    role="status"
-                    className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-                  >
-                    <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !border-0 !p-0 !whitespace-nowrap ![clip:rect(0,0,0,0)]"></span>
-                  </div>
-                </div>
-              )}
+              {isLoading && <Loader2 className="size-4 animate-spin" />}
+              Editar notícia
             </Button>
           </div>
         </form>

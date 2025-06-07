@@ -2,7 +2,6 @@ export const dynamic = "force-dynamic";
 
 import { Input } from "@components/ui/input";
 import { getNews } from "@services/news/news";
-import { Search } from "lucide-react";
 import { INews } from "types/news";
 import { Noticia } from "./_components/noticia";
 // import { PaginationContainer } from "./_components/pagination";
@@ -16,9 +15,7 @@ export default async function Noticias() {
         Notícias
       </h1>
       {news.length > 0 && (
-        <Input placeholder="Buscar" className="w-full sm:w-fit">
-          <Search className="mr-2 h-4 w-4 text-gray-400" />
-        </Input>
+        <Input placeholder="Buscar" className="w-full sm:w-fit" />
       )}
       <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {news.map((news: INews, index: number) => (

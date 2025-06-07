@@ -1,7 +1,7 @@
 "use client";
 
+import { useUserNews } from "@/app/(auth)/area-restrita/noticias/_hooks/use-user-news.hook";
 import * as Table from "@components/ui/table";
-import { useUserNews } from "@hooks/user-news.hook";
 import { LoadingSkeleton } from "./loading-skeleton";
 import { NewsRow } from "./news-row";
 

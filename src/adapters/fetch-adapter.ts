@@ -58,7 +58,7 @@ export class FetchAdapter implements IFetchAdapter {
     });
   }
 
-  async delete<T>(url: string, body: object | FormData): Promise<T> {
+  async delete<T>(url: string, body?: object | FormData): Promise<T> {
     const isFormData = body instanceof FormData;
 
     return await this.request<T>(url, {

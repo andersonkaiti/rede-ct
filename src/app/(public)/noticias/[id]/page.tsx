@@ -1,6 +1,7 @@
-import Image from "next/image";
 import { getNewsById } from "@services/news/news-by-id";
 import { formatDate } from "@utils/format-date";
+import Image from "next/image";
+
 import { ShareButton } from "./_components/share-button";
 
 export default async function NoticiaPage({

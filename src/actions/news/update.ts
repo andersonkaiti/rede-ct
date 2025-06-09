@@ -1,11 +1,12 @@
 "use server";
 
+import { State } from "@actions/news/state";
 import { api } from "@adapters/index";
 import { currentUser } from "@clerk/nextjs/server";
 import { BASE_URL } from "@config/index";
-import { newsSchema } from "@validators/news";
 import { INews } from "types/news";
-import { State } from "types/news-form-state";
+
+import { newsSchema } from "./schema";
 
 export async function updateNews(
   id: string,

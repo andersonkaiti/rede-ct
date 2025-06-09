@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { Button, buttonVariants } from "@components/ui/button";
 import { cn } from "@utils/cn";
 import {
@@ -9,6 +7,7 @@ import {
   ChevronsRightIcon,
   MoreHorizontalIcon,
 } from "lucide-react";
+import * as React from "react";
 
 function Root({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -134,4 +133,4 @@ function Ellipsis({ className, ...props }: React.ComponentProps<"span">) {
   );
 }
 
-export { Root, Content, Item, Link, First, Last, Previous, Next, Ellipsis };
+export { Content, Ellipsis, First, Item, Last, Link, Next, Previous, Root };

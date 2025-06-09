@@ -1,6 +1,7 @@
-import { getResearcherCategories } from "@/services/researchers";
 import { BackArrow } from "@components/back-arrow";
 import * as Tabs from "@components/ui/tabs";
+
+import { getResearcherCategories } from "@/services/researchers";
 
 export default async function Pesquisadores() {
   const researcherCategories = await getResearcherCategories();

@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import { Input } from "@components/ui/input";
 import { getNews } from "@services/news/news";
 import { INews } from "types/news";
+
 import { Noticia } from "./_components/noticia";
 // import { PaginationContainer } from "./_components/pagination";
 

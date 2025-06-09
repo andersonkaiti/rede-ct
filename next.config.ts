@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
       },
       {
+        hostname: "images.clerk.dev",
+        protocol: "https",
+      },
+      {
         hostname: "storage.googleapis.com",
         protocol: "https",
       },

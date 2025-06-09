@@ -1,6 +1,8 @@
-import Link from "next/link";
-import { cn } from "@/utils/cn";
 import { ArrowRightIcon } from "lucide-react";
+import Link from "next/link";
+
+import { cn } from "@/utils/cn";
+
 import { INavigationCardProps } from ".";
 
 export function BlueNavigationCard({

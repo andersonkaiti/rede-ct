@@ -1,9 +1,10 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/utils/cn";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
+import * as React from "react";
+
+import { cn } from "@/utils/cn";
 
 function Root({ ...props }: React.ComponentProps<typeof DialogPrimitive.Root>) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
@@ -113,14 +114,14 @@ function Description({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 export {
-  Root,
-  Trigger,
-  Portal,
   Close,
-  Overlay,
   Content,
-  Header,
-  Footer,
-  Title,
   Description,
+  Footer,
+  Header,
+  Overlay,
+  Portal,
+  Root,
+  Title,
+  Trigger,
 };

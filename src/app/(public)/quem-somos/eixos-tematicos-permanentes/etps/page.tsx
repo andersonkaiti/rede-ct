@@ -1,4 +1,5 @@
 import { BackArrow } from "@components/back-arrow";
+
 import { EPTAccordion } from "./_components/etp-accordion";
 
 export default function EixosTematicosPermanentesETPs() {

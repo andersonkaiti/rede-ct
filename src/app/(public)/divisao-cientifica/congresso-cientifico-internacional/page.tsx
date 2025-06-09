@@ -1,8 +1,9 @@
-import { Fragment } from "react";
 import { NavigationCard } from "@components/navigation-card";
 import { getInternationalScientificCongress } from "@services/international-scientific-congress";
 import { Newspaper } from "lucide-react";
+import { Fragment } from "react";
 import { ICongress } from "types/congress";
+
 import { Congress } from "./_components/congress";
 import { CongressGalleryItem } from "./_components/congress-gallery-item";
 

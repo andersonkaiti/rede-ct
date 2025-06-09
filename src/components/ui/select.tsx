@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { cn } from "@utils/cn";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import * as React from "react";
 
 function Root({ ...props }: React.ComponentProps<typeof SelectPrimitive.Root>) {
   return <SelectPrimitive.Root data-slot="select" {...props} />;
@@ -169,11 +169,11 @@ function ScrollDownButton({
 }
 
 export {
-  Root,
   Content,
   Group,
   Item,
   Label,
+  Root,
   ScrollDownButton,
   ScrollUpButton,
   Separator,

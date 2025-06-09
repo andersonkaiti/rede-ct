@@ -1,6 +1,7 @@
 "use server";
 
 import "server-only";
+
 import { IResearcher } from "types/researcher";
 
 export interface ICategory {

@@ -1,5 +1,6 @@
-import { getInMemorianResearchers } from "@/services/in-memorian-researchers";
 import { UserCard } from "@components/user-card";
+
+import { getInMemorianResearchers } from "@/services/in-memorian-researchers";
 
 export async function Pesquisadores() {
   const inMemorianResearchers = await getInMemorianResearchers();

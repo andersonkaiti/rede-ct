@@ -1,9 +1,10 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/utils/cn";
 import * as MenubarPrimitive from "@radix-ui/react-menubar";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
+import * as React from "react";
+
+import { cn } from "@/utils/cn";
 
 function Root({
   className,
@@ -251,20 +252,20 @@ function SubContent({
 }
 
 export {
-  Root,
-  Menu,
+  CheckboxItem,
+  Content,
   Group,
+  Item,
+  Label,
+  Menu,
   Portal,
   RadioGroup,
-  Trigger,
-  Content,
-  Separator,
-  Label,
-  Item,
-  CheckboxItem,
   RadioItem,
+  Root,
+  Separator,
   Shortcut,
   Sub,
-  SubTrigger,
   SubContent,
+  SubTrigger,
+  Trigger,
 };

@@ -1,6 +1,7 @@
 "use server";
 
 import "server-only";
+
 import { IPartnership } from "types/partnership";
 
 const partnerships: IPartnership[] = [

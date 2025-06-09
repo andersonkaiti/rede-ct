@@ -29,7 +29,6 @@
       "@hooks/*": ["./src/hooks/*"],
       "@utils/*": ["./src/utils/*"],
       "types/*": ["./src/@types/*"],
-      "@validators/*": ["./src/validators/*"],
       "@/*": ["./src/*"]
     }
   },

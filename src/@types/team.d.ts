@@ -1,10 +1,13 @@
+import { IUser } from "./user";
+
 export interface ITeamMember {
   id?: string;
-  name: string;
   role: string;
   created_at?: string;
   updated_at?: string;
   user_id: string;
+  description?: string;
+  user?: IUser;
 }
 
 export interface ITeam {

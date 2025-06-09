@@ -9,7 +9,7 @@ import { revalidatePath } from "next/cache";
 import { registerTeamSchema } from "./schema";
 import { State } from "./state";
 
-export interface IUpdateTeamMemberProps {
+export interface IUpsertTeamMemberProps {
   team: {
     name?: string;
     type?: string;
@@ -20,8 +20,8 @@ export interface IUpdateTeamMemberProps {
   };
 }
 
-export async function updateTeamMember(
-  { team, user }: IUpdateTeamMemberProps,
+export async function upsertTeamMember(
+  { team, user }: IUpsertTeamMemberProps,
   _: unknown,
   formData: FormData,
 ) {
@@ -37,15 +37,29 @@ export async function updateTeamMember(
     } as State;
   }
 
+  const teamAlreadyExists = !!team.id;
+
   const body = {
     ...team,
     ...user,
     ...data,
   };
 
-  console.log(body);
+  if (teamAlreadyExists) {
+    if (!user.id) {
+      await api.post(`${BASE_URL}/team/member/${team.id}`, body);
+    }
 
-  await api.put(`${BASE_URL}/team/member/${user.id}`, body);
+    if (user.id) {
+      await api.put(`${BASE_URL}/team/member/${user.id}`, {
+        ...body,
+      });
+    }
+  }
+
+  if (!teamAlreadyExists) {
+    await api.post(`${BASE_URL}/team`, body);
+  }
 
   revalidatePath(`/area-restrita/${team.type}`);
 

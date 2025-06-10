@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 
 interface CongressCardProps {
@@ -19,12 +20,7 @@ export function CongressCard({
     <div className="mb-8 overflow-hidden rounded-lg bg-white shadow-lg">
       <div className="flex flex-col md:flex-row">
         <div className="relative h-48 w-full md:h-48 md:w-1/3">
-          <Image
-            src={imageUrl}
-            alt={title}
-            fill
-            className="object-cover"
-          />
+          <Image src={imageUrl} alt={title} fill className="object-cover" />
         </div>
         <div className="flex flex-1 flex-col p-6">
           <h3 className="mb-2 text-xl font-bold text-gray-800">{title}</h3>

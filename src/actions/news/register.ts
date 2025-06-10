@@ -3,8 +3,9 @@
 import { api } from "@adapters/index";
 import { currentUser } from "@clerk/nextjs/server";
 import { BASE_URL } from "@config/index";
-import { newsSchema } from "@validators/news";
-import { State } from "types/news-form-state";
+
+import { newsSchema } from "./schema";
+import { State } from "./state";
 
 export async function registerNews(_: unknown, formData: FormData) {
   const { success, error } = newsSchema.safeParse(Object.fromEntries(formData));

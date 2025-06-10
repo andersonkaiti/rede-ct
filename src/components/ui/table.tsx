@@ -1,8 +1,7 @@
 "use client";
 
-import * as React from "react";
-
 import { cn } from "@utils/cn";
+import * as React from "react";
 
 function Root({ className, ...props }: React.ComponentProps<"table">) {
   return (
@@ -101,4 +100,4 @@ function Caption({ className, ...props }: React.ComponentProps<"caption">) {
   );
 }
 
-export { Root, Header, Body, Footer, Row, Head, Cell, Caption };
+export { Body, Caption, Cell, Footer, Head, Header, Root, Row };

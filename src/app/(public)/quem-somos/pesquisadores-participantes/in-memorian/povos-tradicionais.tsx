@@ -1,5 +1,6 @@
-import { getInMemorianTraditionalLeaders } from "@/services/in-memorian-traditional-leaders";
 import { UserCard } from "@components/user-card";
+
+import { getInMemorianTraditionalLeaders } from "@/services/in-memorian-traditional-leaders";
 
 export async function PovosTradicionais() {
   const inMemorianTraditionalLeaders = await getInMemorianTraditionalLeaders();

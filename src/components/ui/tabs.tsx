@@ -1,8 +1,9 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/utils/cn";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
+import * as React from "react";
+
+import { cn } from "@/utils/cn";
 
 function Root({
   className,
@@ -62,4 +63,4 @@ function Content({
   );
 }
 
-export { Root, List, Trigger, Content };
+export { Content, List, Root, Trigger };

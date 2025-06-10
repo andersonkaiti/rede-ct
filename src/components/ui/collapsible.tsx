@@ -30,4 +30,4 @@ function Content({
   );
 }
 
-export { Root, Trigger, Content };
+export { Content, Root, Trigger };

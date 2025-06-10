@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Building2, Calendar } from "lucide-react";
+import Image from "next/image";
 import { IPartnership } from "types/partnership";
 
 export function Partnership({

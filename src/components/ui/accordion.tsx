@@ -1,9 +1,10 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/utils/cn";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "lucide-react";
+import * as React from "react";
+
+import { cn } from "@/utils/cn";
 
 function Root({
   ...props
@@ -68,4 +69,4 @@ function Content({
   );
 }
 
-export { Root, Item, Trigger, Content };
+export { Content, Item, Root, Trigger };

@@ -30,7 +30,7 @@ export default function CongressosRegionais() {
   ];
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8">
       <div className="text-center">
         <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
           Congressos Regionais da RedeCT

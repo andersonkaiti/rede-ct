@@ -1,7 +1,9 @@
-import { getPartnerships } from "@/services/partnerships";
 import { NavigationCard } from "@components/navigation-card";
 import { Handshake } from "lucide-react";
 import { IPartnership } from "types/partnership";
+
+import { getPartnerships } from "@/services/partnerships";
+
 import { Partnership } from "./_components/partnetship";
 
 export default async function ParceirosEFinanciadores() {

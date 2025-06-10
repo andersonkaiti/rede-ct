@@ -1,10 +1,15 @@
 "use server";
 
 import "server-only";
-import { IUser } from "types/user";
 
-export interface IInMemorian extends Omit<IUser, "lattesUrl"> {
+export interface IInMemorian {
+  name: string;
   date: string;
+  role: string;
+  image: {
+    src: string;
+    alt: string;
+  };
 }
 
 const inMemorianResearchers: IInMemorian[] = [

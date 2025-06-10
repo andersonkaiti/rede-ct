@@ -5,7 +5,7 @@ export default function EquipeDeGestaoLoading() {
     <Skeleton>
       <div className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
         <section className="space-y-8 md:space-y-14">
-          <div className="mx-auto h-9 w-117.5 rounded-full bg-gray-200" />
+          <div className="mx-auto h-10 w-117.5 rounded-full bg-gray-200" />
           <div className="grid w-full grid-cols-1 gap-10 md:grid-cols-3">
             {[...Array(9)].map((_, index) => (
               <div

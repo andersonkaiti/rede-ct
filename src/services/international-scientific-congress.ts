@@ -1,6 +1,7 @@
 "use server";
 
 import "server-only";
+
 import { ICongress } from "types/congress";
 
 const internationalScientificCongress: ICongress[] = [

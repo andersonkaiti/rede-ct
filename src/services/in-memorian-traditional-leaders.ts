@@ -1,6 +1,7 @@
 "use server";
 
 import "server-only";
+
 import { IInMemorian } from "./in-memorian-researchers";
 
 const inMemorianTraditionalLeaders: IInMemorian[] = [

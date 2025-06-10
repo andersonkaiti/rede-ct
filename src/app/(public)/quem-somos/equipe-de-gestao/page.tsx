@@ -1,8 +1,9 @@
 import { UserCard } from "@components/user-card";
 import { getTeams } from "@services/teams/teams";
+import { ITeam } from "types/team";
 
 export default async function EquipeDeGestao() {
-  const teamsSections = await getTeams("equipe-de-gestao");
+  const teamsSections = await getTeams<ITeam[]>("equipe-de-gestao");
 
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">

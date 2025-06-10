@@ -1,8 +1,14 @@
-import { IUser } from "./user";
-
 export interface IETP {
   name: string;
   description: string;
-  members: IUser[];
+  members: {
+    role: string;
+    name: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+    lattesUrl: string;
+  }[];
   text?: string;
 }

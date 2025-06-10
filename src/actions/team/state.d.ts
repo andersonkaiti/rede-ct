@@ -1,8 +1,8 @@
-import { registerTeamSchema } from "./schema";
+import { registerTeamMemberSchema } from "./schema";
 
 interface IErrors {
   errors: {
-    [key in keyof z.infer<typeof registerTeamSchema>]?: string[];
+    [key in keyof z.infer<typeof registerTeamMemberSchema>]?: string[];
   };
 }
 

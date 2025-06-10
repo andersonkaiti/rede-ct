@@ -2,13 +2,18 @@
 
 import * as Table from "@components/ui/table";
 
-import { useManagementTeam } from "../../../equipe-de-gestao/_hooks/use-management-team.hook";
+import { useTeam } from "../../../_hooks/use-team.hook";
 import { LoadingSkeleton } from "./loading-skeleton";
+import { TableRow } from "./table-row";
 
 const TEAM_TYPE = "equipe-sdhc";
 
 export function EquipeSDHCTable() {
-  const { teams, isLoading } = useManagementTeam({
+  const {
+    data: teams,
+    isLoading,
+    handleRemoveMember,
+  } = useTeam({
     type: TEAM_TYPE,
   });
 
@@ -16,21 +21,23 @@ export function EquipeSDHCTable() {
     return <LoadingSkeleton />;
   }
 
-  console.log(teams);
-
   return (
     <Table.Root>
       <Table.Header>
         <Table.Row>
           <Table.Head>Nome</Table.Head>
+          <Table.Head>Cargo</Table.Head>
           <Table.Head>Ações</Table.Head>
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        <Table.Row>
-          <Table.Cell>Equipe SDHC 1</Table.Cell>
-          <Table.Cell>Ações</Table.Cell>
-        </Table.Row>
+        {teams?.[0]?.team_members?.map((member) => (
+          <TableRow
+            key={`${member.id}-${member.user_id}`}
+            member={member}
+            handleRemoveMember={() => handleRemoveMember(member.id as string)}
+          />
+        ))}
       </Table.Body>
     </Table.Root>
   );

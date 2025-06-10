@@ -1,7 +1,7 @@
 import { Input } from "@components/ui/input";
 import * as Container from "@components/ui/page-container";
 
-import { CreateButton } from "../../_components/create-button";
+import { CreateMemberButton } from "./_components/create-member/create-member-button";
 import { EquipeSDHCTable } from "./_components/table/table";
 
 export default function EquipeSDHC() {
@@ -9,9 +9,7 @@ export default function EquipeSDHC() {
     <Container.PageContainer>
       <Container.PageHeader>
         <Container.PageTitle>Equipe SDHC</Container.PageTitle>
-        <CreateButton href="/area-restrita/equipe-sdhc/cadastrar">
-          Criar Equipe SDHC
-        </CreateButton>
+        <CreateMemberButton>Adicionar membro</CreateMemberButton>
       </Container.PageHeader>
       <Input placeholder="Pesquisar equipe" className="w-full sm:w-fit" />
       <Container.PageMain>

@@ -6,7 +6,7 @@ import { api } from "@adapters/index";
 import { BASE_URL } from "@config/index";
 import { revalidatePath } from "next/cache";
 
-import { registerTeamSchema } from "./schema";
+import { registerTeamMemberSchema } from "./schema";
 import { State } from "./state";
 
 export interface ICreateTeamMemberProps {
@@ -24,7 +24,7 @@ export async function createTeamMember(
     success: memberSuccess,
     data,
     error: memberError,
-  } = registerTeamSchema.safeParse(Object.fromEntries(formData));
+  } = registerTeamMemberSchema.safeParse(Object.fromEntries(formData));
 
   if (!memberSuccess) {
     return {
@@ -34,17 +34,18 @@ export async function createTeamMember(
 
   const teamAlreadyExists = !!team.id;
 
-  const body = {
-    ...team,
-    ...data,
-  };
-
   if (teamAlreadyExists) {
-    await api.post(`${BASE_URL}/team/member/${team.id}`, body);
+    await api.post(`${BASE_URL}/team/member/${team.id}`, {
+      ...team,
+      member: data,
+    });
   }
 
   if (!teamAlreadyExists) {
-    await api.post(`${BASE_URL}/team`, body);
+    await api.post(`${BASE_URL}/team`, {
+      ...team,
+      members: [data],
+    });
   }
 
   revalidatePath(`/area-restrita/${team.type}`);

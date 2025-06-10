@@ -6,14 +6,12 @@ import { api } from "@adapters/index";
 import { BASE_URL } from "@config/index";
 import { revalidatePath } from "next/cache";
 
-import { registerTeamSchema } from "./schema";
+import { registerTeamMemberSchema } from "./schema";
 import { State } from "./state";
 
 export interface IUpdateTeamMemberProps {
   team: {
-    name?: string;
-    type?: string;
-    id: string;
+    type: string;
   };
   user: {
     id?: string;
@@ -29,7 +27,7 @@ export async function updateTeamMember(
     success: memberSuccess,
     data,
     error: memberError,
-  } = registerTeamSchema.safeParse(Object.fromEntries(formData));
+  } = registerTeamMemberSchema.safeParse(Object.fromEntries(formData));
 
   if (!memberSuccess) {
     return {
@@ -37,15 +35,12 @@ export async function updateTeamMember(
     } as State;
   }
 
-  const body = {
-    ...team,
-    ...user,
-    ...data,
-  };
-
-  console.log(body);
-
-  await api.put(`${BASE_URL}/team/member/${user.id}`, body);
+  await api.put(`${BASE_URL}/team/member/${user.id}`, {
+    member: {
+      ...data,
+      id: user.id,
+    },
+  });
 
   revalidatePath(`/area-restrita/${team.type}`);
 

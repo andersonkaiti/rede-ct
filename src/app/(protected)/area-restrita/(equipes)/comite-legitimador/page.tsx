@@ -1,7 +1,7 @@
 import { Input } from "@components/ui/input";
 import * as Container from "@components/ui/page-container";
 
-import { CreateComiteLegitimadorButton } from "./_components/create-member/create-team-button";
+import { CreateMemberButton } from "./_components/create-member/create-member-button";
 import { ComiteLegitimadorTable } from "./_components/table/table";
 
 export default function ComiteLegitimador() {
@@ -9,9 +9,7 @@ export default function ComiteLegitimador() {
     <Container.PageContainer>
       <Container.PageHeader>
         <Container.PageTitle>Comitê Legitimador</Container.PageTitle>
-        <CreateComiteLegitimadorButton>
-          Adicionar membro
-        </CreateComiteLegitimadorButton>
+        <CreateMemberButton>Adicionar membro</CreateMemberButton>
       </Container.PageHeader>
       <Input placeholder="Pesquisar comitê" className="w-full sm:w-fit" />
       <Container.PageMain>

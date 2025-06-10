@@ -21,11 +21,6 @@ export function TableRow({ member, handleRemoveMember }: ITableRowProps) {
         {member.user?.first_name} {member.user?.last_name}
       </Table.Cell>
       <Table.Cell>{member.role}</Table.Cell>
-      <Table.Cell>
-        {member.description && member.description.length > 30
-          ? `${member.description?.slice(0, 30)}...`
-          : member.description}
-      </Table.Cell>
       <Table.Cell className="space-x-2">
         <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
           <Dialog.Trigger asChild>

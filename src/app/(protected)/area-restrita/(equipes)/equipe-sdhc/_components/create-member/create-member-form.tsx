@@ -9,22 +9,22 @@ import { ITeamMember } from "types/team";
 
 import { ErrorMessage } from "@/app/(protected)/area-restrita/noticias/_components/error-message";
 
+import { SelectMember } from "../../../_components/select-member";
 import { useCreateMember } from "../../../_hooks/use-create-member";
-import { SelectMember } from "../select-member";
 
-interface ICreateComiteLegitimadorFormProps {
+interface ICreateMemberFormProps {
   setIsOpen: (isOpen: boolean) => void;
   member?: ITeamMember;
 }
 
-export function CreateComiteLegitimadorForm({
+export function CreateMemberForm({
   setIsOpen,
   member,
-}: ICreateComiteLegitimadorFormProps) {
+}: ICreateMemberFormProps) {
   const { state, formAction, isLoading } = useCreateMember({
     setIsOpen,
-    name: "Comitê Legitimador",
-    type: "comite-legitimador",
+    name: "Equipe SDHC",
+    type: "equipe-sdhc",
   });
 
   const hasErrors = state && "errors" in state;
@@ -32,7 +32,7 @@ export function CreateComiteLegitimadorForm({
   return (
     <Dialog.Content className="max-h-[100vh-2rem] space-y-8 overflow-y-auto">
       <Dialog.Header>
-        <Dialog.Title>Selecione o membro do comitê</Dialog.Title>
+        <Dialog.Title>Selecione o membro da equipe</Dialog.Title>
       </Dialog.Header>
 
       <Dialog.Content>

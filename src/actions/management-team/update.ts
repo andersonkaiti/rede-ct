@@ -5,12 +5,12 @@ import "server-only";
 import { api } from "@adapters/index";
 import { BASE_URL } from "@config/index";
 import { ITeamMember } from "types/team";
-import { State } from "types/team-form-state";
 
 import {
   registerManagementTeamMembersSchema,
   registerManagementTeamNameSchema,
 } from "./schema";
+import { State } from "./state";
 
 interface IUpdatedManagementTeam {
   team: ITeamMember[];

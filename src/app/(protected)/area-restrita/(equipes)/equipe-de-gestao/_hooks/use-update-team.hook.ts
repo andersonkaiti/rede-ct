@@ -69,7 +69,8 @@ export function useUpdateTeam() {
 
   const [state, formAction, isLoading] = useActionState(
     updateManagementTeam.bind(null, {
-      team: team.team_members,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      team: team.team_members?.map(({ user, ...member }) => member),
       id: team.id,
     }),
     null,

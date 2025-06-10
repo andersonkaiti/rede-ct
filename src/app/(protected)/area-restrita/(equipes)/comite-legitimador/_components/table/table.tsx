@@ -34,7 +34,7 @@ export function ComiteLegitimadorTable() {
       <Table.Body>
         {team?.[0]?.team_members?.map((member) => (
           <TableRow
-            key={`${member.user?.id}-${member.role}`}
+            key={`${member.id}-${member.user_id}`}
             member={member}
             handleRemoveMember={handleRemoveMember}
           />

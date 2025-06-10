@@ -9,25 +9,22 @@ import { ITeamMember } from "types/team";
 
 import { ErrorMessage } from "@/app/(protected)/area-restrita/noticias/_components/error-message";
 
-import { useUpdateMember } from "../../../_hooks/use-update-member";
-import { SelectMember } from "../select-member";
+import { SelectMember } from "../../../_components/select-member";
+import { useCreateMember } from "../../../_hooks/use-create-member";
 
-interface IUpdateComiteLegitimadorFormProps {
+interface ICreateMemberFormProps {
   setIsOpen: (isOpen: boolean) => void;
-  member: ITeamMember;
+  member?: ITeamMember;
 }
 
-export function UpdateComiteLegitimadorForm({
+export function CreateMemberForm({
   setIsOpen,
   member,
-}: IUpdateComiteLegitimadorFormProps) {
-  const { state, formAction, isLoading } = useUpdateMember({
+}: ICreateMemberFormProps) {
+  const { state, formAction, isLoading } = useCreateMember({
     setIsOpen,
     name: "Comitê Legitimador",
     type: "comite-legitimador",
-    user: {
-      id: member.id ?? "",
-    },
   });
 
   const hasErrors = state && "errors" in state;

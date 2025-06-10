@@ -40,11 +40,11 @@ export async function registerManagementTeam(
 
   await api.post(`${BASE_URL}/team`, {
     name: teamName,
+    type: "equipe-de-gestao",
     members: members.map(({ user_id, ...rest }) => ({
       user_id,
       ...rest,
     })),
-    type: "equipe-de-gestao",
   });
 
   return {

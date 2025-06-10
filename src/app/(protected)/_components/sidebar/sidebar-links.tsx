@@ -57,11 +57,6 @@ export const sidebarLinks: NavigationLink[] = [
         path: "/area-restrita/equipe-sdhc",
         icon: Icons.Earth,
       },
-      {
-        label: "Grupo de Pesquisa",
-        path: "/area-restrita/grupo-de-pesquisa",
-        icon: Icons.Network,
-      },
     ],
   },
   {
@@ -77,6 +72,11 @@ export const sidebarLinks: NavigationLink[] = [
         label: "In Memoriam",
         path: "/area-restrita/in-memoriam",
         icon: Icons.Heart,
+      },
+      {
+        label: "Grupo de Pesquisa",
+        path: "/area-restrita/grupo-de-pesquisa",
+        icon: Icons.Network,
       },
     ],
   },

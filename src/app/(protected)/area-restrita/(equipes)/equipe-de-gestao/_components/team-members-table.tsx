@@ -4,12 +4,12 @@ import { Trash } from "lucide-react";
 import { ITeamMember } from "types/team";
 
 export interface ITeamMembersTableProps {
-  team: ITeamMember[];
+  teamMembers: ITeamMember[];
   handleRemoveMember: (id: ITeamMember["id"]) => void;
 }
 
 export function TeamMembersTable({
-  team,
+  teamMembers,
   handleRemoveMember,
 }: ITeamMembersTableProps) {
   return (
@@ -23,7 +23,7 @@ export function TeamMembersTable({
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {team?.map((member) => (
+        {teamMembers?.map((member) => (
           <Table.Row key={`${member.user_id}-${member.role}`}>
             <Table.Cell>
               {member.user?.first_name} {member.user?.last_name}

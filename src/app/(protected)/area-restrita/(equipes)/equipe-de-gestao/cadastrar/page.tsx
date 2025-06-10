@@ -51,7 +51,7 @@ export default function CadastrarEquipeDeGestao() {
               />
 
               <TeamMembersTable
-                team={team}
+                teamMembers={team}
                 handleRemoveMember={handleRemoveMember}
               />
 

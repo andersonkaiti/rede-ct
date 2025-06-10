@@ -5,15 +5,13 @@ import * as Dialog from "@components/ui/dialog";
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 
-import { CreateComiteLegitimadorForm } from "./create-team-form";
+import { CreateMemberForm } from "./create-member-form";
 
-interface ICreateComiteLegitimadorButtonProps {
+interface ICreateMemberButtonProps {
   children: React.ReactNode;
 }
 
-export function CreateComiteLegitimadorButton({
-  children,
-}: ICreateComiteLegitimadorButtonProps) {
+export function CreateMemberButton({ children }: ICreateMemberButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -24,7 +22,7 @@ export function CreateComiteLegitimadorButton({
           {children}
         </Button>
       </Dialog.Trigger>
-      <CreateComiteLegitimadorForm setIsOpen={setIsOpen} />
+      <CreateMemberForm setIsOpen={setIsOpen} />
     </Dialog.Root>
   );
 }

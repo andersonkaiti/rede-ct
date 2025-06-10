@@ -2,7 +2,7 @@ import * as Select from "@components/ui/select";
 import { Loader2 } from "lucide-react";
 import { ITeamMember } from "types/team";
 
-import { useUsers } from "../../_hooks/use-users.hook";
+import { useUsers } from "../_hooks/use-users.hook";
 
 interface ISelectMemberProps {
   user_id?: ITeamMember["user_id"];
@@ -28,7 +28,7 @@ export function SelectMember({ user_id }: ISelectMemberProps) {
       );
     }
 
-    return "Selecione o membro do comitê";
+    return "Selecione o membro";
   }
 
   return (

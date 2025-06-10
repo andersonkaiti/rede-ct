@@ -1,6 +1,6 @@
 export default function SeloDeQualidadeEmExtensaoUniversitaria() {
   return (
-    <main className="mx-auto max-w-4xl px-4 py-12">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8">
       <div className="mb-8 text-center">
         <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
           Selo de Qualidade em Extensão Universitária

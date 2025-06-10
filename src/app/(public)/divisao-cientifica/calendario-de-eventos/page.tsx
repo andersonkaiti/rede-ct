@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function CalendarioDeEventos() {
   return (
-    <main className="bg-white px-4 py-12 sm:px-6 lg:px-8">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8">
       <div className="mx-auto max-w-4xl">
         <div className="mb-12">
           <h1 className="mb-4 text-3xl font-bold text-gray-900">
@@ -24,6 +24,7 @@ export default function CalendarioDeEventos() {
               <Image
                 src="/images/congressos-regionais/rede-ct.png"
                 alt="Evento Rede CT"
+                fill
                 className="absolute inset-0 h-full w-full object-cover"
               />
             </div>

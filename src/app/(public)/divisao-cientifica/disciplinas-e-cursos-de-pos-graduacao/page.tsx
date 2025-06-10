@@ -50,6 +50,7 @@ export default function DisciplinasECursosDePosGraduacao() {
                   <Image
                     src={disciplina.imageUrl}
                     alt={disciplina.title}
+                    fill
                     className="h-full w-full object-cover"
                   />
                 </div>

@@ -1,8 +1,9 @@
 "use client";
 
-import { cn } from "@/utils/cn";
 import { useCopyClipboard } from "@hooks/copy-clipboard.hook";
 import { Check, Copy as CopyIcon } from "lucide-react";
+
+import { cn } from "@/utils/cn";
 
 export interface ICopyProps extends React.HTMLAttributes<HTMLOrSVGElement> {
   children: React.ReactNode;

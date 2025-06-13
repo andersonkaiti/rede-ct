@@ -1,18 +1,47 @@
 "use server";
 
-import { State } from "@/@types/news-form-state";
-import { newsSchema } from "@validators/news";
+import { State } from "@actions/news/state";
+import { api } from "@adapters/index";
+import { currentUser } from "@clerk/nextjs/server";
+import { BASE_URL } from "@config/index";
+import { INews } from "types/news";
 
-export async function updateNews(_: unknown, formData: FormData) {
-  const data = newsSchema.safeParse(Object.fromEntries(formData));
+import { newsSchema } from "./schema";
 
-  if (!data.success) {
+export async function updateNews(
+  id: string,
+  image_url: string | undefined,
+  _: unknown,
+  formData: FormData,
+) {
+  const { success, error } = newsSchema.safeParse(Object.fromEntries(formData));
+
+  if (!success) {
     return {
-      errors: data.error.flatten().fieldErrors,
+      errors: error.flatten().fieldErrors,
     } as State;
   }
 
+  const user = await currentUser();
+
+  if (!user) {
+    throw new Error("Não autorizado!");
+  }
+
+  const news = new FormData();
+
+  news.append("title", formData.get("title") as string);
+  news.append("content", formData.get("content") as string);
+  news.append("image", formData.get("image") as File);
+  news.append("author_id", user?.id || "");
+
+  if (image_url) {
+    news.append("image_url", image_url);
+  }
+
+  await api.put<INews>(`${BASE_URL}/news/${id}`, news);
+
   return {
-    success: "Notícia atualizada com sucesso!",
+    success: true,
   } as State;
 }

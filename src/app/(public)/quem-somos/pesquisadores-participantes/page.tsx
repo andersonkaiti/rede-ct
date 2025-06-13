@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { NavigationCard } from "@components/navigation-card";
 import { OrderedList } from "@components/ordered-list";
 import { GraduationCap, Heart, Users } from "lucide-react";
+import Link from "next/link";
 
 export default async function PesquisadoresParticipantes() {
   return (

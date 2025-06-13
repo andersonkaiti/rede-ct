@@ -1,4 +1,5 @@
 import { LinkProps } from "next/link";
+
 import { BlueNavigationCard } from "./blue-navigation-card";
 import { NavigationCardRoot } from "./navigation-card";
 

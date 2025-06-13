@@ -1,5 +1,5 @@
-import Link, { LinkProps } from "next/link";
 import { LinkIcon } from "lucide-react";
+import Link, { LinkProps } from "next/link";
 
 export interface IBlueLinkProps extends LinkProps {
   children: React.ReactNode;

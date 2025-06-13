@@ -21,12 +21,14 @@
     "paths": {
       "@api/*": ["./src/app/api/*"],
       "@actions/*": ["./src/actions/*"],
+      "@adapters/*": ["./src/adapters/*"],
+      "@config/*": ["./src/config/*"],
+      "@providers/*": ["./src/providers/*"],
       "@services/*": ["./src/services/*"],
       "@components/*": ["./src/components/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@utils/*": ["./src/utils/*"],
       "types/*": ["./src/@types/*"],
-      "@validators/*": ["./src/validators/*"],
       "@/*": ["./src/*"]
     }
   },

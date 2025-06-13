@@ -1,16 +1,21 @@
-import { getSdhcTeam } from "@/services/sdhc-team";
 import { UserCard } from "@components/user-card";
+import { getSdhcTeam } from "@services/sdhc-team";
 
 export async function EquipeSdhc() {
   const sdhcTeam = await getSdhcTeam();
 
   return (
     <UserCard.Wrapper>
-      {sdhcTeam.map((member, index: number) => (
+      {sdhcTeam[0].team_members.map((member, index: number) => (
         <UserCard.Root key={index}>
-          <UserCard.Image src={member.image.src} alt={member.image.alt} />
+          <UserCard.Image
+            src={member.user?.image_url as string}
+            alt={`${member.user?.first_name} ${member.user?.last_name || ""}`}
+          />
           <div className="flex flex-grow flex-col items-center justify-between gap-4">
-            <h1 className="text-center text-xl font-bold">{member.name}</h1>
+            <h1 className="text-center text-xl font-bold">
+              {member.user?.first_name} {member.user?.last_name || ""}
+            </h1>
             <h2 className="text-center font-bold">{member.role}</h2>
           </div>
         </UserCard.Root>

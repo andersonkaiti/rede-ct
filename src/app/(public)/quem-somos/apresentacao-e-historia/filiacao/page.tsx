@@ -1,6 +1,6 @@
 import { BackArrow } from "@components/back-arrow";
 import { OrderedList } from "@components/ordered-list";
-import { FileText, Users, Building2, Mail } from "lucide-react";
+import { Building2, FileText, Mail, Users } from "lucide-react";
 
 export default function Filiacao() {
   return (

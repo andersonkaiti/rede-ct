@@ -1,5 +1,5 @@
 import { FlatCompat } from "@eslint/eslintrc";
-import importHelpersPlugin from "eslint-plugin-import-helpers";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -14,30 +14,11 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     plugins: {
-      "import-helpers": importHelpersPlugin,
+      "simple-import-sort": simpleImportSort,
     },
     rules: {
-      "import-helpers/order-imports": [
-        "warn",
-        {
-          groups: [
-            ["/^react/", "/^next/"],
-            "module",
-            "/^types/",
-            "/^actions/",
-            "/^services/",
-            "/^hooks/",
-            "/^components/",
-            "/^utils/",
-            "/^app/",
-            ["parent", "sibling", "index"],
-          ],
-          alphabetize: {
-            order: "asc",
-            ignoreCase: true,
-          },
-        },
-      ],
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
     },
   },
 ];

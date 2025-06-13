@@ -1,15 +1,16 @@
-import Image from "next/image";
-import { getTimelineRedeCT } from "@/services/timeline-rede-ct";
 import { NavigationCard } from "@components/navigation-card";
 import { Timeline } from "@components/ui/timeline";
 import {
-  History,
-  Users,
   BookOpen,
   Globe,
-  Landmark,
+  History,
   Image as ImageIcon,
+  Landmark,
+  Users,
 } from "lucide-react";
+import Image from "next/image";
+
+import { getTimelineRedeCT } from "@/services/timeline-rede-ct";
 
 export default async function ApresentacaoEHistoria() {
   const timelineData = await getTimelineRedeCT();

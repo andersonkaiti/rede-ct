@@ -1,8 +1,9 @@
+import "./globals.css";
+
+import { ClerkProvider } from "@clerk/nextjs";
+import { QueryClientProvider } from "@providers/query-client";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-
-import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 
 const poppins = Poppins({
@@ -27,12 +28,14 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={`${poppins.variable}`}>
-          {children}
-          <Toaster className="fixed right-0 bottom-0 z-50" />
-        </body>
-      </html>
+      <QueryClientProvider>
+        <html lang="pt-BR">
+          <body className={`${poppins.variable}`}>
+            {children}
+            <Toaster position="bottom-center" richColors theme="light" />
+          </body>
+        </html>
+      </QueryClientProvider>
     </ClerkProvider>
   );
 }

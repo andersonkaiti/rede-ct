@@ -1,14 +1,13 @@
 "use client";
 
-import * as React from "react";
-
 import { cn } from "@utils/cn";
+import * as React from "react";
 
 function Root({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div
       data-slot="table-container"
-      className="relative w-full overflow-x-auto rounded-md border"
+      className="relative w-full overflow-x-auto rounded-md border shadow-sm"
     >
       <table
         data-slot="table"
@@ -101,4 +100,4 @@ function Caption({ className, ...props }: React.ComponentProps<"caption">) {
   );
 }
 
-export { Root, Header, Body, Footer, Row, Head, Cell, Caption };
+export { Body, Caption, Cell, Footer, Head, Header, Root, Row };

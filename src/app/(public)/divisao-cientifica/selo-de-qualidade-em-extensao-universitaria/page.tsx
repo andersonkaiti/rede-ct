@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@components/ui/card";
-import { Construction } from "lucide-react";
+import { Building } from "@components/building";
 
 export default function SeloDeQualidadeEmExtensaoUniversitaria() {
   return (
@@ -26,23 +20,11 @@ export default function SeloDeQualidadeEmExtensaoUniversitaria() {
         </p>
       </div>
 
-      <Card className="flex flex-row items-center gap-5 border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 p-8">
-        <div className="rounded-full bg-amber-100 p-3">
-          <Construction className="!size-6 text-amber-600" />
-        </div>
-        <div className="flex flex-col">
-          <CardHeader className="p-0">
-            <CardTitle className="mb-2 text-lg font-semibold text-amber-800">
-              Área em Desenvolvimento
-            </CardTitle>
-          </CardHeader>
-          <CardDescription className="text-amber-700">
-            A Vice-coordenadoria de Extensão Universitária e Cultura está
-            desenvolvendo o sistema de avaliação e certificação. Em breve, você
-            poderá submeter seus projetos para análise.
-          </CardDescription>
-        </div>
-      </Card>
+      <Building>
+        A Vice-coordenadoria de Extensão Universitária e Cultura está
+        desenvolvendo o sistema de avaliação e certificação. Em breve, você
+        poderá submeter seus projetos para análise.
+      </Building>
     </main>
   );
 }

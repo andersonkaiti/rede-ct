@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
       },
       {
+        hostname: "redect.org",
+        protocol: "https",
+      },
+      {
         hostname: "storage.googleapis.com",
         protocol: "https",
       },

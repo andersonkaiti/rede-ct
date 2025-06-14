@@ -49,7 +49,7 @@ export function NavigationBar() {
       <nav
         onMouseLeave={() => setHovering(null)}
         className={cn(
-          "2lg:sticky 2lg:h-fit 2lg:shadow-none 2lg:flex-row 2lg:gap-4 2lg:justify-end 2lg:min-h-fit 2lg:overflow-visible absolute top-21 left-0 flex h-[calc(100vh-5.25rem)] w-full flex-col items-center gap-2 overflow-y-auto bg-white p-4 transition-all ease-in-out",
+          "2lg:sticky 2lg:h-fit 2lg:shadow-none 2lg:flex-row 2lg:gap-4 2lg:justify-end 2lg:min-h-fit 2lg:overflow-visible absolute top-18 left-0 flex h-[calc(100vh-5.25rem)] w-full flex-col items-center gap-2 overflow-y-auto bg-white p-4 transition-all ease-in-out",
           !showNavigationBar && "-left-full",
         )}
       >

@@ -29,7 +29,7 @@ export function EventCard({
   return (
     <Card className="rounded-lg border border-gray-200 p-0 shadow-sm">
       <div className="flex flex-col items-stretch md:flex-row">
-        <picture className="relative h-64 w-full overflow-hidden rounded-t-lg md:h-auto md:w-2/4 md:rounded-l-lg">
+        <picture className="relative h-64 w-full overflow-hidden rounded-t-lg md:h-auto md:w-2/4 md:rounded-l-lg md:rounded-tr-none">
           <Image
             src={image.url}
             alt={image.alt}

@@ -23,8 +23,8 @@ export function CourseCard({
   },
 }: ICourseCardProps) {
   return (
-    <div className="flex flex-col gap-2 rounded-lg shadow-lg md:flex-row">
-      <picture className="relative w-full overflow-hidden rounded-l-lg p-0 md:w-2/4">
+    <div className="flex flex-col items-stretch gap-2 rounded-lg shadow-lg md:flex-row">
+      <picture className="relative h-64 w-full overflow-hidden rounded-t-lg p-0 md:h-auto md:w-2/4 md:rounded-l-lg md:rounded-tr-none">
         <Image
           src={imageUrl}
           alt={title}

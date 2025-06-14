@@ -1,4 +1,14 @@
-import { Calendar } from "lucide-react";
+import { Badge } from "@components/ui/badge";
+import { Button } from "@components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@components/ui/card";
+import { Calendar, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -23,68 +33,60 @@ export function WebinarCard({
   speakers,
 }: WebinarCardProps) {
   return (
-    <div className="mb-8 overflow-hidden rounded-lg bg-white shadow-lg">
-      <div className="flex flex-col md:flex-row">
-        {/* Coluna da Imagem */}
-        <div className="flex w-full items-stretch bg-gray-100 p-0 md:w-1/3">
-          <div className="relative h-64 w-full md:h-auto">
-            <Image
-              src={imageUrl}
-              alt={speakers[0].split(" - ")[0]}
-              fill
-              className="h-full w-full object-cover"
-              sizes="(max-width: 768px) 100vw, 33vw"
-              priority
-            />
-          </div>
-        </div>
+    <Card className="flex flex-col gap-2 overflow-hidden rounded-lg bg-white p-0 md:flex-row">
+      <picture className="relative flex h-67 items-stretch bg-gray-100 p-0 md:h-auto md:w-2/4">
+        <Image
+          src={imageUrl}
+          alt={speakers[0].split(" - ")[0]}
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+      </picture>
 
-        {/* Coluna do Conteúdo */}
-        <div className="w-full p-6 md:w-2/3">
-          {/* Título */}
-          <h3 className="mb-4 text-2xl font-bold text-gray-800">{title}</h3>
-
-          {/* Data e Horário */}
-          <div className="mb-4">
-            <div className="mb-1 flex items-center text-blue-600">
-              <Calendar className="mr-2 h-5 w-5" />
-              <span className="text-sm font-semibold">DATA E HORÁRIO</span>
-            </div>
-            <p className="ml-7 text-sm text-gray-700">
-              {date} | {time}
-            </p>
-          </div>
-
-          {/* Convidada */}
-          <div className="mb-6">
-            <h4 className="mb-2 text-sm font-semibold text-gray-500">
-              CONVIDADA
-            </h4>
-            <div className="flex items-center">
-              <div className="relative mr-3 h-12 w-12 flex-shrink-0 overflow-hidden rounded-full">
-                <Image
-                  src={speakerImageUrl}
-                  alt={speakers[0].split("(")[0].trim()}
-                  fill
-                  className="object-cover"
-                  sizes="48px"
-                />
+      <CardContent className="space-y-4 p-6 md:w-3/4">
+        <CardHeader className="space-y-4 p-0">
+          <time className="flex items-stretch gap-2 text-sm">
+            <Badge className="bg-primary/20 text-primary rounded-md p-1 font-bold">
+              <Calendar className="text-primary !size-5" />
+            </Badge>
+            <div className="flex flex-col leading-4">
+              <span className="font-bold text-black">{date}</span>
+              <div className="flex items-center gap-1">
+                <Clock className="text-muted-foreground !size-3" />
+                <span className="text-muted-foreground">{time}</span>
               </div>
-              <p className="text-gray-800">{speakers[0]}</p>
             </div>
-          </div>
+          </time>
 
-          {/* Botão */}
-          <div className="mt-6">
-            <Link
-              href={link}
-              className="inline-block rounded-md bg-blue-600 px-6 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-blue-700"
-            >
-              ACESSAR CURSO
-            </Link>
+          <CardTitle className="text-2xl font-bold text-gray-800">
+            {title}
+          </CardTitle>
+        </CardHeader>
+
+        <CardDescription className="space-y-1">
+          <h4 className="w-fit text-sm font-semibold">Convidada</h4>
+          <div className="flex items-center">
+            <picture className="relative mr-3 size-6 flex-shrink-0 overflow-hidden rounded-full">
+              <Image
+                src={speakerImageUrl}
+                alt={speakers[0].split("(")[0].trim()}
+                fill
+                className="object-cover"
+                sizes="48px"
+              />
+            </picture>
+            <div className="text-muted-foreground">{speakers[0]}</div>
           </div>
-        </div>
-      </div>
-    </div>
+        </CardDescription>
+
+        <CardFooter className="p-0">
+          <Link href={link} className="w-full">
+            <Button className="w-full font-bold">Acessar Curso</Button>
+          </Link>
+        </CardFooter>
+      </CardContent>
+    </Card>
   );
 }

@@ -34,7 +34,7 @@ export function NavigationBar() {
 
   return (
     <header
-      className="sticky top-0 z-50 flex h-21 items-center justify-between bg-white p-4 shadow-md"
+      className="2lg:h-25 sticky top-0 z-50 flex h-18 items-center justify-between bg-white p-4 shadow-md"
       ref={navigationBarRef}
     >
       <Menu

@@ -1,35 +1,71 @@
+import { Building } from "@components/building";
+import { Badge } from "@components/ui/badge";
+import { Button } from "@components/ui/button";
+import { Card, CardFooter, CardHeader, CardTitle } from "@components/ui/card";
+import { FileText } from "lucide-react";
+import Link from "next/link";
+
 export default function ArtigosCientificos() {
   return (
-    <main className="max-w-7xl mx-auto p-10 font-sans text-gray-800 bg-white min-h-screen">
-      <h1 className="text-5xl font-extrabold mb-6 text-black">
-        Artigos Científicos de Interesse
-      </h1>
-      <p className="text-gray-700 max-w-4xl leading-relaxed mb-8">
-        Nesta seção (<span className="text-red-600 font-bold">AINDA EM CONSTRUÇÃO</span>) serão publicadas as apresentações e links de acesso a artigos científicos publicados em periódicos e que sejam de interesse dos Pesquisadores Filiados à RedeCT (artigos com temas relacionados aos Povos Tradicionais). <span className="text-red-600 font-bold">ESTA ÁREA AINDA ESTÁ EM CONSTRUÇÃO.</span>
-      </p>
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
+      <header className="space-y-8 text-center">
+        <div className="flex items-center justify-center gap-2">
+          <Badge className="bg-primary/10 text-primary rounded-full p-2">
+            <FileText className="!size-7" />
+          </Badge>
+          <h1 className="text-3xl font-bold">
+            Artigos Científicos de Interesse
+          </h1>
+        </div>
+        <p className="text-muted-foreground">
+          Nesta seção (
+          <span className="text-primary font-bold">AINDA EM CONSTRUÇÃO</span>)
+          serão publicadas as apresentações e links de acesso a artigos
+          científicos publicados em periódicos e que sejam de interesse dos
+          Pesquisadores Filiados à RedeCT (artigos com temas relacionados aos
+          Povos Tradicionais).{" "}
+          <span className="text-primary font-bold">
+            ESTA ÁREA AINDA ESTÁ EM CONSTRUÇÃO.
+          </span>
+        </p>
+      </header>
 
-      <section>
-        <h2 className="text-2xl font-semibold text-violet-700 mb-4">
-          Listagem de Artigos Científicos de Interesse (Artigos Publicados em Periódicos/Revistas Científicas)
+      <section className="space-y-8">
+        <h2 className="title-2 text-center">
+          Listagem de Artigos Científicos de Interesse{" "}
+          <span className="text-primary">
+            (Artigos Publicados em Periódicos/Revistas Científicas)
+          </span>
         </h2>
-        <p className="text-gray-700 max-w-4xl leading-relaxed mb-4">
-          Nesta área, a RedeCT traz alguns artigos publicados em periódicos e que são de alto interesse dos pesquisadores da RedeCT.
+        <p className="text-muted-foreground">
+          Nesta área, a RedeCT traz alguns artigos publicados em periódicos e
+          que são de alto interesse dos pesquisadores da RedeCT.
         </p>
 
-        <div className="border border-gray-300 rounded-lg p-6 bg-white shadow-sm max-w-4xl">
-          <p className="mb-2 font-semibold text-gray-900">
-            CARVALHO, José Jorge de. Notório saber para os Mestres e Mestras dos Povos e Comunidades Tradicionais: uma revolução no mundo acadêmico brasileiro. Revista UFMG, v.28, n.1, p. 54-77, jan./abr. 2021. Belo Horizonte/MG: UFMG, 2021.
-          </p>
-          <a
-            href="https://periodicos.ufmg.br/index.php/revistadaufmg/article/view/29103"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-indigo-600 hover:underline font-medium"
-          >
-            Acessar artigo
-          </a>
-        </div>
+        <Card className="border-l-primary border-l-4 transition-all duration-200 hover:shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-muted-foreground font-semibold">
+              CARVALHO, José Jorge de. Notório saber para os Mestres e Mestras
+              dos Povos e Comunidades Tradicionais: uma revolução no mundo
+              acadêmico brasileiro. Revista UFMG, v.28, n.1, p. 54-77, jan./abr.
+              2021. Belo Horizonte/MG: UFMG, 2021.
+            </CardTitle>
+          </CardHeader>
+          <CardFooter>
+            <Link
+              href="https://periodicos.ufmg.br/index.php/revistadaufmg/article/view/29103"
+              target="_blank"
+            >
+              <Button className="font-bold">Acessar artigo</Button>
+            </Link>
+          </CardFooter>
+        </Card>
       </section>
+
+      <Building>
+        A RedeCT está desenvolvendo o sistema de avaliação e certificação. Em
+        breve, você poderá submeter seus artigos para análise.
+      </Building>
     </main>
   );
 }

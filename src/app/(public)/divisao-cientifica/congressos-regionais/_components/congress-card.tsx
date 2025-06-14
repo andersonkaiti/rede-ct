@@ -1,3 +1,10 @@
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,23 +24,29 @@ export function CongressCard({
   link,
 }: CongressCardProps) {
   return (
-    <div className="mb-8 overflow-hidden rounded-lg bg-white shadow-lg">
-      <div className="flex flex-col md:flex-row">
-        <div className="relative h-48 w-full md:h-48 md:w-1/3">
-          <Image src={imageUrl} alt={title} fill className="object-cover" />
-        </div>
-        <div className="flex flex-1 flex-col p-6">
-          <h3 className="mb-2 text-xl font-bold text-gray-800">{title}</h3>
-          <p className="mb-4 flex-1 text-gray-600">{description}</p>
-          <div className="mt-auto">
-            <Link href={link}>
-              <Button className="bg-blue-600 hover:bg-blue-700">
-                Link do congresso
-              </Button>
-            </Link>
-          </div>
-        </div>
+    <Card className="flex flex-col items-stretch gap-2 rounded-lg p-0 shadow-lg md:flex-row">
+      <picture className="relative h-64 w-full overflow-hidden rounded-t-lg md:h-auto md:w-2/4 md:rounded-l-lg">
+        <Image
+          src={imageUrl}
+          alt={title}
+          fill
+          className="absolute object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+      </picture>
+      <div className="w-full space-y-4 p-6 md:w-3/4">
+        <CardHeader className="p-0">
+          <CardTitle className="text-xl font-bold">{title}</CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <p className="text-muted-foreground text-justify">{description}</p>
+        </CardContent>
+        <CardFooter className="p-0">
+          <Link href={link} className="w-full">
+            <Button className="w-full font-bold">Link do congresso</Button>
+          </Link>
+        </CardFooter>
       </div>
-    </div>
+    </Card>
   );
 }

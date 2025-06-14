@@ -115,16 +115,6 @@ export const navigationLinks: NavigationLinkType[] = [
         label: "Artigos Científicos de Interesse",
         icon: Icons.FileText,
       },
-      {
-        path: "/publicacoes/documentarios",
-        label: "Documentários Publicados",
-        icon: Icons.GalleryHorizontal,
-      },
-      {
-        path: "/publicacoes/buscador-por-assunto",
-        label: "Buscador por Assunto",
-        icon: Icons.Search,
-      },
     ],
   },
   {

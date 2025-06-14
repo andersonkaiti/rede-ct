@@ -1,14 +1,14 @@
+import { Building } from "@components/building";
+
 export default function SeloDeQualidadeEmExtensaoUniversitaria() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8">
-      <div className="mb-8 text-center">
-        <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
-          Selo de Qualidade em Extensão Universitária
-        </h1>
-      </div>
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
+      <header className="text-center">
+        <h1 className="title-1">Selo de Qualidade em Extensão Universitária</h1>
+      </header>
 
-      <div className="rounded-lg bg-white p-8 shadow-md">
-        <p className="leading-relaxed text-gray-700">
+      <div className="bg-white">
+        <p className="text-muted-foreground text-justify text-lg">
           Nesta seção (AINDA EM PRODUÇÃO) a Vice-coordenadoria de Extensão
           Universitária e Cultura manterá um fluxo contínuo para a acolhida de
           relatórios de projetos de extensão, para que estes possam (seguindo o
@@ -19,6 +19,12 @@ export default function SeloDeQualidadeEmExtensaoUniversitaria() {
           da RedeCT. ESTA ÁREA ESTÁ EM CONSTRUÇÃO.
         </p>
       </div>
+
+      <Building>
+        A Vice-coordenadoria de Extensão Universitária e Cultura está
+        desenvolvendo o sistema de avaliação e certificação. Em breve, você
+        poderá submeter seus projetos para análise.
+      </Building>
     </main>
   );
 }

@@ -1,67 +1,33 @@
-import { CourseCard } from "./_components/course-card";
+import { Suspense } from "react";
+
+import { Courses } from "./_components/courses";
+import { LoadingSkeleton } from "./_components/loading-skeleton";
 
 export default function CursosECapacitacoes() {
-  // Dados de exemplo baseados na imagem fornecida
-  const cursos = [
-    {
-      id: 1,
-      title: "Curso de Capacitação em Gestão da Inovação",
-      description:
-        "Curso completo sobre gestão da inovação em ambientes corporativos e acadêmicos.",
-      imageUrl: "/images/congressos-regionais/rede-ct.png",
-      link: "#",
-      date: "15 a 30 de Julho de 2024",
-      time: "14:00 às 18:00",
-      location: "Online - Plataforma Zoom",
-      vacancies: "50 vagas disponíveis",
-      category: "CAPACITAÇÃO",
-    },
-    // Adicione mais cursos conforme necessário
-  ];
-
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
-          Cursos e Capacitações
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
+      <header className="space-y-8 text-center">
+        <h1 className="title-1">Cursos e Capacitações</h1>
+        <p className="text-muted-foreground text-lg">
           Conheça os cursos e capacitações promovidos ou chancelados pela
           RedeCT. Desenvolva novas habilidades e conhecimentos com nossos
           programas de capacitação.
         </p>
-      </div>
+      </header>
 
-      <div className="mt-12 space-y-8">
-        {cursos.map((curso) => (
-          <div key={curso.id} className="flex justify-center">
-            <CourseCard
-              title={curso.title}
-              description={curso.description}
-              imageUrl={curso.imageUrl}
-              link={curso.link}
-              date={curso.date}
-              time={curso.time}
-              location={curso.location}
-              vacancies={curso.vacancies}
-              category={curso.category}
-            />
-          </div>
-        ))}
-      </div>
+      <Suspense fallback={<LoadingSkeleton />}>
+        <Courses />
+      </Suspense>
 
-      <div className="mt-12 text-center text-lg text-gray-600">
-        <p className="mb-4">
+      <footer className="text-muted-foreground text-justify text-lg">
+        <p>
           A RedeCT oferece cursos de capacitação em diversas áreas do
           conhecimento, com o objetivo de promover o desenvolvimento
-          profissional e acadêmico de seus membros.
+          profissional e acadêmico de seus membros. Nossos cursos são
+          ministrados por especialistas reconhecidos em suas áreas de atuação,
+          proporcionando uma experiência de aprendizado de alta qualidade.
         </p>
-        <p>
-          Nossos cursos são ministrados por especialistas reconhecidos em suas
-          áreas de atuação, proporcionando uma experiência de aprendizado de
-          alta qualidade.
-        </p>
-      </div>
+      </footer>
     </main>
   );
 }

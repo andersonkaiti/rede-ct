@@ -1,18 +1,16 @@
-import { Calendar, MapPin, Users } from "lucide-react";
+import { Badge } from "@components/ui/badge";
+import { Button } from "@components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@components/ui/card";
+import { ICourse } from "@services/courses/courses";
+import { Calendar, Dot, MapPin, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-interface CourseCardProps {
-  title: string;
-  description: string;
-  imageUrl: string;
-  link: string;
-  date: string;
-  time: string;
-  location: string;
-  vacancies: string;
-  category: string;
-}
 
 export function CourseCard({
   title,
@@ -23,74 +21,55 @@ export function CourseCard({
   location,
   vacancies,
   category,
-}: CourseCardProps) {
+}: ICourse) {
   return (
-    <div className="w-full overflow-hidden rounded-lg bg-white shadow-lg">
-      <div className="flex flex-col md:flex-row">
-        {/* Coluna da Imagem */}
-        <div className="flex w-full items-stretch bg-gray-100 p-0 md:w-1/3">
-          <div className="relative h-64 w-full md:h-auto">
-            <Image
-              src={imageUrl}
-              alt={title}
-              fill
-              className="h-full w-full object-cover"
-              sizes="(max-width: 768px) 100vw, 33vw"
-              priority
-            />
-          </div>
-        </div>
+    <Card className="flex w-full flex-col items-stretch gap-2 overflow-hidden rounded-lg bg-white p-0 shadow-lg md:flex-row">
+      <picture className="relative h-64 w-full overflow-hidden rounded-t-lg md:h-auto md:w-2/4 md:rounded-l-lg">
+        <Image
+          src={imageUrl}
+          alt={title}
+          fill
+          className="h-full w-full object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+      </picture>
 
-        {/* Coluna do Conteúdo */}
-        <div className="w-full p-6 md:w-2/3">
-          {/* Categoria */}
-          <span className="mb-4 inline-block rounded bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800">
-            {category}
-          </span>
+      <div className="w-full space-y-4 p-6 md:w-3/4">
+        <Badge className="bg-primary/20 text-primary rounded-full p-1 px-2 font-bold">
+          {category}
+        </Badge>
 
-          {/* Título */}
-          <h3 className="mb-4 text-2xl font-bold text-gray-800">{title}</h3>
+        <CardHeader className="p-0">
+          <CardTitle className="text-2xl font-bold">{title}</CardTitle>
+        </CardHeader>
 
-          {/* Data e Horário */}
-          <div className="mb-4">
-            <div className="mb-1 flex items-center text-blue-600">
-              <Calendar className="mr-2 h-5 w-5" />
-              <span className="text-sm font-semibold">DATA E HORÁRIO</span>
+        <CardContent className="space-y-4 p-0">
+          <time className="text-primary flex items-center gap-2">
+            <Calendar className="size-4" />
+            <div className="text-muted-foreground flex items-center">
+              {date} <Dot className="text-primary" /> {time}
             </div>
-            <p className="ml-7 text-sm text-gray-700">
-              {date} | {time}
-            </p>
+          </time>
+
+          <div className="flex items-center gap-2">
+            <MapPin className="text-primary size-4" />
+            <span className="text-muted-foreground">{location}</span>
           </div>
 
-          {/* Local */}
-          <div className="mb-4">
-            <div className="flex items-center text-blue-600">
-              <MapPin className="mr-2 h-5 w-5" />
-              <span className="text-sm font-semibold">LOCAL</span>
-            </div>
-            <p className="ml-7 text-sm text-gray-800">{location}</p>
+          <div className="flex items-center gap-2">
+            <Users className="text-primary size-4" />
+            <span className="text-muted-foreground">{vacancies}</span>
           </div>
+        </CardContent>
 
-          {/* Vagas */}
-          <div className="mb-6">
-            <div className="flex items-center text-blue-600">
-              <Users className="mr-2 h-5 w-5" />
-              <span className="text-sm font-semibold">VAGAS</span>
-            </div>
-            <p className="ml-7 text-sm text-gray-800">{vacancies}</p>
-          </div>
-
-          {/* Botão */}
-          <div className="mt-6">
-            <Link
-              href={link}
-              className="inline-block rounded-md bg-blue-600 px-6 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-blue-700"
-            >
-              INSCREVA-SE
-            </Link>
-          </div>
-        </div>
+        <CardFooter className="p-0">
+          <Link href={link} className="w-full">
+            <Button className="w-full font-bold">Inscreva-se</Button>
+          </Link>
+        </CardFooter>
       </div>
-    </div>
+    </Card>
   );
 }

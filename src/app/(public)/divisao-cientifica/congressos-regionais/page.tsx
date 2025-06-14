@@ -1,58 +1,23 @@
-import { CongressCard } from "./_components/congress-card";
+import { Suspense } from "react";
 
-export default function CongressosRegionais() {
-  // Dados de exemplo - substitua pelos dados reais do seu sistema
-  const congressos = [
-    {
-      id: 1,
-      title: "Congresso Nonono Nonononno",
-      description:
-        "Nononon nonono onono non nn ono nnno nono noon no non o non ono nono nono nono no nono nononoonnono nononon ononono nonononon nonnnono nonon nono ono nono non onoonnonnnonono.",
-      imageUrl: "/images/congressos-regionais/rede-ct.png",
-      link: "#",
-    },
-    {
-      id: 2,
-      title: "Congresso Nonono Nononnono",
-      description:
-        "Nononon nonono onono non nn ono nnno nono noon no non o non ono nono nono nono no nono nononoonnono nononon ononono nonononon nonnnono nonon nono ono nono non onoonnonnnonono.",
-      imageUrl: "/images/congressos-regionais/rede-ct.png",
-      link: "#",
-    },
-    {
-      id: 3,
-      title: "Congresso Nonono Nononnono",
-      description:
-        "Nononon nonono onono non nn ono nnno nono noon no non o non ono nono nono nono no nono nononoonnono nononon ononono nonononon nonnnono nonon nono ono nono non onoonnonnnonono.",
-      imageUrl: "/images/congressos-regionais/rede-ct.png",
-      link: "#",
-    },
-  ];
+import { Congresses } from "./_components/congresses";
+import { LoadingSkeleton } from "./_components/loading-skeleton";
 
+export default async function CongressosRegionais() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
-          Congressos Regionais da RedeCT
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
+      <header className="space-y-8 text-center">
+        <h1 className="title-1">Congressos Regionais da RedeCT</h1>
+        <p className="text-muted-foreground text-lg">
           Nesta seção são apresentados os congressos credenciados pela Rede como
           sendo Congressos Regionais da RedeCT, ou mesmo operacionalizado em
           parceria institucional da Rede.
         </p>
-      </div>
+      </header>
 
-      <div className="mt-12 space-y-8">
-        {congressos.map((congresso) => (
-          <CongressCard
-            key={congresso.id}
-            title={congresso.title}
-            description={congresso.description}
-            imageUrl={congresso.imageUrl}
-            link={congresso.link}
-          />
-        ))}
-      </div>
+      <Suspense fallback={<LoadingSkeleton />}>
+        <Congresses />
+      </Suspense>
     </main>
   );
 }

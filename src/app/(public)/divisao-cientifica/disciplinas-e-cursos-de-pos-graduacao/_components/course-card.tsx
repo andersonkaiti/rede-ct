@@ -1,7 +1,8 @@
 import { Badge } from "@components/ui/badge";
 import { Button } from "@components/ui/button";
+import { Card, CardContent, CardHeader } from "@components/ui/card";
 import { ICourse } from "@services/courses/courses";
-import { Calendar, Clock, MapPin, Users } from "lucide-react";
+import { ArrowRight, Calendar, Clock, MapPin, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -23,7 +24,7 @@ export function CourseCard({
   },
 }: ICourseCardProps) {
   return (
-    <div className="flex flex-col items-stretch gap-2 rounded-lg shadow-lg md:flex-row">
+    <Card className="flex flex-col items-stretch gap-2 rounded-lg p-0 shadow-lg md:flex-row">
       <picture className="relative h-64 w-full overflow-hidden rounded-t-lg p-0 md:h-auto md:w-2/4 md:rounded-l-lg md:rounded-tr-none">
         <Image
           src={imageUrl}
@@ -34,12 +35,14 @@ export function CourseCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </picture>
 
-      <div className="w-full space-y-4 p-6 md:w-3/4">
-        <Badge className="bg-primary/20 text-primary rounded-full p-1 px-2 font-bold">
-          {category}
-        </Badge>
+      <CardContent className="w-full space-y-4 p-6 md:w-3/4">
+        <CardHeader className="space-y-4 p-0">
+          <Badge className="bg-primary/20 text-primary rounded-full p-1 px-2 font-bold">
+            {category}
+          </Badge>
 
-        <h3 className="text-2xl font-bold">{title}</h3>
+          <h3 className="text-2xl font-bold">{title}</h3>
+        </CardHeader>
 
         <p className="text-muted-foreground text-justify">{description}</p>
 
@@ -78,10 +81,13 @@ export function CourseCard({
           </div>
         </div>
 
-        <Link href={link}>
-          <Button className="w-full font-bold">INSCREVA-SE</Button>
+        <Link href={link} className="w-full">
+          <Button className="group w-full font-bold">
+            Inscreva-se
+            <ArrowRight className="!size-4 transition-all duration-200 group-hover:translate-x-1" />
+          </Button>
         </Link>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

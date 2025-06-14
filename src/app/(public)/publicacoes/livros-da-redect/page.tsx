@@ -1,11 +1,12 @@
 import { Button } from "@components/ui/button";
-import { getBooks } from "@services/redect-books/redect-books";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 
-import { Book } from "./_components/book";
+import { Books } from "./_components/books";
+import { LoadingSkeleton } from "./_components/loading-skeleton";
 
-const requisitos = [
+const requirements = [
   "Contar sempre com ISBN e ficha catalográfica registrada;",
   "Parcialmente bilíngue, inclusive aceitando trabalhos em inglês, espanhol, português e francês;",
   "Comitê editorial internacional;",
@@ -20,8 +21,6 @@ const requisitos = [
 ];
 
 export default async function ColetaneaRedeCT() {
-  const books = await getBooks();
-
   return (
     <div className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
       <header className="space-y-8 text-center">
@@ -139,7 +138,7 @@ export default async function ColetaneaRedeCT() {
             Requisitos de qualidade do sistema CAPES-Livro atendidos
           </h2>
           <ul className="space-y-2">
-            {requisitos.map((item, index: number) => (
+            {requirements.map((item, index: number) => (
               <li key={index} className="flex items-center">
                 <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
                   {index + 1}
@@ -158,11 +157,9 @@ export default async function ColetaneaRedeCT() {
           <h2 className="text-center text-3xl font-semibold">
             Acesso aos volumes já publicados e índice remissivo por assunto
           </h2>
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-            {books.map((book) => (
-              <Book key={book.volume} book={book} />
-            ))}
-          </div>
+          <Suspense fallback={<LoadingSkeleton />}>
+            <Books />
+          </Suspense>
         </section>
       </main>
     </div>

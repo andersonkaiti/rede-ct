@@ -22,7 +22,7 @@ export function MagazineCard({
         </picture>
         <h2 className="text-center text-xl font-semibold">{name}</h2>
       </CardHeader>
-      <CardContent>
+      <CardContent className="mt-auto">
         <p className="text-muted-foreground leading-relaxed">{description}</p>
       </CardContent>
       <CardFooter>

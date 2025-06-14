@@ -129,5 +129,7 @@ const books: IBook[] = [
 ];
 
 export async function getBooks() {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
   return books;
 }

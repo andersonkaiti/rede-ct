@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@components/ui/card";
 import { IEvent } from "@services/events/events";
-import { Calendar, Clock } from "lucide-react";
+import { ArrowRight, Calendar, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -70,10 +70,11 @@ export function EventCard({
           </CardContent>
           <CardFooter className="p-0">
             <Link href={href} className="w-full">
-              <Button className="w-full font-bold">
+              <Button className="group w-full font-bold">
                 {status === "inscricoes-abertas"
                   ? "Inscreva-se"
                   : "Inscrições encerradas"}
+                <ArrowRight className="!size-4 transition-all duration-200 group-hover:translate-x-1" />
               </Button>
             </Link>
           </CardFooter>

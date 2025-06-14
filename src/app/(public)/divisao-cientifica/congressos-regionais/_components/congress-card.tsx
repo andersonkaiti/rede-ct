@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@components/ui/card";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -43,7 +44,10 @@ export function CongressCard({
         </CardContent>
         <CardFooter className="p-0">
           <Link href={link} className="w-full">
-            <Button className="w-full font-bold">Link do congresso</Button>
+            <Button className="group w-full font-bold">
+              Link do congresso
+              <ArrowRight className="!size-4 transition-all duration-200 group-hover:translate-x-1" />
+            </Button>
           </Link>
         </CardFooter>
       </div>

@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@components/ui/card";
 import { ICourse } from "@services/courses/courses";
-import { Calendar, Dot, MapPin, Users } from "lucide-react";
+import { ArrowRight, Calendar, Clock, MapPin, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -23,8 +23,8 @@ export function CourseCard({
   category,
 }: ICourse) {
   return (
-    <Card className="flex w-full flex-col items-stretch gap-2 overflow-hidden rounded-lg bg-white p-0 shadow-lg md:flex-row">
-      <picture className="relative h-64 w-full overflow-hidden rounded-t-lg md:h-auto md:w-2/4 md:rounded-l-lg">
+    <Card className="md flex w-full flex-col items-stretch gap-2 overflow-hidden rounded-lg bg-white p-0 shadow-lg transition-all duration-200 hover:shadow-xl md:flex-row">
+      <picture className="relative h-64 w-full overflow-hidden rounded-t-lg md:h-auto md:w-2/4 md:rounded-l-lg md:rounded-tr-none">
         <Image
           src={imageUrl}
           alt={title}
@@ -36,7 +36,7 @@ export function CourseCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </picture>
 
-      <div className="w-full space-y-4 p-6 md:w-3/4">
+      <CardContent className="w-full space-y-4 p-6 md:w-3/4">
         <Badge className="bg-primary/20 text-primary rounded-full p-1 px-2 font-bold">
           {category}
         </Badge>
@@ -46,30 +46,49 @@ export function CourseCard({
         </CardHeader>
 
         <CardContent className="space-y-4 p-0">
-          <time className="text-primary flex items-center gap-2">
-            <Calendar className="size-4" />
-            <div className="text-muted-foreground flex items-center">
-              {date} <Dot className="text-primary" /> {time}
+          <time className="text-primary flex items-center gap-2 p-2 text-sm">
+            <Badge className="bg-primary/20 text-primary rounded-md p-1 font-bold">
+              <Calendar className="text-primary !size-6.5" />
+            </Badge>
+            <div className="flex flex-col">
+              <span className="font-bold text-black">{date}</span>
+              <span className="text-muted-foreground flex items-center gap-1">
+                <Clock className="text-muted-foreground !size-3" />
+                {time}
+              </span>
             </div>
           </time>
 
-          <div className="flex items-center gap-2">
-            <MapPin className="text-primary size-4" />
-            <span className="text-muted-foreground">{location}</span>
+          <div className="flex items-center gap-2 p-2">
+            <Badge className="bg-primary/20 text-primary rounded-md p-1 font-bold">
+              <MapPin className="text-primary !size-6.5" />
+            </Badge>
+            <div className="flex flex-col text-sm">
+              <span className="font-bold">Local</span>
+              <span className="text-muted-foreground">{location}</span>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <Users className="text-primary size-4" />
-            <span className="text-muted-foreground">{vacancies}</span>
+          <div className="flex items-center gap-2 p-2">
+            <Badge className="bg-primary/20 text-primary rounded-md p-1 font-bold">
+              <Users className="text-primary !size-6.5" />
+            </Badge>
+            <div className="flex flex-col text-sm">
+              <span className="font-bold">Vagas</span>
+              <span className="text-muted-foreground">{vacancies}</span>
+            </div>
           </div>
         </CardContent>
 
         <CardFooter className="p-0">
           <Link href={link} className="w-full">
-            <Button className="w-full font-bold">Inscreva-se</Button>
+            <Button className="group w-full font-bold">
+              Inscreva-se
+              <ArrowRight className="!size-4 transition-all duration-200 group-hover:translate-x-1" />
+            </Button>
           </Link>
         </CardFooter>
-      </div>
+      </CardContent>
     </Card>
   );
 }

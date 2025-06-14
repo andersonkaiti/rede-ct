@@ -19,7 +19,7 @@ export function Book({
   return (
     <Card className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md">
       <CardHeader className="p-0">
-        <CardTitle className="mb-3 text-xl font-bold text-black">
+        <CardTitle className="text-xl font-bold text-black">
           Volume {volume} ({year})
         </CardTitle>
       </CardHeader>

@@ -2,28 +2,35 @@ import { Skeleton } from "@components/ui/skeleton";
 
 export function LoadingSkeleton() {
   return (
-    <Skeleton className="flex h-75 w-full flex-col gap-2 shadow-lg md:flex-row">
-      <div className="h-full w-full rounded-l-lg bg-gray-200 md:w-2/4" />
+    <Skeleton className="flex h-176.5 w-full flex-col gap-2 shadow-lg md:h-99.5 md:flex-row">
+      <div className="h-full w-full rounded-t-lg bg-gray-200 md:w-2/4 md:rounded-l-lg md:rounded-tr-none" />
       <div className="w-full space-y-5 p-6 md:w-3/4">
         <div className="h-6.5 w-30 rounded-full bg-gray-200" />
         <div className="h-8 w-full rounded-full bg-gray-200" />
 
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <div className="size-4 rounded-md bg-gray-200" />
-            <div className="h-6 w-74 rounded-full bg-gray-200" />
-            <div className="size-1 rounded-full bg-gray-200" />
-            <div className="h-6 w-20 rounded-full bg-gray-200" />
+        <div className="space-y-3.5">
+          <div className="flex items-center gap-2 p-2">
+            <div className="size-9 rounded-md bg-gray-200" />
+            <div className="space-y-1">
+              <div className="h-5 w-67.5 rounded-full bg-gray-200" />
+              <div className="h-5 w-26 rounded-full bg-gray-200" />
+            </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="size-4 rounded-md bg-gray-200" />
-            <div className="h-6 w-45.5 rounded-full bg-gray-200" />
+          <div className="flex items-center gap-2 p-2">
+            <div className="size-9 rounded-md bg-gray-200" />
+            <div className="space-y-1">
+              <div className="h-5 w-8.5 rounded-full bg-gray-200" />
+              <div className="h-5 w-40 rounded-full bg-gray-200" />
+            </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="size-4 rounded-md bg-gray-200" />
-            <div className="h-6 w-36 rounded-full bg-gray-200" />
+          <div className="flex items-center gap-2 p-2">
+            <div className="size-9 rounded-md bg-gray-200" />
+            <div className="space-y-1">
+              <div className="h-5 w-9.5 rounded-full bg-gray-200" />
+              <div className="h-5 w-31.5 rounded-full bg-gray-200" />
+            </div>
           </div>
         </div>
 

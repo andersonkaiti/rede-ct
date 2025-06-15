@@ -118,15 +118,16 @@ export const navigationLinks: NavigationLinkType[] = [
     ],
   },
   {
+    path: "/portfolio",
     label: "PORTFÓLIO",
     children: [
       {
-        path: "/portfolio/legislacoes",
+        path: "/portfolio/legislacoes-mapas",
         label: "Legislações",
         icon: Icons.ScrollText,
       },
       {
-        path: "/portfolio/mapas",
+        path: "/portfolio/legislacoes-mapas",
         label: "Mapas",
         icon: Icons.Map,
       },
@@ -141,7 +142,7 @@ export const navigationLinks: NavigationLinkType[] = [
         icon: Icons.UsersRound,
       },
       {
-        path: "/portfolio/grupos-de-pesquisa",
+        path: "/portfolio/grupos-pesquisa",
         label: "Grupos de Pesquisa",
         icon: Icons.Network,
       },
@@ -151,7 +152,7 @@ export const navigationLinks: NavigationLinkType[] = [
         icon: Icons.Network,
       },
       {
-        path: "/portfolio/museus-e-espacos-museologicos",
+        path: "/portfolio/museus-espacos",
         label: "Museus e Espaços Museológicos",
         icon: Icons.GalleryHorizontal,
       },

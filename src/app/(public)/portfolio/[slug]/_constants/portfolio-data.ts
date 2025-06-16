@@ -1,4 +1,16 @@
-export const portfolioData = {
+export interface IPortfolioData {
+  title: string;
+  description: string;
+  content: {
+    title: string;
+    description: string;
+    date: string;
+    author: string;
+    link: string;
+  }[];
+}
+
+export const portfolioData: Record<string, IPortfolioData> = {
   "legislacoes-mapas": {
     title: "Legislações & Mapas",
     description:

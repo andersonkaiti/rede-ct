@@ -1,14 +1,14 @@
 import { LinkIcon } from "lucide-react";
 import Link, { LinkProps } from "next/link";
 
-export interface IBlueLinkProps extends LinkProps {
+export interface IRedLinkProps extends LinkProps {
   children: React.ReactNode;
 }
 
-export function BlueLink({ children, ...rest }: IBlueLinkProps) {
+export function RedLink({ children, ...rest }: IRedLinkProps) {
   return (
     <Link
-      className="flex items-center justify-center space-x-2 rounded-lg border border-blue-100 bg-blue-50 p-4 px-6 py-3 text-center text-blue-700 transition-all hover:border-blue-300 hover:bg-blue-50 hover:shadow-md"
+      className="border-primary/20 bg-primary/10 text-primary hover:border-primary/30 hover:bg-primary/20 flex items-center justify-center space-x-2 rounded-lg border p-4 px-6 py-3 text-center transition-all hover:shadow-md"
       {...rest}
     >
       <LinkIcon className="h-5 w-5" />

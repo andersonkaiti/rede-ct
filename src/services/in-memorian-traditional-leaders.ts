@@ -7,7 +7,8 @@ import { IInMemorian } from "./in-memorian-researchers";
 const inMemorianTraditionalLeaders: IInMemorian[] = [
   {
     name: "Nonon ononon noononononn no",
-    date: "(- nononon +nonono)",
+    birthday: "(- nononon +nonono)",
+    death: "(- nononon +nonono)",
     role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
     image: {
       src: "/images/placeholder.png",
@@ -16,7 +17,8 @@ const inMemorianTraditionalLeaders: IInMemorian[] = [
   },
   {
     name: "Nonon ononoon noonn",
-    date: "(- nononon +nononon)",
+    birthday: "(- nononon +nononon)",
+    death: "(- nononon +nonono)",
     role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
     image: {
       src: "/images/placeholder.png",
@@ -26,5 +28,7 @@ const inMemorianTraditionalLeaders: IInMemorian[] = [
 ];
 
 export async function getInMemorianTraditionalLeaders() {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
   return inMemorianTraditionalLeaders;
 }

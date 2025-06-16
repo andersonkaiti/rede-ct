@@ -1,3 +1,4 @@
+import { Badge } from "@components/ui/badge";
 import { MailIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,7 +29,7 @@ export function Footer() {
                 <Link
                   href="https://www.facebook.com/redect01/"
                   target="_blank"
-                  className="flex items-center justify-center rounded-md p-1 transition-all duration-300 hover:bg-white/20"
+                  className="hover:bg-primary flex items-center justify-center rounded-md p-1 transition-all duration-300"
                 >
                   <div className="relative size-5">
                     <Image
@@ -42,7 +43,7 @@ export function Footer() {
                 <Link
                   href="/"
                   target="_blank"
-                  className="flex items-center justify-center rounded-md p-1 transition-all duration-300 hover:bg-white/20"
+                  className="hover:bg-primary flex items-center justify-center rounded-md p-1 transition-all duration-300"
                 >
                   <div className="relative size-5">
                     <Image
@@ -56,7 +57,7 @@ export function Footer() {
                 <Link
                   href="https://www.instagram.com/redecomunidadestradicionais/"
                   target="_blank"
-                  className="rounded-md p-1 transition-all duration-300 hover:bg-white/20"
+                  className="hover:bg-primary rounded-md p-1 transition-all duration-300"
                 >
                   <div className="relative size-5">
                     <Image
@@ -68,14 +69,16 @@ export function Footer() {
                   </div>
                 </Link>
               </div>
-              <div className="flex items-center gap-2 text-xs">
-                <MailIcon className="h-4 w-4" />
+              <div className="flex items-center gap-2 text-sm">
+                <Badge className="bg-primary rounded-full p-1">
+                  <MailIcon className="!size-4 text-white" />
+                </Badge>
                 contato@redect.org
               </div>
             </div>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-white uppercase">
+            <h2 className="text-primary mb-6 text-sm font-semibold uppercase">
               MAPA
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-8">
@@ -84,8 +87,9 @@ export function Footer() {
                   <Link
                     href="/"
                     target="_blank"
-                    className="text-sm transition-all duration-300 hover:text-gray-200"
+                    className="group hover:text-primary flex items-center text-sm transition-all duration-300"
                   >
+                    <div className="bg-primary mr-3 h-1 w-1 rounded-full transition-all duration-200 group-hover:w-2" />
                     HOME
                   </Link>
                 </li>
@@ -93,8 +97,9 @@ export function Footer() {
                   <Link
                     href="/"
                     target="_blank"
-                    className="text-sm transition-all duration-300 hover:text-gray-200"
+                    className="group hover:text-primary flex items-center text-sm transition-all duration-300"
                   >
+                    <div className="bg-primary mr-3 h-1 w-1 rounded-full transition-all duration-200 group-hover:w-2" />
                     Apresentação, história e logomarca da RedeCT
                   </Link>
                 </li>
@@ -102,8 +107,9 @@ export function Footer() {
                   <Link
                     href="/"
                     target="_blank"
-                    className="text-sm transition-all duration-300 hover:text-gray-200"
+                    className="group hover:text-primary flex items-center text-sm transition-all duration-300"
                   >
+                    <div className="bg-primary mr-3 h-1 w-1 rounded-full transition-all duration-200 group-hover:w-2" />
                     Missão, valores e objetivos da RedeCT
                   </Link>
                 </li>
@@ -111,8 +117,9 @@ export function Footer() {
                   <Link
                     href="/"
                     target="_blank"
-                    className="text-sm transition-all duration-300 hover:text-gray-200"
+                    className="group hover:text-primary flex items-center text-sm transition-all duration-300"
                   >
+                    <div className="bg-primary mr-3 h-1 w-1 rounded-full transition-all duration-200 group-hover:w-2" />
                     Equipe voluntária de gestão
                   </Link>
                 </li>
@@ -120,8 +127,9 @@ export function Footer() {
                   <Link
                     href="/"
                     target="_blank"
-                    className="text-sm transition-all duration-300 hover:text-gray-200"
+                    className="group hover:text-primary flex items-center text-sm transition-all duration-300"
                   >
+                    <div className="bg-primary mr-3 h-1 w-1 rounded-full transition-all duration-200 group-hover:w-2" />
                     Pesquisadores participantes
                   </Link>
                 </li>
@@ -129,8 +137,9 @@ export function Footer() {
                   <Link
                     href="/"
                     target="_blank"
-                    className="text-sm transition-all duration-300 hover:text-gray-200"
+                    className="group hover:text-primary flex items-center text-sm transition-all duration-300"
                   >
+                    <div className="bg-primary mr-3 h-1 w-1 rounded-full transition-all duration-200 group-hover:w-2" />
                     Eixos Temáticos Permanente (ETPs)
                   </Link>
                 </li>
@@ -138,8 +147,9 @@ export function Footer() {
                   <Link
                     href="/"
                     target="_blank"
-                    className="text-sm transition-all duration-300 hover:text-gray-200"
+                    className="group hover:text-primary flex items-center text-sm transition-all duration-300"
                   >
+                    <div className="bg-primary mr-3 h-1 w-1 rounded-full transition-all duration-200 group-hover:w-2" />
                     Regimento e atas
                   </Link>
                 </li>
@@ -149,8 +159,9 @@ export function Footer() {
                   <Link
                     href="/"
                     target="_blank"
-                    className="text-sm transition-all duration-300 hover:text-gray-200"
+                    className="group hover:text-primary flex items-center text-sm transition-all duration-300"
                   >
+                    <div className="bg-primary mr-3 h-1 w-1 rounded-full transition-all duration-200 group-hover:w-2" />
                     Parceiros e financiadores
                   </Link>
                 </li>
@@ -158,8 +169,9 @@ export function Footer() {
                   <Link
                     href="/"
                     target="_blank"
-                    className="text-sm transition-all duration-300 hover:text-gray-200"
+                    className="group hover:text-primary flex items-center text-sm transition-all duration-300"
                   >
+                    <div className="bg-primary mr-3 h-1 w-1 rounded-full transition-all duration-200 group-hover:w-2" />
                     Controle Social e Transparência
                   </Link>
                 </li>
@@ -167,8 +179,9 @@ export function Footer() {
                   <Link
                     href="/"
                     target="_blank"
-                    className="text-sm transition-all duration-300 hover:text-gray-200"
+                    className="group hover:text-primary flex items-center text-sm transition-all duration-300"
                   >
+                    <div className="bg-primary mr-3 h-1 w-1 rounded-full transition-all duration-200 group-hover:w-2" />
                     Instituto de Pesquisas Amazônicas e de Povos Tradicionais
                   </Link>
                 </li>
@@ -176,8 +189,9 @@ export function Footer() {
                   <Link
                     href="/"
                     target="_blank"
-                    className="text-sm transition-all duration-300 hover:text-gray-200"
+                    className="group hover:text-primary flex items-center text-sm transition-all duration-300"
                   >
+                    <div className="bg-primary mr-3 h-1 w-1 rounded-full transition-all duration-200 group-hover:w-2" />
                     NOTÍCIAS
                   </Link>
                 </li>

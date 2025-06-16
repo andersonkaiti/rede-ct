@@ -1,21 +1,27 @@
 import { Input } from "@components/ui/input";
-import * as Container from "@components/ui/page-container";
+import {
+  PageContainer,
+  PageHeader,
+  PageHeaderContent,
+  PageMain,
+  PageTitle,
+} from "@components/ui/page-container";
 
 import { CreateButton } from "../_components/create-button";
 
 export default function CentroDeReferenciaUnesp() {
   return (
-    <Container.PageContainer>
-      <Container.PageHeader>
-        <Container.PageHeaderContent>
-          <Container.PageTitle>Centro de Referência UNEP</Container.PageTitle>
-        </Container.PageHeaderContent>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Centro de Referência UNEP</PageTitle>
+        </PageHeaderContent>
         <CreateButton href="/area-restrita/centro-de-referencia-unesp/cadastrar">
           Cadastrar edital
         </CreateButton>
-      </Container.PageHeader>
+      </PageHeader>
       <Input placeholder="Pesquisar" className="w-full sm:w-fit" />
-      <Container.PageMain>Centro de Referência UNEP</Container.PageMain>
-    </Container.PageContainer>
+      <PageMain>Centro de Referência UNEP</PageMain>
+    </PageContainer>
   );
 }

@@ -8,16 +8,14 @@ import Link from "next/link";
 export default function ArtigosCientificos() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <header className="space-y-8 text-center">
-        <div className="flex items-center justify-center gap-2">
+      <header className="space-y-8">
+        <div className="flex items-center gap-2">
           <Badge className="bg-primary/10 text-primary rounded-full p-2">
             <FileText className="!size-7" />
           </Badge>
-          <h1 className="text-3xl font-bold">
-            Artigos Científicos de Interesse
-          </h1>
+          <h1 className="title-2">Artigos Científicos de Interesse</h1>
         </div>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground text-justify">
           Nesta seção (
           <span className="text-primary font-bold">AINDA EM CONSTRUÇÃO</span>)
           serão publicadas as apresentações e links de acesso a artigos
@@ -31,7 +29,7 @@ export default function ArtigosCientificos() {
       </header>
 
       <section className="space-y-8">
-        <h2 className="title-2 text-center">
+        <h2 className="title-3">
           Listagem de Artigos Científicos de Interesse{" "}
           <span className="text-primary">
             (Artigos Publicados em Periódicos/Revistas Científicas)

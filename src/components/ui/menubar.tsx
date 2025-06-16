@@ -1,12 +1,11 @@
 "use client";
 
 import * as MenubarPrimitive from "@radix-ui/react-menubar";
+import { cn } from "@utils/cn";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 import * as React from "react";
 
-import { cn } from "@/utils/cn";
-
-function Root({
+function Menubar({
   className,
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.Root>) {
@@ -22,25 +21,25 @@ function Root({
   );
 }
 
-function Menu({
+function MenubarMenu({
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.Menu>) {
   return <MenubarPrimitive.Menu data-slot="menubar-menu" {...props} />;
 }
 
-function Group({
+function MenubarGroup({
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.Group>) {
   return <MenubarPrimitive.Group data-slot="menubar-group" {...props} />;
 }
 
-function Portal({
+function MenubarPortal({
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.Portal>) {
   return <MenubarPrimitive.Portal data-slot="menubar-portal" {...props} />;
 }
 
-function RadioGroup({
+function MenubarRadioGroup({
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.RadioGroup>) {
   return (
@@ -48,7 +47,7 @@ function RadioGroup({
   );
 }
 
-function Trigger({
+function MenubarTrigger({
   className,
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.Trigger>) {
@@ -56,7 +55,7 @@ function Trigger({
     <MenubarPrimitive.Trigger
       data-slot="menubar-trigger"
       className={cn(
-        "focus:bg-accent hover:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex cursor-pointer items-center rounded-sm p-1 text-sm font-medium outline-hidden select-none",
+        "focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-hidden select-none",
         className,
       )}
       {...props}
@@ -64,7 +63,7 @@ function Trigger({
   );
 }
 
-function Content({
+function MenubarContent({
   className,
   align = "start",
   alignOffset = -4,
@@ -72,7 +71,7 @@ function Content({
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.Content>) {
   return (
-    <Portal>
+    <MenubarPortal>
       <MenubarPrimitive.Content
         data-slot="menubar-content"
         align={align}
@@ -84,11 +83,11 @@ function Content({
         )}
         {...props}
       />
-    </Portal>
+    </MenubarPortal>
   );
 }
 
-function Item({
+function MenubarItem({
   className,
   inset,
   variant = "default",
@@ -111,7 +110,7 @@ function Item({
   );
 }
 
-function CheckboxItem({
+function MenubarCheckboxItem({
   className,
   children,
   checked,
@@ -137,7 +136,7 @@ function CheckboxItem({
   );
 }
 
-function RadioItem({
+function MenubarRadioItem({
   className,
   children,
   ...props
@@ -161,7 +160,7 @@ function RadioItem({
   );
 }
 
-function Label({
+function MenubarLabel({
   className,
   inset,
   ...props
@@ -181,7 +180,7 @@ function Label({
   );
 }
 
-function Separator({
+function MenubarSeparator({
   className,
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.Separator>) {
@@ -194,7 +193,10 @@ function Separator({
   );
 }
 
-function Shortcut({ className, ...props }: React.ComponentProps<"span">) {
+function MenubarShortcut({
+  className,
+  ...props
+}: React.ComponentProps<"span">) {
   return (
     <span
       data-slot="menubar-shortcut"
@@ -207,11 +209,13 @@ function Shortcut({ className, ...props }: React.ComponentProps<"span">) {
   );
 }
 
-function Sub({ ...props }: React.ComponentProps<typeof MenubarPrimitive.Sub>) {
+function MenubarSub({
+  ...props
+}: React.ComponentProps<typeof MenubarPrimitive.Sub>) {
   return <MenubarPrimitive.Sub data-slot="menubar-sub" {...props} />;
 }
 
-function SubTrigger({
+function MenubarSubTrigger({
   className,
   inset,
   children,
@@ -235,7 +239,7 @@ function SubTrigger({
   );
 }
 
-function SubContent({
+function MenubarSubContent({
   className,
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.SubContent>) {
@@ -252,20 +256,20 @@ function SubContent({
 }
 
 export {
-  CheckboxItem,
-  Content,
-  Group,
-  Item,
-  Label,
-  Menu,
-  Portal,
-  RadioGroup,
-  RadioItem,
-  Root,
-  Separator,
-  Shortcut,
-  Sub,
-  SubContent,
-  SubTrigger,
-  Trigger,
+  Menubar,
+  MenubarCheckboxItem,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarLabel,
+  MenubarMenu,
+  MenubarPortal,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarSub,
+  MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarTrigger,
 };

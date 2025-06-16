@@ -23,8 +23,8 @@ const requirements = [
 export default async function ColetaneaRedeCT() {
   return (
     <div className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <header className="space-y-8 text-center">
-        <h1 className="mb-6 text-5xl font-extrabold text-black sm:text-6xl">
+      <header className="space-y-8">
+        <h1 className="title-2">
           Livro Coletânea de Capítulos da{" "}
           <span className="text-primary">RedeCT</span>
         </h1>
@@ -92,11 +92,9 @@ export default async function ColetaneaRedeCT() {
       </div>
 
       <main className="space-y-20">
-        <section className="space-y-4">
-          <h2 className="title-2 text-center">
-            Apresentação da série de livros da RedeCT
-          </h2>
-          <p className="text-muted-foreground leading-relaxed">
+        <section className="space-y-8">
+          <h2 className="title-2">Apresentação da série de livros da RedeCT</h2>
+          <p className="text-muted-foreground text-justify leading-relaxed">
             A RedeCT reúne uma coletânea crescente de capítulos de livros, com
             mais de 150 capítulos publicados. A série apresenta pesquisas e
             trabalhos de extensão universitária sobre Povos Originários e
@@ -134,27 +132,27 @@ export default async function ColetaneaRedeCT() {
         </section>
 
         <section className="space-y-8">
-          <h2 className="text-center text-3xl font-semibold">
+          <h2 className="title-3">
             Requisitos de qualidade do sistema CAPES-Livro atendidos
           </h2>
-          <ul className="space-y-2">
+          <ol className="space-y-4">
             {requirements.map((item, index: number) => (
-              <li key={index} className="flex items-center">
+              <li key={index} className="flex items-start">
                 <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
                   {index + 1}
                 </span>
                 {item}
               </li>
             ))}
-          </ul>
-          <p className="text-muted-foreground text-center text-sm italic">
+          </ol>
+          <p className="text-muted-foreground text-justify text-sm italic">
             Quanto mais citações destas obras, melhores tendem a ser as
             avaliações da RedeCT pela CAPES.
           </p>
         </section>
 
         <section className="space-y-8">
-          <h2 className="text-center text-3xl font-semibold">
+          <h2 className="title-3">
             Acesso aos volumes já publicados e índice remissivo por assunto
           </h2>
           <Suspense fallback={<LoadingSkeleton />}>

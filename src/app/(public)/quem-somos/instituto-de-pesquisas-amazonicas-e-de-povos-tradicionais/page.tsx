@@ -1,12 +1,13 @@
 import { Copy } from "@components/copy";
-import { NavigationCard } from "@components/navigation-card";
+import { Card } from "@components/ui/card";
+import { NavigationCard } from "@components/ui/navigation-card";
 import { FileText } from "lucide-react";
 
 export default async function InstitutoDePesquisasAmazonicas() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <section className="space-y-14">
-        <h1 className="title-1">
+        <h1 className="title-2">
           Instituto de Pesquisas Amazônicas e de Povos Tradicionais
         </h1>
         <p>
@@ -17,12 +18,11 @@ export default async function InstitutoDePesquisasAmazonicas() {
         </p>
       </section>
 
-      {/* Dados principais do Instituto (OSCIP RedeCT) */}
       <section className="space-y-14">
-        <h2 className="title-2">
+        <h2 className="title-3">
           Dados principais do Instituto (OSCIP RedeCT)
         </h2>
-        <div className="grid grid-cols-1 gap-8 rounded-xl bg-white p-7 text-center shadow-lg lg:grid-cols-3 lg:p-14">
+        <Card className="grid grid-cols-1 gap-8 rounded-xl p-7 text-center shadow-lg lg:grid-cols-3 lg:p-14">
           <div className="space-y-2">
             <h3 className="text-gray-500">Razão Social</h3>
             <h3 className="title-3">
@@ -69,15 +69,15 @@ export default async function InstitutoDePesquisasAmazonicas() {
             <h3 className="text-gray-500">Escritório Regional</h3>
             <h3 className="title-3">Bauru (estado de São Paulo - Brasil)</h3>
           </div>
-        </div>
+        </Card>
       </section>
 
       <section>
-        <NavigationCard.Root href="/quem-somos/instituto-de-pesquisas-amazonicas-e-de-povos-tradicionais/equipe-sdhc">
+        <NavigationCard href="/quem-somos/instituto-de-pesquisas-amazonicas-e-de-povos-tradicionais/equipe-sdhc">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-4">
-              <div className="rounded-full bg-indigo-500/20 p-2">
-                <FileText className="text-indigo-500" />
+              <div className="bg-primary/20 rounded-full p-2">
+                <FileText className="text-primary" />
               </div>
               <h2 className="title-3 font-bold">
                 Conheça nossa equipe de gestão
@@ -88,11 +88,11 @@ export default async function InstitutoDePesquisasAmazonicas() {
               Desenvolvimento Humano e Comunitário.
             </p>
           </div>
-        </NavigationCard.Root>
+        </NavigationCard>
       </section>
 
       <section className="space-y-7">
-        <h2 className="title-2">
+        <h2 className="title-3">
           HISTÓRIA DA SUA FUNDAÇÃO (em 2002) ATÉ OS TEMPOS ATUAIS
         </h2>
         <p className="text-justify">

@@ -1,10 +1,11 @@
 import { BackArrow } from "@components/back-arrow";
-import { SkeletonCards } from "@components/user-card/skeleton-cards";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
+import { LoadingSkeleton } from "./_components/loading-skeleton";
+
 const DynamicEquipeSdhc = dynamic(() =>
-  import("./equipe-sdhc").then((m) => m.EquipeSdhc),
+  import("./_components/equipe-sdhc").then((m) => m.EquipeSdhc),
 );
 
 export default async function EquipeSdhc() {
@@ -15,7 +16,7 @@ export default async function EquipeSdhc() {
         Atual equipe de gestão da associação Social Desenvolvimento Humano e
         Comunitário:
       </h1>
-      <Suspense fallback={<SkeletonCards />}>
+      <Suspense fallback={<LoadingSkeleton />}>
         <DynamicEquipeSdhc />
       </Suspense>
     </main>

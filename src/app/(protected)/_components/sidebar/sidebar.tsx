@@ -1,4 +1,13 @@
-import * as Sidebar from "@components/ui/sidebar";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+} from "@components/ui/sidebar";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { NavigationLink } from "types/navigation-link";
@@ -14,27 +23,27 @@ const DynamicUserProfile = dynamic(() =>
 
 export function SidebarContainer() {
   return (
-    <Sidebar.Root side="left" variant="sidebar">
-      <Sidebar.Header className="py-4">
+    <Sidebar side="left" variant="sidebar">
+      <SidebarHeader className="py-4">
         <Suspense fallback={<LoadingSkeleton />}>
           <DynamicUserProfile />
         </Suspense>
-      </Sidebar.Header>
-      <Sidebar.Content>
-        <Sidebar.Group>
-          <Sidebar.GroupLabel>Área Restrita</Sidebar.GroupLabel>
-          <Sidebar.GroupContent>
-            <Sidebar.Menu>
+      </SidebarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Área Restrita</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
               {sidebarLinks.map((link: NavigationLink, index: number) => (
                 <SidebarItem key={index} {...link} />
               ))}
-            </Sidebar.Menu>
-          </Sidebar.GroupContent>
-        </Sidebar.Group>
-      </Sidebar.Content>
-      <Sidebar.Footer>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+      <SidebarFooter>
         <SidebarBackButton />
-      </Sidebar.Footer>
-    </Sidebar.Root>
+      </SidebarFooter>
+    </Sidebar>
   );
 }

@@ -1,5 +1,13 @@
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+} from "@components/ui/card";
+import { Separator } from "@components/ui/separator";
 import { formatDate } from "@utils/format-date";
-import { Calendar } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { INews } from "types/news";
@@ -17,7 +25,7 @@ export function Noticia({
   news: INews;
 }) {
   return (
-    <article className="flex w-full flex-col items-start justify-between gap-4 rounded-md shadow-md transition-all duration-300 hover:shadow-lg">
+    <Card className="flex w-full flex-col items-start justify-between gap-0 rounded-md p-0 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       <picture className="relative h-60 w-full overflow-hidden rounded-t-md">
         <Image
           src={image_url ?? ""}
@@ -25,40 +33,47 @@ export function Noticia({
           fill
           className="object-cover transition-all duration-300 hover:scale-110"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </picture>
 
-      <div className="flex grow flex-col justify-between gap-2 p-4">
-        <div className="flex items-center gap-x-2 text-xs">
-          <Calendar className="size-4 text-gray-500" />
-          <time dateTime={updated_at} className="text-gray-500">
-            Última atualização: {formatDate(updated_at)}
+      <CardContent className="flex grow flex-col justify-between gap-4 p-6">
+        <CardHeader className="flex items-center gap-x-2 p-0">
+          <Calendar className="text-muted-foreground size-4 leading-3" />
+          <time dateTime={updated_at} className="text-muted-foreground">
+            {formatDate(updated_at)}
           </time>
-        </div>
-        <div className="group relative">
+        </CardHeader>
+        <CardDescription className="group relative space-y-2 p-0">
           <h3 className="group-hover:text-primary text-lg/6 font-semibold text-gray-900">
             <Link href={`/noticias/${id}`}>
               <span className="absolute inset-0"></span>
               {title}
             </Link>
           </h3>
-          <p className="group-hover:text-primary mt-5 line-clamp-3 text-justify text-sm/6 text-gray-600">
+          <div className="group-hover:text-primary line-clamp-3 text-justify text-sm leading-relaxed text-gray-600">
             {content.substring(0, 100)}...
-          </p>
-        </div>
-        <div className="relative mt-4 flex items-center gap-x-2 text-xs">
-          <div className="relative size-6">
-            <Image
-              src={author_image_url}
-              alt={`Foto de ${first_name} ${last_name}`}
-              fill
-              className="rounded-full object-cover"
-            />
           </div>
-          <div className="font-semibold text-gray-900">
-            {first_name} {last_name}
+        </CardDescription>
+        <Separator />
+        <CardFooter className="relative flex w-full items-center justify-between gap-x-2 p-0 text-xs">
+          <div className="flex items-center gap-x-2">
+            <div className="relative size-6">
+              <Image
+                src={author_image_url}
+                alt={`Foto de ${first_name} ${last_name}`}
+                fill
+                className="rounded-full object-cover"
+              />
+            </div>
+            <div className="font-semibold text-gray-900">
+              {first_name} {last_name}
+            </div>
           </div>
-        </div>
-      </div>
-    </article>
+          <Link href={`/noticias/${id}`} className="group size-4">
+            <ArrowRight className="group-hover:text-primary size-4 transition-all duration-300 group-hover:translate-x-1" />
+          </Link>
+        </CardFooter>
+      </CardContent>
+    </Card>
   );
 }

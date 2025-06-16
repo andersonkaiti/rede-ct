@@ -1,10 +1,16 @@
 "use client";
 
-import * as Table from "@components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@components/ui/table";
 
 import { useTeam } from "../../../_hooks/use-team.hook";
 import { LoadingSkeleton } from "./loading-skeleton";
-import { TableRow } from "./table-row";
+import { TableRowComponent } from "./table-row";
 
 const TEAM_TYPE = "comite-legitimador";
 
@@ -22,24 +28,24 @@ export function ComiteLegitimadorTable() {
   }
 
   return (
-    <Table.Root>
-      <Table.Header>
-        <Table.Row>
-          <Table.Head>Nome</Table.Head>
-          <Table.Head>Cargo</Table.Head>
-          <Table.Head>Descrição</Table.Head>
-          <Table.Head>Ações</Table.Head>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Nome</TableHead>
+          <TableHead>Cargo</TableHead>
+          <TableHead>Descrição</TableHead>
+          <TableHead>Ações</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {team?.[0]?.team_members?.map((member) => (
-          <TableRow
+          <TableRowComponent
             key={`${member.id}-${member.user_id}`}
             member={member}
             handleRemoveMember={handleRemoveMember}
           />
         ))}
-      </Table.Body>
-    </Table.Root>
+      </TableBody>
+    </Table>
   );
 }

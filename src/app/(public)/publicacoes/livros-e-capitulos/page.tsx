@@ -6,9 +6,9 @@ import Link from "next/link";
 export default function LivrosECapitulos() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <header className="space-y-8 text-center">
-        <h1 className="title-1">Livros e Capítulos de Interesse</h1>
-        <p className="text-muted-foreground">
+      <header className="space-y-8">
+        <h1 className="title-2">Livros e Capítulos de Interesse</h1>
+        <p className="text-muted-foreground text-justify">
           Nesta seção (
           <span className="text-primary font-bold">AINDA EM CONSTRUÇÃO</span>)
           serão publicadas as apresentações e links de acesso a livros e
@@ -20,8 +20,8 @@ export default function LivrosECapitulos() {
         </p>
       </header>
 
-      <section className="space-y-8">
-        <h2 className="title-2 text-center">
+      <section className="space-y-16">
+        <h2 className="title-3">
           Listagem de Obras de Interesse{" "}
           <span className="text-primary">(Livros e Capítulos)</span>
         </h2>

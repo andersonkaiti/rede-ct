@@ -1,33 +1,71 @@
 import { BackArrow } from "@components/back-arrow";
-import { SkeletonCards } from "@components/user-card/skeleton-cards";
+import { Badge } from "@components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@components/ui/card";
+import { RedLine } from "@components/ui/red-line";
+import { InfoIcon } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
+import { LoadingSkeleton } from "./_components/loading-skeleton";
+
 const DynamicComiteLegitimador = dynamic(() =>
-  import("./comite-legitimador").then((m) => m.ComiteLegitimador),
+  import("./_components/comite-legitimador").then((m) => m.ComiteLegitimador),
 );
 
 export default async function ComiteLegitimador() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-7 p-5 py-8 lg:p-25">
       <BackArrow />
-      <h2 className="title-1 text-center">
+      <h2 className="text-center text-3xl font-bold md:text-4xl">
         Composição do Comitê Legitimador da RedeCT
       </h2>
-      <Suspense fallback={<SkeletonCards />}>
+      <RedLine />
+      <Suspense fallback={<LoadingSkeleton />}>
         <DynamicComiteLegitimador />
       </Suspense>
-      <p className="text-justify">
-        Sob responsabilidade da Vice-coordenadoria de Extensão Universitária e
-        Cultura, o Comitê Legitimador é composto pelo Vice-coordenador de
-        Extensão e Cultura (que tem a responsabilidade de organizar as pautas e
-        reuniões, tendo direito à palavra e ao voto de minerva) e mais 7 membros
-        representantes das áreas de Antropologia e Museologia e de cinco povos
-        tradicionais diferentes, todos com direito à palavra e ao voto (sob
-        presidência do vice-coordenador que tem voto de minerva em caso de
-        empate). O Secretário Geral tem direito à palavra, mas não tem direito
-        ao voto.
-      </p>
+      <Card className="border-0 bg-white shadow-lg">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Badge className="bg-primary/10 text-primary rounded-full p-1">
+              <InfoIcon className="!size-5" />
+            </Badge>
+            <span className="text-2xl font-bold">Sobre o Comitê</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription className="space-y-4">
+            <p className="text-justify">
+              Sob responsabilidade da{" "}
+              <strong className="text-primary">
+                Vice-coordenadoria de Extensão Universitária e Cultura
+              </strong>
+              , o Comitê Legitimador é composto pelo Vice-coordenador de
+              Extensão e Cultura (que tem a responsabilidade de organizar as
+              pautas e reuniões, tendo direito à palavra e ao voto de minerva) e
+              mais <strong className="text-primary">7</strong> membros
+              representantes das áreas de Antropologia e Museologia e de{" "}
+              <strong className="text-primary">
+                cinco povos tradicionais diferentes
+              </strong>
+              , todos com direito à palavra e ao voto (sob presidência do
+              vice-coordenador que tem voto de minerva em caso de caso de
+              empate).
+            </p>
+            <aside className="w-fit rounded-md border-l-4 border-amber-500 bg-amber-200/50 px-4 py-2 text-justify text-amber-800">
+              <div className="text-sm">
+                O Secretário Geral tem direito à palavra, mas não tem direito ao
+                voto.
+              </div>
+            </aside>
+          </CardDescription>
+        </CardContent>
+      </Card>
     </main>
   );
 }

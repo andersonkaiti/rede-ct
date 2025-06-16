@@ -6,7 +6,7 @@ import * as React from "react";
 
 import { cn } from "@/utils/cn";
 
-function Root({
+function Accordion({
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Root>) {
   return (
@@ -18,7 +18,7 @@ function Root({
   );
 }
 
-function Item({
+function AccordionItem({
   className,
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Item>) {
@@ -31,7 +31,7 @@ function Item({
   );
 }
 
-function Trigger({
+function AccordionTrigger({
   className,
   children,
   ...props
@@ -53,7 +53,7 @@ function Trigger({
   );
 }
 
-function Content({
+function AccordionContent({
   className,
   children,
   ...props
@@ -69,4 +69,4 @@ function Content({
   );
 }
 
-export { Content, Item, Root, Trigger };
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };

@@ -1,6 +1,12 @@
 "use client";
 
-import * as Table from "@components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@components/ui/table";
 
 import { useUserNews } from "../../_hooks/use-user-news.hook";
 import { LoadingSkeleton } from "./loading-skeleton";
@@ -14,15 +20,15 @@ export function NoticiasTable() {
   }
 
   return (
-    <Table.Root>
-      <Table.Header>
-        <Table.Row>
-          <Table.Head>Título</Table.Head>
-          <Table.Head>Data</Table.Head>
-          <Table.Head>Ações</Table.Head>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Título</TableHead>
+          <TableHead>Data</TableHead>
+          <TableHead>Ações</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {news?.map((news) => (
           <NewsRow
             key={news.id}
@@ -30,7 +36,7 @@ export function NoticiasTable() {
             handleRemoveNews={handleRemoveNews}
           />
         ))}
-      </Table.Body>
-    </Table.Root>
+      </TableBody>
+    </Table>
   );
 }

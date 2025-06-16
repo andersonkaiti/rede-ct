@@ -3,7 +3,15 @@
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
 import { Label } from "@components/ui/label";
-import * as Container from "@components/ui/page-container";
+import {
+  PageContainer,
+  PageForm,
+  PageFormContent,
+  PageFormContentField,
+  PageHeader,
+  PageMain,
+  PageTitle,
+} from "@components/ui/page-container";
 import { Loader2 } from "lucide-react";
 
 import { ErrorMessage } from "@/app/(protected)/area-restrita/noticias/_components/error-message";
@@ -30,14 +38,14 @@ export default function EditarEquipeDeGestao() {
   const hasErrors = state && "errors" in state;
 
   return (
-    <Container.PageContainer>
-      <Container.PageHeader>
-        <Container.PageTitle>Editar Equipe</Container.PageTitle>
-      </Container.PageHeader>
-      <Container.PageMain>
-        <Container.PageForm action={formAction}>
-          <Container.PageFormContent>
-            <Container.PageFormContentField>
+    <PageContainer>
+      <PageHeader>
+        <PageTitle>Editar Equipe</PageTitle>
+      </PageHeader>
+      <PageMain>
+        <PageForm action={formAction}>
+          <PageFormContent>
+            <PageFormContentField>
               <Label>Nome da equipe</Label>
               {!isTeamLoading ? (
                 <Input
@@ -52,8 +60,8 @@ export default function EditarEquipeDeGestao() {
               {hasErrors && state.errors.name && (
                 <ErrorMessage state={state} inputName="name" />
               )}
-            </Container.PageFormContentField>
-            <Container.PageFormContentField>
+            </PageFormContentField>
+            <PageFormContentField>
               <Label>Membros cadastrados</Label>
 
               <SelectMember
@@ -74,7 +82,7 @@ export default function EditarEquipeDeGestao() {
               {hasErrors && state.errors.members && (
                 <ErrorMessage state={state} inputName="members" />
               )}
-            </Container.PageFormContentField>
+            </PageFormContentField>
 
             <Button
               type="submit"
@@ -84,9 +92,9 @@ export default function EditarEquipeDeGestao() {
               {isLoading && <Loader2 className="size-4 animate-spin" />}
               Atualizar equipe
             </Button>
-          </Container.PageFormContent>
-        </Container.PageForm>
-      </Container.PageMain>
-    </Container.PageContainer>
+          </PageFormContent>
+        </PageForm>
+      </PageMain>
+    </PageContainer>
   );
 }

@@ -4,7 +4,8 @@ import "server-only";
 
 export interface IInMemorian {
   name: string;
-  date: string;
+  birthday: string;
+  death: string;
   role: string;
   image: {
     src: string;
@@ -15,8 +16,9 @@ export interface IInMemorian {
 const inMemorianResearchers: IInMemorian[] = [
   {
     name: "Prof. Dr. José Ronaldo Fassheber",
-    date: "(- nononon +07/10/2023)",
-    role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
+    birthday: "07/10/2023",
+    death: "07/10/2023",
+    role: "Dedicou sua vida ao ensino e à pesquisa, deixando um legado valioso para a comunidade acadêmica.",
     image: {
       src: "/images/in-memorian/in-memorian-1.png",
       alt: "Prof. Dr. José Ronaldo Fassheber",
@@ -24,8 +26,9 @@ const inMemorianResearchers: IInMemorian[] = [
   },
   {
     name: "Prof. Dr. Marcelo Alves Terra",
-    date: "(- nononon +07/10/2023)",
-    role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
+    birthday: "07/10/2023",
+    death: "07/10/2023",
+    role: "Reconhecido por sua excelência acadêmica e contribuição incansável à formação de novos profissionais.",
     image: {
       src: "/images/in-memorian/in-memorian-2.png",
       alt: "Prof. Dr. Marcelo Alves Terra",
@@ -33,8 +36,9 @@ const inMemorianResearchers: IInMemorian[] = [
   },
   {
     name: "Prof. Dr. Carlos Rodrigues Brandão",
-    date: "(-14/04/1940 +11/07/2023)",
-    role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
+    birthday: "14/04/1940",
+    death: "11/07/2023",
+    role: "Antropólogo e educador, foi referência em educação popular e defensor incansável da transformação social por meio do conhecimento.",
     image: {
       src: "/images/in-memorian/in-memorian-3.png",
       alt: "Prof. Dr. Carlos Rodrigues Brandão",
@@ -42,8 +46,9 @@ const inMemorianResearchers: IInMemorian[] = [
   },
   {
     name: "Prof. Rodrigo Pasquarelli Dalmédico",
-    date: "(nono nonono nonnno)",
-    role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
+    birthday: "Data não informada",
+    death: "Data não informada",
+    role: "Professor dedicado, deixou uma marca indelével em seus alunos e colegas através de seu compromisso com a educação.",
     image: {
       src: "/images/in-memorian/in-memorian-4.png",
       alt: "Prof. Rodrigo Pasquarelli Dalmédico",
@@ -51,8 +56,9 @@ const inMemorianResearchers: IInMemorian[] = [
   },
   {
     name: "Prof. Waldir Araújo Souza",
-    date: "(nono nonono nonnno)",
-    role: "Nonon nononn nnon nnononononono noononono nonononono nonoonon onnononon nnonoonon.",
+    birthday: "Data não informada",
+    death: "Data não informada",
+    role: "Contribuiu significativamente para a construção do saber e será lembrado por sua ética e generosidade intelectual.",
     image: {
       src: "/images/placeholder.png",
       alt: "Prof. Waldir Araújo Souza",
@@ -61,5 +67,7 @@ const inMemorianResearchers: IInMemorian[] = [
 ];
 
 export async function getInMemorianResearchers() {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
   return inMemorianResearchers;
 }

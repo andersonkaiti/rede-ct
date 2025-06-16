@@ -1,6 +1,14 @@
-import * as Accordion from "@components/ui/accordion";
-import { UserCard } from "@components/user-card";
-import { CardButtonLattes } from "@components/user-card/card-button-lattes";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@components/ui/accordion";
+import {
+  UserCard,
+  UserCardButtonLattes,
+  UserCardImage,
+} from "@components/ui/user-card";
 
 import { getEtps } from "@/services/etps";
 
@@ -8,20 +16,20 @@ export async function EPTAccordion() {
   const etps = await getEtps();
 
   return (
-    <Accordion.Root type="single" collapsible>
+    <Accordion type="single" collapsible>
       {etps.map(({ name, description, members, text }, index: number) => (
-        <Accordion.Item key={index} value={name}>
-          <Accordion.Trigger>
+        <AccordionItem key={index} value={name}>
+          <AccordionTrigger>
             <h3 className="title-3">
               {name} / {description}
             </h3>
-          </Accordion.Trigger>
-          <Accordion.Content className="space-y-7">
+          </AccordionTrigger>
+          <AccordionContent className="space-y-7">
             <p className="text-justify">{text}</p>
-            <UserCard.Wrapper>
+            <UserCard>
               {members.map((member, index: number) => (
-                <UserCard.Root key={index}>
-                  <UserCard.Image
+                <UserCard key={index}>
+                  <UserCardImage
                     src={member.image.src}
                     alt={member.image.alt}
                   />
@@ -30,14 +38,14 @@ export async function EPTAccordion() {
                       {member.name}
                     </h1>
                     <h2 className="text-center font-bold">{member.role}</h2>
-                    <CardButtonLattes href={member.lattesUrl} />
+                    <UserCardButtonLattes href={member.lattesUrl} />
                   </div>
-                </UserCard.Root>
+                </UserCard>
               ))}
-            </UserCard.Wrapper>
-          </Accordion.Content>
-        </Accordion.Item>
+            </UserCard>
+          </AccordionContent>
+        </AccordionItem>
       ))}
-    </Accordion.Root>
+    </Accordion>
   );
 }

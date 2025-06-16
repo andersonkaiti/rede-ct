@@ -117,57 +117,7 @@ export const navigationLinks: NavigationLinkType[] = [
       },
     ],
   },
-  {
-    path: "/portfolio",
-    label: "PORTFÓLIO",
-    children: [
-      {
-        path: "/portfolio/legislacoes-mapas",
-        label: "Legislações",
-        icon: Icons.ScrollText,
-      },
-      {
-        path: "/portfolio/legislacoes-mapas",
-        label: "Mapas",
-        icon: Icons.Map,
-      },
-      {
-        path: "/portfolio/povos-originarios",
-        label: "Povos Originários",
-        icon: Icons.Users,
-      },
-      {
-        path: "/portfolio/comunidades-tradicionais",
-        label: "Comunidades Tradicionais",
-        icon: Icons.UsersRound,
-      },
-      {
-        path: "/portfolio/grupos-pesquisa",
-        label: "Grupos de Pesquisa",
-        icon: Icons.Network,
-      },
-      {
-        path: "/portfolio/redes-e-coletivos",
-        label: "Redes e Coletivos",
-        icon: Icons.Network,
-      },
-      {
-        path: "/portfolio/museus-espacos",
-        label: "Museus e Espaços Museológicos",
-        icon: Icons.GalleryHorizontal,
-      },
-      {
-        path: "/portfolio/destaques-redect",
-        label: "Destaques RedeCT",
-        icon: Icons.Star,
-      },
-      {
-        path: "/portfolio/centro-de-referencia-unesp",
-        label: "Centro de Referência UNESP",
-        icon: Icons.Building,
-      },
-    ],
-  },
+
   {
     label: "LOJAS E OPORTUNIDADES",
     children: [
@@ -187,6 +137,57 @@ export const navigationLinks: NavigationLinkType[] = [
         icon: Icons.FilePlus,
       },
     ],
+  },
+  {
+    path: "/portfolio",
+    label: "PORTFÓLIO",
+    // children: [
+    //   {
+    //     path: "/portfolio/legislacoes-mapas",
+    //     label: "Legislações",
+    //     icon: Icons.ScrollText,
+    //   },
+    //   {
+    //     path: "/portfolio/legislacoes-mapas",
+    //     label: "Mapas",
+    //     icon: Icons.Map,
+    //   },
+    //   {
+    //     path: "/portfolio/povos-originarios",
+    //     label: "Povos Originários",
+    //     icon: Icons.Users,
+    //   },
+    //   {
+    //     path: "/portfolio/comunidades-tradicionais",
+    //     label: "Comunidades Tradicionais",
+    //     icon: Icons.UsersRound,
+    //   },
+    //   {
+    //     path: "/portfolio/grupos-pesquisa",
+    //     label: "Grupos de Pesquisa",
+    //     icon: Icons.Network,
+    //   },
+    //   {
+    //     path: "/portfolio/redes-e-coletivos",
+    //     label: "Redes e Coletivos",
+    //     icon: Icons.Network,
+    //   },
+    //   {
+    //     path: "/portfolio/museus-espacos",
+    //     label: "Museus e Espaços Museológicos",
+    //     icon: Icons.GalleryHorizontal,
+    //   },
+    //   {
+    //     path: "/portfolio/destaques-redect",
+    //     label: "Destaques RedeCT",
+    //     icon: Icons.Star,
+    //   },
+    //   {
+    //     path: "/portfolio/centro-de-referencia-unesp",
+    //     label: "Centro de Referência UNESP",
+    //     icon: Icons.Building,
+    //   },
+    // ],
   },
   {
     path: "/noticias",

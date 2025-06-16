@@ -1,280 +1,90 @@
+import { ArrowLeft, Calendar, ExternalLink, User } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import CallToAction from "@/components/call-to-action";
-import Link from "next/link";
-import { ArrowLeft, ExternalLink, Calendar, User } from "lucide-react";
+import { portfolioData } from "./_constants/portfolio-data";
 
-const portfolioData = {
-  "legislacoes-mapas": {
-    title: "Legislações & Mapas",
-    description:
-      "Compilação abrangente de marcos legais e mapeamentos territoriais relacionados à ciência e tecnologia no Brasil.",
-    image: "/placeholder.svg?height=400&width=800",
-    content: [
-      {
-        title: "Marco Legal da Ciência, Tecnologia e Inovação",
-        description:
-          "Análise detalhada da Lei 13.243/2016 e suas implicações para o ecossistema de inovação brasileiro.",
-        date: "2024-01-15",
-        author: "Equipe RedeCT",
-        link: "#",
-      },
-      {
-        title: "Mapeamento de Parques Tecnológicos",
-        description: "Levantamento georreferenciado dos principais parques tecnológicos e incubadoras do país.",
-        date: "2024-02-20",
-        author: "Departamento de Pesquisa",
-        link: "#",
-      },
-      {
-        title: "Legislação de Propriedade Intelectual",
-        description: "Compilação das principais leis e regulamentações sobre propriedade intelectual no Brasil.",
-        date: "2024-03-10",
-        author: "Setor Jurídico",
-        link: "#",
-      },
-    ],
-  },
-  "povos-originarios": {
-    title: "Povos Originários",
-    description: "Documentação e valorização dos conhecimentos, culturas e direitos dos povos indígenas do Brasil e de outros territórios das Américas.",
-    image: "/placeholder.svg?height=400&width=800",
-    content: [
-      {
-        title: "Coletânea Povos Originários e Comunidades Tradicionais (Vol. 13)",
-        description: "Volume dedicado aos estudos interdisciplinares sobre história, cultura e políticas públicas para povos indígenas.",
-        date: "2024-04-19",
-        author: "Editora Fi / RedeCT",
-        link: "https://www.editorafi.org/ebook/c057-povos-originarios-comunidades-tradicionais",
-      },
-      {
-        title: "Eixo Temático Permanente 01 – Cultura, História e Políticas Públicas",
-        description: "Pesquisas e projetos que investigam a construção histórica e cultural dos povos originários, seus direitos e desafios contemporâneos.",
-        date: "2024-05-10",
-        author: "GT ETP-01",
-        link: "#",
-      },
-      {
-        title: "Linha do Tempo: Marcos da luta indígena no Brasil",
-        description: "Cronologia destacando importantes legislações e eventos relacionados aos povos indígenas, de 1500 até hoje.",
-        date: "2024-06-01",
-        author: "Equipe RedeCT",
-        link: "#",
-      },
-    ],
-  },
-  "comunidades-tradicionais": {
-    title: "Comunidades Tradicionais",
-    description: "Registro das práticas e saberes de comunidades quilombolas, ribeirinhas, caiçaras, povos de terreiro, entre outras.",
-    image: "/placeholder.svg?height=400&width=800",
-    content: [
-      {
-        title: "Eixo Temático Permanente 07 – Bem-Viver dos Povos Tradicionais",
-        description: "Iniciativas comunitárias que fortalecem a autonomia e a qualidade de vida em territórios tradicionais.",
-        date: "2024-03-12",
-        author: "GT ETP-07",
-        link: "#",
-      },
-      {
-        title: "Livro: Povos de Terreiro – Patrimônio Imaterial Brasileiro",
-        description: "Obra coletiva abordando a história, a religião e a cultura material dos povos de terreiro no Brasil.",
-        date: "2023-11-08",
-        author: "RedeCT / Editora Parceira",
-        link: "#",
-      },
-      {
-        title: "Mapa Interativo de Quilombos Reconhecidos",
-        description: "Ferramenta de georreferenciamento que apresenta quilombos certificados e em processo de regularização.",
-        date: "2024-02-27",
-        author: "Lab-Geo RedeCT",
-        link: "#",
-      },
-    ],
-  },
-  "grupos-pesquisa": {
-    title: "Grupos de Pesquisa, Redes & Coletivos",
-    description: "Catálogo colaborativo de grupos acadêmicos e coletivos que atuam em interface com povos originários e comunidades tradicionais.",
-    image: "/placeholder.svg?height=400&width=800",
-    content: [
-      {
-        title: "GEDGS – Grupo de Estudos em Democracia e Gestão Social (UNESP)",
-        description: "Grupo que originou a RedeCT, focado em gestão social e políticas públicas para populações tradicionais.",
-        date: "2014-07-01",
-        author: "UNESP Bauru",
-        link: "#",
-      },
-      {
-        title: "Rede VARAS – Valorização de Saberes Amazônicos",
-        description: "Coletivo de pesquisadores e lideranças amazônicas que promove encontros sobre sustentabilidade de comunidades ribeirinhas.",
-        date: "2024-01-30",
-        author: "Rede VARAS",
-        link: "#",
-      },
-    ],
-  },
-  "redes-e-coletivos": {
-    title: "Redes e Coletivos",
-    description: "Iniciativas em rede que articulam pesquisadores, organizações de base comunitária e instituições para defesa de direitos.",
-    image: "/placeholder.svg?height=400&width=800",
-    content: [
-      {
-        title: "OSCIP RedeCT – Estrutura e Governança",
-        description: "Apresentação da estrutura organizacional da OSCIP RedeCT após oficialização jurídica em 2021.",
-        date: "2021-05-29",
-        author: "RedeCT",
-        link: "#",
-      },
-      {
-        title: "Selo de Qualidade em Extensão Universitária",
-        description: "Projeto de certificação desenvolvido em parceria com instituições de ensino para reconhecer boas práticas de extensão junto a povos tradicionais.",
-        date: "2023-09-15",
-        author: "Divisão Científica",
-        link: "#",
-      },
-    ],
-  },
-  "museus-espacos": {
-    title: "Museus & Espaços Museológicos",
-    description: "Catálogo e roteiro de visitação a museus de ciência, espaços de memória e centros culturais dedicados à temática socioambiental.",
-    image: "/placeholder.svg?height=400&width=800",
-    content: [
-      {
-        title: "Museu do Índio (Rio de Janeiro)",
-        description: "Acervo etnográfico de povos indígenas do Brasil, com exposições permanentes e programas educativos.",
-        date: "2024-05-05",
-        author: "Equipe RedeCT",
-        link: "https://museudoindio.gov.br/",
-      },
-      {
-        title: "Museu Paraense Emílio Goeldi",
-        description: "Instituição de pesquisa e divulgação científica na Amazônia, com coleções zoológicas, botânicas e etnológicas.",
-        date: "2024-06-08",
-        author: "RedeCT / Goeldi",
-        link: "https://www.museu-goeldi.br/",
-      },
-    ],
-  },
-  "destaques-redect": {
-    title: "Destaques RedeCT",
-    description: "Principais conquistas, prêmios e resultados de impacto alcançados pela RedeCT.",
-    image: "/placeholder.svg?height=400&width=800",
-    content: [
-      {
-        title: "Website oficial lançado",
-        description: "Disponibilização pública do novo portal da RedeCT com recursos de acessibilidade e conteúdos multimídia.",
-        date: "2024-04-19",
-        author: "Equipe Web",
-        link: "https://redect.org/",
-      },
-      {
-        title: "V Congresso Científico Internacional",
-        description: "Edição realizada simultaneamente no Brasil e em Moçambique, com submissão de mais de 300 trabalhos.",
-        date: "2023-08-22",
-        author: "Comissão Organizadora",
-        link: "#",
-      },
-    ],
-  },
-  "centro-referencia-unesp": {
-    title: "Centro de Referência UNESP",
-    description: "Recursos, acervos e serviços oferecidos pelo Centro de Referência ligado à UNESP para apoio a pesquisas sobre povos e comunidades tradicionais.",
-    image: "/placeholder.svg?height=400&width=800",
-    content: [
-      {
-        title: "Base Documental Digital",
-        description: "Repositório de artigos, teses e documentos históricos acessíveis a pesquisadores cadastrados.",
-        date: "2024-02-14",
-        author: "Centro de Referência",
-        link: "#",
-      },
-      {
-        title: "Programa de Estágios Científicos",
-        description: "Oportunidades de iniciação científica e pós-doutorado voltadas a estudos de comunidades tradicionais.",
-        date: "2024-03-25",
-        author: "Coordenação UNESP",
-        link: "#",
-      },
-    ],
-  }
-} as const;
-
-//-- Types
-interface Props {
+interface IProps {
   params: { slug: string };
 }
 
 type PortfolioKey = keyof typeof portfolioData;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: IProps): Promise<Metadata> {
   const data = portfolioData[params.slug as PortfolioKey];
   if (!data) {
     return { title: "Página não encontrada - RedeCT" };
   }
-  return { title: `${data.title} - Portfólio RedeCT`, description: data.description };
+  return {
+    title: `${data.title} - Portfólio RedeCT`,
+    description: data.description,
+  };
 }
 
-export default function PortfolioDetailPage({ params }: Props) {
-  const data = portfolioData[params.slug as PortfolioKey];
-  if (!data) notFound();
+export default function PortfolioDetailPage({ params }: IProps) {
+  const { title, description, content } =
+    portfolioData[params.slug as PortfolioKey];
+
+  if (!title) {
+    notFound();
+  }
 
   return (
-    <div className="min-h-screen">
-
-      <section className="py-16 bg-gray-900 text-white">
+    <>
+      <section className="bg-gray-900 py-16 text-white">
         <div className="container mx-auto px-4">
           <div className="mb-8">
-            <Link href="/portfolio" className="inline-flex items-center text-gray-300 hover:text-white transition-colors">
-              <ArrowLeft className="w-4 h-4 mr-2" /> Voltar ao Portfólio
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center text-gray-300 transition-colors hover:text-white"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" /> Voltar ao Portfólio
             </Link>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">{data.title}</h1>
-              <p className="text-xl text-gray-300 leading-relaxed">{data.description}</p>
-            </div>
-            <div>
-              <img
-                src={data.image || "/placeholder.svg"}
-                alt={data.title}
-                className="rounded-lg shadow-lg w-full h-64 object-cover"
-              />
+              <h1 className="mb-6 text-4xl font-bold md:text-5xl">{title}</h1>
+              <p className="text-xl leading-relaxed text-gray-300">
+                {description}
+              </p>
             </div>
           </div>
         </div>
       </section>
-
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {data.content.map((item, idx) => (
-              <article
-                key={idx}
-                className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
-              >
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{item.title}</h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">{item.description}</p>
-                  <div className="flex items-center text-sm text-gray-500 mb-4">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    <span className="mr-4">{new Date(item.date).toLocaleDateString("pt-BR")}</span>
-                    <User className="w-4 h-4 mr-2" />
-                    <span>{item.author}</span>
-                  </div>
-                  <Link
-                    href={item.link}
-                    className="inline-flex items-center text-gray-900 hover:text-gray-700 font-medium transition-colors"
-                  >
-                    Saiba mais <ExternalLink className="w-4 h-4 ml-2" />
-                  </Link>
+      <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {content.map((item, index) => (
+            <article
+              key={index}
+              className="overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg"
+            >
+              <div className="p-6">
+                <h3 className="mb-3 line-clamp-2 text-xl font-bold text-gray-900">
+                  {item.title}
+                </h3>
+                <p className="mb-4 line-clamp-3 text-gray-600">
+                  {item.description}
+                </p>
+                <div className="mb-4 flex items-center text-sm text-gray-500">
+                  <Calendar className="mr-2 h-4 w-4" />
+                  <span className="mr-4">
+                    {new Date(item.date).toLocaleDateString("pt-BR")}
+                  </span>
+                  <User className="mr-2 h-4 w-4" />
+                  <span>{item.author}</span>
                 </div>
-              </article>
-            ))}
-          </div>
+                <Link
+                  href={item.link}
+                  className="inline-flex items-center font-medium text-gray-900 transition-colors hover:text-gray-700"
+                >
+                  Saiba mais <ExternalLink className="ml-2 h-4 w-4" />
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
-      </section>
-      <CallToAction />
-
-    </div>
+      </main>
+    </>
   );
 }

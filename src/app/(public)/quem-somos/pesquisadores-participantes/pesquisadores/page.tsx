@@ -1,5 +1,5 @@
 import { BackArrow } from "@components/back-arrow";
-import * as Tabs from "@components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/ui/tabs";
 
 import { getResearcherCategories } from "@/services/researchers";
 
@@ -12,24 +12,24 @@ export default async function Pesquisadores() {
       <section className="space-y-14">
         <h1 className="title-1 text-center">Pesquisadores da RedeCT</h1>
 
-        <Tabs.Root defaultValue="Pesquisador Sênior">
-          <Tabs.List className="w-full">
+        <Tabs defaultValue="Pesquisador Sênior">
+          <TabsList className="w-full">
             {researcherCategories.map(({ type }, index: number) => (
-              <Tabs.Trigger key={index} value={type}>
+              <TabsTrigger key={index} value={type}>
                 {type}
-              </Tabs.Trigger>
+              </TabsTrigger>
             ))}
-          </Tabs.List>
+          </TabsList>
           {researcherCategories.map(({ members, type }, index: number) =>
             members.map(({ name, info }) => (
-              <Tabs.Content key={`${index}-${name}`} value={type}>
+              <TabsContent key={`${index}-${name}`} value={type}>
                 <p className="text-gray-500">
                   <span className="font-bold text-black">{name}</span> {info}
                 </p>
-              </Tabs.Content>
+              </TabsContent>
             )),
           )}
-        </Tabs.Root>
+        </Tabs>
       </section>
     </main>
   );

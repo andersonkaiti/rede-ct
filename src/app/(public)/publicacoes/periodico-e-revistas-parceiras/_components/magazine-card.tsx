@@ -23,7 +23,9 @@ export function MagazineCard({
         <h2 className="text-center text-xl font-semibold">{name}</h2>
       </CardHeader>
       <CardContent className="mt-auto">
-        <p className="text-muted-foreground leading-relaxed">{description}</p>
+        <p className="text-muted-foreground text-justify leading-relaxed">
+          {description}
+        </p>
       </CardContent>
       <CardFooter>
         <Link href={url} target="_blank" className="w-full">

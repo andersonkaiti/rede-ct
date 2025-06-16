@@ -1,4 +1,10 @@
-import * as Select from "@components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@components/ui/select";
 import { Loader2 } from "lucide-react";
 import { ITeamMember } from "types/team";
 
@@ -32,26 +38,26 @@ export function SelectMember({ user_id }: ISelectMemberProps) {
   }
 
   return (
-    <Select.Root name="user_id" defaultValue={user_id}>
-      <Select.Trigger className="w-full">
-        <Select.Value placeholder={renderSelectPlaceholder()} />
-      </Select.Trigger>
+    <Select name="user_id" defaultValue={user_id}>
+      <SelectTrigger className="w-full">
+        <SelectValue placeholder={renderSelectPlaceholder()} />
+      </SelectTrigger>
 
       {user_id && (
-        <Select.Content>
-          <Select.Item value={user_id}>{renderSelectPlaceholder()}</Select.Item>
-        </Select.Content>
+        <SelectContent>
+          <SelectItem value={user_id}>{renderSelectPlaceholder()}</SelectItem>
+        </SelectContent>
       )}
 
       {!user_id && (
-        <Select.Content>
+        <SelectContent>
           {users?.map((user) => (
-            <Select.Item key={user.id} value={user.id}>
+            <SelectItem key={user.id} value={user.id}>
               {user.first_name} {user.last_name || ""}
-            </Select.Item>
+            </SelectItem>
           ))}
-        </Select.Content>
+        </SelectContent>
       )}
-    </Select.Root>
+    </Select>
   );
 }

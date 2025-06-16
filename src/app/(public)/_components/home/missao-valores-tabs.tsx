@@ -1,18 +1,18 @@
-import * as Tabs from "@components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/ui/tabs";
 import Image from "next/image";
 
 export function MissaoValoresTabs() {
   return (
-    <Tabs.Root defaultValue="Missão">
-      <Tabs.List className="w-full">
-        <Tabs.Trigger value="Missão">Missão</Tabs.Trigger>
-        <Tabs.Trigger value="Valores">Valores</Tabs.Trigger>
-        <Tabs.Trigger value="Objetivos">Objetivos</Tabs.Trigger>
-        <Tabs.Trigger value="Grandes desafios da RedeCT">
+    <Tabs defaultValue="Missão">
+      <TabsList className="w-full">
+        <TabsTrigger value="Missão">Missão</TabsTrigger>
+        <TabsTrigger value="Valores">Valores</TabsTrigger>
+        <TabsTrigger value="Objetivos">Objetivos</TabsTrigger>
+        <TabsTrigger value="Grandes desafios da RedeCT">
           Grandes desafios da RedeCT
-        </Tabs.Trigger>
-      </Tabs.List>
-      <Tabs.Content value="Missão" className="flex flex-col gap-10 lg:flex-row">
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="Missão" className="flex flex-col gap-10 lg:flex-row">
         <div className="flex-1 space-y-4">
           <div className="relative h-100 w-full">
             <Image
@@ -54,11 +54,8 @@ export function MissaoValoresTabs() {
             contato@redect.org.
           </p>
         </div>
-      </Tabs.Content>
-      <Tabs.Content
-        value="Valores"
-        className="flex flex-col gap-10 lg:flex-row"
-      >
+      </TabsContent>
+      <TabsContent value="Valores" className="flex flex-col gap-10 lg:flex-row">
         <div className="flex-1 space-y-4">
           <div className="relative h-100 w-full">
             <Image
@@ -104,8 +101,8 @@ export function MissaoValoresTabs() {
             </li>
           </ul>
         </div>
-      </Tabs.Content>
-      <Tabs.Content
+      </TabsContent>
+      <TabsContent
         value="Objetivos"
         className="flex flex-col gap-10 lg:flex-row"
       >
@@ -154,8 +151,8 @@ export function MissaoValoresTabs() {
             </li>
           </ul>
         </div>
-      </Tabs.Content>
-      <Tabs.Content
+      </TabsContent>
+      <TabsContent
         value="Grandes desafios da RedeCT"
         className="flex flex-col gap-10 lg:flex-row"
       >
@@ -218,7 +215,7 @@ export function MissaoValoresTabs() {
             denominada Carta da RedeCT.
           </p>
         </div>
-      </Tabs.Content>
-    </Tabs.Root>
+      </TabsContent>
+    </Tabs>
   );
 }

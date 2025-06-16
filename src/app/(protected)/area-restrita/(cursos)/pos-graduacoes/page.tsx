@@ -1,19 +1,24 @@
 import { Input } from "@components/ui/input";
-import * as Container from "@components/ui/page-container";
+import {
+  PageContainer,
+  PageHeader,
+  PageMain,
+  PageTitle,
+} from "@components/ui/page-container";
 
 import { CreateButton } from "../../_components/create-button";
 
 export default function PosGraduacoes() {
   return (
-    <Container.PageContainer>
-      <Container.PageHeader>
-        <Container.PageTitle>Pós-Graduações</Container.PageTitle>
+    <PageContainer>
+      <PageHeader>
+        <PageTitle>Pós-Graduações</PageTitle>
         <CreateButton href="/area-restrita/pos-graduacoes/cadastrar">
           Cadastrar Pós-Graduação
         </CreateButton>
-      </Container.PageHeader>
+      </PageHeader>
       <Input placeholder="Pesquisar" className="w-full sm:w-fit" />
-      <Container.PageMain>Pós-Graduações</Container.PageMain>
-    </Container.PageContainer>
+      <PageMain>Pós-Graduações</PageMain>
+    </PageContainer>
   );
 }

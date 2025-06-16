@@ -22,11 +22,11 @@ export function ShareButton({ news: { title, content } }: IShareButtonProps) {
   return (
     <Button
       onClick={handleShare}
-      variant="ghost"
-      className="hover:text-primary cursor-pointer hover:bg-transparent"
-      size="icon"
+      variant="outline"
+      className="text-primary border-primary hover:border-primary hover:text-primary hover:bg-primary/10 cursor-pointer"
     >
       <Share2 className="size-4" />
+      Compartilhar
     </Button>
   );
 }

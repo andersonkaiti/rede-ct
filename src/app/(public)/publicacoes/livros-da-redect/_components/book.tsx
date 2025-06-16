@@ -25,7 +25,9 @@ export function Book({
       </CardHeader>
       <CardContent className="mt-auto space-y-4 p-0">
         <p className="text-muted-foreground font-semibold">{preface}</p>
-        <p className="text-muted-foreground leading-relaxed">{prefaceText}</p>
+        <p className="text-muted-foreground text-justify leading-relaxed">
+          {prefaceText}
+        </p>
         <p className="text-primary italic">{publisher}</p>
       </CardContent>
       <CardFooter className="p-0">

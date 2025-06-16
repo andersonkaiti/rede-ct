@@ -1,4 +1,8 @@
-import { Inset, Provider, Trigger } from "@components/ui/sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@components/ui/sidebar";
 
 import { SidebarContainer } from "./_components/sidebar/sidebar";
 
@@ -8,16 +12,16 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Provider>
+    <SidebarProvider>
       <SidebarContainer />
 
-      <Inset>
+      <SidebarInset>
         <div className="flex w-full flex-col">
-          <Trigger className="mt-4 ml-4 cursor-pointer" />
+          <SidebarTrigger className="mt-4 ml-4 cursor-pointer" />
 
           {children}
         </div>
-      </Inset>
-    </Provider>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }

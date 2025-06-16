@@ -1,11 +1,15 @@
 import { ArrowRightIcon } from "lucide-react";
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 
 import { cn } from "@/utils/cn";
 
-import { INavigationCardProps } from ".";
+interface INavigationCardProps
+  extends LinkProps,
+    React.HTMLAttributes<HTMLAnchorElement> {
+  children: React.ReactNode;
+}
 
-export function NavigationCardRoot({
+export function NavigationCard({
   children,
   href,
   className,
@@ -21,7 +25,7 @@ export function NavigationCardRoot({
       >
         {children}
         <div className="ml-auto">
-          <ArrowRightIcon className="text-indigo-500 transition-all duration-300 group-hover:translate-x-1" />
+          <ArrowRightIcon className="text-primary transition-all duration-300 group-hover:translate-x-1" />
         </div>
       </div>
     </Link>

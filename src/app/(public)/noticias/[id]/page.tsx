@@ -47,9 +47,10 @@ export default async function NoticiaPage({
           className="rounded-md object-cover"
           fill
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </picture>
 
-      <p className="text-justify text-base/7 text-gray-700">{news.content}</p>
+      <p className="text-justify text-base/7">{news.content}</p>
     </main>
   );
 }

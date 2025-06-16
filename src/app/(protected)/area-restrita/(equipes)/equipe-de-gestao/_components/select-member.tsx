@@ -1,6 +1,12 @@
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
-import * as Select from "@components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@components/ui/select";
 import { Plus } from "lucide-react";
 import { ITeamMember } from "types/team";
 
@@ -35,18 +41,18 @@ export function SelectMember({
 
   return (
     <header className="flex justify-between gap-2">
-      <Select.Root onValueChange={handleSelectMember}>
-        <Select.Trigger className="flex-1">
-          <Select.Value placeholder="Selecione o membro" />
-        </Select.Trigger>
-        <Select.Content>
+      <Select onValueChange={handleSelectMember}>
+        <SelectTrigger className="flex-1">
+          <SelectValue placeholder="Selecione o membro" />
+        </SelectTrigger>
+        <SelectContent>
           {users?.map((user) => (
-            <Select.Item key={user.id} value={user.id}>
+            <SelectItem key={user.id} value={user.id}>
               {user.first_name} {user.last_name}
-            </Select.Item>
+            </SelectItem>
           ))}
-        </Select.Content>
-      </Select.Root>
+        </SelectContent>
+      </Select>
 
       <Input
         type="text"

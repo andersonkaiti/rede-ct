@@ -1,6 +1,6 @@
 import { Button } from "@components/ui/button";
 import { Link } from "@components/ui/pagination";
-import * as Table from "@components/ui/table";
+import { TableCell, TableRow } from "@components/ui/table";
 import { formatDate } from "@utils/format-date";
 import { EditIcon } from "lucide-react";
 import { INews } from "types/news";
@@ -21,12 +21,12 @@ export function NewsRow({
   handleRemoveNews,
 }: INewsRowProps) {
   return (
-    <Table.Row>
-      <Table.Cell>
+    <TableRow>
+      <TableCell>
         {title.length > 30 ? title.slice(0, 30) + "..." : title}
-      </Table.Cell>
-      <Table.Cell>{formatDate(created_at)}</Table.Cell>
-      <Table.Cell className="space-x-7">
+      </TableCell>
+      <TableCell>{formatDate(created_at)}</TableCell>
+      <TableCell className="space-x-7">
         <Link href={`/area-restrita/noticias/editar/${id}`}>
           <Button variant="ghost" className="cursor-pointer text-xs">
             Editar
@@ -42,7 +42,7 @@ export function NewsRow({
             })
           }
         />
-      </Table.Cell>
-    </Table.Row>
+      </TableCell>
+    </TableRow>
   );
 }

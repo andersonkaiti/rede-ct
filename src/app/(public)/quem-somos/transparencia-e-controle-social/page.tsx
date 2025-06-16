@@ -1,16 +1,25 @@
 import { Copy } from "@components/copy";
-import { NavigationCard } from "@components/navigation-card";
-import { OrderedList } from "@components/ordered-list";
-import { Banknote, FileText, Link as LinkIcon, PiggyBank } from "lucide-react";
+import { Badge } from "@components/ui/badge";
+import { Card } from "@components/ui/card";
+import { NavigationCard } from "@components/ui/navigation-card";
+import {
+  Banknote,
+  FileText,
+  Link as LinkIcon,
+  PiggyBank,
+  Search,
+} from "lucide-react";
 
 export default function TransparenciaEControleSocial() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      {/* INTRODUÇÃO */}
       <section className="space-y-14">
-        <h1 className="title-1 text-center">
-          Transparência e Controle Social 🔍
-        </h1>
+        <div className="flex items-center gap-4">
+          <Badge className="bg-primary/10 text-primary rounded-full p-1">
+            <Search className="!size-10" />
+          </Badge>
+          <h1 className="title-2">Transparência e Controle Social</h1>
+        </div>
         <p className="text-justify">
           Esta seção é subdividida em 2 áreas que são estruturantes para o
           processo da legalidade, transparência e legitimação. Primeiro temos o
@@ -21,7 +30,7 @@ export default function TransparenciaEControleSocial() {
         </p>
       </section>
       <section className="space-y-8">
-        <div className="space-y-4 rounded-md p-8 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+        <Card className="space-y-4 rounded-md p-8 text-justify">
           <h2 className="title-2">
             CONTROLE SOCIAL - Comitê Legitimador da RedeCT
           </h2>
@@ -52,38 +61,51 @@ export default function TransparenciaEControleSocial() {
             A gestão do Comitê Legitimador é de responsabilidade da
             Vice-coordenadoria de Extensão Universitária e Cultura da RedeCT.
           </p>
-        </div>
+        </Card>
 
-        {/* RESPONSABILIDADES DO COMITÊ LEGITIMADOR */}
-        <div className="space-y-4 rounded-md p-8 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+        <Card className="space-y-4 rounded-md p-8 text-justify">
           <h2 className="title-3">
             O Comitê Legitimador tem como responsabilidades:
           </h2>
-          <OrderedList.Root>
-            <OrderedList.Item>
+          <ol className="space-y-4">
+            <li className="flex items-start">
+              <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+                1
+              </span>
               Referendar ou vetar a Carta Anual da RedeCT;
-            </OrderedList.Item>
-            <OrderedList.Item>
+            </li>
+            <li className="flex items-start">
+              <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+                2
+              </span>
               Vetar publicações científicas oriundas dos fluxos editorias da
               RedeCT a partir da observância de problemas éticos;
-            </OrderedList.Item>
-            <OrderedList.Item>
+            </li>
+            <li className="flex items-start">
+              <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+                3
+              </span>
               Levar à Coordenação Geral da RedeCT eventuais problemas ou
               questões de diversas natureza, solicitando providências;
-            </OrderedList.Item>
-            <OrderedList.Item>
+            </li>
+            <li className="flex items-start">
+              <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+                4
+              </span>
               Emitir recomendação de admissão ou veto ao ingresso de Membros
               Honorários na RedeCT;
-            </OrderedList.Item>
-            <OrderedList.Item>
+            </li>
+            <li className="flex items-start">
+              <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+                5
+              </span>
               Analisar e emitir parecer acerca de encaminhamentos feitos à esta
               instância pela Coordenação Geral da RedeCT.
-            </OrderedList.Item>
-          </OrderedList.Root>
-        </div>
+            </li>
+          </ol>
+        </Card>
       </section>
 
-      {/* COMITÊ LEGITIMADOR */}
       <section className="space-y-8">
         <h2 className="title-2">TRANSPARÊNCIA DE CONTAS</h2>
         <p className="text-justify">
@@ -112,11 +134,11 @@ export default function TransparenciaEControleSocial() {
         </p>
 
         <section>
-          <NavigationCard.Root href="/quem-somos/transparencia-e-controle-social/comite-legitimador">
+          <NavigationCard href="/quem-somos/transparencia-e-controle-social/comite-legitimador">
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-4">
-                <div className="rounded-full bg-indigo-500/20 p-2">
-                  <FileText className="text-indigo-500" />
+                <div className="bg-primary/20 rounded-full p-2">
+                  <FileText className="text-primary" />
                 </div>
                 <h2 className="title-3 font-bold">Comitê Legitimador</h2>
               </div>
@@ -126,7 +148,7 @@ export default function TransparenciaEControleSocial() {
                 tradicionais.
               </p>
             </div>
-          </NavigationCard.Root>
+          </NavigationCard>
         </section>
 
         <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
@@ -139,7 +161,7 @@ export default function TransparenciaEControleSocial() {
                 Extrato detalhado de lançamentos financeiros
               </h3>
             </div>
-            <div className="flex cursor-pointer items-center gap-2 font-bold text-indigo-500 hover:underline">
+            <div className="text-primary flex cursor-pointer items-center gap-2 font-bold hover:underline">
               <LinkIcon className="h-5 w-5" />
               <p>LINK DE ACESSO AO ARQUIVO</p>
             </div>
@@ -147,8 +169,8 @@ export default function TransparenciaEControleSocial() {
 
           <div className="flex flex-col items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
             <div className="flex items-center gap-4">
-              <div className="rounded-full bg-blue-500/20 p-2">
-                <Banknote className="text-blue-500" />
+              <div className="bg-primary/20 rounded-full p-2">
+                <Banknote className="text-primary" />
               </div>
               <h3 className="text-xl font-bold">Saldo em conta corrente</h3>
             </div>
@@ -161,8 +183,8 @@ export default function TransparenciaEControleSocial() {
 
           <div className="flex flex-col items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
             <div className="flex items-center gap-4">
-              <div className="rounded-full bg-indigo-500/20 p-2">
-                <PiggyBank className="text-indigo-500" />
+              <div className="bg-primary/20 rounded-full p-2">
+                <PiggyBank className="text-primary" />
               </div>
               <h3 className="text-xl font-bold">Saldo total da RedeCT</h3>
             </div>
@@ -207,20 +229,25 @@ export default function TransparenciaEControleSocial() {
         </section>
       </section>
 
-      {/* OBSERVAÇÕES */}
       <section className="space-y-8">
         <h2 className="title-2">Observações</h2>
-        <OrderedList.Root>
-          <OrderedList.Item className="text-justify">
+        <ol className="space-y-4">
+          <li className="flex items-start">
+            <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+              1
+            </span>
             O arquivo do extrato detalhado será atualizado mensalmente.
-          </OrderedList.Item>
-          <OrderedList.Item className="text-justify">
+          </li>
+          <li className="flex items-start">
+            <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+              2
+            </span>
             Em breve, a RedeCT contará com conta corrente de pessoa jurídica
             vinculada ao CNPJ do Instituto de Pesquisas Amazônicas e de Povos
             Tradicionais, mas para resolver esta questão de imediato foi criada
             uma conta corrente conjunta entre 2 Pesquisadores Filiados à RedeCT.
-          </OrderedList.Item>
-        </OrderedList.Root>
+          </li>
+        </ol>
       </section>
     </main>
   );

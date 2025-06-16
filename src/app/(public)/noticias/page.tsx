@@ -5,7 +5,6 @@ import { getNews } from "@services/news/news";
 import { INews } from "types/news";
 
 import { Noticia } from "./_components/noticia";
-// import { PaginationContainer } from "./_components/pagination";
 
 export default async function Noticias() {
   const news = await getNews();
@@ -29,8 +28,6 @@ export default async function Noticias() {
           </div>
         )}
       </div>
-
-      {/* {news.length > 0 && <PaginationContainer />} */}
     </main>
   );
 }

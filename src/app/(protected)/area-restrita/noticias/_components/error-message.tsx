@@ -1,5 +1,5 @@
 import { State } from "@actions/news/state";
-import * as Alert from "@components/ui/alert";
+import { Alert, AlertDescription } from "@components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
 interface ErrorMessageProps {
@@ -12,10 +12,10 @@ export function ErrorMessage({ state, inputName }: ErrorMessageProps) {
 
   return (
     hasErrors && (
-      <Alert.Root variant="destructive" className="border-red-500 p-2">
+      <Alert variant="destructive" className="border-red-500 p-2">
         <AlertCircle className="size-4" />
-        <Alert.Description>{state?.errors[inputName]}</Alert.Description>
-      </Alert.Root>
+        <AlertDescription>{state?.errors[inputName]}</AlertDescription>
+      </Alert>
     )
   );
 }

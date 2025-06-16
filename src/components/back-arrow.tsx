@@ -3,18 +3,21 @@
 import { ArrowLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+import { Button } from "./ui/button";
+
 export function BackArrow() {
   const router = useRouter();
 
   return (
-    <div
-      className="group -mt-10 flex cursor-pointer items-center gap-2"
+    <Button
+      className="group flex w-fit cursor-pointer items-center gap-4 xl:-mt-10"
+      variant="ghost"
       onClick={() => router.back()}
     >
-      <ArrowLeftIcon className="h-5 w-5 transition-all duration-300 group-hover:text-indigo-500" />
-      <p className="text-sm font-medium transition-all duration-300 group-hover:text-indigo-500">
+      <ArrowLeftIcon className="h-5 w-5 transition-all duration-300" />
+      <div className="text-sm font-medium transition-all duration-300">
         Voltar
-      </p>
-    </div>
+      </div>
+    </Button>
   );
 }

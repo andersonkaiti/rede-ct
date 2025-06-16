@@ -1,5 +1,12 @@
 import { Button } from "@components/ui/button";
-import * as Table from "@components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@components/ui/table";
 import { Trash } from "lucide-react";
 import { ITeamMember } from "types/team";
 
@@ -13,24 +20,24 @@ export function TeamMembersTable({
   handleRemoveMember,
 }: ITeamMembersTableProps) {
   return (
-    <Table.Root>
-      <Table.Header>
-        <Table.Row>
-          <Table.Head>Nome</Table.Head>
-          <Table.Head>Cargo</Table.Head>
-          <Table.Head>ID</Table.Head>
-          <Table.Head>Ações</Table.Head>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Nome</TableHead>
+          <TableHead>Cargo</TableHead>
+          <TableHead>ID</TableHead>
+          <TableHead>Ações</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {teamMembers?.map((member) => (
-          <Table.Row key={`${member.user_id}-${member.role}`}>
-            <Table.Cell>
+          <TableRow key={`${member.user_id}-${member.role}`}>
+            <TableCell>
               {member.user?.first_name} {member.user?.last_name}
-            </Table.Cell>
-            <Table.Cell>{member.role}</Table.Cell>
-            <Table.Cell>{member.id}</Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>{member.role}</TableCell>
+            <TableCell>{member.id}</TableCell>
+            <TableCell>
               <Button
                 type="button"
                 onClick={() => handleRemoveMember(member.user_id)}
@@ -39,10 +46,10 @@ export function TeamMembersTable({
                 <Trash />
                 Remover
               </Button>
-            </Table.Cell>
-          </Table.Row>
+            </TableCell>
+          </TableRow>
         ))}
-      </Table.Body>
-    </Table.Root>
+      </TableBody>
+    </Table>
   );
 }

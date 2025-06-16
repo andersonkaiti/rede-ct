@@ -1,8 +1,17 @@
 import { Button } from "@components/ui/button";
-import * as Dialog from "@components/ui/dialog";
+import {
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@components/ui/dialog";
 import { Input } from "@components/ui/input";
 import { Label } from "@components/ui/label";
-import * as Container from "@components/ui/page-container";
+import {
+  PageForm,
+  PageFormContent,
+  PageFormContentField,
+} from "@components/ui/page-container";
 import { Textarea } from "@components/ui/textarea";
 import { Loader2 } from "lucide-react";
 import { ITeamMember } from "types/team";
@@ -32,15 +41,15 @@ export function UpdateMemberForm({
   const hasErrors = state && "errors" in state;
 
   return (
-    <Dialog.Content className="max-h-[100vh-2rem] space-y-8 overflow-y-auto">
-      <Dialog.Header>
-        <Dialog.Title>Selecione o membro da equipe</Dialog.Title>
-      </Dialog.Header>
+    <DialogContent className="max-h-[100vh-2rem] space-y-8 overflow-y-auto">
+      <DialogHeader>
+        <DialogTitle>Selecione o membro da equipe</DialogTitle>
+      </DialogHeader>
 
-      <Dialog.Content>
-        <Container.PageForm action={formAction}>
-          <Container.PageFormContent>
-            <Container.PageFormContentField>
+      <DialogContent>
+        <PageForm action={formAction}>
+          <PageFormContent>
+            <PageFormContentField>
               <Label>{member ? "Membro" : "Usuários"}</Label>
 
               <SelectMember user_id={member?.user_id} />
@@ -48,9 +57,9 @@ export function UpdateMemberForm({
               {hasErrors && state.errors.user_id && (
                 <ErrorMessage state={state} inputName="user_id" />
               )}
-            </Container.PageFormContentField>
+            </PageFormContentField>
 
-            <Container.PageFormContentField>
+            <PageFormContentField>
               <Label>Cargo</Label>
 
               <Input
@@ -62,9 +71,9 @@ export function UpdateMemberForm({
               {hasErrors && state.errors.role && (
                 <ErrorMessage state={state} inputName="role" />
               )}
-            </Container.PageFormContentField>
+            </PageFormContentField>
 
-            <Container.PageFormContentField>
+            <PageFormContentField>
               <Label>Descrição</Label>
 
               <Textarea
@@ -76,21 +85,18 @@ export function UpdateMemberForm({
               {hasErrors && state.errors.description && (
                 <ErrorMessage state={state} inputName="description" />
               )}
-            </Container.PageFormContentField>
-          </Container.PageFormContent>
+            </PageFormContentField>
+          </PageFormContent>
 
-          <Dialog.Footer>
-            <Dialog.Close asChild>
-              <Button variant="outline">Cancelar</Button>
-            </Dialog.Close>
+          <DialogFooter>
             <Button type="submit">
               {isLoading && <Loader2 className="size-4 animate-spin" />}
 
               {member ? "Atualizar membro" : "Cadastrar membro"}
             </Button>
-          </Dialog.Footer>
-        </Container.PageForm>
-      </Dialog.Content>
-    </Dialog.Content>
+          </DialogFooter>
+        </PageForm>
+      </DialogContent>
+    </DialogContent>
   );
 }

@@ -1,7 +1,16 @@
 "use client";
 
 import { Button } from "@components/ui/button";
-import * as Dialog from "@components/ui/dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@components/ui/dialog";
 import { Trash } from "lucide-react";
 
 export interface IDeleteDialogProps {
@@ -10,26 +19,26 @@ export interface IDeleteDialogProps {
 
 export function DeleteDialog({ onDelete }: IDeleteDialogProps) {
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
+    <Dialog>
+      <DialogTrigger asChild>
         <Button variant="ghost" className="cursor-pointer text-xs">
           Excluir
           <Trash />
         </Button>
-      </Dialog.Trigger>
-      <Dialog.Content>
-        <Dialog.Header>
-          <Dialog.Title>Excluir notícia</Dialog.Title>
-          <Dialog.Description>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Excluir notícia</DialogTitle>
+          <DialogDescription>
             Tem certeza que deseja excluir a notícia?
-          </Dialog.Description>
-        </Dialog.Header>
-        <Dialog.Footer>
-          <Dialog.Close asChild>
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
             <Button variant="ghost" className="cursor-pointer">
               Cancelar
             </Button>
-          </Dialog.Close>
+          </DialogClose>
           <Button
             variant="default"
             className="cursor-pointer"
@@ -37,8 +46,8 @@ export function DeleteDialog({ onDelete }: IDeleteDialogProps) {
           >
             Excluir
           </Button>
-        </Dialog.Footer>
-      </Dialog.Content>
-    </Dialog.Root>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

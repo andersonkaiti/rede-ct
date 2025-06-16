@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { cn } from "@/utils/cn";
 
-function Root({
+function Tabs({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Root>) {
@@ -18,7 +18,7 @@ function Root({
   );
 }
 
-function List({
+function TabsList({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.List>) {
@@ -34,7 +34,7 @@ function List({
   );
 }
 
-function Trigger({
+function TabsTrigger({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
@@ -50,7 +50,7 @@ function Trigger({
   );
 }
 
-function Content({
+function TabsContent({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Content>) {
@@ -63,4 +63,4 @@ function Content({
   );
 }
 
-export { Content, List, Root, Trigger };
+export { Tabs, TabsContent, TabsList, TabsTrigger };

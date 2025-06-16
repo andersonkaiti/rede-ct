@@ -1,5 +1,11 @@
 import { Input } from "@components/ui/input";
-import * as Container from "@components/ui/page-container";
+import {
+  PageContainer,
+  PageHeader,
+  PageHeaderContent,
+  PageMain,
+  PageTitle,
+} from "@components/ui/page-container";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
@@ -12,21 +18,21 @@ const DynamicCertificados = dynamic(() =>
 
 export default function Certificados() {
   return (
-    <Container.PageContainer>
-      <Container.PageHeader>
-        <Container.PageHeaderContent>
-          <Container.PageTitle>Certificados</Container.PageTitle>
-        </Container.PageHeaderContent>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Certificados</PageTitle>
+        </PageHeaderContent>
         <CreateButton href="/area-restrita/certificados/cadastrar">
           Cadastrar certificado
         </CreateButton>
-      </Container.PageHeader>
+      </PageHeader>
       <Input placeholder="Buscar" className="w-full sm:w-fit" />
-      <Container.PageMain>
+      <PageMain>
         <Suspense fallback={<LoadingSkeleton />}>
           <DynamicCertificados />
         </Suspense>
-      </Container.PageMain>
-    </Container.PageContainer>
+      </PageMain>
+    </PageContainer>
   );
 }

@@ -3,8 +3,8 @@ import { Building } from "@components/building";
 export default function SeloDeQualidadeEmExtensaoUniversitaria() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <header className="text-center">
-        <h1 className="title-1">Selo de Qualidade em Extensão Universitária</h1>
+      <header className="space-y-8">
+        <h1 className="title-2">Selo de Qualidade em Extensão Universitária</h1>
       </header>
 
       <div className="bg-white">

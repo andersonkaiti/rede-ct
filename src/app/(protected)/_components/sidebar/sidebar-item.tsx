@@ -1,5 +1,15 @@
-import * as Collapsible from "@components/ui/collapsible";
-import * as Sidebar from "@components/ui/sidebar";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@components/ui/collapsible";
+import {
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+} from "@components/ui/sidebar";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { NavigationLink } from "types/navigation-link";
@@ -11,34 +21,34 @@ export function SidebarItem({
   children,
 }: NavigationLink) {
   return (
-    <Sidebar.MenuItem>
+    <SidebarMenuItem>
       {!children ? (
-        <Sidebar.MenuButton className="flex gap-2 hover:bg-[#ebebeb]" asChild>
+        <SidebarMenuButton className="flex gap-2 hover:bg-[#ebebeb]" asChild>
           <Link href={path || ""}>
             {Icon && <Icon />}
             {label}
           </Link>
-        </Sidebar.MenuButton>
+        </SidebarMenuButton>
       ) : (
-        <Collapsible.Root defaultOpen className="group/collapsible">
-          <Collapsible.Trigger
+        <Collapsible defaultOpen className="group/collapsible">
+          <CollapsibleTrigger
             className="flex w-full items-center gap-2"
             asChild
           >
-            <Sidebar.MenuButton className="flex w-full cursor-pointer items-center justify-between gap-2 hover:bg-[#ebebeb]">
+            <SidebarMenuButton className="flex w-full cursor-pointer items-center justify-between gap-2 hover:bg-[#ebebeb]">
               <div className="flex items-center gap-2">
                 {Icon && <Icon className="h-4 w-4" />}
                 {label}
               </div>
               <ChevronRight className="transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-            </Sidebar.MenuButton>
-          </Collapsible.Trigger>
+            </SidebarMenuButton>
+          </CollapsibleTrigger>
 
-          <Collapsible.Content>
-            <Sidebar.MenuSub>
+          <CollapsibleContent>
+            <SidebarMenuSub>
               {children.map((child: NavigationLink, index: number) => (
-                <Sidebar.MenuSubItem key={index}>
-                  <Sidebar.MenuSubButton
+                <SidebarMenuSubItem key={index}>
+                  <SidebarMenuSubButton
                     className="flex gap-2 hover:bg-[#ebebeb]"
                     asChild
                   >
@@ -46,13 +56,13 @@ export function SidebarItem({
                       {child.icon && <child.icon />}
                       {child.label}
                     </Link>
-                  </Sidebar.MenuSubButton>
-                </Sidebar.MenuSubItem>
+                  </SidebarMenuSubButton>
+                </SidebarMenuSubItem>
               ))}
-            </Sidebar.MenuSub>
-          </Collapsible.Content>
-        </Collapsible.Root>
+            </SidebarMenuSub>
+          </CollapsibleContent>
+        </Collapsible>
       )}
-    </Sidebar.MenuItem>
+    </SidebarMenuItem>
   );
 }

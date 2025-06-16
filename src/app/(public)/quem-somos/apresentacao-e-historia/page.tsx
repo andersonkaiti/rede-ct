@@ -1,4 +1,5 @@
-import { NavigationCard } from "@components/navigation-card";
+import { Badge } from "@components/ui/badge";
+import { RedNavigationCard } from "@components/ui/red-navigation-card";
 import { Timeline } from "@components/ui/timeline";
 import {
   BookOpen,
@@ -17,20 +18,22 @@ export default async function ApresentacaoEHistoria() {
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <section className="space-y-7">
+      <section className="space-y-2">
         <div className="flex items-center justify-center gap-4">
-          <History className="h-8 w-8 text-indigo-500" />
-          <h1 className="title-1 text-center">História da RedeCT</h1>
+          <Badge className="bg-primary/10 text-primary rounded-full p-1">
+            <History className="!size-10" />
+          </Badge>
+          <h1 className="title-2 text-center">História da RedeCT</h1>
         </div>
-        <h3 className="title-3 text-center text-gray-500">
-          (desde 02/09/2002)
-        </h3>
+        <h3 className="title-3 text-primary text-center">desde 02/09/2002</h3>
       </section>
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Globe className="h-6 w-6 text-indigo-500" />
-          <h2 className="title-2">Sobre a RedeCT</h2>
+          <Badge className="bg-primary/10 text-primary p-1">
+            <Globe className="!size-7" />
+          </Badge>
+          <h2 className="title-3">Sobre a RedeCT</h2>
         </div>
         <p className="text-justify">
           A Rede Internacional de Pesquisadores sobre Povos Originários e
@@ -48,8 +51,10 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Landmark className="h-6 w-6 text-indigo-500" />
-          <h2 className="title-2">História</h2>
+          <Badge className="bg-primary/10 text-primary p-1">
+            <Landmark className="!size-7" />
+          </Badge>
+          <h2 className="title-3">História</h2>
         </div>
         <div className="space-y-7">
           <p className="text-justify">
@@ -77,8 +82,10 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Users className="h-6 w-6 text-indigo-500" />
-          <h2 className="title-2">Quem são os Povos Tradicionais?</h2>
+          <Badge className="bg-primary/10 text-primary p-1">
+            <Users className="!size-7" />
+          </Badge>
+          <h2 className="title-3">Quem são os Povos Tradicionais?</h2>
         </div>
         <div className="space-y-7">
           <p className="text-justify">
@@ -102,8 +109,10 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <BookOpen className="h-6 w-6 text-indigo-500" />
-          <h2 className="title-2">Publicações</h2>
+          <Badge className="bg-primary/10 text-primary p-1">
+            <BookOpen className="!size-7" />
+          </Badge>
+          <h2 className="title-3">Publicações</h2>
         </div>
         <div className="space-y-7">
           <p className="text-justify">
@@ -119,8 +128,10 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <ImageIcon className="h-6 w-6 text-indigo-500" />
-          <h2 className="title-2">Imagem, identidade e logomarca da RedeCT</h2>
+          <Badge className="bg-primary/10 text-primary p-1">
+            <ImageIcon className="!size-7" />
+          </Badge>
+          <h2 className="title-3">Imagem, identidade e logomarca da RedeCT</h2>
         </div>
         <div className="space-y-7">
           <p className="text-justify">
@@ -162,8 +173,10 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <History className="h-6 w-6 text-indigo-500" />
-          <h2 className="title-2">Linha do tempo da RedeCT</h2>
+          <Badge className="bg-primary/10 text-primary p-1">
+            <History className="!size-7" />
+          </Badge>
+          <h2 className="title-3">Linha do tempo da RedeCT</h2>
         </div>
         <div className="relative w-full overflow-clip">
           <Timeline data={timelineData} />
@@ -171,12 +184,12 @@ export default async function ApresentacaoEHistoria() {
       </section>
 
       <section className="space-y-14">
-        <NavigationCard.BlueRoot href="/quem-somos/apresentacao-e-historia/filiacao">
+        <RedNavigationCard href="/quem-somos/apresentacao-e-historia/filiacao">
           <h2 className="title-3 flex items-center gap-2">
             <Users />
             Como se filiar à RedeCT?
           </h2>
-        </NavigationCard.BlueRoot>
+        </RedNavigationCard>
       </section>
     </main>
   );

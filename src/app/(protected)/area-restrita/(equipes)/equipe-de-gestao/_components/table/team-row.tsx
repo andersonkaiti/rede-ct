@@ -1,5 +1,5 @@
 import { Button } from "@components/ui/button";
-import * as Table from "@components/ui/table";
+import { TableCell, TableRow } from "@components/ui/table";
 import { EditIcon } from "lucide-react";
 import Link from "next/link";
 import { ITeam } from "types/team";
@@ -13,9 +13,9 @@ export interface ITeamRowProps {
 
 export function TeamRow({ team, handleRemoveTeam }: ITeamRowProps) {
   return (
-    <Table.Row key={team.id}>
-      <Table.Cell>{team.name}</Table.Cell>
-      <Table.Cell>
+    <TableRow key={team.id}>
+      <TableCell>{team.name}</TableCell>
+      <TableCell>
         <Link href={`/area-restrita/equipe-de-gestao/editar/${team.id}`}>
           <Button variant="ghost" className="cursor-pointer">
             <EditIcon className="size-4" />
@@ -23,7 +23,7 @@ export function TeamRow({ team, handleRemoveTeam }: ITeamRowProps) {
           </Button>
         </Link>
         <DeleteDialog onDelete={() => handleRemoveTeam(team.id)} />
-      </Table.Cell>
-    </Table.Row>
+      </TableCell>
+    </TableRow>
   );
 }

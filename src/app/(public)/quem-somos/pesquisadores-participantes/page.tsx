@@ -1,15 +1,14 @@
-import { NavigationCard } from "@components/navigation-card";
-import { OrderedList } from "@components/ordered-list";
+import { ListNumber } from "@components/ui/list-number";
+import { NavigationCard } from "@components/ui/navigation-card";
 import { GraduationCap, Heart, Users } from "lucide-react";
 import Link from "next/link";
 
 export default async function PesquisadoresParticipantes() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      {/* Pesquisadores */}
-      <h1 className="title-1 text-center">Pesquisadores da RedeCT</h1>
+      <h1 className="title-2">Pesquisadores da RedeCT</h1>
       <section className="space-y-8">
-        <h2 className="title-2">
+        <h2 className="title-3">
           CATEGORIAS DE PESQUISADORES FILIADOS, VALOR DE ANUIDADE E PESO DO VOTO
         </h2>
         <p className="text-justify">
@@ -18,7 +17,7 @@ export default async function PesquisadoresParticipantes() {
           modo de ingresso, conforme cláusulas específicas constantes do
           Regimento Interno da Rede:
         </p>
-        <div className="space-y-6 rounded-md bg-gradient-to-br from-indigo-500 via-indigo-600 to-indigo-700 p-6 text-white md:p-10">
+        <div className="from-primary space-y-6 rounded-md bg-gradient-to-br to-red-700 p-6 text-white md:p-10">
           <h2 className="title-3 flex items-center gap-2 font-bold">
             <GraduationCap /> Tipos de pesquisadores
           </h2>
@@ -79,12 +78,11 @@ export default async function PesquisadoresParticipantes() {
         </p>
       </section>
 
-      {/* Cards */}
       <section className="flex flex-col gap-8 md:flex-row">
-        <NavigationCard.Root href="/quem-somos/pesquisadores-participantes/pesquisadores">
+        <NavigationCard href="/quem-somos/pesquisadores-participantes/pesquisadores">
           <div className="flex flex-col gap-4">
             <h2 className="title-3 flex items-center gap-2 font-bold">
-              <Users className="text-indigo-500" />
+              <Users className="text-primary" />
               Pesquisadores Participantes
             </h2>
             <p>
@@ -93,11 +91,11 @@ export default async function PesquisadoresParticipantes() {
               tradicionais.
             </p>
           </div>
-        </NavigationCard.Root>
-        <NavigationCard.Root href="/quem-somos/pesquisadores-participantes/in-memorian">
+        </NavigationCard>
+        <NavigationCard href="/quem-somos/pesquisadores-participantes/in-memorian">
           <div className="flex flex-col gap-4">
             <h2 className="title-3 flex items-center gap-2 font-bold">
-              <Heart className="text-indigo-500" /> Galeria in memorian
+              <Heart className="text-primary" /> Galeria in memorian
             </h2>
             <p>
               Homenageamos aqueles que deixaram sua contribuição e legado junto
@@ -105,40 +103,43 @@ export default async function PesquisadoresParticipantes() {
               tradicionais.
             </p>
           </div>
-        </NavigationCard.Root>
+        </NavigationCard>
       </section>
 
-      {/* COMO SE FILIAR À REDECT? */}
       <section className="space-y-8">
-        <h2 className="title-2">COMO SE FILIAR À REDECT?</h2>
-        <OrderedList.Root>
-          <OrderedList.Item>
+        <h2 className="title-3">COMO SE FILIAR À REDECT?</h2>
+        <ol className="space-y-4">
+          <li className="flex items-start">
+            <ListNumber>1</ListNumber>
             Conheça a RedeCT, sua missão, seus objetivos e o seu Regimento
             Interno;
-          </OrderedList.Item>
-          <OrderedList.Item>
+          </li>
+          <li className="flex items-start">
+            <ListNumber>2</ListNumber>
             Preencha o formulário de pedido de filiação pelo link 
             <Link
               href="https://forms.gle/Mnwrmq3NCC2QmQcy5"
               target="_blank"
-              className="text-indigo-500 hover:underline"
+              className="text-primary hover:underline"
             >
               https://forms.gle/Mnwrmq3NCC2QmQcy5
             </Link>
             ;
-          </OrderedList.Item>
-          <OrderedList.Item>
+          </li>
+          <li className="flex items-start">
+            <ListNumber>3</ListNumber>
             Realizar o pagamento de sua 1ª anuidade (referente ao ano de 2025 -
             de acordo com sua classificação de Pesquisador Filiado). Pela chave
             pix da231105-2947-4343-9214-064b15e45313 (Alexandre de Castro
             Campos).
-          </OrderedList.Item>
-          <OrderedList.Item>
+          </li>
+          <li className="flex items-start">
+            <ListNumber>4</ListNumber>
             Envie os comprovantes de pagamentos para o e-mail 
-            <span className="text-indigo-500">filiados@redect.org</span>;
-          </OrderedList.Item>
-        </OrderedList.Root>
-        <aside className="rounded-md bg-yellow-200/40 p-6 break-all">
+            <span className="text-primary">filiados@redect.org</span>;
+          </li>
+        </ol>
+        <aside className="rounded-md border border-yellow-200/40 bg-yellow-200/40 p-6 break-all">
           <span className="font-bold text-black">⚠️ Atenção:</span> SUGERIMOS
           que você faça primeiro o pagamento de sua inscrição no COLÓQUIO
           INTERN. DA REDECT 2025 (VI Congresso Científico Internacional sobre
@@ -146,7 +147,7 @@ export default async function PesquisadoresParticipantes() {
           <Link
             href="https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/"
             target="_blank"
-            className="text-indigo-500 hover:underline"
+            className="text-primary hover:underline"
           >
             https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/
           </Link>

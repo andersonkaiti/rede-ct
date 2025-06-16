@@ -1,20 +1,25 @@
 import { Input } from "@components/ui/input";
-import * as Container from "@components/ui/page-container";
+import {
+  PageContainer,
+  PageHeader,
+  PageMain,
+  PageTitle,
+} from "@components/ui/page-container";
 
 import { CreateNewsButton } from "./_components/create-news-button";
 import { NoticiasTable } from "./_components/table/table";
 
 export default function Noticias() {
   return (
-    <Container.PageContainer>
-      <Container.PageHeader>
-        <Container.PageTitle>Notícias</Container.PageTitle>
+    <PageContainer>
+      <PageHeader>
+        <PageTitle>Notícias</PageTitle>
         <CreateNewsButton />
-      </Container.PageHeader>
+      </PageHeader>
       <Input placeholder="Pesquisar" className="w-full sm:w-fit" />
-      <Container.PageMain>
+      <PageMain>
         <NoticiasTable />
-      </Container.PageMain>
-    </Container.PageContainer>
+      </PageMain>
+    </PageContainer>
   );
 }

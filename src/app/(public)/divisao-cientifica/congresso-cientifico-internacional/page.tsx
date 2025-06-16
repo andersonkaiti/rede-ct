@@ -1,4 +1,4 @@
-import { NavigationCard } from "@components/navigation-card";
+import { RedNavigationCard } from "@components/ui/red-navigation-card";
 import { getInternationalScientificCongress } from "@services/international-scientific-congress";
 import { Newspaper } from "lucide-react";
 import { Fragment } from "react";
@@ -23,10 +23,10 @@ export default async function CongressoCientificoInternacional() {
               <section>
                 <div className="container mx-auto px-4">
                   <div className="mx-auto max-w-4xl text-center">
-                    <h2 className="mb-4 text-3xl font-bold text-gray-900">
+                    <h2 className="mb-4 text-3xl font-bold">
                       Galeria de Fotos
                     </h2>
-                    <p className="text-lg text-gray-600">
+                    <p className="text-primary text-lg">
                       Registros marcantes do IV Congresso Científico
                       Internacional da RedeCT
                     </p>
@@ -44,12 +44,12 @@ export default async function CongressoCientificoInternacional() {
         ))}
       </div>
 
-      <NavigationCard.BlueRoot href="/divisão-cientifica/noticias">
+      <RedNavigationCard href="/divisão-cientifica/noticias">
         <div className="flex items-center gap-2">
           <Newspaper />
           <span>Ver Mais Notícias</span>
         </div>
-      </NavigationCard.BlueRoot>
+      </RedNavigationCard>
     </main>
   );
 }

@@ -1,5 +1,14 @@
 import { Button } from "@components/ui/button";
-import * as Dialog from "@components/ui/dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@components/ui/dialog";
 import { TrashIcon } from "lucide-react";
 import { ITeamMember } from "types/team";
 
@@ -10,31 +19,31 @@ interface ITableRowProps {
 
 export function DeleteDialog({ member, handleRemoveMember }: ITableRowProps) {
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
+    <Dialog>
+      <DialogTrigger asChild>
         <Button size="icon" variant="ghost" className="w-fit p-2">
           <TrashIcon className="h-4 w-4" />
           Remover
         </Button>
-      </Dialog.Trigger>
-      <Dialog.Content>
-        <Dialog.Header>
-          <Dialog.Title>Tem certeza que deseja remover o membro?</Dialog.Title>
-          <Dialog.Description>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Tem certeza que deseja remover o membro?</DialogTitle>
+          <DialogDescription>
             Essa ação não pode ser desfeita.
-          </Dialog.Description>
-        </Dialog.Header>
-        <Dialog.Footer>
-          <Dialog.Close asChild>
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
             <Button variant="outline">Cancelar</Button>
-          </Dialog.Close>
-          <Dialog.Close asChild>
+          </DialogClose>
+          <DialogClose asChild>
             <Button onClick={() => handleRemoveMember(member.id as string)}>
               Remover
             </Button>
-          </Dialog.Close>
-        </Dialog.Footer>
-      </Dialog.Content>
-    </Dialog.Root>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

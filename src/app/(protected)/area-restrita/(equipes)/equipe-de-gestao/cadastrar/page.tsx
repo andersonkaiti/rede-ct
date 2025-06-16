@@ -3,7 +3,15 @@
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
 import { Label } from "@components/ui/label";
-import * as Container from "@components/ui/page-container";
+import {
+  PageContainer,
+  PageForm,
+  PageFormContent,
+  PageFormContentField,
+  PageHeader,
+  PageMain,
+  PageTitle,
+} from "@components/ui/page-container";
 import { Loader2 } from "lucide-react";
 
 import { ErrorMessage } from "../../../noticias/_components/error-message";
@@ -26,22 +34,22 @@ export default function CadastrarEquipeDeGestao() {
   const hasErrors = state && "errors" in state;
 
   return (
-    <Container.PageContainer>
-      <Container.PageHeader>
-        <Container.PageTitle>Cadastrar Equipe</Container.PageTitle>
-      </Container.PageHeader>
-      <Container.PageMain>
-        <Container.PageForm action={formAction}>
-          <Container.PageFormContent>
-            <Container.PageFormContentField>
+    <PageContainer>
+      <PageHeader>
+        <PageTitle>Cadastrar Equipe</PageTitle>
+      </PageHeader>
+      <PageMain>
+        <PageForm action={formAction}>
+          <PageFormContent>
+            <PageFormContentField>
               <Label>Nome da equipe</Label>
               <Input name="name" placeholder="Nome" />
 
               {hasErrors && state.errors.name && (
                 <ErrorMessage state={state} inputName="name" />
               )}
-            </Container.PageFormContentField>
-            <Container.PageFormContentField>
+            </PageFormContentField>
+            <PageFormContentField>
               <Label>Membros cadastrados</Label>
 
               <SelectMember
@@ -58,15 +66,15 @@ export default function CadastrarEquipeDeGestao() {
               {hasErrors && state.errors.members && (
                 <ErrorMessage state={state} inputName="members" />
               )}
-            </Container.PageFormContentField>
-          </Container.PageFormContent>
+            </PageFormContentField>
+          </PageFormContent>
 
           <Button type="submit" className="cursor-pointer" disabled={isLoading}>
             {isLoading && <Loader2 className="size-4 animate-spin" />}
             Cadastrar equipe
           </Button>
-        </Container.PageForm>
-      </Container.PageMain>
-    </Container.PageContainer>
+        </PageForm>
+      </PageMain>
+    </PageContainer>
   );
 }

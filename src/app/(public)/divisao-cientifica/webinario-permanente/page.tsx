@@ -6,8 +6,8 @@ import { Webinars } from "./_components/webnars";
 export default function WebinarioPermanente() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <header className="space-y-8 text-center">
-        <h1 className="title-1">Webinário Permanente da RedeCT</h1>
+      <header className="space-y-8">
+        <h1 className="title-2">Webinário Permanente da RedeCT</h1>
         <p className="text-muted-foreground text-lg">
           O Webinário Permanente da RedeCT foi criado como espaço midiático de
           diálogo, apresentação e divulgação dos trabalhos (pesquisas, projetos,

@@ -1,15 +1,21 @@
 import { Copy } from "@components/copy";
+import { Badge } from "@components/ui/badge";
 import { Card } from "@components/ui/card";
 import { NavigationCard } from "@components/ui/navigation-card";
-import { FileText } from "lucide-react";
+import { FileText, Landmark } from "lucide-react";
 
 export default async function InstitutoDePesquisasAmazonicas() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <section className="space-y-14">
-        <h1 className="title-2">
-          Instituto de Pesquisas Amazônicas e de Povos Tradicionais
-        </h1>
+        <div className="flex items-center gap-4">
+          <Badge className="bg-primary/10 text-primary rounded-full p-1.5">
+            <Landmark className="!size-7" />
+          </Badge>
+          <h1 className="title-2">
+            Instituto de Pesquisas Amazônicas e de Povos Tradicionais
+          </h1>
+        </div>
         <p>
           Aqui você tem acesso às informações básicas e à equipe de gestão, além
           de conhecer a história, as gestões anteriores e os projetos já

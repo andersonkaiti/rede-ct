@@ -1,60 +1,120 @@
 import { Badge } from "@components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card";
 import { RedNavigationCard } from "@components/ui/red-navigation-card";
-import { Timeline } from "@components/ui/timeline";
+import { getTimelineRedeCT } from "@services/timeline-rede-ct";
 import {
   BookOpen,
+  Clock,
   Globe,
+  Heart,
   History,
-  Image as ImageIcon,
   Landmark,
+  MapPin,
   Users,
 } from "lucide-react";
-import Image from "next/image";
 
-import { getTimelineRedeCT } from "@/services/timeline-rede-ct";
+import { Timeline } from "./_components/timeline";
+
+const countries = [
+  "Argentina",
+  "Bolívia",
+  "Colômbia",
+  "Venezuela",
+  "Moçambique",
+  "Angola",
+  "Cabo Verde",
+  "Portugal",
+  "Itália",
+  "México",
+];
 
 export default async function ApresentacaoEHistoria() {
   const timelineData = await getTimelineRedeCT();
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <section className="space-y-2">
-        <div className="flex items-center justify-center gap-4">
-          <Badge className="bg-primary/10 text-primary rounded-full p-1">
-            <History className="!size-10" />
-          </Badge>
-          <h1 className="title-2 text-center">História da RedeCT</h1>
-        </div>
-        <h3 className="title-3 text-primary text-center">desde 02/09/2002</h3>
+      <section className="bg-primary flex flex-col items-center justify-center gap-8 rounded-md p-10 text-white">
+        <Badge className="rounded-full bg-white/20 p-1">
+          <Clock className="!size-10" />
+        </Badge>
+        <h1 className="title-2 text-center">História da RedeCT</h1>
+        <Badge className="w-full rounded-full border border-white/20 bg-white/20 px-4 py-1">
+          <p className="w-fit font-semibold">desde 02/09/2002</p>
+        </Badge>
       </section>
 
       <section className="space-y-14">
-        <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary p-1">
+        <h2 className="text-center text-3xl font-semibold">Sobre a RedeCT</h2>
+
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+          <Card className="shadow-xl">
+            <CardHeader className="flex items-center gap-2">
+              <Badge className="bg-primary/10 text-primary rounded-md p-1">
+                <Heart className="!size-7" />
+              </Badge>
+              <CardTitle className="text-2xl font-semibold">RedeCT</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-justify">
+                A Rede Internacional de Pesquisadores sobre Povos Originários e
+                Comunidades Tradicionais – RedeCT é uma articulação independente
+                e voluntária, caracterizada como REDE DE PESQUISADORES, que se
+                volta exclusivamente à cooperação para a promoção e o
+                fortalecimento do ensino, da pesquisa e da extensão
+                universitária sobre todos os temas que se relacionam às demandas
+                de povos originários e de comunidades tradicionais no Brasil
+                (país sede da RedeCT) e em outros países onde a Rede está
+                presente por meio de seus afiliados.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="shadow-xl">
+            <CardHeader className="flex items-center gap-2">
+              <Badge className="bg-primary/10 text-primary rounded-md p-1">
+                <Users className="!size-7" />
+              </Badge>
+              <CardTitle className="text-2xl font-semibold">
+                Quem são os Povos Tradicionais?
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-justify">
+                Reconhecemos como Povos Originários aqueles povos e comunidades
+                que habitavam as terras com modus vivendi comunitário antes do
+                processo de colonização. No Brasil, incluem todos os indígenas e
+                seus descendentes, independentemente de morarem nas aldeias ou
+                terras indígenas.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="flex items-center justify-center gap-4">
+          <Badge className="bg-primary/10 text-primary rounded-md p-1">
             <Globe className="!size-7" />
           </Badge>
-          <h2 className="title-3">Sobre a RedeCT</h2>
+          <h2 className="text-3xl font-semibold">Presença internacional</h2>
         </div>
-        <p className="text-justify">
-          A Rede Internacional de Pesquisadores sobre Povos Originários e
-          Comunidades Tradicionais – RedeCT é uma articulação independente e
-          voluntária, caracterizada como REDE DE PESQUISADORES, que se volta
-          exclusivamente à cooperação para a promoção e o fortalecimento do
-          ensino, da pesquisa e da extensão universitária sobre todos os temas
-          que se relacionam às demandas de povos originários e de comunidades
-          tradicionais no Brasil (país sede da RedeCT) e em outros países onde a
-          Rede está presente por meio de seus afiliados (entre eles Argentina,
-          Bolívia, Colômbia, Venezuela, Moçambique, Angola, Cabo Verde,
-          Portugal, Itália e México).
-        </p>
+        <div className="grid grid-cols-2 gap-2 text-sm md:grid-cols-4 lg:grid-cols-5">
+          {countries.map((country) => (
+            <Badge
+              key={country}
+              className="text-primary bg-primary/10 border-primary/20 flex w-full flex-col items-center gap-0.5 rounded-md border p-2 font-semibold"
+            >
+              <MapPin className="!size-4" />
+              {country}
+            </Badge>
+          ))}
+        </div>
       </section>
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary p-1">
+          <Badge className="bg-primary/10 text-primary rounded-md p-1">
             <Landmark className="!size-7" />
           </Badge>
-          <h2 className="title-3">História</h2>
+          <h2 className="text-3xl font-semibold">História</h2>
         </div>
         <div className="space-y-7">
           <p className="text-justify">
@@ -82,37 +142,10 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary p-1">
-            <Users className="!size-7" />
-          </Badge>
-          <h2 className="title-3">Quem são os Povos Tradicionais?</h2>
-        </div>
-        <div className="space-y-7">
-          <p className="text-justify">
-            De modo geral, os pesquisadores filiados da RedeCT, reconhecendo que
-            o processo de identificação de raízes ancestrais, culturais e de
-            conhecimentos tradicionais dos Povos Tradicionais ainda está em
-            curso, tomam (de maneira geral) os POVOS ORIGINÁRIOS como aqueles
-            povos e comunidades (inclusive seus descendentes) que habitavam, com
-            modus vivendi comunitário, as terras e territórios dos mais diversos
-            continentes do planeta antes do processo de colonização imposto por
-            sociedades orientadas pelo modo de produção capitalista.
-          </p>
-          <p className="text-justify">
-            Assim, de modo geral a RedeCT e seus pesquisadores filiados admitem
-            que no CASO BRASILEIRO, os Povos Originários são compostos por todos
-            os indígenas e seus descendentes, independentemente de morarem ou
-            não nas aldeias ou terras indígenas (demarcadas ou não pelo Estado).
-          </p>
-        </div>
-      </section>
-
-      <section className="space-y-14">
-        <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary p-1">
+          <Badge className="bg-primary/10 text-primary rounded-md p-1">
             <BookOpen className="!size-7" />
           </Badge>
-          <h2 className="title-3">Publicações</h2>
+          <h2 className="text-3xl font-semibold">Publicações</h2>
         </div>
         <div className="space-y-7">
           <p className="text-justify">
@@ -127,59 +160,16 @@ export default async function ApresentacaoEHistoria() {
       </section>
 
       <section className="space-y-14">
-        <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary p-1">
-            <ImageIcon className="!size-7" />
-          </Badge>
-          <h2 className="title-3">Imagem, identidade e logomarca da RedeCT</h2>
-        </div>
-        <div className="space-y-7">
-          <p className="text-justify">
-            A história e toda a trajetória da RedeCT fundamenta-se sobre a vida,
-            a natureza e as lutas dos povos tradicionais. Neste sentido a
-            produção gradativa de uma imagem produzida pelas pessoas envolvidas
-            nos diversos projetos da RedeCT e que se consolidasse em uma
-            identidade forte e robusta da Rede não poderia deixar de passar pela
-            pelos elementos terra, natureza e ser humano.
-          </p>
-          <div className="flex flex-col items-center justify-center gap-4 lg:flex-row">
-            <div className="relative w-1/2 items-center justify-center lg:flex-1">
-              <Image
-                src="/images/rede-ct-1.png"
-                alt="Logomarca antiga da RedeCT"
-                width={1000}
-                height={1000}
-              />
-            </div>
-            <div className="relative w-1/2 items-center justify-center lg:flex-1">
-              <Image
-                src="/images/rede-ct-2.png"
-                alt="Logomarca antiga da RedeCT"
-                width={1000}
-                height={1000}
-              />
-            </div>
-            <div className="relative w-1/2 items-center justify-center lg:flex-1">
-              <Image
-                src="/images/rede-ct-3.png"
-                alt="Logomarca antiga da RedeCT"
-                width={1000}
-                height={1000}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="space-y-14">
-        <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary p-1">
+        <div className="flex items-center justify-center gap-4">
+          <Badge className="bg-primary/10 text-primary rounded-full p-1">
             <History className="!size-7" />
           </Badge>
-          <h2 className="title-3">Linha do tempo da RedeCT</h2>
+          <h2 className="title-2">Linha do tempo da RedeCT</h2>
         </div>
-        <div className="relative w-full overflow-clip">
-          <Timeline data={timelineData} />
+        <div className="relative w-full space-y-7 sm:space-y-14">
+          {timelineData.map((item, index: number) => (
+            <Timeline key={index} item={item} />
+          ))}
         </div>
       </section>
 

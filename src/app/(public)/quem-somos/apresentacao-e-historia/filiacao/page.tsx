@@ -12,7 +12,9 @@ export default function Filiacao() {
           <Badge className="bg-primary/10 text-primary p-1">
             <FileText className="text-primary !size-10" />
           </Badge>
-          <h1 className="title-1 text-center">Como se filiar à RedeCT?</h1>
+          <h1 className="text-center text-3xl font-bold">
+            Como se filiar à RedeCT?
+          </h1>
         </div>
       </section>
 
@@ -21,7 +23,7 @@ export default function Filiacao() {
           <Badge className="bg-primary/10 text-primary p-1">
             <Building2 className="text-primary !size-7" />
           </Badge>
-          <h2 className="title-2">A RedeCT atual</h2>
+          <h2 className="text-2xl font-semibold">A RedeCT atual</h2>
         </div>
         <div className="space-y-7">
           <p className="text-justify">
@@ -58,7 +60,7 @@ export default function Filiacao() {
           <Badge className="bg-primary/10 text-primary p-1">
             <FileText className="text-primary !size-7" />
           </Badge>
-          <h2 className="title-2">Processo de Filiação</h2>
+          <h2 className="text-2xl font-semibold">Processo de Filiação</h2>
         </div>
         <div className="space-y-7">
           <ol className="space-y-4">
@@ -108,7 +110,9 @@ export default function Filiacao() {
           <Badge className="bg-primary/10 text-primary p-1">
             <Users className="text-primary !size-7" />
           </Badge>
-          <h2 className="title-2">Classificação dos Pesquisadores</h2>
+          <h2 className="text-2xl font-semibold">
+            Classificação dos Pesquisadores
+          </h2>
         </div>
         <div className="space-y-7">
           <p className="text-justify">

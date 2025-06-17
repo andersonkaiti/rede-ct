@@ -28,7 +28,5 @@ export const courses: ICourse[] = [
 ];
 
 export async function getCourses() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
   return courses;
 }

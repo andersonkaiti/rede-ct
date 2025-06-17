@@ -1,8 +1,12 @@
 import { UserCard, UserCardImage } from "@components/ui/user-card";
-import { IInMemorian } from "@services/in-memorian-researchers";
+import { IInMemoriam } from "@services/in-memoriam-researchers";
 import { Dot } from "lucide-react";
 
-export function InMemoriamCard({ member }: { member: IInMemorian }) {
+interface IInMemoriamCardProps {
+  member: IInMemoriam;
+}
+
+export function InMemoriamCard({ member }: IInMemoriamCardProps) {
   return (
     <UserCard>
       <UserCardImage src={member.image.src} alt={member.image.alt} />

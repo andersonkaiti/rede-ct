@@ -1,7 +1,6 @@
+import { cn } from "@utils/cn";
 import { ArrowRightIcon } from "lucide-react";
 import Link, { LinkProps } from "next/link";
-
-import { cn } from "@/utils/cn";
 
 interface INavigationCardProps
   extends LinkProps,

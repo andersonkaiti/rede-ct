@@ -1,5 +1,8 @@
 import * as Icons from "lucide-react";
-import { NavigationLink as NavigationLinkType } from "types/navigation-link";
+import {
+  NavigationLink,
+  NavigationLink as NavigationLinkType,
+} from "types/navigation-link";
 
 export const navigationLinks: NavigationLinkType[] = [
   {
@@ -40,25 +43,20 @@ export const navigationLinks: NavigationLinkType[] = [
         label: "Parceiros e Financiadores",
         icon: Icons.UsersRound,
       },
-      {
-        path: "/quem-somos/transparencia-e-controle-social",
-        label: "Transparência e Controle Social",
-        icon: Icons.Search,
-      },
-      {
-        path: "/quem-somos/instituto-de-pesquisas-amazonicas-e-de-povos-tradicionais",
-        label: "Instituto de Pesquisas Amazônicas e de Povos Tradicionais",
-        icon: Icons.Landmark,
-      },
     ],
   },
   {
     label: "Divisão Científica",
     children: [
       {
-        path: "/divisao-cientifica/congressos",
-        label: "Congressos",
+        path: "/divisao-cientifica/congresso-cientifico-internacional",
+        label: "Congresso Científico Internacional",
         icon: Icons.Globe,
+      },
+      {
+        path: "/divisao-cientifica/congressos-regionais",
+        label: "Congressos Regionais",
+        icon: Icons.Map,
       },
       {
         path: "/divisao-cientifica/webinario-permanente",
@@ -112,81 +110,36 @@ export const navigationLinks: NavigationLinkType[] = [
       },
     ],
   },
-
-  {
-    label: "Lojas e Oportunidades",
-    children: [
-      {
-        path: "/lojas-e-oportunidades/loja-da-redect",
-        label: "Loja da RedeCT",
-        icon: Icons.Store,
-      },
-      {
-        path: "/lojas-e-oportunidades/gt-de-indicadores-tradicionais",
-        label: "GT Indicadores de Origem Tradicional",
-        icon: Icons.BarChart2,
-      },
-      {
-        path: "/lojas-e-oportunidades/editais-e-oportunidades",
-        label: "Editais e Oportunidades",
-        icon: Icons.FilePlus,
-      },
-    ],
-  },
-  {
-    path: "/portfolio",
-    label: "Portfólio",
-    // children: [
-    //   {
-    //     path: "/portfolio/legislacoes-mapas",
-    //     label: "Legislações",
-    //     icon: Icons.ScrollText,
-    //   },
-    //   {
-    //     path: "/portfolio/legislacoes-mapas",
-    //     label: "Mapas",
-    //     icon: Icons.Map,
-    //   },
-    //   {
-    //     path: "/portfolio/povos-originarios",
-    //     label: "Povos Originários",
-    //     icon: Icons.Users,
-    //   },
-    //   {
-    //     path: "/portfolio/comunidades-tradicionais",
-    //     label: "Comunidades Tradicionais",
-    //     icon: Icons.UsersRound,
-    //   },
-    //   {
-    //     path: "/portfolio/grupos-pesquisa",
-    //     label: "Grupos de Pesquisa",
-    //     icon: Icons.Network,
-    //   },
-    //   {
-    //     path: "/portfolio/redes-e-coletivos",
-    //     label: "Redes e Coletivos",
-    //     icon: Icons.Network,
-    //   },
-    //   {
-    //     path: "/portfolio/museus-espacos",
-    //     label: "Museus e Espaços Museológicos",
-    //     icon: Icons.GalleryHorizontal,
-    //   },
-    //   {
-    //     path: "/portfolio/destaques-redect",
-    //     label: "Destaques RedeCT",
-    //     icon: Icons.Star,
-    //   },
-    //   {
-    //     path: "/portfolio/centro-de-referencia-unesp",
-    //     label: "Centro de Referência UNESP",
-    //     icon: Icons.Building,
-    //   },
-    // ],
-  },
   {
     path: "/noticias",
     label: "Notícias",
     icon: Icons.Newspaper,
   },
 ];
+
+export function getAllLinks() {
+  const links: NavigationLink[] = [];
+
+  navigationLinks.forEach((link) => {
+    if (link.path) {
+      links.push(link);
+    }
+
+    if (link.children) {
+      link.children.forEach((child) => {
+        if (child.path) {
+          links.push(child);
+        }
+      });
+    }
+  });
+
+  const middle = Math.ceil(links.length / 2);
+  const firstColumn = links.slice(0, middle);
+  const secondColumn = links.slice(middle);
+
+  return {
+    firstColumn,
+    secondColumn,
+  };
+}

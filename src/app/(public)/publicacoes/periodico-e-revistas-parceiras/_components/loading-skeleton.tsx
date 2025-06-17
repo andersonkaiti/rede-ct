@@ -12,9 +12,9 @@ export function LoadingSkeleton() {
           <div className="w-full space-y-4 p-6">
             <div className="h-7 w-full rounded-full bg-gray-300" />
             <div className="space-y-3">
-              <div className="h-7.5 w-full rounded-full bg-gray-300" />
-              <div className="h-7.5 w-full rounded-full bg-gray-300" />
-              <div className="h-7.5 w-2/3 rounded-full bg-gray-300" />
+              <div className="h-5.5 w-full rounded-full bg-gray-300" />
+              <div className="h-5.5 w-full rounded-full bg-gray-300" />
+              <div className="h-5.5 w-2/3 rounded-full bg-gray-300" />
             </div>
             <div className="h-9 w-full rounded-md bg-gray-300" />
           </div>

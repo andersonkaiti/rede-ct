@@ -8,28 +8,28 @@ export function LoadingSkeleton() {
         <div className="h-6.5 w-30 rounded-full bg-gray-200" />
         <div className="h-8 w-full rounded-full bg-gray-200" />
 
-        <div className="space-y-3.5">
+        <div className="space-y-5">
           <div className="flex items-center gap-2 p-2">
             <div className="size-9 rounded-md bg-gray-200" />
             <div className="space-y-1">
-              <div className="h-5 w-67.5 rounded-full bg-gray-200" />
-              <div className="h-5 w-26 rounded-full bg-gray-200" />
+              <div className="h-4 w-67.5 rounded-full bg-gray-200" />
+              <div className="h-4 w-26 rounded-full bg-gray-200" />
             </div>
           </div>
 
           <div className="flex items-center gap-2 p-2">
             <div className="size-9 rounded-md bg-gray-200" />
             <div className="space-y-1">
-              <div className="h-5 w-8.5 rounded-full bg-gray-200" />
-              <div className="h-5 w-40 rounded-full bg-gray-200" />
+              <div className="h-4 w-8.5 rounded-full bg-gray-200" />
+              <div className="h-4 w-40 rounded-full bg-gray-200" />
             </div>
           </div>
 
           <div className="flex items-center gap-2 p-2">
             <div className="size-9 rounded-md bg-gray-200" />
             <div className="space-y-1">
-              <div className="h-5 w-9.5 rounded-full bg-gray-200" />
-              <div className="h-5 w-31.5 rounded-full bg-gray-200" />
+              <div className="h-4 w-9.5 rounded-full bg-gray-200" />
+              <div className="h-4 w-31.5 rounded-full bg-gray-200" />
             </div>
           </div>
         </div>

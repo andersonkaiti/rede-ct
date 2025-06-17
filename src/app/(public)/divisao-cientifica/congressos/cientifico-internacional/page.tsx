@@ -1,6 +1,5 @@
-import { RedNavigationCard } from "@components/ui/red-navigation-card";
+import { BackArrow } from "@components/back-arrow";
 import { getInternationalScientificCongress } from "@services/international-scientific-congress";
-import { Newspaper } from "lucide-react";
 import { Fragment } from "react";
 import { ICongress } from "types/congress";
 
@@ -12,13 +11,13 @@ export default async function CongressoCientificoInternacional() {
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8">
-      <div className="space-y-16 sm:space-y-24">
+      <BackArrow />
+      <div className="space-y-7">
         {congresses.map((congress: ICongress, index: number) => (
           <Fragment key={index}>
             {index > 0 && <hr className="mx-auto w-1/2" />}
             <Congress congress={congress} index={index} />
 
-            {/* Galeria de Fotos */}
             {congress.gallery && (
               <section>
                 <div className="container mx-auto px-4">
@@ -43,13 +42,6 @@ export default async function CongressoCientificoInternacional() {
           </Fragment>
         ))}
       </div>
-
-      <RedNavigationCard href="/divisão-cientifica/noticias">
-        <div className="flex items-center gap-2">
-          <Newspaper />
-          <span>Ver Mais Notícias</span>
-        </div>
-      </RedNavigationCard>
     </main>
   );
 }

@@ -1,3 +1,4 @@
+import { Badge } from "@components/ui/badge";
 import { ListNumber } from "@components/ui/list-number";
 import { NavigationCard } from "@components/ui/navigation-card";
 import { GraduationCap, Heart, Users } from "lucide-react";
@@ -6,7 +7,12 @@ import Link from "next/link";
 export default async function PesquisadoresParticipantes() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <h1 className="title-2">Pesquisadores da RedeCT</h1>
+      <div className="flex items-center gap-4">
+        <Badge className="bg-primary/10 text-primary rounded-full p-1.5">
+          <GraduationCap className="!size-7" />
+        </Badge>
+        <h1 className="title-2">Pesquisadores da RedeCT</h1>
+      </div>
       <section className="space-y-8">
         <h2 className="title-3">
           CATEGORIAS DE PESQUISADORES FILIADOS, VALOR DE ANUIDADE E PESO DO VOTO
@@ -92,7 +98,7 @@ export default async function PesquisadoresParticipantes() {
             </p>
           </div>
         </NavigationCard>
-        <NavigationCard href="/quem-somos/pesquisadores-participantes/in-memorian">
+        <NavigationCard href="/quem-somos/pesquisadores-participantes/in-memoriam">
           <div className="flex flex-col gap-4">
             <h2 className="title-3 flex items-center gap-2 font-bold">
               <Heart className="text-primary" /> Galeria in memorian

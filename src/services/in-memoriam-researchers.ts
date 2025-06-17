@@ -2,7 +2,7 @@
 
 import "server-only";
 
-export interface IInMemorian {
+export interface IInMemoriam {
   name: string;
   birthday: string;
   death: string;
@@ -13,7 +13,7 @@ export interface IInMemorian {
   };
 }
 
-const inMemorianResearchers: IInMemorian[] = [
+const inMemoriamResearchers: IInMemoriam[] = [
   {
     name: "Prof. Dr. José Ronaldo Fassheber",
     birthday: "07/10/2023",
@@ -66,8 +66,6 @@ const inMemorianResearchers: IInMemorian[] = [
   },
 ];
 
-export async function getInMemorianResearchers() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  return inMemorianResearchers;
+export async function getInMemoriamResearchers() {
+  return inMemoriamResearchers;
 }

@@ -16,7 +16,7 @@ export default function TransparenciaEControleSocial() {
       <section className="space-y-14">
         <div className="flex items-center gap-4">
           <Badge className="bg-primary/10 text-primary rounded-full p-1">
-            <Search className="!size-10" />
+            <Search className="!size-7" />
           </Badge>
           <h1 className="title-2">Transparência e Controle Social</h1>
         </div>

@@ -8,10 +8,8 @@ import { MissaoValoresTabs } from "./_components/home/missao-valores-tabs";
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
       <HeroSection />
       <main className="mx-auto flex max-w-7xl flex-col justify-center gap-2 space-y-14 p-4 py-10 sm:gap-12.5 lg:p-25">
-        {/* Apresentação Section */}
         <section className="space-y-8">
           <h1 className="title-1 text-center">
             Rede Internacional de Pesquisadores sobre Povos Originários e
@@ -19,7 +17,7 @@ export default function Home() {
           </h1>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <div className="rounded-lg bg-white p-6 shadow-lg transition-all hover:shadow-xl">
-              <h3 className="mb-2 text-sm font-semibold text-indigo-600 uppercase">
+              <h3 className="text-primary mb-2 text-sm font-semibold uppercase">
                 English
               </h3>
               <p className="text-gray-700">
@@ -28,7 +26,7 @@ export default function Home() {
               </p>
             </div>
             <div className="rounded-lg bg-white p-6 shadow-lg transition-all hover:shadow-xl">
-              <h3 className="mb-2 text-sm font-semibold text-indigo-600 uppercase">
+              <h3 className="text-primary mb-2 text-sm font-semibold uppercase">
                 Español
               </h3>
               <p className="text-gray-700">
@@ -37,7 +35,7 @@ export default function Home() {
               </p>
             </div>
             <div className="rounded-lg bg-white p-6 shadow-lg transition-all hover:shadow-xl">
-              <h3 className="mb-2 text-sm font-semibold text-indigo-600 uppercase">
+              <h3 className="text-primary mb-2 text-sm font-semibold uppercase">
                 Français
               </h3>
               <p className="text-gray-700">
@@ -48,7 +46,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Breve Apresentação Section */}
         <section className="space-y-14">
           <h2 className="title-2 text-center">
             Uma breve apresentação da RedeCT
@@ -76,37 +73,37 @@ export default function Home() {
             </div>
             <div className="grid gap-4 md:grid-cols-2">
               <Link href="/quem-somos/pesquisadores-participantes">
-                <div className="h-full rounded-lg bg-indigo-50 p-6 text-center transition-all hover:shadow-xl">
-                  <Users className="mx-auto mb-4 h-12 w-12 text-indigo-600" />
+                <div className="bg-primary/10 h-full rounded-lg p-6 text-center transition-all hover:shadow-xl">
+                  <Users className="text-primary mx-auto mb-4 h-12 w-12" />
                   <h3 className="mb-2 text-lg font-semibold">Pesquisadores</h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-muted-foreground text-sm">
                     Rede de colaboração internacional
                   </p>
                 </div>
               </Link>
               <Link href="/quem-somos/periodico-e-revistas-parceiras">
-                <div className="h-full rounded-lg bg-indigo-50 p-6 text-center transition-all hover:shadow-xl">
-                  <BookOpen className="mx-auto mb-4 h-12 w-12 text-indigo-600" />
+                <div className="bg-primary/10 h-full rounded-lg p-6 text-center transition-all hover:shadow-xl">
+                  <BookOpen className="text-primary mx-auto mb-4 h-12 w-12" />
                   <h3 className="mb-2 text-lg font-semibold">Publicações</h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-muted-foreground text-sm">
                     Livros e artigos científicos
                   </p>
                 </div>
               </Link>
               <Link href="/quem-somos/congresso-cientifico-internacional">
-                <div className="rounded-lg bg-indigo-50 p-6 text-center transition-all hover:shadow-xl">
-                  <Globe className="mx-auto mb-4 h-12 w-12 text-indigo-600" />
+                <div className="bg-primary/10 rounded-lg p-6 text-center transition-all hover:shadow-xl">
+                  <Globe className="text-primary mx-auto mb-4 h-12 w-12" />
                   <h3 className="mb-2 text-lg font-semibold">Eventos</h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-muted-foreground text-sm">
                     Congresso internacional anual
                   </p>
                 </div>
               </Link>
               <Link href="/noticias">
-                <div className="h-full rounded-lg bg-indigo-50 p-6 text-center transition-all hover:shadow-xl">
-                  <Newspaper className="mx-auto mb-4 h-12 w-12 text-indigo-600" />
+                <div className="bg-primary/10 h-full rounded-lg p-6 text-center transition-all hover:shadow-xl">
+                  <Newspaper className="text-primary mx-auto mb-4 h-12 w-12" />
                   <h3 className="mb-2 text-lg font-semibold">Notícias</h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-muted-foreground text-sm">
                     Acompanhe nossas atualizações
                   </p>
                 </div>
@@ -115,7 +112,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Missão e Valores Section */}
         <section className="space-y-14">
           <h2 className="title-2 text-center">
             Missão, valores, objetivos e grandes desafios da RedeCT 🎯
@@ -123,7 +119,6 @@ export default function Home() {
           <MissaoValoresTabs />
         </section>
 
-        {/* CTA Section */}
         <div className="grid gap-8 md:grid-cols-2">
           <RedNavigationCard href="/quem-somos/parceiros-e-financiadores">
             <h2 className="title-3 flex items-center gap-2">

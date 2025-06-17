@@ -27,7 +27,5 @@ const webinars: IWebinar[] = [
 ];
 
 export async function getWebinars() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
   return webinars;
 }

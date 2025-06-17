@@ -4,11 +4,11 @@ import { NavigationLink as NavigationLinkType } from "types/navigation-link";
 export const navigationLinks: NavigationLinkType[] = [
   {
     path: "/",
-    label: "HOME",
+    label: "Home",
     icon: Icons.Home,
   },
   {
-    label: "QUEM SOMOS",
+    label: "Quem Somos",
     children: [
       {
         path: "/quem-somos/apresentacao-e-historia",
@@ -53,17 +53,12 @@ export const navigationLinks: NavigationLinkType[] = [
     ],
   },
   {
-    label: "DIVISÃO CIENTÍFICA",
+    label: "Divisão Científica",
     children: [
       {
-        path: "/divisao-cientifica/congresso-cientifico-internacional",
-        label: "Congresso Científico Internacional",
+        path: "/divisao-cientifica/congressos",
+        label: "Congressos",
         icon: Icons.Globe,
-      },
-      {
-        path: "/divisao-cientifica/congressos-regionais",
-        label: "Congressos Regionais",
-        icon: Icons.Map,
       },
       {
         path: "/divisao-cientifica/webinario-permanente",
@@ -93,7 +88,7 @@ export const navigationLinks: NavigationLinkType[] = [
     ],
   },
   {
-    label: "PUBLICAÇÕES",
+    label: "Publicações",
     children: [
       {
         path: "/publicacoes/periodico-e-revistas-parceiras",
@@ -119,7 +114,7 @@ export const navigationLinks: NavigationLinkType[] = [
   },
 
   {
-    label: "LOJAS E OPORTUNIDADES",
+    label: "Lojas e Oportunidades",
     children: [
       {
         path: "/lojas-e-oportunidades/loja-da-redect",
@@ -140,7 +135,7 @@ export const navigationLinks: NavigationLinkType[] = [
   },
   {
     path: "/portfolio",
-    label: "PORTFÓLIO",
+    label: "Portfólio",
     // children: [
     //   {
     //     path: "/portfolio/legislacoes-mapas",
@@ -191,7 +186,7 @@ export const navigationLinks: NavigationLinkType[] = [
   },
   {
     path: "/noticias",
-    label: "NOTÍCIAS",
+    label: "Notícias",
     icon: Icons.Newspaper,
   },
 ];

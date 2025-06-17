@@ -36,7 +36,5 @@ export const magazines: IMagazine[] = [
 ];
 
 export async function getMagazines() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
   return magazines;
 }

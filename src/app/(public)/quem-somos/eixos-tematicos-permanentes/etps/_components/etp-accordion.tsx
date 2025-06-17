@@ -9,8 +9,7 @@ import {
   UserCardButtonLattes,
   UserCardImage,
 } from "@components/ui/user-card";
-
-import { getEtps } from "@/services/etps";
+import { getEtps } from "@services/etps";
 
 export async function EPTAccordion() {
   const etps = await getEtps();

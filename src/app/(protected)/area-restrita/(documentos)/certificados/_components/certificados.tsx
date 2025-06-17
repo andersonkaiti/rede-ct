@@ -1,4 +1,4 @@
-import { getCertifications } from "@/services/certifications";
+import { getCertifications } from "@services/certifications";
 
 import { Certificado } from "./certificado";
 

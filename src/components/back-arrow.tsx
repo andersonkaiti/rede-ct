@@ -10,7 +10,7 @@ export function BackArrow() {
 
   return (
     <Button
-      className="group flex w-fit cursor-pointer items-center gap-4 xl:-mt-10"
+      className="group flex w-fit cursor-pointer items-center gap-4"
       variant="ghost"
       onClick={() => router.back()}
     >

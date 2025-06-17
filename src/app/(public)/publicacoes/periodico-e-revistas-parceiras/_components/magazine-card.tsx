@@ -1,6 +1,7 @@
 import { Button } from "@components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@components/ui/card";
 import { IMagazine } from "@services/magazines/magazines";
+import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +11,7 @@ export function MagazineCard({
   magazine: IMagazine;
 }) {
   return (
-    <Card className="rounded-xl border border-gray-100 bg-white shadow-md transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
+    <Card className="rounded-xl border border-gray-100 bg-white shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
       <CardHeader className="space-y-4">
         <picture className="relative h-40 w-full rounded-md">
           <Image
@@ -29,7 +30,10 @@ export function MagazineCard({
       </CardContent>
       <CardFooter>
         <Link href={url} target="_blank" className="w-full">
-          <Button className="w-full">Acessar publicação</Button>
+          <Button className="group w-full">
+            Acessar publicação
+            <ExternalLink className="transition-all duration-300 group-hover:translate-x-2" />
+          </Button>
         </Link>
       </CardFooter>
     </Card>

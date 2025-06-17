@@ -10,10 +10,15 @@ export default function EixosTematicosPermanentes() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <section className="space-y-14">
-        <h1 className="title-2">
-          Eixos Temáticos Permanentes (ETPs) e Grupos de Trabalho Científico
-          (GTCs)
-        </h1>
+        <div className="flex items-center gap-4">
+          <Badge className="bg-primary/10 text-primary rounded-full p-1.5">
+            <BookOpen className="!size-7" />
+          </Badge>
+          <h1 className="title-2">
+            Eixos Temáticos Permanentes (ETPs) e Grupos de Trabalho Científico
+            (GTCs)
+          </h1>
+        </div>
         <p className="text-justify">
           Nesta seção você encontra informações sobre o que são os ETPs e as
           suas identidades (áreas de pesquisa e de ação) e os GTCs e sua

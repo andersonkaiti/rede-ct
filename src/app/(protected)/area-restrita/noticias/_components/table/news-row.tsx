@@ -7,7 +7,7 @@ import { INews } from "types/news";
 
 import { DeleteDialog } from "../delete-dialog";
 
-export interface INewsRowProps {
+interface INewsRowProps {
   news: INews;
   handleRemoveNews: ({
     id,

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-export interface IUseUpdateNewsProps {
+interface IUseUpdateNewsProps {
   id: string;
   image_url?: string;
 }

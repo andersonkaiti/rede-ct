@@ -10,7 +10,7 @@ import {
 import { Trash } from "lucide-react";
 import { ITeamMember } from "types/team";
 
-export interface ITeamMembersTableProps {
+interface ITeamMembersTableProps {
   teamMembers: ITeamMember[];
   handleRemoveMember: (id: ITeamMember["id"]) => void;
 }

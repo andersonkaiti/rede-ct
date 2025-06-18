@@ -1,6 +1,6 @@
 import { LucideIcon } from "lucide-react";
 
-export interface INavigationBarIconProps {
+interface INavigationBarIconProps {
   icon: LucideIcon | undefined;
 }
 

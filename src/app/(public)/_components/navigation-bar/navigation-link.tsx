@@ -5,7 +5,7 @@ import { NavigationLink as NavigationLinkType } from "types/navigation-link";
 
 import { NavigationBarIcon } from "./navigation-bar-icon";
 
-export interface INavLinkProps {
+interface INavLinkProps {
   link: NavigationLinkType;
   onMouseEnter: (index: number, element: HTMLElement) => void;
   hovering: number | null;

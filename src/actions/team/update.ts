@@ -9,7 +9,7 @@ import { revalidatePath } from "next/cache";
 import { registerTeamMemberSchema } from "./schema";
 import { State } from "./state";
 
-export interface IUpdateTeamMemberProps {
+interface IUpdateTeamMemberProps {
   team: {
     type: string;
   };

@@ -4,7 +4,7 @@ import { Button } from "@components/ui/button";
 import { Share2 } from "lucide-react";
 import { INews } from "types/news";
 
-export interface IShareButtonProps {
+interface IShareButtonProps {
   news: INews;
 }
 

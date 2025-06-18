@@ -2,7 +2,7 @@ import { RedLink } from "@components/blue-link";
 import { Calendar, MapPin } from "lucide-react";
 import { ICongress, IDocument } from "types/congress";
 
-export interface ICongressProps {
+interface ICongressProps {
   congress: ICongress;
   index: number;
 }

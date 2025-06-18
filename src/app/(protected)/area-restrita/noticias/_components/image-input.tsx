@@ -2,7 +2,8 @@ import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { toast } from "sonner";
-export interface IImageInputProps {
+
+interface IImageInputProps {
   image_url?: string;
   preview: string | null;
   handleImage: (event: React.ChangeEvent<HTMLInputElement>) => void;

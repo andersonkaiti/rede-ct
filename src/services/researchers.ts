@@ -2,7 +2,10 @@
 
 import "server-only";
 
-import { IResearcher } from "types/researcher";
+interface IResearcher {
+  name: string;
+  info: string;
+}
 
 export interface ICategory {
   type: string;

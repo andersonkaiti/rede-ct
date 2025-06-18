@@ -1,9 +1,13 @@
 import { Badge } from "@components/ui/badge";
 import { FileText } from "lucide-react";
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
 import { LoadingSkeleton } from "./_components/loading-skeleton";
-import { Magazines } from "./_components/magazines";
+
+const DynamicMagazines = dynamic(() =>
+  import("./_components/magazines").then((mod) => mod.Magazines),
+);
 
 export default async function PeriodicoERevistasParceiras() {
   return (
@@ -44,7 +48,7 @@ export default async function PeriodicoERevistasParceiras() {
           pesquisa e divulgação científica
         </p>
         <Suspense fallback={<LoadingSkeleton />}>
-          <Magazines />
+          <DynamicMagazines />
         </Suspense>
       </section>
     </main>

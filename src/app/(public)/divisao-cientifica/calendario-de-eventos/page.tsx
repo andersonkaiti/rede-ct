@@ -1,7 +1,11 @@
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
-import { Events } from "./_components/events";
 import { LoadingSkeleton } from "./_components/loading-skeleton";
+
+const DynamicEvents = dynamic(() =>
+  import("./_components/events").then((mod) => mod.Events),
+);
 
 export default function CalendarioDeEventos() {
   return (
@@ -16,7 +20,7 @@ export default function CalendarioDeEventos() {
       </header>
 
       <Suspense fallback={<LoadingSkeleton />}>
-        <Events />
+        <DynamicEvents />
       </Suspense>
     </main>
   );

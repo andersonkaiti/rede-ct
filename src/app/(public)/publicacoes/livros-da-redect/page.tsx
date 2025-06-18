@@ -1,10 +1,14 @@
 import { Button } from "@components/ui/button";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
-import { Books } from "./_components/books";
 import { LoadingSkeleton } from "./_components/loading-skeleton";
+
+const DynamicBooks = dynamic(() =>
+  import("./_components/books").then((mod) => mod.Books),
+);
 
 const requirements = [
   "Contar sempre com ISBN e ficha catalográfica registrada;",
@@ -156,7 +160,7 @@ export default async function ColetaneaRedeCT() {
             Acesso aos volumes já publicados e índice remissivo por assunto
           </h2>
           <Suspense fallback={<LoadingSkeleton />}>
-            <Books />
+            <DynamicBooks />
           </Suspense>
         </section>
       </main>

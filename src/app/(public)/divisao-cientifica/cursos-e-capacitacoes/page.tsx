@@ -1,7 +1,11 @@
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
-import { Courses } from "./_components/courses";
 import { LoadingSkeleton } from "./_components/loading-skeleton";
+
+const DynamicCourses = dynamic(() =>
+  import("./_components/courses").then((mod) => mod.Courses),
+);
 
 export default function CursosECapacitacoes() {
   return (
@@ -16,7 +20,7 @@ export default function CursosECapacitacoes() {
       </header>
 
       <Suspense fallback={<LoadingSkeleton />}>
-        <Courses />
+        <DynamicCourses />
       </Suspense>
 
       <footer className="text-muted-foreground text-justify text-lg">

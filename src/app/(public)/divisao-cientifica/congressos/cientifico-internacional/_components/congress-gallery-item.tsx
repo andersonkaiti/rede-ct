@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { IGalleryItem } from "types/congress";
 
-export interface ICongressGalleryItemProps {
+interface ICongressGalleryItemProps {
   item: IGalleryItem;
 }
 

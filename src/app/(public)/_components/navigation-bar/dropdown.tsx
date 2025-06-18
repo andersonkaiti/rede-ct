@@ -4,7 +4,7 @@ import { NavigationLink as NavigationLinkType } from "types/navigation-link";
 
 import { NavigationBarIcon } from "./navigation-bar-icon";
 
-export interface IDropdownProps {
+interface IDropdownProps {
   leftOffset: number | null;
   heightOffset: number | null;
   navigationLinks: NavigationLinkType[];

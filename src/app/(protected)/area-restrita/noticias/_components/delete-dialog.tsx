@@ -13,7 +13,7 @@ import {
 } from "@components/ui/dialog";
 import { Trash } from "lucide-react";
 
-export interface IDeleteDialogProps {
+interface IDeleteDialogProps {
   onDelete: () => void;
 }
 

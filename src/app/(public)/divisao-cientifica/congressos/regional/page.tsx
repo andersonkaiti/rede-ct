@@ -1,8 +1,12 @@
 import { BackArrow } from "@components/back-arrow";
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
-import { Congresses } from "./_components/congresses";
 import { LoadingSkeleton } from "./_components/loading-skeleton";
+
+const DynamicCongresses = dynamic(() =>
+  import("./_components/congresses").then((mod) => mod.Congresses),
+);
 
 export default async function CongressosRegionais() {
   return (
@@ -18,7 +22,7 @@ export default async function CongressosRegionais() {
       </header>
 
       <Suspense fallback={<LoadingSkeleton />}>
-        <Congresses />
+        <DynamicCongresses />
       </Suspense>
     </main>
   );

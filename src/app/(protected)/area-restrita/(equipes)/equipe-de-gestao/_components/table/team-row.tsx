@@ -6,7 +6,7 @@ import { ITeam } from "types/team";
 
 import { DeleteDialog } from "./delete-dialog";
 
-export interface ITeamRowProps {
+interface ITeamRowProps {
   team: ITeam;
   handleRemoveTeam: (teamId: ITeam["id"]) => Promise<void>;
 }

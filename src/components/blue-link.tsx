@@ -1,7 +1,7 @@
 import { LinkIcon } from "lucide-react";
 import Link, { LinkProps } from "next/link";
 
-export interface IRedLinkProps extends LinkProps {
+interface IRedLinkProps extends LinkProps {
   children: React.ReactNode;
 }
 

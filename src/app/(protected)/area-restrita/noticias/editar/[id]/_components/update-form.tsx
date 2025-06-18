@@ -9,7 +9,7 @@ import { ErrorMessage } from "../../../_components/error-message";
 import { ImageInput } from "../../../_components/image-input";
 import { useUpdateNews } from "../../../_hooks/use-update-news.hook";
 
-export interface IUpdateFormProps {
+interface IUpdateFormProps {
   news: INews;
 }
 

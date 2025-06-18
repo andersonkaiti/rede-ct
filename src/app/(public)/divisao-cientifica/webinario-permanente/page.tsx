@@ -1,7 +1,11 @@
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
 import { LoadingSkeleton } from "./_components/loading-skeleton";
-import { Webinars } from "./_components/webnars";
+
+const DynamicWebinars = dynamic(() =>
+  import("./_components/webnars").then((mod) => mod.Webinars),
+);
 
 export default function WebinarioPermanente() {
   return (
@@ -18,7 +22,7 @@ export default function WebinarioPermanente() {
       </header>
 
       <Suspense fallback={<LoadingSkeleton />}>
-        <Webinars />
+        <DynamicWebinars />
       </Suspense>
     </main>
   );

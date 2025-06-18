@@ -7,28 +7,30 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
-  SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@components/ui/sidebar";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { NavigationLink } from "types/navigation-link";
 
+import { SidebarButton } from "./sidebar-button";
+
+interface ISidebarItemProps {
+  item: NavigationLink;
+}
+
 export function SidebarItem({
-  label,
-  icon: Icon,
-  path,
-  children,
-}: NavigationLink) {
+  item: { label, icon: Icon, path, children },
+}: ISidebarItemProps) {
   return (
     <SidebarMenuItem>
       {!children ? (
-        <SidebarMenuButton className="flex gap-2 hover:bg-[#ebebeb]" asChild>
+        <SidebarButton path={path || ""}>
           <Link href={path || ""}>
             {Icon && <Icon />}
             {label}
           </Link>
-        </SidebarMenuButton>
+        </SidebarButton>
       ) : (
         <Collapsible defaultOpen className="group/collapsible">
           <CollapsibleTrigger
@@ -37,7 +39,7 @@ export function SidebarItem({
           >
             <SidebarMenuButton className="flex w-full cursor-pointer items-center justify-between gap-2 hover:bg-[#ebebeb]">
               <div className="flex items-center gap-2">
-                {Icon && <Icon className="h-4 w-4" />}
+                {Icon && <Icon className="size-4" />}
                 {label}
               </div>
               <ChevronRight className="transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
@@ -48,15 +50,12 @@ export function SidebarItem({
             <SidebarMenuSub>
               {children.map((child: NavigationLink, index: number) => (
                 <SidebarMenuSubItem key={index}>
-                  <SidebarMenuSubButton
-                    className="flex gap-2 hover:bg-[#ebebeb]"
-                    asChild
-                  >
+                  <SidebarButton path={child.path || ""}>
                     <Link href={child.path || ""}>
                       {child.icon && <child.icon />}
                       {child.label}
                     </Link>
-                  </SidebarMenuSubButton>
+                  </SidebarButton>
                 </SidebarMenuSubItem>
               ))}
             </SidebarMenuSub>

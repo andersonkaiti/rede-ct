@@ -2,7 +2,7 @@
 
 import { cn } from "@utils/cn";
 
-export interface IMenuProps {
+interface IMenuProps {
   showNavigationBar: boolean;
   setShowNavigationBar: React.Dispatch<React.SetStateAction<boolean>>;
 }

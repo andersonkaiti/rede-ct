@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@components/ui/button";
+import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export function SidebarBackButton() {
@@ -9,9 +10,13 @@ export function SidebarBackButton() {
   return (
     <Button
       onClick={() => router.replace("/")}
-      className="w-full cursor-pointer bg-white text-black hover:bg-gray-200"
+      className="w-full cursor-pointer font-normal"
+      variant="ghost"
     >
-      Voltar
+      <span className="mr-auto flex items-center gap-4">
+        <ArrowLeft />
+        Voltar
+      </span>
     </Button>
   );
 }

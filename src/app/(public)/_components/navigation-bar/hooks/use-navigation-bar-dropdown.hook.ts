@@ -16,6 +16,8 @@ export function useNavigationBarDropdown() {
       if (menuElement) {
         setHeightOffset(menuElement.offsetHeight);
       }
+    } else {
+      setHeightOffset(0);
     }
   }, [hovering]);
 

@@ -1,10 +1,10 @@
+import { Separator } from "@components/ui/separator";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
 } from "@components/ui/sidebar";
@@ -29,9 +29,9 @@ export function SidebarContainer() {
           <DynamicUserProfile />
         </Suspense>
       </SidebarHeader>
+      <Separator />
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Área Restrita</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {sidebarLinks.map((link: NavigationLink, index: number) => (
@@ -41,6 +41,7 @@ export function SidebarContainer() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <Separator />
       <SidebarFooter>
         <SidebarBackButton />
       </SidebarFooter>

@@ -2,23 +2,11 @@
 
 import { registerNews } from "@actions/news/register";
 import { redirect } from "next/navigation";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
 
 export function useRegisterNews() {
   const [state, formAction, isLoading] = useActionState(registerNews, null);
-
-  const [preview, setPreview] = useState<string | null>(null);
-
-  function handleImage(event: React.ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-
-      setPreview(imageUrl);
-    }
-  }
 
   useEffect(() => {
     if (state && "success" in state) {
@@ -34,7 +22,5 @@ export function useRegisterNews() {
     state,
     formAction,
     isLoading,
-    preview,
-    handleImage,
   };
 }

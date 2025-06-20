@@ -33,7 +33,7 @@ export async function UserProfile() {
           <MenubarItem>
             <SignOutButton>
               <div className="group flex w-full cursor-pointer items-center gap-2">
-                <LogOut className="h-5 w-5 text-indigo-500 group-hover:text-indigo-600" />
+                <LogOut className="text-primary h-5 w-5 group-hover:text-red-600" />
                 Deslogar
               </div>
             </SignOutButton>

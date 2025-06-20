@@ -20,48 +20,49 @@ interface ISidebarItemProps {
 }
 
 export function SidebarItem({
-  item: { label, icon: Icon, path, children },
+  item: { label, icon: Icon, path = "", children },
 }: ISidebarItemProps) {
-  return (
-    <SidebarMenuItem>
-      {!children ? (
-        <SidebarButton path={path || ""}>
-          <Link href={path || ""}>
+  if (!children?.length) {
+    return (
+      <SidebarMenuItem>
+        <SidebarButton path={path}>
+          <Link href={path}>
             {Icon && <Icon />}
             {label}
           </Link>
         </SidebarButton>
-      ) : (
-        <Collapsible defaultOpen className="group/collapsible">
-          <CollapsibleTrigger
-            className="flex w-full items-center gap-2"
-            asChild
-          >
-            <SidebarMenuButton className="flex w-full cursor-pointer items-center justify-between gap-2 hover:bg-[#ebebeb]">
-              <div className="flex items-center gap-2">
-                {Icon && <Icon className="size-4" />}
-                {label}
-              </div>
-              <ChevronRight className="transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-            </SidebarMenuButton>
-          </CollapsibleTrigger>
+      </SidebarMenuItem>
+    );
+  }
 
-          <CollapsibleContent>
-            <SidebarMenuSub>
-              {children.map((child: NavigationLink, index: number) => (
-                <SidebarMenuSubItem key={index}>
-                  <SidebarButton path={child.path || ""}>
-                    <Link href={child.path || ""}>
-                      {child.icon && <child.icon />}
-                      {child.label}
-                    </Link>
-                  </SidebarButton>
-                </SidebarMenuSubItem>
-              ))}
-            </SidebarMenuSub>
-          </CollapsibleContent>
-        </Collapsible>
-      )}
+  return (
+    <SidebarMenuItem>
+      <Collapsible defaultOpen className="group/collapsible">
+        <CollapsibleTrigger className="flex w-full items-center gap-2" asChild>
+          <SidebarMenuButton className="flex w-full cursor-pointer items-center justify-between gap-2 hover:bg-[#ebebeb]">
+            <div className="flex items-center gap-2">
+              {Icon && <Icon className="size-4" />}
+              {label}
+            </div>
+            <ChevronRight className="transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+          </SidebarMenuButton>
+        </CollapsibleTrigger>
+
+        <CollapsibleContent>
+          <SidebarMenuSub>
+            {children.map(({ label, icon: Icon, path = "" }, index: number) => (
+              <SidebarMenuSubItem key={index}>
+                <SidebarButton path={path}>
+                  <Link href={path}>
+                    {Icon && <Icon />}
+                    {label}
+                  </Link>
+                </SidebarButton>
+              </SidebarMenuSubItem>
+            ))}
+          </SidebarMenuSub>
+        </CollapsibleContent>
+      </Collapsible>
     </SidebarMenuItem>
   );
 }

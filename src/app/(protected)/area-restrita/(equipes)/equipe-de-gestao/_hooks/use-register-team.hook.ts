@@ -36,7 +36,7 @@ export function useRegisterTeam() {
     setTeam((prevTeam) => [...prevTeam, newMember]);
   }
 
-  function handleRemoveMember(id: ITeamMember["id"]) {
+  function handleRemoveMember({ id }: ITeamMember) {
     setTeam((prevTeam) =>
       prevTeam.filter((teamMember) => teamMember.id !== id),
     );

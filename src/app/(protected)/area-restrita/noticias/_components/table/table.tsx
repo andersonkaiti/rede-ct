@@ -1,6 +1,7 @@
 "use client";
 
 import { DataTable } from "@components/ui/data-table";
+import { INews } from "types/news";
 
 import { useUserNews } from "../../_hooks/use-user-news.hook";
 import { LoadingSkeleton } from "./loading-skeleton";
@@ -14,7 +15,7 @@ export function Table() {
   }
 
   return (
-    <DataTable
+    <DataTable<INews, unknown>
       columns={newTableColumns}
       data={news}
       handleRemove={handleRemoveNews}

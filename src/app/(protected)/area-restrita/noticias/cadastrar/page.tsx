@@ -73,7 +73,7 @@ export default function CadastrarNoticia() {
                   Imagem <span className="text-red-500">*</span>
                 </Label>
 
-                <FileUpload maxSizeMB={50} />
+                <FileUpload maxSizeMB={5} />
 
                 {hasErrors && state?.errors?.image && (
                   <ErrorMessage state={state} inputName="image" />

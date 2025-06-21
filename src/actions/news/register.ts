@@ -4,11 +4,13 @@ import { api } from "@adapters/index";
 import { currentUser } from "@clerk/nextjs/server";
 import { BASE_URL } from "@config/index";
 
-import { newsSchema } from "./schema";
+import { registerNewsSchema } from "./register-schema";
 import { State } from "./state";
 
 export async function registerNews(_: unknown, formData: FormData) {
-  const { success, error } = newsSchema.safeParse(Object.fromEntries(formData));
+  const { success, error } = registerNewsSchema.safeParse(
+    Object.fromEntries(formData),
+  );
 
   if (!success) {
     return {

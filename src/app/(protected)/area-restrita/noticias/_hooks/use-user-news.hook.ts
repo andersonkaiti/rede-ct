@@ -4,7 +4,6 @@ import { useAuth } from "@clerk/nextjs";
 import { getUserNews } from "@services/news";
 import { deleteNewsById } from "@services/news/delete-news-by-id";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { startTransition, useOptimistic } from "react";
 import { toast } from "sonner";
 import { INews } from "types/news";
 
@@ -16,11 +15,7 @@ export function useUserNews() {
 
   const isUserIdAvailable = !!userId;
 
-  const {
-    isLoading,
-    data: news,
-    ...rest
-  } = useQuery({
+  const { isLoading, ...rest } = useQuery({
     queryKey: QUERY_KEY,
     queryFn: getUserNews,
     enabled: isUserIdAvailable,
@@ -29,35 +24,23 @@ export function useUserNews() {
 
   const isReallyLoading = isLoading || !isUserIdAvailable;
 
-  const [optimisticNews, updateOptimisticNews] = useOptimistic(
-    news || [],
-    (prevNews: INews[], newsId: INews["id"]) =>
-      prevNews?.filter((news) => news.id !== newsId),
-  );
-
-  async function handleRemoveNews(data: unknown) {
-    const { id, author_id: newsAuthorId, image_url } = data as INews;
-
-    if (userId !== newsAuthorId) {
+  async function handleRemoveNews({ id, author_id, image_url }: INews) {
+    if (userId !== author_id) {
       throw new Error("Você não tem permissão para deletar esta notícia!");
     }
 
-    startTransition(() => {
-      updateOptimisticNews(id);
-    });
-
     await deleteNewsById(id, image_url);
 
-    queryClient.invalidateQueries({
-      queryKey: QUERY_KEY,
-    });
+    queryClient.setQueryData(
+      QUERY_KEY,
+      (old: INews[]) => old.filter((news) => news.id !== id) || [],
+    );
 
     toast.success("Notícia removida com sucesso!");
   }
 
   return {
     isLoading: isReallyLoading,
-    data: optimisticNews,
     handleRemoveNews,
     ...rest,
   };

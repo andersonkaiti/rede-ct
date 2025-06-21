@@ -1,6 +1,7 @@
 "use client";
 
 import { DataTable } from "@components/ui/data-table";
+import { ITeamMember } from "types/team";
 
 import { useTeam } from "../../../_hooks/use-team.hook";
 import { legitimatorCommitteeTableColumns } from "./legitimator-committee-table-columns";
@@ -22,9 +23,9 @@ export function Table() {
   }
 
   return (
-    <DataTable
+    <DataTable<ITeamMember, unknown>
       columns={legitimatorCommitteeTableColumns}
-      data={team[0].team_members}
+      data={team?.[0].team_members}
       handleRemove={handleRemoveMember}
     />
   );

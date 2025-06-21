@@ -12,14 +12,20 @@ import { ITeamMember } from "types/team";
 
 import { DeleteDialog } from "@/app/(protected)/area-restrita/_components/delete-dialog";
 
-import { UpdateMemberForm } from "../update-member/update-member-form";
-
 interface IActionsRowProps {
   data: ITeamMember;
   handleRemove: () => void;
+  form: React.ComponentType<{
+    setIsOpen: (isOpen: boolean) => void;
+    data: ITeamMember;
+  }>;
 }
 
-export function ActionsRow({ data: member, handleRemove }: IActionsRowProps) {
+export function ActionsRow({
+  data,
+  handleRemove,
+  form: Form,
+}: IActionsRowProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -40,7 +46,7 @@ export function ActionsRow({ data: member, handleRemove }: IActionsRowProps) {
                 <EditIcon className="size-4 text-black" />
               </Button>
             </DialogTrigger>
-            <UpdateMemberForm setIsOpen={setIsOpen} member={member} />
+            <Form data={data} setIsOpen={setIsOpen} />
           </Dialog>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>

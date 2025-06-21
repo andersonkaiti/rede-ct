@@ -23,12 +23,12 @@ import { useUpdateMember } from "../../../_hooks/use-update-member";
 
 interface IUpdateMemberFormProps {
   setIsOpen: (isOpen: boolean) => void;
-  member: ITeamMember;
+  data: ITeamMember;
 }
 
 export function UpdateMemberForm({
   setIsOpen,
-  member,
+  data: member,
 }: IUpdateMemberFormProps) {
   const { state, formAction, isLoading } = useUpdateMember({
     setIsOpen,

@@ -2,7 +2,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ITeamMember } from "types/team";
 import { IUser } from "types/user";
 
-import { ActionsRow } from "./actions-row";
+import { ActionsRow } from "@/app/(protected)/area-restrita/_components/actions-row";
+
+import { UpdateMemberForm } from "../update-member/update-member-form";
 
 export const sdhcTeamTableColumns: ColumnDef<ITeamMember>[] = [
   {
@@ -39,6 +41,7 @@ export const sdhcTeamTableColumns: ColumnDef<ITeamMember>[] = [
       <ActionsRow
         data={original}
         handleRemove={() => meta?.handleRemove?.(original)}
+        form={UpdateMemberForm}
       />
     ),
   },

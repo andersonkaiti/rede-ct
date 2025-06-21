@@ -8,7 +8,7 @@ function PageContainer({ children }: { children: React.ReactNode }) {
 
 function PageHeader({ children }: { children: React.ReactNode }) {
   return (
-    <header className="flex w-full items-center justify-between">
+    <header className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
       {children}
     </header>
   );
@@ -19,11 +19,17 @@ function PageHeaderContent({ children }: { children: React.ReactNode }) {
 }
 
 function PageTitle({ children }: { children: React.ReactNode }) {
-  return <h1 className="text-2xl font-bold">{children}</h1>;
+  return <h1 className="text-3xl font-bold">{children}</h1>;
 }
 
 function PageDescription({ children }: { children: React.ReactNode }) {
-  return <p className="text-muted-foreground text-sm">{children}</p>;
+  return <div className="text-muted-foreground text-sm">{children}</div>;
+}
+
+function PageActionsContainer({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex w-full items-center gap-2 sm:w-fit">{children}</div>
+  );
 }
 
 function PageMain({ children }: { children: React.ReactNode }) {
@@ -54,6 +60,7 @@ function PageFooter({ children }: { children: React.ReactNode }) {
 }
 
 export {
+  PageActionsContainer,
   PageContainer,
   PageDescription,
   PageFooter,

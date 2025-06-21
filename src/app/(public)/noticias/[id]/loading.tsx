@@ -8,14 +8,14 @@ export default function Loading() {
           <div className="mt-2 h-10 w-full rounded-full bg-gray-300" />
 
           <div className="flex items-center justify-between">
-            <div className="space-y-4 text-sm">
+            <div className="space-y-4">
               <time className="flex items-center gap-x-1">
                 <div className="h-4 w-66 rounded-full bg-gray-300" />
               </time>
 
               <div className="h-4 w-30 rounded-full bg-gray-300" />
             </div>
-            <div className="size-9 rounded-full bg-gray-300" />
+            <div className="h-9 w-32.5 rounded-md bg-gray-300" />
           </div>
         </header>
 

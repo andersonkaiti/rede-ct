@@ -29,7 +29,7 @@ export async function UserProfile() {
           </div>
           <ChevronsUpDown className="ml-2 h-4 w-4" />
         </MenubarTrigger>
-        <MenubarContent>
+        <MenubarContent align="end">
           <MenubarItem>
             <SignOutButton>
               <div className="group flex w-full cursor-pointer items-center gap-2">

@@ -1,5 +1,5 @@
-import { Input } from "@components/ui/input";
 import {
+  PageActionsContainer,
   PageContainer,
   PageHeader,
   PageHeaderContent,
@@ -8,6 +8,7 @@ import {
 } from "@components/ui/page-container";
 
 import { CreateButton } from "../_components/create-button";
+import { FilterInput } from "../_components/filter-input";
 
 export default function DestaquesRedeCT() {
   return (
@@ -15,12 +16,19 @@ export default function DestaquesRedeCT() {
       <PageHeader>
         <PageHeaderContent>
           <PageTitle>Destaques da RedeCT</PageTitle>
+          <PageHeaderContent>Gerencie os Destaques da RedeCT</PageHeaderContent>
         </PageHeaderContent>
+      </PageHeader>
+
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
+        </PageActionsContainer>
         <CreateButton href="/area-restrita/destaques-redect/cadastrar">
           Cadastrar destaque
         </CreateButton>
       </PageHeader>
-      <Input placeholder="Pesquisar" className="w-full sm:w-fit" />
+
       <PageMain>Destaques da RedeCT</PageMain>
     </PageContainer>
   );

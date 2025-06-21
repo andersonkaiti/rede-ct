@@ -1,23 +1,35 @@
-import { Input } from "@components/ui/input";
 import {
+  PageActionsContainer,
   PageContainer,
+  PageDescription,
   PageHeader,
+  PageHeaderContent,
   PageMain,
   PageTitle,
 } from "@components/ui/page-container";
 
 import { CreateButton } from "../_components/create-button";
+import { FilterInput } from "../_components/filter-input";
 
 export default function Portfolio() {
   return (
     <PageContainer>
       <PageHeader>
-        <PageTitle>Portfólio</PageTitle>
+        <PageHeaderContent>
+          <PageTitle>Portfólio</PageTitle>
+          <PageDescription>Gerencie o seu portfólio</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
+
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
+        </PageActionsContainer>
         <CreateButton href="/area-restrita/portfolio/cadastrar">
-          Cadastrar Portfólio
+          Cadastrar publicação
         </CreateButton>
       </PageHeader>
-      <Input placeholder="Pesquisar" className="w-full sm:w-fit" />
+
       <PageMain>Portfólio</PageMain>
     </PageContainer>
   );

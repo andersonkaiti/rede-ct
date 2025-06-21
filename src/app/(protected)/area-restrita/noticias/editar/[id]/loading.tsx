@@ -1,33 +1,84 @@
 import { Button } from "@components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@components/ui/card";
+import { Label } from "@components/ui/label";
+import {
+  PageContainer,
+  PageDescription,
+  PageForm,
+  PageFormContent,
+  PageFormContentField,
+  PageHeader,
+  PageHeaderContent,
+  PageTitle,
+} from "@components/ui/page-container";
 import { Skeleton } from "@components/ui/skeleton";
+import { ImageUpIcon, Newspaper } from "lucide-react";
 
 export default function Loading() {
   return (
-    <div className="mx-auto flex w-full flex-col justify-center gap-2 p-4 py-10 md:gap-12.5">
-      <header className="space-y-4">
-        <h1 className="title-2">Editar Notícia</h1>
-      </header>
-      <main className="grid grid-cols-1 gap-4">
-        <Skeleton className="grid grid-cols-1 gap-4">
-          <div className="h-9 w-full rounded-md bg-gray-200" />
-          <div className="h-9 w-full rounded-md bg-gray-200" />
-          <div className="flex h-76 w-full items-center justify-center rounded-md bg-gray-300">
-            <svg
-              className="h-10 w-10 text-gray-200"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 18"
-            >
-              <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
-            </svg>
-          </div>
-        </Skeleton>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Editar Notícia</PageTitle>
+          <PageDescription>
+            Preencha os campos abaixo para atualizar a notícia
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <Button type="submit" className="cursor-pointer">
-          Editar notícia
-        </Button>
-      </main>
-    </div>
+      <Card>
+        <CardHeader className="flex items-center gap-2">
+          <Newspaper className="text-primary !size-5" />
+          <CardTitle>Atualizar Notícia</CardTitle>
+        </CardHeader>
+        <Skeleton>
+          <CardContent>
+            <PageForm>
+              <PageFormContent>
+                <PageFormContentField>
+                  <Label>
+                    Título <span className="text-red-500">*</span>
+                  </Label>
+
+                  <div className="h-9 w-full rounded-md bg-gray-200" />
+                </PageFormContentField>
+                <PageFormContentField>
+                  <Label>
+                    Texto <span className="text-red-500">*</span>
+                  </Label>
+
+                  <div className="h-9 w-full rounded-md bg-gray-200" />
+                </PageFormContentField>
+                <PageFormContentField>
+                  <Label>
+                    Imagem <span className="text-red-500">*</span>
+                  </Label>
+
+                  <div className="flex h-52 w-full items-center justify-center rounded-xl bg-gray-200">
+                    <div
+                      className="mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border bg-gray-300"
+                      aria-hidden="true"
+                    >
+                      <ImageUpIcon className="size-4 opacity-60" />
+                    </div>
+                  </div>
+                </PageFormContentField>
+              </PageFormContent>
+              <CardFooter className="p-0">
+                <Button type="submit" className="w-full cursor-pointer">
+                  Editar notícia
+                </Button>
+              </CardFooter>
+            </PageForm>
+          </CardContent>
+        </Skeleton>
+      </Card>
+    </PageContainer>
   );
 }

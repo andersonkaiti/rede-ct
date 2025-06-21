@@ -1,23 +1,37 @@
-import { Input } from "@components/ui/input";
 import {
+  PageActionsContainer,
   PageContainer,
+  PageDescription,
   PageHeader,
+  PageHeaderContent,
   PageMain,
   PageTitle,
 } from "@components/ui/page-container";
 
 import { CreateButton } from "../_components/create-button";
+import { FilterInput } from "../_components/filter-input";
 
 export default function ParceirosEFinanciadores() {
   return (
     <PageContainer>
       <PageHeader>
-        <PageTitle>Parceiros e Financiadores</PageTitle>
+        <PageHeaderContent>
+          <PageTitle>Parceiros e Financiadores</PageTitle>
+          <PageDescription>
+            Gerencie os parceiros e financiadores
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
+
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
+        </PageActionsContainer>
         <CreateButton href="/area-restrita/parceiros-e-financiadores/cadastrar">
           Cadastrar Parceiro
         </CreateButton>
       </PageHeader>
-      <Input placeholder="Pesquisar" className="w-full sm:w-fit" />
+
       <PageMain>Parceiros e Financiadores</PageMain>
     </PageContainer>
   );

@@ -35,11 +35,9 @@ export function useUserNews() {
       prevNews?.filter((news) => news.id !== newsId),
   );
 
-  async function handleRemoveNews({
-    id,
-    author_id: newsAuthorId,
-    image_url,
-  }: Pick<INews, "id" | "author_id" | "image_url">) {
+  async function handleRemoveNews(data: unknown) {
+    const { id, author_id: newsAuthorId, image_url } = data as INews;
+
     if (userId !== newsAuthorId) {
       throw new Error("Você não tem permissão para deletar esta notícia!");
     }

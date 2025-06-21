@@ -1,0 +1,43 @@
+import { Button } from "@components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@components/ui/dropdown-menu";
+import { EditIcon, Ellipsis } from "lucide-react";
+import Link from "next/link";
+import { ITeam } from "types/team";
+
+import { DeleteDialog } from "@/app/(protected)/area-restrita/_components/delete-dialog";
+
+interface IActionsRowProps {
+  data: ITeam;
+  handleRemove: () => void;
+}
+
+export function ActionsRow({ data: team, handleRemove }: IActionsRowProps) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        <Ellipsis className="size-4" />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem asChild className="p-0">
+          <Link href={`/area-restrita/equipe-de-gestao/editar/${team.id}`}>
+            <Button
+              variant="ghost"
+              className="flex w-full cursor-pointer justify-between text-xs"
+            >
+              Editar
+              <EditIcon className="size-4 text-black" />
+            </Button>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <DeleteDialog handleRemove={handleRemove} />
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}

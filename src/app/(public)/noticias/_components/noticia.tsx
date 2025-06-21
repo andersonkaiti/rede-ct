@@ -36,7 +36,7 @@ export function Noticia({
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </picture>
 
-      <CardContent className="flex grow flex-col justify-between gap-4 p-6">
+      <CardContent className="flex w-full grow flex-col justify-between gap-4 p-6">
         <CardHeader className="flex items-center gap-x-2 p-0">
           <Calendar className="text-muted-foreground size-4 leading-3" />
           <time dateTime={updated_at} className="text-muted-foreground">

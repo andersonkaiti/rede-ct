@@ -27,7 +27,9 @@ export function useManagementTeam({ type }: IUseManagementTeamProps) {
       prevTeams.filter((team) => team.id !== teamId),
   );
 
-  async function handleRemoveTeam(teamId: ITeam["id"]) {
+  async function handleRemoveTeam(data: unknown) {
+    const teamId = data as ITeam["id"];
+
     startTransition(() => {
       updateOptimisticTeams(teamId);
     });

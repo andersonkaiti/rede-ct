@@ -1,6 +1,7 @@
-import { Input } from "@components/ui/input";
 import {
+  PageActionsContainer,
   PageContainer,
+  PageDescription,
   PageHeader,
   PageHeaderContent,
   PageMain,
@@ -8,6 +9,7 @@ import {
 } from "@components/ui/page-container";
 
 import { CreateButton } from "../_components/create-button";
+import { FilterInput } from "../_components/filter-input";
 
 export default function Legislacoes() {
   return (
@@ -15,12 +17,19 @@ export default function Legislacoes() {
       <PageHeader>
         <PageHeaderContent>
           <PageTitle>Legislações</PageTitle>
+          <PageDescription>Gerencie as legislações</PageDescription>
         </PageHeaderContent>
+      </PageHeader>
+
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
+        </PageActionsContainer>
         <CreateButton href="/area-restrita/legislacoes/cadastrar">
           Cadastrar legislação
         </CreateButton>
       </PageHeader>
-      <Input placeholder="Pesquisar" className="w-full sm:w-fit" />
+
       <PageMain>Legislações</PageMain>
     </PageContainer>
   );

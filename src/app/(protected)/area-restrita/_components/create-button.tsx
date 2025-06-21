@@ -11,7 +11,7 @@ export function CreateButton({
 }) {
   return (
     <Link href={href}>
-      <Button className="cursor-pointer">
+      <Button variant="outline" className="cursor-pointer">
         <PlusIcon />
         {children}
       </Button>

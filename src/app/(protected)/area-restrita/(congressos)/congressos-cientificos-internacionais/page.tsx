@@ -1,23 +1,37 @@
-import { Input } from "@components/ui/input";
 import {
+  PageActionsContainer,
   PageContainer,
+  PageDescription,
   PageHeader,
+  PageHeaderContent,
   PageMain,
   PageTitle,
 } from "@components/ui/page-container";
 
 import { CreateButton } from "../../_components/create-button";
+import { FilterInput } from "../../_components/filter-input";
 
 export default function CongressosCientificosInternacionais() {
   return (
     <PageContainer>
       <PageHeader>
-        <PageTitle>Congressos Científicos Internacionais</PageTitle>
+        <PageHeaderContent>
+          <PageTitle>Congressos Científicos Internacionais</PageTitle>
+          <PageDescription>
+            Gerencie os Congressos Científicos Internacionais
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
+
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
+        </PageActionsContainer>
         <CreateButton href="/area-restrita/congressos-cientificos-internacionais/cadastrar">
           Cadastrar Congresso
         </CreateButton>
       </PageHeader>
-      <Input placeholder="Pesquisar" className="w-full sm:w-fit" />
+
       <PageMain>Congressos Científicos Internacionais</PageMain>
     </PageContainer>
   );

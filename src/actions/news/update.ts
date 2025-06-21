@@ -6,7 +6,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { BASE_URL } from "@config/index";
 import { INews } from "types/news";
 
-import { newsSchema } from "./schema";
+import { updateNewsSchema } from "./update-schema";
 
 export async function updateNews(
   id: string,
@@ -14,7 +14,9 @@ export async function updateNews(
   _: unknown,
   formData: FormData,
 ) {
-  const { success, error } = newsSchema.safeParse(Object.fromEntries(formData));
+  const { success, error } = updateNewsSchema.safeParse(
+    Object.fromEntries(formData),
+  );
 
   if (!success) {
     return {

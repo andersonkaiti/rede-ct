@@ -34,8 +34,8 @@ export async function updateManagementTeam(
   if (!teamNameSuccess || !membersSuccess) {
     return {
       errors: {
-        name: teamNameError?.flatten().fieldErrors,
-        members: membersError?.flatten().fieldErrors,
+        name: teamNameError?.flatten().formErrors,
+        members: membersError?.flatten().formErrors,
       },
     } as State;
   }

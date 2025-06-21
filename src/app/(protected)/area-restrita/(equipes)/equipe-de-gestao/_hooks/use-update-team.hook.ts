@@ -16,7 +16,7 @@ export function useUpdateTeam() {
     queryFn: getTeam,
   });
 
-  const [team, setTeam] = useState<ITeam>({} as ITeam);
+  const [team, setTeam] = useState<ITeam | null>(null);
 
   const [selectedMember, setSelectedMember] = useState<ITeamMember | null>(
     null,
@@ -25,14 +25,14 @@ export function useUpdateTeam() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   function handleAddMember() {
-    if (!selectedMember || !inputRef.current) return;
+    if (!selectedMember || !inputRef.current || !team) return;
 
     const newMember: ITeamMember = {
       ...selectedMember,
       role: inputRef.current.value,
     };
 
-    const alreadyHas = !!team.team_members.find(
+    const alreadyHas = !!team.team_members?.find(
       (member) => member.user_id === newMember.user_id,
     );
 
@@ -44,34 +44,44 @@ export function useUpdateTeam() {
 
     toast.success("Membro adicionado com sucesso!");
 
-    setTeam((prev) => ({
-      ...prev,
-      team_members: [...prev.team_members, newMember],
-    }));
+    setTeam((prev) => {
+      if (!prev) return prev;
+
+      return {
+        ...prev,
+        team_members: [...(prev.team_members || []), newMember],
+      };
+    });
   }
 
-  function handleRemoveMember(id: ITeamMember["id"]) {
-    setTeam(({ team_members, ...rest }) => ({
-      ...rest,
-      team_members: team_members.filter(
-        (teamMember: ITeamMember) => teamMember.user_id !== id,
-      ),
-    }));
+  function handleRemoveMember({ user }: ITeamMember) {
+    setTeam((prev) => {
+      if (!prev) return prev;
+
+      const { team_members, ...rest } = prev;
+
+      return {
+        ...rest,
+        team_members: team_members.filter(
+          (teamMember: ITeamMember) => teamMember.user_id !== user?.id,
+        ),
+      };
+    });
 
     toast.success("Usuário removido com sucesso!");
   }
 
   useEffect(() => {
-    if (!isTeamLoading) {
-      setTeam(data as ITeam);
+    if (!isTeamLoading && data) {
+      setTeam(data);
     }
   }, [data, isTeamLoading]);
 
   const [state, formAction, isLoading] = useActionState(
     updateManagementTeam.bind(null, {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      team: team.team_members?.map(({ user, ...member }) => member),
-      id: team.id,
+      team: team?.team_members?.map(({ user, ...member }) => member) || [],
+      id: team?.id || "",
     }),
     null,
   );

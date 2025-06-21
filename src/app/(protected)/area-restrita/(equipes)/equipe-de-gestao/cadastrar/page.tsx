@@ -16,7 +16,7 @@ import { Loader2 } from "lucide-react";
 
 import { ErrorMessage } from "../../../noticias/_components/error-message";
 import { SelectMember } from "../_components/select-member";
-import { TeamMembersTable } from "../_components/team-members-table";
+import { TeamMembersTable } from "../_components/team-members-table/team-members-table";
 import { useRegisterTeam } from "../_hooks/use-register-team.hook";
 
 export default function CadastrarEquipeDeGestao() {

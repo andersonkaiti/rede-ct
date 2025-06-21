@@ -2,9 +2,9 @@ import { z } from "zod";
 
 const BYTES = 1024;
 const MEGABYTES = BYTES * BYTES;
-const TOTAL_SIZE = 50 * MEGABYTES;
+const TOTAL_SIZE = 5 * MEGABYTES;
 
-export const newsSchema = z.object({
+export const registerNewsSchema = z.object({
   title: z.string().min(1, "Título é obrigatório"),
   content: z.string().min(1, "Texto é obrigatório"),
   image: z
@@ -13,6 +13,6 @@ export const newsSchema = z.object({
       message: "Imagem é obrigatória",
     })
     .refine((file) => file.size <= TOTAL_SIZE, {
-      message: "A imagem deve ter no máximo 50MB",
+      message: "A imagem deve ter no máximo 5MB",
     }),
 });

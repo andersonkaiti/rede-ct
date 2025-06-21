@@ -1,6 +1,7 @@
 "use client";
 
 import { DataTable } from "@components/ui/data-table";
+import { ITeamMember } from "types/team";
 
 import { useTeam } from "../../../_hooks/use-team.hook";
 import { LoadingSkeleton } from "./loading-skeleton";
@@ -22,9 +23,9 @@ export function Table() {
   }
 
   return (
-    <DataTable
+    <DataTable<ITeamMember, unknown>
       columns={sdhcTeamTableColumns}
-      data={teams[0].team_members}
+      data={teams?.[0].team_members}
       handleRemove={handleRemoveMember}
     />
   );

@@ -17,7 +17,7 @@ import { Loader2 } from "lucide-react";
 import { ErrorMessage } from "@/app/(protected)/area-restrita/noticias/_components/error-message";
 
 import { SelectMember } from "../../_components/select-member";
-import { TeamMembersTable } from "../../_components/team-members-table";
+import { TeamMembersTable } from "../../_components/team-members-table/team-members-table";
 import { useUpdateTeam } from "../../_hooks/use-update-team.hook";
 import { LoadingInputSkeleton } from "./_components/loading-input-skeleton";
 import { LoadingTableSkeleton } from "./_components/loading-table-skeleton";
@@ -72,7 +72,7 @@ export default function EditarEquipeDeGestao() {
 
               {!isTeamLoading ? (
                 <TeamMembersTable
-                  teamMembers={team.team_members}
+                  teamMembers={team?.team_members ?? []}
                   handleRemoveMember={handleRemoveMember}
                 />
               ) : (

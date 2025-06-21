@@ -87,7 +87,7 @@ export function UpdateForm({
                   Imagem <span className="text-red-500">*</span>
                 </Label>
 
-                <FileUpload maxSizeMB={50} imageUrl={image_url} />
+                <FileUpload maxSizeMB={5} imageUrl={image_url} />
               </PageFormContentField>
 
               <Button type="submit" className="cursor-pointer">

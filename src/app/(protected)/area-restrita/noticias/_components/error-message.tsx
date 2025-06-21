@@ -10,11 +10,15 @@ interface ErrorMessageProps {
 export function ErrorMessage({ state, inputName }: ErrorMessageProps) {
   const hasErrors = state && "errors" in state;
 
+  if (!hasErrors) return null;
+
+  const error = state?.errors[inputName];
+
   return (
     hasErrors && (
       <Alert variant="destructive" className="border-red-500 p-2">
         <AlertCircle className="size-4" />
-        <AlertDescription>{state?.errors[inputName]}</AlertDescription>
+        <AlertDescription>{error}</AlertDescription>
       </Alert>
     )
   );

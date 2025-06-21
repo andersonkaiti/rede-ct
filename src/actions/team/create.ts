@@ -12,7 +12,7 @@ import { State } from "./state";
 interface ICreateTeamMemberProps {
   name?: string;
   type?: string;
-  id: string;
+  id?: string;
 }
 
 export async function createTeamMember(

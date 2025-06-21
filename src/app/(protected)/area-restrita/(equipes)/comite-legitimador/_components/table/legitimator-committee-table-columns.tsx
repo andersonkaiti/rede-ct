@@ -2,7 +2,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ITeamMember } from "types/team";
 import { IUser } from "types/user";
 
-import { ActionsRow } from "./actions-row";
+import { ActionsRow } from "../../../../_components/actions-row";
+import { UpdateMemberForm } from "../update-member/update-member-form";
 
 export const legitimatorCommitteeTableColumns: ColumnDef<ITeamMember>[] = [
   {
@@ -48,6 +49,7 @@ export const legitimatorCommitteeTableColumns: ColumnDef<ITeamMember>[] = [
       <ActionsRow
         data={original}
         handleRemove={() => meta?.handleRemove?.(original)}
+        form={UpdateMemberForm}
       />
     ),
   },

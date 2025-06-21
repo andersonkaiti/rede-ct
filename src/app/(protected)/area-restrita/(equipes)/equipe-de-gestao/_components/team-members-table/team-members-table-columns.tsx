@@ -1,12 +1,10 @@
+import { Button } from "@components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
+import { Trash } from "lucide-react";
 import { ITeamMember } from "types/team";
 import { IUser } from "types/user";
 
-import { ActionsRow } from "@/app/(protected)/area-restrita/_components/actions-row";
-
-import { UpdateMemberForm } from "../update-member/update-member-form";
-
-export const sdhcTeamTableColumns: ColumnDef<ITeamMember>[] = [
+export const teamMembersTableColumns: ColumnDef<ITeamMember>[] = [
   {
     id: "name",
     header: "Nome",
@@ -38,11 +36,15 @@ export const sdhcTeamTableColumns: ColumnDef<ITeamMember>[] = [
         options: { meta },
       },
     }) => (
-      <ActionsRow
-        data={original}
-        handleRemove={() => meta?.handleRemove?.(original)}
-        form={UpdateMemberForm}
-      />
+      <Button
+        type="button"
+        variant="ghost"
+        onClick={() => meta?.handleRemove?.(original)}
+        className="cursor-pointer"
+      >
+        Remover
+        <Trash />
+      </Button>
     ),
   },
 ];

@@ -18,7 +18,7 @@ import { ITeamMember } from "types/team";
 
 import { ErrorMessage } from "@/app/(protected)/area-restrita/noticias/_components/error-message";
 
-import { SelectMember } from "../../../_components/select-member";
+import { SelectMember } from "../../../../_components/select-member";
 import { useUpdateMember } from "../../../_hooks/use-update-member";
 
 interface IUpdateMemberFormProps {

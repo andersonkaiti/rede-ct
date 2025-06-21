@@ -1,23 +1,35 @@
-import { Input } from "@components/ui/input";
 import {
+  PageActionsContainer,
   PageContainer,
+  PageDescription,
   PageHeader,
+  PageHeaderContent,
   PageMain,
   PageTitle,
 } from "@components/ui/page-container";
 
 import { CreateButton } from "../../_components/create-button";
+import { FilterInput } from "../../_components/filter-input";
 
 export default function Capacitacoes() {
   return (
     <PageContainer>
       <PageHeader>
-        <PageTitle>Capacitações</PageTitle>
+        <PageHeaderContent>
+          <PageTitle>Capacitações</PageTitle>
+          <PageDescription>Gerencie as suas capacitações</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
+
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
+        </PageActionsContainer>
         <CreateButton href="/area-restrita/capacitacoes/cadastrar">
           Cadastrar Capacitação
         </CreateButton>
       </PageHeader>
-      <Input placeholder="Pesquisar" className="w-full sm:w-fit" />
+
       <PageMain>Capacitações</PageMain>
     </PageContainer>
   );

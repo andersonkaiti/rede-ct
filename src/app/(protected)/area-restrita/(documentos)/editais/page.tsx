@@ -1,6 +1,7 @@
-import { Input } from "@components/ui/input";
 import {
+  PageActionsContainer,
   PageContainer,
+  PageDescription,
   PageHeader,
   PageHeaderContent,
   PageMain,
@@ -8,6 +9,7 @@ import {
 } from "@components/ui/page-container";
 
 import { CreateButton } from "../../_components/create-button";
+import { FilterInput } from "../../_components/filter-input";
 
 export default function Editais() {
   return (
@@ -15,12 +17,19 @@ export default function Editais() {
       <PageHeader>
         <PageHeaderContent>
           <PageTitle>Editais</PageTitle>
+          <PageDescription>Gerencie os editais</PageDescription>
         </PageHeaderContent>
+      </PageHeader>
+
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
+        </PageActionsContainer>
         <CreateButton href="/area-restrita/editais/cadastrar">
           Cadastrar edital
         </CreateButton>
       </PageHeader>
-      <Input placeholder="Pesquisar" className="w-full sm:w-fit" />
+
       <PageMain>Editais</PageMain>
     </PageContainer>
   );

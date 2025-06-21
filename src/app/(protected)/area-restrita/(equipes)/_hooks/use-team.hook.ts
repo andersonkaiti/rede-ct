@@ -30,7 +30,9 @@ export function useTeam({ type }: IUseTeamProps) {
       })),
   );
 
-  async function handleRemoveMember(id: string) {
+  async function handleRemoveMember(data: unknown) {
+    const { id } = data as ITeam;
+
     startTransition(() => {
       updateOptimisticTeams(id);
     });

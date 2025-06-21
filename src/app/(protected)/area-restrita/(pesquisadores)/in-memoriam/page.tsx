@@ -1,13 +1,15 @@
-import { Input } from "@components/ui/input";
 import {
+  PageActionsContainer,
   PageContainer,
+  PageDescription,
   PageHeader,
   PageHeaderContent,
   PageMain,
   PageTitle,
 } from "@components/ui/page-container";
 
-import { CreateButton } from "../../_components/create-button";
+import { FilterInput } from "../../_components/filter-input";
+import { CreateInMemoriamButton } from "./create-in-memoriam/create-in-memoriam-button";
 
 export default function InMemoriam() {
   return (
@@ -15,12 +17,17 @@ export default function InMemoriam() {
       <PageHeader>
         <PageHeaderContent>
           <PageTitle>In Memoriam</PageTitle>
+          <PageDescription>Gerencie os In Memoriam</PageDescription>
         </PageHeaderContent>
-        <CreateButton href="/area-restrita/in-memoriam/create">
-          Cadastrar pesquisador
-        </CreateButton>
       </PageHeader>
-      <Input placeholder="Pesquisar" className="w-full sm:w-fit" />
+
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
+        </PageActionsContainer>
+        <CreateInMemoriamButton />
+      </PageHeader>
+
       <PageMain>In Memoriam</PageMain>
     </PageContainer>
   );

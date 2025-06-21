@@ -34,11 +34,9 @@ export default function CadastrarNoticia() {
       </header>
 
       <Card className="rounded-md shadow-xs">
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <Newspaper className="text-primary !size-5" />
-            <CardTitle>Cadastrar Notícia</CardTitle>
-          </div>
+        <CardHeader className="flex items-center gap-2">
+          <Newspaper className="text-primary !size-5" />
+          <CardTitle className="text-xl">Cadastrar Notícia</CardTitle>
         </CardHeader>
         <CardContent>
           <PageForm action={formAction}>
@@ -84,7 +82,7 @@ export default function CadastrarNoticia() {
 
               <Button
                 type="submit"
-                className="cursor-pointer py-6 font-normal"
+                className="cursor-pointer"
                 disabled={isLoading}
               >
                 {isLoading && <Loader2 className="size-4 animate-spin" />}

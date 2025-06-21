@@ -8,7 +8,7 @@ import {
 import { Loader2 } from "lucide-react";
 import { ITeamMember } from "types/team";
 
-import { useUsers } from "../_hooks/use-users.hook";
+import { useUsers } from "../(equipes)/_hooks/use-users.hook";
 
 interface ISelectMemberProps {
   user_id?: ITeamMember["user_id"];

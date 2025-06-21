@@ -11,6 +11,8 @@ import {
   PageForm,
   PageFormContent,
   PageFormContentField,
+  PageHeader,
+  PageHeaderContent,
   PageTitle,
 } from "@components/ui/page-container";
 import { Loader2, Newspaper } from "lucide-react";
@@ -35,19 +37,19 @@ export function UpdateForm({
 
   return (
     <PageContainer>
-      <header className="space-y-4">
-        <PageTitle>Editar Notícia</PageTitle>
-        <PageDescription>
-          Preencha os campos abaixo para atualizar a notícia
-        </PageDescription>
-      </header>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Editar Notícia</PageTitle>
+          <PageDescription>
+            Preencha os campos abaixo para atualizar a notícia
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
       <Card className="rounded-md shadow-xs">
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <Newspaper className="text-primary !size-5" />
-            <CardTitle>Atualizar Notícia</CardTitle>
-          </div>
+        <CardHeader className="flex items-center gap-2">
+          <Newspaper className="text-primary !size-5" />
+          <CardTitle>Atualizar Notícia</CardTitle>
         </CardHeader>
         <CardContent>
           <PageForm action={formAction}>

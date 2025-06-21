@@ -1,18 +1,12 @@
 "use client";
 
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@components/ui/table";
+import { DataTable } from "@components/ui/data-table";
 
 import { useUserNews } from "../../_hooks/use-user-news.hook";
 import { LoadingSkeleton } from "./loading-skeleton";
-import { NewsRow } from "./news-row";
+import { newTableColumns } from "./news-table-columns";
 
-export function NoticiasTable() {
+export function Table() {
   const { data: news, handleRemoveNews, isLoading } = useUserNews();
 
   if (isLoading) {
@@ -20,23 +14,10 @@ export function NoticiasTable() {
   }
 
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Título</TableHead>
-          <TableHead>Data</TableHead>
-          <TableHead>Ações</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {news?.map((news) => (
-          <NewsRow
-            key={news.id}
-            news={news}
-            handleRemoveNews={handleRemoveNews}
-          />
-        ))}
-      </TableBody>
-    </Table>
+    <DataTable
+      columns={newTableColumns}
+      data={news}
+      handleRemove={handleRemoveNews}
+    />
   );
 }

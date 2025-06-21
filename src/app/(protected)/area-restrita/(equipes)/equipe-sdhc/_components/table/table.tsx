@@ -1,20 +1,14 @@
 "use client";
 
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@components/ui/table";
+import { DataTable } from "@components/ui/data-table";
 
 import { useTeam } from "../../../_hooks/use-team.hook";
 import { LoadingSkeleton } from "./loading-skeleton";
-import { TableRowComponent } from "./table-row";
+import { sdhcTeamTableColumns } from "./sdhc-team-table-columns";
 
 const TEAM_TYPE = "equipe-sdhc";
 
-export function EquipeSDHCTable() {
+export function Table() {
   const {
     data: teams,
     isLoading,
@@ -28,23 +22,10 @@ export function EquipeSDHCTable() {
   }
 
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Nome</TableHead>
-          <TableHead>Cargo</TableHead>
-          <TableHead>Ações</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {teams?.[0]?.team_members?.map((member) => (
-          <TableRowComponent
-            key={`${member.id}-${member.user_id}`}
-            member={member}
-            handleRemoveMember={() => handleRemoveMember(member.id as string)}
-          />
-        ))}
-      </TableBody>
-    </Table>
+    <DataTable
+      columns={sdhcTeamTableColumns}
+      data={teams[0].team_members}
+      handleRemove={handleRemoveMember}
+    />
   );
 }

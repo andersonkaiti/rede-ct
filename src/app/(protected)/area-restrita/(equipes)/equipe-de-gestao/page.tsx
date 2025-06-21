@@ -1,26 +1,38 @@
-import { Input } from "@components/ui/input";
 import {
+  PageActionsContainer,
   PageContainer,
+  PageDescription,
   PageHeader,
+  PageHeaderContent,
   PageMain,
   PageTitle,
 } from "@components/ui/page-container";
 
 import { CreateButton } from "../../_components/create-button";
-import EquipeDeGestaoTable from "./_components/table/table";
+import { FilterInput } from "../../_components/filter-input";
+import Table from "./_components/table/table";
 
 export default function EquipeDeGestao() {
   return (
     <PageContainer>
       <PageHeader>
-        <PageTitle>Equipe de Gestão</PageTitle>
+        <PageHeaderContent>
+          <PageTitle>Equipe de Gestão</PageTitle>
+          <PageDescription>Gerencie as equipes de gestão</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
+
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
+        </PageActionsContainer>
         <CreateButton href="/area-restrita/equipe-de-gestao/cadastrar">
           Criar Equipe de Gestão
         </CreateButton>
       </PageHeader>
-      <Input placeholder="Pesquisar" className="w-full sm:w-fit" />
+
       <PageMain>
-        <EquipeDeGestaoTable />
+        <Table />
       </PageMain>
     </PageContainer>
   );

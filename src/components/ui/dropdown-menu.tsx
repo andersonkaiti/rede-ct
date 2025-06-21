@@ -5,13 +5,13 @@ import { cn } from "@utils/cn";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 import * as React from "react";
 
-function Root({
+function DropdownMenu({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
   return <DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
 }
 
-function Portal({
+function DropdownMenuPortal({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Portal>) {
   return (
@@ -19,18 +19,20 @@ function Portal({
   );
 }
 
-function Trigger({
+function DropdownMenuTrigger({
+  className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
   return (
     <DropdownMenuPrimitive.Trigger
       data-slot="dropdown-menu-trigger"
+      className={cn("cursor-pointer", className)}
       {...props}
     />
   );
 }
 
-function Content({
+function DropdownMenuContent({
   className,
   sideOffset = 4,
   ...props
@@ -50,7 +52,7 @@ function Content({
   );
 }
 
-function Group({
+function DropdownMenuGroup({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Group>) {
   return (
@@ -58,7 +60,7 @@ function Group({
   );
 }
 
-function Item({
+function DropdownMenuItem({
   className,
   inset,
   variant = "default",
@@ -81,7 +83,7 @@ function Item({
   );
 }
 
-function CheckboxItem({
+function DropdownMenuCheckboxItem({
   className,
   children,
   checked,
@@ -91,7 +93,7 @@ function CheckboxItem({
     <DropdownMenuPrimitive.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
       className={cn(
-        "focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-2 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       checked={checked}
@@ -107,7 +109,7 @@ function CheckboxItem({
   );
 }
 
-function RadioGroup({
+function DropdownMenuRadioGroup({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.RadioGroup>) {
   return (
@@ -118,7 +120,7 @@ function RadioGroup({
   );
 }
 
-function RadioItem({
+function DropdownMenuRadioItem({
   className,
   children,
   ...props
@@ -142,7 +144,7 @@ function RadioItem({
   );
 }
 
-function Label({
+function DropdownMenuLabel({
   className,
   inset,
   ...props
@@ -162,7 +164,7 @@ function Label({
   );
 }
 
-function Separator({
+function DropdownMenuSeparator({
   className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Separator>) {
@@ -175,7 +177,10 @@ function Separator({
   );
 }
 
-function Shortcut({ className, ...props }: React.ComponentProps<"span">) {
+function DropdownMenuShortcut({
+  className,
+  ...props
+}: React.ComponentProps<"span">) {
   return (
     <span
       data-slot="dropdown-menu-shortcut"
@@ -188,13 +193,13 @@ function Shortcut({ className, ...props }: React.ComponentProps<"span">) {
   );
 }
 
-function Sub({
+function DropdownMenuSub({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Sub>) {
   return <DropdownMenuPrimitive.Sub data-slot="dropdown-menu-sub" {...props} />;
 }
 
-function SubTrigger({
+function DropdownMenuSubTrigger({
   className,
   inset,
   children,
@@ -218,7 +223,7 @@ function SubTrigger({
   );
 }
 
-function SubContent({
+function DropdownMenuSubContent({
   className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.SubContent>) {
@@ -235,19 +240,19 @@ function SubContent({
 }
 
 export {
-  CheckboxItem,
-  Content,
-  Group,
-  Item,
-  Label,
-  Portal,
-  RadioGroup,
-  RadioItem,
-  Root,
-  Separator,
-  Shortcut,
-  Sub,
-  SubContent,
-  SubTrigger,
-  Trigger,
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
 };

@@ -1,24 +1,31 @@
-import { Input } from "@components/ui/input";
 import {
+  PageActionsContainer,
   PageContainer,
   PageHeader,
   PageMain,
   PageTitle,
 } from "@components/ui/page-container";
 
+import { FilterInput } from "../../_components/filter-input";
 import { CreateMemberButton } from "./_components/create-member/create-member-button";
-import { EquipeSDHCTable } from "./_components/table/table";
+import { Table } from "./_components/table/table";
 
 export default function EquipeSDHC() {
   return (
     <PageContainer>
       <PageHeader>
         <PageTitle>Equipe SDHC</PageTitle>
+      </PageHeader>
+
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
+        </PageActionsContainer>
         <CreateMemberButton>Adicionar membro</CreateMemberButton>
       </PageHeader>
-      <Input placeholder="Pesquisar equipe" className="w-full sm:w-fit" />
+
       <PageMain>
-        <EquipeSDHCTable />
+        <Table />
       </PageMain>
     </PageContainer>
   );

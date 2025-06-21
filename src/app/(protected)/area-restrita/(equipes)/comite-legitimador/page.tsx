@@ -1,24 +1,36 @@
-import { Input } from "@components/ui/input";
 import {
+  PageActionsContainer,
   PageContainer,
+  PageDescription,
   PageHeader,
+  PageHeaderContent,
   PageMain,
   PageTitle,
 } from "@components/ui/page-container";
 
+import { FilterInput } from "../../_components/filter-input";
 import { CreateMemberButton } from "./_components/create-member/create-member-button";
-import { ComiteLegitimadorTable } from "./_components/table/table";
+import { Table } from "./_components/table/table";
 
 export default function ComiteLegitimador() {
   return (
     <PageContainer>
       <PageHeader>
-        <PageTitle>Comitê Legitimador</PageTitle>
+        <PageHeaderContent>
+          <PageTitle>Comitê Legitimador</PageTitle>
+          <PageDescription>Gerencie o Comitê Legitimador</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
+
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
+        </PageActionsContainer>
         <CreateMemberButton>Adicionar membro</CreateMemberButton>
       </PageHeader>
-      <Input placeholder="Pesquisar comitê" className="w-full sm:w-fit" />
+
       <PageMain>
-        <ComiteLegitimadorTable />
+        <Table />
       </PageMain>
     </PageContainer>
   );

@@ -1,28 +1,28 @@
-import { BackArrow } from "@components/back-arrow";
-import { Badge } from "@components/ui/badge";
+import { BackArrow } from '@components/back-arrow'
+import { Badge } from '@components/ui/badge'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@components/ui/card";
-import { RedLine } from "@components/ui/red-line";
-import { InfoIcon } from "lucide-react";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
+} from '@components/ui/card'
+import { RedLine } from '@components/ui/red-line'
+import { InfoIcon } from 'lucide-react'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
 
-import { LoadingSkeleton } from "./_components/loading-skeleton";
+import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicComiteLegitimador = dynamic(() =>
-  import("./_components/comite-legitimador").then((m) => m.ComiteLegitimador),
-);
+  import('./_components/comite-legitimador').then((m) => m.ComiteLegitimador)
+)
 
-export default async function ComiteLegitimador() {
+export default function ComiteLegitimador() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-7 p-5 py-8 lg:p-25">
       <BackArrow />
-      <h2 className="text-center text-3xl font-bold md:text-4xl">
+      <h2 className="text-center font-bold text-3xl md:text-4xl">
         Composição do Comitê Legitimador da RedeCT
       </h2>
       <RedLine />
@@ -32,16 +32,16 @@ export default async function ComiteLegitimador() {
       <Card className="border-0 bg-white shadow-lg">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Badge className="bg-primary/10 text-primary rounded-full p-1">
+            <Badge className="rounded-full bg-primary/10 p-1 text-primary">
               <InfoIcon className="!size-5" />
             </Badge>
-            <span className="text-2xl font-bold">Sobre o Comitê</span>
+            <span className="font-bold text-2xl">Sobre o Comitê</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <CardDescription className="space-y-4">
             <p className="text-justify">
-              Sob responsabilidade da{" "}
+              Sob responsabilidade da{' '}
               <strong className="text-primary">
                 Vice-coordenadoria de Extensão Universitária e Cultura
               </strong>
@@ -49,7 +49,7 @@ export default async function ComiteLegitimador() {
               Extensão e Cultura (que tem a responsabilidade de organizar as
               pautas e reuniões, tendo direito à palavra e ao voto de minerva) e
               mais <strong className="text-primary">7</strong> membros
-              representantes das áreas de Antropologia e Museologia e de{" "}
+              representantes das áreas de Antropologia e Museologia e de{' '}
               <strong className="text-primary">
                 cinco povos tradicionais diferentes
               </strong>
@@ -57,7 +57,7 @@ export default async function ComiteLegitimador() {
               vice-coordenador que tem voto de minerva em caso de caso de
               empate).
             </p>
-            <aside className="w-fit rounded-md border-l-4 border-amber-500 bg-amber-200/50 px-4 py-2 text-justify text-amber-800">
+            <aside className="w-fit rounded-md border-amber-500 border-l-4 bg-amber-200/50 px-4 py-2 text-justify text-amber-800">
               <div className="text-sm">
                 O Secretário Geral tem direito à palavra, mas não tem direito ao
                 voto.
@@ -67,5 +67,5 @@ export default async function ComiteLegitimador() {
         </CardContent>
       </Card>
     </main>
-  );
+  )
 }

@@ -1,16 +1,16 @@
-"use client";
+'use client'
 
-import { Button } from "@components/ui/button";
-import { ArrowLeft } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { Button } from '@components/ui/button'
+import { ArrowLeft } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 export function SidebarBackButton() {
-  const router = useRouter();
+  const router = useRouter()
 
   return (
     <Button
-      onClick={() => router.replace("/")}
       className="w-full cursor-pointer font-normal"
+      onClick={() => router.replace('/')}
       variant="ghost"
     >
       <span className="mr-auto flex items-center gap-4">
@@ -18,5 +18,5 @@ export function SidebarBackButton() {
         Voltar
       </span>
     </Button>
-  );
+  )
 }

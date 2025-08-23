@@ -1,70 +1,73 @@
-"use client";
+import { redirect } from 'next/navigation'
+import { useActionState, useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
+import type { ITeamMember } from 'types/team'
+import { type IActionState, registerManagementTeam } from '../actions'
 
-import { registerManagementTeam } from "@actions/management-team/register";
-import { redirect } from "next/navigation";
-import { useActionState, useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
-import { ITeamMember } from "types/team";
+export function useCreateTeam() {
+  const [team, setTeam] = useState<ITeamMember[]>([])
+  const [selectedMember, setSelectedMember] = useState<ITeamMember | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
-export function useRegisterTeam() {
-  const [team, setTeam] = useState<ITeamMember[]>([]);
-  const [selectedMember, setSelectedMember] = useState<ITeamMember | null>(
-    null,
-  );
-  const inputRef = useRef<HTMLInputElement>(null);
+  function handleIncludeTeamMember() {
+    if (!(selectedMember && inputRef.current)) {
+      return
+    }
 
-  function handleAddMember() {
-    if (!selectedMember || !inputRef.current) return;
+    if (!inputRef.current.value) {
+      toast.warning('Especifique o cargo!')
+
+      return
+    }
 
     const newMember: ITeamMember = {
       ...selectedMember,
       role: inputRef.current.value,
-    };
-
-    const alreadyExist = !!team.find(
-      (member) => member.user_id === newMember.user_id,
-    );
-
-    if (alreadyExist) {
-      toast.warning("Esse membro já existe!");
-
-      return;
     }
 
-    toast.success("Membro adicionado com sucesso!");
+    const alreadyExists = !!team.find(
+      (member) => member.user?.id === newMember.user?.id
+    )
 
-    setTeam((prevTeam) => [...prevTeam, newMember]);
+    if (alreadyExists) {
+      toast.warning('Esse membro já existe!')
+
+      return
+    }
+
+    toast.success('Membro adicionado com sucesso!')
+
+    setTeam((prevTeam) => [...prevTeam, newMember])
   }
 
   function handleRemoveMember({ id }: ITeamMember) {
-    setTeam((prevTeam) =>
-      prevTeam.filter((teamMember) => teamMember.id !== id),
-    );
+    setTeam((prevTeam) => prevTeam.filter((teamMember) => teamMember.id !== id))
 
-    toast.success("Usuário removido com sucesso!");
+    toast.success('Usuário removido com sucesso!')
   }
 
-  const [state, formAction, isLoading] = useActionState(
-    registerManagementTeam.bind(null, team),
-    null,
-  );
+  const [{ payload, success, errors }, formAction, isLoading] = useActionState<
+    IActionState,
+    FormData
+  >(registerManagementTeam.bind(null, team), {} as IActionState)
 
   useEffect(() => {
-    if (state && "success" in state) {
-      toast.success("Equipe cadastrada com sucesso!");
+    if (success) {
+      toast.success('Equipe cadastrada com sucesso!')
 
-      redirect("/area-restrita/equipe-de-gestao");
+      redirect('/area-restrita/equipe-de-gestao')
     }
-  }, [state]);
+  }, [success])
 
   return {
     team,
     setSelectedMember,
     inputRef,
-    handleAddMember,
+    handleIncludeTeamMember,
     handleRemoveMember,
     formAction,
     isLoading,
-    state,
-  };
+    errors,
+    payload,
+  }
 }

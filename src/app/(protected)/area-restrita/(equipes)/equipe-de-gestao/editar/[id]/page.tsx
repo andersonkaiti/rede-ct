@@ -1,8 +1,9 @@
-"use client";
+'use client'
 
-import { Button } from "@components/ui/button";
-import { Input } from "@components/ui/input";
-import { Label } from "@components/ui/label";
+import { Alert, AlertDescription } from '@components/ui/alert'
+import { Button } from '@components/ui/button'
+import { Input } from '@components/ui/input'
+import { Label } from '@components/ui/label'
 import {
   PageContainer,
   PageForm,
@@ -11,31 +12,27 @@ import {
   PageHeader,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
-import { Loader2 } from "lucide-react";
-
-import { ErrorMessage } from "@/app/(protected)/area-restrita/noticias/_components/error-message";
-
-import { SelectMember } from "../../_components/select-member";
-import { TeamMembersTable } from "../../_components/team-members-table/team-members-table";
-import { useUpdateTeam } from "../../_hooks/use-update-team.hook";
-import { LoadingInputSkeleton } from "./_components/loading-input-skeleton";
-import { LoadingTableSkeleton } from "./_components/loading-table-skeleton";
+} from '@components/ui/page-container'
+import { AlertCircle, Loader2 } from 'lucide-react'
+import { SelectMember } from '../../_components/select-member'
+import { TeamMembersTable } from '../../_components/team-members-table/team-members-table'
+import { useUpdateTeam } from '../../_hooks/use-update-team.hook'
+import { LoadingInputSkeleton } from './_components/loading-input-skeleton'
+import { LoadingTableSkeleton } from './_components/loading-table-skeleton'
 
 export default function EditarEquipeDeGestao() {
   const {
+    data,
     team,
     isTeamLoading,
     inputRef,
     setSelectedMember,
-    handleAddMember,
+    handleIncludeTeamMember,
     handleRemoveMember,
-    state,
+    errors,
     formAction,
     isLoading,
-  } = useUpdateTeam();
-
-  const hasErrors = state && "errors" in state;
+  } = useUpdateTeam()
 
   return (
     <PageContainer>
@@ -47,47 +44,53 @@ export default function EditarEquipeDeGestao() {
           <PageFormContent>
             <PageFormContentField>
               <Label>Nome da equipe</Label>
-              {!isTeamLoading ? (
+              {isTeamLoading ? (
+                <LoadingInputSkeleton />
+              ) : (
                 <Input
+                  defaultValue={data?.name}
                   name="name"
                   placeholder="Nome"
-                  defaultValue={team?.name}
                 />
-              ) : (
-                <LoadingInputSkeleton />
               )}
 
-              {hasErrors && state.errors.name && (
-                <ErrorMessage state={state} inputName="name" />
+              {errors?.name && errors?.name && (
+                <Alert className="border-red-500 p-2" variant="destructive">
+                  <AlertCircle className="size-4" />
+                  <AlertDescription>{errors?.name}</AlertDescription>
+                </Alert>
               )}
             </PageFormContentField>
             <PageFormContentField>
               <Label>Membros cadastrados</Label>
 
               <SelectMember
+                handleIncludeTeamMember={handleIncludeTeamMember}
                 inputRef={inputRef}
                 setSelectedMember={setSelectedMember}
-                handleAddMember={handleAddMember}
               />
 
-              {!isTeamLoading ? (
-                <TeamMembersTable
-                  teamMembers={team?.team_members ?? []}
-                  handleRemoveMember={handleRemoveMember}
-                />
-              ) : (
+              {isTeamLoading ? (
                 <LoadingTableSkeleton />
+              ) : (
+                <TeamMembersTable
+                  handleRemoveMember={handleRemoveMember}
+                  teamMembers={team}
+                />
               )}
 
-              {hasErrors && state.errors.members && (
-                <ErrorMessage state={state} inputName="members" />
+              {errors?.members && errors?.members && (
+                <Alert className="border-red-500 p-2" variant="destructive">
+                  <AlertCircle className="size-4" />
+                  <AlertDescription>{errors?.members}</AlertDescription>
+                </Alert>
               )}
             </PageFormContentField>
 
             <Button
-              type="submit"
               className="cursor-pointer"
               disabled={isLoading}
+              type="submit"
             >
               {isLoading && <Loader2 className="size-4 animate-spin" />}
               Atualizar equipe
@@ -96,5 +99,5 @@ export default function EditarEquipeDeGestao() {
         </PageForm>
       </PageMain>
     </PageContainer>
-  );
+  )
 }

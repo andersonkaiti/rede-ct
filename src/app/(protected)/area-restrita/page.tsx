@@ -1,4 +1,4 @@
-import { NavigationCard } from "@components/ui/navigation-card";
+import { NavigationCard } from '@components/ui/navigation-card'
 import {
   PageContainer,
   PageDescription,
@@ -6,8 +6,8 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
-import { Award, Banknote, History, Newspaper, Users } from "lucide-react";
+} from '@components/ui/page-container'
+import { Award, Banknote, History, Newspaper, Users } from 'lucide-react'
 
 export default function AreaRestrita() {
   return (
@@ -28,7 +28,7 @@ export default function AreaRestrita() {
               <div className="rounded-full bg-indigo-500/20 p-2">
                 <Newspaper className="text-indigo-500" />
               </div>
-              <h3 className="text-lg font-semibold">Notícias</h3>
+              <h3 className="font-semibold text-lg">Notícias</h3>
             </div>
           </NavigationCard>
           <NavigationCard href="/area-restrita/pendencias">
@@ -36,7 +36,7 @@ export default function AreaRestrita() {
               <div className="rounded-full bg-red-500/20 p-2">
                 <Banknote className="text-red-500" />
               </div>
-              <h3 className="text-lg font-semibold">Pendências</h3>
+              <h3 className="font-semibold text-lg">Pendências</h3>
             </div>
           </NavigationCard>
           <NavigationCard href="/area-restrita/certificados">
@@ -44,7 +44,7 @@ export default function AreaRestrita() {
               <div className="rounded-full bg-green-500/20 p-2">
                 <Award className="text-green-500" />
               </div>
-              <h3 className="text-lg font-semibold">Certificados</h3>
+              <h3 className="font-semibold text-lg">Certificados</h3>
             </div>
           </NavigationCard>
           <NavigationCard href="/area-restrita/historico-de-contribuicoes">
@@ -52,7 +52,7 @@ export default function AreaRestrita() {
               <div className="rounded-full bg-orange-500/20 p-2">
                 <History className="text-orange-500" />
               </div>
-              <h3 className="text-lg font-semibold">Histórico</h3>
+              <h3 className="font-semibold text-lg">Histórico</h3>
             </div>
           </NavigationCard>
           <NavigationCard href="/area-restrita/equipes">
@@ -60,11 +60,11 @@ export default function AreaRestrita() {
               <div className="rounded-full bg-purple-500/20 p-2">
                 <Users className="text-purple-500" />
               </div>
-              <h3 className="text-lg font-semibold">Equipes</h3>
+              <h3 className="font-semibold text-lg">Equipes</h3>
             </div>
           </NavigationCard>
         </section>
       </PageMain>
     </PageContainer>
-  );
+  )
 }

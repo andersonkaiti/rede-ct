@@ -1,21 +1,21 @@
-import { Copy } from "@components/copy";
-import { Badge } from "@components/ui/badge";
-import { Card } from "@components/ui/card";
-import { NavigationCard } from "@components/ui/navigation-card";
+import { Copy } from '@components/copy'
+import { Badge } from '@components/ui/badge'
+import { Card } from '@components/ui/card'
+import { NavigationCard } from '@components/ui/navigation-card'
 import {
   Banknote,
   FileText,
   Link as LinkIcon,
   PiggyBank,
   Search,
-} from "lucide-react";
+} from 'lucide-react'
 
 export default function TransparenciaEControleSocial() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary rounded-full p-1">
+          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
             <Search className="!size-7" />
           </Badge>
           <h1 className="title-2">Transparência e Controle Social</h1>
@@ -69,34 +69,34 @@ export default function TransparenciaEControleSocial() {
           </h2>
           <ol className="space-y-4">
             <li className="flex items-start">
-              <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+              <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
                 1
               </span>
               Referendar ou vetar a Carta Anual da RedeCT;
             </li>
             <li className="flex items-start">
-              <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+              <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
                 2
               </span>
               Vetar publicações científicas oriundas dos fluxos editorias da
               RedeCT a partir da observância de problemas éticos;
             </li>
             <li className="flex items-start">
-              <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+              <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
                 3
               </span>
               Levar à Coordenação Geral da RedeCT eventuais problemas ou
               questões de diversas natureza, solicitando providências;
             </li>
             <li className="flex items-start">
-              <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+              <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
                 4
               </span>
               Emitir recomendação de admissão ou veto ao ingresso de Membros
               Honorários na RedeCT;
             </li>
             <li className="flex items-start">
-              <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+              <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
                 5
               </span>
               Analisar e emitir parecer acerca de encaminhamentos feitos à esta
@@ -115,7 +115,7 @@ export default function TransparenciaEControleSocial() {
           (entradas de valores e pagamento de despesas). ESTA ÁREA ESTÁ EM
           CONSTRUÇÃO!
         </p>
-        <h3 className="text-2xl font-bold">
+        <h3 className="font-bold text-2xl">
           O que é o Comitê de Legitimação (ou Comitê Legitimador) da RedeCT?
         </h3>
         <p className="text-justify">
@@ -137,7 +137,7 @@ export default function TransparenciaEControleSocial() {
           <NavigationCard href="/quem-somos/transparencia-e-controle-social/comite-legitimador">
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-4">
-                <div className="bg-primary/20 rounded-full p-2">
+                <div className="rounded-full bg-primary/20 p-2">
                   <FileText className="text-primary" />
                 </div>
                 <h2 className="title-3 font-bold">Comitê Legitimador</h2>
@@ -157,11 +157,11 @@ export default function TransparenciaEControleSocial() {
               <div className="rounded-full bg-green-500/20 p-2">
                 <FileText className="text-green-500" />
               </div>
-              <h3 className="text-xl font-bold">
+              <h3 className="font-bold text-xl">
                 Extrato detalhado de lançamentos financeiros
               </h3>
             </div>
-            <div className="text-primary flex cursor-pointer items-center gap-2 font-bold hover:underline">
+            <div className="flex cursor-pointer items-center gap-2 font-bold text-primary hover:underline">
               <LinkIcon className="h-5 w-5" />
               <p>LINK DE ACESSO AO ARQUIVO</p>
             </div>
@@ -169,10 +169,10 @@ export default function TransparenciaEControleSocial() {
 
           <div className="flex flex-col items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
             <div className="flex items-center gap-4">
-              <div className="bg-primary/20 rounded-full p-2">
+              <div className="rounded-full bg-primary/20 p-2">
                 <Banknote className="text-primary" />
               </div>
-              <h3 className="text-xl font-bold">Saldo em conta corrente</h3>
+              <h3 className="font-bold text-xl">Saldo em conta corrente</h3>
             </div>
             <div>
               <p className="text-justify">
@@ -183,10 +183,10 @@ export default function TransparenciaEControleSocial() {
 
           <div className="flex flex-col items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
             <div className="flex items-center gap-4">
-              <div className="bg-primary/20 rounded-full p-2">
+              <div className="rounded-full bg-primary/20 p-2">
                 <PiggyBank className="text-primary" />
               </div>
-              <h3 className="text-xl font-bold">Saldo total da RedeCT</h3>
+              <h3 className="font-bold text-xl">Saldo total da RedeCT</h3>
             </div>
             <div>
               <p className="text-justify">
@@ -233,13 +233,13 @@ export default function TransparenciaEControleSocial() {
         <h2 className="title-2">Observações</h2>
         <ol className="space-y-4">
           <li className="flex items-start">
-            <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+            <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
               1
             </span>
             O arquivo do extrato detalhado será atualizado mensalmente.
           </li>
           <li className="flex items-start">
-            <span className="bg-primary/10 text-primary mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-base font-semibold">
+            <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
               2
             </span>
             Em breve, a RedeCT contará com conta corrente de pessoa jurídica
@@ -250,5 +250,5 @@ export default function TransparenciaEControleSocial() {
         </ol>
       </section>
     </main>
-  );
+  )
 }

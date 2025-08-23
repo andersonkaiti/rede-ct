@@ -1,16 +1,16 @@
-import { Button } from "@components/ui/button";
+import { Button } from '@components/ui/button'
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@components/ui/card";
-import { IBook } from "@services/redect-books/redect-books";
-import Link from "next/link";
+} from '@components/ui/card'
+import type { IBook } from '@mocks/redect-books/redect-books'
+import Link from 'next/link'
 
 interface IBookProps {
-  book: IBook;
+  book: IBook
 }
 
 export function Book({
@@ -19,22 +19,22 @@ export function Book({
   return (
     <Card className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md">
       <CardHeader className="p-0">
-        <CardTitle className="text-xl font-bold text-black">
+        <CardTitle className="font-bold text-black text-xl">
           Volume {volume} ({year})
         </CardTitle>
       </CardHeader>
       <CardContent className="mt-auto space-y-4 p-0">
-        <p className="text-muted-foreground font-semibold">{preface}</p>
-        <p className="text-muted-foreground text-justify leading-relaxed">
+        <p className="font-semibold text-muted-foreground">{preface}</p>
+        <p className="text-justify text-muted-foreground leading-relaxed">
           {prefaceText}
         </p>
         <p className="text-primary italic">{publisher}</p>
       </CardContent>
       <CardFooter className="p-0">
-        <Link href={link} target="_blank" className="w-full">
+        <Link className="w-full" href={link} target="_blank">
           <Button className="w-full font-bold">Acessar volume completo</Button>
         </Link>
       </CardFooter>
     </Card>
-  );
+  )
 }

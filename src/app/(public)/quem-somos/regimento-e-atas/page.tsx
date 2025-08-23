@@ -1,5 +1,5 @@
-import { Button } from "@components/ui/button";
-import Link from "next/link";
+import { Button } from '@components/ui/button'
+import Link from 'next/link'
 
 export default function RegimentosEAtas() {
   return (
@@ -31,8 +31,8 @@ export default function RegimentosEAtas() {
           <Button asChild>
             <Link
               href="/quem-somos/regimento-e-atas"
-              target="_blank"
               rel="noopener noreferrer"
+              target="_blank"
             >
               Baixar Regimento Interno
             </Link>
@@ -86,16 +86,16 @@ export default function RegimentosEAtas() {
             <ul className="mt-2 space-y-2">
               <li className="text-gray-600">
                 <Link
-                  href="/quem-somos/regimento-e-atas"
                   className="hover:text-blue-600"
+                  href="/quem-somos/regimento-e-atas"
                 >
                   Ata da Assembleia Geral - 01/02/2024
                 </Link>
               </li>
               <li className="text-gray-600">
                 <Link
-                  href="/quem-somos/regimento-e-atas"
                   className="hover:text-blue-600"
+                  href="/quem-somos/regimento-e-atas"
                 >
                   Ata da Reunião de Coordenação - 15/03/2024
                 </Link>
@@ -136,5 +136,5 @@ export default function RegimentosEAtas() {
         </div>
       </section>
     </main>
-  );
+  )
 }

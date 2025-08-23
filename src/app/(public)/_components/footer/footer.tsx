@@ -1,7 +1,7 @@
-import Image from "next/image";
+import Image from 'next/image'
 
-import Links from "./_components/links";
-import { SocialMedia } from "./_components/social-media";
+import Links from './_components/links'
+import { SocialMedia } from './_components/social-media'
 
 export function Footer() {
   return (
@@ -12,13 +12,13 @@ export function Footer() {
             <div className="flex items-center gap-2">
               <div className="relative h-10 w-10">
                 <Image
-                  src="/images/favicon.png"
-                  fill
-                  className="object-cover"
                   alt="Rede CT"
+                  className="object-cover"
+                  fill
+                  src="/images/favicon.png"
                 />
               </div>
-              <h3 className="text-2xl font-semibold text-white">RedeCT</h3>
+              <h3 className="font-semibold text-2xl text-white">RedeCT</h3>
             </div>
             <h1 className="text-sm text-white">
               RedeCT - Rede Internacional de Pesquisadores sobre Povos
@@ -26,11 +26,11 @@ export function Footer() {
             </h1>
           </div>
           <div>
-            <h2 className="mb-6 text-lg font-semibold uppercase">Navegação</h2>
+            <h2 className="mb-6 font-semibold text-lg uppercase">Navegação</h2>
             <Links />
           </div>
           <div>
-            <h2 className="mb-6 text-lg font-semibold uppercase">
+            <h2 className="mb-6 font-semibold text-lg uppercase">
               Redes Sociais
             </h2>
             <SocialMedia />
@@ -43,5 +43,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

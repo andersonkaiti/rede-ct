@@ -1,10 +1,9 @@
-import { UserCardWrapper } from "@components/ui/user-card";
-import { getSdhcTeam } from "@services/sdhc-team";
-
-import { UserCard } from "./user-card";
+import { UserCardWrapper } from '@components/ui/user-card'
+import { getSdhcTeam } from '@http/sdhc-team'
+import { UserCard } from './user-card'
 
 export async function EquipeSdhc() {
-  const sdhcTeam = await getSdhcTeam();
+  const sdhcTeam = await getSdhcTeam()
 
   return (
     <UserCardWrapper>
@@ -12,5 +11,5 @@ export async function EquipeSdhc() {
         <UserCard key={index} member={member} />
       ))}
     </UserCardWrapper>
-  );
+  )
 }

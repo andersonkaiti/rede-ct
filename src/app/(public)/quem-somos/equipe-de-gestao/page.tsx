@@ -1,26 +1,26 @@
-import { RedLine } from "@components/ui/red-line";
-import { UserCardWrapper } from "@components/ui/user-card";
-import { getTeams } from "@services/teams/teams";
-import { ITeam } from "types/team";
+import { RedLine } from '@components/ui/red-line'
+import { UserCardWrapper } from '@components/ui/user-card'
+import { getTeams } from '@http/teams/get-teams'
+import type { ITeam } from 'types/team'
 
-import { UserCardComponent } from "./_components/user-card";
+import { UserCardComponent } from './_components/user-card'
 
 export default async function EquipeDeGestao() {
-  const teamsSections = await getTeams<ITeam[]>("equipe-de-gestao");
+  const teamsSections = await getTeams<ITeam[]>('equipe-de-gestao')
 
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       {teamsSections.map((teamSection, index: number) => (
-        <section key={index} className="space-y-4 md:space-y-8">
+        <section className="space-y-4 md:space-y-8" key={index}>
           <h1 className="title-2 text-center">{teamSection.name}</h1>
           <RedLine />
           <UserCardWrapper>
-            {teamSection.team_members.map((member, index: number) => (
-              <UserCardComponent key={index} member={member} />
+            {teamSection.team_members.map((member, memberIndex: number) => (
+              <UserCardComponent key={memberIndex} member={member} />
             ))}
           </UserCardWrapper>
         </section>
       ))}
     </main>
-  );
+  )
 }

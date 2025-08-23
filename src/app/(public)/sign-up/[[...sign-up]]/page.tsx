@@ -1,9 +1,9 @@
-import { SignUp } from "@clerk/nextjs";
+import { SignUp } from '@clerk/nextjs'
 
 export default function SignOutPage() {
   return (
-    <div className="lg:p-25s mx-auto flex max-w-7xl flex-col justify-center gap-2 space-y-14 p-4 py-10 sm:gap-12.5">
+    <div className="mx-auto flex max-w-7xl flex-col justify-center gap-2 space-y-14 p-4 py-10 sm:gap-12.5 lg:p-25s">
       <SignUp />
     </div>
-  );
+  )
 }

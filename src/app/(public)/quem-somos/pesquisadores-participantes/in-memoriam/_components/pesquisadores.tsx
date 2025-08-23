@@ -1,9 +1,8 @@
-import { getInMemoriamResearchers } from "@services/in-memoriam-researchers";
-
-import { InMemoriamCard } from "./in-memoriam-card";
+import { getInMemoriamResearchers } from '@mocks/in-memoriam-researchers'
+import { InMemoriamCard } from './in-memoriam-card'
 
 export async function Pesquisadores() {
-  const inMemoriamResearchers = await getInMemoriamResearchers();
+  const inMemoriamResearchers = await getInMemoriamResearchers()
 
   return (
     <>
@@ -11,5 +10,5 @@ export async function Pesquisadores() {
         <InMemoriamCard key={index} member={member} />
       ))}
     </>
-  );
+  )
 }

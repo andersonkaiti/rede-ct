@@ -1,20 +1,22 @@
-import { Skeleton } from "@components/ui/skeleton";
+import { Skeleton } from '@components/ui/skeleton'
+
+const ARRAY_SIZE = 5
 
 export function LoadingTableSkeleton() {
   return (
-    <Skeleton className="h-fit w-full border shadow-sm [&_div]:border-b [&_div:last-child]:border-0">
-      <div className="flex h-13 gap-4 p-4">
-        <Skeleton className="h-full flex-1 rounded-md bg-gray-200" />
-        <Skeleton className="h-full flex-2 rounded-md bg-gray-200" />
-        <Skeleton className="h-full flex-3 rounded-md bg-gray-200" />
+    <Skeleton className="h-fit w-full border [&_div:last-child]:border-0 [&_div]:border-b">
+      <div className="flex h-[40.5px] gap-4 px-2 py-3">
+        <div className="h-full flex-4 rounded-md bg-gray-200" />
+        <div className="h-full flex-3 rounded-md bg-gray-200" />
+        <div className="h-full flex-1 rounded-md bg-gray-200" />
       </div>
-      {[...Array(4)].map((_, index) => (
-        <div key={index} className="flex h-17 gap-4 p-4">
-          <Skeleton className="h-full flex-1 rounded-md bg-gray-200" />
-          <Skeleton className="h-full flex-2 rounded-md bg-gray-200" />
-          <Skeleton className="h-full flex-3 rounded-md bg-gray-200" />
+      {[...new Array(ARRAY_SIZE)].map((_, index: number) => (
+        <div className="flex h-[52.4px] gap-4 p-3" key={index}>
+          <div className="h-full flex-4 rounded-md bg-gray-200" />
+          <div className="h-full flex-3 rounded-md bg-gray-200" />
+          <div className="h-full flex-1 rounded-md bg-gray-200" />
         </div>
       ))}
     </Skeleton>
-  );
+  )
 }

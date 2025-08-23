@@ -1,17 +1,17 @@
-"use client";
+'use client'
 
-import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { cn } from "@utils/cn";
-import Image from "next/image";
-import Link from "next/link";
-import { NavigationLink as NavigationLinkType } from "types/navigation-link";
+import { SignedIn, SignedOut } from '@clerk/nextjs'
+import { cn } from '@utils/cn'
+import Image from 'next/image'
+import Link from 'next/link'
+import type { NavigationLink as NavigationLinkType } from 'types/navigation-link'
 
-import { Dropdown } from "./dropdown";
-import { useNavigationBar } from "./hooks/use-navigation-bar.hook";
-import { useNavigationBarDropdown } from "./hooks/use-navigation-bar-dropdown.hook";
-import { Menu } from "./menu";
-import { NavigationLink } from "./navigation-link";
-import { navigationLinks } from "./navigation-links";
+import { Dropdown } from './dropdown'
+import { useNavigationBarDropdown } from './hooks/use-navigation-bar-dropdown.hook'
+import { useNavigationBar } from './hooks/use-navigation-bar.hook'
+import { Menu } from './menu'
+import { NavigationLink } from './navigation-link'
+import { navigationLinks } from './navigation-links'
 
 export function NavigationBar() {
   const {
@@ -20,7 +20,7 @@ export function NavigationBar() {
     navigationBarRef,
     activeIndex,
     setActiveIndex,
-  } = useNavigationBar();
+  } = useNavigationBar()
 
   const {
     hovering,
@@ -29,70 +29,70 @@ export function NavigationBar() {
     heightOffset,
     onMouseEnter,
     refs,
-  } = useNavigationBarDropdown();
+  } = useNavigationBarDropdown()
 
   return (
     <header
-      className="2lg:h-25 sticky top-0 z-50 flex h-18 items-center justify-between bg-white p-4 shadow-md"
+      className="sticky top-0 z-50 flex 2lg:h-25 h-18 items-center justify-between bg-white p-4 shadow-md"
       ref={navigationBarRef}
     >
       <Menu
-        showNavigationBar={showNavigationBar}
         setShowNavigationBar={setShowNavigationBar}
+        showNavigationBar={showNavigationBar}
       />
 
       <Link href="/">
-        <Image src="/images/logo.png" width={100} height={100} alt="Rede CT" />
+        <Image alt="Rede CT" height={100} src="/images/logo.png" width={100} />
       </Link>
 
       <nav
-        onMouseLeave={() => setHovering(null)}
         className={cn(
-          "2lg:sticky 2lg:h-fit 2lg:shadow-none 2lg:flex-row 2lg:gap-4 2lg:justify-end 2lg:min-h-fit 2lg:overflow-visible absolute top-18 left-0 flex h-[calc(100vh-5.25rem)] w-full flex-col items-center gap-2 overflow-y-auto bg-white p-4 transition-all ease-in-out",
-          !showNavigationBar && "-left-full",
+          'absolute 2lg:sticky top-18 left-0 flex 2lg:h-fit h-[calc(100vh-5.25rem)] 2lg:min-h-fit w-full 2lg:flex-row flex-col items-center 2lg:justify-end 2lg:gap-4 gap-2 2lg:overflow-visible overflow-y-auto bg-white p-4 2lg:shadow-none transition-all ease-in-out',
+          !showNavigationBar && '-left-full'
         )}
+        onMouseLeave={() => setHovering(null)}
       >
         {navigationLinks.map((link: NavigationLinkType, index: number) => (
           <NavigationLink
-            link={link}
+            activeIndex={activeIndex}
             hovering={hovering}
-            onMouseEnter={onMouseEnter}
             index={index}
             key={link.label}
-            showNavigationBar={showNavigationBar}
-            activeIndex={activeIndex}
+            link={link}
+            onMouseEnter={onMouseEnter}
             setActiveIndex={setActiveIndex}
+            showNavigationBar={showNavigationBar}
           />
         ))}
 
         <SignedOut>
           <Link
+            className="group inline-flex h-9 2lg:w-fit w-full items-center justify-between 2lg:rounded-full rounded-md bg-background px-4 py-2 font-medium text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-red-200-foreground focus:bg-gray-400/25 focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:text-red-200-foreground data-[state=open]:focus:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25"
             href="/sign-in"
-            className="group 2lg:rounded-full bg-background hover:text-red-200-foreground focus:text-red-200-foreground data-[state=open]:text-red-200-foreground focus-visible:ring-ring/50 2lg:w-fit inline-flex h-9 w-full items-center justify-between rounded-md px-4 py-2 text-sm font-medium transition-[color,box-shadow] outline-none hover:bg-gray-400/25 focus:bg-gray-400/25 focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25 data-[state=open]:focus:bg-gray-400/25"
           >
-            Entrar
+            ENTRAR
           </Link>
         </SignedOut>
 
         <SignedIn>
           <Link
+            className="group inline-flex h-9 2lg:w-fit w-full items-center justify-between 2lg:rounded-full rounded-md bg-background px-4 py-2 font-medium text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-red-200-foreground focus:bg-gray-400/25 focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:text-red-200-foreground data-[state=open]:focus:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25"
             href="/area-restrita"
-            className="group 2lg:rounded-full bg-background hover:text-red-200-foreground focus:text-red-200-foreground data-[state=open]:text-red-200-foreground focus-visible:ring-ring/50 2lg:w-fit inline-flex h-9 w-full items-center justify-between rounded-md px-4 py-2 text-sm font-medium transition-[color,box-shadow] outline-none hover:bg-gray-400/25 focus:bg-gray-400/25 focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25 data-[state=open]:focus:bg-gray-400/25"
           >
-            Área Restrita
+            ÁREA RESTRITA
           </Link>
         </SignedIn>
 
         {hovering && (
           <Dropdown
-            leftOffset={leftOffset}
             heightOffset={heightOffset}
             hovering={hovering}
+            leftOffset={leftOffset}
             navigationLinks={navigationLinks}
             refs={refs}
           />
         )}
       </nav>
     </header>
-  );
+  )
 }

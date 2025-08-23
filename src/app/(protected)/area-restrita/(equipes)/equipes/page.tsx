@@ -1,5 +1,5 @@
-import { NavigationCard } from "@components/ui/navigation-card";
-import { Earth, Network, Search, Users } from "lucide-react";
+import { NavigationCard } from '@components/ui/navigation-card'
+import { Earth, Network, Search, Users } from 'lucide-react'
 
 export default function Equipes() {
   return (
@@ -11,7 +11,7 @@ export default function Equipes() {
             <div className="rounded-full bg-red-500/20 p-2">
               <Users className="text-red-500" />
             </div>
-            <h3 className="text-lg font-semibold">Equipe de Gestão</h3>
+            <h3 className="font-semibold text-lg">Equipe de Gestão</h3>
           </div>
         </NavigationCard>
         <NavigationCard href="/area-restrita/comite-legitimador">
@@ -19,7 +19,7 @@ export default function Equipes() {
             <div className="rounded-full bg-green-500/20 p-2">
               <Search className="text-green-500" />
             </div>
-            <h3 className="text-lg font-semibold">Comitê Legitimador</h3>
+            <h3 className="font-semibold text-lg">Comitê Legitimador</h3>
           </div>
         </NavigationCard>
         <NavigationCard href="/area-restrita/equipe-sdhc">
@@ -27,7 +27,7 @@ export default function Equipes() {
             <div className="rounded-full bg-orange-500/20 p-2">
               <Earth className="text-orange-500" />
             </div>
-            <h3 className="text-lg font-semibold">Equipe SDHC</h3>
+            <h3 className="font-semibold text-lg">Equipe SDHC</h3>
           </div>
         </NavigationCard>
         <NavigationCard href="/area-restrita/grupo-de-pesquisa">
@@ -35,10 +35,10 @@ export default function Equipes() {
             <div className="rounded-full bg-purple-500/20 p-2">
               <Network className="text-purple-500" />
             </div>
-            <h3 className="text-lg font-semibold">Grupo de Pesquisa</h3>
+            <h3 className="font-semibold text-lg">Grupo de Pesquisa</h3>
           </div>
         </NavigationCard>
       </section>
     </div>
-  );
+  )
 }

@@ -1,21 +1,21 @@
-"use client";
+'use client'
 
-import { Button } from "@components/ui/button";
-import { Dialog, DialogTrigger } from "@components/ui/dialog";
-import { PlusIcon } from "lucide-react";
-import { useState } from "react";
+import { Button } from '@components/ui/button'
+import { Dialog, DialogTrigger } from '@components/ui/dialog'
+import { PlusIcon } from 'lucide-react'
+import { useState } from 'react'
 
-import { CreateMemberForm } from "./create-member-form";
+import { CreateMemberForm } from './create-member-form'
 
 interface ICreateMemberButtonProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export function CreateMemberButton({ children }: ICreateMemberButtonProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger asChild>
         <Button className="cursor-pointer">
           <PlusIcon className="h-4 w-4" />
@@ -24,5 +24,5 @@ export function CreateMemberButton({ children }: ICreateMemberButtonProps) {
       </DialogTrigger>
       <CreateMemberForm setIsOpen={setIsOpen} />
     </Dialog>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import { RedNavigationCard } from "@components/ui/red-navigation-card";
-import { BookOpen, Globe, Handshake, Newspaper, Users } from "lucide-react";
-import Link from "next/link";
+import { RedNavigationCard } from '@components/ui/red-navigation-card'
+import { BookOpen, Globe, Handshake, Newspaper, Users } from 'lucide-react'
+import Link from 'next/link'
 
-import { HeroSection } from "./_components/home/hero-section";
-import { MissaoValoresTabs } from "./_components/home/missao-valores-tabs";
+import { HeroSection } from './_components/home/hero-section'
+import { MissaoValoresTabs } from './_components/home/missao-valores-tabs'
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
           </h1>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <div className="rounded-lg bg-white p-6 shadow-lg transition-all hover:shadow-xl">
-              <h3 className="text-primary mb-2 text-sm font-semibold uppercase">
+              <h3 className="mb-2 font-semibold text-primary text-sm uppercase">
                 English
               </h3>
               <p className="text-gray-700">
@@ -26,7 +26,7 @@ export default function Home() {
               </p>
             </div>
             <div className="rounded-lg bg-white p-6 shadow-lg transition-all hover:shadow-xl">
-              <h3 className="text-primary mb-2 text-sm font-semibold uppercase">
+              <h3 className="mb-2 font-semibold text-primary text-sm uppercase">
                 Español
               </h3>
               <p className="text-gray-700">
@@ -35,7 +35,7 @@ export default function Home() {
               </p>
             </div>
             <div className="rounded-lg bg-white p-6 shadow-lg transition-all hover:shadow-xl">
-              <h3 className="text-primary mb-2 text-sm font-semibold uppercase">
+              <h3 className="mb-2 font-semibold text-primary text-sm uppercase">
                 Français
               </h3>
               <p className="text-gray-700">
@@ -73,36 +73,36 @@ export default function Home() {
             </div>
             <div className="grid gap-4 md:grid-cols-2">
               <Link href="/quem-somos/pesquisadores-participantes">
-                <div className="bg-primary/10 h-full rounded-lg p-6 text-center transition-all hover:shadow-xl">
-                  <Users className="text-primary mx-auto mb-4 h-12 w-12" />
-                  <h3 className="mb-2 text-lg font-semibold">Pesquisadores</h3>
+                <div className="h-full rounded-lg bg-primary/10 p-6 text-center transition-all hover:shadow-xl">
+                  <Users className="mx-auto mb-4 h-12 w-12 text-primary" />
+                  <h3 className="mb-2 font-semibold text-lg">Pesquisadores</h3>
                   <p className="text-muted-foreground text-sm">
                     Rede de colaboração internacional
                   </p>
                 </div>
               </Link>
               <Link href="/quem-somos/periodico-e-revistas-parceiras">
-                <div className="bg-primary/10 h-full rounded-lg p-6 text-center transition-all hover:shadow-xl">
-                  <BookOpen className="text-primary mx-auto mb-4 h-12 w-12" />
-                  <h3 className="mb-2 text-lg font-semibold">Publicações</h3>
+                <div className="h-full rounded-lg bg-primary/10 p-6 text-center transition-all hover:shadow-xl">
+                  <BookOpen className="mx-auto mb-4 h-12 w-12 text-primary" />
+                  <h3 className="mb-2 font-semibold text-lg">Publicações</h3>
                   <p className="text-muted-foreground text-sm">
                     Livros e artigos científicos
                   </p>
                 </div>
               </Link>
               <Link href="/quem-somos/congresso-cientifico-internacional">
-                <div className="bg-primary/10 rounded-lg p-6 text-center transition-all hover:shadow-xl">
-                  <Globe className="text-primary mx-auto mb-4 h-12 w-12" />
-                  <h3 className="mb-2 text-lg font-semibold">Eventos</h3>
+                <div className="rounded-lg bg-primary/10 p-6 text-center transition-all hover:shadow-xl">
+                  <Globe className="mx-auto mb-4 h-12 w-12 text-primary" />
+                  <h3 className="mb-2 font-semibold text-lg">Eventos</h3>
                   <p className="text-muted-foreground text-sm">
                     Congresso internacional anual
                   </p>
                 </div>
               </Link>
               <Link href="/noticias">
-                <div className="bg-primary/10 h-full rounded-lg p-6 text-center transition-all hover:shadow-xl">
-                  <Newspaper className="text-primary mx-auto mb-4 h-12 w-12" />
-                  <h3 className="mb-2 text-lg font-semibold">Notícias</h3>
+                <div className="h-full rounded-lg bg-primary/10 p-6 text-center transition-all hover:shadow-xl">
+                  <Newspaper className="mx-auto mb-4 h-12 w-12 text-primary" />
+                  <h3 className="mb-2 font-semibold text-lg">Notícias</h3>
                   <p className="text-muted-foreground text-sm">
                     Acompanhe nossas atualizações
                   </p>
@@ -135,5 +135,5 @@ export default function Home() {
         </div>
       </main>
     </>
-  );
+  )
 }

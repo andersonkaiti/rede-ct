@@ -1,4 +1,4 @@
-import { Separator } from "@components/ui/separator";
+import { Separator } from '@components/ui/separator'
 import {
   Sidebar,
   SidebarContent,
@@ -7,19 +7,19 @@ import {
   SidebarGroupContent,
   SidebarHeader,
   SidebarMenu,
-} from "@components/ui/sidebar";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
-import { NavigationLink } from "types/navigation-link";
+} from '@components/ui/sidebar'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+import type { NavigationLink } from 'types/navigation-link'
 
-import { SidebarBackButton } from "./sidebar-back-button";
-import { SidebarItem } from "./sidebar-item";
-import { sidebarLinks } from "./sidebar-links";
-import { LoadingSkeleton } from "./user-profile/loading-skeleton";
+import { SidebarBackButton } from './sidebar-back-button'
+import { SidebarItem } from './sidebar-item'
+import { sidebarLinks } from './sidebar-links'
+import { LoadingSkeleton } from './user-profile/loading-skeleton'
 
 const DynamicUserProfile = dynamic(() =>
-  import("./user-profile/user-profile").then((mod) => mod.UserProfile),
-);
+  import('./user-profile/user-profile').then((mod) => mod.UserProfile)
+)
 
 export function SidebarContainer() {
   return (
@@ -35,7 +35,7 @@ export function SidebarContainer() {
           <SidebarGroupContent>
             <SidebarMenu>
               {sidebarLinks.map((link: NavigationLink, index: number) => (
-                <SidebarItem key={index} item={link} />
+                <SidebarItem item={link} key={index} />
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
@@ -46,5 +46,5 @@ export function SidebarContainer() {
         <SidebarBackButton />
       </SidebarFooter>
     </Sidebar>
-  );
+  )
 }

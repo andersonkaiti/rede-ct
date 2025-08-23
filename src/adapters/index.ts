@@ -1,3 +1,3 @@
-import { FetchAdapter } from "./fetch-adapter";
+import { FetchAdapter } from './fetch-adapter'
 
-export const api = new FetchAdapter();
+export const api = new FetchAdapter()

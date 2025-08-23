@@ -1,5 +1,7 @@
-import { Skeleton } from "@components/ui/skeleton";
-import { ImageIcon } from "lucide-react";
+import { Skeleton } from '@components/ui/skeleton'
+import { ImageIcon } from 'lucide-react'
+
+const ARRAY_SIZE = 9
 
 export default function EquipeDeGestaoLoading() {
   return (
@@ -8,15 +10,15 @@ export default function EquipeDeGestaoLoading() {
         <section className="space-y-4 md:space-y-8">
           <div className="mx-auto h-10 w-117.5 rounded-full bg-gray-200" />
           <div className="mb-4 flex items-center justify-center space-x-2">
-            <div className="h-1 w-8 rounded-full bg-gray-200"></div>
-            <div className="h-1 w-4 rounded-full bg-gray-200"></div>
-            <div className="h-1 w-2 rounded-full bg-gray-200"></div>
+            <div className="h-1 w-8 rounded-full bg-gray-200" />
+            <div className="h-1 w-4 rounded-full bg-gray-200" />
+            <div className="h-1 w-2 rounded-full bg-gray-200" />
           </div>
           <div className="grid w-full grid-cols-1 gap-10 md:grid-cols-3">
-            {[...Array(9)].map((_, index) => (
+            {[...new Array(ARRAY_SIZE)].map((_, index: number) => (
               <div
-                key={index}
                 className="flex flex-1 flex-col items-center justify-center gap-8 p-6"
+                key={index}
               >
                 <div className="flex size-30 items-center justify-center rounded-full bg-gray-300 ring-4 ring-gray-200">
                   <ImageIcon className="size-10 text-gray-200" />
@@ -34,5 +36,5 @@ export default function EquipeDeGestaoLoading() {
         </section>
       </div>
     </Skeleton>
-  );
+  )
 }

@@ -1,36 +1,37 @@
-"use client";
+'use client'
 
-import { cn } from "@utils/cn";
+import { cn } from '@utils/cn'
 
 interface IMenuProps {
-  showNavigationBar: boolean;
-  setShowNavigationBar: React.Dispatch<React.SetStateAction<boolean>>;
+  showNavigationBar: boolean
+  setShowNavigationBar: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export function Menu({ showNavigationBar, setShowNavigationBar }: IMenuProps) {
   return (
-    <div
-      className="2lg:hidden z-50 flex h-10 w-9 cursor-pointer flex-col items-center justify-center"
+    <button
+      className="z-50 flex 2lg:hidden h-10 w-9 cursor-pointer flex-col items-center justify-center"
       onClick={() => setShowNavigationBar(!showNavigationBar)}
+      type="button"
     >
       <div
         className={cn(
-          "h-[2px] w-[50%] origin-left translate-y-[0.45rem] rounded-sm bg-black transition-all duration-300",
-          showNavigationBar && "rotate-[-45deg]",
+          'h-[2px] w-[50%] origin-left translate-y-[0.45rem] rounded-sm bg-black transition-all duration-300',
+          showNavigationBar && 'rotate-[-45deg]'
         )}
-      ></div>
+      />
       <div
         className={cn(
-          "h-[2px] w-[50%] origin-center rounded-md bg-black transition-all duration-300",
-          showNavigationBar && "hidden",
+          'h-[2px] w-[50%] origin-center rounded-md bg-black transition-all duration-300',
+          showNavigationBar && 'hidden'
         )}
-      ></div>
+      />
       <div
         className={cn(
-          "h-[2px] w-[50%] origin-left -translate-y-[0.45rem] rounded-md bg-black transition-all duration-300",
-          showNavigationBar && "rotate-[45deg]",
+          '-translate-y-[0.45rem] h-[2px] w-[50%] origin-left rounded-md bg-black transition-all duration-300',
+          showNavigationBar && 'rotate-[45deg]'
         )}
-      ></div>
-    </div>
-  );
+      />
+    </button>
+  )
 }

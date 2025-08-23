@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,20 +22,54 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@api/*": ["./src/app/api/*"],
-      "@actions/*": ["./src/actions/*"],
-      "@adapters/*": ["./src/adapters/*"],
-      "@config/*": ["./src/config/*"],
-      "@providers/*": ["./src/providers/*"],
-      "@services/*": ["./src/services/*"],
-      "@components/*": ["./src/components/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@utils/*": ["./src/utils/*"],
-      "types/*": ["./src/@types/*"],
-      "@/*": ["./src/*"]
-    }
+      "@api/*": [
+        "./src/app/api/*"
+      ],
+      "@actions/*": [
+        "./src/actions/*"
+      ],
+      "@adapters/*": [
+        "./src/adapters/*"
+      ],
+      "@config/*": [
+        "./src/config/*"
+      ],
+      "@providers/*": [
+        "./src/providers/*"
+      ],
+      "@http/*": [
+        "src/http/*"
+      ],
+      "@mocks/*": [
+        "src/mocks/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "types/*": [
+        "./src/@types/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -1,4 +1,4 @@
-import { Building } from "@components/building";
+import { Building } from '@components/building'
 
 export default function SeloDeQualidadeEmExtensaoUniversitaria() {
   return (
@@ -8,7 +8,7 @@ export default function SeloDeQualidadeEmExtensaoUniversitaria() {
       </header>
 
       <div className="bg-white">
-        <p className="text-muted-foreground text-justify text-lg">
+        <p className="text-justify text-lg text-muted-foreground">
           Nesta seção (AINDA EM PRODUÇÃO) a Vice-coordenadoria de Extensão
           Universitária e Cultura manterá um fluxo contínuo para a acolhida de
           relatórios de projetos de extensão, para que estes possam (seguindo o
@@ -26,5 +26,5 @@ export default function SeloDeQualidadeEmExtensaoUniversitaria() {
         poderá submeter seus projetos para análise.
       </Building>
     </main>
-  );
+  )
 }

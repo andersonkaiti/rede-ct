@@ -1,10 +1,10 @@
 export function LoadingSkeleton() {
   return (
     <div className="grid w-full grid-cols-1 gap-10 md:grid-cols-2">
-      {Array.from({ length: 9 }).map((_, index) => (
+      {Array.from({ length: 9 }).map((_, index: number) => (
         <div
-          key={index}
           className="flex w-full flex-col gap-6 rounded-lg border border-gray-200 p-6 shadow-lg"
+          key={index}
         >
           <div className="mb-3.5 h-8 w-full rounded-full bg-gray-300" />
 
@@ -26,5 +26,5 @@ export function LoadingSkeleton() {
         </div>
       ))}
     </div>
-  );
+  )
 }

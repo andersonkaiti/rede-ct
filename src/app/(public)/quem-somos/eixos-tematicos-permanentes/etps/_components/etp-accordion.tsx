@@ -3,21 +3,21 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@components/ui/accordion";
+} from '@components/ui/accordion'
 import {
   UserCard,
   UserCardButtonLattes,
   UserCardImage,
-} from "@components/ui/user-card";
-import { getEtps } from "@services/etps";
+} from '@components/ui/user-card'
+import { getEtps } from '@mocks/etps'
 
 export async function EPTAccordion() {
-  const etps = await getEtps();
+  const etps = await getEtps()
 
   return (
-    <Accordion type="single" collapsible>
-      {etps.map(({ name, description, members, text }, index: number) => (
-        <AccordionItem key={index} value={name}>
+    <Accordion collapsible type="single">
+      {etps.map(({ name, description, members, text }, etpIndex: number) => (
+        <AccordionItem key={etpIndex} value={name}>
           <AccordionTrigger>
             <h3 className="title-3">
               {name} / {description}
@@ -26,14 +26,14 @@ export async function EPTAccordion() {
           <AccordionContent className="space-y-7">
             <p className="text-justify">{text}</p>
             <UserCard>
-              {members.map((member, index: number) => (
-                <UserCard key={index}>
+              {members.map((member, memberIndex: number) => (
+                <UserCard key={memberIndex}>
                   <UserCardImage
-                    src={member.image.src}
                     alt={member.image.alt}
+                    src={member.image.src}
                   />
                   <div className="flex flex-grow flex-col items-center justify-between gap-4">
-                    <h1 className="text-center text-xl font-bold">
+                    <h1 className="text-center font-bold text-xl">
                       {member.name}
                     </h1>
                     <h2 className="text-center font-bold">{member.role}</h2>
@@ -46,5 +46,5 @@ export async function EPTAccordion() {
         </AccordionItem>
       ))}
     </Accordion>
-  );
+  )
 }

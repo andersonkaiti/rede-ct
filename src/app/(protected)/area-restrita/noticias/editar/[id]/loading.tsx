@@ -1,12 +1,12 @@
-import { Button } from "@components/ui/button";
+import { Button } from '@components/ui/button'
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@components/ui/card";
-import { Label } from "@components/ui/label";
+} from '@components/ui/card'
+import { Label } from '@components/ui/label'
 import {
   PageContainer,
   PageDescription,
@@ -16,9 +16,9 @@ import {
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from "@components/ui/page-container";
-import { Skeleton } from "@components/ui/skeleton";
-import { ImageUpIcon, Newspaper } from "lucide-react";
+} from '@components/ui/page-container'
+import { Skeleton } from '@components/ui/skeleton'
+import { ImageUpIcon, Newspaper } from 'lucide-react'
 
 export default function Loading() {
   return (
@@ -34,7 +34,7 @@ export default function Loading() {
 
       <Card>
         <CardHeader className="flex items-center gap-2">
-          <Newspaper className="text-primary !size-5" />
+          <Newspaper className="!size-5 text-primary" />
           <CardTitle>Atualizar Notícia</CardTitle>
         </CardHeader>
         <Skeleton>
@@ -62,8 +62,8 @@ export default function Loading() {
 
                   <div className="flex h-52 w-full items-center justify-center rounded-xl bg-gray-200">
                     <div
-                      className="mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border bg-gray-300"
                       aria-hidden="true"
+                      className="mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border bg-gray-300"
                     >
                       <ImageUpIcon className="size-4 opacity-60" />
                     </div>
@@ -71,7 +71,7 @@ export default function Loading() {
                 </PageFormContentField>
               </PageFormContent>
               <CardFooter className="p-0">
-                <Button type="submit" className="w-full cursor-pointer">
+                <Button className="w-full cursor-pointer" type="submit">
                   Editar notícia
                 </Button>
               </CardFooter>
@@ -80,5 +80,5 @@ export default function Loading() {
         </Skeleton>
       </Card>
     </PageContainer>
-  );
+  )
 }

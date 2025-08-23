@@ -1,17 +1,17 @@
-"use client";
+'use client'
 
-import { DataTable } from "@components/ui/data-table";
-import { INews } from "types/news";
+import { DataTable } from '@components/ui/data-table'
+import type { INews } from 'types/news'
 
-import { useUserNews } from "../../_hooks/use-user-news.hook";
-import { LoadingSkeleton } from "./loading-skeleton";
-import { newTableColumns } from "./news-table-columns";
+import { useUserNews } from '../../_hooks/use-user-news.hook'
+import { LoadingSkeleton } from './loading-skeleton'
+import { newTableColumns } from './news-table-columns'
 
 export function Table() {
-  const { data: news, handleRemoveNews, isLoading } = useUserNews();
+  const { data: news, handleRemoveNews, isLoading } = useUserNews()
 
   if (isLoading) {
-    return <LoadingSkeleton />;
+    return <LoadingSkeleton />
   }
 
   return (
@@ -20,5 +20,5 @@ export function Table() {
       data={news}
       handleRemove={handleRemoveNews}
     />
-  );
+  )
 }

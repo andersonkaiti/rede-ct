@@ -1,14 +1,14 @@
 export interface IETP {
-  name: string;
-  description: string;
+  name: string
+  description: string
   members: {
-    role: string;
-    name: string;
+    role: string
+    name: string
     image: {
-      src: string;
-      alt: string;
-    };
-    lattesUrl: string;
-  }[];
-  text?: string;
+      src: string
+      alt: string
+    }
+    lattesUrl: string
+  }[]
+  text?: string
 }

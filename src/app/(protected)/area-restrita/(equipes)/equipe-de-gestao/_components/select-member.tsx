@@ -1,41 +1,40 @@
-import { Button } from "@components/ui/button";
-import { Input } from "@components/ui/input";
+import { Button } from '@components/ui/button'
+import { Input } from '@components/ui/input'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@components/ui/select";
-import { Plus } from "lucide-react";
-import { ITeamMember } from "types/team";
+} from '@components/ui/select'
+import { Plus } from 'lucide-react'
+import type { ITeamMember } from 'types/team'
 
-import { useUsers } from "../../_hooks/use-users.hook";
+import { useUsers } from '../../_hooks/use-users.hook'
 
 interface ISelectMemberProps {
-  inputRef: React.RefObject<HTMLInputElement | null>;
-  setSelectedMember: React.Dispatch<React.SetStateAction<ITeamMember | null>>;
-  handleAddMember: () => void;
+  inputRef: React.RefObject<HTMLInputElement | null>
+  setSelectedMember: React.Dispatch<React.SetStateAction<ITeamMember | null>>
+  handleIncludeTeamMember: () => void
 }
 
 export function SelectMember({
   inputRef,
   setSelectedMember,
-  handleAddMember,
+  handleIncludeTeamMember,
 }: ISelectMemberProps) {
-  const { data: users } = useUsers();
+  const { data: users } = useUsers()
 
   function handleSelectMember(value: string) {
-    const member = users?.find((user) => user.id === value);
+    const member = users?.find((user) => user.id === value)
 
     if (member) {
       const newMember: ITeamMember = {
-        user_id: member.id,
-        role: inputRef.current?.value || "",
+        role: inputRef.current?.value || '',
         user: member,
-      };
+      }
 
-      setSelectedMember(newMember);
+      setSelectedMember(newMember)
     }
   }
 
@@ -55,21 +54,21 @@ export function SelectMember({
       </Select>
 
       <Input
-        type="text"
-        placeholder="Cargo"
-        name="role"
         className="flex-1"
+        name="role"
+        placeholder="Cargo"
         ref={inputRef}
+        type="text"
       />
 
       <Button
         className="cursor-pointer"
-        onClick={handleAddMember}
+        onClick={handleIncludeTeamMember}
         type="button"
       >
         <Plus />
         Adicionar
       </Button>
     </header>
-  );
+  )
 }

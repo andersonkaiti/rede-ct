@@ -1,8 +1,9 @@
-"use client";
+'use client'
 
-import { Button } from "@components/ui/button";
-import { Input } from "@components/ui/input";
-import { Label } from "@components/ui/label";
+import { Alert, AlertDescription } from '@components/ui/alert'
+import { Button } from '@components/ui/button'
+import { Input } from '@components/ui/input'
+import { Label } from '@components/ui/label'
 import {
   PageContainer,
   PageForm,
@@ -11,27 +12,24 @@ import {
   PageHeader,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
-import { Loader2 } from "lucide-react";
-
-import { ErrorMessage } from "../../../noticias/_components/error-message";
-import { SelectMember } from "../_components/select-member";
-import { TeamMembersTable } from "../_components/team-members-table/team-members-table";
-import { useRegisterTeam } from "../_hooks/use-register-team.hook";
+} from '@components/ui/page-container'
+import { AlertCircle, Loader2 } from 'lucide-react'
+import { SelectMember } from '../_components/select-member'
+import { TeamMembersTable } from '../_components/team-members-table/team-members-table'
+import { useCreateTeam } from '../_hooks/use-register-team.hook'
 
 export default function CadastrarEquipeDeGestao() {
   const {
     team,
     inputRef,
     setSelectedMember,
-    handleAddMember,
+    handleIncludeTeamMember,
     handleRemoveMember,
     formAction,
     isLoading,
-    state,
-  } = useRegisterTeam();
-
-  const hasErrors = state && "errors" in state;
+    errors,
+    payload,
+  } = useCreateTeam()
 
   return (
     <PageContainer>
@@ -43,38 +41,49 @@ export default function CadastrarEquipeDeGestao() {
           <PageFormContent>
             <PageFormContentField>
               <Label>Nome da equipe</Label>
-              <Input name="name" placeholder="Nome" />
 
-              {hasErrors && state.errors.name && (
-                <ErrorMessage state={state} inputName="name" />
+              <Input
+                defaultValue={payload?.get('name') as string}
+                name="name"
+                placeholder="Nome"
+              />
+
+              {errors?.name && errors?.name && (
+                <Alert className="border-red-500 p-2" variant="destructive">
+                  <AlertCircle className="size-4" />
+                  <AlertDescription>{errors.name}</AlertDescription>
+                </Alert>
               )}
             </PageFormContentField>
             <PageFormContentField>
               <Label>Membros cadastrados</Label>
 
               <SelectMember
+                handleIncludeTeamMember={handleIncludeTeamMember}
                 inputRef={inputRef}
                 setSelectedMember={setSelectedMember}
-                handleAddMember={handleAddMember}
               />
 
               <TeamMembersTable
-                teamMembers={team}
                 handleRemoveMember={handleRemoveMember}
+                teamMembers={team}
               />
 
-              {hasErrors && state.errors.members && (
-                <ErrorMessage state={state} inputName="members" />
+              {errors?.members && errors.members && (
+                <Alert className="border-red-500 p-2" variant="destructive">
+                  <AlertCircle className="size-4" />
+                  <AlertDescription>{errors.members}</AlertDescription>
+                </Alert>
               )}
             </PageFormContentField>
           </PageFormContent>
 
-          <Button type="submit" className="cursor-pointer" disabled={isLoading}>
+          <Button className="cursor-pointer" disabled={isLoading} type="submit">
             {isLoading && <Loader2 className="size-4 animate-spin" />}
             Cadastrar equipe
           </Button>
         </PageForm>
       </PageMain>
     </PageContainer>
-  );
+  )
 }

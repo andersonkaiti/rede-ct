@@ -1,40 +1,42 @@
-"use client";
+'use client'
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react'
 
 export function useNavigationBarDropdown() {
-  const [hovering, setHovering] = useState<number | null>(null);
-  const [leftOffset, setLeftOffset] = useState<number | null>(null);
-  const [heightOffset, setHeightOffset] = useState<number | null>(null);
+  const [hovering, setHovering] = useState<number | null>(null)
+  const [leftOffset, setLeftOffset] = useState<number | null>(null)
+  const [heightOffset, setHeightOffset] = useState<number | null>(null)
 
-  const refs = useRef<(HTMLElement | null)[]>([]);
+  const refs = useRef<(HTMLElement | null)[]>([])
+
+  const VIEWPORT_PADDING = 16
 
   useEffect(() => {
     if (hovering !== null) {
-      const menuElement = refs.current[hovering];
+      const menuElement = refs.current[hovering]
 
       if (menuElement) {
-        setHeightOffset(menuElement.offsetHeight);
+        setHeightOffset(menuElement.offsetHeight)
       }
     } else {
-      setHeightOffset(0);
+      setHeightOffset(0)
     }
-  }, [hovering]);
+  }, [hovering])
 
   function onMouseEnter(index: number, element: HTMLElement) {
-    setHovering(index);
+    setHovering(index)
 
-    let leftOffset = element.offsetLeft;
+    let calculatedLeftOffset = element.offsetLeft
 
-    const viewportWidth = window.innerWidth;
+    const viewportWidth = window.innerWidth
 
-    const totalOffset = leftOffset;
+    const totalOffset = calculatedLeftOffset
 
     if (totalOffset > viewportWidth) {
-      leftOffset = Math.max(0, viewportWidth - 16);
+      calculatedLeftOffset = Math.max(0, viewportWidth - VIEWPORT_PADDING)
     }
 
-    setLeftOffset(leftOffset);
+    setLeftOffset(calculatedLeftOffset)
   }
 
   return {
@@ -44,5 +46,5 @@ export function useNavigationBarDropdown() {
     heightOffset,
     onMouseEnter,
     refs,
-  };
+  }
 }

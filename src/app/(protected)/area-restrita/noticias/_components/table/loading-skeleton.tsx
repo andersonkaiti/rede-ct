@@ -1,20 +1,22 @@
-import { Skeleton } from "@components/ui/skeleton";
+import { Skeleton } from '@components/ui/skeleton'
+
+const ARRAY_SIZE = 9
 
 export function LoadingSkeleton() {
   return (
-    <Skeleton className="h-full w-full border [&_div]:border-b [&_div:last-child]:border-0">
+    <Skeleton className="h-full w-full border [&_div:last-child]:border-0 [&_div]:border-b">
       <div className="flex h-[40.5px] gap-4 px-2 py-3">
-        <Skeleton className="h-full flex-4 rounded-md bg-gray-200" />
-        <Skeleton className="h-full flex-3 rounded-md bg-gray-200" />
-        <Skeleton className="h-full flex-1 rounded-md bg-gray-200" />
+        <div className="h-full flex-4 rounded-md bg-gray-200" />
+        <div className="h-full flex-3 rounded-md bg-gray-200" />
+        <div className="h-full flex-1 rounded-md bg-gray-200" />
       </div>
-      {[...Array(9)].map((_, index) => (
-        <div key={index} className="flex h-[37.14px] gap-4 p-3">
-          <Skeleton className="h-full flex-4 rounded-md bg-gray-200" />
-          <Skeleton className="h-full flex-3 rounded-md bg-gray-200" />
-          <Skeleton className="h-full flex-1 rounded-md bg-gray-200" />
+      {[...new Array(ARRAY_SIZE)].map((_, index: number) => (
+        <div className="flex h-[37.14px] gap-4 p-3" key={index}>
+          <div className="h-full flex-4 rounded-md bg-gray-200" />
+          <div className="h-full flex-3 rounded-md bg-gray-200" />
+          <div className="h-full flex-1 rounded-md bg-gray-200" />
         </div>
       ))}
     </Skeleton>
-  );
+  )
 }

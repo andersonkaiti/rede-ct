@@ -1,11 +1,11 @@
-import { DataTable } from "@components/ui/data-table";
-import { ITeamMember } from "types/team";
+import { DataTable } from '@components/ui/data-table'
+import type { ITeamMember } from 'types/team'
 
-import { teamMembersTableColumns } from "./team-members-table-columns";
+import { teamMembersTableColumns } from './team-members-table-columns'
 
 interface ITeamMembersTableProps {
-  teamMembers: ITeamMember[];
-  handleRemoveMember: (data: ITeamMember) => void;
+  teamMembers: ITeamMember[]
+  handleRemoveMember: (data: ITeamMember) => void
 }
 
 export function TeamMembersTable({
@@ -18,5 +18,5 @@ export function TeamMembersTable({
       data={teamMembers}
       handleRemove={handleRemoveMember}
     />
-  );
+  )
 }

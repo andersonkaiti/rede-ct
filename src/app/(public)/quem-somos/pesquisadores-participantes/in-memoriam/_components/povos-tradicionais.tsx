@@ -1,9 +1,8 @@
-import { getInMemoriamTraditionalLeaders } from "@services/in-memoriam-traditional-leaders";
-
-import { InMemoriamCard } from "./in-memoriam-card";
+import { getInMemoriamTraditionalLeaders } from '@mocks/in-memoriam-traditional-leaders'
+import { InMemoriamCard } from './in-memoriam-card'
 
 export async function PovosTradicionais() {
-  const inMemoriamTraditionalLeaders = await getInMemoriamTraditionalLeaders();
+  const inMemoriamTraditionalLeaders = await getInMemoriamTraditionalLeaders()
 
   return (
     <>
@@ -11,5 +10,5 @@ export async function PovosTradicionais() {
         <InMemoriamCard key={index} member={member} />
       ))}
     </>
-  );
+  )
 }

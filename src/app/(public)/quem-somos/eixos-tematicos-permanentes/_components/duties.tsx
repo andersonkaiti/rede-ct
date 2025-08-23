@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader } from "@components/ui/card";
-import { ListNumber } from "@components/ui/list-number";
-import { Check } from "lucide-react";
+import { Card, CardContent, CardHeader } from '@components/ui/card'
+import { ListNumber } from '@components/ui/list-number'
+import { Check } from 'lucide-react'
 
 export function Duties() {
   return (
@@ -8,7 +8,7 @@ export function Duties() {
       <section className="space-y-14">
         <CardHeader className="space-y-7">
           <h2 className="title-3 flex items-center gap-2">
-            <div className="bg-primary/20 mr-2 rounded-full p-2">
+            <div className="mr-2 rounded-full bg-primary/20 p-2">
               <Check className="text-primary" />
             </div>
             POSSIBILIDADES E DEVERES DO GTC
@@ -149,5 +149,5 @@ export function Duties() {
         </CardContent>
       </section>
     </Card>
-  );
+  )
 }

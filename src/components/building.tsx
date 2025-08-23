@@ -1,9 +1,9 @@
-import { Construction } from "lucide-react";
+import { Construction } from 'lucide-react'
 
-import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from './ui/card'
 
 interface BuildingProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export function Building({ children }: BuildingProps) {
@@ -14,12 +14,12 @@ export function Building({ children }: BuildingProps) {
       </div>
       <div className="flex flex-col">
         <CardHeader className="p-0">
-          <CardTitle className="mb-2 text-lg font-semibold text-amber-800">
+          <CardTitle className="mb-2 font-semibold text-amber-800 text-lg">
             Área em Desenvolvimento
           </CardTitle>
         </CardHeader>
         <CardDescription className="text-amber-700">{children}</CardDescription>
       </div>
     </Card>
-  );
+  )
 }

@@ -1,26 +1,26 @@
-import { Button } from "@components/ui/button";
-import { ColumnDef } from "@tanstack/react-table";
-import { Trash } from "lucide-react";
-import { ITeamMember } from "types/team";
-import { IUser } from "types/user";
+import { Button } from '@components/ui/button'
+import type { ColumnDef } from '@tanstack/react-table'
+import { Trash } from 'lucide-react'
+import type { ITeamMember } from 'types/team'
+import type { IUser } from 'types/user'
 
 export const teamMembersTableColumns: ColumnDef<ITeamMember>[] = [
   {
-    id: "name",
-    header: "Nome",
+    id: 'name',
+    header: 'Nome',
     cell: ({
       row: {
         original: { user },
       },
     }) => {
-      const { first_name, last_name } = user as IUser;
+      const { first_name, last_name } = user as IUser
 
-      return `${first_name} ${last_name || ""}`;
+      return `${first_name} ${last_name || ''}`
     },
   },
   {
-    id: "role",
-    header: "Cargo",
+    id: 'role',
+    header: 'Cargo',
     cell: ({
       row: {
         original: { role },
@@ -28,8 +28,8 @@ export const teamMembersTableColumns: ColumnDef<ITeamMember>[] = [
     }) => role,
   },
   {
-    id: "actions",
-    header: "Ações",
+    id: 'actions',
+    header: 'Ações',
     cell: ({
       row: { original },
       table: {
@@ -37,14 +37,14 @@ export const teamMembersTableColumns: ColumnDef<ITeamMember>[] = [
       },
     }) => (
       <Button
+        className="cursor-pointer"
+        onClick={() => meta?.handleRemove?.(original)}
         type="button"
         variant="ghost"
-        onClick={() => meta?.handleRemove?.(original)}
-        className="cursor-pointer"
       >
         Remover
         <Trash />
       </Button>
     ),
   },
-];
+]

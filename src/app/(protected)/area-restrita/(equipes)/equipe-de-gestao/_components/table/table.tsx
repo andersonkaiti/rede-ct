@@ -1,13 +1,13 @@
-"use client";
+'use client'
 
-import { DataTable } from "@components/ui/data-table";
-import { ITeam } from "types/team";
+import { DataTable } from '@components/ui/data-table'
+import type { ITeam } from 'types/team'
 
-import { useManagementTeam } from "../../_hooks/use-management-team.hook";
-import { LoadingSkeleton } from "./loading-skeleton";
-import { managementTeamTableColumns } from "./management-team-table-columns";
+import { useManagementTeam } from '../../_hooks/use-management-team.hook'
+import { LoadingSkeleton } from './loading-skeleton'
+import { managementTeamTableColumns } from './management-team-table-columns'
 
-const TEAM_TYPE = "equipe-de-gestao";
+const TEAM_TYPE = 'equipe-de-gestao'
 
 export default function Table() {
   const {
@@ -16,10 +16,10 @@ export default function Table() {
     handleRemoveTeam,
   } = useManagementTeam({
     type: TEAM_TYPE,
-  });
+  })
 
   if (isLoading) {
-    return <LoadingSkeleton />;
+    return <LoadingSkeleton />
   }
 
   return (
@@ -28,5 +28,5 @@ export default function Table() {
       data={teams}
       handleRemove={handleRemoveTeam}
     />
-  );
+  )
 }

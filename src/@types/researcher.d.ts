@@ -1,4 +1,4 @@
 export interface IResearcher {
-  name: string;
-  info: string;
+  name: string
+  info: string
 }

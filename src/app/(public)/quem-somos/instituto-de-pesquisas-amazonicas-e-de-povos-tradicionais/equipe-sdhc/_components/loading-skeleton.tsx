@@ -1,13 +1,15 @@
-import { Skeleton } from "@components/ui/skeleton";
-import { ImageIcon } from "lucide-react";
+import { Skeleton } from '@components/ui/skeleton'
+import { ImageIcon } from 'lucide-react'
+
+const ARRAY_SIZE = 9
 
 export function LoadingSkeleton() {
   return (
     <Skeleton className="grid grid-cols-1 gap-10 md:grid-cols-3">
-      {[...Array(9)].map((_, index) => (
+      {[...new Array(ARRAY_SIZE)].map((_, index: number) => (
         <div
-          key={index}
           className="flex flex-1 flex-col items-center justify-center gap-8 p-6"
+          key={index}
         >
           <div className="flex size-30 items-center justify-center rounded-full bg-gray-300 ring-4 ring-gray-200">
             <ImageIcon className="size-10 text-gray-200" />
@@ -20,5 +22,5 @@ export function LoadingSkeleton() {
         </div>
       ))}
     </Skeleton>
-  );
+  )
 }

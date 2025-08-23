@@ -1,7 +1,7 @@
-import { BackArrow } from "@components/back-arrow";
-import { Badge } from "@components/ui/badge";
-import { ListNumber } from "@components/ui/list-number";
-import { Building2, FileText, Mail, Users } from "lucide-react";
+import { BackArrow } from '@components/back-arrow'
+import { Badge } from '@components/ui/badge'
+import { ListNumber } from '@components/ui/list-number'
+import { Building2, FileText, Mail, Users } from 'lucide-react'
 
 export default function Filiacao() {
   return (
@@ -9,10 +9,10 @@ export default function Filiacao() {
       <BackArrow />
       <section className="space-y-14">
         <div className="flex items-center justify-center gap-4">
-          <Badge className="bg-primary/10 text-primary p-1">
-            <FileText className="text-primary !size-10" />
+          <Badge className="bg-primary/10 p-1 text-primary">
+            <FileText className="!size-10 text-primary" />
           </Badge>
-          <h1 className="text-center text-3xl font-bold">
+          <h1 className="text-center font-bold text-3xl">
             Como se filiar à RedeCT?
           </h1>
         </div>
@@ -20,10 +20,10 @@ export default function Filiacao() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary p-1">
-            <Building2 className="text-primary !size-7" />
+          <Badge className="bg-primary/10 p-1 text-primary">
+            <Building2 className="!size-7 text-primary" />
           </Badge>
-          <h2 className="text-2xl font-semibold">A RedeCT atual</h2>
+          <h2 className="font-semibold text-2xl">A RedeCT atual</h2>
         </div>
         <div className="space-y-7">
           <p className="text-justify">
@@ -34,18 +34,18 @@ export default function Filiacao() {
           </p>
           <div className="grid gap-4 md:grid-cols-2">
             <div className="flex items-center gap-4">
-              <Users className="text-primary h-5 w-5" />
+              <Users className="h-5 w-5 text-primary" />
               <p>Presidente voluntária da OSCIP: Joicileia Juliate Fonseca</p>
             </div>
             <div className="flex items-center gap-4">
-              <Users className="text-primary h-5 w-5" />
+              <Users className="h-5 w-5 text-primary" />
               <p>
                 Coordenador voluntário da RedeCT: Prof. Dr. Nelson Russo de
                 Moraes
               </p>
             </div>
             <div className="flex items-center gap-4">
-              <Mail className="text-primary h-5 w-5" />
+              <Mail className="h-5 w-5 text-primary" />
               <p>
                 E-mails de contato: redect.pesquisa@gmail.com e
                 contato@redect.org
@@ -57,10 +57,10 @@ export default function Filiacao() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary p-1">
-            <FileText className="text-primary !size-7" />
+          <Badge className="bg-primary/10 p-1 text-primary">
+            <FileText className="!size-7 text-primary" />
           </Badge>
-          <h2 className="text-2xl font-semibold">Processo de Filiação</h2>
+          <h2 className="font-semibold text-2xl">Processo de Filiação</h2>
         </div>
         <div className="space-y-7">
           <ol className="space-y-4">
@@ -107,10 +107,10 @@ export default function Filiacao() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary p-1">
-            <Users className="text-primary !size-7" />
+          <Badge className="bg-primary/10 p-1 text-primary">
+            <Users className="!size-7 text-primary" />
           </Badge>
-          <h2 className="text-2xl font-semibold">
+          <h2 className="font-semibold text-2xl">
             Classificação dos Pesquisadores
           </h2>
         </div>
@@ -136,5 +136,5 @@ export default function Filiacao() {
         </div>
       </section>
     </main>
-  );
+  )
 }

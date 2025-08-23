@@ -1,7 +1,7 @@
-import { Badge } from "@components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card";
-import { RedNavigationCard } from "@components/ui/red-navigation-card";
-import { getTimelineRedeCT } from "@services/timeline-rede-ct";
+import { Badge } from '@components/ui/badge'
+import { Card, CardContent, CardHeader, CardTitle } from '@components/ui/card'
+import { RedNavigationCard } from '@components/ui/red-navigation-card'
+import { getTimelineRedeCT } from '@mocks/timeline-rede-ct'
 import {
   BookOpen,
   Clock,
@@ -11,29 +11,28 @@ import {
   Landmark,
   MapPin,
   Users,
-} from "lucide-react";
-
-import { Timeline } from "./_components/timeline";
+} from 'lucide-react'
+import { Timeline } from './_components/timeline'
 
 const countries = [
-  "Argentina",
-  "Bolívia",
-  "Colômbia",
-  "Venezuela",
-  "Moçambique",
-  "Angola",
-  "Cabo Verde",
-  "Portugal",
-  "Itália",
-  "México",
-];
+  'Argentina',
+  'Bolívia',
+  'Colômbia',
+  'Venezuela',
+  'Moçambique',
+  'Angola',
+  'Cabo Verde',
+  'Portugal',
+  'Itália',
+  'México',
+]
 
 export default async function ApresentacaoEHistoria() {
-  const timelineData = await getTimelineRedeCT();
+  const timelineData = await getTimelineRedeCT()
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <section className="bg-primary flex flex-col items-center justify-center gap-8 rounded-md p-10 text-white">
+      <section className="flex flex-col items-center justify-center gap-8 rounded-md bg-primary p-10 text-white">
         <Badge className="rounded-full bg-white/20 p-1">
           <Clock className="!size-10" />
         </Badge>
@@ -44,15 +43,15 @@ export default async function ApresentacaoEHistoria() {
       </section>
 
       <section className="space-y-14">
-        <h2 className="text-center text-3xl font-semibold">Sobre a RedeCT</h2>
+        <h2 className="text-center font-semibold text-3xl">Sobre a RedeCT</h2>
 
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
           <Card className="shadow-xl">
             <CardHeader className="flex items-center gap-2">
-              <Badge className="bg-primary/10 text-primary rounded-md p-1">
+              <Badge className="rounded-md bg-primary/10 p-1 text-primary">
                 <Heart className="!size-7" />
               </Badge>
-              <CardTitle className="text-2xl font-semibold">RedeCT</CardTitle>
+              <CardTitle className="font-semibold text-2xl">RedeCT</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-justify">
@@ -71,10 +70,10 @@ export default async function ApresentacaoEHistoria() {
 
           <Card className="shadow-xl">
             <CardHeader className="flex items-center gap-2">
-              <Badge className="bg-primary/10 text-primary rounded-md p-1">
+              <Badge className="rounded-md bg-primary/10 p-1 text-primary">
                 <Users className="!size-7" />
               </Badge>
-              <CardTitle className="text-2xl font-semibold">
+              <CardTitle className="font-semibold text-2xl">
                 Quem são os Povos Tradicionais?
               </CardTitle>
             </CardHeader>
@@ -91,16 +90,16 @@ export default async function ApresentacaoEHistoria() {
         </div>
 
         <div className="flex items-center justify-center gap-4">
-          <Badge className="bg-primary/10 text-primary rounded-md p-1">
+          <Badge className="rounded-md bg-primary/10 p-1 text-primary">
             <Globe className="!size-7" />
           </Badge>
-          <h2 className="text-3xl font-semibold">Presença internacional</h2>
+          <h2 className="font-semibold text-3xl">Presença internacional</h2>
         </div>
         <div className="grid grid-cols-2 gap-2 text-sm md:grid-cols-4 lg:grid-cols-5">
           {countries.map((country) => (
             <Badge
+              className="flex w-full flex-col items-center gap-0.5 rounded-md border border-primary/20 bg-primary/10 p-2 font-semibold text-primary"
               key={country}
-              className="text-primary bg-primary/10 border-primary/20 flex w-full flex-col items-center gap-0.5 rounded-md border p-2 font-semibold"
             >
               <MapPin className="!size-4" />
               {country}
@@ -111,10 +110,10 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary rounded-md p-1">
+          <Badge className="rounded-md bg-primary/10 p-1 text-primary">
             <Landmark className="!size-7" />
           </Badge>
-          <h2 className="text-3xl font-semibold">História</h2>
+          <h2 className="font-semibold text-3xl">História</h2>
         </div>
         <div className="space-y-7">
           <p className="text-justify">
@@ -142,10 +141,10 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary rounded-md p-1">
+          <Badge className="rounded-md bg-primary/10 p-1 text-primary">
             <BookOpen className="!size-7" />
           </Badge>
-          <h2 className="text-3xl font-semibold">Publicações</h2>
+          <h2 className="font-semibold text-3xl">Publicações</h2>
         </div>
         <div className="space-y-7">
           <p className="text-justify">
@@ -161,14 +160,14 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center justify-center gap-4">
-          <Badge className="bg-primary/10 text-primary rounded-full p-1">
+          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
             <History className="!size-7" />
           </Badge>
           <h2 className="title-2">Linha do tempo da RedeCT</h2>
         </div>
         <div className="relative w-full space-y-7 sm:space-y-14">
           {timelineData.map((item, index: number) => (
-            <Timeline key={index} item={item} />
+            <Timeline item={item} key={index} />
           ))}
         </div>
       </section>
@@ -182,5 +181,5 @@ export default async function ApresentacaoEHistoria() {
         </RedNavigationCard>
       </section>
     </main>
-  );
+  )
 }

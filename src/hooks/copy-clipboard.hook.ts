@@ -1,25 +1,27 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { toast } from "sonner";
+import { useState } from 'react'
+import { toast } from 'sonner'
+
+const COPY_TIMEOUT_MS = 1000
 
 export function useCopyClipboard(children: string) {
-  const [isCopied, setIsCopied] = useState(false);
+  const [isCopied, setIsCopied] = useState(false)
 
   function copyToClipboard() {
-    navigator.clipboard.writeText(children as string);
+    navigator.clipboard.writeText(children as string)
 
-    setIsCopied(true);
+    setIsCopied(true)
 
-    toast("Copiado para a área de transferência!");
+    toast('Copiado para a área de transferência!')
 
     setTimeout(() => {
-      setIsCopied(false);
-    }, 1000);
+      setIsCopied(false)
+    }, COPY_TIMEOUT_MS)
   }
 
   return {
     copyToClipboard,
     isCopied,
-  };
+  }
 }

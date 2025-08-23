@@ -1,11 +1,11 @@
-import { ArrowRight, type LucideIcon } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight, type LucideIcon } from 'lucide-react'
+import Link from 'next/link'
 
 interface PortfolioCardProps {
-  slug: string;
-  title: string;
-  description: string;
-  icon: LucideIcon;
+  slug: string
+  title: string
+  description: string
+  icon: LucideIcon
 }
 
 export default function PortfolioCard({
@@ -15,7 +15,7 @@ export default function PortfolioCard({
   icon: Icon,
 }: PortfolioCardProps) {
   return (
-    <Link href={`/portfolio/${slug}`} className="flex items-stretch">
+    <Link className="flex items-stretch" href={`/portfolio/${slug}`}>
       <article className="group cursor-pointer overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg">
         <div className="relative overflow-hidden">
           <div className="absolute top-4 left-4 flex h-12 w-12 items-center justify-center rounded-lg bg-white/90 backdrop-blur-sm">
@@ -23,11 +23,11 @@ export default function PortfolioCard({
           </div>
         </div>
         <div className="flex h-full flex-col p-6">
-          <h3 className="mb-3 line-clamp-2 text-xl font-bold text-gray-900 transition-colors group-hover:text-gray-700">
+          <h3 className="mb-3 line-clamp-2 font-bold text-gray-900 text-xl transition-colors group-hover:text-gray-700">
             {title}
           </h3>
           <div className="mt-auto">
-            <p className="mb-4 line-clamp-3 leading-relaxed text-gray-600">
+            <p className="mb-4 line-clamp-3 text-gray-600 leading-relaxed">
               {description}
             </p>
             <div className="flex items-center text-gray-700 transition-colors group-hover:text-gray-900">
@@ -38,5 +38,5 @@ export default function PortfolioCard({
         </div>
       </article>
     </Link>
-  );
+  )
 }

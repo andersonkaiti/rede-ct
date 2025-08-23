@@ -1,11 +1,11 @@
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
 
-import { LoadingSkeleton } from "./_components/loading-skeleton";
+import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicCourses = dynamic(() =>
-  import("./_components/courses").then((mod) => mod.Courses),
-);
+  import('./_components/courses').then((mod) => mod.Courses)
+)
 
 export default function DisciplinasECursosDePosGraduacao() {
   return (
@@ -14,7 +14,7 @@ export default function DisciplinasECursosDePosGraduacao() {
         <h1 className="title-2">
           Programas de Pós-graduação e Disciplinas com Inscrições Abertas
         </h1>
-        <p className="text-muted-foreground text-lg">
+        <p className="text-lg text-muted-foreground">
           Conheça os programas de pós-graduação e disciplinas isoladas
           oferecidas ou chanceladas pela RedeCT. Amplie sua formação acadêmica e
           profissional com nossos cursos de excelência.
@@ -25,7 +25,7 @@ export default function DisciplinasECursosDePosGraduacao() {
         <DynamicCourses />
       </Suspense>
 
-      <div className="text-muted-foreground text-justify text-lg">
+      <div className="text-justify text-lg text-muted-foreground">
         <p className="mb-4">
           A RedeCT oferece programas de pós-graduação e disciplinas isoladas em
           diversas áreas do conhecimento, com o objetivo de promover o
@@ -36,5 +36,5 @@ export default function DisciplinasECursosDePosGraduacao() {
         </p>
       </div>
     </main>
-  );
+  )
 }

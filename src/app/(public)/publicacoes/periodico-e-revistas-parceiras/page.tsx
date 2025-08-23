@@ -1,22 +1,22 @@
-import { Badge } from "@components/ui/badge";
-import { FileText } from "lucide-react";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import { Badge } from '@components/ui/badge'
+import { FileText } from 'lucide-react'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
 
-import { LoadingSkeleton } from "./_components/loading-skeleton";
+import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicMagazines = dynamic(() =>
-  import("./_components/magazines").then((mod) => mod.Magazines),
-);
+  import('./_components/magazines').then((mod) => mod.Magazines)
+)
 
-export default async function PeriodicoERevistasParceiras() {
+export default function PeriodicoERevistasParceiras() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 md:gap-20 lg:p-25">
       <header className="space-y-8 text-center">
-        <h1 className="text-center text-3xl font-bold md:text-6xl">
+        <h1 className="text-center font-bold text-3xl md:text-6xl">
           Periódico Científico da <span className="text-primary">RedeCT</span>
         </h1>
-        <p className="text-muted-foreground text-lg">
+        <p className="text-lg text-muted-foreground">
           A RedeCT está orientada para a criação de sua Revista Científica, com
           identidade específica entre universidade, ciência e Povos
           Tradicionais.
@@ -25,25 +25,25 @@ export default async function PeriodicoERevistasParceiras() {
 
       <section className="space-y-8">
         <div className="flex items-center gap-2">
-          <Badge className="bg-primary/10 text-primary rounded-md p-2">
+          <Badge className="rounded-md bg-primary/10 p-2 text-primary">
             <FileText className="!size-7" />
           </Badge>
           <h2 className="title-3">Uma breve explicação</h2>
         </div>
-        <p className="text-muted-foreground bg-primary/10 border-primary/20 rounded-md border p-10 text-justify">
+        <p className="rounded-md border border-primary/20 bg-primary/10 p-10 text-justify text-muted-foreground">
           Este é um projeto audacioso e complexo, exigindo planejamento técnico,
           editorial e político. Enquanto o periódico não está pronto,
-          fortalecemos nossa presença científica através de{" "}
-          <span className="text-primary font-semibold">revistas parceiras</span>
+          fortalecemos nossa presença científica através de{' '}
+          <span className="font-semibold text-primary">revistas parceiras</span>
           .
         </p>
       </section>
 
       <section className="space-y-7">
-        <h3 className="text-center text-3xl font-semibold md:text-4xl">
+        <h3 className="text-center font-semibold text-3xl md:text-4xl">
           Revistas Científicas Parceiras
         </h3>
-        <p className="text-muted-foreground text-center">
+        <p className="text-center text-muted-foreground">
           Colaboramos com revistas científicas renomadas para fortalecer a
           pesquisa e divulgação científica
         </p>
@@ -52,5 +52,5 @@ export default async function PeriodicoERevistasParceiras() {
         </Suspense>
       </section>
     </main>
-  );
+  )
 }

@@ -1,26 +1,30 @@
-"use client";
+'use client'
 
-import { registerNews } from "@actions/news/register";
-import { redirect } from "next/navigation";
-import { useActionState, useEffect } from "react";
-import { toast } from "sonner";
+import { redirect } from 'next/navigation'
+import { useActionState, useEffect } from 'react'
+import { toast } from 'sonner'
+import { type IActionState, registerNewsAction } from '../actions'
 
 export function useRegisterNews() {
-  const [state, formAction, isLoading] = useActionState(registerNews, null);
+  const [{ payload, errors, success }, formAction, isLoading] = useActionState<
+    IActionState,
+    FormData
+  >(registerNewsAction, {} as IActionState)
 
   useEffect(() => {
-    if (state && "success" in state) {
-      toast.success(state.success, {
-        description: "Notícia cadastrada com sucesso",
-      });
+    if (success) {
+      toast.success(success, {
+        description: 'Notícia cadastrada com sucesso',
+      })
 
-      redirect("/area-restrita/noticias");
+      redirect('/area-restrita/noticias')
     }
-  }, [state]);
+  }, [success])
 
   return {
-    state,
+    errors,
+    payload,
     formAction,
     isLoading,
-  };
+  }
 }

@@ -1,108 +1,99 @@
-"use client";
-
-import { updateManagementTeam } from "@actions/management-team/update";
-import { getTeam } from "@services/teams/team";
-import { useQuery } from "@tanstack/react-query";
-import { redirect, useParams } from "next/navigation";
-import { useActionState, useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
-import { ITeam, ITeamMember } from "types/team";
+import { getTeam } from '@http/teams/get-team'
+import { useQuery } from '@tanstack/react-query'
+import { redirect, useParams } from 'next/navigation'
+import { useActionState, useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
+import type { ITeam, ITeamMember } from 'types/team'
+import { type IActionState, updateManagementTeam } from '../actions'
 
 export function useUpdateTeam() {
-  const { id } = useParams();
+  const { id } = useParams()
 
   const { data, isLoading: isTeamLoading } = useQuery<ITeam>({
-    queryKey: ["team", id],
+    queryKey: ['team', id],
     queryFn: getTeam,
-  });
+  })
 
-  const [team, setTeam] = useState<ITeam | null>(null);
+  const [team, setTeam] = useState<ITeamMember[]>([])
+  const [selectedMember, setSelectedMember] = useState<ITeamMember | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
-  const [selectedMember, setSelectedMember] = useState<ITeamMember | null>(
-    null,
-  );
+  function handleIncludeTeamMember() {
+    if (!(selectedMember && inputRef.current && team)) {
+      return
+    }
 
-  const inputRef = useRef<HTMLInputElement>(null);
+    if (!inputRef.current.value) {
+      toast.warning('Especifique o cargo!')
 
-  function handleAddMember() {
-    if (!selectedMember || !inputRef.current || !team) return;
+      return
+    }
 
     const newMember: ITeamMember = {
       ...selectedMember,
       role: inputRef.current.value,
-    };
-
-    const alreadyHas = !!team.team_members?.find(
-      (member) => member.user_id === newMember.user_id,
-    );
-
-    if (alreadyHas) {
-      toast.warning("Esse membro já existe!");
-
-      return;
     }
 
-    toast.success("Membro adicionado com sucesso!");
+    const alreadyExists = !!team.find(
+      (member) => member.user?.id === newMember.user?.id
+    )
 
-    setTeam((prev) => {
-      if (!prev) return prev;
+    if (alreadyExists) {
+      toast.warning('Esse membro já existe!')
 
-      return {
-        ...prev,
-        team_members: [...(prev.team_members || []), newMember],
-      };
-    });
+      return
+    }
+
+    setTeam((prevTeam) => [...prevTeam, newMember])
+
+    toast.success('Membro adicionado com sucesso!')
   }
 
   function handleRemoveMember({ user }: ITeamMember) {
-    setTeam((prev) => {
-      if (!prev) return prev;
+    setTeam((prevTeam) =>
+      prevTeam.filter(
+        (teamMember: ITeamMember) => teamMember.user?.id !== user?.id
+      )
+    )
 
-      const { team_members, ...rest } = prev;
-
-      return {
-        ...rest,
-        team_members: team_members.filter(
-          (teamMember: ITeamMember) => teamMember.user_id !== user?.id,
-        ),
-      };
-    });
-
-    toast.success("Usuário removido com sucesso!");
+    toast.success('Usuário removido com sucesso!')
   }
 
   useEffect(() => {
     if (!isTeamLoading && data) {
-      setTeam(data);
+      setTeam(data.team_members)
     }
-  }, [data, isTeamLoading]);
+  }, [data, isTeamLoading])
 
-  const [state, formAction, isLoading] = useActionState(
+  const [{ success, errors }, formAction, isLoading] = useActionState<
+    IActionState,
+    FormData
+  >(
     updateManagementTeam.bind(null, {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      team: team?.team_members?.map(({ user, ...member }) => member) || [],
-      id: team?.id || "",
+      members: team,
+      id: data?.id || '',
     }),
-    null,
-  );
+    {} as IActionState
+  )
 
   useEffect(() => {
-    if (state && "success" in state) {
-      toast.success("Equipe atualizada com sucesso!");
+    if (success) {
+      toast.success('Equipe atualizada com sucesso!')
 
-      redirect("/area-restrita/equipe-de-gestao");
+      redirect('/area-restrita/equipe-de-gestao')
     }
-  }, [state]);
+  }, [success])
 
   return {
+    data,
     team,
     isTeamLoading,
     setSelectedMember,
     inputRef,
-    handleAddMember,
+    handleIncludeTeamMember,
     handleRemoveMember,
-    state,
+    errors,
     formAction,
     isLoading,
-  };
+  }
 }

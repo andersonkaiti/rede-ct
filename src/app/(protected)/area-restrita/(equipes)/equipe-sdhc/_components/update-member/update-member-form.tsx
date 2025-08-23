@@ -1,44 +1,39 @@
-import { Button } from "@components/ui/button";
+import { Alert, AlertDescription } from '@components/ui/alert'
+import { Button } from '@components/ui/button'
 import {
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@components/ui/dialog";
-import { Input } from "@components/ui/input";
-import { Label } from "@components/ui/label";
+} from '@components/ui/dialog'
+import { Input } from '@components/ui/input'
+import { Label } from '@components/ui/label'
 import {
   PageForm,
   PageFormContent,
   PageFormContentField,
-} from "@components/ui/page-container";
-import { Textarea } from "@components/ui/textarea";
-import { Loader2 } from "lucide-react";
-import { ITeamMember } from "types/team";
-
-import { ErrorMessage } from "@/app/(protected)/area-restrita/noticias/_components/error-message";
-
-import { SelectMember } from "../../../../_components/select-member";
-import { useUpdateMember } from "../../../_hooks/use-update-member";
+} from '@components/ui/page-container'
+import { Textarea } from '@components/ui/textarea'
+import { AlertCircle, Loader2 } from 'lucide-react'
+import type { ITeamMember } from 'types/team'
+import { SelectMember } from '../../../../_components/select-member'
+import { useUpdateSDHCTeamMember } from '../../_hooks/use-update-member'
 
 interface IUpdateMemberFormProps {
-  setIsOpen: (isOpen: boolean) => void;
-  data: ITeamMember;
+  setIsOpen: (isOpen: boolean) => void
+  data: ITeamMember
 }
 
 export function UpdateMemberForm({
   setIsOpen,
   data: member,
 }: IUpdateMemberFormProps) {
-  const { state, formAction, isLoading } = useUpdateMember({
+  const { errors, payload, formAction, isLoading } = useUpdateSDHCTeamMember({
     setIsOpen,
-    type: "equipe-sdhc",
-    user: {
-      id: member.id ?? "",
+    member: {
+      id: member.id ?? '',
     },
-  });
-
-  const hasErrors = state && "errors" in state;
+  })
 
   return (
     <DialogContent className="max-h-[100vh-2rem] space-y-8 overflow-y-auto">
@@ -50,12 +45,15 @@ export function UpdateMemberForm({
         <PageForm action={formAction}>
           <PageFormContent>
             <PageFormContentField>
-              <Label>{member ? "Membro" : "Usuários"}</Label>
+              <Label>{member ? 'Membro' : 'Usuários'}</Label>
 
-              <SelectMember user_id={member?.user_id} />
+              <SelectMember userId={member?.user?.id} />
 
-              {hasErrors && state.errors.user_id && (
-                <ErrorMessage state={state} inputName="user_id" />
+              {errors?.user_id && errors.user_id && (
+                <Alert className="border-red-500 p-2" variant="destructive">
+                  <AlertCircle className="size-4" />
+                  <AlertDescription>{errors.user_id}</AlertDescription>
+                </Alert>
               )}
             </PageFormContentField>
 
@@ -63,13 +61,16 @@ export function UpdateMemberForm({
               <Label>Cargo</Label>
 
               <Input
-                placeholder="Cargo"
-                name="role"
                 defaultValue={member?.role}
+                name="role"
+                placeholder="Cargo"
               />
 
-              {hasErrors && state.errors.role && (
-                <ErrorMessage state={state} inputName="role" />
+              {errors?.role && errors.role && (
+                <Alert className="border-red-500 p-2" variant="destructive">
+                  <AlertCircle className="size-4" />
+                  <AlertDescription>{errors.role}</AlertDescription>
+                </Alert>
               )}
             </PageFormContentField>
 
@@ -77,26 +78,29 @@ export function UpdateMemberForm({
               <Label>Descrição</Label>
 
               <Textarea
-                placeholder="Descrição"
-                name="description"
                 defaultValue={member?.description}
+                name="description"
+                placeholder="Descrição"
               />
 
-              {hasErrors && state.errors.description && (
-                <ErrorMessage state={state} inputName="description" />
+              {errors?.description && errors.description && (
+                <Alert className="border-red-500 p-2" variant="destructive">
+                  <AlertCircle className="size-4" />
+                  <AlertDescription>{errors.description}</AlertDescription>
+                </Alert>
               )}
             </PageFormContentField>
           </PageFormContent>
 
           <DialogFooter>
-            <Button type="submit">
+            <Button disabled={isLoading} type="submit">
               {isLoading && <Loader2 className="size-4 animate-spin" />}
 
-              {member ? "Atualizar membro" : "Cadastrar membro"}
+              {member ? 'Atualizar membro' : 'Cadastrar membro'}
             </Button>
           </DialogFooter>
         </PageForm>
       </DialogContent>
     </DialogContent>
-  );
+  )
 }

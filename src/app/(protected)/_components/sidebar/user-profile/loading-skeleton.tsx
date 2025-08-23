@@ -1,5 +1,5 @@
-import { Skeleton } from "@components/ui/skeleton";
-import { User } from "lucide-react";
+import { Skeleton } from '@components/ui/skeleton'
+import { User } from 'lucide-react'
 
 export function LoadingSkeleton() {
   return (
@@ -12,5 +12,5 @@ export function LoadingSkeleton() {
       </div>
       <div className="h-4 w-2 rounded-full bg-gray-200" />
     </Skeleton>
-  );
+  )
 }

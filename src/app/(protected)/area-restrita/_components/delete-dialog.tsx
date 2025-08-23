@@ -1,7 +1,7 @@
-"use client";
+'use client'
 
-import { Badge } from "@components/ui/badge";
-import { Button } from "@components/ui/button";
+import { Badge } from '@components/ui/badge'
+import { Button } from '@components/ui/button'
 import {
   Dialog,
   DialogClose,
@@ -11,11 +11,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@components/ui/dialog";
-import { Info, Trash } from "lucide-react";
+} from '@components/ui/dialog'
+import { Info, Trash } from 'lucide-react'
 
 interface IDeleteDialogProps {
-  handleRemove: () => void;
+  handleRemove: () => void
 }
 
 export function DeleteDialog({ handleRemove }: IDeleteDialogProps) {
@@ -23,8 +23,8 @@ export function DeleteDialog({ handleRemove }: IDeleteDialogProps) {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          variant="ghost"
           className="flex w-full cursor-pointer justify-between text-xs"
+          variant="ghost"
         >
           Excluir
           <Trash />
@@ -33,7 +33,7 @@ export function DeleteDialog({ handleRemove }: IDeleteDialogProps) {
       <DialogContent>
         <DialogHeader>
           <div className="flex items-center gap-2">
-            <Badge className="bg-primary/10 text-primary rounded-full p-2">
+            <Badge className="rounded-full bg-primary/10 p-2 text-primary">
               <Info className="!size-5" />
             </Badge>
             <DialogTitle>Tem certeza de que deseja excluir?</DialogTitle>
@@ -52,5 +52,5 @@ export function DeleteDialog({ handleRemove }: IDeleteDialogProps) {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

@@ -1,176 +1,176 @@
-import * as Icons from "lucide-react";
-import { NavigationLink } from "types/navigation-link";
+import * as Icons from 'lucide-react'
+import type { NavigationLink } from 'types/navigation-link'
 
 export const sidebarLinks: NavigationLink[] = [
   {
-    label: "Notícias",
-    path: "/area-restrita/noticias",
+    label: 'Notícias',
+    path: '/area-restrita/noticias',
     icon: Icons.Newspaper,
   },
   {
-    label: "Portfólio",
-    path: "/area-restrita/portfolio",
+    label: 'Portfólio',
+    path: '/area-restrita/portfolio',
     icon: Icons.FileText,
   },
   {
-    label: "Histórico",
-    path: "/area-restrita/historico-de-contribuicoes",
+    label: 'Histórico',
+    path: '/area-restrita/historico-de-contribuicoes',
     icon: Icons.History,
   },
   {
-    label: "Arquivos",
+    label: 'Arquivos',
     icon: Icons.File,
     children: [
       {
-        label: "Certificados",
-        path: "/area-restrita/certificados",
+        label: 'Certificados',
+        path: '/area-restrita/certificados',
         icon: Icons.Award,
       },
       {
-        label: "Pendências",
-        path: "/area-restrita/pendencias",
+        label: 'Pendências',
+        path: '/area-restrita/pendencias',
         icon: Icons.Banknote,
       },
     ],
   },
   {
-    label: "ETPs",
-    path: "/area-restrita/etps",
+    label: 'ETPs',
+    path: '/area-restrita/etps',
     icon: Icons.BookOpen,
   },
   {
-    label: "Equipes",
+    label: 'Equipes',
     icon: Icons.Users,
     children: [
       {
-        label: "Equipe de Gestão",
-        path: "/area-restrita/equipe-de-gestao",
+        label: 'Equipe de Gestão',
+        path: '/area-restrita/equipe-de-gestao',
         icon: Icons.Users,
       },
       {
-        label: "Comitê Legitimador",
-        path: "/area-restrita/comite-legitimador",
+        label: 'Comitê Legitimador',
+        path: '/area-restrita/comite-legitimador',
         icon: Icons.Search,
       },
       {
-        label: "Equipe SDHC",
-        path: "/area-restrita/equipe-sdhc",
+        label: 'Equipe SDHC',
+        path: '/area-restrita/equipe-sdhc',
         icon: Icons.Earth,
       },
     ],
   },
   {
-    label: "Pesquisadores",
+    label: 'Pesquisadores',
     icon: Icons.GraduationCap,
     children: [
       {
-        label: "Pesquisadores",
-        path: "/area-restrita/pesquisadores-participantes",
+        label: 'Pesquisadores',
+        path: '/area-restrita/pesquisadores-participantes',
         icon: Icons.GraduationCap,
       },
       {
-        label: "In Memoriam",
-        path: "/area-restrita/in-memoriam",
+        label: 'In Memoriam',
+        path: '/area-restrita/in-memoriam',
         icon: Icons.Heart,
       },
       {
-        label: "Grupo de Pesquisa",
-        path: "/area-restrita/grupo-de-pesquisa",
+        label: 'Grupo de Pesquisa',
+        path: '/area-restrita/grupo-de-pesquisa',
         icon: Icons.Network,
       },
     ],
   },
   {
-    label: "Regimentos e Atas",
-    path: "/area-restrita/regimentos-e-atas",
+    label: 'Regimentos e Atas',
+    path: '/area-restrita/regimentos-e-atas',
     icon: Icons.FileText,
   },
   {
-    label: "Parceiros e Financiadores",
-    path: "/area-restrita/parceiros-e-financiadores",
+    label: 'Parceiros e Financiadores',
+    path: '/area-restrita/parceiros-e-financiadores',
     icon: Icons.Handshake,
   },
   {
-    label: "Congressos",
+    label: 'Congressos',
     icon: Icons.BookOpen,
     children: [
       {
-        label: "Internacionais",
-        path: "/area-restrita/congressos-cientificos-internacionais",
+        label: 'Internacionais',
+        path: '/area-restrita/congressos-cientificos-internacionais',
         icon: Icons.Globe,
       },
       {
-        label: "Regionais",
-        path: "/area-restrita/congressos-regionais",
+        label: 'Regionais',
+        path: '/area-restrita/congressos-regionais',
         icon: Icons.Map,
       },
     ],
   },
   {
-    label: "Cursos",
+    label: 'Cursos',
     icon: Icons.BookOpen,
     children: [
       {
-        label: "Webinários",
-        path: "/area-restrita/webinarios",
+        label: 'Webinários',
+        path: '/area-restrita/webinarios',
         icon: Icons.Network,
       },
       {
-        label: "Capacitações",
-        path: "/area-restrita/capacitacoes",
+        label: 'Capacitações',
+        path: '/area-restrita/capacitacoes',
         icon: Icons.GraduationCap,
       },
       {
-        label: "Pós-Graduações",
-        path: "/area-restrita/pos-graduacoes",
+        label: 'Pós-Graduações',
+        path: '/area-restrita/pos-graduacoes',
         icon: Icons.BookOpen,
       },
     ],
   },
   {
-    label: "Livros",
+    label: 'Livros',
     icon: Icons.BookOpen,
     children: [
       {
-        label: "Revistas",
-        path: "/area-restrita/revistas",
+        label: 'Revistas',
+        path: '/area-restrita/revistas',
         icon: Icons.BookOpen,
       },
       {
-        label: "Capítulos",
-        path: "/area-restrita/capitulos-de-livros",
+        label: 'Capítulos',
+        path: '/area-restrita/capitulos-de-livros',
         icon: Icons.BookOpen,
       },
       {
-        label: "Artigos",
-        path: "/area-restrita/artigos",
+        label: 'Artigos',
+        path: '/area-restrita/artigos',
         icon: Icons.FileText,
       },
     ],
   },
   {
-    label: "Editais",
+    label: 'Editais',
     icon: Icons.FilePlus,
-    path: "/area-restrita/editais",
+    path: '/area-restrita/editais',
   },
   {
-    label: "Legislações",
+    label: 'Legislações',
     icon: Icons.ScrollText,
-    path: "/area-restrita/legislacoes",
+    path: '/area-restrita/legislacoes',
   },
   {
-    label: "Museus",
+    label: 'Museus',
     icon: Icons.GalleryHorizontal,
-    path: "/area-restrita/museus",
+    path: '/area-restrita/museus',
   },
   {
-    label: "Destaques RedeCT",
+    label: 'Destaques RedeCT',
     icon: Icons.Star,
-    path: "/area-restrita/destaques-redect",
+    path: '/area-restrita/destaques-redect',
   },
   {
-    label: "Centro de Referência UNESP",
+    label: 'Centro de Referência UNESP',
     icon: Icons.Building,
-    path: "/area-restrita/centro-de-referencia-unesp",
+    path: '/area-restrita/centro-de-referencia-unesp',
   },
-];
+]

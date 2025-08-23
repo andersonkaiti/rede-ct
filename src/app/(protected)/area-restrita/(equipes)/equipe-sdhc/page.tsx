@@ -4,11 +4,11 @@ import {
   PageHeader,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
+} from '@components/ui/page-container'
 
-import { FilterInput } from "../../_components/filter-input";
-import { CreateMemberButton } from "./_components/create-member/create-member-button";
-import { Table } from "./_components/table/table";
+import { FilterInput } from '../../_components/filter-input'
+import { CreateMemberButton } from './_components/create-member/create-member-button'
+import { Table } from './_components/table/table'
 
 export default function EquipeSDHC() {
   return (
@@ -28,5 +28,5 @@ export default function EquipeSDHC() {
         <Table />
       </PageMain>
     </PageContainer>
-  );
+  )
 }

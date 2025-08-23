@@ -1,9 +1,9 @@
-import { BackArrow } from "@components/back-arrow";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/ui/tabs";
-import { getResearcherCategories } from "@services/researchers";
+import { BackArrow } from '@components/back-arrow'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@components/ui/tabs'
+import { getResearcherCategories } from '@mocks/researchers'
 
 export default async function Pesquisadores() {
-  const researcherCategories = await getResearcherCategories();
+  const researcherCategories = await getResearcherCategories()
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
@@ -26,10 +26,10 @@ export default async function Pesquisadores() {
                   <span className="font-bold text-black">{name}</span> {info}
                 </p>
               </TabsContent>
-            )),
+            ))
           )}
         </Tabs>
       </section>
     </main>
-  );
+  )
 }

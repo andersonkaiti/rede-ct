@@ -1,22 +1,28 @@
-import { ColumnDef } from "@tanstack/react-table";
-import { formatDate } from "@utils/format-date";
-import { INews } from "types/news";
+import type { ColumnDef } from '@tanstack/react-table'
+import { formatDate } from '@utils/format-date'
+import type { INews } from 'types/news'
 
-import { ActionsRow } from "./actions-row";
+import { ActionsRow } from './actions-row'
+
+const TITLE_MAX_LENGTH = 30
+const ELLIPSIS = '...'
 
 export const newTableColumns: ColumnDef<INews>[] = [
   {
-    id: "title",
-    header: "Título",
+    id: 'title',
+    header: 'Título',
     cell: ({
       row: {
         original: { title },
       },
-    }) => (title.length > 30 ? title.slice(0, 30) + "..." : title),
+    }) =>
+      title.length > TITLE_MAX_LENGTH
+        ? `${title.slice(0, TITLE_MAX_LENGTH)}${ELLIPSIS}`
+        : title,
   },
   {
-    id: "date",
-    header: "Data",
+    id: 'date',
+    header: 'Data',
     cell: ({
       row: {
         original: { created_at },
@@ -24,8 +30,8 @@ export const newTableColumns: ColumnDef<INews>[] = [
     }) => formatDate(created_at),
   },
   {
-    id: "actions",
-    header: "Ações",
+    id: 'actions',
+    header: 'Ações',
     cell: ({
       row: { original },
       table: {
@@ -38,4 +44,4 @@ export const newTableColumns: ColumnDef<INews>[] = [
       />
     ),
   },
-];
+]

@@ -1,17 +1,17 @@
-import { Badge } from "@components/ui/badge";
-import { Card, CardContent, CardHeader } from "@components/ui/card";
-import { NavigationCard } from "@components/ui/navigation-card";
-import { Axis3DIcon, BookOpen, Users } from "lucide-react";
+import { Badge } from '@components/ui/badge'
+import { Card, CardContent, CardHeader } from '@components/ui/card'
+import { NavigationCard } from '@components/ui/navigation-card'
+import { Axis3DIcon, BookOpen, Users } from 'lucide-react'
 
-import { Composition } from "./_components/composition";
-import { Duties } from "./_components/duties";
+import { Composition } from './_components/composition'
+import { Duties } from './_components/duties'
 
 export default function EixosTematicosPermanentes() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 text-primary rounded-full p-1.5">
+          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
             <BookOpen className="!size-7" />
           </Badge>
           <h1 className="title-2">
@@ -30,7 +30,7 @@ export default function EixosTematicosPermanentes() {
         <Card className="flex-1">
           <CardHeader>
             <h2 className="title-3 flex items-center gap-4">
-              <Badge className="bg-primary/20 text-primary rounded-full p-1">
+              <Badge className="rounded-full bg-primary/20 p-1 text-primary">
                 <BookOpen className="!size-7" />
               </Badge>
               ETP - EIXO TEMÁTICO PERMANENTE
@@ -71,7 +71,7 @@ export default function EixosTematicosPermanentes() {
         <Card className="flex-1">
           <CardHeader>
             <h2 className="title-3 flex items-center gap-4">
-              <Badge className="bg-primary/20 text-primary rounded-full p-1">
+              <Badge className="rounded-full bg-primary/20 p-1 text-primary">
                 <Users className="!size-7" />
               </Badge>
               GTC - GRUPO DE TRABALHO CIENTÍFICO
@@ -111,7 +111,7 @@ export default function EixosTematicosPermanentes() {
         <NavigationCard href="/quem-somos/eixos-tematicos-permanentes/etps">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-4">
-              <div className="bg-primary/20 rounded-full p-2">
+              <div className="rounded-full bg-primary/20 p-2">
                 <Axis3DIcon className="text-primary" />
               </div>
               <h2 className="title-3 font-bold">ETPS</h2>
@@ -152,5 +152,5 @@ export default function EixosTematicosPermanentes() {
 
       <Duties />
     </main>
-  );
+  )
 }

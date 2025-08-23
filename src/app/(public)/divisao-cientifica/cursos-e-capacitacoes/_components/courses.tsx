@@ -1,28 +1,27 @@
-import { getCourses } from "@services/courses/courses";
-
-import { CourseCard } from "./course-card";
+import { getCourses } from '@mocks/courses/courses'
+import { CourseCard } from './course-card'
 
 export async function Courses() {
-  const courses = await getCourses();
+  const courses = await getCourses()
 
   return (
     <div className="space-y-8">
       {courses.map((course) => (
-        <div key={course.id} className="flex justify-center">
+        <div className="flex justify-center" key={course.id}>
           <CourseCard
-            id={course.id}
-            title={course.title}
+            category={course.category}
+            date={course.date}
             description={course.description}
+            id={course.id}
             imageUrl={course.imageUrl}
             link={course.link}
-            date={course.date}
-            time={course.time}
             location={course.location}
+            time={course.time}
+            title={course.title}
             vacancies={course.vacancies}
-            category={course.category}
           />
         </div>
       ))}
     </div>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { Skeleton } from "@components/ui/skeleton";
+import { Skeleton } from '@components/ui/skeleton'
 
 export function LoadingSkeleton() {
   return (
@@ -28,5 +28,5 @@ export function LoadingSkeleton() {
         <div className="h-9 w-full rounded-md bg-gray-200" />
       </div>
     </Skeleton>
-  );
+  )
 }

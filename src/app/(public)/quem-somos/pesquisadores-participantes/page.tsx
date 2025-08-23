@@ -1,14 +1,14 @@
-import { Badge } from "@components/ui/badge";
-import { ListNumber } from "@components/ui/list-number";
-import { NavigationCard } from "@components/ui/navigation-card";
-import { GraduationCap, Heart, Users } from "lucide-react";
-import Link from "next/link";
+import { Badge } from '@components/ui/badge'
+import { ListNumber } from '@components/ui/list-number'
+import { NavigationCard } from '@components/ui/navigation-card'
+import { GraduationCap, Heart, Users } from 'lucide-react'
+import Link from 'next/link'
 
-export default async function PesquisadoresParticipantes() {
+export default function PesquisadoresParticipantes() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <div className="flex items-center gap-4">
-        <Badge className="bg-primary/10 text-primary rounded-full p-1.5">
+        <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
           <GraduationCap className="!size-7" />
         </Badge>
         <h1 className="title-2">Pesquisadores da RedeCT</h1>
@@ -23,7 +23,7 @@ export default async function PesquisadoresParticipantes() {
           modo de ingresso, conforme cláusulas específicas constantes do
           Regimento Interno da Rede:
         </p>
-        <div className="from-primary space-y-6 rounded-md bg-gradient-to-br to-red-700 p-6 text-white md:p-10">
+        <div className="space-y-6 rounded-md bg-gradient-to-br from-primary to-red-700 p-6 text-white md:p-10">
           <h2 className="title-3 flex items-center gap-2 font-bold">
             <GraduationCap /> Tipos de pesquisadores
           </h2>
@@ -124,9 +124,9 @@ export default async function PesquisadoresParticipantes() {
             <ListNumber>2</ListNumber>
             Preencha o formulário de pedido de filiação pelo link 
             <Link
+              className="text-primary hover:underline"
               href="https://forms.gle/Mnwrmq3NCC2QmQcy5"
               target="_blank"
-              className="text-primary hover:underline"
             >
               https://forms.gle/Mnwrmq3NCC2QmQcy5
             </Link>
@@ -142,18 +142,18 @@ export default async function PesquisadoresParticipantes() {
           <li className="flex items-start">
             <ListNumber>4</ListNumber>
             Envie os comprovantes de pagamentos para o e-mail 
-            <span className="text-primary">filiados@redect.org</span>;
+            <span className="text-primary">filiados@redect.org</span>.
           </li>
         </ol>
-        <aside className="rounded-md border border-yellow-200/40 bg-yellow-200/40 p-6 break-all">
-          <span className="font-bold text-black">⚠️ Atenção:</span> SUGERIMOS
-          que você faça primeiro o pagamento de sua inscrição no COLÓQUIO
-          INTERN. DA REDECT 2025 (VI Congresso Científico Internacional sobre
-          Povos e Comunidades Tradicionais) pelo link 
+        <aside className="break-all rounded-md border border-yellow-200/40 bg-yellow-200/40 p-6">
+          <span className="font-bold text-black">⚠️ Atenção:</span> SUGERIMOS que
+          você faça primeiro o pagamento de sua inscrição no COLÓQUIO INTERN. DA
+          REDECT 2025 (VI Congresso Científico Internacional sobre Povos e
+          Comunidades Tradicionais) pelo link 
           <Link
+            className="text-primary hover:underline"
             href="https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/"
             target="_blank"
-            className="text-primary hover:underline"
           >
             https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/
           </Link>
@@ -163,5 +163,5 @@ export default async function PesquisadoresParticipantes() {
         </aside>
       </section>
     </main>
-  );
+  )
 }

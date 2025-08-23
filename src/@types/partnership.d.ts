@@ -1,9 +1,9 @@
 export interface IPartnership {
-  name: string;
+  name: string
   image: {
-    src: string;
-    alt: string;
-  };
-  description: string;
-  startDate: string;
+    src: string
+    alt: string
+  }
+  description: string
+  startDate: string
 }

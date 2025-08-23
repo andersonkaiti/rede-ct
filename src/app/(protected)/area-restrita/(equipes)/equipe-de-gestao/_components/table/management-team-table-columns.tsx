@@ -1,12 +1,12 @@
-import { ColumnDef } from "@tanstack/react-table";
-import { ITeam } from "types/team";
+import type { ColumnDef } from '@tanstack/react-table'
+import type { ITeam } from 'types/team'
 
-import { ActionsRow } from "./actions-row";
+import { ActionsRow } from './actions-row'
 
 export const managementTeamTableColumns: ColumnDef<ITeam>[] = [
   {
-    id: "name",
-    header: "Nome",
+    id: 'name',
+    header: 'Nome',
     cell: ({
       row: {
         original: { name },
@@ -14,8 +14,8 @@ export const managementTeamTableColumns: ColumnDef<ITeam>[] = [
     }) => name,
   },
   {
-    id: "membersQuantity",
-    header: "Quantidade de membros",
+    id: 'membersQuantity',
+    header: 'Quantidade de membros',
     cell: ({
       row: {
         original: { team_members },
@@ -23,8 +23,8 @@ export const managementTeamTableColumns: ColumnDef<ITeam>[] = [
     }) => team_members.length,
   },
   {
-    id: "actions",
-    header: "Ações",
+    id: 'actions',
+    header: 'Ações',
     cell: ({
       row: { original },
       table: {
@@ -37,4 +37,4 @@ export const managementTeamTableColumns: ColumnDef<ITeam>[] = [
       />
     ),
   },
-];
+]

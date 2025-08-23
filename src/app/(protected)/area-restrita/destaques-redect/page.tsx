@@ -1,6 +1,7 @@
 import {
   PageActionsContainer,
   PageContainer,
+  PageDescription,
   PageHeader,
   PageHeaderContent,
   PageMain,
@@ -16,7 +17,7 @@ export default function DestaquesRedeCT() {
       <PageHeader>
         <PageHeaderContent>
           <PageTitle>Destaques da RedeCT</PageTitle>
-          <PageHeaderContent>Gerencie os Destaques da RedeCT</PageHeaderContent>
+          <PageDescription>Gerencie os Destaques da RedeCT</PageDescription>
         </PageHeaderContent>
       </PageHeader>
 

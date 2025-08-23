@@ -1,9 +1,8 @@
-import { getCertifications } from "@services/certifications";
-
-import { Certificado } from "./certificado";
+import { getCertifications } from '@mocks/certifications'
+import { Certificado } from './certificado'
 
 export async function Certificados() {
-  const certifications = await getCertifications();
+  const certifications = await getCertifications()
 
   return (
     <section className="grid grid-cols-1 gap-4 xl:grid-cols-2 2xl:grid-cols-3">
@@ -11,5 +10,5 @@ export async function Certificados() {
         <Certificado key={certification.name} {...certification} />
       ))}
     </section>
-  );
+  )
 }

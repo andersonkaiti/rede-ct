@@ -1,17 +1,17 @@
-import { SignOutButton } from "@clerk/nextjs";
-import { currentUser } from "@clerk/nextjs/server";
-import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar";
+import { SignOutButton } from '@clerk/nextjs'
+import { currentUser } from '@clerk/nextjs/server'
+import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
 import {
   Menubar,
   MenubarContent,
   MenubarItem,
   MenubarMenu,
   MenubarTrigger,
-} from "@components/ui/menubar";
-import { ChevronsUpDown, LogOut } from "lucide-react";
+} from '@components/ui/menubar'
+import { ChevronsUpDown, LogOut } from 'lucide-react'
 
 export async function UserProfile() {
-  const user = await currentUser();
+  const user = await currentUser()
 
   return (
     <Menubar className="flex w-full border-none bg-transparent shadow-none">
@@ -19,7 +19,7 @@ export async function UserProfile() {
         <MenubarTrigger className="flex w-full cursor-pointer items-center justify-between gap-3 text-sm">
           <div className="flex items-center gap-2">
             <Avatar>
-              <AvatarImage src={user?.imageUrl || ""} />
+              <AvatarImage src={user?.imageUrl || ''} />
               <AvatarFallback>
                 {user?.firstName?.charAt(0)}
                 {user?.lastName?.charAt(0)}
@@ -33,7 +33,7 @@ export async function UserProfile() {
           <MenubarItem>
             <SignOutButton>
               <div className="group flex w-full cursor-pointer items-center gap-2">
-                <LogOut className="text-primary h-5 w-5 group-hover:text-red-600" />
+                <LogOut className="h-5 w-5 text-primary group-hover:text-red-600" />
                 Deslogar
               </div>
             </SignOutButton>
@@ -41,5 +41,5 @@ export async function UserProfile() {
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
-  );
+  )
 }

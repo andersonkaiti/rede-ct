@@ -1,19 +1,19 @@
-import { Button } from "@components/ui/button";
+import { Button } from '@components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@components/ui/dropdown-menu";
-import { EditIcon, Ellipsis } from "lucide-react";
-import Link from "next/link";
-import { ITeam } from "types/team";
+} from '@components/ui/dropdown-menu'
+import { EditIcon, Ellipsis } from 'lucide-react'
+import Link from 'next/link'
+import type { ITeam } from 'types/team'
 
-import { DeleteDialog } from "@/app/(protected)/area-restrita/_components/delete-dialog";
+import { DeleteDialog } from '@/app/(protected)/area-restrita/_components/delete-dialog'
 
 interface IActionsRowProps {
-  data: ITeam;
-  handleRemove: () => void;
+  data: ITeam
+  handleRemove: () => void
 }
 
 export function ActionsRow({ data: team, handleRemove }: IActionsRowProps) {
@@ -26,8 +26,8 @@ export function ActionsRow({ data: team, handleRemove }: IActionsRowProps) {
         <DropdownMenuItem asChild className="p-0">
           <Link href={`/area-restrita/equipe-de-gestao/editar/${team.id}`}>
             <Button
-              variant="ghost"
               className="flex w-full cursor-pointer justify-between text-xs"
+              variant="ghost"
             >
               Editar
               <EditIcon className="size-4 text-black" />
@@ -39,5 +39,5 @@ export function ActionsRow({ data: team, handleRemove }: IActionsRowProps) {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

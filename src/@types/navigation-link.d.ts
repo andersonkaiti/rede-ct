@@ -1,8 +1,8 @@
-import type { LucideIcon } from "lucide-react";
+import type { LucideIcon } from 'lucide-react'
 
 export interface NavigationLink {
-  label: string;
-  path?: string;
-  icon?: LucideIcon;
-  children?: NavigationLink[];
+  label: string
+  path?: string
+  icon?: LucideIcon
+  children?: NavigationLink[]
 }

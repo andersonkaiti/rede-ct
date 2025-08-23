@@ -1,4 +1,4 @@
-import { Button } from "@components/ui/button";
+import { Button } from '@components/ui/button'
 import {
   Card,
   CardContent,
@@ -6,15 +6,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@components/ui/card";
-import { ArrowRight, Globe, MapPin } from "lucide-react";
-import Link from "next/link";
+} from '@components/ui/card'
+import { ArrowRight, Globe, MapPin } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Congressos() {
   return (
     <section className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-25">
       <header className="space-y-7 text-center">
-        <h1 className="text-5xl font-bold">Congressos da RedeCT</h1>
+        <h1 className="font-bold text-5xl">Congressos da RedeCT</h1>
         <p className="text-muted-foreground">
           Explore nossos eventos científicos internacionais e regionais.
           Conecte-se com pesquisadores, compartilhe conhecimento e contribua
@@ -27,10 +27,10 @@ export default function Congressos() {
         <Card className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 text-white">
           <CardHeader className="relative space-y-2 text-white">
             <Globe className="!size-20 text-white" />
-            <CardTitle className="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/20 px-4 py-2 text-sm font-semibold">
+            <CardTitle className="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/20 px-4 py-2 font-semibold text-sm">
               <span>Internacional</span>
             </CardTitle>
-            <div className="absolute top-0 right-0 h-32 w-32 translate-x-16 -translate-y-16 rounded-full bg-white/10"></div>
+            <div className="-translate-y-16 absolute top-0 right-0 h-32 w-32 translate-x-16 rounded-full bg-white/10" />
           </CardHeader>
           <CardContent>
             <CardDescription className="text-base text-white">
@@ -42,8 +42,8 @@ export default function Congressos() {
           </CardContent>
           <CardFooter>
             <Link
-              href="/divisao-cientifica/congressos/cientifico-internacional"
               className="w-full"
+              href="/divisao-cientifica/congressos/cientifico-internacional"
             >
               <Button className="group w-full bg-white font-semibold text-indigo-500 hover:bg-white hover:text-indigo-500">
                 Ver mais
@@ -56,10 +56,10 @@ export default function Congressos() {
         <Card className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-500 to-red-600 text-white">
           <CardHeader className="relative space-y-2 text-white">
             <MapPin className="!size-20 text-white" />
-            <CardTitle className="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/20 px-4 py-2 text-sm font-semibold">
+            <CardTitle className="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/20 px-4 py-2 font-semibold text-sm">
               <span>Regional</span>
             </CardTitle>
-            <div className="absolute top-0 right-0 h-32 w-32 translate-x-16 -translate-y-16 rounded-full bg-white/10"></div>
+            <div className="-translate-y-16 absolute top-0 right-0 h-32 w-32 translate-x-16 rounded-full bg-white/10" />
           </CardHeader>
           <CardContent>
             <CardDescription className="text-base text-white">
@@ -71,10 +71,10 @@ export default function Congressos() {
           </CardContent>
           <CardFooter>
             <Link
-              href="/divisao-cientifica/congressos/regional"
               className="w-full"
+              href="/divisao-cientifica/congressos/regional"
             >
-              <Button className="group text-primary hover:text-primary w-full bg-white font-semibold hover:bg-white">
+              <Button className="group w-full bg-white font-semibold text-primary hover:bg-white hover:text-primary">
                 Ver mais
                 <ArrowRight className="!size-4 transition-all duration-300 group-hover:translate-x-1" />
               </Button>
@@ -83,5 +83,5 @@ export default function Congressos() {
         </Card>
       </section>
     </section>
-  );
+  )
 }

@@ -2,25 +2,25 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@components/ui/collapsible";
+} from '@components/ui/collapsible'
 import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubItem,
-} from "@components/ui/sidebar";
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
-import { NavigationLink } from "types/navigation-link";
+} from '@components/ui/sidebar'
+import { ChevronRight } from 'lucide-react'
+import Link from 'next/link'
+import type { NavigationLink } from 'types/navigation-link'
 
-import { SidebarButton } from "./sidebar-button";
+import { SidebarButton } from './sidebar-button'
 
 interface ISidebarItemProps {
-  item: NavigationLink;
+  item: NavigationLink
 }
 
 export function SidebarItem({
-  item: { label, icon: Icon, path = "", children },
+  item: { label, icon: Icon, path = '', children },
 }: ISidebarItemProps) {
   if (!children?.length) {
     return (
@@ -32,13 +32,13 @@ export function SidebarItem({
           </Link>
         </SidebarButton>
       </SidebarMenuItem>
-    );
+    )
   }
 
   return (
     <SidebarMenuItem>
-      <Collapsible defaultOpen className="group/collapsible">
-        <CollapsibleTrigger className="flex w-full items-center gap-2" asChild>
+      <Collapsible className="group/collapsible" defaultOpen>
+        <CollapsibleTrigger asChild className="flex w-full items-center gap-2">
           <SidebarMenuButton className="flex w-full cursor-pointer items-center justify-between gap-2 hover:bg-[#ebebeb]">
             <div className="flex items-center gap-2">
               {Icon && <Icon className="size-4" />}
@@ -50,19 +50,25 @@ export function SidebarItem({
 
         <CollapsibleContent>
           <SidebarMenuSub>
-            {children.map(({ label, icon: Icon, path = "" }, index: number) => (
-              <SidebarMenuSubItem key={index}>
-                <SidebarButton path={path}>
-                  <Link href={path}>
-                    {Icon && <Icon />}
-                    {label}
-                  </Link>
-                </SidebarButton>
-              </SidebarMenuSubItem>
-            ))}
+            {children.map(
+              ({
+                label: childLabel,
+                icon: ChildIcon,
+                path: childPath = '',
+              }) => (
+                <SidebarMenuSubItem key={childPath || childLabel}>
+                  <SidebarButton path={childPath}>
+                    <Link href={childPath}>
+                      {ChildIcon && <ChildIcon />}
+                      {childLabel}
+                    </Link>
+                  </SidebarButton>
+                </SidebarMenuSubItem>
+              )
+            )}
           </SidebarMenuSub>
         </CollapsibleContent>
       </Collapsible>
     </SidebarMenuItem>
-  );
+  )
 }

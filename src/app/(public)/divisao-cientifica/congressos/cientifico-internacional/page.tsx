@@ -1,19 +1,17 @@
-import { BackArrow } from "@components/back-arrow";
-import { getInternationalScientificCongress } from "@services/international-scientific-congress";
-import { Fragment } from "react";
-import { ICongress } from "types/congress";
-
-import { Congress } from "./_components/congress";
-import { CongressGalleryItem } from "./_components/congress-gallery-item";
+import { BackArrow } from '@components/back-arrow'
+import { getInternationalScientificCongress } from '@mocks/international-scientific-congress'
+import { Fragment } from 'react'
+import { Congress } from './_components/congress'
+import { CongressGalleryItem } from './_components/congress-gallery-item'
 
 export default async function CongressoCientificoInternacional() {
-  const congresses = await getInternationalScientificCongress();
+  const congresses = await getInternationalScientificCongress()
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8">
       <BackArrow />
       <div className="space-y-7">
-        {congresses.map((congress: ICongress, index: number) => (
+        {congresses.map((congress, index: number) => (
           <Fragment key={index}>
             {index > 0 && <hr className="mx-auto w-1/2" />}
             <Congress congress={congress} index={index} />
@@ -22,18 +20,18 @@ export default async function CongressoCientificoInternacional() {
               <section>
                 <div className="container mx-auto px-4">
                   <div className="mx-auto max-w-4xl text-center">
-                    <h2 className="mb-4 text-3xl font-bold">
+                    <h2 className="mb-4 font-bold text-3xl">
                       Galeria de Fotos
                     </h2>
-                    <p className="text-primary text-lg">
+                    <p className="text-lg text-primary">
                       Registros marcantes do IV Congresso Científico
                       Internacional da RedeCT
                     </p>
                   </div>
 
                   <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                    {congress.gallery?.map((item, index) => (
-                      <CongressGalleryItem key={index} item={item} />
+                    {congress.gallery?.map((item, galleryIndex: number) => (
+                      <CongressGalleryItem item={item} key={galleryIndex} />
                     ))}
                   </div>
                 </div>
@@ -43,5 +41,5 @@ export default async function CongressoCientificoInternacional() {
         ))}
       </div>
     </main>
-  );
+  )
 }

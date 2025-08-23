@@ -1,4 +1,4 @@
-import { Skeleton } from "@components/ui/skeleton";
+import { Skeleton } from '@components/ui/skeleton'
 
 export default function Loading() {
   return (
@@ -7,18 +7,18 @@ export default function Loading() {
         <div className="h-12 w-41.5 rounded-full bg-gray-200" />
         <div className="h-9 w-full rounded-md bg-gray-200 sm:w-54" />
         <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: 6 }).map((_, index) => (
+          {Array.from({ length: 6 }).map((_, index: number) => (
             <div
-              key={index}
               className="flex h-fit w-full flex-col gap-4 rounded-md shadow-md"
+              key={index}
             >
               <div className="flex h-60 w-full items-center justify-center rounded-t-md bg-gray-300">
                 <svg
-                  className="h-10 w-10 text-gray-200"
                   aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-10 w-10 text-gray-200"
                   fill="currentColor"
                   viewBox="0 0 20 18"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
                 </svg>
@@ -48,11 +48,11 @@ export default function Loading() {
           ))}
         </div>
         {/* <div className="mx-auto flex h-9 w-73 items-center justify-between gap-2">
-        {Array.from({ length: 7 }).map((_, index) => (
+        {Array.from({ length: 7 }).map((_, index: number) => (
           <div key={index} className="h-9 w-10 rounded-md bg-gray-200" />
         ))}
       </div> */}
       </main>
     </Skeleton>
-  );
+  )
 }

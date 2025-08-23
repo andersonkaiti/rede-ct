@@ -1,5 +1,5 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/ui/tabs";
-import Image from "next/image";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@components/ui/tabs'
+import Image from 'next/image'
 
 export function MissaoValoresTabs() {
   return (
@@ -12,14 +12,14 @@ export function MissaoValoresTabs() {
           Grandes desafios da RedeCT
         </TabsTrigger>
       </TabsList>
-      <TabsContent value="Missão" className="flex flex-col gap-10 lg:flex-row">
+      <TabsContent className="flex flex-col gap-10 lg:flex-row" value="Missão">
         <div className="flex-1 space-y-4">
           <div className="relative h-100 w-full">
             <Image
-              src="/images/missao-valores-objetivos/missao.png"
               alt="Missão"
               className="absolute rounded-xl object-cover"
               fill
+              src="/images/missao-valores-objetivos/missao.png"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -55,14 +55,14 @@ export function MissaoValoresTabs() {
           </p>
         </div>
       </TabsContent>
-      <TabsContent value="Valores" className="flex flex-col gap-10 lg:flex-row">
+      <TabsContent className="flex flex-col gap-10 lg:flex-row" value="Valores">
         <div className="flex-1 space-y-4">
           <div className="relative h-100 w-full">
             <Image
-              src="/images/missao-valores-objetivos/valores.png"
               alt="Valores"
               className="absolute rounded-xl object-cover"
               fill
+              src="/images/missao-valores-objetivos/valores.png"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -103,16 +103,16 @@ export function MissaoValoresTabs() {
         </div>
       </TabsContent>
       <TabsContent
-        value="Objetivos"
         className="flex flex-col gap-10 lg:flex-row"
+        value="Objetivos"
       >
         <div className="flex-1 space-y-4">
           <div className="relative h-100 w-full">
             <Image
-              src="/images/missao-valores-objetivos/objetivos.png"
               alt="Objetivos"
               className="absolute rounded-xl object-cover"
               fill
+              src="/images/missao-valores-objetivos/objetivos.png"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -153,16 +153,16 @@ export function MissaoValoresTabs() {
         </div>
       </TabsContent>
       <TabsContent
-        value="Grandes desafios da RedeCT"
         className="flex flex-col gap-10 lg:flex-row"
+        value="Grandes desafios da RedeCT"
       >
         <div className="flex-1 space-y-4">
           <div className="relative h-100 w-full">
             <Image
-              src="/images/missao-valores-objetivos/grandes-desafios.png"
               alt="Grandes desafios da RedeCT"
               className="absolute rounded-xl object-cover"
               fill
+              src="/images/missao-valores-objetivos/grandes-desafios.png"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -217,5 +217,5 @@ export function MissaoValoresTabs() {
         </div>
       </TabsContent>
     </Tabs>
-  );
+  )
 }

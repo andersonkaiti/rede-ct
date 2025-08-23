@@ -2,14 +2,14 @@ import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@components/ui/sidebar";
+} from '@components/ui/sidebar'
 
-import { SidebarContainer } from "./_components/sidebar/sidebar";
+import { SidebarContainer } from './_components/sidebar/sidebar'
 
 export default function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <SidebarProvider>
@@ -23,5 +23,5 @@ export default function DashboardLayout({
         </div>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

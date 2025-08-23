@@ -1,46 +1,46 @@
-import { IFetchAdapter } from "./ifetch-adapter";
+import type { IFetchAdapter } from './ifetch-adapter'
 
 export class FetchAdapter implements IFetchAdapter {
   async request<T>(url: string, options: RequestInit): Promise<T> {
-    const response = await fetch(url, options);
+    const response = await fetch(url, options)
 
     if (!response.ok) {
-      const errorBody = await response.text();
+      const errorBody = await response.text()
       throw new Error(
-        `Request to ${url} failed with status ${response.status} ${response.statusText}: ${errorBody}`,
-      );
+        `Request to ${url} failed with status ${response.status} ${response.statusText}: ${errorBody}`
+      )
     }
 
-    return response.json();
+    return response.json()
   }
 
   async get<T>(url: string): Promise<T> {
     return await this.request<T>(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-    });
+    })
   }
 
   async post<T>(
     url: string,
     body: object | FormData,
-    config?: RequestInit,
+    config?: RequestInit
   ): Promise<T> {
     const headers =
       body instanceof FormData
         ? undefined
         : {
-            "Content-Type": "application/json",
-          };
+            'Content-Type': 'application/json',
+          }
 
     return await this.request<T>(url, {
       ...config,
-      method: "POST",
+      method: 'POST',
       body: body instanceof FormData ? body : JSON.stringify(body),
       headers,
-    });
+    })
   }
 
   async put<T>(url: string, body: object | FormData): Promise<T> {
@@ -48,25 +48,25 @@ export class FetchAdapter implements IFetchAdapter {
       body instanceof FormData
         ? undefined
         : {
-            "Content-Type": "application/json",
-          };
+            'Content-Type': 'application/json',
+          }
 
     return await this.request<T>(url, {
-      method: "PUT",
+      method: 'PUT',
       body: body instanceof FormData ? body : JSON.stringify(body),
       headers,
-    });
+    })
   }
 
   async delete<T>(url: string, body?: object | FormData): Promise<T> {
-    const isFormData = body instanceof FormData;
+    const isFormData = body instanceof FormData
 
     return await this.request<T>(url, {
-      method: "DELETE",
+      method: 'DELETE',
       body: isFormData ? body : JSON.stringify(body),
       headers: {
-        "Content-Type": isFormData ? "multipart/form-data" : "application/json",
+        'Content-Type': isFormData ? 'multipart/form-data' : 'application/json',
       },
-    });
+    })
   }
 }

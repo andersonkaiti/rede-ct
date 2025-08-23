@@ -1,11 +1,11 @@
-import { cn } from "@utils/cn";
-import { ArrowRightIcon } from "lucide-react";
-import Link, { LinkProps } from "next/link";
+import { cn } from '@utils/cn'
+import { ArrowRightIcon } from 'lucide-react'
+import Link, { type LinkProps } from 'next/link'
 
 interface INavigationCardProps
   extends LinkProps,
     React.HTMLAttributes<HTMLAnchorElement> {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export function NavigationCard({
@@ -15,11 +15,11 @@ export function NavigationCard({
   ...props
 }: INavigationCardProps) {
   return (
-    <Link href={href} className="group" {...props}>
+    <Link className="group" href={href} {...props}>
       <div
         className={cn(
-          "flex items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-xl",
-          className,
+          'flex items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-xl',
+          className
         )}
       >
         {children}
@@ -28,5 +28,5 @@ export function NavigationCard({
         </div>
       </div>
     </Link>
-  );
+  )
 }

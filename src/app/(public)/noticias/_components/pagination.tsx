@@ -1,4 +1,4 @@
-import * as Pagination from "@components/ui/pagination";
+import * as Pagination from '@components/ui/pagination'
 
 export function PaginationContainer() {
   return (
@@ -27,5 +27,5 @@ export function PaginationContainer() {
         </Pagination.Item>
       </Pagination.Content>
     </Pagination.Root>
-  );
+  )
 }

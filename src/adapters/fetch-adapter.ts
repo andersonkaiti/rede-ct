@@ -1,13 +1,18 @@
+import { BASE_URL } from '@config/index'
 import type { IFetchAdapter } from './ifetch-adapter'
 
 export class FetchAdapter implements IFetchAdapter {
   async request<T>(url: string, options: RequestInit): Promise<T> {
-    const response = await fetch(url, options)
+    const fullUrl = `${BASE_URL}${url}`
+    const response = await fetch(fullUrl, options)
+
+    // biome-ignore lint/suspicious/noConsole: for debug
+    console.log(options.method, fullUrl)
 
     if (!response.ok) {
       const errorBody = await response.text()
       throw new Error(
-        `Request to ${url} failed with status ${response.status} ${response.statusText}: ${errorBody}`
+        `Request to ${fullUrl} failed with status ${response.status} ${response.statusText}: ${errorBody}`
       )
     }
 

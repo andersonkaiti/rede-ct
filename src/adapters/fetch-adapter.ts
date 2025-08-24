@@ -1,9 +1,9 @@
-import { BASE_URL } from '@config/index'
+import { env } from '@config/env'
 import type { IFetchAdapter } from './ifetch-adapter'
 
 export class FetchAdapter implements IFetchAdapter {
   async request<T>(url: string, options: RequestInit): Promise<T> {
-    const fullUrl = `${BASE_URL}${url}`
+    const fullUrl = `${env.NEXT_PUBLIC_BASE_URL}${url}`
     const response = await fetch(fullUrl, options)
 
     // biome-ignore lint/suspicious/noConsole: for debug

@@ -18,6 +18,8 @@ export function useUpdateTeam() {
   const [selectedMember, setSelectedMember] = useState<ITeamMember | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
+  const [removedMembers, setRemovedMembers] = useState<ITeamMember['id'][]>([])
+
   function handleIncludeTeamMember() {
     if (!(selectedMember && inputRef.current && team)) {
       return
@@ -34,9 +36,7 @@ export function useUpdateTeam() {
       role: inputRef.current.value,
     }
 
-    const alreadyExists = !!team.find(
-      (member) => member.user?.id === newMember.user?.id
-    )
+    const alreadyExists = !!team.find((member) => member.id === newMember.id)
 
     if (alreadyExists) {
       toast.warning('Esse membro já existe!')
@@ -46,15 +46,21 @@ export function useUpdateTeam() {
 
     setTeam((prevTeam) => [...prevTeam, newMember])
 
+    setRemovedMembers((members) =>
+      members.filter((memberId) => memberId !== newMember.id)
+    )
+
     toast.success('Membro adicionado com sucesso!')
   }
 
-  function handleRemoveMember({ user }: ITeamMember) {
+  function handleRemoveMember(member: ITeamMember) {
     setTeam((prevTeam) =>
       prevTeam.filter(
-        (teamMember: ITeamMember) => teamMember.user?.id !== user?.id
+        (teamMember: ITeamMember) => teamMember.user?.id !== member.user?.id
       )
     )
+
+    setRemovedMembers((members) => [...members, member.id])
 
     toast.success('Usuário removido com sucesso!')
   }
@@ -71,6 +77,7 @@ export function useUpdateTeam() {
   >(
     updateManagementTeam.bind(null, {
       members: team,
+      removedUsers: removedMembers,
       id: data?.id || '',
     }),
     {} as IActionState

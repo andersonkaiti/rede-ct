@@ -1,14 +1,7 @@
-import { Badge } from '@components/ui/badge'
+import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
 import { Button } from '@components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@components/ui/card'
-import { Calendar, Clock, Play, User } from 'lucide-react'
+import { CardTitle } from '@components/ui/card'
+import { Play } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -33,62 +26,56 @@ export function WebinarCard({
   speakers,
 }: WebinarCardProps) {
   return (
-    <Card className="flex flex-col gap-2 overflow-hidden rounded-lg bg-background p-0 transition-all duration-200 hover:shadow-xl md:flex-row">
-      <picture className="relative flex h-67 items-stretch bg-gray-100 p-0 md:h-auto md:w-2/4">
-        <Image
-          alt={speakers[0].split(' - ')[0]}
-          className="object-cover"
-          fill
-          priority
-          src={imageUrl}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-      </picture>
+    <div className="flex flex-col gap-2">
+      <header className="h-80">
+        <picture className="v relative flex size-full overflow-hidden rounded-md">
+          <Image
+            alt={speakers[0].split(' - ')[0]}
+            className="object-cover"
+            fill
+            priority
+            src={imageUrl}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent dark:from-black/70 dark:to-transparent" />
+        </picture>
+      </header>
 
-      <CardContent className="space-y-4 p-6 md:w-3/4">
-        <CardHeader className="space-y-4 p-0">
+      <div className="flex h-fit flex-grow flex-col justify-between gap-4 py-2">
+        <div className="space-y-4">
           <time className="flex items-center gap-2 text-sm leading-4">
-            <Badge className="rounded-md bg-primary/20 p-1 font-bold text-primary">
-              <Calendar className="!size-3 text-primary" />
-            </Badge>
-            <span className="text-muted-foreground">{date}</span>
-            <Badge className="rounded-md bg-primary/20 p-1 font-bold text-primary">
-              <Clock className="!size-3 text-primary" />
-            </Badge>
-            <span className="text-muted-foreground">{time}</span>
+            <span className="text-muted-foreground">
+              Dia {date} às {time}
+            </span>
           </time>
 
-          <CardTitle className="font-bold text-2xl">{title}</CardTitle>
-        </CardHeader>
+          <CardTitle className="font-semibold text-2xl">{title}</CardTitle>
+        </div>
 
-        <CardDescription className="space-y-2">
-          <Badge className="rounded-full bg-primary/20 px-3 py-0 font-bold text-primary">
-            <User />
-            <h4 className="w-fit font-semibold text-sm">Convidada</h4>
-          </Badge>
+        <div className="space-y-2">
+          <h4 className="w-fit font-semibold text-sm">Convidada</h4>
           <div className="flex items-center">
-            <picture className="relative mr-3 size-6 flex-shrink-0 overflow-hidden rounded-full">
-              <Image
+            <Avatar className="mr-1.5 size-5.5">
+              <AvatarImage
                 alt={speakers[0].split('(')[0].trim()}
-                className="object-cover"
-                fill
-                sizes="48px"
                 src={speakerImageUrl}
               />
-            </picture>
-            <div className="text-muted-foreground leading-4">{speakers[0]}</div>
+              <AvatarFallback />
+            </Avatar>
+            <div className="font-semibold text-muted-foreground text-sm leading-0.5">
+              {speakers[0]}
+            </div>
           </div>
-        </CardDescription>
+        </div>
 
-        <CardFooter className="p-0">
-          <Link className="w-full" href={link}>
-            <Button className="group w-full font-bold">
+        <footer>
+          <Button asChild className="group w-full font-bold" variant="outline">
+            <Link className="w-full" href={link}>
               <Play className="!size-4 transition-all duration-200 group-hover:translate-x-1" />
               Acessar Webinário
-            </Button>
-          </Link>
-        </CardFooter>
-      </CardContent>
-    </Card>
+            </Link>
+          </Button>
+        </footer>
+      </div>
+    </div>
   )
 }

@@ -132,6 +132,11 @@ aside {
   body {
     @apply bg-background text-foreground;
   }
+
+  :root {
+    scrollbar-color: var(--muted-foreground) var(--muted);
+    scrollbar-width: thin;
+  }
 }
 
 @layer utilities {

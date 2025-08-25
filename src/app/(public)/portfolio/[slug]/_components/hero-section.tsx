@@ -9,7 +9,10 @@ export function HeroSection({
   description: string
 }) {
   return (
-    <section className="bg-red-700 p-16 text-white">
+    <section className="relative p-16 text-white">
+      <div className="-z-10 pointer-events-none absolute inset-0">
+        <div className="h-full w-full bg-primary dark:bg-primary/50" />
+      </div>
       <div className="container mx-auto px-4">
         <div className="mb-8">
           <Link

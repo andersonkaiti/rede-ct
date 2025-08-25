@@ -26,10 +26,10 @@ export function Partnership({
       <DialogTrigger asChild>
         <Button variant="ghost">{name}</Button>
       </DialogTrigger>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-h-[60vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Badge className="rounded-md bg-primary/20 p-1 text-primary">
+            <Badge className="rounded-full bg-primary/20 p-1 text-primary">
               <Building2 className="!size-5" />
             </Badge>
             {name}

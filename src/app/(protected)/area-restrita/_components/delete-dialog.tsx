@@ -23,7 +23,7 @@ export function DeleteDialog({ handleRemove }: IDeleteDialogProps) {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          className="flex w-full cursor-pointer justify-between text-xs"
+          className="flex w-full cursor-pointer justify-between text-primary text-xs hover:text-primary"
           variant="ghost"
         >
           Excluir

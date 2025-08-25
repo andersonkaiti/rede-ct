@@ -11,7 +11,7 @@ export function LoadingSkeleton() {
         <Skeleton className="h-full flex-1 rounded-md" />
       </div>
       {[...new Array(ARRAY_SIZE)].map((_, index: number) => (
-        <div className="flex h-[37.14px] gap-4 p-3" key={index}>
+        <div className="flex h-[52.4px] gap-4 p-3" key={index}>
           <Skeleton className="h-full flex-4 rounded-md" />
           <Skeleton className="h-full flex-3 rounded-md" />
           <Skeleton className="h-full flex-1 rounded-md" />

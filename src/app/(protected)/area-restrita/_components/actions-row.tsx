@@ -30,8 +30,10 @@ export function ActionsRow({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Ellipsis className="size-4" />
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost">
+          <Ellipsis className="size-4" />
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem asChild className="p-0">

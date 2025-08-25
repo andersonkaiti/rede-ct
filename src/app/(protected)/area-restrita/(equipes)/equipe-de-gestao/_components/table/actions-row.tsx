@@ -19,8 +19,10 @@ interface IActionsRowProps {
 export function ActionsRow({ data: team, handleRemove }: IActionsRowProps) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Ellipsis className="size-4" />
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost">
+          <Ellipsis className="size-4" />
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem asChild className="p-0">
@@ -30,7 +32,7 @@ export function ActionsRow({ data: team, handleRemove }: IActionsRowProps) {
               variant="ghost"
             >
               Editar
-              <EditIcon className="size-4 text-black" />
+              <EditIcon className="size-4 text-black dark:text-white" />
             </Button>
           </Link>
         </DropdownMenuItem>

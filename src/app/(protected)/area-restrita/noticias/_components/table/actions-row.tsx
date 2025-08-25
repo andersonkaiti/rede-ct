@@ -19,8 +19,10 @@ interface IActionsRowProps {
 export function ActionsRow({ data: news, handleRemove }: IActionsRowProps) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Ellipsis className="size-4" />
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost">
+          <Ellipsis className="size-4" />
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem asChild className="p-0">

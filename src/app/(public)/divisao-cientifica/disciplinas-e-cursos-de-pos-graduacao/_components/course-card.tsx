@@ -1,8 +1,8 @@
 import { Badge } from '@components/ui/badge'
 import { Button } from '@components/ui/button'
-import { Card, CardContent, CardHeader } from '@components/ui/card'
+import { CardTitle } from '@components/ui/card'
 import type { ICourse } from '@mocks/courses/courses'
-import { ArrowRight, Calendar, Clock, MapPin, Users } from 'lucide-react'
+import { ArrowRight, MapPin, Users } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -11,83 +11,56 @@ interface ICourseCardProps {
 }
 
 export function CourseCard({
-  course: {
-    title,
-    description,
-    imageUrl,
-    link,
-    date,
-    time,
-    location,
-    vacancies,
-    category,
-  },
+  course: { title, imageUrl, link, date, time, location, vacancies, category },
 }: ICourseCardProps) {
   return (
-    <Card className="flex flex-col items-stretch gap-2 rounded-lg p-0 shadow-lg md:flex-row">
-      <picture className="relative h-64 w-full overflow-hidden rounded-t-lg p-0 md:h-auto md:w-2/4 md:rounded-l-lg md:rounded-tr-none">
-        <Image
-          alt={title}
-          className="absolute h-full w-full object-cover"
-          fill
-          src={imageUrl}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-      </picture>
+    <div className="flex flex-col gap-2">
+      <header className="h-80">
+        <picture className="relative flex size-full overflow-hidden rounded-md border-1 border-muted-foreground">
+          <Image alt={title} className="object-cover" fill src={imageUrl} />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent dark:from-black/70 dark:to-transparent" />
+        </picture>
+      </header>
 
-      <CardContent className="w-full space-y-4 p-6 md:w-3/4">
-        <CardHeader className="space-y-4 p-0">
-          <Badge className="rounded-full bg-primary/20 p-1 px-2 font-bold text-primary">
-            {category}
-          </Badge>
-
-          <h3 className="font-bold text-2xl">{title}</h3>
-        </CardHeader>
-
-        <p className="text-justify text-muted-foreground">{description}</p>
-
+      <div className="flex h-fit flex-grow flex-col justify-between gap-4 py-2">
         <div className="space-y-4">
-          <time className="flex items-center gap-2 p-2 text-primary text-sm">
-            <Badge className="rounded-md bg-primary/20 p-1 font-bold text-primary">
-              <Calendar className="!size-6.5 text-primary" />
-            </Badge>
-            <div className="flex flex-col">
-              <span className="font-bold text-foreground">{date}</span>
-              <span className="flex items-center gap-1 text-muted-foreground">
-                <Clock className="!size-3 text-muted-foreground" />
-                {time}
-              </span>
-            </div>
+          <time className="flex items-center gap-2 text-sm leading-4">
+            <span className="text-muted-foreground">
+              Dia {date} às {time}
+            </span>
           </time>
+          <CardTitle className="font-semibold text-2xl">{title}</CardTitle>
+        </div>
 
-          <div className="flex items-center gap-2 p-2">
-            <Badge className="rounded-md bg-primary/20 p-1 font-bold text-primary">
-              <MapPin className="!size-6.5 text-primary" />
+        <div className="space-y-2">
+          <h4 className="w-fit font-semibold text-sm">Categoria</h4>
+          <div className="flex items-center gap-2 text-sm leading-4">
+            <Badge
+              className="rounded-full px-2 py-0.5 font-semibold"
+              variant="secondary"
+            >
+              {category}
             </Badge>
-            <div className="flex flex-col text-sm">
-              <span className="font-bold">Local</span>
-              <span className="text-muted-foreground">{location}</span>
-            </div>
           </div>
-
-          <div className="flex items-center gap-2 p-2">
-            <Badge className="rounded-md bg-primary/20 p-1 font-bold text-primary">
-              <Users className="!size-6.5 text-primary" />
-            </Badge>
-            <div className="flex flex-col text-sm">
-              <span className="font-bold">Vagas</span>
-              <span className="text-muted-foreground">{vacancies}</span>
-            </div>
+          <div className="flex items-center gap-3 text-muted-foreground text-sm">
+            <MapPin className="size-4" />
+            <span>{location}</span>
+          </div>
+          <div className="flex items-center gap-3 text-muted-foreground text-sm">
+            <Users className="size-4" />
+            <span>{vacancies}</span>
           </div>
         </div>
 
-        <Link className="w-full" href={link}>
-          <Button className="group w-full font-bold">
-            Inscreva-se
-            <ArrowRight className="!size-4 transition-all duration-200 group-hover:translate-x-1" />
+        <footer>
+          <Button asChild className="group w-full font-bold" variant="outline">
+            <Link className="w-full" href={link}>
+              <ArrowRight className="!size-4 transition-all duration-200 group-hover:translate-x-1" />
+              Inscreva-se
+            </Link>
           </Button>
-        </Link>
-      </CardContent>
-    </Card>
+        </footer>
+      </div>
+    </div>
   )
 }

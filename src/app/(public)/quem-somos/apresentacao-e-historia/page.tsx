@@ -1,6 +1,16 @@
 import { Badge } from '@components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@components/ui/card'
 import { RedNavigationCard } from '@components/ui/red-navigation-card'
+import {
+  Timeline,
+  TimelineContent,
+  TimelineDate,
+  TimelineHeader,
+  TimelineIndicator,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineTitle,
+} from '@components/ui/timeline'
 import { getTimelineRedeCT } from '@mocks/timeline-rede-ct'
 import {
   BookOpen,
@@ -11,7 +21,6 @@ import {
   MapPin,
   Users,
 } from 'lucide-react'
-import { Timeline } from './_components/timeline'
 
 const countries = [
   'Argentina',
@@ -161,23 +170,35 @@ export default async function ApresentacaoEHistoria() {
           <Badge className="rounded-full bg-primary/10 p-1 text-primary">
             <History className="!size-7" />
           </Badge>
-          <h2 className="title-2">Linha do tempo da RedeCT</h2>
+          <h2 className="title-3">Linha do tempo da RedeCT</h2>
         </div>
         <div className="relative w-full space-y-7 sm:space-y-14">
-          {timelineData.map((item, index: number) => (
-            <Timeline item={item} key={index} />
-          ))}
+          <Timeline defaultValue={timelineData.length}>
+            {timelineData.map((item, index: number) => (
+              <TimelineItem key={index} step={index + 1}>
+                <TimelineIndicator />
+                <TimelineHeader>
+                  <TimelineDate>{item.date}</TimelineDate>
+                  <TimelineTitle>{item.title}</TimelineTitle>
+                </TimelineHeader>
+                <TimelineContent>
+                  <p className="text-justify text-muted-foreground">
+                    {item.text}
+                  </p>
+                </TimelineContent>
+                <TimelineSeparator />
+              </TimelineItem>
+            ))}
+          </Timeline>
         </div>
       </section>
 
-      <section className="space-y-14">
-        <RedNavigationCard href="/quem-somos/apresentacao-e-historia/filiacao">
-          <h2 className="title-3 flex items-center gap-2">
-            <Users />
-            Como se filiar à RedeCT?
-          </h2>
-        </RedNavigationCard>
-      </section>
+      <RedNavigationCard href="/quem-somos/apresentacao-e-historia/filiacao">
+        <h2 className="title-3 flex items-center gap-2">
+          <Users />
+          Como se filiar à RedeCT?
+        </h2>
+      </RedNavigationCard>
     </main>
   )
 }

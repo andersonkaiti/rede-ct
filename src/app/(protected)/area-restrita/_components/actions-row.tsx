@@ -43,7 +43,7 @@ export function ActionsRow({
                 variant="ghost"
               >
                 Editar
-                <EditIcon className="size-4 text-black" />
+                <EditIcon className="size-4 text-foreground" />
               </Button>
             </DialogTrigger>
             <Form data={data} setIsOpen={setIsOpen} />

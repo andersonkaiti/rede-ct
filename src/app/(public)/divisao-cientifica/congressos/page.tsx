@@ -27,10 +27,10 @@ export default function Congressos() {
         <Card className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 text-white">
           <CardHeader className="relative space-y-2 text-white">
             <Globe className="!size-20 text-white" />
-            <CardTitle className="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/20 px-4 py-2 font-semibold text-sm">
+            <CardTitle className="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-background/20 px-4 py-2 font-semibold text-sm">
               <span>Internacional</span>
             </CardTitle>
-            <div className="-translate-y-16 absolute top-0 right-0 h-32 w-32 translate-x-16 rounded-full bg-white/10" />
+            <div className="-translate-y-16 absolute top-0 right-0 h-32 w-32 translate-x-16 rounded-full bg-background/10" />
           </CardHeader>
           <CardContent>
             <CardDescription className="text-base text-white">
@@ -45,7 +45,7 @@ export default function Congressos() {
               className="w-full"
               href="/divisao-cientifica/congressos/cientifico-internacional"
             >
-              <Button className="group w-full bg-white font-semibold text-indigo-500 hover:bg-white hover:text-indigo-500">
+              <Button className="group w-full bg-foreground font-semibold text-indigo-500 hover:bg-foreground hover:text-indigo-500">
                 Ver mais
                 <ArrowRight className="!size-4 transition-all duration-300 group-hover:translate-x-1" />
               </Button>
@@ -53,13 +53,13 @@ export default function Congressos() {
           </CardFooter>
         </Card>
 
-        <Card className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-500 to-red-600 text-white">
+        <Card className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-red-600 text-white">
           <CardHeader className="relative space-y-2 text-white">
             <MapPin className="!size-20 text-white" />
-            <CardTitle className="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/20 px-4 py-2 font-semibold text-sm">
+            <CardTitle className="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-background/20 px-4 py-2 font-semibold text-sm">
               <span>Regional</span>
             </CardTitle>
-            <div className="-translate-y-16 absolute top-0 right-0 h-32 w-32 translate-x-16 rounded-full bg-white/10" />
+            <div className="-translate-y-16 absolute top-0 right-0 h-32 w-32 translate-x-16 rounded-full bg-background/10" />
           </CardHeader>
           <CardContent>
             <CardDescription className="text-base text-white">
@@ -74,7 +74,7 @@ export default function Congressos() {
               className="w-full"
               href="/divisao-cientifica/congressos/regional"
             >
-              <Button className="group w-full bg-white font-semibold text-primary hover:bg-white hover:text-primary">
+              <Button className="group w-full bg-foreground font-semibold text-primary hover:bg-foreground hover:text-primary">
                 Ver mais
                 <ArrowRight className="!size-4 transition-all duration-300 group-hover:translate-x-1" />
               </Button>

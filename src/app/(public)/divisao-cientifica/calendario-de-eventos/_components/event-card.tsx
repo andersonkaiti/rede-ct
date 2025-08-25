@@ -27,7 +27,7 @@ export function EventCard({
   event: IEvent
 }) {
   return (
-    <Card className="flex flex-col items-stretch gap-2 rounded-lg border border-gray-200 p-0 shadow-sm md:flex-row">
+    <Card className="flex flex-col items-stretch gap-2 rounded-lg p-0 shadow-sm md:flex-row">
       <picture className="relative h-64 w-full overflow-hidden rounded-t-lg md:h-auto md:w-2/4 md:rounded-l-lg md:rounded-tr-none">
         <Image
           alt={image.alt}
@@ -45,7 +45,7 @@ export function EventCard({
               <Calendar className="!size-5 h-fit text-primary" />
             </Badge>
             <div className="flex flex-col leading-4">
-              <span className="font-bold text-black">
+              <span className="font-bold text-foreground">
                 Período de inscrição: {subscriptionPeriod.start} até{' '}
                 {subscriptionPeriod.end}
               </span>

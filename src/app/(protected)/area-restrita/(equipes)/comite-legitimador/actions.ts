@@ -3,7 +3,6 @@
 import 'server-only'
 
 import { api } from '@adapters/index'
-import { BASE_URL } from '@config/index'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 
@@ -36,7 +35,7 @@ export async function createLegitimatorCommitteeTeamMemberAction(
   props: ICreateLegitimatorCommitteeTeamMemberProps,
   _: unknown,
   formData: FormData
-) {
+): Promise<IActionState> {
   try {
     const { success, data, error } =
       legitimatorCommitteeTeamMemberSchema.safeParse(
@@ -48,13 +47,13 @@ export async function createLegitimatorCommitteeTeamMemberAction(
         success: false,
         errors: error.flatten().fieldErrors,
         payload: formData,
-      } as IActionState
+      }
     }
 
     const teamAlreadyExists = !!props.team.id
 
     if (!teamAlreadyExists) {
-      await api.post(`${BASE_URL}/team`, {
+      await api.post('/team', {
         ...props,
         type: TEAM_TYPE,
         name: TEAM_NAME,
@@ -75,10 +74,10 @@ export async function createLegitimatorCommitteeTeamMemberAction(
         success: true,
         errors: null,
         payload: null,
-      } as IActionState
+      }
     }
 
-    await api.post(`${BASE_URL}/team/${props.team.id}/member`, {
+    await api.post(`/team/${props.team.id}/member`, {
       ...props,
       member: data,
     })
@@ -89,13 +88,13 @@ export async function createLegitimatorCommitteeTeamMemberAction(
       success: true,
       errors: null,
       payload: null,
-    } as IActionState
+    }
   } catch {
     return {
       success: false,
       errors: null,
       payload: formData,
-    } as IActionState
+    }
   }
 }
 
@@ -109,7 +108,7 @@ export async function updateLegitimatorCommitteeTeamMemberAction(
   props: IUpdateTeamMemberProps,
   _: unknown,
   formData: FormData
-) {
+): Promise<IActionState> {
   try {
     const { success, data, error } =
       legitimatorCommitteeTeamMemberSchema.safeParse(
@@ -121,10 +120,10 @@ export async function updateLegitimatorCommitteeTeamMemberAction(
         success: false,
         errors: error.flatten().fieldErrors,
         payload: formData,
-      } as IActionState
+      }
     }
 
-    await api.put(`${BASE_URL}/team/member/${props.member.id}`, {
+    await api.put(`/team/member/${props.member.id}`, {
       member: {
         ...data,
         id: props.member.id,
@@ -137,12 +136,12 @@ export async function updateLegitimatorCommitteeTeamMemberAction(
       success: true,
       errors: null,
       payload: null,
-    } as IActionState
+    }
   } catch {
     return {
       success: false,
       errors: null,
       payload: formData,
-    } as IActionState
+    }
   }
 }

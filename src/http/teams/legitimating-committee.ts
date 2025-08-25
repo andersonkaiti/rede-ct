@@ -1,5 +1,4 @@
 import { api } from '@adapters/index'
-import { BASE_URL } from '@config/index'
 import type { ITeamMember } from 'types/team'
 
 interface IComiteLegitimador {
@@ -12,7 +11,5 @@ interface IComiteLegitimador {
 }
 
 export async function getLegitimatingCommittee() {
-  return await api.get<IComiteLegitimador[]>(
-    `${BASE_URL}/team/type/comite-legitimador`
-  )
+  return await api.get<IComiteLegitimador[]>('/team/type/comite-legitimador')
 }

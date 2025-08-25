@@ -16,19 +16,19 @@ export function Menu({ showNavigationBar, setShowNavigationBar }: IMenuProps) {
     >
       <div
         className={cn(
-          'h-[2px] w-[50%] origin-left translate-y-[0.45rem] rounded-sm bg-black transition-all duration-300',
+          'h-[2px] w-[50%] origin-left translate-y-[0.45rem] rounded-sm bg-background invert-100 transition-all duration-300',
           showNavigationBar && 'rotate-[-45deg]'
         )}
       />
       <div
         className={cn(
-          'h-[2px] w-[50%] origin-center rounded-md bg-black transition-all duration-300',
+          'h-[2px] w-[50%] origin-center rounded-md bg-background invert-100 transition-all duration-300',
           showNavigationBar && 'hidden'
         )}
       />
       <div
         className={cn(
-          '-translate-y-[0.45rem] h-[2px] w-[50%] origin-left rounded-md bg-black transition-all duration-300',
+          '-translate-y-[0.45rem] h-[2px] w-[50%] origin-left rounded-md bg-background invert-100 transition-all duration-300',
           showNavigationBar && 'rotate-[45deg]'
         )}
       />

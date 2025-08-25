@@ -55,7 +55,7 @@ export default function EditarEquipeDeGestao() {
               )}
 
               {errors?.name && errors?.name && (
-                <Alert className="border-red-500 p-2" variant="destructive">
+                <Alert className="border-primary p-2" variant="destructive">
                   <AlertCircle className="size-4" />
                   <AlertDescription>{errors?.name}</AlertDescription>
                 </Alert>
@@ -80,7 +80,7 @@ export default function EditarEquipeDeGestao() {
               )}
 
               {errors?.members && errors?.members && (
-                <Alert className="border-red-500 p-2" variant="destructive">
+                <Alert className="border-primary p-2" variant="destructive">
                   <AlertCircle className="size-4" />
                   <AlertDescription>{errors?.members}</AlertDescription>
                 </Alert>

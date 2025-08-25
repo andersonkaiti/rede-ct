@@ -11,7 +11,7 @@ export default async function Noticias() {
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-14">
-      <h1 className="text-pretty font-semibold text-4xl text-gray-900 tracking-tight sm:text-5xl">
+      <h1 className="text-pretty font-semibold text-4xl text-foreground tracking-tight sm:text-5xl">
         Notícias
       </h1>
       {news.length > 0 && (

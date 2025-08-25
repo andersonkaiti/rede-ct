@@ -4,7 +4,6 @@ import { RedNavigationCard } from '@components/ui/red-navigation-card'
 import { getTimelineRedeCT } from '@mocks/timeline-rede-ct'
 import {
   BookOpen,
-  Clock,
   Globe,
   Heart,
   History,
@@ -32,14 +31,13 @@ export default async function ApresentacaoEHistoria() {
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <section className="flex flex-col items-center justify-center gap-8 rounded-md bg-primary p-10 text-white">
-        <Badge className="rounded-full bg-white/20 p-1">
-          <Clock className="!size-10" />
-        </Badge>
-        <h1 className="title-2 text-center">História da RedeCT</h1>
-        <Badge className="w-full rounded-full border border-white/20 bg-white/20 px-4 py-1">
-          <p className="w-fit font-semibold">desde 02/09/2002</p>
-        </Badge>
+      <section className="flex flex-col items-center justify-center text-white">
+        <h1 className="text-center text-3xl text-foreground">
+          História da RedeCT
+        </h1>
+        <p className="w-fit font-light text-muted-foreground">
+          desde 02/09/2002
+        </p>
       </section>
 
       <section className="space-y-14">
@@ -95,7 +93,7 @@ export default async function ApresentacaoEHistoria() {
           </Badge>
           <h2 className="font-semibold text-3xl">Presença internacional</h2>
         </div>
-        <div className="grid grid-cols-2 gap-2 text-sm md:grid-cols-4 lg:grid-cols-5">
+        <div className="grid grid-cols-5 gap-2 text-sm md:grid-cols-4 lg:grid-cols-5">
           {countries.map((country) => (
             <Badge
               className="flex w-full flex-col items-center gap-0.5 rounded-md border border-primary/20 bg-primary/10 p-2 font-semibold text-primary"

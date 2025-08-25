@@ -53,7 +53,7 @@ aside {
 }
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0.65rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
@@ -81,10 +81,12 @@ aside {
   --sidebar-foreground: oklch(0.141 0.005 285.823);
   --sidebar-primary: oklch(0.637 0.237 25.331);
   --sidebar-primary-foreground: oklch(0.971 0.013 17.38);
-  --sidebar-accent: oklch(0.92 0.001 286.375);
+  --sidebar-accent: oklch(0.967 0.001 286.375);
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.637 0.237 25.331);
+
+  --skeleton: oklch(92% 0.004 286.32);
 }
 
 .dark {
@@ -119,6 +121,8 @@ aside {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.637 0.237 25.331);
+
+  --skeleton: oklch(27.4% 0.006 286.033);
 }
 
 @layer base {
@@ -147,4 +151,10 @@ aside {
 
 .title-3 {
   @apply text-xl font-bold whitespace-normal lg:text-2xl;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }

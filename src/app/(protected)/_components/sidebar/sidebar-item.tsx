@@ -39,7 +39,7 @@ export function SidebarItem({
     <SidebarMenuItem>
       <Collapsible className="group/collapsible" defaultOpen>
         <CollapsibleTrigger asChild className="flex w-full items-center gap-2">
-          <SidebarMenuButton className="flex w-full cursor-pointer items-center justify-between gap-2 hover:bg-[#ebebeb]">
+          <SidebarMenuButton className="flex w-full cursor-pointer items-center justify-between gap-2 hover:bg-secondary">
             <div className="flex items-center gap-2">
               {Icon && <Icon className="size-4" />}
               {label}

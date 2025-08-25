@@ -1,4 +1,3 @@
-import { RedLine } from '@components/ui/red-line'
 import { UserCardWrapper } from '@components/ui/user-card'
 import { getTeams } from '@http/teams/get-teams'
 import type { ITeam } from 'types/team'
@@ -13,7 +12,9 @@ export default async function EquipeDeGestao() {
       {teamsSections.map((teamSection, index: number) => (
         <section className="space-y-4 md:space-y-8" key={index}>
           <h1 className="title-2 text-center">{teamSection.name}</h1>
-          <RedLine />
+
+          <div className="mx-auto h-[1px] w-1/2 bg-gradient-to-r from-transparent via-primary/80 to-transparent" />
+
           <UserCardWrapper>
             {teamSection.team_members.map((member, memberIndex: number) => (
               <UserCardComponent key={memberIndex} member={member} />

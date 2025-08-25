@@ -30,7 +30,7 @@ export function ActionsRow({ data: news, handleRemove }: IActionsRowProps) {
               variant="ghost"
             >
               Editar
-              <EditIcon className="text-black" />
+              <EditIcon className="text-foreground" />
             </Button>
           </Link>
         </DropdownMenuItem>

@@ -25,22 +25,22 @@ export function MissaoValoresTabs() {
           <div className="flex items-center gap-2">
             <p className="font-bold">Foto</p>
             <p className="font-bold">/</p>
-            <p className="text-gray-500">
+            <span className="text-background-foreground text-sm">
               Guardião de sementes crioulas, na Comunidade Tradicional de
               Geraizeiros da Matinha, Guaraí/TO/Brasil. (crédito: Alexandre
               Campos)
-            </p>
+            </span>
           </div>
         </div>
-        <div className="flex-1 space-y-4 text-[18px] text-gray-500">
-          <p className="font-bold">
+        <div className="flex-1 space-y-4 text-[18px] text-background-foreground">
+          <p className="text-justify font-bold">
             Contribuir para a melhoria contínua das produções científicas e das
             relações entre a academia(*) e os povos tradicionais,
             internacionalizando o debate e fortalecendo as atividades de ensino,
             pesquisa e extensão.
           </p>
 
-          <p>
+          <p className="text-justify">
             (*) A RedeCT não é uma rede multicêntrica de instituições, mas sim
             uma REDE de PESQUISADORES (filiados ou honorários) que podem ser
             professores, pesquisadores, extensionistas, gestores de políticas
@@ -49,7 +49,7 @@ export function MissaoValoresTabs() {
             tradicionais ou não.
           </p>
 
-          <p>
+          <p className="text-justify">
             Os interessados em se filiar devem entrar em contato pelo e-mail
             contato@redect.org.
           </p>
@@ -68,14 +68,14 @@ export function MissaoValoresTabs() {
           <div className="flex items-center gap-2">
             <p className="font-bold">Foto</p>
             <p className="font-bold">/</p>
-            <p className="text-gray-500">
+            <p className="text-background-foreground">
               Ribeirinho Amazônico, na Comunidade Tradicional de Ribeirinhos do
               Povoado Senhor do Bonfim, Araguacema/TO/Brasil (crédito: Nelson
               Moraes)
             </p>
           </div>
         </div>
-        <div className="flex-1 space-y-4 text-[18px] text-gray-500">
+        <div className="flex-1 space-y-4 text-[18px] text-background-foreground">
           <p className="font-bold">Valores centrais:</p>
           <ul className="ml-5 list-disc">
             <li>Vida e meio ambiente;</li>
@@ -118,7 +118,7 @@ export function MissaoValoresTabs() {
           <div className="flex items-center gap-2">
             <p className="font-bold">Foto</p>
             <p className="font-bold">/</p>
-            <p className="text-gray-500">
+            <p className="text-background-foreground">
               Reunião de orientação quanto ao associativismo, pela equipe
               UNESP/RedeCT junto à Comunidade Tradicional de Ribeirinhos do
               Povoado Senhor do Bonfim, Araguacema/TO/Brasil (crédito: Valdemir
@@ -126,7 +126,7 @@ export function MissaoValoresTabs() {
             </p>
           </div>
         </div>
-        <div className="flex-1 space-y-4 text-[18px] text-gray-500">
+        <div className="flex-1 space-y-4 text-[18px] text-background-foreground">
           <p className="font-bold">Objetivos da RedeCT:</p>
           <ul className="ml-5 list-disc">
             <li>
@@ -168,16 +168,16 @@ export function MissaoValoresTabs() {
           <div className="flex items-center gap-2">
             <p className="font-bold">Foto</p>
             <p className="font-bold">/</p>
-            <p className="text-gray-500">
+            <p className="text-background-foreground">
               Laurenita, Anciã Guilhermina e Celenita, quilombolas da Comunidade
               Lajeado, Dianópolis/TO/Brasil (crédito: Nelson Russo).
             </p>
           </div>
         </div>
-        <div className="flex-1 space-y-4 text-[18px] text-gray-500">
+        <div className="flex-1 space-y-4 text-[18px] text-background-foreground">
           <p className="font-bold">Grandes desafios da RedeCT:</p>
 
-          <p>
+          <p className="text-justify">
             Motivar que as dissertações e teses que tratem de um Povo
             Tradicional específico contenham um robusto capítulo sobre a
             história desta comunidade destacando elementos culturais, modus
@@ -186,30 +186,30 @@ export function MissaoValoresTabs() {
             de defesa de direitos destes Povos Tradicionais.
           </p>
 
-          <p>
+          <p className="text-justify">
             Fortalecer o movimento e defender que estudantes de pós-graduação,
             de origem indígena que dominem sua língua mãe e a língua portuguesa
             sejam dispensados da proficiência em língua inglesa.
           </p>
 
-          <p>
+          <p className="text-justify">
             Produzir estruturas, intrumentalidades e tecnologias sociais para a
             competitiva geração de renda de Povos Tradicionais.
           </p>
 
-          <p>
+          <p className="text-justify">
             Contribuir para o resgate histórico-antropológico-arqueológico, bem
             como para a organização e guarda de dados, informações e memória do
             maior número possível de Povos Tradicionais.
           </p>
 
-          <p>
+          <p className="text-justify">
             Produzir uma universidade cada vez mais inclusiva e preocupada com o
             acesso e a permanência de minorias, especialmente oriundas de Povos
             Tradicionais.
           </p>
 
-          <p>
+          <p className="text-justify">
             Produzir um texto anual, que posicione a RedeCT frente aos grandes
             enfrentamentos e desafios impostos aos Povos Tradicionais,
             denominada Carta da RedeCT.

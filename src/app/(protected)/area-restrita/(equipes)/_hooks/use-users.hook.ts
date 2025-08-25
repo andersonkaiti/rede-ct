@@ -1,6 +1,6 @@
 "use client";
 
-import { getUsers } from "@http/users";
+import { getUsers } from "@http/get-users";
 import { useQuery } from "@tanstack/react-query";
 
 export function useUsers() {

@@ -22,8 +22,9 @@ export default async function Pesquisadores() {
           {researcherCategories.map(({ members, type }, index: number) =>
             members.map(({ name, info }) => (
               <TabsContent key={`${index}-${name}`} value={type}>
-                <p className="text-gray-500">
-                  <span className="font-bold text-black">{name}</span> {info}
+                <p className="text-background-foreground">
+                  <span className="font-bold text-foreground">{name}</span>{' '}
+                  {info}
                 </p>
               </TabsContent>
             ))

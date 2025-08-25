@@ -16,6 +16,9 @@
       },
       "suspicious": {
         "noArrayIndexKey": "off"
+      },
+      "a11y": {
+        "noNoninteractiveElementInteractions": "off"
       }
     }
   }

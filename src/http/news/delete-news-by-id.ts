@@ -1,5 +1,4 @@
 import { api } from '@adapters/index'
-import { BASE_URL } from '@config/index'
 import type { INews } from 'types/news'
 
 export async function deleteNewsById(
@@ -12,5 +11,5 @@ export async function deleteNewsById(
       }
     : {}
 
-  await api.delete<INews>(`${BASE_URL}/news/${id}`, body)
+  await api.delete<INews>(`/news/${id}`, body)
 }

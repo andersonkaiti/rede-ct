@@ -8,8 +8,8 @@ export default function Equipes() {
       <section className="flex flex-col gap-2">
         <NavigationCard href="/area-restrita/equipe-de-gestao">
           <div className="flex items-center gap-2">
-            <div className="rounded-full bg-red-500/20 p-2">
-              <Users className="text-red-500" />
+            <div className="rounded-full bg-primary/20 p-2">
+              <Users className="text-primary" />
             </div>
             <h3 className="font-semibold text-lg">Equipe de Gestão</h3>
           </div>

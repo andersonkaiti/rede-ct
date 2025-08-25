@@ -15,24 +15,34 @@ export default function PortfolioCard({
   icon: Icon,
 }: PortfolioCardProps) {
   return (
-    <Link className="flex items-stretch" href={`/portfolio/${slug}`}>
-      <article className="group cursor-pointer overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg">
-        <div className="relative overflow-hidden">
-          <div className="absolute top-4 left-4 flex h-12 w-12 items-center justify-center rounded-lg bg-white/90 backdrop-blur-sm">
-            <Icon className="size-6 text-gray-700" />
+    <Link
+      aria-label={`Explorar seção: ${title}`}
+      className="group flex items-stretch rounded-lg shadow-md transition-shadow duration-300 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-primary/60"
+      href={`/portfolio/${slug}`}
+      tabIndex={0}
+    >
+      <article className="flex flex-1 flex-col overflow-hidden rounded-lg bg-background transition-colors duration-300 hover:bg-accent/40">
+        <div className="relative flex-shrink-0">
+          <div className="absolute top-4 left-4 flex h-12 w-12 items-center justify-center rounded-lg bg-background/90 shadow backdrop-blur-sm transition-all duration-300 group-hover:scale-105 group-hover:bg-primary/10">
+            <Icon className="size-6 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
           </div>
+          {/* Decorative background shape */}
+          <div
+            aria-hidden="true"
+            className="-right-8 -top-8 pointer-events-none absolute h-24 w-24 rounded-full bg-primary/10 opacity-60 blur-2xl transition-all duration-300 group-hover:opacity-80"
+          />
         </div>
-        <div className="flex h-full flex-col p-6">
-          <h3 className="mb-3 line-clamp-2 font-bold text-gray-900 text-xl transition-colors group-hover:text-gray-700">
+        <div className="flex h-full flex-col p-6 pt-20">
+          <h3 className="mb-3 line-clamp-2 font-bold text-foreground text-xl transition-colors duration-300 group-hover:text-primary">
             {title}
           </h3>
           <div className="mt-auto">
-            <p className="mb-4 line-clamp-3 text-gray-600 leading-relaxed">
+            <p className="mb-4 line-clamp-3 text-muted-foreground leading-relaxed">
               {description}
             </p>
-            <div className="flex items-center text-gray-700 transition-colors group-hover:text-gray-900">
+            <div className="flex items-center gap-2 text-secondary-foreground transition-colors duration-300 group-hover:text-primary">
               <span className="font-medium">Explorar seção</span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </div>
           </div>
         </div>

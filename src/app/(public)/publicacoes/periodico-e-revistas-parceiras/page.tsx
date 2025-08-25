@@ -12,8 +12,8 @@ const DynamicMagazines = dynamic(() =>
 export default function PeriodicoERevistasParceiras() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 md:gap-20 lg:p-25">
-      <header className="space-y-8 text-center">
-        <h1 className="text-center font-bold text-3xl md:text-6xl">
+      <header className="space-y-8">
+        <h1 className="font-semibold text-4xl">
           Periódico Científico da <span className="text-primary">RedeCT</span>
         </h1>
         <p className="text-lg text-muted-foreground">

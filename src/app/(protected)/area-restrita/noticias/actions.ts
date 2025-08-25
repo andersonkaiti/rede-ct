@@ -4,7 +4,6 @@ import 'server-only'
 
 import { api } from '@adapters/index'
 import { currentUser } from '@clerk/nextjs/server'
-import { BASE_URL } from '@config/index'
 import type { INews } from 'types/news'
 import { z } from 'zod'
 
@@ -52,39 +51,53 @@ const newsSchema = z.object({
 export interface IActionState {
   success: boolean
   errors: z.inferFlattenedErrors<typeof newsSchema>['fieldErrors'] | null
-  payload: FormData
+  payload: FormData | null
 }
 
-export async function registerNewsAction(_: unknown, formData: FormData) {
-  const { success, error } = newsSchema.safeParse(Object.fromEntries(formData))
+export async function registerNewsAction(
+  _: unknown,
+  formData: FormData
+): Promise<IActionState> {
+  try {
+    const { success, error } = newsSchema.safeParse(
+      Object.fromEntries(formData)
+    )
 
-  if (!success) {
+    if (!success) {
+      return {
+        success: false,
+        errors: error.flatten().fieldErrors,
+        payload: formData,
+      }
+    }
+
+    const user = await currentUser()
+
+    const news = new FormData()
+
+    news.append('title', formData.get('title') as string)
+    news.append('content', formData.get('content') as string)
+    news.append('author_id', user?.id || '')
+    news.append('image', formData.get('image') as File)
+
+    await api.post('/news', news, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+
+    return {
+      success: true,
+      errors: null,
+      payload: null,
+    }
+  } catch {
     return {
       success: false,
-      errors: error.flatten().fieldErrors,
+      errors: null,
       payload: formData,
-    } as IActionState
+    }
   }
-
-  const user = await currentUser()
-
-  const news = new FormData()
-
-  news.append('title', formData.get('title') as string)
-  news.append('content', formData.get('content') as string)
-  news.append('author_id', user?.id || '')
-  news.append('image', formData.get('image') as File)
-
-  await api.post(`${BASE_URL}/news`, news, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  })
-
-  return {
-    success: true,
-    errors: null,
-  } as IActionState
 }
 
 export async function updateNewsAction(
@@ -92,41 +105,50 @@ export async function updateNewsAction(
   image_url: string | undefined,
   _: unknown,
   formData: FormData
-) {
-  const { success, error } = newsSchema.safeParse({
-    ...Object.fromEntries(formData),
-    image: image_url,
-  })
+): Promise<IActionState> {
+  try {
+    const { success, error } = newsSchema.safeParse({
+      ...Object.fromEntries(formData),
+      image: image_url,
+    })
 
-  if (!success) {
+    if (!success) {
+      return {
+        success: false,
+        errors: error.flatten().fieldErrors,
+        payload: formData,
+      }
+    }
+
+    const user = await currentUser()
+
+    if (!user) {
+      throw new Error('Não autorizado!')
+    }
+
+    const news = new FormData()
+
+    news.append('title', formData.get('title') as string)
+    news.append('content', formData.get('content') as string)
+    news.append('image', formData.get('image') as File)
+    news.append('author_id', user?.id || '')
+
+    if (image_url) {
+      news.append('image_url', image_url)
+    }
+
+    await api.put<INews>(`/news/${id}`, news)
+
+    return {
+      success: true,
+      errors: null,
+      payload: null,
+    }
+  } catch {
     return {
       success: false,
-      errors: error.flatten().fieldErrors,
+      errors: null,
       payload: formData,
-    } as IActionState
+    }
   }
-
-  const user = await currentUser()
-
-  if (!user) {
-    throw new Error('Não autorizado!')
-  }
-
-  const news = new FormData()
-
-  news.append('title', formData.get('title') as string)
-  news.append('content', formData.get('content') as string)
-  news.append('image', formData.get('image') as File)
-  news.append('author_id', user?.id || '')
-
-  if (image_url) {
-    news.append('image_url', image_url)
-  }
-
-  await api.put<INews>(`${BASE_URL}/news/${id}`, news)
-
-  return {
-    success: true,
-    errors: null,
-  } as IActionState
 }

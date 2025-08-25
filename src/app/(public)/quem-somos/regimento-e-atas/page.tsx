@@ -8,7 +8,7 @@ export default function RegimentosEAtas() {
         <h1 className="title-1 text-center">
           REGIMENTO, CONVOCAÇÕES, PAUTAS E ATAS
         </h1>
-        <p className="text-justify text-gray-500">
+        <p className="text-justify text-muted-foreground">
           Nesta seção do website, a RedeCT mantém três campos distintos: (1) o
           seu Regimento Interno (atualizado e válido); (2) as convocatórias e
           pautas das reuniões e assembleias previstas; (3) as Atas das reuniões
@@ -18,7 +18,7 @@ export default function RegimentosEAtas() {
 
       <section className="space-y-4 p-6">
         <h2 className="title-2 text-center">REGIMENTO INTERNO DA REDECT</h2>
-        <p className="text-justify text-gray-500">
+        <p className="text-justify text-muted-foreground">
           Esta é a 1ª versão (já válida) do Regimento Interno da RedeCT,
           publicada em 19/04/2024 (Dia dos Povos Indígenas do Brasil). Durante
           30 dias, a coordenação da RedeCT receberá sugestões de ajustes pelo
@@ -45,16 +45,16 @@ export default function RegimentosEAtas() {
           CONVOCAÇÕES E PAUTAS DE REUNIÕES
         </h2>
         <div className="space-y-4">
-          <div className="rounded-md bg-blue-50 p-4">
-            <h3 className="font-semibold text-blue-800">Próxima Reunião</h3>
-            <p className="mt-2 text-blue-700">
+          <div className="rounded-md bg-background p-4">
+            <h3 className="font-semibold text-primary">Próxima Reunião</h3>
+            <p className="mt-2 text-primary">
               25/07/2024, 15h (on-line) - 1ª Assembleia Geral Extraordinária de
               Pesquisadores Filiados
             </p>
-            <p className="mt-2 text-blue-600">
+            <p className="mt-2 text-primary">
               <strong>PAUTA:</strong>
             </p>
-            <ul className="mt-2 list-inside list-disc text-blue-600">
+            <ul className="mt-2 list-inside list-disc text-primary">
               <li>
                 Prorrogação do período de submissões de trabalhos no V CCI e
                 seus desdobramentos
@@ -63,13 +63,15 @@ export default function RegimentosEAtas() {
             </ul>
           </div>
           <div className="mt-4">
-            <h3 className="font-semibold text-gray-700">Reuniões Anteriores</h3>
+            <h3 className="font-semibold text-muted-foreground">
+              Reuniões Anteriores
+            </h3>
             <ul className="mt-2 space-y-2">
-              <li className="text-gray-600">
+              <li className="text-muted-foreground">
                 <span className="font-medium">15/03/2024</span> - Reunião de
                 Coordenação
               </li>
-              <li className="text-gray-600">
+              <li className="text-muted-foreground">
                 <span className="font-medium">01/02/2024</span> - Assembleia
                 Geral Ordinária
               </li>
@@ -81,20 +83,22 @@ export default function RegimentosEAtas() {
       <section className="space-y-4 p-6">
         <h2 className="title-2 text-center">ATAS DE REUNIÕES</h2>
         <div className="space-y-4">
-          <div className="rounded-md bg-gray-50 p-4">
-            <h3 className="font-semibold text-gray-800">Atas Recentes</h3>
+          <div className="rounded-md bg-muted-foretext-muted-foreground p-4">
+            <h3 className="font-semibold text-muted-foreground">
+              Atas Recentes
+            </h3>
             <ul className="mt-2 space-y-2">
-              <li className="text-gray-600">
+              <li className="text-muted-foreground">
                 <Link
-                  className="hover:text-blue-600"
+                  className="hover:text-primary"
                   href="/quem-somos/regimento-e-atas"
                 >
                   Ata da Assembleia Geral - 01/02/2024
                 </Link>
               </li>
-              <li className="text-gray-600">
+              <li className="text-muted-foreground">
                 <Link
-                  className="hover:text-blue-600"
+                  className="hover:text-primary"
                   href="/quem-somos/regimento-e-atas"
                 >
                   Ata da Reunião de Coordenação - 15/03/2024
@@ -103,8 +107,10 @@ export default function RegimentosEAtas() {
             </ul>
           </div>
           <div className="mt-4">
-            <h3 className="font-semibold text-gray-700">Arquivo de Atas</h3>
-            <p className="text-gray-500">
+            <h3 className="font-semibold text-muted-foreground">
+              Arquivo de Atas
+            </h3>
+            <p className="text-muted-foreground">
               Para acessar atas anteriores, entre em contato com a secretaria da
               RedeCT através do e-mail redect.pesquisa@gmail.com
             </p>
@@ -115,21 +121,27 @@ export default function RegimentosEAtas() {
       <section className="mt-8 p-6">
         <h2 className="title-2 mb-6 text-center">CALENDÁRIO DE REUNIÕES</h2>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <div className="rounded-md bg-gray-50 p-4">
-            <h3 className="font-semibold text-gray-800">Reuniões Mensais</h3>
-            <p className="mt-2 text-gray-600">
+          <div className="rounded-md bg-muted-foretext-muted-foreground p-4">
+            <h3 className="font-semibold text-muted-foreground">
+              Reuniões Mensais
+            </h3>
+            <p className="mt-2 text-muted-foreground">
               Primeira segunda-feira de cada mês, às 15h
             </p>
           </div>
-          <div className="rounded-md bg-gray-50 p-4">
-            <h3 className="font-semibold text-gray-800">Assembleias Gerais</h3>
-            <p className="mt-2 text-gray-600">
+          <div className="rounded-md bg-muted-foretext-muted-foreground p-4">
+            <h3 className="font-semibold text-muted-foreground">
+              Assembleias Gerais
+            </h3>
+            <p className="mt-2 text-muted-foreground">
               Trimestrais, sempre no último sábado do trimestre
             </p>
           </div>
-          <div className="rounded-md bg-gray-50 p-4">
-            <h3 className="font-semibold text-gray-800">Reuniões de GTs</h3>
-            <p className="mt-2 text-gray-600">
+          <div className="rounded-md bg-muted-foretext-muted-foreground p-4">
+            <h3 className="font-semibold text-muted-foreground">
+              Reuniões de GTs
+            </h3>
+            <p className="mt-2 text-muted-foreground">
               Quinzenais, conforme agendamento específico de cada GT
             </p>
           </div>

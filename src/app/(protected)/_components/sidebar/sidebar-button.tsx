@@ -15,7 +15,7 @@ export function SidebarButton({ path, children }: ISidebarButtonProps) {
   return (
     <SidebarMenuButton
       asChild
-      className="flex gap-2 hover:bg-[#ebebeb]"
+      className="flex gap-2 hover:bg-secondary"
       isActive={isActive}
     >
       {children}

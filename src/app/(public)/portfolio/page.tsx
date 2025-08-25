@@ -16,10 +16,10 @@ export default function PortfolioPage() {
       <section>
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
-            <h1 className="mb-4 font-bold text-4xl text-gray-900 md:text-5xl">
+            <h1 className="mb-4 font-bold text-4xl text-foreground md:text-5xl">
               Portfólio RedeCT
             </h1>
-            <p className="mx-auto max-w-3xl text-gray-600 text-xl leading-relaxed">
+            <p className="mx-auto max-w-3xl text-muted-foreground text-xl leading-relaxed">
               Explore nossos projetos e iniciativas que conectam ciência,
               tecnologia e sociedade. Cada seção representa um pilar fundamental
               do nosso trabalho de difusão científica e inovação.

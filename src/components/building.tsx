@@ -8,17 +8,17 @@ interface BuildingProps {
 
 export function Building({ children }: BuildingProps) {
   return (
-    <Card className="flex flex-row items-center gap-5 border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 p-8">
-      <div className="rounded-full bg-amber-100 p-3">
-        <Construction className="!size-6 text-amber-600" />
+    <Card className="flex flex-row items-center gap-5 border-primary/25 bg-primary/5 p-8">
+      <div className="rounded-full bg-primary/20 p-3">
+        <Construction className="!size-6 text-primary" />
       </div>
       <div className="flex flex-col">
         <CardHeader className="p-0">
-          <CardTitle className="mb-2 font-semibold text-amber-800 text-lg">
+          <CardTitle className="mb-2 font-semibold text-lg text-primary">
             Área em Desenvolvimento
           </CardTitle>
         </CardHeader>
-        <CardDescription className="text-amber-700">{children}</CardDescription>
+        <CardDescription className="text-primary">{children}</CardDescription>
       </div>
     </Card>
   )

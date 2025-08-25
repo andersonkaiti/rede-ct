@@ -7,10 +7,10 @@ interface IError {
 export default function ErrorMessage({ error }: IError) {
   return (
     <main>
-      <section className="bg-white dark:bg-gray-900">
+      <section className="bg-background dark:bg-gray-900">
         <div className="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
           <div className="mx-auto max-w-screen-sm text-center">
-            <p className="mb-4 font-light text-lg text-red-500">
+            <p className="mb-4 font-light text-lg text-primary">
               {error.message}
             </p>
           </div>

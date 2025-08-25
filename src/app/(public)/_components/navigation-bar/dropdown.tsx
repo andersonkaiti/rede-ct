@@ -38,7 +38,9 @@ export function Dropdown({
 
   return (
     <div
-      className="absolute top-14 w-fit overflow-hidden rounded-lg border border-gray-500/40 bg-white p-2 shadow transition-all duration-300"
+      className={cn(
+        'absolute top-14 w-fit overflow-hidden rounded-lg border border-background-foreground/40 bg-background p-2 shadow transition-all duration-300'
+      )}
       style={{
         left: leftOffset || 0,
         minHeight: (heightOffset || 0) + PADDING_TWO * 2,

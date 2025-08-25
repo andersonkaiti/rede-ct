@@ -129,7 +129,7 @@ export default function ColetaneaRedeCT() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Button className="bg-white p-6 text-black hover:bg-white/90">
+            <Button className="bg-background p-6 text-foreground hover:bg-background/90">
               Acessar Edital do Volume 14 (2025)
             </Button>
           </Link>

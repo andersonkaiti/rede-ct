@@ -50,7 +50,7 @@ export function UpdateMemberForm({
               <SelectMember userId={member?.user?.id} />
 
               {errors?.user_id && errors.user_id && (
-                <Alert className="border-red-500 p-2" variant="destructive">
+                <Alert className="border-primary p-2" variant="destructive">
                   <AlertCircle className="size-4" />
                   <AlertDescription>{errors.user_id}</AlertDescription>
                 </Alert>
@@ -67,7 +67,7 @@ export function UpdateMemberForm({
               />
 
               {errors?.role && errors.role && (
-                <Alert className="border-red-500 p-2" variant="destructive">
+                <Alert className="border-primary p-2" variant="destructive">
                   <AlertCircle className="size-4" />
                   <AlertDescription>{errors.role}</AlertDescription>
                 </Alert>
@@ -84,7 +84,7 @@ export function UpdateMemberForm({
               />
 
               {errors?.description && errors.description && (
-                <Alert className="border-red-500 p-2" variant="destructive">
+                <Alert className="border-primary p-2" variant="destructive">
                   <AlertCircle className="size-4" />
                   <AlertDescription>{errors.description}</AlertDescription>
                 </Alert>

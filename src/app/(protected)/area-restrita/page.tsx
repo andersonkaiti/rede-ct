@@ -33,8 +33,8 @@ export default function AreaRestrita() {
           </NavigationCard>
           <NavigationCard href="/area-restrita/pendencias">
             <div className="flex items-center gap-2">
-              <div className="rounded-full bg-red-500/20 p-2">
-                <Banknote className="text-red-500" />
+              <div className="rounded-full bg-primary/20 p-2">
+                <Banknote className="text-primary" />
               </div>
               <h3 className="font-semibold text-lg">Pendências</h3>
             </div>

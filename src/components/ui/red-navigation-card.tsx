@@ -18,7 +18,7 @@ export function RedNavigationCard({
     <Link className="group" href={href} {...props}>
       <div
         className={cn(
-          'flex items-center justify-between rounded-md bg-gradient-to-br from-primary via-red-600 to-red-700 p-10 text-white md:p-10',
+          'flex items-center justify-between rounded-md bg-primary p-10 text-primary-foreground md:p-10',
           className
         )}
       >

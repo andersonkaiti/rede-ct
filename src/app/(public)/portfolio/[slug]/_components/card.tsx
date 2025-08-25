@@ -19,7 +19,7 @@ interface ICardProps {
 
 export function CardComponent({ item }: ICardProps) {
   return (
-    <Card className="gap-4 overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg">
+    <Card className="gap-4 overflow-hidden rounded-lg bg-background shadow-md transition-shadow hover:shadow-lg">
       <CardHeader>
         <time className="flex items-center gap-2 text-muted-foreground">
           <Calendar className="size-4" />

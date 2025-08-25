@@ -22,7 +22,7 @@ export function Congress({ congress, index }: ICongressProps) {
           <span>{congress.location}</span>
         </p>
       </header>
-      <div className="space-y-4 text-justify text-gray-700">
+      <div className="space-y-4 text-justify text-muted-foreground">
         <p>{congress.description}</p>
       </div>
       <div className="flex flex-wrap justify-center gap-4 pt-4">

@@ -52,7 +52,7 @@ export function CourseCard({
               <Calendar className="!size-6.5 text-primary" />
             </Badge>
             <div className="flex flex-col">
-              <span className="font-bold text-black">{date}</span>
+              <span className="font-bold text-foreground">{date}</span>
               <span className="flex items-center gap-1 text-muted-foreground">
                 <Clock className="!size-3 text-muted-foreground" />
                 {time}

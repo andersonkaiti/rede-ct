@@ -1,53 +1,50 @@
+import { Button } from '@components/ui/button'
 import { MailIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export function SocialMedia() {
   return (
-    <div className="space-y-8 text-white">
+    <div className="space-y-8 text-secondary-foreground">
       <div className="flex gap-2">
-        <Link
-          className="flex items-center justify-center rounded-full bg-gray-800 p-2 transition-all duration-300 hover:bg-gray-600"
-          href="https://www.facebook.com/redect01/"
-          target="_blank"
-        >
-          <div className="relative size-5">
+        <Button asChild variant="ghost">
+          <Link
+            className="relative size-5"
+            href="https://www.facebook.com/redect01/"
+            target="_blank"
+          >
             <Image
               alt="Facebook"
-              className="object-cover"
+              className="object-contain p-1 invert dark:invert-0"
               fill
               src="/images/icons/facebook-brands.svg"
             />
-          </div>
-        </Link>
-        <Link
-          className="flex items-center justify-center rounded-full bg-gray-800 p-2 transition-all duration-300 hover:bg-gray-600"
-          href="/"
-          target="_blank"
-        >
-          <div className="relative size-5">
+          </Link>
+        </Button>
+        <Button asChild variant="ghost">
+          <Link className="relative size-5" href="/" target="_blank">
             <Image
               alt="Youtube"
-              className="object-cover"
+              className="object-contain p-1 invert dark:invert-0"
               fill
               src="/images/icons/youtube-brands.svg"
             />
-          </div>
-        </Link>
-        <Link
-          className="flex items-center justify-center rounded-full bg-gray-800 p-2 transition-all duration-300 hover:bg-gray-600"
-          href="https://www.instagram.com/redecomunidadestradicionais/"
-          target="_blank"
-        >
-          <div className="relative size-5">
+          </Link>
+        </Button>
+        <Button asChild variant="ghost">
+          <Link
+            className="relative size-5"
+            href="https://www.instagram.com/redecomunidadestradicionais/"
+            target="_blank"
+          >
             <Image
               alt="Instagram"
-              className="object-cover"
+              className="object-contain p-1 invert dark:invert-0"
               fill
               src="/images/icons/instagram-brands.svg"
             />
-          </div>
-        </Link>
+          </Link>
+        </Button>
       </div>
       <div className="flex items-center gap-2 text-sm">
         <MailIcon className="!size-4" />

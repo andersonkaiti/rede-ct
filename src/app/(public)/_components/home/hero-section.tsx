@@ -12,7 +12,7 @@ export function HeroSection() {
         priority
         src="/images/hero-bg.png"
       />
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />
       <div className="relative z-10 mx-auto grid h-full max-w-7xl px-4 py-8 lg:gap-8 lg:py-16 xl:gap-0">
         <div className="col-span-6 place-self-center">
           <h1 className="mb-4 font-extrabold text-4xl text-white tracking-tight md:text-5xl xl:text-6xl">
@@ -31,7 +31,7 @@ export function HeroSection() {
               <ArrowRightIcon className="ml-2 h-5 w-5 transition-all duration-300 group-hover:translate-x-1" />
             </Link>
             <Link
-              className="inline-flex items-center justify-center rounded-lg border border-white px-5 py-3 text-center font-medium text-base text-white hover:bg-white/10"
+              className="inline-flex items-center justify-center rounded-lg border border-white px-5 py-3 text-center font-medium text-base text-white hover:bg-background/10"
               href="/divisao-cientifica/congresso-cientifico-internacional"
             >
               Participe dos Eventos

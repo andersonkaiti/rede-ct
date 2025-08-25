@@ -1,5 +1,4 @@
 import { Button } from '@components/ui/button'
-import { Card, CardContent, CardFooter, CardHeader } from '@components/ui/card'
 import type { IMagazine } from '@mocks/magazines/magazines'
 import { ExternalLink } from 'lucide-react'
 import Image from 'next/image'
@@ -11,31 +10,30 @@ export function MagazineCard({
   magazine: IMagazine
 }) {
   return (
-    <Card className="hover:-translate-y-1 rounded-xl border border-gray-100 bg-white shadow-md transition duration-300 hover:shadow-2xl">
-      <CardHeader className="space-y-4">
-        <picture className="relative h-40 w-full rounded-md">
-          <Image
-            alt={name}
-            className="overflow-hidden object-contain"
-            fill
-            src={image}
-          />
-        </picture>
-        <h2 className="text-center font-semibold text-xl">{name}</h2>
-      </CardHeader>
-      <CardContent className="mt-auto">
-        <p className="text-justify text-muted-foreground leading-relaxed">
+    <div className="flex w-full flex-col gap-4">
+      <picture className="relative h-40 w-full rounded-md">
+        <Image
+          alt={name}
+          className="overflow-hidden rounded-md border-1 border-muted-foreground object-cover"
+          fill
+          src={image}
+        />
+      </picture>
+
+      <div className="flex flex-grow flex-col justify-between gap-4">
+        <h2 className="font-semibold text-xl">{name}</h2>
+
+        <span className="text-justify text-muted-foreground text-sm leading-relaxed">
           {description}
-        </p>
-      </CardContent>
-      <CardFooter>
+        </span>
+
         <Link className="w-full" href={url} target="_blank">
-          <Button className="group w-full">
+          <Button className="group w-full" variant="outline">
             Acessar publicação
             <ExternalLink className="transition-all duration-300 group-hover:translate-x-2" />
           </Button>
         </Link>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   )
 }

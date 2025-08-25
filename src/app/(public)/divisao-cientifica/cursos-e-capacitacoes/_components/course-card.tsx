@@ -23,7 +23,7 @@ export function CourseCard({
   category,
 }: ICourse) {
   return (
-    <Card className="md flex w-full flex-col items-stretch gap-2 overflow-hidden rounded-lg bg-white p-0 shadow-lg transition-all duration-200 hover:shadow-xl md:flex-row">
+    <Card className="md flex w-full flex-col items-stretch gap-2 overflow-hidden rounded-lg bg-background p-0 shadow-lg transition-all duration-200 hover:shadow-xl md:flex-row">
       <picture className="relative h-64 w-full overflow-hidden rounded-t-lg md:h-auto md:w-2/4 md:rounded-l-lg md:rounded-tr-none">
         <Image
           alt={title}
@@ -51,7 +51,7 @@ export function CourseCard({
               <Calendar className="!size-6.5 text-primary" />
             </Badge>
             <div className="flex flex-col">
-              <span className="font-bold text-black">{date}</span>
+              <span className="font-bold text-foreground">{date}</span>
               <span className="flex items-center gap-1 text-muted-foreground">
                 <Clock className="!size-3 text-muted-foreground" />
                 {time}

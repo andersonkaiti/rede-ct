@@ -7,7 +7,7 @@ import {
 } from '@components/ui/card'
 import { Separator } from '@components/ui/separator'
 import { formatDate } from '@utils/format-date'
-import { ArrowRight, Calendar } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { INews } from 'types/news'
@@ -37,20 +37,19 @@ export function Noticia({
       </picture>
 
       <CardContent className="flex w-full grow flex-col justify-between gap-4 p-6">
-        <CardHeader className="flex items-center gap-x-2 p-0">
-          <Calendar className="size-4 text-muted-foreground leading-3" />
+        <CardHeader className="p-0">
           <time className="text-muted-foreground" dateTime={updated_at}>
             {formatDate(updated_at)}
           </time>
         </CardHeader>
         <CardDescription className="group relative space-y-2 p-0">
-          <h3 className="font-semibold text-gray-900 text-lg/6 group-hover:text-primary">
+          <h3 className="font-semibold text-foreground text-lg/6 group-hover:text-primary">
             <Link href={`/noticias/${id}`}>
               <span className="absolute inset-0" />
               {title}
             </Link>
           </h3>
-          <div className="line-clamp-3 truncate text-justify text-gray-600 text-sm leading-relaxed group-hover:text-primary">
+          <div className="line-clamp-3 truncate text-justify text-muted-foreground text-sm leading-relaxed group-hover:text-primary">
             {content}
           </div>
         </CardDescription>
@@ -65,7 +64,7 @@ export function Noticia({
                 src={author_image_url}
               />
             </div>
-            <div className="font-semibold text-gray-900">
+            <div className="font-semibold text-foreground">
               {first_name} {last_name}
             </div>
           </div>

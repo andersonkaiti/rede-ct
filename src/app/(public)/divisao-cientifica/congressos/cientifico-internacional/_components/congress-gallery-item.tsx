@@ -9,7 +9,7 @@ export function CongressGalleryItem({
   item: { url, caption },
 }: ICongressGalleryItemProps) {
   return (
-    <div className="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
+    <div className="group flex h-full flex-col overflow-hidden rounded-xl bg-background shadow-lg transition-all duration-300 hover:shadow-xl">
       <div className="relative h-56 w-full overflow-hidden">
         <Image
           alt={caption}

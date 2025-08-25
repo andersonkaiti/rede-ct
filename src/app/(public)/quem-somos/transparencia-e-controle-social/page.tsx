@@ -202,25 +202,25 @@ export default function TransparenciaEControleSocial() {
           <h2 className="title-3">Dados da conta corrente</h2>
           <div className="grid grid-cols-1 gap-8 rounded-md p-7 text-center shadow-[0_0_10px_rgba(0,0,0,0.1)] transition-all duration-300 lg:grid-cols-3 lg:p-14">
             <div className="space-y-2">
-              <h3 className="text-gray-500">Banco</h3>
+              <h3 className="text-background-foreground">Banco</h3>
               <h3 className="title-3">Banco Santander</h3>
             </div>
             <div className="space-y-2">
-              <h3 className="text-gray-500">Agência</h3>
+              <h3 className="text-background-foreground">Agência</h3>
               <h3 className="title-3">004</h3>
             </div>
             <div className="space-y-2">
-              <h3 className="text-gray-500">Titular</h3>
+              <h3 className="text-background-foreground">Titular</h3>
               <h3 className="title-3">Alexandre de Castro Campos</h3>
             </div>
             <div className="flex flex-col justify-center gap-8 lg:col-span-3 lg:flex-row">
               <div className="space-y-2">
                 <h3 className="title-3">Conta corrente</h3>
-                <Copy className="text-gray-500">02-028318-0</Copy>
+                <Copy className="text-background-foreground">02-028318-0</Copy>
               </div>
               <div className="space-y-2">
                 <h3 className="title-3">Chave pix</h3>
-                <Copy className="text-gray-500">
+                <Copy className="text-background-foreground">
                   da231105-2947-4343-9214-064b15e45313
                 </Copy>
               </div>

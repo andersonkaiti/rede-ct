@@ -71,7 +71,7 @@ export default function HeroSlider() {
                       {slide.subtitle}
                     </p>
                     <button
-                      className="rounded-md bg-white px-6 py-3 font-medium text-gray-900 text-sm transition-colors hover:bg-gray-100 sm:px-8 sm:text-base"
+                      className="rounded-md bg-background px-6 py-3 font-medium text-gray-900 text-sm transition-colors hover:bg-gray-100 sm:px-8 sm:text-base"
                       type="button"
                     >
                       {slide.cta}
@@ -109,8 +109,8 @@ export default function HeroSlider() {
             aria-label={`Go to slide ${index + 1}`}
             className={`h-2 w-2 rounded-full transition-all duration-200 sm:h-3 sm:w-3 ${
               index === currentSlide
-                ? 'scale-110 bg-white'
-                : 'bg-white/50 hover:bg-white/75'
+                ? 'scale-110 bg-background'
+                : 'bg-background/50 hover:bg-background/75'
             }`}
             key={index}
             onClick={() => setCurrentSlide(index)}

@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function NotFound() {
   return (
-    <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <main className="grid min-h-full place-items-center bg-background px-6 py-24 sm:py-32 lg:px-8">
       <div className="text-center">
         <h1 className="mt-4 text-balance font-semibold text-5xl text-gray-900 tracking-tight sm:text-7xl">
           Página não encontrada

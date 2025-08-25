@@ -4,19 +4,19 @@ const ARRAY_SIZE = 9
 
 export function LoadingSkeleton() {
   return (
-    <Skeleton className="h-full w-full border [&_div:last-child]:border-0 [&_div]:border-b">
+    <div className="h-full w-full border [&_div:last-child]:border-0 [&_div]:border-b">
       <div className="flex h-[40.5px] gap-4 px-2 py-3">
-        <Skeleton className="h-full flex-4 rounded-md bg-gray-200" />
-        <Skeleton className="h-full flex-3 rounded-md bg-gray-200" />
-        <Skeleton className="h-full flex-1 rounded-md bg-gray-200" />
+        <Skeleton className="h-full flex-4 rounded-md" />
+        <Skeleton className="h-full flex-3 rounded-md" />
+        <Skeleton className="h-full flex-1 rounded-md" />
       </div>
       {[...new Array(ARRAY_SIZE)].map((_, index: number) => (
         <div className="flex h-[37.14px] gap-4 p-3" key={index}>
-          <Skeleton className="h-full flex-4 rounded-md bg-gray-200" />
-          <Skeleton className="h-full flex-3 rounded-md bg-gray-200" />
-          <Skeleton className="h-full flex-1 rounded-md bg-gray-200" />
+          <Skeleton className="h-full flex-4 rounded-md" />
+          <Skeleton className="h-full flex-3 rounded-md" />
+          <Skeleton className="h-full flex-1 rounded-md" />
         </div>
       ))}
-    </Skeleton>
+    </div>
   )
 }

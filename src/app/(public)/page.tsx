@@ -9,45 +9,9 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <main className="mx-auto flex max-w-7xl flex-col justify-center gap-2 space-y-14 p-4 py-10 sm:gap-12.5 lg:p-25">
-        <section className="space-y-8">
-          <h1 className="title-1 text-center">
-            Rede Internacional de Pesquisadores sobre Povos Originários e
-            Comunidades Tradicionais - RedeCT
-          </h1>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="rounded-lg bg-white p-6 shadow-lg transition-all hover:shadow-xl">
-              <h3 className="mb-2 font-semibold text-primary text-sm uppercase">
-                English
-              </h3>
-              <p className="text-gray-700">
-                International Network of Researchers on Original Peoples and
-                Traditional Communities
-              </p>
-            </div>
-            <div className="rounded-lg bg-white p-6 shadow-lg transition-all hover:shadow-xl">
-              <h3 className="mb-2 font-semibold text-primary text-sm uppercase">
-                Español
-              </h3>
-              <p className="text-gray-700">
-                Red Internacional de Investigadores sobre Pueblos Originarios y
-                Comunidades Tradicionales
-              </p>
-            </div>
-            <div className="rounded-lg bg-white p-6 shadow-lg transition-all hover:shadow-xl">
-              <h3 className="mb-2 font-semibold text-primary text-sm uppercase">
-                Français
-              </h3>
-              <p className="text-gray-700">
-                Réseau international de chercheurs sur les peuples autochtones
-                et les communautés traditionnelles
-              </p>
-            </div>
-          </div>
-        </section>
-
+      <main className="mx-auto flex max-w-7xl flex-col justify-center space-y-14 p-4 py-10 lg:p-25">
         <section className="space-y-14">
-          <h2 className="title-2 text-center">
+          <h2 className="text-center font-semibold text-3xl">
             Uma breve apresentação da RedeCT
           </h2>
           <div className="grid gap-8 md:grid-cols-2">
@@ -116,6 +80,7 @@ export default function Home() {
           <h2 className="title-2 text-center">
             Missão, valores, objetivos e grandes desafios da RedeCT 🎯
           </h2>
+
           <MissaoValoresTabs />
         </section>
 

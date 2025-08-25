@@ -33,7 +33,7 @@ export function WebinarCard({
   speakers,
 }: WebinarCardProps) {
   return (
-    <Card className="flex flex-col gap-2 overflow-hidden rounded-lg bg-white p-0 transition-all duration-200 hover:shadow-xl md:flex-row">
+    <Card className="flex flex-col gap-2 overflow-hidden rounded-lg bg-background p-0 transition-all duration-200 hover:shadow-xl md:flex-row">
       <picture className="relative flex h-67 items-stretch bg-gray-100 p-0 md:h-auto md:w-2/4">
         <Image
           alt={speakers[0].split(' - ')[0]}

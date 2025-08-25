@@ -16,19 +16,17 @@ export default async function NoticiaPage({
   return (
     <main className="mx-auto my-10 flex w-full max-w-5xl flex-col justify-center gap-7 p-5 py-8">
       <header className="space-y-8">
-        <h1 className="mt-2 text-pretty font-bold text-2xl text-gray-900 tracking-tight sm:text-4xl">
+        <h1 className="font-semibold text-2xl text-foreground tracking-tight sm:text-4xl">
           {news.title}
         </h1>
 
-        <div className="flex items-center justify-between">
-          <div className="space-y-2 text-sm">
+        <div className="flex flex-col justify-between gap-2 sm:flex-row">
+          <div className="space-y-2 text-background-foreground text-sm">
             <time className="flex items-center gap-x-1">
-              <div className="text-gray-500">
-                Última atualização em {formatDate(news.updated_at)}
-              </div>
+              Última atualização em {formatDate(news.updated_at)}
             </time>
 
-            <div className="text-gray-500">
+            <div>
               Por{' '}
               <span className="font-bold text-primary">
                 {news.author.first_name} {news.author.last_name}

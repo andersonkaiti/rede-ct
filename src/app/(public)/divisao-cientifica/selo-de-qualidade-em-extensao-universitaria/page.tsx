@@ -4,10 +4,12 @@ export default function SeloDeQualidadeEmExtensaoUniversitaria() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
       <header className="space-y-8">
-        <h1 className="title-2">Selo de Qualidade em Extensão Universitária</h1>
+        <h1 className="text-3xl">
+          Selo de Qualidade em Extensão Universitária
+        </h1>
       </header>
 
-      <div className="bg-white">
+      <div className="bg-background">
         <p className="text-justify text-lg text-muted-foreground">
           Nesta seção (AINDA EM PRODUÇÃO) a Vice-coordenadoria de Extensão
           Universitária e Cultura manterá um fluxo contínuo para a acolhida de

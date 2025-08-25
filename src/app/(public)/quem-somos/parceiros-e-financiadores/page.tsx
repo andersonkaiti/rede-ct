@@ -14,7 +14,9 @@ export default async function ParceirosEFinanciadores() {
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
             <Users className="!size-7" />
           </Badge>
-          <h1 className="title-2">PARCERIAS INSTITUCIONAIS E FINANCIAMENTOS</h1>
+          <h1 className="text-3xl text-semibold">
+            PARCERIAS INSTITUCIONAIS E FINANCIAMENTOS
+          </h1>
         </div>
         <p className="text-justify text-muted-foreground">
           Nesta seção, a RedeCT apresenta cada um de seus Parceiros
@@ -22,11 +24,13 @@ export default async function ParceirosEFinanciadores() {
           os resultados alcançados.
         </p>
       </section>
-      <section className="space-y-14">
+
+      <section className="grid w-full grid-cols-3 gap-2">
         {partnerships.map((partnership, index: number) => (
           <Partnership key={index} partnership={partnership} />
         ))}
       </section>
+
       <RedNavigationCard href="/contato">
         <div className="flex flex-col gap-4">
           <h2 className="title-3 flex items-center gap-2">

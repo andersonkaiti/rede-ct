@@ -29,7 +29,7 @@ export default function ComiteLegitimador() {
       <Suspense fallback={<LoadingSkeleton />}>
         <DynamicComiteLegitimador />
       </Suspense>
-      <Card className="border-0 bg-white shadow-lg">
+      <Card className="border-0 bg-background shadow-lg">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Badge className="rounded-full bg-primary/10 p-1 text-primary">

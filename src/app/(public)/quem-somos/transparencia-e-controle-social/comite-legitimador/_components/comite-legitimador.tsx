@@ -1,5 +1,7 @@
+export const dynamic = 'force-dynamic'
+
 import { UserCardWrapper } from '@components/ui/user-card'
-import { getLegitimatingCommittee } from '@http/legitimating-committee'
+import { getLegitimatingCommittee } from '@http/teams/legitimating-committee'
 import { UserCardComponent } from './user-card'
 
 export async function ComiteLegitimador() {

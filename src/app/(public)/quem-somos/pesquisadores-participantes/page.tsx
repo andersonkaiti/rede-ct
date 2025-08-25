@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function PesquisadoresParticipantes() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
+    <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <div className="flex items-center gap-4">
         <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
           <GraduationCap className="!size-7" />
@@ -122,15 +122,17 @@ export default function PesquisadoresParticipantes() {
           </li>
           <li className="flex items-start">
             <ListNumber>2</ListNumber>
-            Preencha o formulário de pedido de filiação pelo link 
-            <Link
-              className="text-primary hover:underline"
-              href="https://forms.gle/Mnwrmq3NCC2QmQcy5"
-              target="_blank"
-            >
-              https://forms.gle/Mnwrmq3NCC2QmQcy5
-            </Link>
-            ;
+            <span>
+              Preencha o formulário de pedido de filiação pelo link{' '}
+              <Link
+                className="break-all text-primary hover:underline"
+                href="https://forms.gle/Mnwrmq3NCC2QmQcy5"
+                target="_blank"
+              >
+                https://forms.gle/Mnwrmq3NCC2QmQcy5
+              </Link>
+              ;
+            </span>
           </li>
           <li className="flex items-start">
             <ListNumber>3</ListNumber>
@@ -146,10 +148,10 @@ export default function PesquisadoresParticipantes() {
           </li>
         </ol>
         <aside className="break-all rounded-md border border-yellow-200/40 bg-yellow-200/40 p-6">
-          <span className="font-bold text-black">⚠️ Atenção:</span> SUGERIMOS que
-          você faça primeiro o pagamento de sua inscrição no COLÓQUIO INTERN. DA
-          REDECT 2025 (VI Congresso Científico Internacional sobre Povos e
-          Comunidades Tradicionais) pelo link 
+          <span className="font-bold text-foreground">⚠️ Atenção:</span>
+           SUGERIMOS que você faça primeiro o pagamento de sua inscrição no
+          COLÓQUIO INTERN. DA REDECT 2025 (VI Congresso Científico Internacional
+          sobre Povos e Comunidades Tradicionais) pelo link 
           <Link
             className="text-primary hover:underline"
             href="https://www.even3.com.br/vi-congresso-internacional-sobre-povos-e-comunidades-tradicionais-536811/"

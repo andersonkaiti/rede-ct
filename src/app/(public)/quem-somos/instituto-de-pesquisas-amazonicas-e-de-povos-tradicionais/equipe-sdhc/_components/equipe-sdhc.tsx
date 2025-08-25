@@ -1,5 +1,7 @@
+export const dynamic = 'force-dynamic'
+
 import { UserCardWrapper } from '@components/ui/user-card'
-import { getSdhcTeam } from '@http/sdhc-team'
+import { getSdhcTeam } from '@http/teams/sdhc-team'
 import { UserCard } from './user-card'
 
 export async function EquipeSdhc() {

@@ -19,14 +19,14 @@ export default function InMemorian() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <BackArrow />
-      <h1 className="title-2 mx-auto flex items-center gap-2 text-center">
+      <h1 className="mx-auto flex items-center gap-2 text-center font-semibold text-3xl">
         <Badge className="rounded-full bg-primary/20 py-2 text-primary">
           <Heart className="!size-7 fill-primary" />
         </Badge>
         Galeria in memoriam
       </h1>
       <section className="space-y-8">
-        <h2 className="title-2 flex items-center gap-4">
+        <h2 className="flex items-center gap-4 font-semibold text-2xl">
           <Badge className="rounded-full bg-primary/20 p-1 text-primary">
             <GraduationCap className="!size-6" />
           </Badge>
@@ -44,7 +44,7 @@ export default function InMemorian() {
         </UserCardWrapper>
       </Suspense>
       <section className="space-y-8">
-        <h2 className="title-2 flex items-center gap-4">
+        <h2 className="flex items-center gap-4 font-semibold text-2xl">
           <Badge className="rounded-full bg-primary/20 p-1 text-primary">
             <Globe className="!size-6" />
           </Badge>

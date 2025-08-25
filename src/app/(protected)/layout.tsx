@@ -1,9 +1,10 @@
+import { AnimatedThemeToggler } from '@components/magicui/animated-theme-toggler'
+import { Button } from '@components/ui/button'
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from '@components/ui/sidebar'
-
 import { SidebarContainer } from './_components/sidebar/sidebar'
 
 export default function DashboardLayout({
@@ -17,7 +18,13 @@ export default function DashboardLayout({
 
       <SidebarInset>
         <div className="flex w-full flex-col">
-          <SidebarTrigger className="mt-4 ml-4 cursor-pointer" />
+          <div className="flex justify-between">
+            <SidebarTrigger className="mt-4 ml-4 cursor-pointer" />
+
+            <Button asChild className="m-4 size-8" variant="ghost">
+              <AnimatedThemeToggler />
+            </Button>
+          </div>
 
           {children}
         </div>

@@ -2,6 +2,7 @@ import './globals.css'
 
 import { ClerkProvider } from '@clerk/nextjs'
 import { QueryClientProvider } from '@providers/query-client'
+import { ThemeProvider } from '@providers/theme-provider'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { Toaster } from 'sonner'
@@ -29,10 +30,16 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <QueryClientProvider>
-        <html lang="pt-BR">
+        <html lang="pt-BR" suppressHydrationWarning>
           <body className={`${poppins.variable}`}>
-            {children}
-            <Toaster position="bottom-center" richColors theme="light" />
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="light"
+              disableTransitionOnChange
+            >
+              {children}
+              <Toaster position="bottom-center" richColors />
+            </ThemeProvider>
           </body>
         </html>
       </QueryClientProvider>

@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from '@components/ui/card'
 import { Separator } from '@components/ui/separator'
-import { Calendar, ExternalLink, User } from 'lucide-react'
+import { ExternalLink, User } from 'lucide-react'
 import Link from 'next/link'
 
 import type { IPortfolioData } from '../_constants/portfolio-data'
@@ -18,42 +18,52 @@ interface ICardProps {
 }
 
 export function CardComponent({ item }: ICardProps) {
-  return (
-    <Card className="gap-4 overflow-hidden rounded-lg bg-background shadow-md transition-shadow hover:shadow-lg">
-      <CardHeader>
-        <time className="flex items-center gap-2 text-muted-foreground">
-          <Calendar className="size-4" />
-          <span>{new Date(item.date).toLocaleDateString('pt-BR')}</span>
-        </time>
+  const formattedDate = new Date(item.date).toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  })
 
-        <CardTitle className="line-clamp-2 font-bold text-gray-900 text-xl">
+  return (
+    <Card className="flex flex-col gap-4 overflow-hidden rounded-xl border border-border bg-background shadow-md transition-shadow hover:shadow-lg">
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <time className="flex items-center gap-2 text-muted-foreground text-xs">
+            {formattedDate}
+          </time>
+        </div>
+        <CardTitle className="line-clamp-2 font-semibold text-foreground text-lg md:text-xl">
           {item.title}
         </CardTitle>
       </CardHeader>
 
       <CardContent>
-        <CardDescription className="line-clamp-3 text-justify text-muted-foreground text-sm">
+        <CardDescription className="line-clamp-4 text-justify text-muted-foreground text-sm md:text-base">
           {item.description}
         </CardDescription>
       </CardContent>
 
-      <CardFooter className="mt-auto flex flex-col items-start gap-2">
+      <CardFooter className="mt-auto flex w-full flex-col items-start gap-3">
         <Separator />
-
-        <div className="flex items-center gap-2 text-muted-foreground">
+        <div className="flex items-center gap-2 text-muted-foreground text-xs">
           <User className="size-4" />
-          <span className="text-xs">{item.author}</span>
+          <span>{item.author}</span>
         </div>
-
-        <Link
-          className="inline-flex w-full items-center font-medium text-gray-900 transition-colors hover:text-gray-700"
-          href={item.link}
+        <Button
+          asChild
+          className="group w-full font-semibold"
+          variant="outline"
         >
-          <Button className="group w-full">
-            Saiba mais{' '}
+          <Link
+            aria-label={`Saiba mais sobre ${item.title}`}
+            href={item.link}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Saiba mais
             <ExternalLink className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </CardFooter>
     </Card>
   )

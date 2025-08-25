@@ -9,6 +9,7 @@ import {
   PiggyBank,
   Search,
 } from 'lucide-react'
+import Link from 'next/link'
 
 export default function TransparenciaEControleSocial() {
   return (
@@ -30,7 +31,7 @@ export default function TransparenciaEControleSocial() {
         </p>
       </section>
       <section className="space-y-8">
-        <Card className="space-y-4 rounded-md p-8 text-justify">
+        <Card className="space-y-4 rounded-md bg-background p-8 text-justify">
           <h2 className="title-2">
             CONTROLE SOCIAL - Comitê Legitimador da RedeCT
           </h2>
@@ -63,7 +64,7 @@ export default function TransparenciaEControleSocial() {
           </p>
         </Card>
 
-        <Card className="space-y-4 rounded-md p-8 text-justify">
+        <Card className="space-y-4 rounded-md bg-background p-8 text-justify">
           <h2 className="title-3">
             O Comitê Legitimador tem como responsabilidades:
           </h2>
@@ -135,64 +136,71 @@ export default function TransparenciaEControleSocial() {
 
         <section>
           <NavigationCard href="/quem-somos/transparencia-e-controle-social/comite-legitimador">
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-4">
-                <div className="rounded-full bg-primary/20 p-2">
-                  <FileText className="text-primary" />
-                </div>
-                <h2 className="title-3 font-bold">Comitê Legitimador</h2>
-              </div>
-              <p>
-                Conheça os membros do Comitê Legitimador da RedeCT e suas
-                contribuições para o desenvolvimento de pesquisas sobre povos
-                tradicionais.
-              </p>
+            <div className="rounded-full bg-primary/20 p-2">
+              <FileText className="text-primary" />
             </div>
+            <h2 className="title-3 font-bold">Comitê Legitimador</h2>
           </NavigationCard>
         </section>
 
-        <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <div className="flex flex-col items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
-            <div className="flex items-center gap-4">
-              <div className="rounded-full bg-green-500/20 p-2">
-                <FileText className="text-green-500" />
+        <section className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <div className="flex flex-col items-center gap-5 rounded-xl bg-white p-7 text-justify shadow-lg transition-shadow hover:shadow-xl dark:bg-background">
+            <div className="flex w-full items-center gap-4">
+              <div className="rounded-full bg-green-500/20 p-3">
+                <FileText className="text-green-600" />
               </div>
-              <h3 className="font-bold text-xl">
-                Extrato detalhado de lançamentos financeiros
+              <h3 className="font-bold text-base md:text-lg">
+                Extrato detalhado
               </h3>
             </div>
-            <div className="flex cursor-pointer items-center gap-2 font-bold text-primary hover:underline">
+            <Link
+              aria-label="Acessar arquivo de extrato detalhado"
+              className="flex items-center gap-2 font-semibold text-primary transition-colors hover:underline focus:outline-none focus:ring-2 focus:ring-primary/50"
+              href="#"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <LinkIcon className="h-5 w-5" />
-              <p>LINK DE ACESSO AO ARQUIVO</p>
-            </div>
+              <span>Ver arquivo detalhado</span>
+            </Link>
           </div>
 
-          <div className="flex flex-col items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
-            <div className="flex items-center gap-4">
-              <div className="rounded-full bg-primary/20 p-2">
+          <div className="flex flex-col items-center gap-5 rounded-xl bg-white p-7 text-justify shadow-lg transition-shadow hover:shadow-xl dark:bg-background">
+            <div className="flex w-full items-center gap-4">
+              <div className="rounded-full bg-primary/20 p-3">
                 <Banknote className="text-primary" />
               </div>
-              <h3 className="font-bold text-xl">Saldo em conta corrente</h3>
+              <h3 className="font-bold text-base md:text-lg">Saldo em conta</h3>
             </div>
-            <div>
-              <p className="text-justify">
-                Saldo atual: R$21.788,57 (03/04/2025 - 7h53min)
+            <div className="w-full">
+              <p className="text-justify font-medium text-base text-gray-800 dark:text-gray-200">
+                <span className="font-semibold text-primary">Saldo atual:</span>{' '}
+                R$21.788,57
+                <span className="ml-2 text-gray-500 text-xs dark:text-gray-400">
+                  (03/04/2025 - 7h53min)
+                </span>
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-4 rounded-md p-6 text-justify shadow-[0_0_10px_rgba(0,0,0,0.1)]">
-            <div className="flex items-center gap-4">
-              <div className="rounded-full bg-primary/20 p-2">
+          <div className="flex flex-col items-center gap-5 rounded-xl bg-white p-7 text-justify shadow-lg transition-shadow hover:shadow-xl dark:bg-background">
+            <div className="flex w-full items-center gap-4">
+              <div className="rounded-full bg-primary/20 p-3">
                 <PiggyBank className="text-primary" />
               </div>
-              <h3 className="font-bold text-xl">Saldo total da RedeCT</h3>
+              <h3 className="font-bold text-base md:text-lg">Saldo total</h3>
             </div>
-            <div>
-              <p className="text-justify">
-                Saldo total: R$26.054,00 (conta corrente: R$21.788,57 + eventos:
-                R$4.131,00 + Even3: R$135,00). Atualizado em 03/04/2025
-                (7h53min).
+            <div className="w-full">
+              <p className="text-justify font-medium text-base text-gray-800 dark:text-gray-200">
+                <span className="font-semibold text-primary">Saldo total:</span>{' '}
+                R$26.054,00
+                <br />
+                <span className="text-gray-500 text-xs dark:text-gray-400">
+                  (conta corrente: R$21.788,57 + eventos: R$4.131,00 + Even3:
+                  R$135,00)
+                  <br />
+                  Atualizado em 03/04/2025 (7h53min)
+                </span>
               </p>
             </div>
           </div>

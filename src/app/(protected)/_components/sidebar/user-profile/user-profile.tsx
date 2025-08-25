@@ -14,7 +14,7 @@ export async function UserProfile() {
   const user = await currentUser()
 
   return (
-    <Menubar className="flex w-full border-none bg-transparent shadow-none">
+    <Menubar className="flex w-full border-none shadow-none">
       <MenubarMenu>
         <MenubarTrigger className="flex w-full cursor-pointer items-center justify-between gap-3 text-sm">
           <div className="flex items-center gap-2">
@@ -29,11 +29,11 @@ export async function UserProfile() {
           </div>
           <ChevronsUpDown className="ml-2 h-4 w-4" />
         </MenubarTrigger>
-        <MenubarContent align="end">
+        <MenubarContent align="end" className="bg-background">
           <MenubarItem>
             <SignOutButton>
-              <div className="group flex w-full cursor-pointer items-center gap-2">
-                <LogOut className="h-5 w-5 text-primary group-hover:text-red-600" />
+              <div className="group flex w-full cursor-pointer items-center gap-2 text-primary">
+                <LogOut className="size-5 text-primary" />
                 Deslogar
               </div>
             </SignOutButton>

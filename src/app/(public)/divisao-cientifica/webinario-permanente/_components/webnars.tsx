@@ -5,7 +5,7 @@ export async function Webinars() {
   const webinars = await getWebinars()
 
   return (
-    <div className="space-y-8">
+    <div className="grid grid-cols-1 gap-x-8 gap-y-20 sm:grid-cols-2">
       {webinars.map((webinar) => (
         <WebinarCard
           date={webinar.date}

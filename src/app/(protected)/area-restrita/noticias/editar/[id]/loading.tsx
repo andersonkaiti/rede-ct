@@ -25,7 +25,7 @@ export default function Loading() {
         </PageHeaderContent>
       </PageHeader>
 
-      <Skeleton>
+      <div>
         <PageForm>
           <PageFormContent>
             <PageFormContentField>
@@ -33,7 +33,7 @@ export default function Loading() {
                 Título <span className="text-primary">*</span>
               </Label>
 
-              <div className="h-9 w-full rounded-md" />
+              <Skeleton className="h-9 w-full rounded-md" />
             </PageFormContentField>
 
             <PageFormContentField>
@@ -41,14 +41,14 @@ export default function Loading() {
                 Imagem <span className="text-primary">*</span>
               </Label>
 
-              <div className="flex h-52 w-full items-center justify-center rounded-xl">
+              <Skeleton className="flex h-52 w-full items-center justify-center rounded-xl">
                 <div
                   aria-hidden="true"
-                  className="mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border"
+                  className="mb-2 flex size-11 items-center justify-center rounded-full"
                 >
                   <ImageUpIcon className="size-4 opacity-60" />
                 </div>
-              </div>
+              </Skeleton>
             </PageFormContentField>
 
             <PageFormContentField>
@@ -56,7 +56,7 @@ export default function Loading() {
                 Texto <span className="text-primary">*</span>
               </Label>
 
-              <div className="h-16 w-full rounded-md" />
+              <Skeleton className="h-16 w-full rounded-md" />
             </PageFormContentField>
           </PageFormContent>
 
@@ -64,7 +64,7 @@ export default function Loading() {
             Editar notícia
           </Button>
         </PageForm>
-      </Skeleton>
+      </div>
     </PageContainer>
   )
 }

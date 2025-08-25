@@ -10,10 +10,10 @@ export default function Loading() {
       <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: 6 }).map((_, index: number) => (
           <Card
-            className="flex h-fit w-full flex-col gap-4 rounded-md py-0 shadow-md"
+            className="flex h-fit w-full flex-col gap-4 rounded-md bg-background py-0 shadow-md"
             key={index}
           >
-            <Skeleton className="flex h-60 w-full items-center justify-center rounded-t-md">
+            <Skeleton className="flex h-60 w-full items-center justify-center rounded-t-md rounded-b-none">
               <ImageIcon className="text-background" />
             </Skeleton>
             <div className="flex w-full grow flex-col justify-between gap-4 p-4">

@@ -1,7 +1,9 @@
 import {
   PageActionsContainer,
   PageContainer,
+  PageDescription,
   PageHeader,
+  PageHeaderContent,
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
@@ -14,7 +16,10 @@ export default function EquipeSDHC() {
   return (
     <PageContainer>
       <PageHeader>
-        <PageTitle>Equipe SDHC</PageTitle>
+        <PageHeaderContent>
+          <PageTitle>Equipe SDHC</PageTitle>
+          <PageDescription>Gerencie a Equipe SDHC</PageDescription>
+        </PageHeaderContent>
       </PageHeader>
 
       <PageHeader>

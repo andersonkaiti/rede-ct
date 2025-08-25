@@ -34,7 +34,7 @@ export function NavigationBar() {
 
   return (
     <header
-      className="sticky top-0 z-50 flex h-16 items-center justify-between border-b border-b-gray-200/10 bg-background/95 p-4 shadow-md backdrop-blur-md"
+      className="sticky top-0 z-50 flex h-16 items-center justify-between border-b border-b-gray-200/10 bg-background/60 p-4 shadow-md backdrop-blur-md"
       ref={navigationBarRef}
     >
       <Menu
@@ -56,7 +56,7 @@ export function NavigationBar() {
 
       <nav
         className={cn(
-          'absolute 2lg:sticky top-16 left-0 flex 2lg:h-fit h-[calc(100vh-4rem)] 2lg:min-h-fit w-full 2lg:flex-row flex-col items-center 2lg:justify-end gap-2 2lg:overflow-visible overflow-y-auto 2lg:bg-transparent bg-background p-4 2lg:shadow-none transition-all ease-in-out',
+          'absolute 2lg:sticky top-16 left-0 flex 2lg:h-fit h-[calc(100vh-4rem)] 2lg:min-h-fit w-full 2lg:flex-row flex-col items-center 2lg:justify-end gap-2 2lg:overflow-visible overflow-y-auto 2lg:bg-transparent bg-background/95 p-4 2lg:shadow-none backdrop-blur-md transition-all ease-in-out',
           !showNavigationBar && '-left-full'
         )}
         onMouseLeave={() => setHovering(null)}
@@ -70,6 +70,7 @@ export function NavigationBar() {
             link={link}
             onMouseEnter={onMouseEnter}
             setActiveIndex={setActiveIndex}
+            setShowNavigationBar={setShowNavigationBar}
             showNavigationBar={showNavigationBar}
           />
         ))}
@@ -78,6 +79,7 @@ export function NavigationBar() {
           <Link
             className="group inline-flex h-9 2lg:w-fit w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 font-medium text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-red-200-foreground focus:bg-gray-400/25 focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:text-red-200-foreground data-[state=open]:focus:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25"
             href="/sign-in"
+            onClick={() => setShowNavigationBar(false)}
           >
             ENTRAR
           </Link>

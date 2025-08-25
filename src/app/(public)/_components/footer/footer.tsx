@@ -17,23 +17,21 @@ export function Footer() {
                   src="/images/favicon.png"
                 />
               </div>
-              <h3 className="font-semibold text-2xl">RedeCT</h3>
+              <h3 className="text-2xl">RedeCT</h3>
             </div>
-            <h1 className="text-sm">
+            <h1 className="text-muted-foreground text-sm">
               RedeCT - Rede Internacional de Pesquisadores sobre Povos
               Originários e Comunidades Tradicionais
             </h1>
           </div>
 
           <div>
-            <h2 className="mb-6 font-semibold text-lg uppercase">Navegação</h2>
+            <h2 className="mb-6 text-lg">Navegação</h2>
             <Links />
           </div>
 
           <div>
-            <h2 className="mb-6 font-semibold text-lg uppercase">
-              Redes Sociais
-            </h2>
+            <h2 className="mb-6 text-lg">Redes Sociais</h2>
             <SocialMedia />
           </div>
         </div>

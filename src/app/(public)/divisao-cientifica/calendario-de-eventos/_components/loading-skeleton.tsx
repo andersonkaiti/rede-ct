@@ -1,33 +1,43 @@
 import { Skeleton } from '@components/ui/skeleton'
+import { ImageIcon } from 'lucide-react'
+
+const ARRAY_SIZE = 6
 
 export function LoadingSkeleton() {
   return (
-    <div className="flex h-137.5 w-full flex-col gap-2 border shadow-sm md:h-73.5 md:flex-row">
-      <Skeleton className="h-64 w-full md:h-auto md:w-2/4 md:rounded-l-lg md:rounded-tr-none" />
-      <div className="w-full space-y-4.5 p-6 md:w-3/4">
-        <div className="space-y-7">
-          <div className="flex items-center gap-2">
-            <Skeleton className="size-7.5 rounded-md" />
-            <div className="space-y-1">
-              <Skeleton className="h-3.5 w-67.5 rounded-full" />
-              <Skeleton className="h-3.5 w-26 rounded-full" />
+    <div className="grid grid-cols-1 gap-x-8 gap-y-20 sm:grid-cols-2">
+      {[...new Array(ARRAY_SIZE)].map((_, index: number) => (
+        <div className="flex flex-col gap-2" key={index}>
+          <header className="h-80">
+            <div className="relative flex size-full">
+              <Skeleton className="absolute inset-0 flex size-full items-center justify-center rounded-md object-cover">
+                <ImageIcon className="text-muted-foreground" />
+              </Skeleton>
             </div>
-          </div>
-
-          <header className="space-y-2">
-            <Skeleton className="h-5 w-full rounded-full" />
-            <Skeleton className="h-5 w-3/4 rounded-full" />
-            <Skeleton className="h-5 w-1/3 rounded-full" />
           </header>
-        </div>
 
-        <div className="mt-6 space-y-2">
-          <Skeleton className="h-3 w-full rounded-full" />
-          <Skeleton className="h-3 w-1/3 rounded-full" />
-        </div>
+          <div className="flex h-fit flex-grow flex-col justify-between gap-4 py-2">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-sm leading-4">
+                <Skeleton className="h-4 w-48 rounded-full" />
+              </div>
+              <Skeleton className="h-8 w-2/3 rounded-md" />
+            </div>
 
-        <Skeleton className="h-9 w-full rounded-md" />
-      </div>
+            <div className="space-y-2">
+              <Skeleton className="h-5 w-20 rounded-full" />
+              <div className="flex items-center">
+                <Skeleton className="!size-4 mr-1.5 rounded-full" />
+                <Skeleton className="h-4 w-32 rounded-full" />
+              </div>
+            </div>
+
+            <footer>
+              <Skeleton className="h-9 w-full rounded-md" />
+            </footer>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

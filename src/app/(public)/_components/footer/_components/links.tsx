@@ -12,10 +12,9 @@ export default function Links() {
         {firstColumn.map(({ path, label }: NavigationLink, index: number) => (
           <li key={index}>
             <Link
-              className="group flex items-center text-sm transition-all duration-300 hover:text-primary"
+              className="text-muted-foreground text-sm transition-all duration-300 hover:text-foreground"
               href={path as string}
             >
-              <div className="mr-3 h-1 w-2 origin-left scale-x-50 rounded-full bg-primary transition-transform duration-200 group-hover:scale-x-100" />
               {label}
             </Link>
           </li>
@@ -25,10 +24,9 @@ export default function Links() {
         {secondColumn.map(({ path, label }: NavigationLink, index: number) => (
           <li key={index}>
             <Link
-              className="group flex items-center text-sm transition-all duration-300 hover:text-primary"
+              className="text-muted-foreground text-sm transition-all duration-300 hover:text-foreground"
               href={path as string}
             >
-              <div className="mr-3 h-1 w-2 origin-left scale-x-50 rounded-full bg-primary transition-transform duration-200 group-hover:scale-x-100" />
               {label}
             </Link>
           </li>

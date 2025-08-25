@@ -41,9 +41,7 @@ export default async function ApresentacaoEHistoria() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <section className="flex flex-col items-center justify-center text-white">
-        <h1 className="text-center text-3xl text-foreground">
-          História da RedeCT
-        </h1>
+        <h1 className="title-2 text-foreground">História da RedeCT</h1>
         <p className="w-fit font-light text-muted-foreground">
           desde 02/09/2002
         </p>
@@ -53,9 +51,9 @@ export default async function ApresentacaoEHistoria() {
         <h2 className="text-center font-semibold text-3xl">Sobre a RedeCT</h2>
 
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-          <Card className="shadow-xl">
+          <Card className="bg-background shadow-xl">
             <CardHeader className="flex items-center gap-2">
-              <Badge className="rounded-md bg-primary/10 p-1 text-primary">
+              <Badge className="rounded-full bg-primary/10 p-1 text-primary">
                 <Heart className="!size-7" />
               </Badge>
               <CardTitle className="font-semibold text-2xl">RedeCT</CardTitle>
@@ -75,9 +73,9 @@ export default async function ApresentacaoEHistoria() {
             </CardContent>
           </Card>
 
-          <Card className="shadow-xl">
+          <Card className="bg-background shadow-xl">
             <CardHeader className="flex items-center gap-2">
-              <Badge className="rounded-md bg-primary/10 p-1 text-primary">
+              <Badge className="rounded-full bg-primary/10 p-1 text-primary">
                 <Users className="!size-7" />
               </Badge>
               <CardTitle className="font-semibold text-2xl">
@@ -97,7 +95,7 @@ export default async function ApresentacaoEHistoria() {
         </div>
 
         <div className="flex items-center justify-center gap-4">
-          <Badge className="rounded-md bg-primary/10 p-1 text-primary">
+          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
             <Globe className="!size-7" />
           </Badge>
           <h2 className="font-semibold text-3xl">Presença internacional</h2>
@@ -117,7 +115,7 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="rounded-md bg-primary/10 p-1 text-primary">
+          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
             <Landmark className="!size-7" />
           </Badge>
           <h2 className="font-semibold text-3xl">História</h2>
@@ -148,7 +146,7 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="rounded-md bg-primary/10 p-1 text-primary">
+          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
             <BookOpen className="!size-7" />
           </Badge>
           <h2 className="font-semibold text-3xl">Publicações</h2>

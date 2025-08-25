@@ -14,10 +14,7 @@ export default function EixosTematicosPermanentes() {
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
             <BookOpen className="!size-7" />
           </Badge>
-          <h1 className="title-2">
-            Eixos Temáticos Permanentes (ETPs) e Grupos de Trabalho Científico
-            (GTCs)
-          </h1>
+          <h1 className="title-2">ETPs e GTCs</h1>
         </div>
         <p className="text-justify">
           Nesta seção você encontra informações sobre o que são os ETPs e as
@@ -27,7 +24,7 @@ export default function EixosTematicosPermanentes() {
       </section>
 
       <section className="flex flex-col gap-10 lg:flex-row">
-        <Card className="flex-1">
+        <Card className="flex-1 bg-background">
           <CardHeader>
             <h2 className="title-3 flex items-center gap-4">
               <Badge className="rounded-full bg-primary/20 p-1 text-primary">
@@ -68,7 +65,7 @@ export default function EixosTematicosPermanentes() {
           </CardContent>
         </Card>
 
-        <Card className="flex-1">
+        <Card className="flex-1 bg-background">
           <CardHeader>
             <h2 className="title-3 flex items-center gap-4">
               <Badge className="rounded-full bg-primary/20 p-1 text-primary">

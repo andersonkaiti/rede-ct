@@ -147,7 +147,7 @@ export default function PesquisadoresParticipantes() {
             <span className="text-primary">filiados@redect.org</span>.
           </li>
         </ol>
-        <aside className="break-all rounded-md border border-yellow-200/40 bg-yellow-200/40 p-6">
+        <aside className="break-all rounded-md border border-primary/20 bg-primary/10 p-6">
           <span className="font-bold text-foreground">⚠️ Atenção:</span>
            SUGERIMOS que você faça primeiro o pagamento de sua inscrição no
           COLÓQUIO INTERN. DA REDECT 2025 (VI Congresso Científico Internacional

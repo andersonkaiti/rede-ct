@@ -4,7 +4,7 @@ import { Check } from 'lucide-react'
 
 export function Composition() {
   return (
-    <Card>
+    <Card className="bg-background">
       <CardHeader>
         <h2 className="title-3 flex items-center gap-2">
           <div className="mr-2 rounded-full bg-primary/20 p-2">

@@ -13,8 +13,8 @@ import Link from 'next/link'
 export default function Congressos() {
   return (
     <section className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-25">
-      <header className="space-y-7 text-center">
-        <h1 className="font-bold text-5xl">Congressos da RedeCT</h1>
+      <header className="space-y-7">
+        <h1 className="title-2">Congressos da RedeCT</h1>
         <p className="text-muted-foreground">
           Explore nossos eventos científicos internacionais e regionais.
           Conecte-se com pesquisadores, compartilhe conhecimento e contribua
@@ -45,7 +45,7 @@ export default function Congressos() {
               className="w-full"
               href="/divisao-cientifica/congressos/cientifico-internacional"
             >
-              <Button className="group w-full bg-foreground font-semibold text-indigo-500 hover:bg-foreground hover:text-indigo-500">
+              <Button className="group w-full bg-white font-semibold text-indigo-500 hover:bg-white hover:text-indigo-500">
                 Ver mais
                 <ArrowRight className="!size-4 transition-all duration-300 group-hover:translate-x-1" />
               </Button>
@@ -74,7 +74,7 @@ export default function Congressos() {
               className="w-full"
               href="/divisao-cientifica/congressos/regional"
             >
-              <Button className="group w-full bg-foreground font-semibold text-primary hover:bg-foreground hover:text-primary">
+              <Button className="group w-full bg-white font-semibold text-primary hover:bg-white hover:text-primary">
                 Ver mais
                 <ArrowRight className="!size-4 transition-all duration-300 group-hover:translate-x-1" />
               </Button>

@@ -28,12 +28,9 @@ export default function ColetaneaRedeCT() {
   return (
     <div className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
       <header className="space-y-8">
-        <h1 className="title-2">
-          Livro Coletânea de Capítulos da{' '}
-          <span className="text-primary">RedeCT</span>
-        </h1>
+        <h1 className="title-2">Livro Coletânea de Capítulos da RedeCT</h1>
 
-        <p className="text-lg text-muted-foreground">
+        <p className="text-muted-foreground">
           Série internacional sobre Povos Originários e Comunidades
           Tradicionais. Conheça os volumes publicados, critérios de qualidade e
           participe da chamada para o volume 14 (2025).
@@ -124,15 +121,15 @@ export default function ColetaneaRedeCT() {
             </Link>
             .
           </p>
-          <Link
-            href="https://onedrive.live.com/embed?cid=6afd3e4c750a5cf9&id=6AFD3E4C750A5CF9!s6451fa92e2c3450f879aa5dbc391cdda&resid=6AFD3E4C750A5CF9!s6451fa92e2c3450f879aa5dbc391cdda&ithint=file,pdf&embed=1&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL2IvYy82YWZkM2U0Yzc1MGE1Y2Y5L0lRU1MtbEZrdy1JUFJZZWFwZHZEa2MzYUFlS2h1Tld4c0ZGRURJbjdKTnlrOHVj"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <Button className="bg-background p-6 text-foreground hover:bg-background/90">
+          <Button variant="secondary">
+            <Link
+              href="https://onedrive.live.com/embed?cid=6afd3e4c750a5cf9&id=6AFD3E4C750A5CF9!s6451fa92e2c3450f879aa5dbc391cdda&resid=6AFD3E4C750A5CF9!s6451fa92e2c3450f879aa5dbc391cdda&ithint=file,pdf&embed=1&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL2IvYy82YWZkM2U0Yzc1MGE1Y2Y5L0lRU1MtbEZrdy1JUFJZZWFwZHZEa2MzYUFlS2h1Tld4c0ZGRURJbjdKTnlrOHVj"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               Acessar Edital do Volume 14 (2025)
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </section>
 
         <section className="space-y-8">

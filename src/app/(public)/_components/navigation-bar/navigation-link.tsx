@@ -13,6 +13,7 @@ interface INavLinkProps {
   showNavigationBar: boolean
   activeIndex: number | null
   setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>
+  setShowNavigationBar: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export function NavigationLink({
@@ -23,6 +24,7 @@ export function NavigationLink({
   showNavigationBar,
   activeIndex,
   setActiveIndex,
+  setShowNavigationBar,
 }: INavLinkProps) {
   const hasChildren = children && children?.length > 0
 
@@ -52,7 +54,13 @@ export function NavigationLink({
         className="group inline-flex h-9 w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 font-medium text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-red-200-foreground focus:bg-gray-400/25 focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:text-red-200-foreground data-[state=open]:focus:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25"
         data-state={isHovered || isActived ? 'open' : 'closed'}
         href={path || '#'}
-        onClick={handleMouseClick}
+        onClick={() => {
+          handleMouseClick()
+
+          if (!hasChildren) {
+            setShowNavigationBar(false)
+          }
+        }}
         onMouseEnter={handleMouseEnter}
       >
         {label.toUpperCase()}
@@ -84,6 +92,7 @@ export function NavigationLink({
                 className="mt-2 flex w-full items-center gap-2 2lg:rounded-full rounded-md p-2 text-center text-sm hover:bg-gray-400/25"
                 href={childPath || '#'}
                 key={childIndex}
+                onClick={() => setShowNavigationBar(false)}
               >
                 <NavigationBarIcon icon={childIcon} />
                 {childLabel}

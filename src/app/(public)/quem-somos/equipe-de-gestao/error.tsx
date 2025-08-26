@@ -15,11 +15,11 @@ export default function ErrorMessage({ error }: IError) {
             <AlertTriangle className="h-12 w-12 animate-pulse text-destructive" />
           </span>
           <h2 className="font-semibold text-2xl text-destructive drop-shadow">
-            Ocorreu um erro ao buscar as informações protegidas
+            Ocorreu um erro ao buscar a Equipe de Gestão
           </h2>
           <p className="font-light text-destructive-foreground text-lg">
-            Não foi possível carregar as informações protegidas no momento. Por
-            favor, tente novamente mais tarde.
+            Não foi possível carregar as informações da equipe de gestão no
+            momento. Por favor, tente novamente mais tarde.
           </p>
 
           <details className="mx-auto w-full max-w-md rounded border border-destructive/30 bg-destructive/5 p-3 text-left text-destructive-foreground text-sm">

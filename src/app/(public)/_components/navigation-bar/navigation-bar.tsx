@@ -56,7 +56,7 @@ export function NavigationBar() {
 
       <nav
         className={cn(
-          'absolute 2lg:sticky top-16 left-0 flex 2lg:h-fit h-[calc(100vh-4rem)] 2lg:min-h-fit w-full 2lg:flex-row flex-col items-center 2lg:justify-end gap-2 2lg:overflow-visible overflow-y-auto 2lg:bg-transparent bg-background/95 p-4 2lg:shadow-none backdrop-blur-md transition-all ease-in-out',
+          'absolute 2lg:sticky top-16 left-0 flex 2lg:h-fit h-[calc(100vh-4rem)] 2lg:min-h-fit w-full 2lg:flex-row flex-col items-center 2lg:justify-end gap-2 2lg:overflow-visible overflow-y-auto 2lg:bg-transparent bg-background/95 p-4 2lg:shadow-none 2lg:backdrop-blur-none backdrop-blur-md transition-all ease-in-out',
           !showNavigationBar && '-left-full'
         )}
         onMouseLeave={() => setHovering(null)}

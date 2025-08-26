@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic'
 
 import { UserCardWrapper } from '@components/ui/user-card'
 import { getSdhcTeam } from '@http/teams/sdhc-team'
-import { UserCard } from './user-card'
+import { UserCardComponent } from './user-card'
 
 export async function EquipeSdhc() {
   const sdhcTeam = await getSdhcTeam()
@@ -10,7 +10,7 @@ export async function EquipeSdhc() {
   return (
     <UserCardWrapper>
       {sdhcTeam[0].team_members.map((member, index: number) => (
-        <UserCard key={index} member={member} />
+        <UserCardComponent key={index} member={member} />
       ))}
     </UserCardWrapper>
   )

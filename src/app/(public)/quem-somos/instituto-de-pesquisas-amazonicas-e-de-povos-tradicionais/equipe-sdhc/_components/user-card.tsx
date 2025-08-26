@@ -1,12 +1,9 @@
-import {
-  UserCard as UserCardComponent,
-  UserCardImage,
-} from '@components/ui/user-card'
+import { UserCard, UserCardImage } from '@components/ui/user-card'
 import type { ITeamMember } from 'types/team'
 
-export function UserCard({ member }: { member: ITeamMember }) {
+export function UserCardComponent({ member }: { member: ITeamMember }) {
   return (
-    <UserCardComponent>
+    <UserCard>
       <UserCardImage
         alt={`${member.user?.first_name} ${member.user?.last_name || ''}`}
         src={member.user?.image_url as string}
@@ -17,6 +14,6 @@ export function UserCard({ member }: { member: ITeamMember }) {
         </h1>
         <h2 className="text-center font-bold">{member.role}</h2>
       </div>
-    </UserCardComponent>
+    </UserCard>
   )
 }

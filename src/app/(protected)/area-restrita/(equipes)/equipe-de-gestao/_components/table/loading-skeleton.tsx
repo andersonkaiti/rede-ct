@@ -1,10 +1,10 @@
 import { Skeleton } from '@components/ui/skeleton'
 
-const ARRAY_SIZE = 9
+const ARRAY_SIZE = 8
 
 export function LoadingSkeleton() {
   return (
-    <div className="h-full w-full border [&_div:last-child]:border-0 [&_div]:border-b">
+    <div className="h-full w-full rounded-md border [&_div:last-child]:border-0 [&_div]:border-b">
       <div className="flex h-[40.5px] gap-4 px-2 py-3">
         <Skeleton className="h-full flex-4 rounded-md" />
         <Skeleton className="h-full flex-3 rounded-md" />

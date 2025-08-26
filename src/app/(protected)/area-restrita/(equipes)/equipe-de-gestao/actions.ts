@@ -75,7 +75,6 @@ export async function registerManagementTeam(
 
 interface IUpdatedManagementTeam {
   members: ITeamMember[]
-  removedUsers: ITeamMember['id'][]
   id: string
 }
 
@@ -96,12 +95,6 @@ export async function updateManagementTeam(
         errors: error?.flatten().fieldErrors,
         payload: formData,
       }
-    }
-
-    if (team.removedUsers.length > 0) {
-      await api.delete('/team/members', {
-        ids: team.removedUsers,
-      })
     }
 
     await api.put(`/team/${team.id}`, data)

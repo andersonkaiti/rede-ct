@@ -7,11 +7,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@components/ui/card'
-import { RedLine } from '@components/ui/red-line'
+import { UserCardRedLine } from '@components/ui/user-card'
 import { InfoIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
-
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicComiteLegitimador = dynamic(() =>
@@ -22,13 +21,18 @@ export default function ComiteLegitimador() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-7 p-5 py-8 lg:p-25">
       <BackArrow />
-      <h2 className="text-center font-bold text-3xl md:text-4xl">
-        Composição do Comitê Legitimador da RedeCT
-      </h2>
-      <RedLine />
+
+      <div className="space-y-8">
+        <h2 className="text-center font-bold text-3xl md:text-4xl">
+          Composição do Comitê Legitimador da RedeCT
+        </h2>
+        <UserCardRedLine />
+      </div>
+
       <Suspense fallback={<LoadingSkeleton />}>
         <DynamicComiteLegitimador />
       </Suspense>
+
       <Card className="border-0 bg-background shadow-lg">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -57,7 +61,7 @@ export default function ComiteLegitimador() {
               vice-coordenador que tem voto de minerva em caso de caso de
               empate).
             </p>
-            <aside className="w-fit rounded-md border-amber-500 border-l-4 bg-amber-200/50 px-4 py-2 text-justify text-amber-800">
+            <aside className="w-fit rounded-md border-primary border-l-4 bg-primary/20 px-4 py-2 text-justify text-primary">
               <div className="text-sm">
                 O Secretário Geral tem direito à palavra, mas não tem direito ao
                 voto.

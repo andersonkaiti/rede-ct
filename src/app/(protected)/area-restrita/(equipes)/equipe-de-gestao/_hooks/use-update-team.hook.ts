@@ -18,8 +18,6 @@ export function useUpdateTeam() {
   const [selectedMember, setSelectedMember] = useState<ITeamMember | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const [removedMembers, setRemovedMembers] = useState<ITeamMember['id'][]>([])
-
   function handleIncludeTeamMember() {
     if (!(selectedMember && inputRef.current && team)) {
       return
@@ -46,10 +44,6 @@ export function useUpdateTeam() {
 
     setTeam((prevTeam) => [...prevTeam, newMember])
 
-    setRemovedMembers((members) =>
-      members.filter((memberId) => memberId !== newMember.id)
-    )
-
     toast.success('Membro adicionado com sucesso!')
   }
 
@@ -59,8 +53,6 @@ export function useUpdateTeam() {
         (teamMember: ITeamMember) => teamMember.user?.id !== member.user?.id
       )
     )
-
-    setRemovedMembers((members) => [...members, member.id])
 
     toast.success('Usuário removido com sucesso!')
   }
@@ -77,7 +69,6 @@ export function useUpdateTeam() {
   >(
     updateManagementTeam.bind(null, {
       members: team,
-      removedUsers: removedMembers,
       id: data?.id || '',
     }),
     {} as IActionState

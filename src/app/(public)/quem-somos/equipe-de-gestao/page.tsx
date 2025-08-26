@@ -1,12 +1,12 @@
-import { UserCardWrapper } from '@components/ui/user-card'
-import { getTeams } from '@http/teams/get-teams'
-import type { ITeam } from 'types/team'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+import LoadingSkeleton from './_components/loading-skeleton'
 
-import { UserCardComponent } from './_components/user-card'
+const ManagementTeamsDynamic = dynamic(() =>
+  import('./_components/management-teams').then((m) => m.ManagementTeams)
+)
 
-export default async function EquipeDeGestao() {
-  const teamsSections = await getTeams<ITeam[]>('equipe-de-gestao')
-
+export default function EquipeDeGestao() {
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <header className="mb-8 space-y-8">
@@ -18,22 +18,9 @@ export default async function EquipeDeGestao() {
         </p>
       </header>
 
-      {teamsSections.map((teamSection, index: number) => (
-        <section className="space-y-4 md:space-y-8" key={index}>
-          <div className="relative flex w-full items-center justify-center">
-            <div className="absolute right-1/4 left-1/4 h-[1px] bg-gradient-to-r from-transparent via-primary/80 to-transparent" />
-            <h2 className="title-2 relative z-10 bg-background px-4 text-center">
-              {teamSection.name}
-            </h2>
-          </div>
-
-          <UserCardWrapper>
-            {teamSection.team_members.map((member, memberIndex: number) => (
-              <UserCardComponent key={memberIndex} member={member} />
-            ))}
-          </UserCardWrapper>
-        </section>
-      ))}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <ManagementTeamsDynamic />
+      </Suspense>
     </main>
   )
 }

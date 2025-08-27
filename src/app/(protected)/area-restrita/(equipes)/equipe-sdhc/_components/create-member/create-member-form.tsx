@@ -1,6 +1,7 @@
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
 import {
+  DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
@@ -91,6 +92,9 @@ export function CreateMemberForm({
           </PageFormContent>
 
           <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="ghost">Cancelar</Button>
+            </DialogClose>
             <Button disabled={isLoading} type="submit">
               {isLoading && <Loader2 className="size-4 animate-spin" />}
 

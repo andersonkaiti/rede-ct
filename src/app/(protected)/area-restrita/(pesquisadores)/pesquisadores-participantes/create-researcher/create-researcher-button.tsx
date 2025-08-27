@@ -15,7 +15,7 @@ export function CreateResearcherButton() {
       <DialogTrigger asChild>
         <Button variant="outline">
           <Plus />
-          Cadastrar pesquisador participante
+          Cadastrar pesquisador
         </Button>
       </DialogTrigger>
       <CreateResearcherForm setIsOpen={setIsOpen} />

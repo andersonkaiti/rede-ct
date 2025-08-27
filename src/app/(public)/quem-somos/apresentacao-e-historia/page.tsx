@@ -1,6 +1,6 @@
 import { Badge } from '@components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@components/ui/card'
-import { RedNavigationCard } from '@components/ui/red-navigation-card'
+import { NavigationCard } from '@components/ui/navigation-card'
 import {
   Timeline,
   TimelineContent,
@@ -51,7 +51,7 @@ export default async function ApresentacaoEHistoria() {
         <h2 className="text-center font-semibold text-3xl">Sobre a RedeCT</h2>
 
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-          <Card className="bg-background shadow-xl">
+          <Card className="shadow-xl">
             <CardHeader className="flex items-center gap-2">
               <Badge className="rounded-full bg-primary/10 p-1 text-primary">
                 <Heart className="!size-7" />
@@ -73,7 +73,7 @@ export default async function ApresentacaoEHistoria() {
             </CardContent>
           </Card>
 
-          <Card className="bg-background shadow-xl">
+          <Card className="shadow-xl">
             <CardHeader className="flex items-center gap-2">
               <Badge className="rounded-full bg-primary/10 p-1 text-primary">
                 <Users className="!size-7" />
@@ -191,12 +191,15 @@ export default async function ApresentacaoEHistoria() {
         </div>
       </section>
 
-      <RedNavigationCard href="/quem-somos/apresentacao-e-historia/filiacao">
+      <NavigationCard
+        href="/quem-somos/apresentacao-e-historia/filiacao"
+        variant="red"
+      >
         <h2 className="title-3 flex items-center gap-2">
           <Users />
           Como se filiar à RedeCT?
         </h2>
-      </RedNavigationCard>
+      </NavigationCard>
     </main>
   )
 }

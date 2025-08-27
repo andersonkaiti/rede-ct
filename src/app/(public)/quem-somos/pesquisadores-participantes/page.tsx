@@ -23,6 +23,7 @@ export default function PesquisadoresParticipantes() {
           modo de ingresso, conforme cláusulas específicas constantes do
           Regimento Interno da Rede:
         </p>
+
         <div className="space-y-6 rounded-md bg-gradient-to-br from-primary to-red-700 p-6 text-white md:p-10">
           <h2 className="title-3 flex items-center gap-2 font-bold">
             <GraduationCap /> Tipos de pesquisadores
@@ -147,7 +148,8 @@ export default function PesquisadoresParticipantes() {
             <span className="text-primary">filiados@redect.org</span>.
           </li>
         </ol>
-        <aside className="break-all rounded-md border border-primary/20 bg-primary/10 p-6">
+
+        <aside className="break-all rounded-md border border-primary/20 bg-primary/20 p-6">
           <span className="font-bold text-foreground">⚠️ Atenção:</span>
            SUGERIMOS que você faça primeiro o pagamento de sua inscrição no
           COLÓQUIO INTERN. DA REDECT 2025 (VI Congresso Científico Internacional

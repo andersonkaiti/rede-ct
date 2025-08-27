@@ -1,5 +1,6 @@
 import { Button } from '@components/ui/button'
 import {
+  DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
@@ -82,7 +83,10 @@ export function CreateResearcherForm({
           </PageFormContent>
 
           <DialogFooter>
-            <Button type="submit">Cadastrar pesquisador participante</Button>
+            <DialogClose asChild>
+              <Button variant="ghost">Cancelar</Button>
+            </DialogClose>
+            <Button type="submit">Cadastrar pesquisador</Button>
           </DialogFooter>
         </PageForm>
       </DialogContent>

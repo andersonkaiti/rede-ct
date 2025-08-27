@@ -24,7 +24,7 @@ export default function EixosTematicosPermanentes() {
       </section>
 
       <section className="flex flex-col gap-10 lg:flex-row">
-        <Card className="flex-1 bg-background">
+        <Card className="flex-1">
           <CardHeader>
             <h2 className="title-3 flex items-center gap-4">
               <Badge className="rounded-full bg-primary/20 p-1 text-primary">
@@ -65,7 +65,7 @@ export default function EixosTematicosPermanentes() {
           </CardContent>
         </Card>
 
-        <Card className="flex-1 bg-background">
+        <Card className="flex-1">
           <CardHeader>
             <h2 className="title-3 flex items-center gap-4">
               <Badge className="rounded-full bg-primary/20 p-1 text-primary">

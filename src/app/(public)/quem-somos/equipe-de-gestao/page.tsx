@@ -1,8 +1,10 @@
-import dynamic from 'next/dynamic'
+export const dynamic = 'force-dynamic'
+
+import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'
 import LoadingSkeleton from './_components/loading-skeleton'
 
-const ManagementTeamsDynamic = dynamic(() =>
+const ManagementTeamsDynamic = dynamicImport(() =>
   import('./_components/management-teams').then((m) => m.ManagementTeams)
 )
 

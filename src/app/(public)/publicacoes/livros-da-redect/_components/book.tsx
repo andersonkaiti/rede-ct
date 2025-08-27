@@ -17,7 +17,7 @@ export function Book({
   book: { volume, year, preface, prefaceText, publisher, link },
 }: IBookProps) {
   return (
-    <Card className="rounded-lg bg-background p-6 shadow-sm transition hover:shadow-md">
+    <Card className="rounded-lg p-6 shadow-sm transition hover:shadow-md">
       <CardHeader className="p-0">
         <CardTitle className="font-bold text-foreground text-xl">
           Volume {volume} ({year})
@@ -31,9 +31,11 @@ export function Book({
         <p className="text-foreground italic">{publisher}</p>
       </CardContent>
       <CardFooter className="p-0">
-        <Link className="w-full" href={link} target="_blank">
-          <Button className="w-full font-bold">Acessar volume completo</Button>
-        </Link>
+        <Button asChild className="w-full font-bold" variant="outline">
+          <Link href={link} target="_blank">
+            Acessar volume completo
+          </Link>
+        </Button>
       </CardFooter>
     </Card>
   )

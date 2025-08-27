@@ -28,7 +28,7 @@ export default function InstitutoDePesquisasAmazonicas() {
         <h2 className="title-3">
           Dados principais do Instituto (OSCIP RedeCT)
         </h2>
-        <Card className="grid grid-cols-1 gap-8 rounded-xl bg-background p-7 text-center shadow-lg lg:grid-cols-3 lg:p-14">
+        <Card className="grid grid-cols-1 gap-8 rounded-xl p-7 text-center shadow-lg lg:grid-cols-3 lg:p-14">
           <div className="space-y-2">
             <h3 className="text-foreground">Razão Social</h3>
             <h3 className="title-3">

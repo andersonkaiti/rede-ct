@@ -25,7 +25,7 @@ export function CardComponent({ item }: ICardProps) {
   })
 
   return (
-    <Card className="flex flex-col gap-4 overflow-hidden rounded-xl border border-border bg-background shadow-md transition-shadow hover:shadow-lg">
+    <Card className="flex flex-col gap-4 overflow-hidden rounded-xl border border-border shadow-md transition-shadow hover:shadow-lg">
       <CardHeader>
         <div className="flex items-center justify-between">
           <time className="flex items-center gap-2 text-muted-foreground text-xs">

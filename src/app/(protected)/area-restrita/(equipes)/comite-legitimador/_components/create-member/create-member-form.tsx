@@ -93,7 +93,7 @@ export function CreateMemberForm({
 
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancelar</Button>
+              <Button variant="ghost">Cancelar</Button>
             </DialogClose>
             <Button disabled={isLoading} type="submit">
               {isLoading && <Loader2 className="size-4 animate-spin" />}

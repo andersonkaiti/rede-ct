@@ -9,7 +9,7 @@ export default function Filiacao() {
       <BackArrow />
       <section className="space-y-14">
         <div className="flex items-center justify-center gap-4">
-          <Badge className="bg-primary/10 p-1 text-primary">
+          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
             <FileText className="!size-10 text-primary" />
           </Badge>
           <h1 className="text-center font-bold text-3xl">
@@ -20,7 +20,7 @@ export default function Filiacao() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 p-1 text-primary">
+          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
             <Building2 className="!size-7 text-primary" />
           </Badge>
           <h2 className="font-semibold text-2xl">A RedeCT atual</h2>
@@ -33,23 +33,46 @@ export default function Filiacao() {
             – Estado do Tocantins – Brasil.
           </p>
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="flex items-center gap-4">
-              <Users className="h-5 w-5 text-primary" />
-              <p>Presidente voluntária da OSCIP: Joicileia Juliate Fonseca</p>
+            <div className="flex items-center gap-4 rounded-lg bg-primary/5 p-4">
+              <Users className="h-6 w-6 text-primary" />
+              <div>
+                <p className="font-semibold">Presidente voluntária da OSCIP</p>
+                <span className="text-muted-foreground">
+                  Joicileia Juliate Fonseca
+                </span>
+              </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Users className="h-5 w-5 text-primary" />
-              <p>
-                Coordenador voluntário da RedeCT: Prof. Dr. Nelson Russo de
-                Moraes
-              </p>
+            <div className="flex items-center gap-4 rounded-lg bg-primary/5 p-4">
+              <Users className="h-6 w-6 text-primary" />
+              <div>
+                <p className="font-semibold">
+                  Coordenador voluntário da RedeCT
+                </p>
+                <span className="text-muted-foreground">
+                  Prof. Dr. Nelson Russo de Moraes
+                </span>
+              </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Mail className="h-5 w-5 text-primary" />
-              <p>
-                E-mails de contato: redect.pesquisa@gmail.com e
-                contato@redect.org
-              </p>
+            <div className="flex items-center gap-4 rounded-lg bg-primary/5 p-4 md:col-span-2">
+              <Mail className="h-6 w-6 text-primary" />
+              <div>
+                <p className="font-semibold">E-mails de contato</p>
+                <span className="block text-muted-foreground">
+                  <a
+                    className="underline transition-colors hover:text-primary"
+                    href="mailto:redect.pesquisa@gmail.com"
+                  >
+                    redect.pesquisa@gmail.com
+                  </a>{' '}
+                  |{' '}
+                  <a
+                    className="underline transition-colors hover:text-primary"
+                    href="mailto:contato@redect.org"
+                  >
+                    contato@redect.org
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -57,7 +80,7 @@ export default function Filiacao() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 p-1 text-primary">
+          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
             <FileText className="!size-7 text-primary" />
           </Badge>
           <h2 className="font-semibold text-2xl">Processo de Filiação</h2>
@@ -107,7 +130,7 @@ export default function Filiacao() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="bg-primary/10 p-1 text-primary">
+          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
             <Users className="!size-7 text-primary" />
           </Badge>
           <h2 className="font-semibold text-2xl">

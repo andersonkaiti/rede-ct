@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 import { UserCardRedLine, UserCardWrapper } from '@components/ui/user-card'
 import { getTeams } from '@http/teams/get-teams'
 import type { ITeam } from 'types/team'

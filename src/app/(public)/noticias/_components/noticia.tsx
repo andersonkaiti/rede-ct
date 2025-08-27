@@ -25,7 +25,7 @@ export function Noticia({
   news: INews
 }) {
   return (
-    <Card className="hover:-translate-y-1 flex w-full flex-col items-start justify-between gap-0 rounded-md bg-background p-0 shadow-md transition-all duration-300 hover:shadow-xl">
+    <Card className="hover:-translate-y-1 flex w-full flex-col items-start justify-between gap-0 rounded-md p-0 shadow-md transition-all duration-300 hover:shadow-xl">
       <picture className="relative h-60 w-full overflow-hidden rounded-t-md">
         <Image
           alt={`Foto de ${first_name} ${last_name}`}
@@ -33,7 +33,7 @@ export function Noticia({
           fill
           src={image_url ?? ''}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
       </picture>
 
       <CardContent className="flex w-full grow flex-col justify-between gap-4 p-6">

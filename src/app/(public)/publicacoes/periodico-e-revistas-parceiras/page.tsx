@@ -28,7 +28,7 @@ export default function PeriodicoERevistasParceiras() {
           </Badge>
           <h2 className="title-3">Uma breve explicação</h2>
         </div>
-        <p className="rounded-md border border-primary/20 bg-primary/10 p-10 text-justify text-muted-foreground">
+        <p className="rounded-md border border-primary/20 bg-primary/20 p-10 text-justify text-muted-foreground">
           Este é um projeto audacioso e complexo, exigindo planejamento técnico,
           editorial e político. Enquanto o periódico não está pronto,
           fortalecemos nossa presença científica através de{' '}

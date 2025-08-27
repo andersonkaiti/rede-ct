@@ -1,7 +1,6 @@
 import { Badge } from '@components/ui/badge'
-import { RedNavigationCard } from '@components/ui/red-navigation-card'
 import { getPartnerships } from '@mocks/partnerships'
-import { Handshake, Users } from 'lucide-react'
+import { Users } from 'lucide-react'
 import { Partnership } from './_components/partnetship'
 
 export default async function ParceirosEFinanciadores() {
@@ -29,7 +28,7 @@ export default async function ParceirosEFinanciadores() {
         ))}
       </section>
 
-      <RedNavigationCard href="/contato">
+      {/* <NavigationCard href="/contato" variant="red">
         <div className="flex flex-col gap-4">
           <h2 className="title-3 flex items-center gap-2">
             <Handshake />
@@ -40,7 +39,7 @@ export default async function ParceirosEFinanciadores() {
             colaborar para o sucesso da RedeCT.
           </p>
         </div>
-      </RedNavigationCard>
+      </NavigationCard> */}
     </main>
   )
 }

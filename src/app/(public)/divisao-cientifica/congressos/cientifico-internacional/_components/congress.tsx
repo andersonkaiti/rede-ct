@@ -1,4 +1,4 @@
-import { RedLink } from '@components/blue-link'
+import { HighlightedLink } from '@components/highlighted-link'
 import { Calendar, MapPin } from 'lucide-react'
 import type { ICongress, IDocument } from 'types/congress'
 
@@ -27,12 +27,12 @@ export function Congress({ congress, index }: ICongressProps) {
       </div>
       <div className="flex flex-wrap justify-center gap-4 pt-4">
         {congress.documents.map((document: IDocument) => (
-          <RedLink
+          <HighlightedLink
             href={document.url}
             key={`${index}-${document.title}-${document.url}`}
           >
             <span className="font-medium">{document.title}</span>
-          </RedLink>
+          </HighlightedLink>
         ))}
       </div>
     </div>

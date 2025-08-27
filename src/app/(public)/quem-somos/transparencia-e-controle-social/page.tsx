@@ -31,7 +31,7 @@ export default function TransparenciaEControleSocial() {
         </p>
       </section>
       <section className="space-y-8">
-        <Card className="space-y-4 rounded-md bg-background p-8 text-justify">
+        <Card className="space-y-4 rounded-md p-8 text-justify">
           <h2 className="title-2">
             CONTROLE SOCIAL - Comitê Legitimador da RedeCT
           </h2>

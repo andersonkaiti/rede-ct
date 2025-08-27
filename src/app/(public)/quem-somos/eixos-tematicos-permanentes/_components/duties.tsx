@@ -4,7 +4,7 @@ import { Check } from 'lucide-react'
 
 export function Duties() {
   return (
-    <Card className="space-y-7 bg-background">
+    <Card className="space-y-7">
       <section className="space-y-14">
         <CardHeader className="space-y-7">
           <h2 className="title-3 flex items-center gap-2">

@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { BackArrow } from '@components/back-arrow'
 import { Badge } from '@components/ui/badge'
 import {
@@ -9,11 +11,11 @@ import {
 } from '@components/ui/card'
 import { UserCardRedLine } from '@components/ui/user-card'
 import { InfoIcon } from 'lucide-react'
-import dynamic from 'next/dynamic'
+import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
-const DynamicComiteLegitimador = dynamic(() =>
+const DynamicComiteLegitimador = dynamicImport(() =>
   import('./_components/comite-legitimador').then((m) => m.ComiteLegitimador)
 )
 
@@ -33,7 +35,7 @@ export default function ComiteLegitimador() {
         <DynamicComiteLegitimador />
       </Suspense>
 
-      <Card className="border-0 bg-background shadow-lg">
+      <Card className="border-0 shadow-lg">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Badge className="rounded-full bg-primary/10 p-1 text-primary">

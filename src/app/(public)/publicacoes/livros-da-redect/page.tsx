@@ -76,7 +76,7 @@ export default function ColetaneaRedeCT() {
             remessa pode ser de apenas um exemplar).
           </p>
 
-          <div className="rounded-md border border-primary/10 bg-primary/10 p-4 text-primary text-sm italic">
+          <div className="rounded-md border border-primary/20 bg-primary/20 p-4 text-primary text-sm italic">
             <span className="font-bold">Responsável:</span> Me. Isaltina Santos
             da Costa Oliveira (TINA).
           </div>

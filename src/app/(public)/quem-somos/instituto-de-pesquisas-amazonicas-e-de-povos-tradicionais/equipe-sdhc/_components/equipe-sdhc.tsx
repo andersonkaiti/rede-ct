@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 import { UserCardWrapper } from '@components/ui/user-card'
 import { getSdhcTeam } from '@http/teams/sdhc-team'
 import { UserCardComponent } from './user-card'

@@ -1,5 +1,5 @@
 import { Button } from '@components/ui/button'
-import { ArrowRightIcon } from 'lucide-react'
+import { ArrowRightIcon, CalendarDays } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -26,22 +26,23 @@ export function HeroSection() {
           <div className="flex flex-col gap-4 md:flex-row">
             <Button
               asChild
-              className="group inline-flex items-center justify-center font-medium"
+              className="group inline-flex items-center justify-center bg-white font-semibold text-black shadow-lg hover:bg-white/90"
               size="lg"
               variant="default"
             >
               <Link href="/quem-somos/apresentacao-e-historia">
                 Conheça a RedeCT
-                <ArrowRightIcon className="ml-2 h-5 w-5 transition-all duration-300 group-hover:translate-x-1" />
+                <ArrowRightIcon className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </Button>
             <Button
               asChild
-              className="inline-flex items-center justify-center font-medium"
+              className="inline-flex items-center justify-center border-white/30 bg-white/10 font-semibold text-white shadow-lg hover:bg-white/20 hover:text-white"
               size="lg"
               variant="outline"
             >
               <Link href="/divisao-cientifica/calendario-de-eventos">
+                <CalendarDays className="mr-2 h-5 w-5" />
                 Participe dos Eventos
               </Link>
             </Button>

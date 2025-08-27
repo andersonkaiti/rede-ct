@@ -1,6 +1,7 @@
 import { cn } from '@utils/cn'
 import { ChevronDownIcon } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import type { NavigationLink as NavigationLinkType } from 'types/navigation-link'
 
 import { NavigationBarIcon } from './navigation-bar-icon'
@@ -26,10 +27,23 @@ export function NavigationLink({
   setActiveIndex,
   setShowNavigationBar,
 }: INavLinkProps) {
+  const pathname = usePathname()
   const hasChildren = children && children?.length > 0
 
   const isHovered = hovering === index
   const isActived = activeIndex === index
+
+  const isCurrent =
+    path && (pathname === path || (path !== '/' && pathname.startsWith(path)))
+
+  const isAnyChildCurrent =
+    hasChildren &&
+    children?.some(
+      (child: NavigationLinkType) =>
+        child.path &&
+        (pathname === child.path ||
+          (child.path !== '/' && pathname.startsWith(child.path)))
+    )
 
   function handleMouseEnter(event: React.MouseEvent<HTMLElement>) {
     if (hasChildren && !showNavigationBar) {
@@ -51,7 +65,11 @@ export function NavigationLink({
   return (
     <div className="flex 2lg:w-fit w-full flex-col items-center">
       <Link
-        className="group inline-flex h-9 w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 font-medium text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-red-200-foreground focus:bg-gray-400/25 focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:text-red-200-foreground data-[state=open]:focus:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25"
+        className={cn(
+          'group inline-flex h-9 w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 text-muted-foreground text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-foreground hover:text-red-200-foreground focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-red-200-foreground',
+          (isHovered || isActived || isCurrent || isAnyChildCurrent) &&
+            'text-foreground'
+        )}
         data-state={isHovered || isActived ? 'open' : 'closed'}
         href={path || '#'}
         onClick={() => {
@@ -63,7 +81,7 @@ export function NavigationLink({
         }}
         onMouseEnter={handleMouseEnter}
       >
-        {label.toUpperCase()}
+        {label}
         {children && (
           <ChevronDownIcon
             aria-hidden="true"
@@ -87,17 +105,27 @@ export function NavigationLink({
                 icon: childIcon,
               }: NavigationLinkType,
               childIndex: number
-            ) => (
-              <Link
-                className="mt-2 flex w-full items-center gap-2 2lg:rounded-full rounded-md p-2 text-center text-sm hover:bg-gray-400/25"
-                href={childPath || '#'}
-                key={childIndex}
-                onClick={() => setShowNavigationBar(false)}
-              >
-                <NavigationBarIcon icon={childIcon} />
-                {childLabel}
-              </Link>
-            )
+            ) => {
+              const isChildCurrent =
+                childPath &&
+                (pathname === childPath ||
+                  (childPath !== '/' && pathname.startsWith(childPath)))
+
+              return (
+                <Link
+                  className={cn(
+                    'mt-2 flex w-full items-center gap-2 2lg:rounded-full rounded-md p-2 text-center text-muted-foreground text-sm',
+                    isChildCurrent && 'bg-gray-400/25 text-foreground'
+                  )}
+                  href={childPath || '#'}
+                  key={childIndex}
+                  onClick={() => setShowNavigationBar(false)}
+                >
+                  <NavigationBarIcon icon={childIcon} />
+                  {childLabel}
+                </Link>
+              )
+            }
           )}
         </div>
       )}

@@ -4,11 +4,11 @@ import type { NavigationLink as NavigationLinkType } from 'types/navigation-link
 export const navigationLinks: NavigationLinkType[] = [
   {
     path: '/',
-    label: 'Home',
+    label: 'Início',
     icon: Icons.Home,
   },
   {
-    label: 'Quem Somos',
+    label: 'Sobre a rede',
     children: [
       {
         path: '/quem-somos/apresentacao-e-historia',
@@ -53,7 +53,7 @@ export const navigationLinks: NavigationLinkType[] = [
     ],
   },
   {
-    label: 'Divisão Científica',
+    label: 'Divisão científica',
     children: [
       {
         path: '/divisao-cientifica/congressos',
@@ -114,7 +114,7 @@ export const navigationLinks: NavigationLinkType[] = [
   },
 
   {
-    label: 'Lojas e Oportunidades',
+    label: 'Lojas e oportunidades',
     children: [
       {
         path: '/lojas-e-oportunidades/loja-da-redect',

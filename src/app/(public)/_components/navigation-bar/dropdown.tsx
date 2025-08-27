@@ -1,5 +1,6 @@
 import { cn } from '@utils/cn'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import type { NavigationLink as NavigationLinkType } from 'types/navigation-link'
 
 import { NavigationBarIcon } from './navigation-bar-icon'
@@ -20,6 +21,7 @@ export function Dropdown({
   refs,
 }: IDropdownProps) {
   const PADDING_TWO = 8
+  const pathname = usePathname()
 
   function getTransformClass(
     hoveringIndex: number,
@@ -34,6 +36,14 @@ export function Dropdown({
     }
 
     return 'translate-x-24'
+  }
+
+  function isCurrentPath(path?: string) {
+    if (!path) {
+      return false
+    }
+
+    return pathname === path || (path !== '/' && pathname.startsWith(path))
   }
 
   return (
@@ -66,7 +76,10 @@ export function Dropdown({
                 childIndex: number
               ) => (
                 <Link
-                  className="group flex items-center gap-2 truncate rounded-md p-2 text-sm transition-colors"
+                  className={cn(
+                    'group flex items-center gap-2 truncate rounded-md p-2 text-muted-foreground text-sm transition-colors hover:text-foreground',
+                    isCurrentPath(path) && 'text-foreground'
+                  )}
                   href={path as string}
                   key={`${index}-${childIndex}`}
                 >

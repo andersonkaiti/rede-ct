@@ -1,11 +1,5 @@
 import { Button } from '@components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@components/ui/card'
+import { CardTitle } from '@components/ui/card'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,6 +9,7 @@ interface CongressCardProps {
   description: string
   imageUrl: string
   link: string
+  date: string
 }
 
 export function CongressCard({
@@ -22,34 +17,42 @@ export function CongressCard({
   description,
   imageUrl,
   link,
+  date,
 }: CongressCardProps) {
   return (
-    <Card className="flex flex-col items-stretch gap-2 rounded-lg p-0 shadow-lg md:flex-row">
-      <picture className="relative h-64 w-full overflow-hidden rounded-t-lg md:h-auto md:w-2/4 md:rounded-l-lg">
-        <Image
-          alt={title}
-          className="absolute object-cover"
-          fill
-          src={imageUrl}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-      </picture>
-      <div className="w-full space-y-4 p-6 md:w-3/4">
-        <CardHeader className="p-0">
-          <CardTitle className="font-bold text-xl">{title}</CardTitle>
-        </CardHeader>
-        <CardContent className="p-0">
+    <div className="flex flex-col gap-2">
+      <header className="h-80">
+        <picture className="relative flex size-full overflow-hidden rounded-md">
+          <Image
+            alt={title}
+            className="object-cover"
+            fill
+            priority
+            src={imageUrl}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent dark:from-black/70 dark:to-transparent" />
+        </picture>
+      </header>
+
+      <div className="flex h-fit flex-grow flex-col justify-between gap-4 py-2">
+        <div className="space-y-4">
+          <time className="flex items-center gap-2 text-sm leading-4">
+            <span className="text-muted-foreground">{date}</span>
+          </time>
+
+          <CardTitle className="font-semibold text-2xl">{title}</CardTitle>
           <p className="text-justify text-muted-foreground">{description}</p>
-        </CardContent>
-        <CardFooter className="p-0">
-          <Link className="w-full" href={link}>
-            <Button className="group w-full font-bold">
-              Link do congresso
+        </div>
+
+        <footer>
+          <Button asChild className="group w-full font-bold" variant="outline">
+            <Link className="w-full" href={link}>
               <ArrowRight className="!size-4 transition-all duration-200 group-hover:translate-x-1" />
-            </Button>
-          </Link>
-        </CardFooter>
+              Link do congresso
+            </Link>
+          </Button>
+        </footer>
       </div>
-    </Card>
+    </div>
   )
 }

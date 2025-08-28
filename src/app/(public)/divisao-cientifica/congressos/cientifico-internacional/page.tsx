@@ -1,5 +1,5 @@
 import { BackArrow } from '@components/back-arrow'
-import { getInternationalScientificCongress } from '@mocks/international-scientific-congress'
+import { getInternationalScientificCongress } from '@mocks/congresses/international-scientific-congress'
 import { Fragment } from 'react'
 import { Congress } from './_components/congress'
 import { CongressGalleryItem } from './_components/congress-gallery-item'

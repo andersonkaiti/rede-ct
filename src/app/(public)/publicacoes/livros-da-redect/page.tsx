@@ -1,9 +1,10 @@
+import { Badge } from '@components/ui/badge'
 import { Button } from '@components/ui/button'
+import { Book } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
-
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicBooks = dynamic(() =>
@@ -28,7 +29,12 @@ export default function ColetaneaRedeCT() {
   return (
     <div className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
       <header className="space-y-8">
-        <h1 className="title-2">Livro Coletânea de Capítulos da RedeCT</h1>
+        <div className="flex items-center gap-4">
+          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
+            <Book className="!size-7" />
+          </Badge>
+          <h1 className="title-2">Livros da RedeCT</h1>
+        </div>
 
         <p className="text-muted-foreground">
           Série internacional sobre Povos Originários e Comunidades

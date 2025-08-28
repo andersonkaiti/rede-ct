@@ -1,13 +1,20 @@
 import { Building } from '@components/building'
+import { Badge } from '@components/ui/badge'
 import { Button } from '@components/ui/button'
 import { Card, CardFooter, CardHeader, CardTitle } from '@components/ui/card'
+import { FileText } from 'lucide-react'
 import Link from 'next/link'
 
 export default function ArtigosCientificos() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
       <header className="space-y-8">
-        <h1 className="title-2">Artigos Científicos de Interesse</h1>
+        <div className="flex items-center gap-4">
+          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
+            <FileText className="!size-7" />
+          </Badge>
+          <h1 className="title-2">Congressos da RedeCT</h1>
+        </div>
         <p className="text-justify text-muted-foreground">
           Nesta seção (
           <span className="font-bold text-primary">AINDA EM CONSTRUÇÃO</span>)

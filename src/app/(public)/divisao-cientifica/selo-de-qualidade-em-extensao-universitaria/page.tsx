@@ -1,10 +1,19 @@
 import { Building } from '@components/building'
+import { Badge } from '@components/ui/badge'
+import { Award } from 'lucide-react'
 
 export default function SeloDeQualidadeEmExtensaoUniversitaria() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
       <header className="space-y-8">
-        <h1 className="title-2">Selo de Qualidade em Extensão Universitária</h1>
+        <div className="flex items-center gap-4">
+          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
+            <Award className="!size-7" />
+          </Badge>
+          <h1 className="title-2">
+            Selo de Qualidade em Extensão Universitária
+          </h1>
+        </div>
       </header>
 
       <div className="bg-background">

@@ -1,5 +1,11 @@
+import { Badge } from '@components/ui/badge'
 import { Button } from '@components/ui/button'
-import { CalendarDays, ClipboardList, FileText } from 'lucide-react'
+import {
+  CalendarDays,
+  ClipboardList,
+  FileText,
+  GraduationCap,
+} from 'lucide-react'
 import Link from 'next/link'
 
 const REGIMENTO_URL = '/docs/Regimento-Interno-RedeCT-2024.pdf'
@@ -28,7 +34,12 @@ export default function RegimentosEAtas() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 px-4 py-8 lg:p-25">
       <section className="space-y-14">
-        <h1 className="title-2">REGIMENTO, CONVOCAÇÕES, PAUTAS E ATAS</h1>
+        <div className="flex items-center gap-4">
+          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
+            <GraduationCap className="!size-7" />
+          </Badge>
+          <h1 className="title-2">Regimento, convocações, pautas e atas</h1>
+        </div>
         <p className="text-justify text-muted-foreground">
           Nesta seção do website, a RedeCT mantém três campos distintos:{' '}
           <b>1)</b> o seu <b>Regimento Interno</b> (atualizado e válido);{' '}

@@ -4,44 +4,36 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@components/ui/accordion'
-import {
-  UserCard,
-  UserCardButtonLattes,
-  UserCardImage,
-} from '@components/ui/user-card'
 import { getEtps } from '@mocks/etps'
+import { ETPCoordenation } from './etp-coordenation'
+import { GTMembers } from './gt-members'
 
 export async function EPTAccordion() {
   const etps = await getEtps()
 
   return (
     <Accordion collapsible type="single">
-      {etps.map(({ name, description, members, text }, etpIndex: number) => (
-        <AccordionItem key={etpIndex} value={name}>
+      {etps.map(({ name, description, members, text, gtMembers, gtText }) => (
+        <AccordionItem key={name} value={name}>
           <AccordionTrigger>
-            <h3 className="title-3">
-              {name} / {description}
-            </h3>
+            <div className="flex flex-col gap-1 text-left">
+              <span className="title-3">{name}</span>
+              <span className="font-medium text-base text-muted-foreground">
+                {description}
+              </span>
+            </div>
           </AccordionTrigger>
           <AccordionContent className="space-y-7">
             <p className="text-justify">{text}</p>
-            <UserCard>
-              {members.map((member, memberIndex: number) => (
-                <UserCard key={memberIndex}>
-                  <UserCardImage
-                    alt={member.image.alt}
-                    src={member.image.src}
-                  />
-                  <div className="flex flex-grow flex-col items-center justify-between gap-4">
-                    <h1 className="text-center font-bold text-xl">
-                      {member.name}
-                    </h1>
-                    <h2 className="text-center font-bold">{member.role}</h2>
-                    <UserCardButtonLattes href={member.lattesUrl} />
-                  </div>
-                </UserCard>
-              ))}
-            </UserCard>
+
+            <ETPCoordenation members={members} />
+
+            <GTMembers gtMembers={gtMembers} />
+
+            <h3 className="mb-2 font-semibold text-muted-foreground text-sm">
+              Sobre o Grupo de Trabalho
+            </h3>
+            <p className="text-justify">{gtText}</p>
           </AccordionContent>
         </AccordionItem>
       ))}

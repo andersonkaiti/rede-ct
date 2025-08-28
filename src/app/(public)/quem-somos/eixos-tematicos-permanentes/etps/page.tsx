@@ -1,15 +1,20 @@
-import { BackArrow } from "@components/back-arrow";
-
-import { EPTAccordion } from "./_components/etp-accordion";
+import { BackArrow } from '@components/back-arrow'
+import { EPTAccordion } from './_components/etp-accordion'
 
 export default function EixosTematicosPermanentesETPs() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
+    <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-14 p-6 py-10 lg:p-28">
       <BackArrow />
-      <h2 className="title-1 text-center">
-        Eixos Temáticos Permanentes (ETPs)
-      </h2>
+
+      <header className="space-y-8">
+        <h1 className="title-2">Eixos Temáticos Permanentes</h1>
+        <p className="text-muted-foreground">
+          Conheça os Eixos Temáticos Permanentes (ETPs) da Rede CT, suas áreas
+          de atuação e os membros responsáveis por cada eixo.
+        </p>
+      </header>
+
       <EPTAccordion />
     </main>
-  );
+  )
 }

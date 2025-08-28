@@ -1,22 +1,37 @@
 import { Skeleton } from '@components/ui/skeleton'
+import { ImageIcon } from 'lucide-react'
+
+const ARRAY_SIZE = 6
 
 export function LoadingSkeleton() {
   return (
-    <div className="space-y-8">
-      {Array.from({ length: 3 }).map((_, index: number) => (
-        <div
-          className="flex h-auto w-full flex-col gap-2 shadow-lg md:h-57.5 md:flex-row"
-          key={index}
-        >
-          <Skeleton className="h-64 w-full rounded-t-lg rounded-tr-none md:h-auto md:w-2/4 md:rounded-l-lg" />
-          <div className="w-full space-y-4 p-6 md:w-3/4">
-            <Skeleton className="h-8 w-full rounded-full" />
-            <div className="space-y-3">
-              <Skeleton className="h-5 w-full rounded-full" />
-              <Skeleton className="h-5 w-full rounded-full" />
-              <Skeleton className="h-5 w-2/3 rounded-full" />
+    <div className="grid grid-cols-1 gap-x-8 gap-y-20 sm:grid-cols-2">
+      {[...new Array(ARRAY_SIZE)].map((_, index: number) => (
+        <div className="flex flex-col gap-2" key={index}>
+          <header className="h-80">
+            <div className="relative flex size-full">
+              <Skeleton className="absolute inset-0 flex size-full items-center justify-center rounded-md object-cover">
+                <ImageIcon className="text-muted-foreground" />
+              </Skeleton>
             </div>
-            <Skeleton className="h-9 w-full rounded-md" />
+          </header>
+
+          <div className="flex h-fit flex-grow flex-col justify-between gap-4 py-2">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-sm leading-4">
+                <Skeleton className="h-4 w-32 rounded-full" />
+              </div>
+              <Skeleton className="h-8 w-2/3 rounded-md" />
+              <div className="space-y-3">
+                <Skeleton className="h-5 w-full rounded-full" />
+                <Skeleton className="h-5 w-full rounded-full" />
+                <Skeleton className="h-5 w-2/3 rounded-full" />
+              </div>
+            </div>
+
+            <footer>
+              <Skeleton className="h-9 w-full rounded-md" />
+            </footer>
           </div>
         </div>
       ))}

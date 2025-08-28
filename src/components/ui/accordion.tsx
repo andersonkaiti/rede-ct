@@ -10,7 +10,7 @@ function Accordion({
 }: React.ComponentProps<typeof AccordionPrimitive.Root>) {
   return (
     <AccordionPrimitive.Root
-      className="rounded-md border p-4"
+      className="py-4"
       data-slot="accordion"
       {...props}
     />

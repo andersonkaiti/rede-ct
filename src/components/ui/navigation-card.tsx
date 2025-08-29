@@ -32,7 +32,7 @@ const arrowIconVariants = cva(
   {
     variants: {
       variant: {
-        default: 'text-white',
+        default: 'text-foreground',
         red: 'text-primary',
       },
     },

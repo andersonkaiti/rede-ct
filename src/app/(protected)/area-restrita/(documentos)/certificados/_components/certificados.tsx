@@ -1,4 +1,4 @@
-import { getCertifications } from '@mocks/certifications'
+import { getCertifications } from '@mocks/documents/certifications'
 import { Certificado } from './certificado'
 
 export async function Certificados() {

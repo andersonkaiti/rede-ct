@@ -1,4 +1,4 @@
-import { getInMemoriamResearchers } from '@mocks/in-memoriam-researchers'
+import { getInMemoriamResearchers } from '@mocks/researchers/in-memoriam-researchers'
 import { InMemoriamCard } from './in-memoriam-card'
 
 export async function Pesquisadores() {

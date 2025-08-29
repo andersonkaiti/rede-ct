@@ -1,4 +1,4 @@
-import { getMagazines } from '@mocks/magazines/magazines'
+import { getMagazines } from '@mocks/redect-books/magazines'
 import { MagazineCard } from './magazine-card'
 
 export async function Magazines() {

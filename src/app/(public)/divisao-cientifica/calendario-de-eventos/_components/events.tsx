@@ -1,4 +1,4 @@
-import { getEvents } from '@mocks/events/events'
+import { getEvents } from '@mocks/courses/events'
 import { EventCard } from './event-card'
 
 export async function Events() {

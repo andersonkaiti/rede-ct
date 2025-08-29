@@ -1,5 +1,5 @@
 import { UserCard, UserCardImage } from '@components/ui/user-card'
-import type { IInMemoriam } from '@mocks/in-memoriam-researchers'
+import type { IInMemoriam } from '@mocks/researchers/in-memoriam-researchers'
 import { Dot } from 'lucide-react'
 
 interface IInMemoriamCardProps {

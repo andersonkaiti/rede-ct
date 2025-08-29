@@ -24,13 +24,13 @@ export default function PesquisadoresParticipantes() {
           Regimento Interno da Rede:
         </p>
 
-        <div className="space-y-6 rounded-md bg-gradient-to-br from-primary to-red-700 p-6 text-white md:p-10">
+        <div className="space-y-6 rounded-md bg-gradient-to-br from-primary to-primary/80 p-6 text-slate-100 md:p-10 dark:border dark:border-primary/20 dark:from-primary/15 dark:to-primary/5">
           <h2 className="title-3 flex items-center gap-2 font-bold">
             <GraduationCap /> Tipos de pesquisadores
           </h2>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             <div className="space-y-4 rounded-md text-justify md:p-6">
-              <h2 className="title-3 font-bold">PESQUISADOR SÊNIOR:</h2>
+              <h3 className="title-3 font-bold">PESQUISADOR SÊNIOR:</h3>
               <p>
                 Todo pesquisador afiliado que possua o título de Doutor ou de
                 Livre-docente. Em pautas levadas à votação plenária, seu voto
@@ -40,7 +40,7 @@ export default function PesquisadoresParticipantes() {
               </p>
             </div>
             <div className="space-y-4 rounded-md text-justify md:p-6">
-              <h2 className="title-3 font-bold">PESQUISADOR:</h2>
+              <h3 className="title-3 font-bold">PESQUISADOR:</h3>
               <p className="text-justify">
                 Todo pesquisador afiliado que possua título de Mestre ou
                 certificado de graduação. Em pautas levadas à votação plenária
@@ -49,7 +49,7 @@ export default function PesquisadoresParticipantes() {
               </p>
             </div>
             <div className="space-y-4 rounded-md text-justify md:p-6">
-              <h2 className="title-3 font-bold">PESQUISADOR JÚNIOR:</h2>
+              <h3 className="title-3 font-bold">PESQUISADOR JÚNIOR:</h3>
               <p className="text-justify">
                 Todo estudante-pesquisador, maior de idade (18 anos, segundo a
                 legislação brasileira), que esteja regularmente matriculado em
@@ -59,7 +59,7 @@ export default function PesquisadoresParticipantes() {
               </p>
             </div>
             <div className="space-y-4 rounded-md text-justify md:p-6">
-              <h2 className="title-3 font-bold">MEMBRO HONORÁRIO:</h2>
+              <h3 className="title-3 font-bold">MEMBRO HONORÁRIO:</h3>
               <p className="text-justify">
                 Pessoa, maior de idade (segundo a legislação brasileira) que
                 tenha sido convidada para participação nesta categoria pela

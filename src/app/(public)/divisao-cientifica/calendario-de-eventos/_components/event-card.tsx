@@ -1,6 +1,6 @@
 import { Button } from '@components/ui/button'
 import { CardTitle } from '@components/ui/card'
-import type { IEvent } from '@mocks/events/events'
+import type { IEvent } from '@mocks/courses/events'
 import { ArrowRight, Clock } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'

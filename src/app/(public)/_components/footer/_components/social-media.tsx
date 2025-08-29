@@ -14,7 +14,7 @@ export function SocialMedia() {
         >
           <Image
             alt="Facebook"
-            className="object-contain p-0.5 brightness-50 duration-300 hover:brightness-100"
+            className="object-contain p-0.5 brightness-50 duration-300 hover:brightness-0 dark:hover:brightness-100"
             fill
             src="/images/icons/facebook-brands.svg"
           />
@@ -27,7 +27,7 @@ export function SocialMedia() {
         <Link className="relative size-6" href="/" target="_blank">
           <Image
             alt="Youtube"
-            className="object-contain p-0.5 brightness-50 duration-300 hover:brightness-100"
+            className="object-contain p-0.5 brightness-50 duration-300 hover:brightness-0 dark:hover:brightness-100"
             fill
             src="/images/icons/youtube-brands.svg"
           />
@@ -44,14 +44,14 @@ export function SocialMedia() {
         >
           <Image
             alt="Instagram"
-            className="object-contain p-0.5 brightness-50 duration-300 hover:brightness-100"
+            className="object-contain p-0.5 brightness-50 duration-300 hover:brightness-0 dark:hover:brightness-100"
             fill
             src="/images/icons/instagram-brands.svg"
           />
         </Link>
       </div>
       <div className="flex items-center gap-2 text-muted-foreground text-sm">
-        <MailIcon className="!size-6" />
+        <MailIcon className="!size-4" />
         contato@redect.org
       </div>
     </div>

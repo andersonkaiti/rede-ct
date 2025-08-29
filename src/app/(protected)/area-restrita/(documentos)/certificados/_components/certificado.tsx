@@ -1,4 +1,4 @@
-import type { ICertification } from '@mocks/certifications'
+import type { ICertification } from '@mocks/documents/certifications'
 import { formatDate } from '@utils/format-date'
 import { Award, Calendar } from 'lucide-react'
 import { CertificadoButton } from './certificado-button'

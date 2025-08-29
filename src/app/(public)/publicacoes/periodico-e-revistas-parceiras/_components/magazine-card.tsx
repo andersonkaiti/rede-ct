@@ -1,5 +1,5 @@
 import { Button } from '@components/ui/button'
-import type { IMagazine } from '@mocks/magazines/magazines'
+import type { IMagazine } from '@mocks/redect-books/magazines'
 import { ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'

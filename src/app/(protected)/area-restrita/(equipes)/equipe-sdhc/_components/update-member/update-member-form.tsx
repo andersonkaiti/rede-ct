@@ -48,7 +48,9 @@ export function UpdateMemberForm({
             <PageFormContentField>
               <Label>{member ? 'Membro' : 'Usuários'}</Label>
 
-              <SelectMember userId={member?.user?.id} />
+              <SelectMember
+                userId={member?.user?.id || (payload?.get('user_id') as string)}
+              />
 
               {errors?.user_id && errors.user_id && (
                 <Alert className="border-primary p-2" variant="destructive">
@@ -62,7 +64,9 @@ export function UpdateMemberForm({
               <Label>Cargo</Label>
 
               <Input
-                defaultValue={member?.role}
+                defaultValue={
+                  member?.role || (payload?.get('user_id') as string)
+                }
                 name="role"
                 placeholder="Cargo"
               />
@@ -79,7 +83,9 @@ export function UpdateMemberForm({
               <Label>Descrição</Label>
 
               <Textarea
-                defaultValue={member?.description}
+                defaultValue={
+                  member?.description || (payload?.get('description') as string)
+                }
                 name="description"
                 placeholder="Descrição"
               />

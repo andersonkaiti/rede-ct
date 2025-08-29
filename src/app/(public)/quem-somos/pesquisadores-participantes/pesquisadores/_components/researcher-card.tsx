@@ -3,7 +3,7 @@ import {
   type IResearcher,
   type Seniority,
   seniorityMapping,
-} from '@mocks/researchers'
+} from '@mocks/researchers/researchers'
 import { ExternalLink, GraduationCap, Mail } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'

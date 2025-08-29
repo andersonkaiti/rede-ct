@@ -1,4 +1,4 @@
-import { getWebinars } from '@mocks/webinars/webinars'
+import { getWebinars } from '@mocks/courses/webinars'
 import { WebinarCard } from './webinar-card'
 
 export async function Webinars() {

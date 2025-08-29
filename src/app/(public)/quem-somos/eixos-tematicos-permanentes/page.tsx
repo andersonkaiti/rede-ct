@@ -111,7 +111,7 @@ export default function EixosTematicosPermanentes() {
               <div className="rounded-full bg-primary/20 p-2">
                 <Axis3DIcon className="text-primary" />
               </div>
-              <h2 className="title-3 font-bold">ETPS</h2>
+              <h2 className="title-3 font-bold">ETPs</h2>
             </div>
             <p>Confira os Eixos Temáticos Permanentes (ETPs) da RedeCT.</p>
           </div>

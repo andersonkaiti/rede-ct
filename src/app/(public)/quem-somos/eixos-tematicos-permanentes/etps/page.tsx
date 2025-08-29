@@ -1,4 +1,5 @@
 import { BackArrow } from '@components/back-arrow'
+import { Axis3DIcon } from 'lucide-react'
 import { EPTAccordion } from './_components/etp-accordion'
 
 export default function EixosTematicosPermanentesETPs() {
@@ -7,7 +8,12 @@ export default function EixosTematicosPermanentesETPs() {
       <BackArrow />
 
       <header className="space-y-8">
-        <h1 className="title-2">Eixos Temáticos Permanentes</h1>
+        <div className="flex items-center gap-4">
+          <div className="rounded-full bg-primary/20 p-2">
+            <Axis3DIcon className="text-primary" />
+          </div>
+          <h1 className="title-3 font-bold">Eixos Temáticos Permanentes</h1>
+        </div>
         <p className="text-muted-foreground">
           Conheça os Eixos Temáticos Permanentes (ETPs) da Rede CT, suas áreas
           de atuação e os membros responsáveis por cada eixo.

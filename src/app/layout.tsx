@@ -5,6 +5,8 @@ import { QueryClientProvider } from '@providers/query-client'
 import { ThemeProvider } from '@providers/theme-provider'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
+import { Suspense } from 'react'
 import { Toaster } from 'sonner'
 
 const poppins = Poppins({
@@ -34,10 +36,13 @@ export default function RootLayout({
           <body className={`${poppins.variable}`}>
             <ThemeProvider
               attribute="class"
-              defaultTheme="light"
+              defaultTheme="system"
               disableTransitionOnChange
+              enableSystem
             >
-              {children}
+              <NuqsAdapter>
+                <Suspense>{children}</Suspense>
+              </NuqsAdapter>
               <Toaster position="bottom-center" richColors />
             </ThemeProvider>
           </body>

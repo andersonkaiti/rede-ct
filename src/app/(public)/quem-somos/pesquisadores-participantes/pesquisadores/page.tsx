@@ -1,18 +1,11 @@
+'use client'
+
 import { BackArrow } from '@components/back-arrow'
 import { Badge } from '@components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@components/ui/tabs'
-import {
-  getResearchers,
-  type Seniority,
-  seniorities,
-  seniorityMapping,
-} from '@mocks/researchers'
 import { GraduationCap } from 'lucide-react'
-import { ResearcherCard } from './_components/researcher-card'
+import { ResearcherTabs } from './_components/researcher-tabs'
 
-export default async function PesquisadoresParticipantesRedeCT() {
-  const researchers = await getResearchers()
-
+export default function PesquisadoresParticipantesRedeCT() {
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-14 p-6 py-10 lg:p-28">
       <BackArrow />
@@ -32,48 +25,7 @@ export default async function PesquisadoresParticipantesRedeCT() {
         </p>
       </header>
 
-      <Tabs className="items-center" defaultValue={seniorities[0]}>
-        <TabsList className="flex w-full flex-col gap-1 bg-transparent sm:flex-row">
-          {seniorities.map((seniority) => (
-            <TabsTrigger
-              className="w-full rounded-full border border-background data-[state=active]:border-border data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-none"
-              key={seniority}
-              value={seniority}
-            >
-              {seniorityMapping[seniority as Seniority] || seniority}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-        {seniorities.map((seniority) => {
-          const filtered = researchers.filter(
-            (researcher) => researcher.seniority === seniority
-          )
-          return (
-            <TabsContent
-              className="space-y-4"
-              key={seniority}
-              value={seniority}
-            >
-              {!researchers ||
-              researchers.length === 0 ||
-              filtered.length === 0 ? (
-                <p className="p-4 text-center text-muted-foreground text-xs">
-                  Nenhum pesquisador cadastrado nesta categoria.
-                </p>
-              ) : (
-                <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-                  {filtered.map((researcher) => (
-                    <ResearcherCard
-                      key={`${researcher.user.first_name} ${researcher.user.last_name} ${researcher.user.email_addresses?.[0]?.email_address || ''}`}
-                      researcher={researcher}
-                    />
-                  ))}
-                </div>
-              )}
-            </TabsContent>
-          )
-        })}
-      </Tabs>
+      <ResearcherTabs />
     </main>
   )
 }

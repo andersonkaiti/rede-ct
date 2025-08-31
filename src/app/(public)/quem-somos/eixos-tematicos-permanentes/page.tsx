@@ -1,10 +1,10 @@
 import { Badge } from '@components/ui/badge'
 import { NavigationCard } from '@components/ui/navigation-card'
 import { Axis3DIcon, BookOpen } from 'lucide-react'
-import { ETPCard } from './_components/cards/etp-card'
-import { GTCCard } from './_components/cards/gtc-card'
 import { Composition } from './_components/cards/composition'
 import { Duties } from './_components/cards/duties'
+import { ETPCard } from './_components/cards/etp-card'
+import { GTCCard } from './_components/cards/gtc-card'
 
 export default function EixosTematicosPermanentes() {
   return (

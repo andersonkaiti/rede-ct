@@ -24,21 +24,21 @@ export default function RegimentoEAtas() {
         </p>
 
         <ul className="space-y-2">
-          <li className="flex items-start">
+          <li className="flex items-center">
             <ListNumber>1</ListNumber>
             <span>
               Seu <strong className="text-primary">Regimento Interno</strong>{' '}
               (atualizado e vigente);
             </span>
           </li>
-          <li className="flex items-start">
+          <li className="flex items-center">
             <ListNumber>2</ListNumber>
             <span>
               As <strong className="text-primary">convocações e pautas</strong>{' '}
               das reuniões e assembleias programadas;
             </span>
           </li>
-          <li className="flex items-start">
+          <li className="flex items-center">
             <ListNumber>3</ListNumber>
             <span>
               As <strong className="text-primary">atas</strong> das reuniões

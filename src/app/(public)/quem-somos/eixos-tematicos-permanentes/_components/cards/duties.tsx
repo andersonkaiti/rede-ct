@@ -1,15 +1,24 @@
+'use client'
+
+import { CheckIcon, type CheckIconHandle } from '@components/icons/check'
 import { Card, CardContent, CardHeader } from '@components/ui/card'
 import { ListNumber } from '@components/ui/list-number'
-import { Check } from 'lucide-react'
+import { useRef } from 'react'
 
 export function Duties() {
+  const iconRef = useRef<CheckIconHandle>(null)
+
   return (
-    <Card className="space-y-7">
+    <Card
+      className="space-y-7"
+      onMouseEnter={() => iconRef.current?.startAnimation()}
+      onMouseLeave={() => iconRef.current?.stopAnimation()}
+    >
       <section className="space-y-14">
         <CardHeader className="space-y-7">
           <h2 className="title-3 flex items-center gap-2">
             <div className="mr-2 rounded-full bg-primary/20 p-2">
-              <Check className="text-primary" />
+              <CheckIcon className="text-primary" ref={iconRef} />
             </div>
             POSSIBILIDADES E DEVERES DO GTC
           </h2>

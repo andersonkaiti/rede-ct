@@ -1,23 +1,20 @@
 import { Copy } from '@components/copy'
+import { SearchIcon } from '@components/icons/search'
 import { Badge } from '@components/ui/badge'
 import { Card } from '@components/ui/card'
-import { NavigationCard } from '@components/ui/navigation-card'
-import {
-  Banknote,
-  FileText,
-  Link as LinkIcon,
-  PiggyBank,
-  Search,
-} from 'lucide-react'
-import Link from 'next/link'
+import { CurrentBalanceCard } from './_components/accounting/current-balance'
+import { DetailedExtractCard } from './_components/accounting/detailed-extract'
+import { TotalBalanceCard } from './_components/accounting/total-balance'
+import { ResponsabilitiesCard } from './_components/cards/responsabilities'
+import { CommitteeLegitimator } from './_components/navigation-cards/committee-legitimator'
 
 export default function TransparenciaEControleSocial() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
-            <Search className="!size-7" />
+          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
+            <SearchIcon />
           </Badge>
           <h1 className="title-2">Transparência e Controle Social</h1>
         </div>
@@ -64,47 +61,7 @@ export default function TransparenciaEControleSocial() {
           </p>
         </Card>
 
-        <Card className="space-y-4 rounded-md bg-background p-8 text-justify">
-          <h2 className="title-3">
-            O Comitê Legitimador tem como responsabilidades:
-          </h2>
-          <ol className="space-y-4">
-            <li className="flex items-start">
-              <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
-                1
-              </span>
-              Referendar ou vetar a Carta Anual da RedeCT;
-            </li>
-            <li className="flex items-start">
-              <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
-                2
-              </span>
-              Vetar publicações científicas oriundas dos fluxos editorias da
-              RedeCT a partir da observância de problemas éticos;
-            </li>
-            <li className="flex items-start">
-              <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
-                3
-              </span>
-              Levar à Coordenação Geral da RedeCT eventuais problemas ou
-              questões de diversas natureza, solicitando providências;
-            </li>
-            <li className="flex items-start">
-              <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
-                4
-              </span>
-              Emitir recomendação de admissão ou veto ao ingresso de Membros
-              Honorários na RedeCT;
-            </li>
-            <li className="flex items-start">
-              <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
-                5
-              </span>
-              Analisar e emitir parecer acerca de encaminhamentos feitos à esta
-              instância pela Coordenação Geral da RedeCT.
-            </li>
-          </ol>
-        </Card>
+        <ResponsabilitiesCard />
       </section>
 
       <section className="space-y-8">
@@ -134,76 +91,14 @@ export default function TransparenciaEControleSocial() {
           atividade da RedeCT ou mesmo de prestação de contas ainda em curso).
         </p>
 
-        <section>
-          <NavigationCard href="/quem-somos/transparencia-e-controle-social/comite-legitimador">
-            <div className="rounded-full bg-primary/20 p-2">
-              <FileText className="text-primary" />
-            </div>
-            <h2 className="title-3 font-bold">Comitê Legitimador</h2>
-          </NavigationCard>
-        </section>
+        <CommitteeLegitimator />
 
-        <section className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <div className="flex flex-col items-center gap-5 rounded-xl bg-white p-7 text-justify shadow-lg transition-shadow hover:shadow-xl dark:bg-background">
-            <div className="flex w-full items-center gap-4">
-              <div className="rounded-full bg-green-500/20 p-3">
-                <FileText className="text-green-600" />
-              </div>
-              <h3 className="font-bold text-base md:text-lg">
-                Extrato detalhado
-              </h3>
-            </div>
-            <Link
-              aria-label="Acessar arquivo de extrato detalhado"
-              className="flex items-center gap-2 font-semibold text-primary transition-colors hover:underline focus:outline-none focus:ring-2 focus:ring-primary/50"
-              href="#"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <LinkIcon className="h-5 w-5" />
-              <span>Ver arquivo detalhado</span>
-            </Link>
-          </div>
+        <section className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <DetailedExtractCard />
 
-          <div className="flex flex-col items-center gap-5 rounded-xl bg-white p-7 text-justify shadow-lg transition-shadow hover:shadow-xl dark:bg-background">
-            <div className="flex w-full items-center gap-4">
-              <div className="rounded-full bg-primary/20 p-3">
-                <Banknote className="text-primary" />
-              </div>
-              <h3 className="font-bold text-base md:text-lg">Saldo em conta</h3>
-            </div>
-            <div className="w-full">
-              <p className="text-justify font-medium text-base text-gray-800 dark:text-gray-200">
-                <span className="font-semibold text-primary">Saldo atual:</span>{' '}
-                R$21.788,57
-                <span className="ml-2 text-gray-500 text-xs dark:text-gray-400">
-                  (03/04/2025 - 7h53min)
-                </span>
-              </p>
-            </div>
-          </div>
+          <CurrentBalanceCard />
 
-          <div className="flex flex-col items-center gap-5 rounded-xl bg-white p-7 text-justify shadow-lg transition-shadow hover:shadow-xl dark:bg-background">
-            <div className="flex w-full items-center gap-4">
-              <div className="rounded-full bg-primary/20 p-3">
-                <PiggyBank className="text-primary" />
-              </div>
-              <h3 className="font-bold text-base md:text-lg">Saldo total</h3>
-            </div>
-            <div className="w-full">
-              <p className="text-justify font-medium text-base text-gray-800 dark:text-gray-200">
-                <span className="font-semibold text-primary">Saldo total:</span>{' '}
-                R$26.054,00
-                <br />
-                <span className="text-gray-500 text-xs dark:text-gray-400">
-                  (conta corrente: R$21.788,57 + eventos: R$4.131,00 + Even3:
-                  R$135,00)
-                  <br />
-                  Atualizado em 03/04/2025 (7h53min)
-                </span>
-              </p>
-            </div>
-          </div>
+          <TotalBalanceCard />
         </section>
 
         <section className="space-y-8">

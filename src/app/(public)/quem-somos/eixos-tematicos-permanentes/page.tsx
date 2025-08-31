@@ -1,10 +1,10 @@
 import { Badge } from '@components/ui/badge'
-import { Card, CardContent, CardHeader } from '@components/ui/card'
 import { NavigationCard } from '@components/ui/navigation-card'
-import { Axis3DIcon, BookOpen, Users } from 'lucide-react'
-
-import { Composition } from './_components/composition'
-import { Duties } from './_components/duties'
+import { Axis3DIcon, BookOpen } from 'lucide-react'
+import { ETPCard } from './_components/cards/etp-card'
+import { GTCCard } from './_components/cards/gtc-card'
+import { Composition } from './_components/cards/composition'
+import { Duties } from './_components/cards/duties'
 
 export default function EixosTematicosPermanentes() {
   return (
@@ -24,70 +24,9 @@ export default function EixosTematicosPermanentes() {
       </section>
 
       <section className="flex flex-col gap-10 lg:flex-row">
-        <Card className="flex-1">
-          <CardHeader>
-            <h2 className="title-3 flex items-center gap-4">
-              <Badge className="rounded-full bg-primary/20 p-1 text-primary">
-                <BookOpen className="!size-7" />
-              </Badge>
-              ETP - EIXO TEMÁTICO PERMANENTE
-            </h2>
-          </CardHeader>
-          <CardContent className="space-y-7">
-            <h3 className="title-3">O que são os ETPs?</h3>
-            <p className="text-justify">
-              O EIXO TEMÁTICO PERMANENTE - ETP assemelha-se e funciona como um
-              &quot;grupo de pesquisa&quot;, se constituindo em um espaço
-              imaterial que, orientando-se a uma determinada temática, se
-              destina a planejar, articular, organizar e desenvolver a produção
-              do conhecimento.
-            </p>
-            <p className="text-justify">
-              Por exemplo, o ETP-04 Produção do conhecimento e educação escolar
-              indígena, liderado pelo Dr. Alceu Zoia organiza e conduz este tema
-              dentro da RedeCT, produzindo a seção temática específica no
-              Congresso Científico Internacional da RedeCT (CCI da RedeCT), pode
-              organizar congresso específico em âmbito regional, nacional ou
-              internacional conduzindo a chancela da RedeCT, pode organizar um
-              livro a partir dos trabalhos de sua seção no CCI da RedeCT, pode
-              propor e desenvolver um projeto de extensão universitária e mesmo
-              um processo de captação de recursos de modo vinculado à RedeCT e
-              ao seu CNPJ.
-            </p>
-            <h3 className="title-3">Quantos ETPs a RedeCT possui?</h3>
-            <p className="text-justify">
-              Em 10/11/2023, dentro do IV CCI (Belém/PA), em Reunião Técnica da
-              RedeCT (aberta aos interessados), foram propostos 22 ETPs, que
-              estão disponibilizados logo abaixo (você encontrará mais adiante,
-              ainda nesta seção, o detalhamento de cada ETP, inclusive com a
-              composição de seu GTC).
-            </p>
-          </CardContent>
-        </Card>
+        <ETPCard />
 
-        <Card className="flex-1">
-          <CardHeader>
-            <h2 className="title-3 flex items-center gap-4">
-              <Badge className="rounded-full bg-primary/20 p-1 text-primary">
-                <Users className="!size-7" />
-              </Badge>
-              GTC - GRUPO DE TRABALHO CIENTÍFICO
-            </h2>
-          </CardHeader>
-          <CardContent className="space-y-7">
-            <h3 className="title-3">O que são os GTCs?</h3>
-            <p className="text-justify">
-              O Grupo de Trabalho Científico - GTC é um grupo de Pesquisadores
-              Filiados à RedeCT, que por sua vez, se organizam a partir de um
-              líder e um vice-líder, assumindo a organização e gestão continuada
-              de um ETP.
-            </p>
-            <p className="text-justify">
-              Assim, não existe um ETP sem que haja um GTC para a sua
-              sustentação. Cada ETP é planejado e conduzido por um GTC.
-            </p>
-          </CardContent>
-        </Card>
+        <GTCCard />
       </section>
 
       <section className="space-y-14">

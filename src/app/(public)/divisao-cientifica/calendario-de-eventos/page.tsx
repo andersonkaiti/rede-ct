@@ -1,5 +1,5 @@
+import { CalendarDaysIcon } from '@components/icons/calendar-days'
 import { Badge } from '@components/ui/badge'
-import { Calendar } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
@@ -14,7 +14,7 @@ export default function CalendarioDeEventos() {
       <header className="space-y-8">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <Calendar className="!size-7" />
+            <CalendarDaysIcon />
           </Badge>
           <h1 className="title-2">Calendário de eventos</h1>
         </div>

@@ -1,5 +1,6 @@
+import { CalendarDaysIcon } from '@components/icons/calendar-days'
 import { Button } from '@components/ui/button'
-import { ArrowRightIcon, CalendarDays } from 'lucide-react'
+import { ArrowRightIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -42,7 +43,7 @@ export function HeroSection() {
               variant="outline"
             >
               <Link href="/divisao-cientifica/calendario-de-eventos">
-                <CalendarDays className="mr-2 h-5 w-5" />
+                <CalendarDaysIcon />
                 Participe dos Eventos
               </Link>
             </Button>

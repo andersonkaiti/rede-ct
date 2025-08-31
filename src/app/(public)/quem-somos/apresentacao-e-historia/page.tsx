@@ -1,5 +1,7 @@
+import { BookTextIcon } from '@components/icons/book-text'
+import { ClockIcon } from '@components/icons/clock'
+import { EarthIcon } from '@components/icons/earth'
 import { Badge } from '@components/ui/badge'
-import { Card, CardContent, CardHeader, CardTitle } from '@components/ui/card'
 import { NavigationCard } from '@components/ui/navigation-card'
 import {
   Timeline,
@@ -12,28 +14,10 @@ import {
   TimelineTitle,
 } from '@components/ui/timeline'
 import { getTimelineRedeCT } from '@mocks/timeline-rede-ct'
-import {
-  BookOpen,
-  Globe,
-  Heart,
-  History,
-  Landmark,
-  MapPin,
-  Users,
-} from 'lucide-react'
-
-const countries = [
-  'Argentina',
-  'Bolívia',
-  'Colômbia',
-  'Venezuela',
-  'Moçambique',
-  'Angola',
-  'Cabo Verde',
-  'Portugal',
-  'Itália',
-  'México',
-]
+import { Users } from 'lucide-react'
+import { Countries } from './_components/countries'
+import { WhatAreRedeCTCard } from './_components/whats-are-cards/rede-ct'
+import { WhatAreTraditionalPeopleCard } from './_components/whats-are-cards/traditional-people'
 
 export default async function ApresentacaoEHistoria() {
   const timelineData = await getTimelineRedeCT()
@@ -51,72 +35,25 @@ export default async function ApresentacaoEHistoria() {
         <h2 className="text-center font-semibold text-3xl">Sobre a RedeCT</h2>
 
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-          <Card className="shadow-xl">
-            <CardHeader className="flex items-center gap-2">
-              <Badge className="rounded-full bg-primary/10 p-1 text-primary">
-                <Heart className="!size-7" />
-              </Badge>
-              <CardTitle className="font-semibold text-2xl">RedeCT</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-justify">
-                A Rede Internacional de Pesquisadores sobre Povos Originários e
-                Comunidades Tradicionais – RedeCT é uma articulação independente
-                e voluntária, caracterizada como REDE DE PESQUISADORES, que se
-                volta exclusivamente à cooperação para a promoção e o
-                fortalecimento do ensino, da pesquisa e da extensão
-                universitária sobre todos os temas que se relacionam às demandas
-                de povos originários e de comunidades tradicionais no Brasil
-                (país sede da RedeCT) e em outros países onde a Rede está
-                presente por meio de seus afiliados.
-              </p>
-            </CardContent>
-          </Card>
+          <WhatAreRedeCTCard />
 
-          <Card className="shadow-xl">
-            <CardHeader className="flex items-center gap-2">
-              <Badge className="rounded-full bg-primary/10 p-1 text-primary">
-                <Users className="!size-7" />
-              </Badge>
-              <CardTitle className="font-semibold text-2xl">
-                Quem são os Povos Tradicionais?
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-justify">
-                Reconhecemos como Povos Originários aqueles povos e comunidades
-                que habitavam as terras com modus vivendi comunitário antes do
-                processo de colonização. No Brasil, incluem todos os indígenas e
-                seus descendentes, independentemente de morarem nas aldeias ou
-                terras indígenas.
-              </p>
-            </CardContent>
-          </Card>
+          <WhatAreTraditionalPeopleCard />
         </div>
 
         <div className="flex items-center justify-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
-            <Globe className="!size-7" />
+          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
+            <EarthIcon />
           </Badge>
           <h2 className="font-semibold text-3xl">Presença internacional</h2>
         </div>
-        <div className="grid grid-cols-5 gap-2 text-sm md:grid-cols-4 lg:grid-cols-5">
-          {countries.map((country) => (
-            <Badge
-              className="flex w-full flex-col items-center gap-0.5 rounded-md border border-primary/20 bg-primary/10 p-2 font-semibold text-primary"
-              key={country}
-            >
-              <MapPin className="!size-4" />
-              {country}
-            </Badge>
-          ))}
-        </div>
+
+        <Countries />
       </section>
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
-            <Landmark className="!size-7" />
+          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
+            <ClockIcon className="!size-7" />
           </Badge>
           <h2 className="font-semibold text-3xl">História</h2>
         </div>
@@ -146,8 +83,8 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
-            <BookOpen className="!size-7" />
+          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
+            <BookTextIcon className="!size-7" />
           </Badge>
           <h2 className="font-semibold text-3xl">Publicações</h2>
         </div>
@@ -165,8 +102,8 @@ export default async function ApresentacaoEHistoria() {
 
       <section className="space-y-14">
         <div className="flex items-center justify-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1 text-primary">
-            <History className="!size-7" />
+          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
+            <ClockIcon />
           </Badge>
           <h2 className="title-3">Linha do tempo da RedeCT</h2>
         </div>

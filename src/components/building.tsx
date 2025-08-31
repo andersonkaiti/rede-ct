@@ -1,5 +1,4 @@
-import { Construction } from 'lucide-react'
-
+import { ConstructionIcon } from './icons/construction'
 import { Card, CardDescription, CardHeader, CardTitle } from './ui/card'
 
 interface BuildingProps {
@@ -10,7 +9,7 @@ export function Building({ children }: BuildingProps) {
   return (
     <Card className="flex flex-row items-center gap-5 border-primary/25 bg-primary/5 p-8">
       <div className="rounded-full bg-primary/20 p-3">
-        <Construction className="!size-6 text-primary" />
+        <ConstructionIcon className="text-primary" />
       </div>
       <div className="flex flex-col">
         <CardHeader className="p-0">

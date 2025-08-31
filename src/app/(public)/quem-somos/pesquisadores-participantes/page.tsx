@@ -1,8 +1,9 @@
 import { Badge } from '@components/ui/badge'
 import { ListNumber } from '@components/ui/list-number'
-import { NavigationCard } from '@components/ui/navigation-card'
-import { GraduationCap, Heart, Users } from 'lucide-react'
+import { GraduationCap } from 'lucide-react'
 import Link from 'next/link'
+import { InMemoriamNavigationCard } from './_components/navigation-cards/in-memoriam'
+import { ResearchersNavigationCard } from './_components/navigation-cards/researchers-navigation-card'
 
 export default function PesquisadoresParticipantes() {
   return (
@@ -86,31 +87,9 @@ export default function PesquisadoresParticipantes() {
       </section>
 
       <section className="flex flex-col gap-8 md:flex-row">
-        <NavigationCard href="/quem-somos/pesquisadores-participantes/pesquisadores">
-          <div className="flex flex-col gap-4">
-            <h2 className="title-3 flex items-center gap-2 font-bold">
-              <Users className="text-primary" />
-              Pesquisadores Participantes
-            </h2>
-            <p>
-              Conheça os pesquisadores ativos que fazem parte daRedeCT e suas
-              contribuições para o desenvolvimento depesquisas sobre povos
-              tradicionais.
-            </p>
-          </div>
-        </NavigationCard>
-        <NavigationCard href="/quem-somos/pesquisadores-participantes/in-memoriam">
-          <div className="flex flex-col gap-4">
-            <h2 className="title-3 flex items-center gap-2 font-bold">
-              <Heart className="text-primary" /> Galeria in memorian
-            </h2>
-            <p>
-              Homenageamos aqueles que deixaram sua contribuição e legado junto
-              à RedeCT, tanto pesquisadores quanto líderes de povos
-              tradicionais.
-            </p>
-          </div>
-        </NavigationCard>
+        <ResearchersNavigationCard />
+
+        <InMemoriamNavigationCard />
       </section>
 
       <section className="space-y-8">

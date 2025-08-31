@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic'
 
+import { UsersIcon } from '@components/icons/users'
 import { Badge } from '@components/ui/badge'
-import { Users } from 'lucide-react'
 import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'
 import LoadingSkeleton from './_components/loading-skeleton'
@@ -16,7 +16,7 @@ export default function EquipeDeGestao() {
       <header className="mb-8 space-y-8">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <Users className="!size-7" />
+            <UsersIcon className="!size-7" />
           </Badge>
           <h1 className="title-2">Conheça as equipes da RedeCT</h1>
         </div>

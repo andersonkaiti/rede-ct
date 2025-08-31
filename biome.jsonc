@@ -18,7 +18,8 @@
         "noArrayIndexKey": "off"
       },
       "a11y": {
-        "noNoninteractiveElementInteractions": "off"
+        "noNoninteractiveElementInteractions": "off",
+        "noStaticElementInteractions": "off"
       }
     }
   }

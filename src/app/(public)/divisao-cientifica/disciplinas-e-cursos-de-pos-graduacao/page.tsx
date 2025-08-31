@@ -1,5 +1,5 @@
+import { BookTextIcon } from '@components/icons/book-text'
 import { Badge } from '@components/ui/badge'
-import { Book } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
@@ -14,7 +14,7 @@ export default function DisciplinasECursosDePosGraduacao() {
       <header className="space-y-8">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <Book className="!size-7" />
+            <BookTextIcon />
           </Badge>
           <h1 className="title-2">Disciplinas e Cursos de Pós-graduação</h1>
         </div>

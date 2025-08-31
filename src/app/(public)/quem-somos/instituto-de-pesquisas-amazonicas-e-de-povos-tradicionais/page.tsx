@@ -1,8 +1,7 @@
-import { Copy } from '@components/copy'
+import { BlocksIcon } from '@components/icons/blocks'
 import { Badge } from '@components/ui/badge'
-import { Card } from '@components/ui/card'
-import { NavigationCard } from '@components/ui/navigation-card'
-import { FileText, Landmark } from 'lucide-react'
+import { InstituteDataCard } from './_components/institute-data'
+import { SDHCTeamNavigationCard } from './_components/sdhc-team-navigation-card'
 
 export default function InstitutoDePesquisasAmazonicas() {
   return (
@@ -10,7 +9,7 @@ export default function InstitutoDePesquisasAmazonicas() {
       <section className="space-y-14">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <Landmark className="!size-7" />
+            <BlocksIcon />
           </Badge>
           <h1 className="title-2">
             Instituto de Pesquisas Amazônicas e de Povos Tradicionais
@@ -28,74 +27,11 @@ export default function InstitutoDePesquisasAmazonicas() {
         <h2 className="title-3">
           Dados principais do Instituto (OSCIP RedeCT)
         </h2>
-        <Card className="grid grid-cols-1 gap-8 rounded-xl p-7 text-center shadow-lg lg:grid-cols-3 lg:p-14">
-          <div className="space-y-2">
-            <h3 className="text-foreground">Razão Social</h3>
-            <h3 className="title-3">
-              Social Desenvolvimento Humano e Comunitário
-            </h3>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-foreground">Nome Fantasia</h3>
-            <h3 className="title-3">
-              Instituto de Pesquisas Amazônicas e de Povos Tradicionais
-            </h3>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-foreground">Identificações Alternativas</h3>
-            <h3 className="title-3">
-              SocialDHC, OSCIP SocialDHC, OSCIP Instituto, OSCIP RedeCT
-            </h3>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-foreground">CNPJ</h3>
-            <Copy className="title-3">05.375.958/0001-80</Copy>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-foreground">Data de Criação</h3>
-            <h3 className="title-3">02 de setembro de 2002</h3>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-foreground">Data de Qualificação como OSCIP</h3>
-            <h3 className="title-3">14/04/2003</h3>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-foreground">
-              Data de Apresentação Pública da RedeCT
-            </h3>
-            <h3 className="title-3">22/05/2018</h3>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-foreground">Sede</h3>
-            <h3 className="title-3">
-              Porto Nacional (estado do Tocantins - Amazônia legal brasileira)
-            </h3>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-foreground">Escritório Regional</h3>
-            <h3 className="title-3">Bauru (estado de São Paulo - Brasil)</h3>
-          </div>
-        </Card>
+
+        <InstituteDataCard />
       </section>
 
-      <section>
-        <NavigationCard href="/quem-somos/instituto-de-pesquisas-amazonicas-e-de-povos-tradicionais/equipe-sdhc">
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-4">
-              <div className="rounded-full bg-primary/20 p-2">
-                <FileText className="text-primary" />
-              </div>
-              <h2 className="title-3 font-bold">
-                Conheça nossa equipe de gestão
-              </h2>
-            </div>
-            <p>
-              Descubra os membros da atual equipe de gestão da associação Social
-              Desenvolvimento Humano e Comunitário.
-            </p>
-          </div>
-        </NavigationCard>
-      </section>
+      <SDHCTeamNavigationCard />
 
       <section className="space-y-7">
         <h2 className="title-3">

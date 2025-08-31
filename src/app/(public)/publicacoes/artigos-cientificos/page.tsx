@@ -1,8 +1,8 @@
 import { Building } from '@components/building'
+import { FileTextIcon } from '@components/icons/file-text'
 import { Badge } from '@components/ui/badge'
 import { Button } from '@components/ui/button'
 import { Card, CardFooter, CardHeader, CardTitle } from '@components/ui/card'
-import { FileText } from 'lucide-react'
 import Link from 'next/link'
 
 export default function ArtigosCientificos() {
@@ -11,7 +11,7 @@ export default function ArtigosCientificos() {
       <header className="space-y-8">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <FileText className="!size-7" />
+            <FileTextIcon />
           </Badge>
           <h1 className="title-2">Congressos da RedeCT</h1>
         </div>

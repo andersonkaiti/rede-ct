@@ -1,14 +1,22 @@
+'use client'
+
+import { CheckIcon, type CheckIconHandle } from '@components/icons/check'
 import { Card, CardContent, CardHeader } from '@components/ui/card'
 import { ListNumber } from '@components/ui/list-number'
-import { Check } from 'lucide-react'
+import { useRef } from 'react'
 
 export function Composition() {
+  const iconRef = useRef<CheckIconHandle>(null)
+
   return (
-    <Card>
+    <Card
+      onMouseEnter={() => iconRef.current?.startAnimation()}
+      onMouseLeave={() => iconRef.current?.stopAnimation()}
+    >
       <CardHeader>
         <h2 className="title-3 flex items-center gap-2">
           <div className="mr-2 rounded-full bg-primary/20 p-2">
-            <Check className="text-primary" />
+            <CheckIcon className="text-primary" ref={iconRef} />
           </div>
           Como é a composição de um GTC?
         </h2>

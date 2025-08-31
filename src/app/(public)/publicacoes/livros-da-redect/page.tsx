@@ -1,6 +1,6 @@
+import { BookTextIcon } from '@components/icons/book-text'
 import { Badge } from '@components/ui/badge'
 import { Button } from '@components/ui/button'
-import { Book } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -31,7 +31,7 @@ export default function ColetaneaRedeCT() {
       <header className="space-y-8">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <Book className="!size-7" />
+            <BookTextIcon />
           </Badge>
           <h1 className="title-2">Livros da RedeCT</h1>
         </div>

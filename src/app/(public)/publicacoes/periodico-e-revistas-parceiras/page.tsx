@@ -1,8 +1,7 @@
+import { FileTextIcon } from '@components/icons/file-text'
 import { Badge } from '@components/ui/badge'
-import { FileText } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
-
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicMagazines = dynamic(() =>
@@ -15,7 +14,7 @@ export default function PeriodicoERevistasParceiras() {
       <header className="space-y-8">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <FileText className="!size-7" />
+            <FileTextIcon />
           </Badge>
           <h1 className="title-2">Periódico Científico da RedeCT</h1>
         </div>

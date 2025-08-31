@@ -1,5 +1,5 @@
+import { EarthIcon } from '@components/icons/earth'
 import { Badge } from '@components/ui/badge'
-import { Globe2 } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
@@ -14,7 +14,7 @@ export default function WebinarioPermanente() {
       <header className="space-y-8">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <Globe2 className="!size-7" />
+            <EarthIcon />
           </Badge>
           <h1 className="title-2">Webinário Permanente da RedeCT</h1>
         </div>

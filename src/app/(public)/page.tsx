@@ -1,8 +1,10 @@
-import { NavigationCard } from '@components/ui/navigation-card'
-import { BookOpen, Globe, Handshake, Newspaper, Users } from 'lucide-react'
+import { RocketIcon } from '@components/icons/rocket'
+import { BookOpen, Globe, Newspaper, Users } from 'lucide-react'
 import Link from 'next/link'
 import { HeroSection } from './_components/home/hero-section'
 import { MissaoValoresTabs } from './_components/home/missao-valores-tabs'
+import { LatestNews } from './_components/home/navigation-card/latest-news'
+import { PartnersNavigationCard } from './_components/home/navigation-card/partners'
 
 const features = [
   {
@@ -77,31 +79,19 @@ export default function Home() {
         </section>
 
         <section className="space-y-12">
-          <h2 className="title-2 text-center">
+          <h2 className="title-2 inline-flex items-center gap-2 text-center">
             Missão, valores, objetivos e grandes desafios da RedeCT{' '}
             <span aria-label="alvo" role="img">
-              🎯
+              <RocketIcon className="text-primary" />
             </span>
           </h2>
           <MissaoValoresTabs />
         </section>
 
         <div className="grid gap-8 md:grid-cols-2">
-          <NavigationCard
-            href="/quem-somos/parceiros-e-financiadores"
-            variant="red"
-          >
-            <h2 className="title-3 flex items-center gap-2">
-              <Handshake />
-              Parceiros e financiadores
-            </h2>
-          </NavigationCard>
-          <NavigationCard href="/noticias" variant="red">
-            <h2 className="title-3 flex items-center gap-2">
-              <Newspaper />
-              Últimas notícias
-            </h2>
-          </NavigationCard>
+          <PartnersNavigationCard />
+
+          <LatestNews />
         </div>
       </main>
     </>

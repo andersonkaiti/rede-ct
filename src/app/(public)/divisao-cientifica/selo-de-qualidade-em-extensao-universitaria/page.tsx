@@ -1,6 +1,6 @@
 import { Building } from '@components/building'
+import { SparklesIcon } from '@components/icons/sparkles'
 import { Badge } from '@components/ui/badge'
-import { Award } from 'lucide-react'
 
 export default function SeloDeQualidadeEmExtensaoUniversitaria() {
   return (
@@ -8,7 +8,7 @@ export default function SeloDeQualidadeEmExtensaoUniversitaria() {
       <header className="space-y-8">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <Award className="!size-7" />
+            <SparklesIcon />
           </Badge>
           <h1 className="title-2">
             Selo de Qualidade em Extensão Universitária

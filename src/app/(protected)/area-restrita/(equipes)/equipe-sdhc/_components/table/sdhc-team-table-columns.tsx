@@ -30,6 +30,15 @@ export const sdhcTeamTableColumns: ColumnDef<ITeamMember>[] = [
     }) => role,
   },
   {
+    id: 'description',
+    header: 'Descrição',
+    cell: ({
+      row: {
+        original: { description },
+      },
+    }) => description,
+  },
+  {
     id: 'actions',
     header: 'Ações',
     cell: ({

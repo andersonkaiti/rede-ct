@@ -11,6 +11,7 @@ import {
 import { FilterInput } from '../../_components/filter-input'
 import { CreateMemberButton } from './_components/create-member/create-member-button'
 import { Table } from './_components/table/table'
+import { TeamMemberDisplayOptions } from './_components/team-member-display-options'
 
 export default function EquipeSDHC() {
   return (
@@ -25,6 +26,8 @@ export default function EquipeSDHC() {
       <PageHeader>
         <PageActionsContainer>
           <FilterInput />
+
+          <TeamMemberDisplayOptions />
         </PageActionsContainer>
         <CreateMemberButton>Adicionar membro</CreateMemberButton>
       </PageHeader>

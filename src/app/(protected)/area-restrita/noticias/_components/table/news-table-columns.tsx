@@ -7,7 +7,7 @@ import { ActionsRow } from './actions-row'
 const TITLE_MAX_LENGTH = 30
 const ELLIPSIS = '...'
 
-export const newTableColumns: ColumnDef<INews>[] = [
+export const newsTableColumns: ColumnDef<INews>[] = [
   {
     id: 'title',
     header: 'Título',

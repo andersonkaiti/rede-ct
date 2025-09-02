@@ -3,8 +3,10 @@ import { getTeams } from '@http/teams/get-teams'
 import type { ITeam } from 'types/team'
 import { UserCardComponent } from './user-card'
 
+const TEAM_TYPE = 'equipe-de-gestao'
+
 export async function ManagementTeams() {
-  const teamsSections = await getTeams<ITeam[]>('equipe-de-gestao')
+  const teamsSections = await getTeams<ITeam[]>({ type: TEAM_TYPE })
 
   return (
     <>

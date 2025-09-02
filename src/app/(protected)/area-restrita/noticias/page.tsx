@@ -1,11 +1,3 @@
-import { Button } from "@components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@components/ui/dropdown-menu";
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,12 +6,13 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
-import { Funnel } from "lucide-react";
+} from '@components/ui/page-container'
 
-import { FilterInput } from "../_components/filter-input";
-import { CreateNewsButton } from "./_components/create-news-button";
-import { Table } from "./_components/table/table";
+import { FilterInput } from '../_components/filter-input'
+import { CreateNewsButton } from './_components/create-news-button'
+import { NewsDisplayOptions } from './_components/news-display-options'
+import { OrderByButton } from './_components/order-by-button'
+import { Table } from './_components/table/table'
 
 export default function Noticias() {
   return (
@@ -35,21 +28,9 @@ export default function Noticias() {
         <PageActionsContainer>
           <FilterInput />
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline">
-                <Funnel />
-                Exibir
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel className="text-muted-foreground">
-                Exibir
-              </DropdownMenuLabel>
-              <DropdownMenuCheckboxItem>Título</DropdownMenuCheckboxItem>
-              <DropdownMenuCheckboxItem>Data</DropdownMenuCheckboxItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <NewsDisplayOptions />
+
+          <OrderByButton />
         </PageActionsContainer>
         <CreateNewsButton />
       </PageHeader>
@@ -58,5 +39,5 @@ export default function Noticias() {
         <Table />
       </PageMain>
     </PageContainer>
-  );
+  )
 }

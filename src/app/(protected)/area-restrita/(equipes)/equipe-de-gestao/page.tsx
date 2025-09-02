@@ -6,11 +6,12 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
+} from '@components/ui/page-container'
 
-import { CreateButton } from "../../_components/create-button";
-import { FilterInput } from "../../_components/filter-input";
-import Table from "./_components/table/table";
+import { CreateButton } from '../../_components/create-button'
+import { FilterInput } from '../../_components/filter-input'
+import Table from './_components/table/table'
+import { TeamDisplayOptions } from './_components/team-display-options'
 
 export default function EquipeDeGestao() {
   return (
@@ -25,6 +26,8 @@ export default function EquipeDeGestao() {
       <PageHeader>
         <PageActionsContainer>
           <FilterInput />
+
+          <TeamDisplayOptions />
         </PageActionsContainer>
         <CreateButton href="/area-restrita/equipe-de-gestao/cadastrar">
           Criar Equipe de Gestão
@@ -35,5 +38,5 @@ export default function EquipeDeGestao() {
         <Table />
       </PageMain>
     </PageContainer>
-  );
+  )
 }

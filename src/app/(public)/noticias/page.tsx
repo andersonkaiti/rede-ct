@@ -1,33 +1,20 @@
-export const dynamic = 'force-dynamic'
+import { NewsList } from './_components/news'
 
-import { Input } from '@components/ui/input'
-import { getNews } from '@http/news/get-news'
-import type { INews } from 'types/news'
-
-import { Noticia } from './_components/noticia'
-
-export default async function Noticias() {
-  const news = await getNews()
-
+export default function Noticias() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-14">
-      <h1 className="text-pretty font-semibold text-4xl text-foreground tracking-tight sm:text-5xl">
-        Notícias
-      </h1>
-      {news.length > 0 && (
-        <Input className="w-full sm:w-fit" placeholder="Buscar" />
-      )}
-      <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {news.map((newsItem: INews, index: number) => (
-          <Noticia key={index} news={newsItem} />
-        ))}
+    <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
+      <header className="flex flex-col gap-8">
+        <h1 className="text-pretty font-bold text-4xl text-foreground sm:text-5xl">
+          Notícias
+        </h1>
 
-        {news.length === 0 && (
-          <div className="flex w-full items-center justify-center">
-            <p>Nenhuma notícia encontrada</p>
-          </div>
-        )}
-      </div>
+        <p className="text-muted-foreground text-sm">
+          Fique por dentro das últimas novidades, comunicados e atualizações da
+          Rede CT.
+        </p>
+      </header>
+
+      <NewsList />
     </main>
   )
 }

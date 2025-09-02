@@ -17,7 +17,7 @@ export function useTeam({ type }: IUseTeamProps) {
 
   const result = useQuery<ITeam[]>({
     queryKey: QUERY_KEY,
-    queryFn: () => getTeams<ITeam[]>(type),
+    queryFn: () => getTeams<ITeam[]>({ type }),
   })
 
   async function handleRemoveMember({ id }: ITeamMember) {

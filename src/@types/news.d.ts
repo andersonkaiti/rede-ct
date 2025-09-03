@@ -17,3 +17,11 @@ export interface INews {
   id: string
   author_id: string
 }
+
+export interface IPaginatedNews {
+  page: number
+  totalPages: number
+  offset: number
+  limit: number
+  news: INews[]
+}

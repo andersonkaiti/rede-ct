@@ -6,9 +6,16 @@ export function useNews() {
   const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
   const [orderBy] = useQueryState('order_by', parseAsString.withDefault(''))
   const [authorId] = useQueryState('author_id', parseAsString.withDefault(''))
+  const [page] = useQueryState('page', parseAsString.withDefault('1'))
+  const [limit] = useQueryState('limit', parseAsString.withDefault('9'))
 
-  return useQuery({
-    queryKey: ['news', filter, orderBy, authorId],
-    queryFn: () => getNews({ filter, orderBy, authorId }),
+  const result = useQuery({
+    queryKey: ['news', filter, orderBy, authorId, page, limit],
+    queryFn: () => getNews({ filter, orderBy, authorId, page, limit }),
   })
+
+  return {
+    ...result,
+    page,
+  }
 }

@@ -1,11 +1,20 @@
 import { Card } from '@components/ui/card'
+import { Separator } from '@components/ui/separator'
 import { Skeleton } from '@components/ui/skeleton'
 import { ImageIcon } from 'lucide-react'
+import { parseAsInteger, useQueryState } from 'nuqs'
 
-export default function Loading() {
+const DEFAULT_NEWS_LIMIT = 9
+
+export default function LoadingSkeleton() {
+  const [limit] = useQueryState(
+    'limit',
+    parseAsInteger.withDefault(DEFAULT_NEWS_LIMIT)
+  )
+
   return (
     <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {Array.from({ length: 6 }).map((_, index: number) => (
+      {Array.from({ length: limit }).map((_, index: number) => (
         <Card
           className="flex h-fit w-full flex-col gap-4 rounded-md bg-background py-0 shadow-md"
           key={index}
@@ -26,6 +35,9 @@ export default function Loading() {
                 <Skeleton className="h-3.5 w-full rounded-full" />
               </div>
             </div>
+
+            <Separator />
+
             <div className="mt-4 flex items-center gap-2">
               <Skeleton className="size-6 rounded-full" />
               <Skeleton className="h-4.5 w-20 rounded-full" />

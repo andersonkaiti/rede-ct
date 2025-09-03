@@ -18,7 +18,7 @@ export function FilterInput() {
   }
 
   return (
-    <div className="flex gap-2">
+    <>
       <div className="relative w-full sm:w-fit">
         <Input
           className="w-full ps-9 sm:w-fit"
@@ -43,6 +43,6 @@ export function FilterInput() {
           )}
         />
       </Button>
-    </div>
+    </>
   )
 }

@@ -1,13 +1,13 @@
 import './globals.css'
 
 import { ClerkProvider } from '@clerk/nextjs'
+import { Toaster } from '@components/ui/sonner'
 import { QueryClientProvider } from '@providers/query-client'
 import { ThemeProvider } from '@providers/theme-provider'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Suspense } from 'react'
-import { Toaster } from 'sonner'
 
 const poppins = Poppins({
   variable: '--font-poppins',

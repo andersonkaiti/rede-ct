@@ -17,7 +17,7 @@ export default function DashboardLayout({
       <SidebarContainer />
 
       <SidebarInset>
-        <div className="flex w-full flex-col">
+        <div className="flex h-full w-full flex-col">
           <div className="flex justify-between">
             <SidebarTrigger className="mt-4 ml-4 cursor-pointer" />
 

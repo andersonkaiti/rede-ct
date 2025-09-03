@@ -1,6 +1,6 @@
 function PageContainer({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mx-auto flex w-full flex-col justify-center gap-2 p-4 py-10 md:gap-8">
+    <div className="mx-auto flex h-full w-full flex-col justify-center gap-2 p-4 py-10 md:gap-8">
       {children}
     </div>
   )
@@ -33,7 +33,7 @@ function PageActionsContainer({ children }: { children: React.ReactNode }) {
 }
 
 function PageMain({ children }: { children: React.ReactNode }) {
-  return <main className="w-full">{children}</main>
+  return <main className="flex h-full w-full flex-col gap-4">{children}</main>
 }
 
 function PageForm({

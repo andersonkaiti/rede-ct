@@ -1,13 +1,21 @@
 import { api } from '@adapters/index'
-import type { INews } from 'types/news'
+import type { IPaginatedNews } from 'types/news'
 
 interface IGetNewsProps {
   filter: string
   orderBy: string
   authorId: string
+  page: string
+  limit: string
 }
 
-export async function getNews({ filter, orderBy, authorId }: IGetNewsProps) {
+export async function getNews({
+  filter,
+  orderBy,
+  authorId,
+  page,
+  limit,
+}: IGetNewsProps) {
   const searchParams = new URLSearchParams()
 
   searchParams.set('title', filter)
@@ -18,5 +26,8 @@ export async function getNews({ filter, orderBy, authorId }: IGetNewsProps) {
 
   searchParams.set('author_id', authorId)
 
-  return await api.get<INews[]>(`/news?${searchParams}`)
+  searchParams.set('page', page)
+  searchParams.set('limit', limit)
+
+  return await api.get<IPaginatedNews>(`/news?${searchParams}`)
 }

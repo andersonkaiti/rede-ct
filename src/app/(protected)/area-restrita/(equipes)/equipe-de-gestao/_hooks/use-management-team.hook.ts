@@ -6,11 +6,7 @@ import { useEffect } from 'react'
 import { toast } from 'sonner'
 import type { ITeam } from 'types/team'
 
-interface IUseManagementTeamProps {
-  type: string
-}
-
-export function useManagementTeam({ type }: IUseManagementTeamProps) {
+export function useManagementTeam(type: string) {
   const queryClient = useQueryClient()
 
   const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
@@ -26,11 +22,11 @@ export function useManagementTeam({ type }: IUseManagementTeamProps) {
     refetch()
   }, [refetch])
 
-  async function handleRemoveTeam({ id }: ITeam) {
-    await deleteTeamById(id)
+  async function handleRemoveTeam(teamId: string) {
+    await deleteTeamById(teamId)
 
     queryClient.setQueryData(QUERY_KEY, (oldTeam: ITeam[] = []) =>
-      oldTeam.filter((team) => team.id !== id)
+      oldTeam.filter((team) => team.id !== teamId)
     )
 
     toast.success('Equipe removida com sucesso!')

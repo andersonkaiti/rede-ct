@@ -2,7 +2,6 @@ import { Button } from '@components/ui/button'
 import type { ColumnDef } from '@tanstack/react-table'
 import { Trash } from 'lucide-react'
 import type { ITeamMember } from 'types/team'
-import type { IUser } from 'types/user'
 
 export const teamMembersTableColumns: ColumnDef<ITeamMember>[] = [
   {
@@ -10,13 +9,22 @@ export const teamMembersTableColumns: ColumnDef<ITeamMember>[] = [
     header: 'Nome',
     cell: ({
       row: {
-        original: { user },
+        original: {
+          user: { name },
+        },
       },
-    }) => {
-      const { first_name, last_name } = user as IUser
-
-      return `${first_name} ${last_name || ''}`
-    },
+    }) => name,
+  },
+  {
+    id: 'email',
+    header: 'E-mail',
+    cell: ({
+      row: {
+        original: {
+          user: { emailAddress },
+        },
+      },
+    }) => emailAddress,
   },
   {
     id: 'role',
@@ -38,7 +46,9 @@ export const teamMembersTableColumns: ColumnDef<ITeamMember>[] = [
     }) => (
       <Button
         className="cursor-pointer"
-        onClick={() => meta?.handleRemove?.(original)}
+        onClick={() =>
+          original.id ? meta?.handleRemove?.(original.id) : undefined
+        }
         type="button"
         variant="ghost"
       >

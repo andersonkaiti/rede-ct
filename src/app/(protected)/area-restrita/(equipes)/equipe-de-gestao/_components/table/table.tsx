@@ -15,9 +15,7 @@ export default function Table() {
     data: teams,
     isLoading,
     handleRemoveTeam,
-  } = useManagementTeam({
-    type: TEAM_TYPE,
-  })
+  } = useManagementTeam(TEAM_TYPE)
 
   const [hasName] = useQueryState('nome', parseAsBoolean.withDefault(true))
   const [hasQuantity] = useQueryState(

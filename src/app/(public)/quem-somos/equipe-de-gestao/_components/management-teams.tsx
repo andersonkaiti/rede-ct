@@ -20,7 +20,7 @@ export async function ManagementTeams() {
           </div>
 
           <UserCardWrapper>
-            {teamSection.team_members.map((member, memberIndex: number) => (
+            {teamSection.members.map((member, memberIndex: number) => (
               <UserCardComponent key={memberIndex} member={member} />
             ))}
           </UserCardWrapper>

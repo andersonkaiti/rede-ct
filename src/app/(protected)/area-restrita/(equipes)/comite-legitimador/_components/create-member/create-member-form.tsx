@@ -16,20 +16,15 @@ import {
 } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import type { ITeamMember } from 'types/team'
 import { SelectMember } from '../../../../_components/select-member'
 import { useCreateLegitimatorCommitteeTeamMember } from '../../_hooks/use-create-member'
 
 interface ICreateMemberFormProps {
   setIsOpen: (isOpen: boolean) => void
-  member?: ITeamMember
 }
 
-export function CreateMemberForm({
-  setIsOpen,
-  member,
-}: ICreateMemberFormProps) {
-  const { errors, payload, formAction, isLoading } =
+export function CreateMemberForm({ setIsOpen }: ICreateMemberFormProps) {
+  const { errors, payload, formAction, message, isLoading } =
     useCreateLegitimatorCommitteeTeamMember(setIsOpen)
 
   return (
@@ -41,15 +36,22 @@ export function CreateMemberForm({
       <DialogContent>
         <PageForm action={formAction}>
           <PageFormContent>
+            {message && (
+              <Alert className="mb-4 border-primary" variant="destructive">
+                <AlertCircle className="size-4" />
+                <AlertDescription>{message}</AlertDescription>
+              </Alert>
+            )}
+
             <PageFormContentField>
-              <Label>{member ? 'Membro' : 'Usuários'}</Label>
+              <Label>Membro</Label>
 
-              <SelectMember userId={member?.user?.id} />
+              <SelectMember userId={payload?.get('userId') as string} />
 
-              {errors?.user_id && errors.user_id && (
+              {errors?.userId && errors.userId && (
                 <Alert className="border-primary p-2" variant="destructive">
                   <AlertCircle className="size-4" />
-                  <AlertDescription>{errors?.user_id}</AlertDescription>
+                  <AlertDescription>{errors?.userId}</AlertDescription>
                 </Alert>
               )}
             </PageFormContentField>
@@ -58,7 +60,7 @@ export function CreateMemberForm({
               <Label>Cargo</Label>
 
               <Input
-                defaultValue={member?.role || (payload?.get('role') as string)}
+                defaultValue={payload?.get('role') as string}
                 name="role"
                 placeholder="Cargo"
               />
@@ -75,9 +77,7 @@ export function CreateMemberForm({
               <Label>Descrição</Label>
 
               <Textarea
-                defaultValue={
-                  member?.description || (payload?.get('description') as string)
-                }
+                defaultValue={payload?.get('description') as string}
                 name="description"
                 placeholder="Descrição"
               />
@@ -97,8 +97,7 @@ export function CreateMemberForm({
             </DialogClose>
             <Button disabled={isLoading} type="submit">
               {isLoading && <Loader2 className="size-4 animate-spin" />}
-
-              {member ? 'Atualizar membro' : 'Cadastrar membro'}
+              Cadastrar membro
             </Button>
           </DialogFooter>
         </PageForm>

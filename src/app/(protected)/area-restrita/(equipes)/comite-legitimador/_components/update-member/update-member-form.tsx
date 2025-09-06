@@ -16,26 +16,22 @@ import {
 } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import type { ITeamMember } from 'types/team'
 import { SelectMember } from '../../../../_components/select-member'
 import { useUpdateLegitimatorCommitteeTeamMember } from '../../_hooks/use-update-member'
 
 interface IUpdateMemberFormProps {
   setIsOpen: (isOpen: boolean) => void
-  data: ITeamMember
 }
 
-export function UpdateMemberForm({
-  setIsOpen,
-  data: member,
-}: IUpdateMemberFormProps) {
-  const { errors, payload, formAction, isLoading } =
+export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
+  const { errors, payload, formAction, message, isLoading, member } =
     useUpdateLegitimatorCommitteeTeamMember({
       setIsOpen,
-      member: {
-        id: member.id as string,
-      },
     })
+
+  if (!member) {
+    return null
+  }
 
   return (
     <DialogContent className="max-h-[100vh-2rem] space-y-8 overflow-y-auto">
@@ -46,17 +42,24 @@ export function UpdateMemberForm({
       <DialogContent>
         <PageForm action={formAction}>
           <PageFormContent>
+            {message && (
+              <Alert className="mb-4 border-primary" variant="destructive">
+                <AlertCircle className="size-4" />
+                <AlertDescription>{message}</AlertDescription>
+              </Alert>
+            )}
+
             <PageFormContentField>
-              <Label>{member ? 'Membro' : 'Usuários'}</Label>
+              <Label>Membro</Label>
 
               <SelectMember
-                userId={member?.user?.id || (payload?.get('user_id') as string)}
+                userId={member.userId || (payload?.get('memberId') as string)}
               />
 
-              {errors?.user_id && errors.user_id && (
+              {errors?.userId && errors.userId && (
                 <Alert className="border-primary p-2" variant="destructive">
                   <AlertCircle className="size-4" />
-                  <AlertDescription>{errors.user_id}</AlertDescription>
+                  <AlertDescription>{errors.userId}</AlertDescription>
                 </Alert>
               )}
             </PageFormContentField>
@@ -65,7 +68,7 @@ export function UpdateMemberForm({
               <Label>Cargo</Label>
 
               <Input
-                defaultValue={member?.role || (payload?.get('role') as string)}
+                defaultValue={member.role || (payload?.get('role') as string)}
                 name="role"
                 placeholder="Cargo"
               />
@@ -83,7 +86,7 @@ export function UpdateMemberForm({
 
               <Textarea
                 defaultValue={
-                  member?.description || (payload?.get('description') as string)
+                  member.description || (payload?.get('description') as string)
                 }
                 name="description"
                 placeholder="Descrição"
@@ -104,8 +107,7 @@ export function UpdateMemberForm({
             </DialogClose>
             <Button disabled={isLoading} type="submit">
               {isLoading && <Loader2 className="size-4 animate-spin" />}
-
-              {member ? 'Atualizar membro' : 'Cadastrar membro'}
+              Atualizar membro
             </Button>
           </DialogFooter>
         </PageForm>

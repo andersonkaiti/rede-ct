@@ -1,15 +1,14 @@
 'use server'
 
-import 'server-only'
-
-import { api } from '@adapters/index'
+import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
 import { revalidatePath } from 'next/cache'
-import { z } from 'zod'
+import { ZodError, z } from 'zod'
 
 const legitimatorCommitteeTeamMemberSchema = z.object({
-  user_id: z.string().min(1, { message: 'Membro é obrigatório' }),
-  role: z.string().trim().min(1, { message: 'Cargo é obrigatório' }),
-  description: z.string().trim().min(1, { message: 'Descrição é obrigatória' }),
+  userId: z.string().min(1, 'Membro é obrigatório'),
+  role: z.string().trim().min(1, 'Cargo é obrigatório'),
+  description: z.string().trim().min(1, 'Descrição é obrigatória'),
 })
 
 export interface IActionState {
@@ -20,19 +19,14 @@ export interface IActionState {
       >['fieldErrors']
     | null
   payload: FormData | null
-}
-
-interface ICreateLegitimatorCommitteeTeamMemberProps {
-  team: {
-    id: string
-  }
+  message: string | null
 }
 
 const TEAM_TYPE = 'comite-legitimador'
 const TEAM_NAME = 'Comitê Legitimador'
 
 export async function createLegitimatorCommitteeTeamMemberAction(
-  props: ICreateLegitimatorCommitteeTeamMemberProps,
+  teamId: string,
   _: unknown,
   formData: FormData
 ): Promise<IActionState> {
@@ -47,25 +41,27 @@ export async function createLegitimatorCommitteeTeamMemberAction(
         success: false,
         errors: error.flatten().fieldErrors,
         payload: formData,
+        message: null,
       }
     }
 
-    const teamAlreadyExists = !!props.team.id
+    const teamAlreadyExists = !!teamId
 
     if (!teamAlreadyExists) {
-      await api.post('/team', {
-        ...props,
-        type: TEAM_TYPE,
-        name: TEAM_NAME,
-        members: [
-          {
-            role: data.role,
-            user: {
-              id: data.user_id,
+      await api.post('team', {
+        json: {
+          type: TEAM_TYPE,
+          name: TEAM_NAME,
+          members: [
+            {
+              role: data.role,
+              user: {
+                id: data.userId,
+              },
               description: data.description,
             },
-          },
-        ],
+          ],
+        },
       })
 
       revalidatePath(`/area-restrita/${TEAM_TYPE}`)
@@ -74,12 +70,15 @@ export async function createLegitimatorCommitteeTeamMemberAction(
         success: true,
         errors: null,
         payload: null,
+        message: null,
       }
     }
 
-    await api.post(`/team/${props.team.id}/member`, {
-      ...props,
-      member: data,
+    await api.post(`team/${teamId}/member`, {
+      json: {
+        teamId,
+        member: data,
+      },
     })
 
     revalidatePath(`/area-restrita/${TEAM_TYPE}`)
@@ -88,12 +87,34 @@ export async function createLegitimatorCommitteeTeamMemberAction(
       success: true,
       errors: null,
       payload: null,
+      message: null,
     }
-  } catch {
+  } catch (err) {
+    if (err instanceof HTTPError) {
+      const errorBody = await err.response.json()
+
+      return {
+        success: false,
+        errors: null,
+        payload: formData,
+        message: errorBody.message,
+      }
+    }
+
+    if (err instanceof ZodError) {
+      return {
+        success: false,
+        errors: err.flatten().fieldErrors,
+        payload: formData,
+        message: null,
+      }
+    }
+
     return {
       success: false,
       errors: null,
       payload: formData,
+      message: 'Aconteceu um erro inesperado.',
     }
   }
 }
@@ -120,11 +141,12 @@ export async function updateLegitimatorCommitteeTeamMemberAction(
         success: false,
         errors: error.flatten().fieldErrors,
         payload: formData,
+        message: null,
       }
     }
 
-    await api.put(`/team/member/${props.member.id}`, {
-      member: {
+    await api.put(`team/member/${props.member.id}`, {
+      json: {
         ...data,
         id: props.member.id,
       },
@@ -136,12 +158,25 @@ export async function updateLegitimatorCommitteeTeamMemberAction(
       success: true,
       errors: null,
       payload: null,
+      message: null,
     }
-  } catch {
+  } catch (err) {
+    if (err instanceof HTTPError) {
+      const errorBody = await err.response.json()
+
+      return {
+        success: false,
+        errors: null,
+        payload: formData,
+        message: errorBody.message,
+      }
+    }
+
     return {
       success: false,
       errors: null,
       payload: formData,
+      message: 'Aconteceu um erro inesperado.',
     }
   }
 }

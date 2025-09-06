@@ -1,19 +1,22 @@
-'use client'
-
 import { deleteTeamMemberById } from '@http/teams/delete-team-member-by-id'
 import { getTeams } from '@http/teams/get-teams'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import type { ITeam } from 'types/team'
+import type { ILegitimatorCommittee } from '../_components/table/legitimator-committee-table-columns'
 
-export function useTeam(type: string) {
+const TEAM_TYPE = 'comite-legitimador'
+
+export function useLegitimatorCommittee() {
   const queryClient = useQueryClient()
 
-  const QUERY_KEY = ['team', type]
+  const QUERY_KEY = ['team', TEAM_TYPE]
 
   const result = useQuery({
     queryKey: QUERY_KEY,
-    queryFn: () => getTeams<ITeam[]>({ type }),
+    queryFn: async () =>
+      await getTeams<ILegitimatorCommittee[]>({ type: TEAM_TYPE }),
+    select: (data: ILegitimatorCommittee[]) => data[0],
   })
 
   async function handleRemoveMember(teamMemberId: string) {

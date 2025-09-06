@@ -5,11 +5,23 @@ import { UserCardComponent } from './user-card'
 export async function ComiteLegitimador() {
   const [legitimatingCommittee] = await getLegitimatingCommittee()
 
+  const hasMembers =
+    legitimatingCommittee?.members && legitimatingCommittee.members.length > 0
+
   return (
-    <UserCardWrapper>
-      {legitimatingCommittee?.team_members?.map((member, index: number) => (
-        <UserCardComponent key={index} member={member} />
-      ))}
-    </UserCardWrapper>
+    <>
+      <UserCardWrapper>
+        {hasMembers &&
+          legitimatingCommittee.members.map((member, index: number) => (
+            <UserCardComponent key={index} member={member} />
+          ))}
+      </UserCardWrapper>
+
+      {!hasMembers && (
+        <div className="py-8 text-center text-muted-foreground">
+          Nenhum membro encontrado no Comitê Legitimador.
+        </div>
+      )}
+    </>
   )
 }

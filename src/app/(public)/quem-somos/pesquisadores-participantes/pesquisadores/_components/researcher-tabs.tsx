@@ -3,9 +3,9 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@components/ui/tabs'
 import {
   getResearchers,
-  type Seniority,
   seniorities,
   seniorityMapping,
+  type Seniority,
 } from '@mocks/researchers/researchers'
 import { useQuery } from '@tanstack/react-query'
 import { useQueryState } from 'nuqs'
@@ -22,13 +22,14 @@ export function ResearcherTabs() {
     queryFn: getResearchers,
   })
 
-  const currentTab = tab && seniorities.includes(tab) ? tab : seniorities[0]
+  const currentTab =
+    tab && seniorities.includes(tab as Seniority)
+      ? (tab as Seniority)
+      : seniorities[0]
 
   const filteredByName = researchers?.filter((researcher) =>
     nome
-      ? `${researcher.user.first_name} ${researcher.user.last_name}`
-          .toLowerCase()
-          .includes(nome.toLowerCase())
+      ? researcher.user.name.toLowerCase().includes(nome.toLowerCase())
       : true
   )
 
@@ -89,7 +90,7 @@ export function ResearcherTabs() {
                 <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
                   {filteredBySeniority?.map((researcher) => (
                     <ResearcherCard
-                      key={`${researcher.user.first_name} ${researcher.user.last_name} ${researcher.user.email_addresses?.[0]?.email_address || ''}`}
+                      key={`${researcher.user.name} ${researcher.user.emailAddress}`}
                       researcher={researcher}
                     />
                   ))}

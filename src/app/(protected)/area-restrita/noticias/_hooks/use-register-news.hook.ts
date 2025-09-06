@@ -6,10 +6,11 @@ import { toast } from 'sonner'
 import { type IActionState, registerNewsAction } from '../actions'
 
 export function useRegisterNews() {
-  const [{ payload, errors, success }, formAction, isLoading] = useActionState<
-    IActionState,
-    FormData
-  >(registerNewsAction, {} as IActionState)
+  const [{ payload, errors, success, message }, formAction, isLoading] =
+    useActionState<IActionState, FormData>(
+      registerNewsAction,
+      {} as IActionState
+    )
 
   useEffect(() => {
     if (success) {
@@ -26,5 +27,6 @@ export function useRegisterNews() {
     payload,
     formAction,
     isLoading,
+    message,
   }
 }

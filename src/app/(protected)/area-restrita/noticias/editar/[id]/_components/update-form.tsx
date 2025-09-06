@@ -27,7 +27,7 @@ interface IUpdateFormProps {
 export function UpdateForm({
   news: { title, content, id, imageUrl },
 }: IUpdateFormProps) {
-  const { errors, payload, formAction, isLoading } = useUpdateNews({
+  const { errors, payload, formAction, isLoading, message } = useUpdateNews({
     id,
     imageUrl,
   })
@@ -45,6 +45,13 @@ export function UpdateForm({
 
       <PageForm action={formAction}>
         <PageFormContent>
+          {message && (
+            <Alert className="mb-4 border-primary" variant="destructive">
+              <AlertCircle className="size-4" />
+              <AlertDescription>{message}</AlertDescription>
+            </Alert>
+          )}
+
           <PageFormContentField>
             <Label>
               Título <span className="text-primary">*</span>

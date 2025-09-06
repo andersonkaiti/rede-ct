@@ -1,10 +1,9 @@
 'use server'
 
-import 'server-only'
-
 import { getAuthenticatedUser } from '@http/auth/get-user'
 import { createNews } from '@http/news/create-news'
 import { updateNews } from '@http/news/update-news'
+import { HTTPError } from 'ky'
 import { z } from 'zod'
 
 const BYTES = 1024
@@ -51,31 +50,45 @@ export interface IActionState {
   success: boolean
   errors: z.inferFlattenedErrors<typeof newsSchema>['fieldErrors'] | null
   payload: FormData | null
+  message: string | null
 }
 
 export async function registerNewsAction(
   _: unknown,
   formData: FormData
 ): Promise<IActionState> {
-  try {
-    const { success, error, data } = newsSchema.safeParse(
-      Object.fromEntries(formData)
-    )
+  const { success, error, data } = newsSchema.safeParse(
+    Object.fromEntries(formData)
+  )
 
-    if (!success) {
+  if (!success) {
+    return {
+      success: false,
+      errors: error.flatten().fieldErrors,
+      payload: formData,
+      message: null,
+    }
+  }
+
+  try {
+    await createNews(data)
+  } catch (err) {
+    if (err instanceof HTTPError) {
+      const errorBody = await err.response.json()
+
       return {
         success: false,
-        errors: error.flatten().fieldErrors,
+        errors: null,
         payload: formData,
+        message: errorBody,
       }
     }
 
-    await createNews(data)
-  } catch {
     return {
       success: false,
       errors: null,
       payload: formData,
+      message: 'Aconteceu um erro inesperado.',
     }
   }
 
@@ -83,6 +96,7 @@ export async function registerNewsAction(
     success: true,
     errors: null,
     payload: null,
+    message: null,
   }
 }
 
@@ -103,6 +117,7 @@ export async function updateNewsAction(
         success: false,
         errors: error.flatten().fieldErrors,
         payload: formData,
+        message: null,
       }
     }
 
@@ -121,6 +136,7 @@ export async function updateNewsAction(
       success: false,
       errors: null,
       payload: formData,
+      message: null,
     }
   }
 
@@ -128,5 +144,6 @@ export async function updateNewsAction(
     success: true,
     errors: null,
     payload: null,
+    message: null,
   }
 }

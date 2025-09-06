@@ -35,7 +35,7 @@ export function SidebarContainer() {
           <SidebarGroupContent>
             <SidebarMenu>
               {sidebarLinks.map((link: NavigationLink, index: number) => (
-                <SidebarItem item={link} key={index}  />
+                <SidebarItem item={link} key={index} />
               ))}
             </SidebarMenu>
           </SidebarGroupContent>

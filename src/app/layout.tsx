@@ -1,6 +1,5 @@
 import './globals.css'
 
-import { ClerkProvider } from '@clerk/nextjs'
 import { Toaster } from '@components/ui/sonner'
 import { QueryClientProvider } from '@providers/query-client'
 import { ThemeProvider } from '@providers/theme-provider'
@@ -30,24 +29,22 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
-      <QueryClientProvider>
-        <html lang="pt-BR" suppressHydrationWarning>
-          <body className={`${poppins.variable}`}>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              disableTransitionOnChange
-              enableSystem
-            >
-              <NuqsAdapter>
-                <Suspense>{children}</Suspense>
-              </NuqsAdapter>
-              <Toaster position="bottom-center" richColors />
-            </ThemeProvider>
-          </body>
-        </html>
-      </QueryClientProvider>
-    </ClerkProvider>
+    <QueryClientProvider>
+      <html lang="pt-BR" suppressHydrationWarning>
+        <body className={`${poppins.variable}`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            disableTransitionOnChange
+            enableSystem
+          >
+            <NuqsAdapter>
+              <Suspense>{children}</Suspense>
+            </NuqsAdapter>
+            <Toaster position="bottom-center" richColors />
+          </ThemeProvider>
+        </body>
+      </html>
+    </QueryClientProvider>
   )
 }

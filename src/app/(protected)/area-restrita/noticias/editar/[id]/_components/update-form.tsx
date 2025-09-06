@@ -25,11 +25,11 @@ interface IUpdateFormProps {
 }
 
 export function UpdateForm({
-  news: { title, content, id, image_url },
+  news: { title, content, id, imageUrl },
 }: IUpdateFormProps) {
   const { errors, payload, formAction, isLoading } = useUpdateNews({
     id,
-    image_url,
+    imageUrl,
   })
 
   return (
@@ -69,7 +69,7 @@ export function UpdateForm({
               Imagem <span className="text-primary">*</span>
             </Label>
 
-            <FileUpload imageUrl={image_url} maxSizeMB={5} />
+            <FileUpload imageUrl={imageUrl} maxSizeMB={5} />
 
             {errors?.image && errors?.image && (
               <Alert className="border-primary p-2" variant="destructive">

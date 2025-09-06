@@ -9,6 +9,7 @@ import {
 import { Separator } from '@components/ui/separator'
 import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { cn } from '@utils/cn'
+import { getInitials } from '@utils/get-initials'
 import { UserIcon } from 'lucide-react'
 import { parseAsString, useQueryState } from 'nuqs'
 import type { INews } from 'types/news'
@@ -51,7 +52,7 @@ export function SelectAuthor({ authors }: ISelectAuthorProps) {
             <span className="text-muted-foreground text-xs">Nenhum autor</span>
           </DropdownMenuItem>
         ) : (
-          authors.map(({ id, profile_image_url, first_name, last_name }) => (
+          authors.map(({ id, avatarUrl, name }) => (
             <DropdownMenuItem
               className={cn(
                 'gap-2',
@@ -61,13 +62,10 @@ export function SelectAuthor({ authors }: ISelectAuthorProps) {
               onSelect={() => setAuthorId(id)}
             >
               <Avatar className="size-6">
-                <AvatarImage src={profile_image_url} />
-                <AvatarFallback>
-                  {first_name?.[0]}
-                  {last_name?.[0]}
-                </AvatarFallback>
+                <AvatarImage src={avatarUrl} />
+                <AvatarFallback>{getInitials(name)}</AvatarFallback>
               </Avatar>
-              <span className="truncate text-xs">{`${first_name} ${last_name || ''}`}</span>
+              <span className="truncate text-xs">{name}</span>
             </DropdownMenuItem>
           ))
         )}

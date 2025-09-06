@@ -4,34 +4,30 @@ import { deleteTeamMemberById } from '@http/teams/delete-team-member-by-id'
 import { getTeams } from '@http/teams/get-teams'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
-import type { ITeam, ITeamMember } from 'types/team'
+import type { ITeam } from 'types/team'
 
-interface IUseTeamProps {
-  type: string
-}
-
-export function useTeam({ type }: IUseTeamProps) {
+export function useTeam(type: string) {
   const queryClient = useQueryClient()
 
   const QUERY_KEY = ['team', type]
 
-  const result = useQuery<ITeam[]>({
+  const result = useQuery({
     queryKey: QUERY_KEY,
     queryFn: () => getTeams<ITeam[]>({ type }),
   })
 
-  async function handleRemoveMember({ id }: ITeamMember) {
-    if (!id) {
-      throw new Error('O id do membro é obrigatório')
+  async function handleRemoveMember(teamMemberId: string) {
+    if (!teamMemberId) {
+      throw new Error('O id do membro é obrigatório!')
     }
 
-    await deleteTeamMemberById(id)
+    await deleteTeamMemberById(teamMemberId)
 
     queryClient.setQueryData(QUERY_KEY, (old: ITeam[]) =>
       old.map((oldTeam) => ({
         ...oldTeam,
-        team_members:
-          oldTeam.team_members.filter((member) => member.id !== id) || [],
+        members:
+          oldTeam.members.filter((member) => member.id !== teamMemberId) || [],
       }))
     )
 

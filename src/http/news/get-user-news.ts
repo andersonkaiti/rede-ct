@@ -1,8 +1,7 @@
-import { api } from '@adapters/index'
+import { api } from '@http/api-client'
 import type { IPaginatedNews } from 'types/news'
 
 interface IGetUserNewsProps {
-  userId: string
   filter: string
   orderBy: string
   page: string
@@ -12,10 +11,9 @@ interface IGetUserNewsProps {
 export async function getUserNews({
   filter,
   orderBy,
-  userId,
   page,
   limit,
-}: IGetUserNewsProps) {
+}: IGetUserNewsProps): Promise<IPaginatedNews> {
   const searchParams = new URLSearchParams()
 
   searchParams.set('title', filter)
@@ -23,5 +21,5 @@ export async function getUserNews({
   searchParams.set('page', page)
   searchParams.set('limit', limit)
 
-  return await api.get<IPaginatedNews>(`/news/author/${userId}?${searchParams}`)
+  return await api.get(`auth/user/news?${searchParams}`).json()
 }

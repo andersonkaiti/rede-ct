@@ -7,26 +7,30 @@ import {
   DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu'
 import { EditIcon, Ellipsis } from 'lucide-react'
-import { useState } from 'react'
-import type { ITeamMember } from 'types/team'
-
-import { DeleteDialog } from '@/app/(protected)/area-restrita/_components/delete-dialog'
+import { useQueryState } from 'nuqs'
+import { useEffect, useState } from 'react'
+import { DeleteDialog } from './delete-dialog'
 
 interface IActionsRowProps {
-  data: ITeamMember
+  memberId: string
   handleRemove: () => void
   form: React.ComponentType<{
     setIsOpen: (isOpen: boolean) => void
-    data: ITeamMember
   }>
 }
 
 export function ActionsRow({
-  data,
+  memberId,
   handleRemove,
   form: Form,
 }: IActionsRowProps) {
   const [isOpen, setIsOpen] = useState(false)
+
+  const [, setMemberId] = useQueryState('member_id')
+
+  useEffect(() => {
+    setMemberId(memberId)
+  }, [memberId, setMemberId])
 
   return (
     <DropdownMenu>
@@ -48,7 +52,7 @@ export function ActionsRow({
                 <EditIcon className="size-4 text-foreground" />
               </Button>
             </DialogTrigger>
-            <Form data={data} setIsOpen={setIsOpen} />
+            <Form setIsOpen={setIsOpen} />
           </Dialog>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>

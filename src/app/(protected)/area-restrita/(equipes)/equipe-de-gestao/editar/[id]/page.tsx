@@ -22,7 +22,7 @@ import { LoadingTableSkeleton } from './_components/loading-table-skeleton'
 
 export default function EditarEquipeDeGestao() {
   const {
-    data,
+    incomingTeam,
     team,
     isTeamLoading,
     inputRef,
@@ -32,6 +32,7 @@ export default function EditarEquipeDeGestao() {
     errors,
     formAction,
     isLoading,
+    message,
   } = useUpdateTeam()
 
   return (
@@ -42,13 +43,20 @@ export default function EditarEquipeDeGestao() {
       <PageMain>
         <PageForm action={formAction}>
           <PageFormContent>
+            {message && (
+              <Alert className="mb-4 border-primary" variant="destructive">
+                <AlertCircle className="size-4" />
+                <AlertDescription>{message}</AlertDescription>
+              </Alert>
+            )}
+
             <PageFormContentField>
               <Label>Nome da equipe</Label>
               {isTeamLoading ? (
                 <LoadingInputSkeleton />
               ) : (
                 <Input
-                  defaultValue={data?.name}
+                  defaultValue={incomingTeam?.name}
                   name="name"
                   placeholder="Nome"
                 />

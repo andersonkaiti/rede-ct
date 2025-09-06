@@ -1,21 +1,18 @@
 export interface INews {
   title: string
   content: string
+  date: string
+  imageUrl: string
+  createdAt: string
+  updatedAt: string
+  id: string
   author: {
     id: string
-    first_name: string
-    last_name: string
-    created_at: string
-    image_url: string
-    profile_image_url: string
-    updated_at: string
+    name: string
+    createdAt: string
+    avatarUrl: string
+    updatedAt: string
   }
-  date: string
-  image_url?: string
-  created_at: string
-  updated_at: string
-  id: string
-  author_id: string
 }
 
 export interface IPaginatedNews {

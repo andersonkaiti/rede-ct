@@ -18,9 +18,9 @@ export const managementTeamTableColumns: ColumnDef<ITeam>[] = [
     header: 'Quantidade de membros',
     cell: ({
       row: {
-        original: { team_members },
+        original: { members },
       },
-    }) => team_members.length,
+    }) => members.length,
   },
   {
     id: 'actions',
@@ -33,7 +33,7 @@ export const managementTeamTableColumns: ColumnDef<ITeam>[] = [
     }) => (
       <ActionsRow
         data={original}
-        handleRemove={() => meta?.handleRemove?.(original)}
+        handleRemove={() => meta?.handleRemove?.(original.id)}
       />
     ),
   },

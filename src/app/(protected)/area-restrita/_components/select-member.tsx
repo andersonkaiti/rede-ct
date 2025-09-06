@@ -14,14 +14,13 @@ interface ISelectMemberProps {
 }
 
 export function SelectMember({ userId }: ISelectMemberProps) {
-  const { data: users, isLoading } = useUsers()
+  const { data: users = [], isLoading } = useUsers()
 
-  const user = users?.find((u) => u.id === userId)
-  const memberName = `${user?.first_name} ${user?.last_name || ''}`
+  const user = users.find((u) => u.id === userId)
 
   function renderSelectPlaceholder() {
     if (userId && !isLoading) {
-      return memberName
+      return `${user?.name} (${user?.emailAddress})`
     }
 
     if (userId && isLoading) {
@@ -37,7 +36,7 @@ export function SelectMember({ userId }: ISelectMemberProps) {
   }
 
   return (
-    <Select defaultValue={userId} name="user_id">
+    <Select defaultValue={userId} name="userId">
       <SelectTrigger className="w-full">
         <SelectValue placeholder={renderSelectPlaceholder()} />
       </SelectTrigger>
@@ -52,7 +51,7 @@ export function SelectMember({ userId }: ISelectMemberProps) {
         <SelectContent>
           {users?.map((u) => (
             <SelectItem key={u.id} value={u.id}>
-              {u.first_name} {u.last_name || ''}
+              {u.name} ({u.emailAddress})
             </SelectItem>
           ))}
         </SelectContent>

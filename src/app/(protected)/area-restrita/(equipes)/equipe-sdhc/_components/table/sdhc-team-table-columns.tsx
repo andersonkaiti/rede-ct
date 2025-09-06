@@ -1,24 +1,49 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import type { ITeamMember } from 'types/team'
+import { formatDate } from '@utils/format-date'
 import type { IUser } from 'types/user'
-
-import { ActionsRow } from '@/app/(protected)/area-restrita/_components/actions-row'
-
+import { ActionsRow } from '../../../../_components/actions-row'
 import { UpdateMemberForm } from '../update-member/update-member-form'
 
-export const sdhcTeamTableColumns: ColumnDef<ITeamMember>[] = [
+export interface ISDHCTeamMember {
+  role: string
+  id: string
+  createdAt: string
+  updatedAt: string
+  description: string
+  user: IUser
+}
+
+export interface ISDHCTeam {
+  id: string
+  name: string
+  type: string
+  createdAt: string
+  updatedAt: string
+  members: ISDHCTeamMember[]
+}
+
+export const sdhcTeamTableColumns: ColumnDef<ISDHCTeamMember>[] = [
   {
     id: 'name',
     header: 'Nome',
     cell: ({
       row: {
-        original: { user },
+        original: {
+          user: { name },
+        },
       },
-    }) => {
-      const { first_name, last_name } = user as IUser
-
-      return `${first_name} ${last_name || ''}`
-    },
+    }) => name,
+  },
+  {
+    id: 'email',
+    header: 'E-mail',
+    cell: ({
+      row: {
+        original: {
+          user: { emailAddress },
+        },
+      },
+    }) => emailAddress,
   },
   {
     id: 'role',
@@ -39,18 +64,38 @@ export const sdhcTeamTableColumns: ColumnDef<ITeamMember>[] = [
     }) => description,
   },
   {
+    id: 'created_at',
+    header: 'Criado em',
+    cell: ({
+      row: {
+        original: { createdAt },
+      },
+    }) => formatDate(createdAt),
+  },
+  {
+    id: 'updated_at',
+    header: 'Atualizado em',
+    cell: ({
+      row: {
+        original: { updatedAt },
+      },
+    }) => formatDate(updatedAt),
+  },
+  {
     id: 'actions',
     header: 'Ações',
     cell: ({
-      row: { original },
+      row: {
+        original: { id },
+      },
       table: {
         options: { meta },
       },
     }) => (
       <ActionsRow
-        data={original}
         form={UpdateMemberForm}
-        handleRemove={() => meta?.handleRemove?.(original)}
+        handleRemove={() => meta?.handleRemove?.(id)}
+        memberId={id}
       />
     ),
   },

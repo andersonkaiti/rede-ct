@@ -19,7 +19,7 @@ import { AlertCircle, Loader2 } from 'lucide-react'
 import { useRegisterNews } from '../_hooks/use-register-news.hook'
 
 export default function CadastrarNoticia() {
-  const { payload, errors, formAction, isLoading } = useRegisterNews()
+  const { payload, errors, formAction, isLoading, message } = useRegisterNews()
 
   return (
     <PageContainer>
@@ -32,6 +32,13 @@ export default function CadastrarNoticia() {
 
       <PageForm action={formAction}>
         <PageFormContent>
+          {message && (
+            <Alert className="mb-4 border-primary" variant="destructive">
+              <AlertCircle className="size-4" />
+              <AlertDescription>{message}</AlertDescription>
+            </Alert>
+          )}
+
           <PageFormContentField>
             <Label>
               Título <span className="text-primary">*</span>

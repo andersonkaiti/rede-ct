@@ -1,15 +1,15 @@
 'use client'
 
-import { SignedIn, SignedOut } from '@clerk/nextjs'
 import { AnimatedThemeToggler } from '@components/magicui/animated-theme-toggler'
 import { Button } from '@components/ui/button'
+import { useAuth } from '@hooks/use-auth.hook'
 import { cn } from '@utils/cn'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { NavigationLink as NavigationLinkType } from 'types/navigation-link'
 import { Dropdown } from './dropdown'
-import { useNavigationBar } from './hooks/use-navigation-bar.hook'
 import { useNavigationBarDropdown } from './hooks/use-navigation-bar-dropdown.hook'
+import { useNavigationBar } from './hooks/use-navigation-bar.hook'
 import { Menu } from './menu'
 import { NavigationLink } from './navigation-link'
 import { navigationLinks } from './navigation-links'
@@ -31,6 +31,8 @@ export function NavigationBar() {
     onMouseEnter,
     refs,
   } = useNavigationBarDropdown()
+
+  const { isAuthenticated } = useAuth()
 
   return (
     <header
@@ -75,24 +77,24 @@ export function NavigationBar() {
           />
         ))}
 
-        <SignedOut>
+        {!isAuthenticated && (
           <Link
-            className="group inline-flex h-9 2lg:w-fit w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-red-200-foreground focus:bg-gray-400/25 focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:text-red-200-foreground data-[state=open]:focus:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25"
+            className="group inline-flex h-9 2lg:w-fit w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 text-muted-foreground text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-red-200-foreground focus:bg-gray-400/25 focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:text-red-200-foreground data-[state=open]:focus:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25"
             href="/sign-in"
             onClick={() => setShowNavigationBar(false)}
           >
             Entrar
           </Link>
-        </SignedOut>
+        )}
 
-        <SignedIn>
+        {isAuthenticated && (
           <Link
             className="group inline-flex h-9 2lg:w-fit w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 text-muted-foreground text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-foreground hover:text-red-200-foreground focus:bg-gray-400/25 focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:text-red-200-foreground data-[state=open]:focus:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25"
             href="/area-restrita"
           >
             Área restrita
           </Link>
-        </SignedIn>
+        )}
 
         {hovering && (
           <Dropdown

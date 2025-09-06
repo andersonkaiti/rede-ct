@@ -57,11 +57,20 @@ export function EPTAccordion() {
 
       <Accordion collapsible type="single">
         {filteredETPs.map(
-          ({ name, description, members, text, gtMembers, gtText }) => (
-            <AccordionItem key={name} value={name}>
+          ({
+            code,
+            description,
+            gtText,
+            id,
+            members,
+            text,
+            title,
+            gtMembers,
+          }) => (
+            <AccordionItem key={id} value={code}>
               <AccordionTrigger>
                 <div className="flex flex-col gap-1 text-left">
-                  <span className="title-3">{name}</span>
+                  <span className="title-3">{title}</span>
                   <span className="font-medium text-base text-muted-foreground">
                     {description}
                   </span>

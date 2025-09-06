@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation'
 import { useActionState, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import type { ITeamMember } from 'types/team'
-import { type IActionState, registerManagementTeam } from '../actions'
+import { createManagementTeamAction, type IActionState } from '../actions'
 
 export function useCreateTeam() {
   const [team, setTeam] = useState<ITeamMember[]>([])
@@ -25,31 +25,24 @@ export function useCreateTeam() {
       role: inputRef.current.value,
     }
 
-    const alreadyExists = !!team.find(
-      (member) => member.user?.id === newMember.user?.id
-    )
-
-    if (alreadyExists) {
-      toast.warning('Esse membro já existe!')
-
-      return
-    }
-
     toast.success('Membro adicionado com sucesso!')
 
     setTeam((prevTeam) => [...prevTeam, newMember])
   }
 
-  function handleRemoveMember({ id }: ITeamMember) {
-    setTeam((prevTeam) => prevTeam.filter((teamMember) => teamMember.id !== id))
+  function handleRemoveMember(teamId: string) {
+    setTeam((prevTeam) =>
+      prevTeam.filter((teamMember) => teamMember.id !== teamId)
+    )
 
     toast.success('Usuário removido com sucesso!')
   }
 
-  const [{ payload, success, errors }, formAction, isLoading] = useActionState<
-    IActionState,
-    FormData
-  >(registerManagementTeam.bind(null, team), {} as IActionState)
+  const [{ payload, success, errors, message }, formAction, isLoading] =
+    useActionState<IActionState, FormData>(
+      createManagementTeamAction.bind(null, team),
+      {} as IActionState
+    )
 
   useEffect(() => {
     if (success) {
@@ -69,5 +62,6 @@ export function useCreateTeam() {
     isLoading,
     errors,
     payload,
+    message,
   }
 }

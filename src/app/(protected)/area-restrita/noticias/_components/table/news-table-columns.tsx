@@ -25,9 +25,9 @@ export const newsTableColumns: ColumnDef<INews>[] = [
     header: 'Data',
     cell: ({
       row: {
-        original: { created_at },
+        original: { createdAt },
       },
-    }) => formatDate(created_at),
+    }) => formatDate(createdAt),
   },
   {
     id: 'actions',
@@ -40,7 +40,7 @@ export const newsTableColumns: ColumnDef<INews>[] = [
     }) => (
       <ActionsRow
         data={original}
-        handleRemove={() => meta?.handleRemove?.(original)}
+        handleRemove={() => meta?.handleRemove?.(original.id)}
       />
     ),
   },

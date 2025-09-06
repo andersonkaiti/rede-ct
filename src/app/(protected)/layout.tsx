@@ -1,3 +1,4 @@
+import { isAuthenticated } from '@auth/auth'
 import { AnimatedThemeToggler } from '@components/magicui/animated-theme-toggler'
 import { Button } from '@components/ui/button'
 import {
@@ -5,13 +6,18 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from '@components/ui/sidebar'
+import { redirect } from 'next/navigation'
 import { SidebarContainer } from './_components/sidebar/sidebar'
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  if (!(await isAuthenticated())) {
+    redirect('/sign-in')
+  }
+
   return (
     <SidebarProvider>
       <SidebarContainer />

@@ -1,11 +1,11 @@
-"use client";
+'use client'
 
-import { getUsers } from "@http/get-users";
-import { useQuery } from "@tanstack/react-query";
+import { getUsers } from '@http/get-users'
+import { useQuery } from '@tanstack/react-query'
 
 export function useUsers() {
   return useQuery({
-    queryKey: ["users"],
+    queryKey: ['users'],
     queryFn: getUsers,
-  });
+  })
 }

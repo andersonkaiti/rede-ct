@@ -2,7 +2,9 @@ import type { IETP } from 'types/etp'
 
 const etps: IETP[] = [
   {
-    name: 'ETP-01',
+    id: 'etp-01',
+    code: 'ETP-01',
+    title: 'ETP-01',
     description:
       'Cultura, história e políticas públicas para Povos Tradicionais',
     text: 'Este Eixo Temático Permanente estuda e potencializa a produção científica sobre a cultura, história e políticas públicas para Povos Tradicionais, neste sentido acolhe trabalhos que contemplam as seguintes palavras-chave: história de povos tradicionais, lingüística indígena, cultura e tradições de povos tradicionais, violência e conflitos, direitos de povos tradicionais, políticas públicas para povos tradicionais, dentre outros.',
@@ -10,9 +12,8 @@ const etps: IETP[] = [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Nelson Russo',
-          last_name: 'de Moraes',
-          profile_image_url: '/images/etps/01/image-1.png',
+          name: 'Nelson Russo de Moraes',
+          avatarUrl: '/images/etps/01/image-1.png',
           lattesUrl: 'http://lattes.cnpq.br/6708471420702848',
           orcid: '',
           email: 'nelson.russo@unesp.br',
@@ -24,9 +25,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Diógenes Alencar',
-          last_name: 'Bolwerk',
-          profile_image_url: '/images/etps/01/image-2.png',
+          name: 'Diógenes Alencar Bolwerk',
+          avatarUrl: '/images/etps/01/image-2.png',
           lattesUrl: 'https://lattes.cnpq.br/7362195345748253',
           orcid: '',
           email: 'diogenes.bolwerk74@gmail.com',
@@ -38,9 +38,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Francielli Gonçalves',
-          last_name: 'Rodrigues',
-          profile_image_url: '/images/etps/01/image-3.png',
+          name: 'Francielli Gonçalves Rodrigues',
+          avatarUrl: '/images/etps/01/image-3.png',
           lattesUrl: 'https://lattes.cnpq.br/5265749674433379',
           orcid: '',
           email: 'francielli.rodrigues@unesp.br',
@@ -204,7 +203,9 @@ const etps: IETP[] = [
       'O ETP 01 congrega estudos e trabalhos acadêmicos e científicos acerca da Cultura, História e Políticas Públicas relacionadas aos Povos Tradicionais (desde os indígenas, passando pelos quilombolas até as mais novas expressões que buscam enquadramento dentro da ampla circunscrição das comunidades tradicionais. Dentre outros estuda os seguintes subtemas: cultura, história, políticas públicas, direitos universais, direitos constitucionais, diálogos internacionais e classificações de povos e comunidades.',
   },
   {
-    name: 'ETP-02',
+    id: 'etp-02',
+    code: 'ETP-02',
+    title: 'ETP-02',
     description:
       'Comunicação, inovação e uso de tecnologias pelos e em favor dos Povos Tradicionais',
     text: 'Este Eixo Temático Permanente nononononon nononon nnoon nnn nononononono nonononono nonononoon non nono no nonoonno nonono nonono nonono nono nononon nononono nonoonnono.',
@@ -212,9 +213,8 @@ const etps: IETP[] = [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Nono',
-          last_name: 'nonon ononnno',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nono nonon ononnno',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nonononononono',
@@ -226,9 +226,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononononnonono',
-          last_name: '',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononononnonono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nonononononononono',
@@ -240,9 +239,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nono nonon',
-          last_name: 'onnononoon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nono nonon onnononoon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nononononnoo',
@@ -405,7 +403,9 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-03',
+    id: 'etp-03',
+    code: 'ETP-03',
+    title: 'ETP-03',
     description:
       'Estudos sobre cultura, costumes e tradições dos povos originários das Américas',
     text: 'Este Eixo Temático Permanente nononononon nononon nnoon nnn nononononono nonononono nonononoon non nono no nonoonno nonono nonono nonono nono nononon nononono nonoonnono.',
@@ -413,9 +413,8 @@ const etps: IETP[] = [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Nono',
-          last_name: 'nonon ononnno',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nono nonon ononnno',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nonononononono',
@@ -427,9 +426,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononononnonono',
-          last_name: '',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononononnonono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nonononononononono',
@@ -441,9 +439,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nono nonon',
-          last_name: 'onnononoon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nono nonon onnononoon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nononononnoo',
@@ -606,16 +603,17 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-04',
+    id: 'etp-04',
+    code: 'ETP-04',
+    title: 'ETP-04',
     description: 'Produção do conhecimento e educação escolar indígena',
     text: 'Este Eixo Temático Permanente aborda estudos e processos de produção de conhecimentos da educação escolar indígena.',
     members: [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Alceu',
-          last_name: 'Zoia',
-          profile_image_url: '/images/etps/04/image-1.png',
+          name: 'Alceu Zoia',
+          avatarUrl: '/images/etps/04/image-1.png',
           lattesUrl: 'http://lattes.cnpq.br/6360324344302882',
           orcid: '',
           email: 'alceuzoia@gmail.com',
@@ -627,9 +625,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Waldineia Antunes de Alcântara',
-          last_name: 'Ferreira',
-          profile_image_url: '/images/etps/04/image-2.png',
+          name: 'Waldineia Antunes de Alcântara Ferreira',
+          avatarUrl: '/images/etps/04/image-2.png',
           lattesUrl: 'http://lattes.cnpq.br/2684741900451188',
           orcid: '',
           email: 'waldineiaferreira@unemat.br',
@@ -641,9 +638,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Amanda Pereira da Silva',
-          last_name: 'Azinari',
-          profile_image_url: '/images/etps/04/image-3.png',
+          name: 'Amanda Pereira da Silva Azinari',
+          avatarUrl: '/images/etps/04/image-3.png',
           lattesUrl: 'http://lattes.cnpq.br/5715242066736015',
           orcid: '',
           email: 'amanda.azinari@unemat.br',
@@ -806,7 +802,9 @@ const etps: IETP[] = [
       'Este Eixo Temático Permanente é sobre estudos e produções de conhecimentos da educação escolar indígena com reflexões e construções decoloniais. Acolhe trabalhos que abordem: direitos e políticas públicas específicas para educação indígenas, formação inicial e continuada de professores no contexto do ensino, pesquisa e extensão; práticas pedagógicas interculturais em diferentes áreas do conhecimento do currículo escolar; presença das cosmogonias indígenas na educação escolar indígena.',
   },
   {
-    name: 'ETP-05',
+    id: 'etp-05',
+    code: 'ETP-05',
+    title: 'ETP-05',
     description:
       'Estudos sobre Comunidades Tradicionais Quilombolas e cultura afrodescendente',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
@@ -814,9 +812,8 @@ const etps: IETP[] = [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Ludmila Pereira de',
-          last_name: 'Almeida',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Ludmila Pereira de Almeida',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: 'http://lattes.cnpq.br/7570835899790922',
           orcid: 'https://orcid.org/0000-0002-9479-2912',
           email: 'ludjornalismo@gmail.com',
@@ -828,9 +825,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '6',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -842,9 +838,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Jardilene Gualberto Pereira',
-          last_name: 'Fôlha',
-          profile_image_url: '/images/etps/05/image-3.png',
+          name: 'Jardilene Gualberto Pereira Fôlha',
+          avatarUrl: '/images/etps/05/image-3.png',
           lattesUrl: 'http://lattes.cnpq.br/7001380179976503',
           orcid: 'https://orcid.org/0000-0001-7216-5232',
           email: 'jardilene.gualberto@mail.uft.edu.br',
@@ -1007,7 +1002,9 @@ const etps: IETP[] = [
       'O EPT 05 discute questões que envolvem uma série de aspectos importantes que ajudam a compreender a complexidade e a riqueza dessas comunidades, por exemplo: História e Formação dos Quilombos, Identidade Cultural, Direitos Territoriais, Patriarcado e Gênero, Saberes Tradicionais, Desafios Sociais e Econômicos, Educação e Formação, Movimentos Sociais, Relação com o Estado, e Patrimônio Cultural Imaterial. Esses pontos oferecem um panorama abrangente para uma discussão rica sobre as comunidades tradicionais quilombolas e sua cultura afrodescendente, ressaltando tanto os desafios quanto as contribuições dessas comunidades para a sociedade brasileira como um todo.',
   },
   {
-    name: 'ETP-06',
+    id: 'etp-06',
+    code: 'ETP-06',
+    title: 'ETP-06',
     description:
       'PRODUÇÃO DO CONHECIMENTO E EDUCAÇÃO ESCOLAR QUILOMBOLA E RIBEIRINHA',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
@@ -1015,9 +1012,8 @@ const etps: IETP[] = [
       {
         role: 'Coordenador',
         user: {
-          first_name: "Ana D'Arc Martins de",
-          last_name: 'Azevedo',
-          profile_image_url: '/images/placeholder.png',
+          name: "Ana D'Arc Martins de Azevedo",
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'https://ordid.org/0000-0003-4240-9579',
           email: 'azevedoanadarc@gmail.com',
@@ -1029,9 +1025,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Laurenita Gualberto Pereira',
-          last_name: 'Alves',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Laurenita Gualberto Pereira Alves',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'https://orcid.org/0000-0002-6009-2416',
           email: 'laurinhagualberto25@gmail.com',
@@ -1043,9 +1038,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Cleuma Roberta de Souza',
-          last_name: 'Marinho',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Cleuma Roberta de Souza Marinho',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'https://orcid.org/0000-0003-0837-275X',
           email: 'cleumamarinho@yahoo.com',
@@ -1208,16 +1202,17 @@ const etps: IETP[] = [
       'Este eixo temático discute a produção do conhecimento sobre educação escolar quilombola e ribeirinha fundamentadas em dimensões históricas e socioculturais locais, como campos curriculares em torno de significações sociais de grupos que se situam em condições de dominados, cujo objetivo é discutir uma identidade quilombola e ribeirinha em suas práticas, a qual prestigie os valores culturais dos grupos étnicos historicamente dominados e negados, pressupondo desses sujeitos uma postura reflexiva e ativa.',
   },
   {
-    name: 'ETP-07',
+    id: 'etp-07',
+    code: 'ETP-07',
+    title: 'ETP-07',
     description: 'ESTUDOS SOBRE COMUNIDADES TRADICIONAIS GERAIZEIRAS',
     text: 'Este Eixo Temático Permanente estuda (...).',
     members: [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'nONONONON',
-          last_name: '',
-          profile_image_url: '/images/placeholder.png',
+          name: 'nONONONON',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: 'NONONNOO',
@@ -1229,9 +1224,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -1243,9 +1237,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',
@@ -1408,7 +1401,9 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-08',
+    id: 'etp-08',
+    code: 'ETP-08',
+    title: 'ETP-08',
     description:
       'ESTUDOS SOBRE COMUNIDADES TRADICIONAIS DE QUEBRADEIRAS DE COCO BABAÇU E OUTRAS EXPRESSÕES AMAZÔNICAS',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
@@ -1416,9 +1411,8 @@ const etps: IETP[] = [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'nONONONON',
-          last_name: '',
-          profile_image_url: '/images/placeholder.png',
+          name: 'nONONONON',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: 'NONONNOO',
@@ -1430,9 +1424,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -1444,9 +1437,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',
@@ -1609,7 +1601,9 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-09',
+    id: 'etp-09',
+    code: 'ETP-09',
+    title: 'ETP-09',
     description:
       'ESTUDOS SOBRE COMUNIDADES TRADICIONAIS CAIÇARAS E DE PESCADORES ARTESANAIS DE PRAIAS E MARES',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
@@ -1617,9 +1611,8 @@ const etps: IETP[] = [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Carlos Alberto Sarmento do',
-          last_name: 'Nascimento',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Carlos Alberto Sarmento do Nascimento',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'casn.sarmento@gmail.com',
@@ -1631,9 +1624,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Diná Andrade Lima',
-          last_name: 'Ramos',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Diná Andrade Lima Ramos',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'dinalr@ufrrj.br',
@@ -1645,9 +1637,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Lucimar Ferraz de Andrade',
-          last_name: 'Macedo',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Lucimar Ferraz de Andrade Macedo',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'luferraz@yahoo.com.br',
@@ -1810,16 +1801,17 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-10',
+    id: 'etp-10',
+    code: 'ETP-10',
+    title: 'ETP-10',
     description: 'ESTUDOS SOBRE COMUNIDADES TRADICIONAIS DE POVOS DE TERREIRO',
     text: 'Este Grupo de Trabalho (GT) dedica-se ao estudo e valorização das comunidades tradicionais de Povos de Terreiro, abrangendo suas práticas culturais, religiosas, sociais, históricas e ambientais. Nosso objetivo é promover a pesquisa interdisciplinar e o compartilhamento de conhecimentos sobre as dinâmicas sociais, políticas, econômicas e ambientais que envolvem essas comunidades, visando ao reconhecimento e à preservação de seu patrimônio imaterial.',
     members: [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'nONONONON',
-          last_name: '',
-          profile_image_url: '/images/placeholder.png',
+          name: 'nONONONON',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: 'NONONNOO',
@@ -1831,9 +1823,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -1845,9 +1836,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Fábio Freitas dos',
-          last_name: 'Santos',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Fábio Freitas dos Santos',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: '',
           email: 'fabio.f.santos@unesp.br',
@@ -2010,7 +2000,9 @@ const etps: IETP[] = [
       'Objetivos:\n\nCompreender a complexidade e a diversidade das comunidades tradicionais de Povos de Terreiro.\n\nPromover o reconhecimento e a valorização das práticas culturais, religiosas e ambientais dessas comunidades.\n\nContribuir para a preservação do patrimônio imaterial dos Povos de Terreiro.\n\nFomentar políticas públicas e ações afirmativas em prol das comunidades tradicionais de Povos de Terreiro.\n\nDisseminar conhecimentos sobre os Povos de Terreiro para diferentes públicos, dentro e fora da academia.\n\nIntegrar a dimensão ambiental às práticas culturais, promovendo a sustentabilidade e a preservação e recuperação ambiental.\n\nÁreas de estudo:\n\nHistória e Origens dos Povos de Terreiro:\n\nIntrodução às comunidades tradicionais;\n\nContextualização histórica e cultural;\n\nPrincipais matrizes religiosas (Candomblé, Umbanda e outras);\n\nPráticas Culturais e Religiosas:\n\nRituais e cerimônias;\n\nMúsica, dança e vestuário;\n\nHierarquia e organização interna dos terreiros;\n\nPatrimônio Imaterial e Preservação;\n\nReconhecimento e registro do patrimônio cultural;\n\nPolíticas públicas e direitos das comunidades tradicionais;\n\nProjetos de preservação e valorização cultural;\n\nDinâmicas Sociais e Políticas;\n\nRelações comunitárias e redes de solidariedade;\n\nDesafios contemporâneos: urbanização, discriminação e resistência;\n\nPolíticas de inclusão e representatividade;\n\nEconomia e Sustentabilidade:\n\nModelos de economia solidária;\n\nSustentabilidade ambiental e práticas tradicionais;\n\nImpactos econômicos das práticas culturais;\n\nDimensão Ambiental:\n\nRelação das comunidades tradicionais com o meio ambiente;\n\nPráticas sustentáveis e preservação ambiental nos terreiros;\n\nUso e manejo de plantas sagradas e medicinais;\n\nImpactos ambientais das atividades urbanas e rurais nas comunidades de terreiro;\n\nProjetos de educação ambiental e preservação ecológica;\n\nEducação e Difusão do Conhecimento:\n\nMetodologias de ensino e aprendizagem sobre os Povos de Terreiro;\n\nProjetos educativos e oficinas culturais;\n\nPublicações e materiais didáticos.',
   },
   {
-    name: 'ETP-11',
+    id: 'etp-11',
+    code: 'ETP-11',
+    title: 'ETP-11',
     description:
       'ESTUDOS SOBRE COMUNIDADES TRADICIONAIS SERTANEJAS E DE GUARDIÃES DE SEMENTES',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
@@ -2018,9 +2010,8 @@ const etps: IETP[] = [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Izabel Castanha',
-          last_name: 'Gil',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Izabel Castanha Gil',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: '57izabel@gmail.com',
@@ -2032,9 +2023,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -2046,9 +2036,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',
@@ -2211,7 +2200,9 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-12',
+    id: 'etp-12',
+    code: 'ETP-12',
+    title: 'ETP-12',
     description:
       'AGRICULTURA LOCAL E SEGURANÇA ALIMENTAR E NUTRICIONAL APLICADA AOS POVOS TRADICIONAIS',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
@@ -2219,9 +2210,8 @@ const etps: IETP[] = [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'nONONO',
-          last_name: 'NONONO',
-          profile_image_url: '/images/placeholder.png',
+          name: 'nONONO NONONO',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: 'nonon onononnon',
@@ -2233,9 +2223,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -2247,9 +2236,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',
@@ -2412,16 +2400,17 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-13',
+    id: 'etp-13',
+    code: 'ETP-13',
+    title: 'ETP-13',
     description: 'ESTUDOS SOBRE DECOLONIALIDADE',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
     members: [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Alonso Bezerra de',
-          last_name: 'Carvalho',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Alonso Bezerra de Carvalho',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: 'alonso.carvalho@unesp.br',
@@ -2433,9 +2422,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -2447,9 +2435,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',
@@ -2612,16 +2599,17 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-14',
+    id: 'etp-14',
+    code: 'ETP-14',
+    title: 'ETP-14',
     description: 'ESTUDOS SOBRE COSMOVISÃO DE POVOS TRADICIONAIS',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
     members: [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Luciene Cristina',
-          last_name: 'Risso',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Luciene Cristina Risso',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: 'luciene.risso@unesp.br',
@@ -2633,9 +2621,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -2647,9 +2634,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',
@@ -2812,16 +2798,17 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-15',
+    id: 'etp-15',
+    code: 'ETP-15',
+    title: 'ETP-15',
     description: 'GESTÃO E EDUCAÇÃO AMBIENTAL',
     text: 'Este Eixo Temático Permanente estuda (...).',
     members: [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Angélica Góis',
-          last_name: 'Morales',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Angélica Góis Morales',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: 'ag.morales@unesp.br',
@@ -2833,9 +2820,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -2847,9 +2833,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',
@@ -3012,16 +2997,17 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-16',
+    id: 'etp-16',
+    code: 'ETP-16',
+    title: 'ETP-16',
     description: 'MUSEOLOGIA, MUSEUS E ESPAÇOS MUSEOLÓGICOS',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
     members: [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Francisco Gilson Rebouças Porto',
-          last_name: 'Júnior',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Francisco Gilson Rebouças Porto Júnior',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'https://orcid.org/0000-0002-5335-6428',
           email: 'gilsonportouft@gmail.com',
@@ -3033,9 +3019,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -3047,9 +3032,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',
@@ -3212,16 +3196,17 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-17',
+    id: 'etp-17',
+    code: 'ETP-17',
+    title: 'ETP-17',
     description: 'GESTÃO SOCIAL, GERAÇÃO DE RENDA E ECONOMIA SOLIDÁRIA',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
     members: [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Lamounier Erthal',
-          last_name: 'Villela',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Lamounier Erthal Villela',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: 'http://lattes.cnpq.br/0265624345647321',
           orcid: '0000-0002-8506-4454',
           email: 'lamounier@ufrrj.br',
@@ -3233,9 +3218,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Patrick Maurice',
-          last_name: 'Maury',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Patrick Maurice Maury',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: 'http://lattes.cnpq.br/9864566437453305',
           orcid: '0000-0002-5277-9904',
           email: 'patrick.maury@uol.com.br',
@@ -3247,9 +3231,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Rafaela Rosa Chaves',
-          last_name: 'Cardoso',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Rafaela Rosa Chaves Cardoso',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: '',
           email: 'rafaelaadmpublica@gmail.com',
@@ -3412,16 +3395,17 @@ const etps: IETP[] = [
       'Este GT/ Eixo Temático Permanente (ETP) aborda a Gestão Social (GS) na sua prática pelas Comunidades Tradicionais (CT), envolvendo inclusive as relações com a Extensão Universitária. Essas relações têm forte influência na sustentabilidade e no desenvolvimento dos territórios, por serem capazes de demonstrar a identificação entre as práticas das Comunidades Tradicionais e a prática da própria Gestão Social (alinhadas à extensão universitária, aos movimentos sociais, dentre outros).\n\nA Gestão Social como disciplina e prática brasileira constitui um processo com origem na Constituição Cidadã de 1988, particularmente por esta introduzir o princípio da Participação Social, abrindo portas para a reprodução cada vez maior de temáticas como controle social, economia social e solidária, sustentabilidade, além da própria discussão do desenvolvimento territorial (em escalas municipais, regionais, estaduais e federais) considerando frentes mais humanas e sociais em detrimento à reprodução do crescimento econômico desenfreado.\n\nEm relação à Economia Solidária, sua política pública de apoio e referência está sistematizada pelo Fórum Brasileiro de Economia Solidária (FBES) e articulada em todas as escalas territoriais com apoio da rede Ecosol de Gestores Públicos.\n\nA relação da GS com geração de renda e economia solidária, na perspectiva da participação social, traz o conceito de Valor em toda sua abrangência: valor de troca, valor simbólico e valor social (linguagem). Trata-se de perspectiva temporal de reconfiguração a partir das cosmogonias das Comunidades Tradicionais e sua influência na produção social de territórios.\n\nEstas cosmogonias estão no centro da capacidade de enfrentamento de situações como ameaças à própria integridade física das pessoas e do território relacionadas com espaços de megaempreendimentos, de controle das milícias e da formação de latifúndios verdes, encobertos por mecanismos de “mitigação” e reparação social e ambiental.\n\nEste GT tem como objetivo geral reunir, analisar e sistematizar práticas de organizações sociais e universitárias, com suas respectivas influências no fortalecimento do protagonismo e capacidade de negociação na escala de territórios comunitários. Isto, em relação às políticas públicas, aos empreendimentos privados e públicos, à extensão universitária e aos mecanismos de compensação, gestão privada e prestação de serviços socioambientais.\n\nOs objetivos específicos são:\n\nEm termos de interesse comunitário: a consolidação dos direitos territoriais e suas relações com as instâncias de participação nas políticas territoriais de gestão dos recursos naturais, dos recursos hídricos, dos recursos costeiros, dos recursos de royalties, de reparação de danos socioambientais e, de arranjos produtivos locais, e do próprio desenvolvimento territorial humano e sustentável, dentre outros.\n\nEm termos de relação entre CT e Extensão Universitária: o acesso à informação inteligível para o exercício do Controle Social nas Políticas Públicas e nos Empreendimentos da Economia Solidária;\n\nEm termos de Extensão Universitária: a troca de experiência sobre organizações como incubadoras, observatórios, redes de saberes e cartografia social em escala territorial;\n\nEm termos teórico-metodológicos: analisar a aplicação do paradigma da GS e a produção brasileira de teoria no campo da teoria social, inclusive sua contribuição à percepção do Interesse Bem Compreendido.\n\nREFERÊNCIAS\n\nAltieri, D., Tenório, F. (Org.) (2023) Gestão e Economia Solidária, Ijuí RS: Editora Unijuí, ISBN 978-85-419-0363-9 (digital).\n\nCançado, A., Tenório, F., Pereira, J. (2022) Gestão Social, epistemologia de um paradigma (3ª ed.), Palmas, TO: UFT, ISBN 978-65-89369-17-2.\n\nENAPEGS, (2023) Anais do XII Encontro Nacional de Pesquisadores em Gestão Social: Interdisciplinaridade, Inclusão e Extensão, por uma conexão de saberes entre teoria e prática, Villela, L. e Celestino, E. (org.), ISSN 2317-0689. https://pepedt.ufrrj.br/2024/07/11/anais-digitais-do-xii-encontro-nacional-de-pesquisadores-em-gestao-social-2023/\n\nGraeber, D. (2022), La Fausse Monnaie de nos Rêves Vers une Théorie Anthropologique de la Valeur, Paris: Les Liens qui libèrent, ISBN 979-10-209-1133-9\n\nHonneth, A. (1999), Teoria Crítica, in Giddens, A & Turner, J (org.) Teoria Social Hoje (pp. 503-552), São Paulo: Editora UNESP, ISBN 85-7139-261-7.\n\nLaville, J., Frère, B. (2023), A Fábrica da Emancipação, Repensar a crítica a partir das experiências democráticas, ecológicas e solidárias, Rio de Janeiro: Atelier de Humanidades Editorial, ISBN 978-65-86972-16-0\n\nLIMA, Nicholas Augusto Mendes da Rocha. Arranjos Produtivos Locais e Desenvolvimento Territorial Sustentável: a dinâmica do APL do Turismo (APLTur) na Ilha Grande, Angra dos Reis-RJ. 2023. 146p. Dissertação (Mestrado em Desenvolvimento Territorial e Políticas Públicas). Programa de Pós-Graduação em Desenvolvimento Territorial e Políticas Públicas – PPGDT, Universidade Federal Rural do Rio de Janeiro – UFRRJ, Seropédica, RJ, 2023.\n\nMaury, P., Villela, L., Cardoso, R., Carvalho, I., (2024), Devir da relação entre extensão universitária e participação social na economia social e solidária, o caso do colegiado territorial da Baia da Ilha Grande/RJ, Cad. EBAPE.BR, v. 22, nº 3, Rio de Janeiro, e2023-0018, 2024 ISSN 1679-3951.\n\nSilva, S. (org.), Da inserção ao desmantelamento da política de economia solidária na agenda governamental (2003-2019) in RBEST Ver. Bras. Eco. Soc. Trab. / BJSLE Braz. J. Soc. Lab. Econ., Campinas, v. 3, e021020, ISSN 2674-9564.\n\nTenório, F. (org.), (2022), Gestão Social, Um programa de ensino, pesquisa e extensão na FGV EBAPE: 30 anos, Rio de Janeiro, FGV, ISBN 978-65-5652-095-7.\n\nVandenberghe, F., Camargo, A. (org.), Teoria Social Contemporânea, um laboratório, Rio de Janeiro, FGV Editora, ISBN 978-65-5652-242-5.',
   },
   {
-    name: 'ETP-18',
+    id: 'etp-18',
+    code: 'ETP-18',
+    title: 'ETP-18',
     description: 'ESTUDOS SOBRE POVOS ORIGINÁRIOS DA ÁFRICA E DA OCEANIA',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
     members: [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'nononono',
-          last_name: '',
-          profile_image_url: '/images/placeholder.png',
+          name: 'nononono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: 'nononono',
@@ -3433,9 +3417,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -3447,9 +3430,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',
@@ -3612,7 +3594,9 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-19',
+    id: 'etp-19',
+    code: 'ETP-19',
+    title: 'ETP-19',
     description:
       'ESTUDOS SOBRE COMUNIDADES TRADICIONAIS FAXINALENSES E DE ORIGENS NA IMIGRAÇÃO EUROPEIA E ASIÁTICA',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
@@ -3620,9 +3604,8 @@ const etps: IETP[] = [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'nononono',
-          last_name: '',
-          profile_image_url: '/images/placeholder.png',
+          name: 'nononono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: 'nononono',
@@ -3634,9 +3617,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -3648,9 +3630,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',
@@ -3813,7 +3794,9 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-20',
+    id: 'etp-20',
+    code: 'ETP-20',
+    title: 'ETP-20',
     description:
       'ESTUDOS SOBRE EDUCAÇÃO DIFERENCIADA E DIVERSIFICADA NO ENSINO SUPERIOR',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
@@ -3821,9 +3804,8 @@ const etps: IETP[] = [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'Carla Giovana Souza',
-          last_name: 'Rocha',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Carla Giovana Souza Rocha',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: 'nononono',
@@ -3835,9 +3817,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -3849,9 +3830,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',
@@ -4014,16 +3994,17 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-21',
+    id: 'etp-21',
+    code: 'ETP-21',
+    title: 'ETP-21',
     description: 'ETNOESPORTE, GRAFISMO E ARTES DE POVOS TRADICIONAIS',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
     members: [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'NONONONO',
-          last_name: '',
-          profile_image_url: '/images/placeholder.png',
+          name: 'NONONONO',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: 'nononono',
@@ -4035,9 +4016,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -4049,9 +4029,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',
@@ -4214,7 +4193,9 @@ const etps: IETP[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt. Aenean quis massa uada mi elementum elementum. Nec sapien convallis vulputate rhoncus vel dui.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat. Maecenas nibh dolor, malesuada et bibendum a, sagittis accumsan ipsum. Pellentesque ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque tristique dolor vitae tincidunt.',
   },
   {
-    name: 'ETP-22',
+    id: 'etp-22',
+    code: 'ETP-22',
+    title: 'ETP-22',
     description:
       'INICIAÇÃO CIENTÍFICA (GT com regras especiais de incentivo à Iniciação Científica de estudantes de ensino médio e graduação)',
     text: 'Este Eixo Temático Permanente estuda NONON ONONO n onon nn n nnononono nonoonon no oonno noonoonnoonoonn.',
@@ -4222,9 +4203,8 @@ const etps: IETP[] = [
       {
         role: 'Coordenador',
         user: {
-          first_name: 'NONONONO',
-          last_name: '',
-          profile_image_url: '/images/placeholder.png',
+          name: 'NONONONO',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononono',
           email: 'nononono',
@@ -4236,9 +4216,8 @@ const etps: IETP[] = [
       {
         role: 'Vice-Coordenador',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nnnonn ono',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nnnonn ono',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nonononono',
           email: 'nononoono',
@@ -4250,9 +4229,8 @@ const etps: IETP[] = [
       {
         role: 'Secretário',
         user: {
-          first_name: 'Nononono',
-          last_name: 'nonononon',
-          profile_image_url: '/images/placeholder.png',
+          name: 'Nononono nonononon',
+          avatarUrl: '/images/placeholder.png',
           lattesUrl: '',
           orcid: 'nononononono',
           email: 'nono nonnoo',

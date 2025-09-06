@@ -29,6 +29,7 @@ export default function CadastrarEquipeDeGestao() {
     isLoading,
     errors,
     payload,
+    message,
   } = useCreateTeam()
 
   return (
@@ -39,6 +40,13 @@ export default function CadastrarEquipeDeGestao() {
       <PageMain>
         <PageForm action={formAction}>
           <PageFormContent>
+            {message && (
+              <Alert className="mb-4 border-primary" variant="destructive">
+                <AlertCircle className="size-4" />
+                <AlertDescription>{message}</AlertDescription>
+              </Alert>
+            )}
+
             <PageFormContentField>
               <Label>Nome da equipe</Label>
 

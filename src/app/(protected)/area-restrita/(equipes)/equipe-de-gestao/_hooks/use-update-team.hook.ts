@@ -4,14 +4,14 @@ import { redirect, useParams } from 'next/navigation'
 import { useActionState, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import type { ITeam, ITeamMember } from 'types/team'
-import { type IActionState, updateManagementTeam } from '../actions'
+import { type IActionState, updateManagementTeamAction } from '../actions'
 
 export function useUpdateTeam() {
-  const { id } = useParams()
+  const { id } = useParams<{ id: string }>()
 
-  const { data, isLoading: isTeamLoading } = useQuery<ITeam>({
+  const { data: incomingTeam, isLoading: isTeamLoading } = useQuery<ITeam>({
     queryKey: ['team', id],
-    queryFn: getTeam,
+    queryFn: () => getTeam(id),
   })
 
   const [team, setTeam] = useState<ITeamMember[]>([])
@@ -34,42 +34,32 @@ export function useUpdateTeam() {
       role: inputRef.current.value,
     }
 
-    const alreadyExists = !!team.find((member) => member.id === newMember.id)
-
-    if (alreadyExists) {
-      toast.warning('Esse membro já existe!')
-
-      return
-    }
-
     setTeam((prevTeam) => [...prevTeam, newMember])
 
     toast.success('Membro adicionado com sucesso!')
   }
 
-  function handleRemoveMember(member: ITeamMember) {
+  function handleRemoveMember(memberId: string) {
     setTeam((prevTeam) =>
-      prevTeam.filter(
-        (teamMember: ITeamMember) => teamMember.user?.id !== member.user?.id
-      )
+      prevTeam.filter((teamMember: ITeamMember) => teamMember.id !== memberId)
     )
 
     toast.success('Usuário removido com sucesso!')
   }
 
   useEffect(() => {
-    if (!isTeamLoading && data) {
-      setTeam(data.team_members)
+    if (!isTeamLoading && incomingTeam) {
+      setTeam(incomingTeam.members)
     }
-  }, [data, isTeamLoading])
+  }, [incomingTeam, isTeamLoading])
 
-  const [{ success, errors }, formAction, isLoading] = useActionState<
+  const [{ success, errors, message }, formAction, isLoading] = useActionState<
     IActionState,
     FormData
   >(
-    updateManagementTeam.bind(null, {
+    updateManagementTeamAction.bind(null, {
       members: team,
-      id: data?.id || '',
+      id: incomingTeam?.id || '',
     }),
     {} as IActionState
   )
@@ -83,7 +73,7 @@ export function useUpdateTeam() {
   }, [success])
 
   return {
-    data,
+    incomingTeam,
     team,
     isTeamLoading,
     setSelectedMember,
@@ -93,5 +83,6 @@ export function useUpdateTeam() {
     errors,
     formAction,
     isLoading,
+    message,
   }
 }

@@ -1,16 +1,19 @@
-import { api } from '@adapters/index'
+import { api } from '@http/api-client'
 
 interface IGetTeamsProps {
   type: string
   filter?: string
 }
 
-export async function getTeams<T>({ type, filter }: IGetTeamsProps) {
+export async function getTeams<T>({
+  type,
+  filter,
+}: IGetTeamsProps): Promise<T> {
   const searchParams = new URLSearchParams()
 
   if (filter) {
-    searchParams.set('name', String(filter))
+    searchParams.set('name', filter)
   }
 
-  return await api.get<T>(`/team/type/${type}?${searchParams}`)
+  return await api.get(`team/type/${type}?${searchParams}`).json()
 }

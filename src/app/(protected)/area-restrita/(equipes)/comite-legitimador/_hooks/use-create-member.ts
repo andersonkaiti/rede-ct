@@ -1,7 +1,8 @@
-import { useQueryClient } from '@tanstack/react-query'
+import { getTeams } from '@http/teams/get-teams'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useActionState, useEffect } from 'react'
 import { toast } from 'sonner'
-import { useTeam } from '../../_hooks/use-team.hook'
+import type { ILegitimatorCommittee } from '../_components/table/legitimator-committee-table-columns'
 import {
   createLegitimatorCommitteeTeamMemberAction,
   type IActionState,
@@ -14,21 +15,20 @@ export function useCreateLegitimatorCommitteeTeamMember(
 ) {
   const queryClient = useQueryClient()
 
-  const { data: team } = useTeam({
-    type: TEAM_TYPE,
+  const QUERY_KEY = ['team', TEAM_TYPE]
+
+  const { data: teamId } = useQuery({
+    queryKey: QUERY_KEY,
+    queryFn: async () =>
+      await getTeams<ILegitimatorCommittee[]>({ type: TEAM_TYPE }),
+    select: (data: ILegitimatorCommittee[]) => data[0].id,
   })
 
-  const [{ errors, payload, success }, formAction, isLoading] = useActionState<
-    IActionState,
-    FormData
-  >(
-    createLegitimatorCommitteeTeamMemberAction.bind(null, {
-      team: {
-        id: team?.[0]?.id || '',
-      },
-    }),
-    {} as IActionState
-  )
+  const [{ errors, payload, success, message }, formAction, isLoading] =
+    useActionState<IActionState, FormData>(
+      createLegitimatorCommitteeTeamMemberAction.bind(null, teamId ?? ''),
+      {} as IActionState
+    )
 
   useEffect(() => {
     if (success) {
@@ -38,7 +38,7 @@ export function useCreateLegitimatorCommitteeTeamMember(
         queryKey: ['team', TEAM_TYPE],
       })
 
-      toast.success('Membro cadastrado com sucesso')
+      toast.success('Membro cadastrado com sucesso!')
     }
   }, [success, setIsOpen, queryClient])
 
@@ -46,6 +46,7 @@ export function useCreateLegitimatorCommitteeTeamMember(
     errors,
     payload,
     formAction,
+    message,
     isLoading,
   }
 }

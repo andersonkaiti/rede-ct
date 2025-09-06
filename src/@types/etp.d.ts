@@ -1,7 +1,6 @@
 interface IETPUser {
-  first_name: string
-  last_name: string
-  profile_image_url?: string
+  name: string
+  avatarUrl?: string
   lattesUrl?: string
   orcid?: string
   email?: string
@@ -11,7 +10,9 @@ interface IETPUser {
 }
 
 export interface IETP {
-  name: string
+  id: string
+  code: string
+  title: string
   description: string
   text: string
   members: {

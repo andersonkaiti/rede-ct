@@ -1,8 +1,8 @@
 'use server'
 
-import { api } from '@adapters/index'
+import { api } from '@http/api-client'
 import type { INews } from 'types/news'
 
-export async function getNewsById(id: string) {
-  return await api.get<INews>(`/news/${id}`)
+export async function getNewsById(id: string): Promise<INews> {
+  return await api.get(`news/${id}`).json()
 }

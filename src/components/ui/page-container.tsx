@@ -48,7 +48,7 @@ function PageForm({
 }
 
 function PageFormContent({ children }: { children: React.ReactNode }) {
-  return <div className="grid grid-cols-1 gap-4">{children}</div>
+  return <div className="grid grid-cols-1 gap-8">{children}</div>
 }
 
 function PageFormContentField({ children }: { children: React.ReactNode }) {

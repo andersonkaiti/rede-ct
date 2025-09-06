@@ -23,14 +23,12 @@ export default async function NoticiaPage({
         <div className="flex flex-col justify-between gap-2 sm:flex-row">
           <div className="space-y-2 text-background-foreground text-sm">
             <time className="flex items-center gap-x-1">
-              Última atualização em {formatDate(news.updated_at)}
+              Última atualização em {formatDate(news.updatedAt)}
             </time>
 
             <div>
               Por{' '}
-              <span className="font-bold text-primary">
-                {news.author.first_name} {news.author.last_name}
-              </span>
+              <span className="font-bold text-primary">{news.author.name}</span>
             </div>
           </div>
 
@@ -43,7 +41,7 @@ export default async function NoticiaPage({
           alt={news.title}
           className="rounded-md object-cover"
           fill
-          src={news.image_url ?? ''}
+          src={news.imageUrl}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </picture>

@@ -1,24 +1,20 @@
 'use server'
 
-import 'server-only'
-
-import { api } from '@adapters/index'
+import { createManagementTeam } from '@http/teams/create-management-team'
+import { updateManagementTeam } from '@http/teams/update-management-team'
+import { HTTPError } from 'ky'
 import type { ITeamMember } from 'types/team'
 import { z } from 'zod'
 
-const legitimatorCommitteeSchema = z.object({
+const managementTeamSchema = z.object({
   name: z.string().trim().min(1, 'O nome da equipe é obrigatório.').trim(),
   members: z
     .array(
       z.object({
-        role: z.string().trim().min(1, { message: 'Cargo é obrigatório.' }),
+        role: z.string().trim().min(1, 'Cargo é obrigatório.'),
+        id: z.uuid().optional(),
         user: z.object({
           id: z.string(),
-          first_name: z
-            .string()
-            .trim()
-            .min(1, { message: 'Nome é obrigatório.' })
-            .trim(),
         }),
       })
     )
@@ -28,20 +24,21 @@ const legitimatorCommitteeSchema = z.object({
 export interface IActionState {
   success: boolean
   errors:
-    | z.inferFlattenedErrors<typeof legitimatorCommitteeSchema>['fieldErrors']
+    | z.inferFlattenedErrors<typeof managementTeamSchema>['fieldErrors']
     | null
   payload: FormData | null
+  message: string | null
 }
 
 const TEAM_TYPE = 'equipe-de-gestao'
 
-export async function registerManagementTeam(
+export async function createManagementTeamAction(
   members: ITeamMember[],
   _: unknown,
   formData: FormData
 ): Promise<IActionState> {
   try {
-    const { success, data, error } = legitimatorCommitteeSchema.safeParse({
+    const { success, data, error } = managementTeamSchema.safeParse({
       name: formData.get('name'),
       members,
     })
@@ -51,10 +48,11 @@ export async function registerManagementTeam(
         success: false,
         errors: error.flatten().fieldErrors,
         payload: formData,
+        message: null,
       }
     }
 
-    await api.post('/team', {
+    await createManagementTeam({
       type: TEAM_TYPE,
       ...data,
     })
@@ -63,12 +61,25 @@ export async function registerManagementTeam(
       success: true,
       errors: null,
       payload: null,
+      message: null,
     }
-  } catch {
+  } catch (err) {
+    if (err instanceof HTTPError) {
+      const errorBody = await err.response.json()
+
+      return {
+        success: false,
+        errors: null,
+        payload: formData,
+        message: errorBody.message,
+      }
+    }
+
     return {
       success: false,
       errors: null,
       payload: formData,
+      message: 'Aconteceu um erro inesperado.',
     }
   }
 }
@@ -78,13 +89,13 @@ interface IUpdatedManagementTeam {
   id: string
 }
 
-export async function updateManagementTeam(
+export async function updateManagementTeamAction(
   team: IUpdatedManagementTeam,
   _: unknown,
   formData: FormData
 ): Promise<IActionState> {
   try {
-    const { success, data, error } = legitimatorCommitteeSchema.safeParse({
+    const { success, data, error } = managementTeamSchema.safeParse({
       name: formData.get('name'),
       members: team.members,
     })
@@ -94,21 +105,42 @@ export async function updateManagementTeam(
         success: false,
         errors: error?.flatten().fieldErrors,
         payload: formData,
+        message: null,
       }
     }
 
-    await api.put(`/team/${team.id}`, data)
+    await updateManagementTeam({
+      id: team.id,
+      name: data.name,
+      members: data.members.map(({ id, ...rest }) => ({
+        id: id ?? '',
+        ...rest,
+      })),
+    })
 
     return {
       success: true,
       errors: null,
       payload: null,
+      message: null,
     }
-  } catch {
+  } catch (err) {
+    if (err instanceof HTTPError) {
+      const errorBody = await err.response.json()
+
+      return {
+        success: false,
+        errors: null,
+        payload: formData,
+        message: errorBody.message,
+      }
+    }
+
     return {
       success: false,
       errors: null,
       payload: formData,
+      message: 'Aconteceu um erro inesperado.',
     }
   }
 }

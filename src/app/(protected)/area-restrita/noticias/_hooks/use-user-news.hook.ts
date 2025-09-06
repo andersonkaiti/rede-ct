@@ -1,6 +1,5 @@
 'use client'
 
-import { useAuth } from '@clerk/nextjs'
 import { deleteNewsById } from '@http/news/delete-news-by-id'
 import { getUserNews } from '@http/news/get-user-news'
 import {
@@ -9,13 +8,10 @@ import {
   useQueryClient,
 } from '@tanstack/react-query'
 import { parseAsString, useQueryState } from 'nuqs'
-import { useEffect } from 'react'
 import { toast } from 'sonner'
-import type { INews, IPaginatedNews } from 'types/news'
+import type { IPaginatedNews } from 'types/news'
 
 export function useUserNews() {
-  const { userId } = useAuth() || ''
-
   const queryClient = useQueryClient()
 
   const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
@@ -23,41 +19,23 @@ export function useUserNews() {
   const [page] = useQueryState('page', parseAsString.withDefault('1'))
   const [limit] = useQueryState('limit', parseAsString.withDefault('7'))
 
-  const safeUserId = userId ?? ''
+  const QUERY_KEY = ['user-news', filter, orderBy, page, limit]
 
-  const QUERY_KEY = ['user-news', safeUserId, filter, orderBy, page, limit]
-
-  const isUserIdAvailable = !!safeUserId
-
-  const { isLoading, refetch, ...rest } = useQuery({
+  const { isLoading, ...rest } = useQuery({
     queryKey: QUERY_KEY,
     queryFn: () =>
       getUserNews({
         filter,
         orderBy,
-        userId: safeUserId,
         page,
         limit,
       }),
-    enabled: isUserIdAvailable,
     staleTime: 0,
     placeholderData: keepPreviousData,
   })
 
-  useEffect(() => {
-    if (isUserIdAvailable) {
-      refetch()
-    }
-  }, [isUserIdAvailable, refetch])
-
-  const isReallyLoading = isLoading || !isUserIdAvailable
-
-  async function handleRemoveNews({ id, author_id, image_url }: INews) {
-    if (safeUserId !== author_id) {
-      throw new Error('Você não tem permissão para deletar esta notícia!')
-    }
-
-    await deleteNewsById(id, image_url)
+  async function handleRemoveNews(id: string) {
+    await deleteNewsById(id)
 
     queryClient.setQueryData(QUERY_KEY, (data: IPaginatedNews) => ({
       ...data,
@@ -68,7 +46,7 @@ export function useUserNews() {
   }
 
   return {
-    isLoading: isReallyLoading,
+    isLoading,
     handleRemoveNews,
     ...rest,
   }

@@ -1,34 +1,39 @@
 'use client'
 
-import { useQueryClient } from '@tanstack/react-query'
+import { getTeamMemberById } from '@http/teams/get-team-member-by-id'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { parseAsString, useQueryState } from 'nuqs'
 import { useActionState, useEffect } from 'react'
 import { toast } from 'sonner'
 import { type IActionState, updateSDHCTeamMemberAction } from '../actions'
 
 interface IUseRegisterMemberProps {
   setIsOpen: (isOpen: boolean) => void
-  member: {
-    id: string
-  }
 }
 
 const TEAM_TYPE = 'equipe-sdhc'
 
 export function useUpdateSDHCTeamMember({
   setIsOpen,
-  member,
 }: IUseRegisterMemberProps) {
   const queryClient = useQueryClient()
 
-  const [{ errors, payload, success }, formAction, isLoading] = useActionState<
-    IActionState,
-    FormData
-  >(
-    updateSDHCTeamMemberAction.bind(null, {
-      member,
-    }),
-    {} as IActionState
-  )
+  const [memberId] = useQueryState('member_id', parseAsString.withDefault(''))
+
+  const { data: member } = useQuery({
+    queryKey: ['member', memberId],
+    queryFn: () => getTeamMemberById(memberId),
+  })
+
+  const [{ errors, payload, success, message }, formAction, isLoading] =
+    useActionState<IActionState, FormData>(
+      updateSDHCTeamMemberAction.bind(null, {
+        member: {
+          id: memberId,
+        },
+      }),
+      {} as IActionState
+    )
 
   useEffect(() => {
     if (success) {
@@ -38,14 +43,20 @@ export function useUpdateSDHCTeamMember({
         queryKey: ['team', TEAM_TYPE],
       })
 
+      queryClient.invalidateQueries({
+        queryKey: ['member', memberId],
+      })
+
       toast.success('Membro atualizado com sucesso')
     }
-  }, [setIsOpen, queryClient, success])
+  }, [setIsOpen, queryClient, success, memberId])
 
   return {
     errors,
     payload,
     formAction,
     isLoading,
+    member,
+    message,
   }
 }

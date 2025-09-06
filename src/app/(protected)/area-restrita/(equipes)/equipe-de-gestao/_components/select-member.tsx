@@ -9,7 +9,6 @@ import {
 } from '@components/ui/select'
 import { Plus } from 'lucide-react'
 import type { ITeamMember } from 'types/team'
-
 import { useUsers } from '../../_hooks/use-users.hook'
 
 interface ISelectMemberProps {
@@ -31,6 +30,7 @@ export function SelectMember({
     if (member) {
       const newMember: ITeamMember = {
         role: inputRef.current?.value || '',
+        id: member.id,
         user: member,
       }
 
@@ -47,7 +47,7 @@ export function SelectMember({
         <SelectContent>
           {users?.map((user) => (
             <SelectItem key={user.id} value={user.id}>
-              {user.first_name} {user.last_name}
+              {user.name} ({user.emailAddress})
             </SelectItem>
           ))}
         </SelectContent>

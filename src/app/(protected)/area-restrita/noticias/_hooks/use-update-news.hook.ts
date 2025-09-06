@@ -5,14 +5,15 @@ import { type IActionState, updateNewsAction } from '../actions'
 
 interface IUseUpdateNewsProps {
   id: string
-  image_url?: string
+  imageUrl?: string
 }
 
-export function useUpdateNews({ id, image_url }: IUseUpdateNewsProps) {
-  const [{ errors, payload, success }, formAction, isLoading] = useActionState<
-    IActionState,
-    FormData
-  >(updateNewsAction.bind(null, id, image_url), {} as IActionState)
+export function useUpdateNews({ id, imageUrl }: IUseUpdateNewsProps) {
+  const [{ errors, payload, success, message }, formAction, isLoading] =
+    useActionState<IActionState, FormData>(
+      updateNewsAction.bind(null, id, imageUrl),
+      {} as IActionState
+    )
 
   const [preview, setPreview] = useState<string | null>(null)
 
@@ -20,9 +21,9 @@ export function useUpdateNews({ id, image_url }: IUseUpdateNewsProps) {
     const file = event.target.files?.[0]
 
     if (file) {
-      const imageUrl = URL.createObjectURL(file)
+      const previewImageUrl = URL.createObjectURL(file)
 
-      setPreview(imageUrl)
+      setPreview(previewImageUrl)
     }
   }
 
@@ -43,5 +44,6 @@ export function useUpdateNews({ id, image_url }: IUseUpdateNewsProps) {
     isLoading,
     preview,
     handleImage,
+    message,
   }
 }

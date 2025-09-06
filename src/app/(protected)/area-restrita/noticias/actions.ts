@@ -1,10 +1,9 @@
 'use server'
 
-import 'server-only'
-
-import { api } from '@adapters/index'
-import { currentUser } from '@clerk/nextjs/server'
-import type { INews } from 'types/news'
+import { getAuthenticatedUser } from '@http/auth/get-user'
+import { createNews } from '@http/news/create-news'
+import { updateNews } from '@http/news/update-news'
+import { HTTPError } from 'ky'
 import { z } from 'zod'
 
 const BYTES = 1024
@@ -17,7 +16,6 @@ const newsSchema = z.object({
   content: z.string().min(1, 'Texto é obrigatório'),
   image: z
     .any()
-    .optional()
     .refine(
       (value) => {
         if (value instanceof File) {
@@ -52,51 +50,53 @@ export interface IActionState {
   success: boolean
   errors: z.inferFlattenedErrors<typeof newsSchema>['fieldErrors'] | null
   payload: FormData | null
+  message: string | null
 }
 
 export async function registerNewsAction(
   _: unknown,
   formData: FormData
 ): Promise<IActionState> {
-  try {
-    const { success, error } = newsSchema.safeParse(
-      Object.fromEntries(formData)
-    )
+  const { success, error, data } = newsSchema.safeParse(
+    Object.fromEntries(formData)
+  )
 
-    if (!success) {
+  if (!success) {
+    return {
+      success: false,
+      errors: error.flatten().fieldErrors,
+      payload: formData,
+      message: null,
+    }
+  }
+
+  try {
+    await createNews(data)
+  } catch (err) {
+    if (err instanceof HTTPError) {
+      const errorBody = await err.response.json()
+
       return {
         success: false,
-        errors: error.flatten().fieldErrors,
+        errors: null,
         payload: formData,
+        message: errorBody,
       }
     }
 
-    const user = await currentUser()
-
-    const news = new FormData()
-
-    news.append('title', formData.get('title') as string)
-    news.append('content', formData.get('content') as string)
-    news.append('author_id', user?.id || '')
-    news.append('image', formData.get('image') as File)
-
-    await api.post('/news', news, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-
-    return {
-      success: true,
-      errors: null,
-      payload: null,
-    }
-  } catch {
     return {
       success: false,
       errors: null,
       payload: formData,
+      message: 'Aconteceu um erro inesperado.',
     }
+  }
+
+  return {
+    success: true,
+    errors: null,
+    payload: null,
+    message: null,
   }
 }
 
@@ -107,7 +107,7 @@ export async function updateNewsAction(
   formData: FormData
 ): Promise<IActionState> {
   try {
-    const { success, error } = newsSchema.safeParse({
+    const { success, error, data } = newsSchema.safeParse({
       ...Object.fromEntries(formData),
       image: image_url,
     })
@@ -117,38 +117,33 @@ export async function updateNewsAction(
         success: false,
         errors: error.flatten().fieldErrors,
         payload: formData,
+        message: null,
       }
     }
 
-    const user = await currentUser()
+    const user = await getAuthenticatedUser()
 
     if (!user) {
       throw new Error('Não autorizado!')
     }
 
-    const news = new FormData()
-
-    news.append('title', formData.get('title') as string)
-    news.append('content', formData.get('content') as string)
-    news.append('image', formData.get('image') as File)
-    news.append('author_id', user?.id || '')
-
-    if (image_url) {
-      news.append('image_url', image_url)
-    }
-
-    await api.put<INews>(`/news/${id}`, news)
-
-    return {
-      success: true,
-      errors: null,
-      payload: null,
-    }
+    await updateNews({
+      ...data,
+      id,
+    })
   } catch {
     return {
       success: false,
       errors: null,
       payload: formData,
+      message: null,
     }
+  }
+
+  return {
+    success: true,
+    errors: null,
+    payload: null,
+    message: null,
   }
 }

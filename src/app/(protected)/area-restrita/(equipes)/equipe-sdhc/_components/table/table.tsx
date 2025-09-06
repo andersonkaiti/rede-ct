@@ -2,28 +2,31 @@
 
 import { DataTable } from '@components/ui/data-table'
 import { parseAsBoolean, parseAsString, useQueryState } from 'nuqs'
-import type { ITeamMember } from 'types/team'
-import { useTeam } from '../../../_hooks/use-team.hook'
+import { useSDHCTeam } from '../../_hooks/use-team.hook'
 import { LoadingSkeleton } from './loading-skeleton'
-import { sdhcTeamTableColumns } from './sdhc-team-table-columns'
-
-const TEAM_TYPE = 'equipe-sdhc'
+import {
+  type ISDHCTeamMember,
+  sdhcTeamTableColumns,
+} from './sdhc-team-table-columns'
 
 export function Table() {
-  const {
-    data: teams,
-    isLoading,
-    handleRemoveMember,
-  } = useTeam({
-    type: TEAM_TYPE,
-  })
+  const { data: team, isLoading, handleRemoveMember } = useSDHCTeam()
 
   const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
 
   const [hasName] = useQueryState('nome', parseAsBoolean.withDefault(true))
+  const [hasEmail] = useQueryState('email', parseAsBoolean.withDefault(true))
   const [hasRole] = useQueryState('cargo', parseAsBoolean.withDefault(true))
   const [hasDescription] = useQueryState(
     'descricao',
+    parseAsBoolean.withDefault(true)
+  )
+  const [hasCreatedAt] = useQueryState(
+    'created_at',
+    parseAsBoolean.withDefault(true)
+  )
+  const [hasUpdatedAt] = useQueryState(
+    'updated_at',
     parseAsBoolean.withDefault(true)
   )
 
@@ -36,6 +39,10 @@ export function Table() {
   const filteredSDHCTeamTableColumns = noneOfThem
     ? []
     : sdhcTeamTableColumns.filter((column) => {
+        if (column.id === 'name' && !hasEmail) {
+          return false
+        }
+
         if (column.id === 'name' && !hasName) {
           return false
         }
@@ -48,14 +55,22 @@ export function Table() {
           return false
         }
 
+        if (column.id === 'created_at' && !hasCreatedAt) {
+          return false
+        }
+
+        if (column.id === 'updated_at' && !hasUpdatedAt) {
+          return false
+        }
+
         return true
       })
 
   const onlyInclude = ['name', 'role', 'description']
 
   const filteredTeamMembers =
-    teams?.[0]?.team_members.filter((teamMember) =>
-      Object.entries(teamMember).some(([key, value]) => {
+    team?.members.filter((member) =>
+      Object.entries(member).some(([key, value]) => {
         if (!onlyInclude.includes(key)) {
           return false
         }
@@ -77,7 +92,7 @@ export function Table() {
     ) || []
 
   return (
-    <DataTable<ITeamMember, unknown>
+    <DataTable<ISDHCTeamMember, unknown>
       columns={filteredSDHCTeamTableColumns}
       data={filteredTeamMembers}
       handleRemove={handleRemoveMember}

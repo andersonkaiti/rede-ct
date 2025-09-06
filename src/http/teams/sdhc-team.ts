@@ -1,6 +1,6 @@
-import { api } from '@adapters/index'
+import { api } from '@http/api-client'
 import type { ITeam } from 'types/team'
 
-export async function getSdhcTeam() {
-  return await api.get<ITeam[]>('/team/type/equipe-sdhc')
+export async function getSdhcTeam(): Promise<ITeam[]> {
+  return await api.get('team/type/equipe-sdhc').json()
 }

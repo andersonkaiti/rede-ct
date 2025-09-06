@@ -28,20 +28,20 @@ export async function signInAction(
   _: unknown,
   formData: FormData
 ): Promise<IActionState> {
-  try {
-    const { success, data, error } = signInSchema.safeParse(
-      Object.fromEntries(formData)
-    )
+  const { success, data, error } = signInSchema.safeParse(
+    Object.fromEntries(formData)
+  )
 
-    if (!success) {
-      return {
-        success: false,
-        errors: error.flatten().fieldErrors,
-        payload: formData,
-        message: null,
-      }
+  if (!success) {
+    return {
+      success: false,
+      errors: error.flatten().fieldErrors,
+      payload: formData,
+      message: null,
     }
+  }
 
+  try {
     const { token } = await signIn(data)
 
     const cookieStorage = await cookies()
@@ -57,6 +57,13 @@ export async function signInAction(
         payload: formData,
         message: errorBody.message,
       }
+    }
+
+    return {
+      success: false,
+      errors: null,
+      payload: formData,
+      message: 'Aconteceu um erro inesperado.',
     }
   }
 

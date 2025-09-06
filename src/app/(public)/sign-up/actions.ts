@@ -40,20 +40,20 @@ export async function signUpAction(
   _: unknown,
   formData: FormData
 ): Promise<IActionState> {
-  try {
-    const { success, data, error } = signUpSchema.safeParse(
-      Object.fromEntries(formData)
-    )
+  const { success, data, error } = signUpSchema.safeParse(
+    Object.fromEntries(formData)
+  )
 
-    if (!success) {
-      return {
-        success: false,
-        errors: error.flatten().fieldErrors,
-        payload: formData,
-        message: null,
-      }
+  if (!success) {
+    return {
+      success: false,
+      errors: error.flatten().fieldErrors,
+      payload: formData,
+      message: null,
     }
+  }
 
+  try {
     await signUp(data)
   } catch (err) {
     if (err instanceof HTTPError) {

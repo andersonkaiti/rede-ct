@@ -19,16 +19,16 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data?: TData[]
-  handleRemove?: (data: TData) => void
+  handleRemove: (id: string) => void
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
+  data = [],
   handleRemove,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
-    data: data || [],
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     meta: {

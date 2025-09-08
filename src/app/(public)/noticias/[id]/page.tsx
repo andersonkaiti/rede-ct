@@ -1,10 +1,11 @@
+import { BackArrow } from '@components/back-arrow'
+import UserProfileHoverCard from '@components/user-profile-hover-card'
 import { getNewsById } from '@http/news/get-news-by-id'
 import { formatDate } from '@utils/format-date'
 import Image from 'next/image'
-
 import { ShareButton } from './_components/share-button'
 
-export default async function NoticiaPage({
+export default async function NewsPage({
   params,
 }: {
   params: Promise<{ id: string }>
@@ -15,20 +16,28 @@ export default async function NoticiaPage({
 
   return (
     <main className="mx-auto my-10 flex w-full max-w-5xl flex-col justify-center gap-7 p-5 py-8">
+      <BackArrow />
+
       <header className="space-y-8">
-        <h1 className="font-semibold text-2xl text-foreground tracking-tight sm:text-4xl">
+        <h1 className="font-bold text-5xl text-foreground tracking-tight">
           {news.title}
         </h1>
 
         <div className="flex flex-col justify-between gap-2 sm:flex-row">
-          <div className="space-y-2 text-background-foreground text-sm">
-            <time className="flex items-center gap-x-1">
+          <div className="space-y-2 text-sm">
+            <time className="flex items-center gap-x-1 text-muted-foreground text-sm">
               Última atualização em {formatDate(news.updatedAt)}
             </time>
 
-            <div>
-              Por{' '}
-              <span className="font-bold text-primary">{news.author.name}</span>
+            <div className="flex items-center gap-1">
+              <span className="text-muted-foreground">Por</span>
+              <UserProfileHoverCard
+                avatarVisibility={false}
+                user={{
+                  ...news.author,
+                  avatarUrl: news.author.avatarUrl ?? '',
+                }}
+              />
             </div>
           </div>
 
@@ -46,7 +55,9 @@ export default async function NoticiaPage({
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </picture>
 
-      <p className="text-justify text-base/7">{news.content}</p>
+      <p className="text-justify text-base/7 text-muted-foreground">
+        {news.content}
+      </p>
     </main>
   )
 }

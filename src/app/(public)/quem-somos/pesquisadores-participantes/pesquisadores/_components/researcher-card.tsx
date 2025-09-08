@@ -14,7 +14,7 @@ interface IResearcherCardProps {
 
 export function ResearcherCard({
   researcher: {
-    seniority,
+  seniority,
     user: { avatarUrl, emailAddress, lattesUrl, name },
     description,
   },

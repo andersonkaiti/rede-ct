@@ -2,6 +2,9 @@ import { api } from '@http/api-client'
 
 interface IAuthenticatedUserResponse {
   name: string
+  orcid: string | null
+  phone: string | null
+  lattesUrl: string | null
   id: string
   passwordHash: string
   avatarUrl: string | null

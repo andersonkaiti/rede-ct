@@ -6,31 +6,34 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
+} from '@components/ui/page-container'
 
-import { CreateButton } from "../../_components/create-button";
-import { FilterInput } from "../../_components/filter-input";
+import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
+import { CreateButton } from '../../_components/create-button'
+import { FilterInput } from '../../_components/filter-input'
 
 export default function CongressosRegionais() {
   return (
-    <PageContainer>
-      <PageHeader>
-        <PageHeaderContent>
-          <PageTitle>Congressos Regionais</PageTitle>
-          <PageDescription>Gerencie os Congressos Regionais</PageDescription>
-        </PageHeaderContent>
-      </PageHeader>
+    <AuthWrapper>
+      <PageContainer>
+        <PageHeader>
+          <PageHeaderContent>
+            <PageTitle>Congressos Regionais</PageTitle>
+            <PageDescription>Gerencie os Congressos Regionais</PageDescription>
+          </PageHeaderContent>
+        </PageHeader>
 
-      <PageHeader>
-        <PageActionsContainer>
-          <FilterInput />
-        </PageActionsContainer>
-        <CreateButton href="/area-restrita/congressos-regionais/cadastrar">
-          Cadastrar Congresso
-        </CreateButton>
-      </PageHeader>
+        <PageHeader>
+          <PageActionsContainer>
+            <FilterInput />
+          </PageActionsContainer>
+          <CreateButton href="/area-restrita/congressos-regionais/cadastrar">
+            Cadastrar Congresso
+          </CreateButton>
+        </PageHeader>
 
-      <PageMain>Congressos Regionais</PageMain>
-    </PageContainer>
-  );
+        <PageMain>Congressos Regionais</PageMain>
+      </PageContainer>
+    </AuthWrapper>
+  )
 }

@@ -6,29 +6,32 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
+} from '@components/ui/page-container'
 
-import { FilterInput } from "../../_components/filter-input";
-import { CreateInMemoriamButton } from "./create-in-memoriam/create-in-memoriam-button";
+import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
+import { FilterInput } from '../../_components/filter-input'
+import { CreateInMemoriamButton } from './create-in-memoriam/create-in-memoriam-button'
 
 export default function InMemoriam() {
   return (
-    <PageContainer>
-      <PageHeader>
-        <PageHeaderContent>
-          <PageTitle>In Memoriam</PageTitle>
-          <PageDescription>Gerencie os In Memoriam</PageDescription>
-        </PageHeaderContent>
-      </PageHeader>
+    <AuthWrapper>
+      <PageContainer>
+        <PageHeader>
+          <PageHeaderContent>
+            <PageTitle>In Memoriam</PageTitle>
+            <PageDescription>Gerencie os In Memoriam</PageDescription>
+          </PageHeaderContent>
+        </PageHeader>
 
-      <PageHeader>
-        <PageActionsContainer>
-          <FilterInput />
-        </PageActionsContainer>
-        <CreateInMemoriamButton />
-      </PageHeader>
+        <PageHeader>
+          <PageActionsContainer>
+            <FilterInput />
+          </PageActionsContainer>
+          <CreateInMemoriamButton />
+        </PageHeader>
 
-      <PageMain>In Memoriam</PageMain>
-    </PageContainer>
-  );
+        <PageMain>In Memoriam</PageMain>
+      </PageContainer>
+    </AuthWrapper>
+  )
 }

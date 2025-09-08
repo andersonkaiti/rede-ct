@@ -1,3 +1,4 @@
+import { isAdmin as isAdm } from '@auth/auth'
 import { Separator } from '@components/ui/separator'
 import {
   Sidebar,
@@ -11,7 +12,6 @@ import {
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import type { NavigationLink } from 'types/navigation-link'
-
 import { SidebarBackButton } from './sidebar-back-button'
 import { SidebarItem } from './sidebar-item'
 import { sidebarLinks } from './sidebar-links'
@@ -21,7 +21,9 @@ const DynamicUserProfile = dynamic(() =>
   import('./user-profile/user-profile').then((mod) => mod.UserProfile)
 )
 
-export function SidebarContainer() {
+export async function SidebarContainer() {
+  const isAdmin = await isAdm()
+
   return (
     <Sidebar side="left" variant="sidebar">
       <SidebarHeader className="py-4">
@@ -35,7 +37,7 @@ export function SidebarContainer() {
           <SidebarGroupContent>
             <SidebarMenu>
               {sidebarLinks.map((link: NavigationLink, index: number) => (
-                <SidebarItem item={link} key={index} />
+                <SidebarItem isAdmin={isAdmin} item={link} key={index} />
               ))}
             </SidebarMenu>
           </SidebarGroupContent>

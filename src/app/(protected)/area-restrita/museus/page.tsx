@@ -6,31 +6,34 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
+} from '@components/ui/page-container'
 
-import { CreateButton } from "../_components/create-button";
-import { FilterInput } from "../_components/filter-input";
+import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
+import { CreateButton } from '../_components/create-button'
+import { FilterInput } from '../_components/filter-input'
 
 export default function Museus() {
   return (
-    <PageContainer>
-      <PageHeader>
-        <PageHeaderContent>
-          <PageTitle>Museus</PageTitle>
-          <PageDescription>Gerencie os museus</PageDescription>
-        </PageHeaderContent>
-      </PageHeader>
+    <AuthWrapper>
+      <PageContainer>
+        <PageHeader>
+          <PageHeaderContent>
+            <PageTitle>Museus</PageTitle>
+            <PageDescription>Gerencie os museus</PageDescription>
+          </PageHeaderContent>
+        </PageHeader>
 
-      <PageHeader>
-        <PageActionsContainer>
-          <FilterInput />
-        </PageActionsContainer>
-        <CreateButton href="/area-restrita/museus/cadastrar">
-          Cadastrar Museu
-        </CreateButton>
-      </PageHeader>
+        <PageHeader>
+          <PageActionsContainer>
+            <FilterInput />
+          </PageActionsContainer>
+          <CreateButton href="/area-restrita/museus/cadastrar">
+            Cadastrar Museu
+          </CreateButton>
+        </PageHeader>
 
-      <PageMain>Museus</PageMain>
-    </PageContainer>
-  );
+        <PageMain>Museus</PageMain>
+      </PageContainer>
+    </AuthWrapper>
+  )
 }

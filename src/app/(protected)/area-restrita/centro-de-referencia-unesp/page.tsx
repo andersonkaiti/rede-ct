@@ -6,33 +6,36 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
+} from '@components/ui/page-container'
 
-import { CreateButton } from "../_components/create-button";
-import { FilterInput } from "../_components/filter-input";
+import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
+import { CreateButton } from '../_components/create-button'
+import { FilterInput } from '../_components/filter-input'
 
 export default function CentroDeReferenciaUnesp() {
   return (
-    <PageContainer>
-      <PageHeader>
-        <PageHeaderContent>
-          <PageTitle>Centro de Referência UNESP</PageTitle>
-          <PageDescription>
-            Gerencie os editais do centro de referência UNESP
-          </PageDescription>
-        </PageHeaderContent>
-      </PageHeader>
+    <AuthWrapper>
+      <PageContainer>
+        <PageHeader>
+          <PageHeaderContent>
+            <PageTitle>Centro de Referência UNESP</PageTitle>
+            <PageDescription>
+              Gerencie os editais do centro de referência UNESP
+            </PageDescription>
+          </PageHeaderContent>
+        </PageHeader>
 
-      <PageHeader>
-        <PageActionsContainer>
-          <FilterInput />
-        </PageActionsContainer>
-        <CreateButton href="/area-restrita/centro-de-referencia-unesp/cadastrar">
-          Cadastrar edital
-        </CreateButton>
-      </PageHeader>
+        <PageHeader>
+          <PageActionsContainer>
+            <FilterInput />
+          </PageActionsContainer>
+          <CreateButton href="/area-restrita/centro-de-referencia-unesp/cadastrar">
+            Cadastrar edital
+          </CreateButton>
+        </PageHeader>
 
-      <PageMain>Centro de Referência UNEP</PageMain>
-    </PageContainer>
-  );
+        <PageMain>Centro de Referência UNEP</PageMain>
+      </PageContainer>
+    </AuthWrapper>
+  )
 }

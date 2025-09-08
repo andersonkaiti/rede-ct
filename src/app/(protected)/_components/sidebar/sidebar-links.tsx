@@ -37,10 +37,12 @@ export const sidebarLinks: NavigationLink[] = [
     label: 'ETPs',
     path: '/area-restrita/etps',
     icon: Icons.BookOpen,
+    isProtected: true,
   },
   {
     label: 'Equipes',
     icon: Icons.Users,
+    isProtected: true,
     children: [
       {
         label: 'Equipe de Gestão',
@@ -62,6 +64,7 @@ export const sidebarLinks: NavigationLink[] = [
   {
     label: 'Pesquisadores',
     icon: Icons.GraduationCap,
+    isProtected: true,
     children: [
       {
         label: 'Pesquisadores',
@@ -83,16 +86,19 @@ export const sidebarLinks: NavigationLink[] = [
   {
     label: 'Regimentos e Atas',
     path: '/area-restrita/regimentos-e-atas',
+    isProtected: true,
     icon: Icons.FileText,
   },
   {
     label: 'Parceiros e Financiadores',
     path: '/area-restrita/parceiros-e-financiadores',
+    isProtected: true,
     icon: Icons.Handshake,
   },
   {
     label: 'Congressos',
     icon: Icons.BookOpen,
+    isProtected: true,
     children: [
       {
         label: 'Internacionais',
@@ -109,6 +115,7 @@ export const sidebarLinks: NavigationLink[] = [
   {
     label: 'Cursos',
     icon: Icons.BookOpen,
+    isProtected: true,
     children: [
       {
         label: 'Webinários',
@@ -130,6 +137,7 @@ export const sidebarLinks: NavigationLink[] = [
   {
     label: 'Livros',
     icon: Icons.BookOpen,
+    isProtected: true,
     children: [
       {
         label: 'Revistas',
@@ -151,26 +159,31 @@ export const sidebarLinks: NavigationLink[] = [
   {
     label: 'Editais',
     icon: Icons.FilePlus,
+    isProtected: true,
     path: '/area-restrita/editais',
   },
   {
     label: 'Legislações',
     icon: Icons.ScrollText,
+    isProtected: true,
     path: '/area-restrita/legislacoes',
   },
   {
     label: 'Museus',
     icon: Icons.GalleryHorizontal,
+    isProtected: true,
     path: '/area-restrita/museus',
   },
   {
     label: 'Destaques RedeCT',
     icon: Icons.Star,
+    isProtected: true,
     path: '/area-restrita/destaques-redect',
   },
   {
     label: 'Centro de Referência UNESP',
     icon: Icons.Building,
+    isProtected: true,
     path: '/area-restrita/centro-de-referencia-unesp',
   },
 ]

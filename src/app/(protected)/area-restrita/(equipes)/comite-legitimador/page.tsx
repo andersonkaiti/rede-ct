@@ -8,6 +8,7 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 
+import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
 import { FilterInput } from '../../_components/filter-input'
 import { CreateMemberButton } from './_components/create-member/create-member-button'
 import { Table } from './_components/table/table'
@@ -15,26 +16,28 @@ import { TeamMemberDisplayOptions } from './_components/team-member-display-opti
 
 export default function ComiteLegitimador() {
   return (
-    <PageContainer>
-      <PageHeader>
-        <PageHeaderContent>
-          <PageTitle>Comitê Legitimador</PageTitle>
-          <PageDescription>Gerencie o Comitê Legitimador</PageDescription>
-        </PageHeaderContent>
-      </PageHeader>
+    <AuthWrapper>
+      <PageContainer>
+        <PageHeader>
+          <PageHeaderContent>
+            <PageTitle>Comitê Legitimador</PageTitle>
+            <PageDescription>Gerencie o Comitê Legitimador</PageDescription>
+          </PageHeaderContent>
+        </PageHeader>
 
-      <PageHeader>
-        <PageActionsContainer>
-          <FilterInput />
+        <PageHeader>
+          <PageActionsContainer>
+            <FilterInput />
 
-          <TeamMemberDisplayOptions />
-        </PageActionsContainer>
-        <CreateMemberButton>Adicionar membro</CreateMemberButton>
-      </PageHeader>
+            <TeamMemberDisplayOptions />
+          </PageActionsContainer>
+          <CreateMemberButton>Adicionar membro</CreateMemberButton>
+        </PageHeader>
 
-      <PageMain>
-        <Table />
-      </PageMain>
-    </PageContainer>
+        <PageMain>
+          <Table />
+        </PageMain>
+      </PageContainer>
+    </AuthWrapper>
   )
 }

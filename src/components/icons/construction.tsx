@@ -1,8 +1,9 @@
 'use client'
 
 import { cn } from '@utils/cn'
-import { motion } from 'motion/react'
+import { motion, useAnimation } from 'motion/react'
 import type { HTMLAttributes } from 'react'
+import { useImperativeHandle, useRef } from 'react'
 
 export interface ConstructionIconHandle {
   startAnimation: () => void
@@ -25,7 +26,27 @@ export function ConstructionIcon({
   ref,
   ...props
 }: ConstructionIconProps) {
-  // Animação contínua: sempre animando, sem controle externo
+  const controls = useAnimation()
+  const isControlledRef = useRef(false)
+
+  useImperativeHandle(ref, () => {
+    isControlledRef.current = true
+    return {
+      startAnimation: () =>
+        controls.start({
+          x: [0, STRIPES_ANIMATION_DISTANCE],
+          transition: {
+            duration: STRIPES_ANIMATION_DURATION,
+            ease: 'linear',
+            repeat: Number.POSITIVE_INFINITY,
+            repeatType: 'loop',
+          },
+        }),
+      stopAnimation: () =>
+        controls.start({ x: 0, transition: { duration: 0.2 } }),
+    }
+  })
+
   return (
     <div className={cn(className)} {...props}>
       <svg
@@ -42,15 +63,7 @@ export function ConstructionIcon({
         <title>Construction icon</title>
         <defs>
           <motion.pattern
-            animate={{
-              x: [0, STRIPES_ANIMATION_DISTANCE],
-              transition: {
-                duration: STRIPES_ANIMATION_DURATION,
-                ease: 'linear',
-                repeat: Number.POSITIVE_INFINITY,
-                repeatType: 'loop',
-              },
-            }}
+            animate={controls}
             height={STRIPES_HEIGHT}
             id="stripes"
             patternUnits="userSpaceOnUse"

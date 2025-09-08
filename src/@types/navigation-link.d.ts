@@ -4,5 +4,6 @@ export interface NavigationLink {
   label: string
   path?: string
   icon?: LucideIcon
+  isProtected?: boolean
   children?: NavigationLink[]
 }

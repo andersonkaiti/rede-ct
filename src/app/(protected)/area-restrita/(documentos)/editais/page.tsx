@@ -6,31 +6,34 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
+} from '@components/ui/page-container'
 
-import { CreateButton } from "../../_components/create-button";
-import { FilterInput } from "../../_components/filter-input";
+import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
+import { CreateButton } from '../../_components/create-button'
+import { FilterInput } from '../../_components/filter-input'
 
 export default function Editais() {
   return (
-    <PageContainer>
-      <PageHeader>
-        <PageHeaderContent>
-          <PageTitle>Editais</PageTitle>
-          <PageDescription>Gerencie os editais</PageDescription>
-        </PageHeaderContent>
-      </PageHeader>
+    <AuthWrapper>
+      <PageContainer>
+        <PageHeader>
+          <PageHeaderContent>
+            <PageTitle>Editais</PageTitle>
+            <PageDescription>Gerencie os editais</PageDescription>
+          </PageHeaderContent>
+        </PageHeader>
 
-      <PageHeader>
-        <PageActionsContainer>
-          <FilterInput />
-        </PageActionsContainer>
-        <CreateButton href="/area-restrita/editais/cadastrar">
-          Cadastrar edital
-        </CreateButton>
-      </PageHeader>
+        <PageHeader>
+          <PageActionsContainer>
+            <FilterInput />
+          </PageActionsContainer>
+          <CreateButton href="/area-restrita/editais/cadastrar">
+            Cadastrar edital
+          </CreateButton>
+        </PageHeader>
 
-      <PageMain>Editais</PageMain>
-    </PageContainer>
-  );
+        <PageMain>Editais</PageMain>
+      </PageContainer>
+    </AuthWrapper>
+  )
 }

@@ -6,31 +6,34 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
+} from '@components/ui/page-container'
 
-import { CreateButton } from "../_components/create-button";
-import { FilterInput } from "../_components/filter-input";
+import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
+import { CreateButton } from '../_components/create-button'
+import { FilterInput } from '../_components/filter-input'
 
 export default function Legislacoes() {
   return (
-    <PageContainer>
-      <PageHeader>
-        <PageHeaderContent>
-          <PageTitle>Legislações</PageTitle>
-          <PageDescription>Gerencie as legislações</PageDescription>
-        </PageHeaderContent>
-      </PageHeader>
+    <AuthWrapper>
+      <PageContainer>
+        <PageHeader>
+          <PageHeaderContent>
+            <PageTitle>Legislações</PageTitle>
+            <PageDescription>Gerencie as legislações</PageDescription>
+          </PageHeaderContent>
+        </PageHeader>
 
-      <PageHeader>
-        <PageActionsContainer>
-          <FilterInput />
-        </PageActionsContainer>
-        <CreateButton href="/area-restrita/legislacoes/cadastrar">
-          Cadastrar legislação
-        </CreateButton>
-      </PageHeader>
+        <PageHeader>
+          <PageActionsContainer>
+            <FilterInput />
+          </PageActionsContainer>
+          <CreateButton href="/area-restrita/legislacoes/cadastrar">
+            Cadastrar legislação
+          </CreateButton>
+        </PageHeader>
 
-      <PageMain>Legislações</PageMain>
-    </PageContainer>
-  );
+        <PageMain>Legislações</PageMain>
+      </PageContainer>
+    </AuthWrapper>
+  )
 }

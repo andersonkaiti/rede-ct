@@ -6,29 +6,37 @@ import { motion, useAnimation } from 'motion/react'
 import type { HTMLAttributes } from 'react'
 import { useCallback, useImperativeHandle, useRef } from 'react'
 
-export interface BlocksIconHandle {
+export interface DownloadIconHandle {
   startAnimation: () => void
   stopAnimation: () => void
 }
 
-interface BlocksIconProps extends HTMLAttributes<HTMLDivElement> {
+interface DownloadIconProps extends HTMLAttributes<HTMLDivElement> {
   size?: number
-  ref?: React.Ref<BlocksIconHandle>
+  ref?: React.Ref<DownloadIconHandle>
 }
 
-const variants: Variants = {
-  normal: { translateX: 0, translateY: 0 },
-  animate: { translateX: -4, translateY: 4 },
+const arrowVariants: Variants = {
+  normal: { y: 0 },
+  animate: {
+    y: 2,
+    transition: {
+      type: 'spring',
+      stiffness: 200,
+      damping: 10,
+      mass: 1,
+    },
+  },
 }
 
-export function BlocksIcon({
+export function DownloadIcon({
   onMouseEnter,
   onMouseLeave,
   className,
   size = 28,
   ref,
   ...props
-}: BlocksIconProps) {
+}: DownloadIconProps) {
   const controls = useAnimation()
   const isControlledRef = useRef(false)
 
@@ -71,10 +79,8 @@ export function BlocksIcon({
       {...props}
     >
       <svg
-        aria-labelledby="blocksIconTitle"
         fill="none"
         height={size}
-        role="img"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -83,9 +89,12 @@ export function BlocksIcon({
         width={size}
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title id="blocksIconTitle">Blocks icon</title>
-        <path d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3" />
-        <motion.path animate={controls} d="M14 3h7v7h-7z" variants={variants} />
+        <title>Download icon</title>
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <motion.g animate={controls} variants={arrowVariants}>
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" x2="12" y1="15" y2="3" />
+        </motion.g>
       </svg>
     </div>
   )

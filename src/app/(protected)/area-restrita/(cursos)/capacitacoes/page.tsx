@@ -6,31 +6,34 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
+} from '@components/ui/page-container'
 
-import { CreateButton } from "../../_components/create-button";
-import { FilterInput } from "../../_components/filter-input";
+import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
+import { CreateButton } from '../../_components/create-button'
+import { FilterInput } from '../../_components/filter-input'
 
 export default function Capacitacoes() {
   return (
-    <PageContainer>
-      <PageHeader>
-        <PageHeaderContent>
-          <PageTitle>Capacitações</PageTitle>
-          <PageDescription>Gerencie as suas capacitações</PageDescription>
-        </PageHeaderContent>
-      </PageHeader>
+    <AuthWrapper>
+      <PageContainer>
+        <PageHeader>
+          <PageHeaderContent>
+            <PageTitle>Capacitações</PageTitle>
+            <PageDescription>Gerencie as suas capacitações</PageDescription>
+          </PageHeaderContent>
+        </PageHeader>
 
-      <PageHeader>
-        <PageActionsContainer>
-          <FilterInput />
-        </PageActionsContainer>
-        <CreateButton href="/area-restrita/capacitacoes/cadastrar">
-          Cadastrar Capacitação
-        </CreateButton>
-      </PageHeader>
+        <PageHeader>
+          <PageActionsContainer>
+            <FilterInput />
+          </PageActionsContainer>
+          <CreateButton href="/area-restrita/capacitacoes/cadastrar">
+            Cadastrar Capacitação
+          </CreateButton>
+        </PageHeader>
 
-      <PageMain>Capacitações</PageMain>
-    </PageContainer>
-  );
+        <PageMain>Capacitações</PageMain>
+      </PageContainer>
+    </AuthWrapper>
+  )
 }

@@ -12,16 +12,21 @@ import {
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import type { NavigationLink } from 'types/navigation-link'
-
 import { SidebarButton } from './sidebar-button'
 
 interface ISidebarItemProps {
   item: NavigationLink
+  isAdmin: boolean
 }
 
 export function SidebarItem({
-  item: { label, icon: Icon, path = '', children },
+  item: { label, icon: Icon, path = '', children, isProtected },
+  isAdmin,
 }: ISidebarItemProps) {
+  if (isProtected && !isAdmin) {
+    return null
+  }
+
   if (!children?.length) {
     return (
       <SidebarMenuItem>

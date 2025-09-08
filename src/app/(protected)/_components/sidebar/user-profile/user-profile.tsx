@@ -1,3 +1,4 @@
+import { SettingsGearIcon } from '@components/icons/settings-gear'
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
 import {
   Menubar,
@@ -28,7 +29,9 @@ export async function UserProfile() {
               <AvatarImage src={user.avatarUrl ?? undefined} />
               <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
             </Avatar>
-            <span className="truncate">{user.name}</span>
+            <span className="max-w-35 overflow-hidden text-ellipsis whitespace-nowrap">
+              {user.name}
+            </span>
           </div>
           <ChevronsUpDown className="ml-2 h-4 w-4" />
         </MenubarTrigger>
@@ -41,6 +44,19 @@ export async function UserProfile() {
               </div>
             )}
           </div>
+
+          <Separator />
+
+          <MenubarItem className="cursor-pointer">
+            <Link
+              className="group flex w-full cursor-pointer items-center gap-2"
+              href="/area-restrita/perfil"
+              prefetch={false}
+            >
+              <SettingsGearIcon className="text-primary" />
+              <span>Configurações</span>
+            </Link>
+          </MenubarItem>
 
           <Separator />
 

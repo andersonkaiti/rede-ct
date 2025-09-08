@@ -30,7 +30,7 @@ export function NewsList() {
 
       {isLoading && <LoadingSkeleton />}
 
-      <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid w-full grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
         {(data?.news ?? []).map((newsItem: INews, index: number) => (
           <Noticia key={index} news={newsItem} />
         ))}

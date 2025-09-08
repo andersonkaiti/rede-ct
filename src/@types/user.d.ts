@@ -5,5 +5,7 @@ export interface IUser {
   updatedAt: string
   avatarUrl: string
   emailAddress: string
-  lattesUrl: string
+  orcid: string | null
+  phone: string | null
+  lattesUrl: string | null
 }

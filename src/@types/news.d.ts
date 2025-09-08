@@ -1,3 +1,5 @@
+import type { IUser } from './user'
+
 export interface INews {
   title: string
   content: string
@@ -6,13 +8,7 @@ export interface INews {
   createdAt: string
   updatedAt: string
   id: string
-  author: {
-    id: string
-    name: string
-    createdAt: string
-    avatarUrl: string
-    updatedAt: string
-  }
+  author: IUser
 }
 
 export interface IPaginatedNews {

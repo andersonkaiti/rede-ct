@@ -6,6 +6,7 @@ import { type FileWithPreview, useFileUpload } from '@hooks/use-file-upload'
 import { cn } from '@utils/cn'
 import { TriangleAlert, User, X } from 'lucide-react'
 import Image from 'next/image'
+import { useCallback } from 'react'
 
 const BYTES_PER_KB = 1024
 const KB_PER_MB = 1024
@@ -50,6 +51,36 @@ export default function AvatarUpload({
   const currentFile = files[0]
   const previewUrl = currentFile?.preview || defaultAvatar
 
+  // Callback ref para sincronizar o arquivo com o input HTML
+  const inputCallbackRef = useCallback(
+    (inputElement: HTMLInputElement | null) => {
+      if (inputElement && files[0]?.file) {
+        const dataTransfer = new DataTransfer()
+        dataTransfer.items.add(files[0].file as File)
+        inputElement.files = dataTransfer.files
+      } else if (inputElement && files.length === 0) {
+        // Limpa o input quando não há arquivos
+        inputElement.value = ''
+      }
+    },
+    [files]
+  )
+
+  // Pega as props do input e adiciona nossa callback ref
+  const inputProps = getInputProps()
+  const combinedRef = useCallback(
+    (element: HTMLInputElement | null) => {
+      if (typeof inputProps.ref === 'function') {
+        inputProps.ref(element)
+      } else if (inputProps.ref) {
+        inputProps.ref.current = element
+      }
+
+      inputCallbackRef(element)
+    },
+    [inputProps, inputCallbackRef]
+  )
+
   const handleRemove = () => {
     if (currentFile) {
       removeFile(currentFile.id)
@@ -90,7 +121,12 @@ export default function AvatarUpload({
           onDrop={handleDrop}
           type="button"
         >
-          <input {...getInputProps()} className="sr-only" name="avatarImage" />
+          <input
+            {...inputProps}
+            className="sr-only"
+            name="avatarImage"
+            ref={combinedRef}
+          />
 
           {previewUrl ? (
             <Image

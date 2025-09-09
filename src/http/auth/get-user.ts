@@ -1,4 +1,5 @@
 import { api } from '@http/api-client'
+import { redirect } from 'next/navigation'
 
 interface IAuthenticatedUserResponse {
   name: string
@@ -15,5 +16,9 @@ interface IAuthenticatedUserResponse {
 }
 
 export async function getAuthenticatedUser(): Promise<IAuthenticatedUserResponse> {
-  return await api.get('auth/user').json()
+  try {
+    return await api.get('auth/user').json()
+  } catch {
+    redirect('/')
+  }
 }

@@ -51,7 +51,6 @@ export async function UserProfile() {
             <Link
               className="group flex w-full cursor-pointer items-center gap-2"
               href="/area-restrita/perfil"
-              prefetch={false}
             >
               <SettingsGearIcon className="text-primary" />
               <span>Configurações</span>

@@ -12,7 +12,7 @@ export const seniorityMapping: Record<Seniority, string> = {
 }
 
 export interface IResearcher {
-  user: IUser
+  user: Omit<IUser, 'orcid' | 'phone'>
   description?: string
   seniority: Seniority
 }

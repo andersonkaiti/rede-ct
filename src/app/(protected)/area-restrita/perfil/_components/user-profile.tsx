@@ -13,6 +13,7 @@ import {
 } from '@components/ui/page-container'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import Form from 'next/form'
+import { useRouter } from 'next/navigation'
 import { useActionState, useEffect } from 'react'
 import { PatternFormat } from 'react-number-format'
 import { toast } from 'sonner'
@@ -37,11 +38,14 @@ export function UserProfile({ user }: IUserProfileProps) {
   const [{ errors, message, payload, success }, formAction, isLoading] =
     useActionState(updateUserAction, {} as IActionState)
 
+  const router = useRouter()
+
   useEffect(() => {
     if (success) {
       toast.success('Usuário atualizado com sucesso!')
+      router.refresh()
     }
-  }, [success])
+  }, [success, router])
 
   const role = user.role === 'ADMIN' ? 'Administrador' : 'Usuário'
 
@@ -79,7 +83,7 @@ export function UserProfile({ user }: IUserProfileProps) {
             </Label>
 
             <Input
-              defaultValue={user.name || (payload?.get('name') as string)}
+              defaultValue={(payload?.get('name') as string) || user.name}
               id="name"
               name="name"
               placeholder="Informe seu nome"
@@ -154,7 +158,7 @@ export function UserProfile({ user }: IUserProfileProps) {
 
             <Input
               defaultValue={
-                (user.lattesUrl || (payload?.get('lattesUrl') as string)) ?? ''
+                ((payload?.get('lattesUrl') as string) || user.lattesUrl) ?? ''
               }
               id="lattesUrl"
               name="lattesUrl"
@@ -182,7 +186,7 @@ export function UserProfile({ user }: IUserProfileProps) {
               allowEmptyFormatting
               customInput={Input}
               defaultValue={
-                (user.orcid || (payload?.get('orcid') as string)) ?? ''
+                ((payload?.get('orcid') as string) || user.orcid) ?? ''
               }
               format="####-####-####-####"
               id="orcid"
@@ -208,7 +212,7 @@ export function UserProfile({ user }: IUserProfileProps) {
             <PatternFormat
               allowEmptyFormatting
               customInput={Input}
-              defaultValue={user.phone || (payload?.get('phone') as string)}
+              defaultValue={(payload?.get('phone') as string) || user.phone}
               format="(##) #####-####"
               id="phone"
               name="phone"

@@ -4,8 +4,8 @@ interface IUpdateUserRequest {
   name?: string
   orcid?: string
   phone?: string
-  // biome-ignore lint/suspicious/noExplicitAny: file
-  avatarImage?: any
+  lattesUrl?: string
+  avatarImage?: File
 }
 
 export async function updateUser(data: IUpdateUserRequest): Promise<void> {
@@ -23,7 +23,11 @@ export async function updateUser(data: IUpdateUserRequest): Promise<void> {
     formData.append('phone', data.phone)
   }
 
-  if (data.avatarImage !== undefined) {
+  if (data.lattesUrl !== undefined) {
+    formData.append('lattesUrl', data.lattesUrl)
+  }
+
+  if (data.avatarImage !== undefined && data.avatarImage.size > 0) {
     formData.append('avatarImage', data.avatarImage)
   }
 

@@ -1,29 +1,40 @@
+import { Button } from '@components/ui/button'
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@components/ui/select'
-import { Loader2 } from 'lucide-react'
-
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@components/ui/command'
+import { Popover, PopoverContent, PopoverTrigger } from '@components/ui/popover'
+import { cn } from '@utils/cn'
+import { CheckIcon, ChevronDownIcon, Loader2 } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { useUsers } from '../(equipes)/_hooks/use-users.hook'
 
 interface ISelectMemberProps {
   userId?: string
+  onChange?: (userId: string) => void
 }
 
-export function SelectMember({ userId }: ISelectMemberProps) {
+export function SelectMember({ userId, onChange }: ISelectMemberProps) {
   const { data: users = [], isLoading } = useUsers()
+  const [open, setOpen] = useState(false)
+  const [selected, setSelected] = useState<string>(userId || '')
 
-  const user = users.find((u) => u.id === userId)
+  useEffect(() => {
+    setSelected(userId || '')
+  }, [userId])
+
+  const user = users.find((u) => u.id === selected)
 
   function renderSelectPlaceholder() {
-    if (userId && !isLoading) {
+    if (selected && !isLoading) {
       return `${user?.name} (${user?.emailAddress})`
     }
 
-    if (userId && isLoading) {
+    if (selected && isLoading) {
       return (
         <div className="flex items-center gap-2">
           <Loader2 className="size-4 animate-spin" />
@@ -36,26 +47,66 @@ export function SelectMember({ userId }: ISelectMemberProps) {
   }
 
   return (
-    <Select defaultValue={userId} name="userId">
-      <SelectTrigger className="w-full">
-        <SelectValue placeholder={renderSelectPlaceholder()} />
-      </SelectTrigger>
+    <div>
+      <Popover onOpenChange={setOpen} open={open}>
+        <PopoverTrigger asChild>
+          <Button
+            aria-expanded={open}
+            className="w-full justify-between border-input bg-background px-3 font-normal outline-none outline-offset-0 hover:bg-background focus-visible:outline-[3px]"
+            role="combobox"
+            variant="outline"
+          >
+            <span
+              className={cn('truncate', !selected && 'text-muted-foreground')}
+            >
+              {isLoading ? (
+                <span className="flex items-center gap-2">
+                  <Loader2 className="size-4 animate-spin" />
+                  Carregando...
+                </span>
+              ) : (
+                renderSelectPlaceholder()
+              )}
+            </span>
+            <ChevronDownIcon
+              aria-hidden="true"
+              className="shrink-0 text-muted-foreground/80"
+              size={16}
+            />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent
+          align="start"
+          className="w-full min-w-[var(--radix-popper-anchor-width)] border-input p-0"
+        >
+          <Command>
+            <CommandInput placeholder="Buscar membro..." />
+            <CommandList>
+              <CommandEmpty>Nenhum membro encontrado.</CommandEmpty>
+              <CommandGroup>
+                {users.map((u) => (
+                  <CommandItem
+                    key={u.id}
+                    onSelect={(currentValue) => {
+                      setSelected(currentValue)
+                      setOpen(false)
+                      onChange?.(currentValue)
+                    }}
+                    value={u.id}
+                  >
+                    {u.name} ({u.emailAddress})
+                    {selected === u.id && (
+                      <CheckIcon className="ml-auto" size={16} />
+                    )}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </PopoverContent>
+      </Popover>
 
-      {userId && (
-        <SelectContent>
-          <SelectItem value={userId}>{renderSelectPlaceholder()}</SelectItem>
-        </SelectContent>
-      )}
-
-      {!userId && (
-        <SelectContent>
-          {users?.map((u) => (
-            <SelectItem key={u.id} value={u.id}>
-              {u.name} ({u.emailAddress})
-            </SelectItem>
-          ))}
-        </SelectContent>
-      )}
-    </Select>
+      <input name="userId" type="hidden" value={selected} />
+    </div>
   )
 }

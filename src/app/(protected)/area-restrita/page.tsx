@@ -1,3 +1,4 @@
+import { isAdmin } from '@auth/auth'
 import {
   PageContainer,
   PageDescription,
@@ -12,7 +13,7 @@ import { NewsNavigationCard } from './_components/navigation-cards/news'
 import { PendenciesNavigationCard } from './_components/navigation-cards/pendencies'
 import { TeamsNavigationCard } from './_components/navigation-cards/teams'
 
-export default function AreaRestrita() {
+export default async function AreaRestrita() {
   return (
     <PageContainer>
       <PageHeader>
@@ -34,7 +35,7 @@ export default function AreaRestrita() {
 
           <HistoryNavigationCard />
 
-          <TeamsNavigationCard />
+          {(await isAdmin()) && <TeamsNavigationCard />}
         </section>
       </PageMain>
     </PageContainer>

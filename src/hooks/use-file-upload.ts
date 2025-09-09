@@ -103,7 +103,14 @@ export const useFileUpload = (
 
       const acceptedTypes = accept.split(',').map((type) => type.trim())
       const fileType = file instanceof File ? file.type || '' : file.type
-      const fileExtension = `.${file instanceof File ? file.name.split('.').pop() : file.name.split('.').pop()}`
+      const fileExtension = (() => {
+        const name = file instanceof File ? file.name : file.name
+        const parts = name.split('.')
+        if (parts.length > 1) {
+          return `.${parts.pop()}`
+        }
+        return ''
+      })()
 
       const isAccepted = acceptedTypes.some((type) => {
         if (type.startsWith('.')) {
@@ -117,7 +124,7 @@ export const useFileUpload = (
       })
 
       if (!isAccepted) {
-        return `O arquivo "${file instanceof File ? file.name : file.name}" não é um tipo de arquivo aceito.`
+        return `O arquivo "${file.name}" não é um tipo de arquivo aceito.`
       }
 
       return null
@@ -216,6 +223,7 @@ export const useFileUpload = (
       }
       return state.files.some(
         (existingFile) =>
+          existingFile.file instanceof File &&
           existingFile.file.name === file.name &&
           existingFile.file.size === file.size
       )
@@ -226,6 +234,7 @@ export const useFileUpload = (
   const processFile = useCallback(
     (file: File, errors: string[]): FileWithPreview | null => {
       if (isDuplicateFile(file)) {
+        errors.push(`O arquivo "${file.name}" já foi adicionado.`)
         return null
       }
 
@@ -389,7 +398,12 @@ export const useFileUpload = (
     e.preventDefault()
     e.stopPropagation()
 
-    if (e.currentTarget.contains(e.relatedTarget as Node)) {
+    // Fix: Only set isDragging to false if the mouse has left the dropzone
+    if (
+      e.currentTarget &&
+      e.relatedTarget &&
+      e.currentTarget.contains(e.relatedTarget as Node)
+    ) {
       return
     }
 

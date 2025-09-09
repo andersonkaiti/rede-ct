@@ -8,7 +8,7 @@ export default function SignInPage() {
         <div className="relative mx-auto size-10">
           <Image
             alt="Rede CT"
-            className="object-contain"
+            className="object-contain invert-100 dark:invert-0"
             fill
             src="/images/favicon.png"
           />

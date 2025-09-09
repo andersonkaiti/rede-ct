@@ -23,7 +23,7 @@ export default function Loading() {
         <form className="mt-10 flex flex-col items-center justify-evenly gap-8 md:gap-12 lg:flex-row lg:items-start">
           <div className="flex flex-1 flex-col items-center gap-4">
             <div className="group relative flex flex-col items-center">
-              <Skeleton className="size-32 rounded-full shadow-lg" />
+              <Skeleton className="size-30 rounded-full shadow-lg sm:size-60" />
             </div>
             <div className="flex w-full flex-col items-center gap-3">
               <Skeleton className="h-7 w-full rounded-full" />

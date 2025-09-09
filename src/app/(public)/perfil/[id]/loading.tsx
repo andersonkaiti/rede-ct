@@ -3,7 +3,7 @@ import { Skeleton } from '@components/ui/skeleton'
 
 export default function Loading() {
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col justify-center space-y-12 p-4 py-10 lg:p-24">
+    <div className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <Skeleton className="h-9 w-23.5" />
 
       <div className="space-y-14">
@@ -57,9 +57,9 @@ export default function Loading() {
           <div className="flex h-full justify-between gap-4 sm:flex-col">
             <div className="flex items-center text-sm">
               <Skeleton className="mr-2 h-5 w-5 rounded-full" />
-              <div className="flex flex-col">
-                <Skeleton className="h-4 w-20" />
-                <Skeleton className="h-3 w-28" />
+              <div className="flex flex-col gap-2">
+                <Skeleton className="h-4 w-17" />
+                <Skeleton className="h-3 w-30.5" />
               </div>
             </div>
 
@@ -69,9 +69,9 @@ export default function Loading() {
 
             <div className="flex items-center text-sm">
               <Skeleton className="mr-2 h-5 w-5 rounded-full" />
-              <div className="flex flex-col">
+              <div className="flex flex-col gap-2">
                 <Skeleton className="h-4 w-24" />
-                <Skeleton className="h-3 w-28" />
+                <Skeleton className="h-3 w-30.5" />
               </div>
             </div>
           </div>

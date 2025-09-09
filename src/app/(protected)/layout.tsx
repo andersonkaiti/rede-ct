@@ -7,6 +7,8 @@ import {
   SidebarTrigger,
 } from '@components/ui/sidebar'
 import { redirect } from 'next/navigation'
+import { Suspense } from 'react'
+import { LoadingSkeleton } from './_components/loading-skeleton'
 import { SidebarContainer } from './_components/sidebar/sidebar'
 
 export default async function DashboardLayout({
@@ -19,22 +21,24 @@ export default async function DashboardLayout({
   }
 
   return (
-    <SidebarProvider>
-      <SidebarContainer />
+    <Suspense fallback={<LoadingSkeleton />}>
+      <SidebarProvider>
+        <SidebarContainer />
 
-      <SidebarInset>
-        <div className="flex h-full w-full flex-col">
-          <div className="flex justify-between">
-            <SidebarTrigger className="mt-4 ml-4 cursor-pointer" />
+        <SidebarInset>
+          <div className="flex h-full w-full flex-col">
+            <div className="flex justify-between">
+              <SidebarTrigger className="mt-4 ml-4 cursor-pointer" />
 
-            <Button asChild className="m-4 size-8" variant="ghost">
-              <AnimatedThemeToggler />
-            </Button>
+              <Button asChild className="m-4 size-8" variant="ghost">
+                <AnimatedThemeToggler />
+              </Button>
+            </div>
+
+            {children}
           </div>
-
-          {children}
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
+        </SidebarInset>
+      </SidebarProvider>
+    </Suspense>
   )
 }

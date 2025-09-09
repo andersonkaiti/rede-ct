@@ -16,7 +16,7 @@ const PHONE_REGEX = /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/
 
 const userSchema = z.object({
   name: z.string('Nome é obrigatório.').min(1, 'Nome é obrigatório.'),
-  lattesUrl: z.url('Digite uma URL válida.').optional(),
+  lattesUrl: z.string().optional(),
   orcid: z
     .string()
     .transform((val) => val.trim())
@@ -30,21 +30,23 @@ const userSchema = z.object({
     }),
   avatarImage: z
     .any()
-    .optional()
     .refine(
       (value) => {
-        if (value instanceof File) {
-          return value.size <= MAX_AVATAR_SIZE_BYTES
-        }
-
-        if (typeof value === 'string') {
+        if (value === undefined || value === null) {
           return true
         }
 
-        return false
+        if (typeof value !== 'object' || typeof value.size !== 'number') {
+          return false
+        }
+
+        return value.size <= MAX_AVATAR_SIZE_BYTES
       },
-      { message: `A imagem deve ter no máximo ${MAX_AVATAR_SIZE_MB}MB` }
-    ),
+      {
+        message: `A imagem deve ter no máximo ${MAX_AVATAR_SIZE_MB}MB.`,
+      }
+    )
+    .optional(),
 })
 
 export interface IActionState {

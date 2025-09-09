@@ -22,7 +22,7 @@ export default async function UserProfile({ params }: IUserProfileProps) {
   const user = await getUser(id)
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col justify-center space-y-12 p-4 py-10 lg:p-24">
+    <div className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <BackArrow />
 
       <div className="space-y-14">
@@ -75,7 +75,7 @@ export default async function UserProfile({ params }: IUserProfileProps) {
                   <FileTextIcon size={16} /> Lattes:
                   <Link
                     className="break-all underline"
-                    href={'/'}
+                    href={user.lattesUrl}
                     rel="noopener noreferrer"
                     target="_blank"
                   >

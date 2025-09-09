@@ -66,7 +66,7 @@ export function NavigationLink({
     <div className="flex 2lg:w-fit w-full flex-col items-center">
       <Link
         className={cn(
-          'group inline-flex h-9 w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 text-muted-foreground text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-foreground hover:text-red-200-foreground focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-red-200-foreground',
+          'group inline-flex h-9 w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-foreground hover:text-red-200-foreground focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-red-200-foreground dark:text-muted-foreground',
           (isHovered || isActived || isCurrent || isAnyChildCurrent) &&
             'text-foreground'
         )}
@@ -114,7 +114,7 @@ export function NavigationLink({
               return (
                 <Link
                   className={cn(
-                    'mt-2 flex w-full items-center gap-2 2lg:rounded-full rounded-md p-2 text-center text-muted-foreground text-sm',
+                    'mt-2 flex w-full items-center gap-2 2lg:rounded-full rounded-md p-2 text-center text-sm dark:text-muted-foreground',
                     isChildCurrent && 'bg-gray-400/25 text-foreground'
                   )}
                   href={childPath || '#'}

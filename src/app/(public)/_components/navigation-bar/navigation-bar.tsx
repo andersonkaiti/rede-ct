@@ -8,8 +8,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { NavigationLink as NavigationLinkType } from 'types/navigation-link'
 import { Dropdown } from './dropdown'
-import { useNavigationBarDropdown } from './hooks/use-navigation-bar-dropdown.hook'
 import { useNavigationBar } from './hooks/use-navigation-bar.hook'
+import { useNavigationBarDropdown } from './hooks/use-navigation-bar-dropdown.hook'
 import { Menu } from './menu'
 import { NavigationLink } from './navigation-link'
 import { navigationLinks } from './navigation-links'
@@ -47,13 +47,14 @@ export function NavigationBar() {
       <Link className="2lg:flex hidden items-center gap-2 md:pr-3" href="/">
         <Image
           alt="Rede CT"
-          height={30}
+          className="invert-100 dark:invert-0"
+          height={25}
           priority
-          src="/images/logo.png"
-          width={30}
+          src="/images/favicon.png"
+          width={25}
         />
 
-        <span className="font-semibold text-2xl leading-none">RedeCT</span>
+        <span className="font-semibold text-lg">RedeCT</span>
       </Link>
 
       <nav
@@ -77,9 +78,9 @@ export function NavigationBar() {
           />
         ))}
 
-        {!isAuthenticated && (
+        {!isAuthenticated() && (
           <Link
-            className="group inline-flex h-9 2lg:w-fit w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 text-muted-foreground text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-red-200-foreground focus:bg-gray-400/25 focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:text-red-200-foreground data-[state=open]:focus:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25"
+            className="group inline-flex h-9 2lg:w-fit w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-red-200-foreground focus:bg-gray-400/25 focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:text-red-200-foreground data-[state=open]:focus:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25 dark:text-muted-foreground"
             href="/sign-in"
             onClick={() => setShowNavigationBar(false)}
           >
@@ -87,9 +88,9 @@ export function NavigationBar() {
           </Link>
         )}
 
-        {isAuthenticated && (
+        {isAuthenticated() && (
           <Link
-            className="group inline-flex h-9 2lg:w-fit w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 text-muted-foreground text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-foreground hover:text-red-200-foreground focus:bg-gray-400/25 focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:text-red-200-foreground data-[state=open]:focus:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25"
+            className="group inline-flex h-9 2lg:w-fit w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-foreground hover:text-red-200-foreground focus:bg-gray-400/25 focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-gray-400/25 data-[state=open]:text-red-200-foreground data-[state=open]:focus:bg-gray-400/25 data-[state=open]:hover:bg-gray-400/25 dark:text-muted-foreground"
             href="/area-restrita"
           >
             Área restrita

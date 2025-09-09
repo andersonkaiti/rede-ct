@@ -11,23 +11,14 @@ import {
 } from '@components/ui/page-container'
 import { AlertCircle, Eye, EyeClosed, Loader2 } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useActionState, useEffect, useState } from 'react'
-import { toast } from 'sonner'
+import { useActionState, useState } from 'react'
 import { type IActionState, signInAction } from '../actions'
 
 export function SignInForm() {
-  const [{ errors, payload, message, success }, formAction, isLoading] =
-    useActionState(signInAction, {} as IActionState)
-
-  const router = useRouter()
-
-  useEffect(() => {
-    if (success) {
-      toast.success('Usuário autenticado com sucesso!')
-      router.push('/area-restrita')
-    }
-  }, [success, router])
+  const [{ errors, payload, message }, formAction, isLoading] = useActionState(
+    signInAction,
+    {} as IActionState
+  )
 
   const [passwordVisibility, setPasswordVisibility] = useState(false)
 

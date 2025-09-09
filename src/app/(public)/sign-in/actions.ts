@@ -3,6 +3,7 @@
 import { signIn } from '@http/auth/sign-in'
 import { HTTPError } from 'ky'
 import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
 const PASSWORD_MIN_LENGTH = 8
@@ -46,7 +47,9 @@ export async function signInAction(
 
     const cookieStorage = await cookies()
 
-    cookieStorage.set('token', token)
+    cookieStorage.set('token', token, {
+      path: '/',
+    })
   } catch (err) {
     if (err instanceof HTTPError) {
       const errorBody = await err.response.json()
@@ -67,10 +70,5 @@ export async function signInAction(
     }
   }
 
-  return {
-    success: true,
-    errors: null,
-    payload: formData,
-    message: null,
-  }
+  redirect('/area-restrita')
 }

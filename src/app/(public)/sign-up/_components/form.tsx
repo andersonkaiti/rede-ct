@@ -11,7 +11,6 @@ import {
 } from '@components/ui/page-container'
 import { AlertCircle, Eye, EyeClosed, Loader2 } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useActionState, useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { type IActionState, signUpAction } from '../actions'
@@ -20,14 +19,11 @@ export function SignUpForm() {
   const [{ errors, payload, message, success }, formAction, isLoading] =
     useActionState(signUpAction, {} as IActionState)
 
-  const router = useRouter()
-
   useEffect(() => {
     if (success) {
       toast.success('Usuário cadastrado com sucesso!')
-      router.push('/sign-in')
     }
-  }, [success, router])
+  }, [success])
 
   const [passwordVisibility, setPasswordVisibility] = useState(false)
   const [confirmPasswordVisibility, setConfirmPasswordVisibility] =

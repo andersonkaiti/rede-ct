@@ -46,11 +46,20 @@ export default function PaginatorComponent({
   )
 
   function formatPageHref(page: number) {
+    if (typeof window === 'undefined') {
+      return '#'
+    }
+
     const url = new URL(window.location.href)
 
-    url.searchParams.set('page', String(page))
+    if (page === 1) {
+      url.searchParams.delete('page')
+    } else {
+      url.searchParams.set('page', String(page))
+    }
 
-    return `${url.pathname}?${url.searchParams.toString()}`
+    const search = url.searchParams.toString()
+    return `${url.pathname}${search ? `?${search}` : ''}`
   }
 
   return (

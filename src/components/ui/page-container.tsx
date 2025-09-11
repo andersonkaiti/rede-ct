@@ -33,7 +33,11 @@ function PageActionsContainer({ children }: { children: React.ReactNode }) {
 }
 
 function PageMain({ children }: { children: React.ReactNode }) {
-  return <main className="flex h-full w-full flex-col gap-4">{children}</main>
+  return (
+    <main className="flex h-full w-full flex-col justify-between gap-4">
+      {children}
+    </main>
+  )
 }
 
 function PageForm({

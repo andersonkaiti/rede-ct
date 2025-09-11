@@ -75,35 +75,37 @@ export function SelectMember({ userId, onChange }: ISelectMemberProps) {
             />
           </Button>
         </PopoverTrigger>
-        <PopoverContent
-          align="start"
-          className="w-full min-w-[var(--radix-popper-anchor-width)] border-input p-0"
-        >
-          <Command>
-            <CommandInput placeholder="Buscar membro..." />
-            <CommandList>
-              <CommandEmpty>Nenhum membro encontrado.</CommandEmpty>
-              <CommandGroup>
-                {users.map((u) => (
-                  <CommandItem
-                    key={u.id}
-                    onSelect={(currentValue) => {
-                      setSelected(currentValue)
-                      setOpen(false)
-                      onChange?.(currentValue)
-                    }}
-                    value={u.id}
-                  >
-                    {u.name} ({u.emailAddress})
-                    {selected === u.id && (
-                      <CheckIcon className="ml-auto" size={16} />
-                    )}
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </CommandList>
-          </Command>
-        </PopoverContent>
+        {!userId && (
+          <PopoverContent
+            align="start"
+            className="w-full min-w-[var(--radix-popper-anchor-width)] border-input p-0"
+          >
+            <Command>
+              <CommandInput placeholder="Buscar membro..." />
+              <CommandList>
+                <CommandEmpty>Nenhum membro encontrado.</CommandEmpty>
+                <CommandGroup>
+                  {users.map((u) => (
+                    <CommandItem
+                      key={u.id}
+                      onSelect={(currentValue) => {
+                        setSelected(currentValue)
+                        setOpen(false)
+                        onChange?.(currentValue)
+                      }}
+                      value={u.id}
+                    >
+                      {u.name} ({u.emailAddress})
+                      {selected === u.id && (
+                        <CheckIcon className="ml-auto" size={16} />
+                      )}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        )}
       </Popover>
 
       <input name="userId" type="hidden" value={selected} />

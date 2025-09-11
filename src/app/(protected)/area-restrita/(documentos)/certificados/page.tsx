@@ -1,3 +1,4 @@
+import { isAdmin } from '@auth/auth'
 import {
   PageActionsContainer,
   PageContainer,
@@ -6,24 +7,19 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
+} from '@components/ui/page-container'
+import { Suspense } from 'react'
+import { FilterInput } from '../../_components/filter-input'
+import { CertificationList } from './_components/certification-list'
+import { LoadingSkeleton } from './_components/loading-skeleton'
+import { RegisteredCertificationsButton } from './_components/registered-certifications-button'
 
-import { FilterInput } from "../../_components/filter-input";
-import { CreateCertificationButton } from "./_components/create-certification/create-certification-button";
-import { LoadingSkeleton } from "./_components/loading-skeleton";
-
-const DynamicCertificados = dynamic(() =>
-  import("./_components/certificados").then((m) => m.Certificados),
-);
-
-export default function Certificados() {
+export default async function Certificados() {
   return (
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Certificados</PageTitle>
+          <PageTitle>Seus certificados</PageTitle>
           <PageDescription>Visualize os seus certificados</PageDescription>
         </PageHeaderContent>
       </PageHeader>
@@ -32,14 +28,15 @@ export default function Certificados() {
         <PageActionsContainer>
           <FilterInput />
         </PageActionsContainer>
-        <CreateCertificationButton />
+
+        {(await isAdmin()) && <RegisteredCertificationsButton />}
       </PageHeader>
 
       <PageMain>
         <Suspense fallback={<LoadingSkeleton />}>
-          <DynamicCertificados />
+          <CertificationList />
         </Suspense>
       </PageMain>
     </PageContainer>
-  );
+  )
 }

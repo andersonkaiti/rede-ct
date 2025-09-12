@@ -47,7 +47,7 @@ export async function UserProfile() {
 
           <Separator />
 
-          <MenubarItem className="cursor-pointer">
+          <MenubarItem asChild className="cursor-pointer">
             <Link
               className="group flex w-full cursor-pointer items-center gap-2"
               href="/area-restrita/perfil"
@@ -59,7 +59,7 @@ export async function UserProfile() {
 
           <Separator />
 
-          <MenubarItem className="cursor-pointer">
+          <MenubarItem asChild className="cursor-pointer">
             <Link
               className="group flex w-full cursor-pointer items-center gap-2 text-primary"
               href="/api/auth/sign-out"

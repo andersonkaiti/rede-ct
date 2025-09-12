@@ -21,7 +21,7 @@ export const api = ky.create({
         })
 
         if (token) {
-          request.headers.set('Authorization', token)
+          request.headers.set('Authorization', `Bearer ${token}`)
         }
       },
     ],

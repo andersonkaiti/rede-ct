@@ -1,3 +1,4 @@
+import { isAdmin } from '@auth/auth'
 import {
   PageActionsContainer,
   PageContainer,
@@ -6,17 +7,20 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
+} from '@components/ui/page-container'
+import { Suspense } from 'react'
+import { FilterInput } from '../../_components/filter-input'
+import { OrderByButton } from '../../_components/order-by-button'
+import { LoadingSkeleton } from './_components/loading-skeleton'
+import { PendencyList } from './_components/pendency-list'
+import { RegisteredPendenciesButton } from './_components/registered-pendencies-button'
 
-import { CreateButton } from "../../_components/create-button";
-import { FilterInput } from "../../_components/filter-input";
-
-export default function Pendencias() {
+export default async function Pendencias() {
   return (
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Pendências</PageTitle>
+          <PageTitle>Suas pendências</PageTitle>
           <PageDescription>Visualize as suas pendências</PageDescription>
         </PageHeaderContent>
       </PageHeader>
@@ -24,13 +28,18 @@ export default function Pendencias() {
       <PageHeader>
         <PageActionsContainer>
           <FilterInput />
+
+          <OrderByButton />
         </PageActionsContainer>
-        <CreateButton href="/area-restrita/pendencias/cadastrar">
-          Cadastrar Pendência
-        </CreateButton>
+
+        {(await isAdmin()) && <RegisteredPendenciesButton />}
       </PageHeader>
 
-      <PageMain>Pendências</PageMain>
+      <PageMain>
+        <Suspense fallback={<LoadingSkeleton />}>
+          <PendencyList />
+        </Suspense>
+      </PageMain>
     </PageContainer>
-  );
+  )
 }

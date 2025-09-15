@@ -1,3 +1,4 @@
+import { isAdmin } from '@auth/auth'
 import {
   PageActionsContainer,
   PageContainer,
@@ -6,19 +7,20 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from "@components/ui/page-container";
+} from '@components/ui/page-container'
+import { FilterInput } from '../_components/filter-input'
+import { OrderByButton } from '../_components/order-by-button'
+import { AllContributionsButton } from './_components/all-contributions-button'
+import { ContributionList } from './_components/contribution-list'
 
-import { CreateButton } from "../_components/create-button";
-import { FilterInput } from "../_components/filter-input";
-
-export default function HistoricoDeContribuicoes() {
+export default async function HistoricoDeContribuicoes() {
   return (
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
           <PageTitle>Histórico de Contribuições</PageTitle>
           <PageDescription>
-            Visualize o seu histórico de contribuições
+            Visualize o seu histórico de contribuições pagas
           </PageDescription>
         </PageHeaderContent>
       </PageHeader>
@@ -26,13 +28,16 @@ export default function HistoricoDeContribuicoes() {
       <PageHeader>
         <PageActionsContainer>
           <FilterInput />
+
+          <OrderByButton />
         </PageActionsContainer>
-        <CreateButton href="/area-restrita/historico-de-contribuicoes/cadastrar">
-          Cadastrar Histórico de Contribuições
-        </CreateButton>
+
+        {(await isAdmin()) && <AllContributionsButton />}
       </PageHeader>
 
-      <PageMain>Histórico de Contribuições</PageMain>
+      <PageMain>
+        <ContributionList />
+      </PageMain>
     </PageContainer>
-  );
+  )
 }

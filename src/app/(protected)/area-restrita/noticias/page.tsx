@@ -9,9 +9,9 @@ import {
 } from '@components/ui/page-container'
 
 import { FilterInput } from '../_components/filter-input'
+import { OrderByButton } from '../_components/order-by-button'
 import { CreateNewsButton } from './_components/create-news-button'
 import { NewsDisplayOptions } from './_components/news-display-options'
-import { OrderByButton } from './_components/order-by-button'
 import { Table } from './_components/table/table'
 
 export default function Noticias() {

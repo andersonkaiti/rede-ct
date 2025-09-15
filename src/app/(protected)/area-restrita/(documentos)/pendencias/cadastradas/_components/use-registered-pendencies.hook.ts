@@ -1,9 +1,9 @@
-import { getRegisteredCertifications } from '@http/documents/certifications/get-certitications'
-import { useQuery } from '@tanstack/react-query'
+import { getRegisteredPendencies } from '@http/documents/pendencies/get-pendencies'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
 import { useEffect } from 'react'
 
-export function useRegisteredCertifications() {
+export function useRegisteredPendencies() {
   const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
   const [orderBy] = useQueryState(
     'order_by',
@@ -18,15 +18,16 @@ export function useRegisteredCertifications() {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ['users', 'certifications', filter, orderBy, page, limit, userId],
+    queryKey: ['users', 'pendencies', filter, orderBy, page, limit, userId],
     queryFn: () =>
-      getRegisteredCertifications({
+      getRegisteredPendencies({
         filter,
         orderBy,
         page,
         limit,
         userId,
       }),
+    placeholderData: keepPreviousData,
   })
 
   useEffect(() => {

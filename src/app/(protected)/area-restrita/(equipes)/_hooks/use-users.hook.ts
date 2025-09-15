@@ -1,5 +1,3 @@
-'use client'
-
 import { getUsers } from '@http/get-users'
 import { useQuery } from '@tanstack/react-query'
 

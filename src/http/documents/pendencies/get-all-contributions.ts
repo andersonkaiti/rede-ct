@@ -1,34 +1,38 @@
 import { api } from '@http/api-client'
 
-interface ICertificationsRequest {
+interface IContributionsRequest {
   filter: string
   orderBy: string
   page: string
   limit: string
-  userId: string
+  userId?: string
 }
 
-interface IPaginatedCertificationsResponse {
+interface IPaginatedContributionsResponse {
   page: number
   totalPages: number
   offset: number
   limit: number
-  certifications: {
-    id: string
+  pendencies: {
     title: string
-    description: string
-    certificationUrl: string
+    description: string | null
+    status: 'PENDING' | 'PAID'
+    id: string
+    dueDate: string | null
+    documentUrl: string
+    createdAt: string
+    updatedAt: string
     userId: string
   }[]
 }
 
-export async function getRegisteredCertifications({
+export async function getAllContributions({
   filter,
   limit,
   orderBy,
   page,
   userId,
-}: ICertificationsRequest): Promise<IPaginatedCertificationsResponse> {
+}: IContributionsRequest): Promise<IPaginatedContributionsResponse> {
   const searchParams = new URLSearchParams()
 
   searchParams.set('title', filter)
@@ -38,10 +42,11 @@ export async function getRegisteredCertifications({
 
   searchParams.set('page', page)
   searchParams.set('limit', limit)
+  searchParams.set('status', 'PAID')
 
   if (userId) {
     searchParams.set('userId', userId)
   }
 
-  return await api.get(`certification?${searchParams}`).json()
+  return await api.get(`pendency?${searchParams}`).json()
 }

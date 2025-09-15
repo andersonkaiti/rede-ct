@@ -5,7 +5,7 @@ import { Button } from '@components/ui/button'
 import Link from 'next/link'
 import { useRef } from 'react'
 
-export function RegisteredCertificationsButton() {
+export function AllContributionsButton() {
   const iconRef = useRef<LockIconHandle>(null)
 
   return (
@@ -16,9 +16,9 @@ export function RegisteredCertificationsButton() {
       onMouseLeave={() => iconRef.current?.stopAnimation()}
       variant="outline"
     >
-      <Link href="/area-restrita/certificados/cadastrados">
-        <LockIcon ref={iconRef} />
-        Certificados cadastrados
+      <Link href="/area-restrita/historico-de-contribuicoes/geral">
+        <LockIcon className="mr-2 size-4" ref={iconRef} />
+        Todas as contribuições
       </Link>
     </Button>
   )

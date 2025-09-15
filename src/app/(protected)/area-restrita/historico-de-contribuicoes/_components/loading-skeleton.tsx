@@ -16,21 +16,26 @@ export function LoadingSkeleton() {
         <Card key={index}>
           <CardHeader>
             <CardTitle className="flex flex-row items-center justify-between gap-3 font-semibold">
-              <span className="flex gap-4">
+              <div className="flex flex-1 gap-4">
                 <Skeleton className="size-5 rounded-full" />
 
-                <div className="flex flex-col gap-1">
-                  <Skeleton className="h-4 w-18 rounded-full" />
-                  <Skeleton className="h-3 w-39.5 rounded-full" />
+                <div className="flex w-full items-center justify-between gap-4">
+                  <Skeleton className="h-4 w-24 rounded-full" />
                 </div>
-              </span>
-              <Skeleton className="size-4 rounded" />
+
+                <Skeleton className="h-5.5 w-11 rounded-full" />
+              </div>
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="my-2 flex h-full flex-col gap-1">
-            <Skeleton className="h-3 w-full rounded-full" />
-            <Skeleton className="h-3 w-3/4 rounded-full" />
+          <CardContent className="flex h-full flex-col gap-4">
+            <div className="line-clamp-2 text-justify">
+              <Skeleton className="mb-1 h-3 w-full rounded-full" />
+              <Skeleton className="h-3 w-3/4 rounded-full" />
+            </div>
+            <div className="text-muted-foreground text-xs">
+              <Skeleton className="h-3 w-24 rounded-full" />
+            </div>
           </CardContent>
 
           <CardFooter>

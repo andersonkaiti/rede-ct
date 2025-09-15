@@ -1,8 +1,8 @@
-import { getAuthenticatedUserCertifications } from '@http/auth/get-user-certifications'
-import { useQuery } from '@tanstack/react-query'
+import { getAuthenticatedUserPendencies } from '@http/auth/get-user-pendencies'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
 
-export function useCertifications() {
+export function usePendencies() {
   const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
   const [orderBy] = useQueryState(
     'order_by',
@@ -12,14 +12,15 @@ export function useCertifications() {
   const [limit] = useQueryState('limit', parseAsString.withDefault('6'))
 
   const { data: paginatedResults, isLoading } = useQuery({
-    queryKey: ['user', 'certifications', filter, orderBy, page, limit],
+    queryKey: ['user', 'pendencies', filter, orderBy, page, limit],
     queryFn: () =>
-      getAuthenticatedUserCertifications({
+      getAuthenticatedUserPendencies({
         filter,
         orderBy,
         page,
         limit,
       }),
+    placeholderData: keepPreviousData,
   })
 
   return {

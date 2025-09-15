@@ -8,11 +8,6 @@ export const sidebarLinks: NavigationLink[] = [
     icon: Icons.Newspaper,
   },
   {
-    label: 'Portfólio',
-    path: '/area-restrita/portfolio',
-    icon: Icons.FileText,
-  },
-  {
     label: 'Histórico',
     path: '/area-restrita/historico-de-contribuicoes',
     icon: Icons.History,
@@ -29,7 +24,13 @@ export const sidebarLinks: NavigationLink[] = [
       {
         label: 'Pendências',
         path: '/area-restrita/pendencias',
-        icon: Icons.Banknote,
+        icon: Icons.CircleDollarSign,
+      },
+      {
+        label: 'Regimentos e Atas',
+        path: '/area-restrita/regimentos-e-atas',
+        isProtected: true,
+        icon: Icons.FileText,
       },
     ],
   },
@@ -84,12 +85,6 @@ export const sidebarLinks: NavigationLink[] = [
     ],
   },
   {
-    label: 'Regimentos e Atas',
-    path: '/area-restrita/regimentos-e-atas',
-    isProtected: true,
-    icon: Icons.FileText,
-  },
-  {
     label: 'Parceiros e Financiadores',
     path: '/area-restrita/parceiros-e-financiadores',
     isProtected: true,
@@ -97,7 +92,7 @@ export const sidebarLinks: NavigationLink[] = [
   },
   {
     label: 'Congressos',
-    icon: Icons.BookOpen,
+    icon: Icons.Building2,
     isProtected: true,
     children: [
       {
@@ -136,7 +131,7 @@ export const sidebarLinks: NavigationLink[] = [
   },
   {
     label: 'Livros',
-    icon: Icons.BookOpen,
+    icon: Icons.Book,
     isProtected: true,
     children: [
       {
@@ -157,33 +152,48 @@ export const sidebarLinks: NavigationLink[] = [
     ],
   },
   {
-    label: 'Editais',
-    icon: Icons.FilePlus,
+    label: 'Lojas e oportunidades',
+    icon: Icons.FileText,
     isProtected: true,
-    path: '/area-restrita/editais',
+    children: [
+      {
+        label: 'Editais',
+        icon: Icons.FilePlus,
+        isProtected: true,
+        path: '/area-restrita/editais',
+      },
+    ],
   },
   {
-    label: 'Legislações',
-    icon: Icons.ScrollText,
+    label: 'Portfólio',
+    path: '/area-restrita/portfolio',
+    icon: Icons.FileText,
     isProtected: true,
-    path: '/area-restrita/legislacoes',
-  },
-  {
-    label: 'Museus',
-    icon: Icons.GalleryHorizontal,
-    isProtected: true,
-    path: '/area-restrita/museus',
-  },
-  {
-    label: 'Destaques RedeCT',
-    icon: Icons.Star,
-    isProtected: true,
-    path: '/area-restrita/destaques-redect',
-  },
-  {
-    label: 'Centro de Referência UNESP',
-    icon: Icons.Building,
-    isProtected: true,
-    path: '/area-restrita/centro-de-referencia-unesp',
+    children: [
+      {
+        label: 'Legislações',
+        icon: Icons.ScrollText,
+        isProtected: true,
+        path: '/area-restrita/legislacoes',
+      },
+      {
+        label: 'Museus',
+        icon: Icons.GalleryHorizontal,
+        isProtected: true,
+        path: '/area-restrita/museus',
+      },
+      {
+        label: 'Destaques RedeCT',
+        icon: Icons.Star,
+        isProtected: true,
+        path: '/area-restrita/destaques-redect',
+      },
+      {
+        label: 'Centro de Referência UNESP',
+        icon: Icons.Building,
+        isProtected: true,
+        path: '/area-restrita/centro-de-referencia-unesp',
+      },
+    ],
   },
 ]

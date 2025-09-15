@@ -10,6 +10,8 @@ import {
 } from '@components/ui/page-container'
 import { AuthWrapper } from '../../../../_components/hoc/auth'
 import { FilterInput } from '../../../_components/filter-input'
+import { FilterSelectUser } from '../../../_components/filter-select-user'
+import { OrderByButton } from '../../../_components/order-by-button'
 import { CreateCertificationButton } from './_components/create-certification/create-certification-button'
 import { RegisteredCertificationList } from './_components/registered-certification-list'
 
@@ -29,9 +31,15 @@ export default async function RegisteredCertifications() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <OrderByButton />
           </PageActionsContainer>
 
-          {(await isAdmin()) && <CreateCertificationButton />}
+          <div className="flex w-full flex-col gap-2 md:flex-row lg:w-fit">
+            <FilterSelectUser />
+
+            {(await isAdmin()) && <CreateCertificationButton />}
+          </div>
         </PageHeader>
 
         <PageMain>

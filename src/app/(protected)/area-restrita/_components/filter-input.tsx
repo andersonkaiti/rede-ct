@@ -8,9 +8,9 @@ export function FilterInput() {
   const [filter, setFilter] = useQueryState('filtro')
 
   return (
-    <div className="relative w-full sm:w-fit">
+    <div className="relative w-full xlg:w-fit">
       <Input
-        className="w-full ps-9 sm:w-fit"
+        className="w-full ps-9 xlg:w-fit"
         onChange={(event) => setFilter(event.currentTarget.value)}
         placeholder="Filtrar"
         value={filter || ''}

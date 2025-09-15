@@ -11,6 +11,7 @@ export function RegisteredCertificationsButton() {
   return (
     <Button
       asChild
+      className="w-full lg:w-fit"
       onMouseEnter={() => iconRef.current?.startAnimation()}
       onMouseLeave={() => iconRef.current?.stopAnimation()}
       variant="outline"

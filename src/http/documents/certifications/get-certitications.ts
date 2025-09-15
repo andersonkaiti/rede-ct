@@ -5,6 +5,7 @@ interface ICertificationsRequest {
   orderBy: string
   page: string
   limit: string
+  userId: string
 }
 
 interface IPaginatedCertificationsResponse {
@@ -26,16 +27,21 @@ export async function getRegisteredCertifications({
   limit,
   orderBy,
   page,
+  userId,
 }: ICertificationsRequest): Promise<IPaginatedCertificationsResponse> {
   const searchParams = new URLSearchParams()
 
   searchParams.set('title', filter)
   searchParams.set('description', filter)
 
-  searchParams.set('order_by', orderBy)
+  searchParams.set('orderBy', orderBy)
 
   searchParams.set('page', page)
   searchParams.set('limit', limit)
+
+  if (userId) {
+    searchParams.set('userId', userId)
+  }
 
   return await api.get(`certification?${searchParams}`).json()
 }

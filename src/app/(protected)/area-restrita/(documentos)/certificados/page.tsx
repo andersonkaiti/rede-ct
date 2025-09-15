@@ -10,6 +10,7 @@ import {
 } from '@components/ui/page-container'
 import { Suspense } from 'react'
 import { FilterInput } from '../../_components/filter-input'
+import { OrderByButton } from '../../_components/order-by-button'
 import { CertificationList } from './_components/certification-list'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 import { RegisteredCertificationsButton } from './_components/registered-certifications-button'
@@ -27,6 +28,8 @@ export default async function Certificados() {
       <PageHeader>
         <PageActionsContainer>
           <FilterInput />
+
+          <OrderByButton />
         </PageActionsContainer>
 
         {(await isAdmin()) && <RegisteredCertificationsButton />}

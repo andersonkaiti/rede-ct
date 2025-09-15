@@ -8,7 +8,7 @@ function PageContainer({ children }: { children: React.ReactNode }) {
 
 function PageHeader({ children }: { children: React.ReactNode }) {
   return (
-    <header className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
+    <header className="flex w-full flex-col items-center justify-between gap-2 lg:flex-row">
       {children}
     </header>
   )
@@ -28,7 +28,7 @@ function PageDescription({ children }: { children: React.ReactNode }) {
 
 function PageActionsContainer({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex w-full items-center gap-2 sm:w-fit">{children}</div>
+    <div className="flex w-full items-center gap-2 lg:w-fit">{children}</div>
   )
 }
 

@@ -1,5 +1,5 @@
 import { getAuthenticatedUserCertifications } from '@http/auth/get-user-certifications'
-import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
 
 export function useCertifications() {
@@ -20,7 +20,6 @@ export function useCertifications() {
         page,
         limit,
       }),
-    placeholderData: keepPreviousData,
   })
 
   return {

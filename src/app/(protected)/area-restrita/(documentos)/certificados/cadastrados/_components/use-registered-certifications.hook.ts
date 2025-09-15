@@ -1,6 +1,7 @@
 import { getRegisteredCertifications } from '@http/documents/certifications/get-certitications'
-import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
+import { useEffect } from 'react'
 
 export function useRegisteredCertifications() {
   const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
@@ -10,18 +11,27 @@ export function useRegisteredCertifications() {
   )
   const [page] = useQueryState('page', parseAsString.withDefault('1'))
   const [limit] = useQueryState('limit', parseAsString.withDefault('6'))
+  const [userId] = useQueryState('user_id', parseAsString.withDefault(''))
 
-  const { data: paginatedResults, isLoading } = useQuery({
-    queryKey: ['users', 'certifications', filter, orderBy, page, limit],
+  const {
+    data: paginatedResults,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ['users', 'certifications', filter, orderBy, page, limit, userId],
     queryFn: () =>
       getRegisteredCertifications({
         filter,
         orderBy,
         page,
         limit,
+        userId,
       }),
-    placeholderData: keepPreviousData,
   })
+
+  useEffect(() => {
+    refetch()
+  }, [refetch])
 
   return {
     paginatedResults,

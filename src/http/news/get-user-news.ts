@@ -17,7 +17,7 @@ export async function getUserNews({
   const searchParams = new URLSearchParams()
 
   searchParams.set('title', filter)
-  searchParams.set('order_by', orderBy)
+  searchParams.set('orderBy', orderBy)
   searchParams.set('page', page)
   searchParams.set('limit', limit)
 

@@ -22,7 +22,10 @@ export default function UserProfileHoverCard({
       <div className="flex items-center gap-2">
         {avatarVisibility && (
           <Avatar className="size-7 shrink-0">
-            <AvatarImage alt={`Avatar de ${user.name}`} src={user.avatarUrl} />
+            <AvatarImage
+              alt={`Avatar de ${user.name}`}
+              src={user.avatarUrl ?? undefined}
+            />
             <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
           </Avatar>
         )}
@@ -43,7 +46,7 @@ export default function UserProfileHoverCard({
             <Avatar className="size-10">
               <AvatarImage
                 alt={`Avatar de ${user.name}`}
-                src={user.avatarUrl}
+                src={user.avatarUrl ?? undefined}
               />
               <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
             </Avatar>

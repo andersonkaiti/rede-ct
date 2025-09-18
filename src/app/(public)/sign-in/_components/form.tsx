@@ -2,105 +2,102 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { Input } from '@components/ui/input'
-import { Label } from '@components/ui/label'
 import {
-  PageForm,
-  PageFormContent,
-  PageFormContentField,
-} from '@components/ui/page-container'
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@components/ui/form'
+import { Input } from '@components/ui/input'
 import { AlertCircle, Eye, EyeClosed, Loader2 } from 'lucide-react'
 import Link from 'next/link'
-import { useActionState, useState } from 'react'
-import { type IActionState, signInAction } from '../actions'
+import { useSignIn } from './use-sign-in.hook'
 
 export function SignInForm() {
-  const [{ errors, payload, message }, formAction, isLoading] = useActionState(
-    signInAction,
-    {} as IActionState
-  )
-
-  const [passwordVisibility, setPasswordVisibility] = useState(false)
-
-  function togglePasswordVisibility() {
-    setPasswordVisibility((visibility) => !visibility)
-  }
+  const {
+    isSubmitting,
+    form,
+    onSubmit,
+    passwordVisibility,
+    serverError,
+    togglePasswordVisibility,
+  } = useSignIn()
 
   return (
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <PageForm action={formAction}>
-        <PageFormContent>
-          {message && (
-            <Alert className="mb-4 border-primary" variant="destructive">
+      <Form {...form}>
+        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+          {serverError && (
+            <Alert className="mb-6 border-primary" variant="destructive">
               <AlertCircle className="size-4" />
-              <AlertDescription>{message}</AlertDescription>
+              <AlertDescription>{serverError}</AlertDescription>
             </Alert>
           )}
 
-          <PageFormContentField>
-            <Label htmlFor="email">
-              E-mail <span className="text-primary">*</span>
-            </Label>
-
-            <Input
-              defaultValue={payload?.get('email') as string}
-              id="email"
-              name="email"
-              placeholder="seuemail@exemplo.com"
-            />
-
-            {errors?.email && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors?.email}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  E-mail <span className="text-primary">*</span>
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="seuemail@exemplo.com"
+                    type="email"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label htmlFor="password">
-              Senha <span className="text-primary">*</span>
-            </Label>
-
-            <div className="relative w-full">
-              <Input
-                className="w-full"
-                defaultValue={payload?.get('password') as string}
-                id="password"
-                name="password"
-                placeholder="Digite sua senha"
-                type={passwordVisibility ? 'text' : 'password'}
-              />
-
-              <Button
-                className="absolute inset-y-0 end-0 m-2 my-auto size-6 rounded-sm"
-                onClick={togglePasswordVisibility}
-                type="button"
-                variant="ghost"
-              >
-                {passwordVisibility ? <Eye /> : <EyeClosed />}
-              </Button>
-            </div>
-
-            {errors?.password && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors?.password}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Senha <span className="text-primary">*</span>
+                </FormLabel>
+                <FormControl>
+                  <div className="relative w-full">
+                    <Input
+                      className="w-full"
+                      placeholder="Digite sua senha"
+                      type={passwordVisibility ? 'text' : 'password'}
+                      {...field}
+                    />
+                    <Button
+                      className="absolute inset-y-0 end-0 m-2 my-auto size-6 rounded-sm"
+                      onClick={togglePasswordVisibility}
+                      type="button"
+                      variant="ghost"
+                    >
+                      {passwordVisibility ? <Eye /> : <EyeClosed />}
+                    </Button>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
           <Button
             className="w-full"
-            disabled={isLoading}
+            disabled={isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isLoading && <Loader2 className="size-4 animate-spin" />}
+            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
             Entrar
           </Button>
-        </PageFormContent>
-      </PageForm>
+        </form>
+      </Form>
 
       <div className="mt-10 text-center text-muted-foreground">
         <span className="text-sm">

@@ -4,46 +4,17 @@ import { signIn } from '@http/auth/sign-in'
 import { HTTPError } from 'ky'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { z } from 'zod'
+import type { SignInInput } from './_components/use-sign-in.hook'
 
-const PASSWORD_MIN_LENGTH = 8
-
-const signInSchema = z.object({
-  email: z.email('E-mail inválido.').min(1, 'E-mail é obrigatório.'),
-  password: z
-    .string('A senha é obrigatória.')
-    .min(
-      PASSWORD_MIN_LENGTH,
-      `A senha deve ter pelo menos ${PASSWORD_MIN_LENGTH} caracteres.`
-    ),
-})
-
-export interface IActionState {
-  success: boolean
-  errors: z.inferFlattenedErrors<typeof signInSchema>['fieldErrors'] | null
-  payload: FormData | null
-  message: string | null
-}
+export type SignInActionResult =
+  | { success: true }
+  | { success: false; message: string }
 
 export async function signInAction(
-  _: unknown,
-  formData: FormData
-): Promise<IActionState> {
-  const { success, data, error } = signInSchema.safeParse(
-    Object.fromEntries(formData)
-  )
-
-  if (!success) {
-    return {
-      success: false,
-      errors: error.flatten().fieldErrors,
-      payload: formData,
-      message: null,
-    }
-  }
-
+  values: SignInInput
+): Promise<SignInActionResult> {
   try {
-    const { token } = await signIn(data)
+    const { token } = await signIn(values)
 
     const cookieStorage = await cookies()
 
@@ -56,16 +27,12 @@ export async function signInAction(
 
       return {
         success: false,
-        errors: null,
-        payload: formData,
-        message: errorBody.message,
+        message: errorBody?.message ?? 'Falha ao entrar.',
       }
     }
 
     return {
       success: false,
-      errors: null,
-      payload: formData,
       message: 'Aconteceu um erro inesperado.',
     }
   }

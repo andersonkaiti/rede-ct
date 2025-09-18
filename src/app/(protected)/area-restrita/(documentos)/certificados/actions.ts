@@ -5,48 +5,18 @@ import { registerCertification } from '@http/documents/certifications/register-c
 import { updateCertification } from '@http/documents/certifications/update-certification'
 import { HTTPError } from 'ky'
 import { revalidatePath } from 'next/cache'
-import z from 'zod'
+import type { RegisterCertificationInput } from './cadastrados/_components/create-certification/use-register-certification'
+import type { UpdateCertificationInput } from './cadastrados/_components/update-certification/use-update-certification'
 
-const registerCertificationSchema = z.object({
-  userId: z.uuid('id do usuário inválido'),
-  title: z.string().min(1, 'Título é obrigatório'),
-  description: z.string().min(1, 'Descrição é obrigatória'),
-  certification: z
-    .any()
-    .refine(
-      (file) => file instanceof File && file.size > 0,
-      'Arquivo do certificado é obrigatório'
-    ),
-})
-
-export interface IRegisterActionState {
-  success: boolean
-  errors:
-    | z.inferFlattenedErrors<typeof registerCertificationSchema>['fieldErrors']
-    | null
-  payload: FormData | null
-  message: string | null
-}
+export type RegisterCertificationActionResult =
+  | { success: true }
+  | { success: false; message: string }
 
 export async function registerCertificationAction(
-  _: unknown,
-  formData: FormData
-): Promise<IRegisterActionState> {
-  const { success, data, error } = registerCertificationSchema.safeParse(
-    Object.fromEntries(formData)
-  )
-
-  if (!success) {
-    return {
-      success: false,
-      errors: error.flatten().fieldErrors,
-      payload: formData,
-      message: null,
-    }
-  }
-
+  values: RegisterCertificationInput
+): Promise<RegisterCertificationActionResult> {
   try {
-    await registerCertification(data)
+    await registerCertification(values)
 
     revalidatePath('/area-restrita/certificados')
   } catch (err) {
@@ -55,71 +25,28 @@ export async function registerCertificationAction(
 
       return {
         success: false,
-        errors: null,
-        payload: formData,
-        message: errorBody.message,
+        message: errorBody?.message ?? 'Falha ao cadastrar certificado.',
       }
     }
 
     return {
       success: false,
-      errors: null,
-      payload: formData,
       message: 'Aconteceu um erro inesperado.',
     }
   }
 
-  return {
-    success: true,
-    errors: null,
-    payload: null,
-    message: null,
-  }
+  return { success: true }
 }
 
-const updateCertificationSchema = z.object({
-  id: z.uuid(),
-  title: z.string().min(1, 'Título é obrigatório.'),
-  description: z.string().min(1, 'Descrição é obrigatória.'),
-  certification: z
-    .any()
-    .refine(
-      (file) => file.size === 0 || (file instanceof File && file.size > 0),
-      'Arquivo do certificado é inválido'
-    )
-    .optional(),
-})
-
-export interface IUpdateActionState {
-  success: boolean
-  errors:
-    | z.inferFlattenedErrors<typeof updateCertificationSchema>['fieldErrors']
-    | null
-  payload: FormData | null
-  message: string | null
-}
+export type UpdateCertificationActionResult =
+  | { success: true }
+  | { success: false; message: string }
 
 export async function updateCertificationAction(
-  certificationId: string,
-  _: unknown,
-  formData: FormData
-): Promise<IUpdateActionState> {
-  const { success, data, error } = updateCertificationSchema.safeParse({
-    ...Object.fromEntries(formData),
-    id: certificationId,
-  })
-
-  if (!success) {
-    return {
-      success: false,
-      errors: error.flatten().fieldErrors,
-      payload: formData,
-      message: null,
-    }
-  }
-
+  values: UpdateCertificationInput
+): Promise<UpdateCertificationActionResult> {
   try {
-    await updateCertification(data)
+    await updateCertification(values)
 
     revalidatePath('/area-restrita/certificados')
   } catch (err) {
@@ -128,26 +55,17 @@ export async function updateCertificationAction(
 
       return {
         success: false,
-        errors: null,
-        payload: formData,
-        message: errorBody.message,
+        message: errorBody?.message ?? 'Falha ao atualizar certificado.',
       }
     }
 
     return {
       success: false,
-      errors: null,
-      payload: formData,
       message: 'Aconteceu um erro inesperado.',
     }
   }
 
-  return {
-    success: true,
-    errors: null,
-    payload: null,
-    message: null,
-  }
+  return { success: true }
 }
 
 export interface IDeleteActionState {

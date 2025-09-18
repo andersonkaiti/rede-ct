@@ -2,49 +2,23 @@
 
 import { api } from '@http/api-client'
 import { HTTPError } from 'ky'
-import { revalidatePath } from 'next/cache'
-import { ZodError, z } from 'zod'
+import type { CreateLegitimatorCommitteeTeamMemberInput } from './_components/create-member/use-create-member.hook'
+import type { UpdateLegitimatorCommitteeTeamMemberInput } from './_components/update-member/use-update-member.hook'
 
-const legitimatorCommitteeTeamMemberSchema = z.object({
-  userId: z.string().min(1, 'Membro é obrigatório'),
-  role: z.string().trim().min(1, 'Cargo é obrigatório'),
-  description: z.string().trim().min(1, 'Descrição é obrigatória'),
-})
-
-export interface IActionState {
-  success: boolean
-  errors:
-    | z.inferFlattenedErrors<
-        typeof legitimatorCommitteeTeamMemberSchema
-      >['fieldErrors']
-    | null
-  payload: FormData | null
-  message: string | null
-}
+export type LegitimatorCommitteeTeamMemberActionResult =
+  | { success: true }
+  | { success: false; message: string }
 
 const TEAM_TYPE = 'comite-legitimador'
 const TEAM_NAME = 'Comitê Legitimador'
 
-export async function createLegitimatorCommitteeTeamMemberAction(
-  teamId: string,
-  _: unknown,
-  formData: FormData
-): Promise<IActionState> {
+export async function createLegitimatorCommitteeTeamMemberAction({
+  teamId,
+  ...member
+}: CreateLegitimatorCommitteeTeamMemberInput & {
+  teamId?: string
+}): Promise<LegitimatorCommitteeTeamMemberActionResult> {
   try {
-    const { success, data, error } =
-      legitimatorCommitteeTeamMemberSchema.safeParse(
-        Object.fromEntries(formData)
-      )
-
-    if (!success) {
-      return {
-        success: false,
-        errors: error.flatten().fieldErrors,
-        payload: formData,
-        message: null,
-      }
-    }
-
     const teamAlreadyExists = !!teamId
 
     if (!teamAlreadyExists) {
@@ -54,129 +28,72 @@ export async function createLegitimatorCommitteeTeamMemberAction(
           name: TEAM_NAME,
           members: [
             {
-              role: data.role,
+              role: member.role,
               user: {
-                id: data.userId,
+                id: member.userId,
               },
-              description: data.description,
+              description: member.description,
             },
           ],
         },
       })
 
-      revalidatePath(`/area-restrita/${TEAM_TYPE}`)
-
-      return {
-        success: true,
-        errors: null,
-        payload: null,
-        message: null,
-      }
+      return { success: true }
     }
 
     await api.post(`team/${teamId}/member`, {
       json: {
         teamId,
-        member: data,
+        member,
       },
     })
-
-    revalidatePath(`/area-restrita/${TEAM_TYPE}`)
-
-    return {
-      success: true,
-      errors: null,
-      payload: null,
-      message: null,
-    }
   } catch (err) {
     if (err instanceof HTTPError) {
       const errorBody = await err.response.json()
 
       return {
         success: false,
-        errors: null,
-        payload: formData,
-        message: errorBody.message,
-      }
-    }
-
-    if (err instanceof ZodError) {
-      return {
-        success: false,
-        errors: err.flatten().fieldErrors,
-        payload: formData,
-        message: null,
+        message:
+          errorBody?.message ??
+          'Falha ao cadastrar membro do comitê legitimador.',
       }
     }
 
     return {
       success: false,
-      errors: null,
-      payload: formData,
       message: 'Aconteceu um erro inesperado.',
     }
   }
-}
 
-interface IUpdateTeamMemberProps {
-  member: {
-    id: string
-  }
+  return { success: true }
 }
 
 export async function updateLegitimatorCommitteeTeamMemberAction(
-  props: IUpdateTeamMemberProps,
-  _: unknown,
-  formData: FormData
-): Promise<IActionState> {
+  member: UpdateLegitimatorCommitteeTeamMemberInput & {
+    id: string
+  }
+): Promise<LegitimatorCommitteeTeamMemberActionResult> {
   try {
-    const { success, data, error } =
-      legitimatorCommitteeTeamMemberSchema.safeParse(
-        Object.fromEntries(formData)
-      )
-
-    if (!success) {
-      return {
-        success: false,
-        errors: error.flatten().fieldErrors,
-        payload: formData,
-        message: null,
-      }
-    }
-
-    await api.put(`team/member/${props.member.id}`, {
-      json: {
-        ...data,
-        id: props.member.id,
-      },
+    await api.put(`team/member/${member.id}`, {
+      json: member,
     })
-
-    revalidatePath(`/area-restrita/${TEAM_TYPE}`)
-
-    return {
-      success: true,
-      errors: null,
-      payload: null,
-      message: null,
-    }
   } catch (err) {
     if (err instanceof HTTPError) {
       const errorBody = await err.response.json()
 
       return {
         success: false,
-        errors: null,
-        payload: formData,
-        message: errorBody.message,
+        message:
+          errorBody?.message ??
+          'Falha ao atualizar membro do comitê legitimador.',
       }
     }
 
     return {
       success: false,
-      errors: null,
-      payload: formData,
       message: 'Aconteceu um erro inesperado.',
     }
   }
+
+  return { success: true }
 }

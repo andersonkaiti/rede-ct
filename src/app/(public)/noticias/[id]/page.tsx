@@ -38,10 +38,7 @@ export default async function NewsPage({
               <span className="text-muted-foreground">Por</span>
               <UserProfileHoverCard
                 avatarVisibility={false}
-                user={{
-                  ...news.author,
-                  avatarUrl: news.author.avatarUrl ?? '',
-                }}
+                user={news.author}
               />
             </div>
           </div>

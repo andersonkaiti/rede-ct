@@ -62,7 +62,7 @@ export function SelectAuthor({ authors }: ISelectAuthorProps) {
               onSelect={() => setAuthorId(id)}
             >
               <Avatar className="size-6">
-                <AvatarImage src={avatarUrl} />
+                <AvatarImage src={avatarUrl ?? undefined} />
                 <AvatarFallback>{getInitials(name)}</AvatarFallback>
               </Avatar>
               <span className="truncate text-xs">{name}</span>

@@ -10,8 +10,8 @@ import {
 
 import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
 import { FilterInput } from '../../_components/filter-input'
+import { Table } from './_components/_table/table'
 import { CreateMemberButton } from './_components/create-member/create-member-button'
-import { Table } from './_components/table/table'
 import { TeamMemberDisplayOptions } from './_components/team-member-display-options'
 
 export default function EquipeSDHC() {

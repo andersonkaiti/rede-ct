@@ -2,171 +2,155 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { Input } from '@components/ui/input'
-import { Label } from '@components/ui/label'
 import {
-  PageForm,
-  PageFormContent,
-  PageFormContentField,
-} from '@components/ui/page-container'
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@components/ui/form'
+import { Input } from '@components/ui/input'
 import { AlertCircle, Eye, EyeClosed, Loader2 } from 'lucide-react'
 import Link from 'next/link'
-import { useActionState, useEffect, useState } from 'react'
-import { toast } from 'sonner'
-import { type IActionState, signUpAction } from '../actions'
+import { useSignUp } from './use-sign-up.hook'
 
 export function SignUpForm() {
-  const [{ errors, payload, message, success }, formAction, isLoading] =
-    useActionState(signUpAction, {} as IActionState)
-
-  useEffect(() => {
-    if (success) {
-      toast.success('Usuário cadastrado com sucesso!')
-    }
-  }, [success])
-
-  const [passwordVisibility, setPasswordVisibility] = useState(false)
-  const [confirmPasswordVisibility, setConfirmPasswordVisibility] =
-    useState(false)
-
-  function togglePasswordVisibility() {
-    setPasswordVisibility((visibility) => !visibility)
-  }
-
-  function toggleConfirmPasswordVisibility() {
-    setConfirmPasswordVisibility((visibility) => !visibility)
-  }
+  const {
+    isSubmitting,
+    form,
+    onSubmit,
+    passwordVisibility,
+    confirmPasswordVisibility,
+    serverError,
+    togglePasswordVisibility,
+    toggleConfirmPasswordVisibility,
+  } = useSignUp()
 
   return (
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <PageForm action={formAction}>
-        <PageFormContent>
-          {message && (
-            <Alert className="mb-4 border-primary" variant="destructive">
+      <Form {...form}>
+        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+          {serverError && (
+            <Alert className="mb-6 border-primary" variant="destructive">
               <AlertCircle className="size-4" />
-              <AlertDescription>{message}</AlertDescription>
+              <AlertDescription>{serverError}</AlertDescription>
             </Alert>
           )}
 
-          <PageFormContentField>
-            <Label htmlFor="name">
-              Nome completo <span className="text-primary">*</span>
-            </Label>
-
-            <Input
-              defaultValue={payload?.get('name') as string}
-              id="name"
-              name="name"
-              placeholder="Digite seu nome completo"
-              type="text"
-            />
-
-            {errors?.name && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors?.name}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Nome completo <span className="text-primary">*</span>
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Digite seu nome completo"
+                    type="text"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label htmlFor="email">
-              E-mail <span className="text-primary">*</span>
-            </Label>
-
-            <Input
-              defaultValue={payload?.get('email') as string}
-              id="email"
-              name="email"
-              placeholder="seuemail@exemplo.com"
-              type="email"
-            />
-
-            {errors?.email && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors?.email}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  E-mail <span className="text-primary">*</span>
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="seuemail@exemplo.com"
+                    type="email"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label htmlFor="password">
-              Senha <span className="text-primary">*</span>
-            </Label>
-
-            <div className="relative w-full">
-              <Input
-                className="w-full"
-                defaultValue={payload?.get('password') as string}
-                id="password"
-                name="password"
-                placeholder="Digite uma senha segura"
-                type={passwordVisibility ? 'text' : 'password'}
-              />
-
-              <Button
-                className="absolute inset-y-0 end-0 m-2 my-auto size-6 rounded-sm"
-                onClick={togglePasswordVisibility}
-                type="button"
-                variant="ghost"
-              >
-                {passwordVisibility ? <Eye /> : <EyeClosed />}
-              </Button>
-            </div>
-
-            {errors?.password && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors?.password}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Senha <span className="text-primary">*</span>
+                </FormLabel>
+                <FormControl>
+                  <div className="relative w-full">
+                    <Input
+                      className="w-full"
+                      placeholder="Digite uma senha segura"
+                      type={passwordVisibility ? 'text' : 'password'}
+                      {...field}
+                    />
+                    <Button
+                      className="absolute inset-y-0 end-0 m-2 my-auto size-6 rounded-sm"
+                      onClick={togglePasswordVisibility}
+                      type="button"
+                      variant="ghost"
+                    >
+                      {passwordVisibility ? <Eye /> : <EyeClosed />}
+                    </Button>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label htmlFor="confirmPassword">
-              Confirme sua senha <span className="text-primary">*</span>
-            </Label>
-
-            <div className="relative w-full">
-              <Input
-                className="w-full"
-                defaultValue={payload?.get('confirmPassword') as string}
-                id="confirmPassword"
-                name="confirmPassword"
-                placeholder="Repita a senha"
-                type={confirmPasswordVisibility ? 'text' : 'password'}
-              />
-
-              <Button
-                className="absolute inset-y-0 end-0 m-2 my-auto size-6 rounded-sm"
-                onClick={toggleConfirmPasswordVisibility}
-                type="button"
-                variant="ghost"
-              >
-                {confirmPasswordVisibility ? <Eye /> : <EyeClosed />}
-              </Button>
-            </div>
-
-            {errors?.confirmPassword && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors?.confirmPassword}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Confirme sua senha <span className="text-primary">*</span>
+                </FormLabel>
+                <FormControl>
+                  <div className="relative w-full">
+                    <Input
+                      className="w-full"
+                      placeholder="Repita a senha"
+                      type={confirmPasswordVisibility ? 'text' : 'password'}
+                      {...field}
+                    />
+                    <Button
+                      className="absolute inset-y-0 end-0 m-2 my-auto size-6 rounded-sm"
+                      onClick={toggleConfirmPasswordVisibility}
+                      type="button"
+                      variant="ghost"
+                    >
+                      {confirmPasswordVisibility ? <Eye /> : <EyeClosed />}
+                    </Button>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
           <Button
             className="w-full"
-            disabled={isLoading}
+            disabled={isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isLoading && <Loader2 className="size-4 animate-spin" />}
+            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
             Criar conta
           </Button>
-        </PageFormContent>
-      </PageForm>
+        </form>
+      </Form>
       <div className="mt-10 text-center text-muted-foreground">
         <span className="text-sm">
           Já possui uma conta?{' '}

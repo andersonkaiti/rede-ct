@@ -8,39 +8,47 @@ import {
   SelectValue,
 } from '@components/ui/select'
 import { Plus } from 'lucide-react'
+import type React from 'react'
+import { useState } from 'react'
 import type { ITeamMember } from 'types/team'
 import { useUsers } from '../../_hooks/use-users.hook'
 
 interface ISelectMemberProps {
-  inputRef: React.RefObject<HTMLInputElement | null>
-  setSelectedMember: React.Dispatch<React.SetStateAction<ITeamMember | null>>
-  handleIncludeTeamMember: () => void
+  handleIncludeMember: (member: ITeamMember) => void
 }
 
-export function SelectMember({
-  inputRef,
-  setSelectedMember,
-  handleIncludeTeamMember,
-}: ISelectMemberProps) {
+export function SelectMember({ handleIncludeMember }: ISelectMemberProps) {
   const { data: users } = useUsers()
 
-  function handleSelectMember(value: string) {
-    const member = users?.find((user) => user.id === value)
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null)
+  const [role, setRole] = useState('')
 
-    if (member) {
+  const isButtonDisabled = !(selectedUserId && role)
+
+  function handleSelectMember(value: string) {
+    setSelectedUserId(value)
+  }
+
+  function handleRole(event: React.ChangeEvent<HTMLInputElement>) {
+    setRole(event.target.value)
+  }
+
+  function handleAddMember() {
+    const user = users?.find((u) => u.id === selectedUserId)
+
+    if (user) {
       const newMember: ITeamMember = {
-        role: inputRef.current?.value || '',
-        id: member.id,
-        user: member,
+        role,
+        user,
       }
 
-      setSelectedMember(newMember)
+      handleIncludeMember(newMember)
     }
   }
 
   return (
     <header className="flex justify-between gap-2">
-      <Select onValueChange={handleSelectMember}>
+      <Select onValueChange={handleSelectMember} value={selectedUserId ?? ''}>
         <SelectTrigger className="flex-1">
           <SelectValue placeholder="Selecione o membro" />
         </SelectTrigger>
@@ -56,14 +64,15 @@ export function SelectMember({
       <Input
         className="flex-1"
         name="role"
+        onChange={handleRole}
         placeholder="Cargo"
-        ref={inputRef}
         type="text"
       />
 
       <Button
         className="cursor-pointer"
-        onClick={handleIncludeTeamMember}
+        disabled={isButtonDisabled}
+        onClick={handleAddMember}
         type="button"
       >
         <Plus />

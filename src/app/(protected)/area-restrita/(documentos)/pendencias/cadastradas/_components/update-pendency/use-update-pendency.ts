@@ -1,9 +1,32 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import { getPendency } from '@http/documents/pendencies/get-pendency'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
-import { useActionState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { type IUpdateActionState, updatePendencyAction } from '../../../actions'
+import z from 'zod'
+import {
+  type UpdatePendencyActionResult,
+  updatePendencyAction,
+} from '../../../actions'
+
+const updatePendencySchema = z.object({
+  id: z.string(),
+  title: z.string().min(1, 'Título é obrigatório.'),
+  description: z.string().min(1, 'Descrição é obrigatória.'),
+  status: z.enum(['PENDING', 'PAID']),
+  dueDate: z.string().optional(),
+  document: z
+    .any()
+    .refine(
+      (file) => !file || (file instanceof File && file.size > 0),
+      'Documento é inválido'
+    )
+    .optional(),
+})
+
+export type UpdatePendencyInput = z.infer<typeof updatePendencySchema>
 
 interface IUseUpdatePendencyProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -11,6 +34,8 @@ interface IUseUpdatePendencyProps {
 
 export function useUpdatePendency({ setIsOpen }: IUseUpdatePendencyProps) {
   const queryClient = useQueryClient()
+
+  const [serverError, setServerError] = useState<string | null>(null)
 
   const [pendencyId] = useQueryState(
     'pendency_id',
@@ -31,30 +56,58 @@ export function useUpdatePendency({ setIsOpen }: IUseUpdatePendencyProps) {
     enabled: !!pendencyId,
   })
 
-  const [{ errors, payload, message, success }, formAction, isLoading] =
-    useActionState(
-      updatePendencyAction.bind(null, pendencyId),
-      {} as IUpdateActionState
-    )
+  const form = useForm<UpdatePendencyInput>({
+    resolver: zodResolver(updatePendencySchema),
+    defaultValues: {
+      id: pendencyId,
+      title: '',
+      description: '',
+      status: 'PENDING',
+      dueDate: '',
+      document: undefined,
+    },
+    mode: 'onChange',
+  })
 
   useEffect(() => {
-    if (success) {
+    if (pendency) {
+      form.reset({
+        ...pendency,
+        description: pendency.description || '',
+        dueDate: pendency.dueDate || '',
+        document: undefined,
+      })
+    }
+  }, [pendency, form])
+
+  async function onSubmit(values: UpdatePendencyInput) {
+    const result: UpdatePendencyActionResult = await updatePendencyAction({
+      id: values.id,
+      title: values.title,
+      description: values.description,
+      status: values.status,
+      dueDate: values.dueDate || undefined,
+      document: values.document,
+    })
+
+    if (result.success) {
       queryClient.invalidateQueries({
         queryKey: ['users', 'pendencies', filter, orderBy, page, limit],
       })
 
       toast.success('Pendência atualizada com sucesso!')
-
       setIsOpen(false)
+      return
     }
-  }, [success, setIsOpen, queryClient, filter, limit, orderBy, page])
+
+    setServerError(result.message)
+  }
 
   return {
     pendency,
-    errors,
-    payload,
-    formAction,
-    message,
-    isLoading,
+    form,
+    serverError,
+    isSubmitting: form.formState.isSubmitting,
+    onSubmit,
   }
 }

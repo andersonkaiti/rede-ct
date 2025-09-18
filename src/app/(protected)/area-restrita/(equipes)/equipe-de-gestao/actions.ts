@@ -3,144 +3,72 @@
 import { createManagementTeam } from '@http/teams/create-management-team'
 import { updateManagementTeam } from '@http/teams/update-management-team'
 import { HTTPError } from 'ky'
-import type { ITeamMember } from 'types/team'
-import { z } from 'zod'
+import type { CreateManagementTeamInput } from './cadastrar/use-register-team.hook'
+import type { UpdateManagementTeamInput } from './editar/[id]/use-update-team.hook'
 
-const managementTeamSchema = z.object({
-  name: z.string().trim().min(1, 'O nome da equipe é obrigatório.').trim(),
-  members: z
-    .array(
-      z.object({
-        role: z.string().trim().min(1, 'Cargo é obrigatório.'),
-        id: z.uuid().optional(),
-        user: z.object({
-          id: z.string(),
-        }),
-      })
-    )
-    .min(1, 'Membros são obrigatórios.'),
-})
-
-export interface IActionState {
-  success: boolean
-  errors:
-    | z.inferFlattenedErrors<typeof managementTeamSchema>['fieldErrors']
-    | null
-  payload: FormData | null
-  message: string | null
-}
+export type ManagementTeamActionResult =
+  | { success: true }
+  | { success: false; message: string }
 
 const TEAM_TYPE = 'equipe-de-gestao'
 
 export async function createManagementTeamAction(
-  members: ITeamMember[],
-  _: unknown,
-  formData: FormData
-): Promise<IActionState> {
+  team: CreateManagementTeamInput
+): Promise<ManagementTeamActionResult> {
   try {
-    const { success, data, error } = managementTeamSchema.safeParse({
-      name: formData.get('name'),
-      members,
-    })
-
-    if (!success) {
-      return {
-        success: false,
-        errors: error.flatten().fieldErrors,
-        payload: formData,
-        message: null,
-      }
-    }
-
     await createManagementTeam({
       type: TEAM_TYPE,
-      ...data,
+      ...team,
     })
-
-    return {
-      success: true,
-      errors: null,
-      payload: null,
-      message: null,
-    }
   } catch (err) {
     if (err instanceof HTTPError) {
       const errorBody = await err.response.json()
 
       return {
         success: false,
-        errors: null,
-        payload: formData,
-        message: errorBody.message,
+        message: errorBody?.message ?? 'Falha ao cadastrar equipe de gestão.',
       }
     }
 
     return {
       success: false,
-      errors: null,
-      payload: formData,
       message: 'Aconteceu um erro inesperado.',
     }
   }
+
+  return { success: true }
 }
 
-interface IUpdatedManagementTeam {
-  members: ITeamMember[]
+export async function updateManagementTeamAction({
+  id,
+  ...team
+}: UpdateManagementTeamInput & {
   id: string
-}
-
-export async function updateManagementTeamAction(
-  team: IUpdatedManagementTeam,
-  _: unknown,
-  formData: FormData
-): Promise<IActionState> {
+}): Promise<ManagementTeamActionResult> {
   try {
-    const { success, data, error } = managementTeamSchema.safeParse({
-      name: formData.get('name'),
-      members: team.members,
-    })
-
-    if (!success) {
-      return {
-        success: false,
-        errors: error?.flatten().fieldErrors,
-        payload: formData,
-        message: null,
-      }
-    }
-
     await updateManagementTeam({
-      id: team.id,
-      name: data.name,
-      members: data.members.map(({ id, ...rest }) => ({
-        id: id ?? '',
-        ...rest,
+      id,
+      name: team.name,
+      members: team.members.map(({ id: memberId = '', ...member }) => ({
+        ...(memberId && { id: memberId }),
+        ...member,
       })),
     })
-
-    return {
-      success: true,
-      errors: null,
-      payload: null,
-      message: null,
-    }
   } catch (err) {
     if (err instanceof HTTPError) {
       const errorBody = await err.response.json()
 
       return {
         success: false,
-        errors: null,
-        payload: formData,
-        message: errorBody.message,
+        message: errorBody?.message ?? 'Falha ao atualizar equipe de gestão.',
       }
     }
 
     return {
       success: false,
-      errors: null,
-      payload: formData,
       message: 'Aconteceu um erro inesperado.',
     }
   }
+
+  return { success: true }
 }

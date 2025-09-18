@@ -2,47 +2,24 @@
 
 import { api } from '@http/api-client'
 import { HTTPError } from 'ky'
-import { revalidatePath } from 'next/cache'
-import { ZodError, z } from 'zod'
+import type { CreateSDHCTeamMemberInput } from './_components/create-member/use-create-member.hook'
+import type { UpdateSDHCTeamMemberInput } from './_components/update-member/use-update-member.hook'
 
-const sdhcTeamMemberSchema = z.object({
-  userId: z.string().min(1, 'Membro é obrigatório'),
-  role: z.string().trim().min(1, 'Cargo é obrigatório'),
-  description: z.string().trim().min(1, 'Descrição é obrigatória'),
-})
-
-export interface IActionState {
-  success: boolean
-  errors:
-    | z.inferFlattenedErrors<typeof sdhcTeamMemberSchema>['fieldErrors']
-    | null
-  payload: FormData | null
-  message: string | null
-}
+export type SDHCTeamMemberActionResult =
+  | { success: true }
+  | { success: false; message: string }
 
 const TEAM_TYPE = 'equipe-sdhc'
 const TEAM_NAME = 'Equipe SDHC'
 
-export async function createSDHCTeamMemberAction(
-  teamId: string,
-  _: unknown,
-  formData: FormData
-): Promise<IActionState> {
+export async function createSDHCTeamMemberAction({
+  id,
+  ...member
+}: CreateSDHCTeamMemberInput & {
+  id?: string
+}): Promise<SDHCTeamMemberActionResult> {
   try {
-    const { success, data, error } = sdhcTeamMemberSchema.safeParse(
-      Object.fromEntries(formData)
-    )
-
-    if (!success) {
-      return {
-        success: false,
-        errors: error.flatten().fieldErrors,
-        payload: formData,
-        message: null,
-      }
-    }
-
-    const teamAlreadyExists = !!teamId
+    const teamAlreadyExists = !!id
 
     if (!teamAlreadyExists) {
       await api.post('team', {
@@ -51,128 +28,70 @@ export async function createSDHCTeamMemberAction(
           name: TEAM_NAME,
           members: [
             {
-              role: data.role,
+              role: member.role,
               user: {
-                id: data.userId,
+                id: member.userId,
               },
-              description: data.description,
+              description: member.description,
             },
           ],
         },
       })
 
-      revalidatePath(`/area-restrita/${TEAM_TYPE}`)
-
-      return {
-        success: true,
-        errors: null,
-        payload: null,
-        message: null,
-      }
+      return { success: true }
     }
 
-    await api.post(`team/${teamId}/member`, {
+    await api.post(`team/${id}/member`, {
       json: {
-        teamId,
-        member: data,
+        id,
+        member,
       },
     })
-
-    revalidatePath(`/area-restrita/${TEAM_TYPE}`)
-
-    return {
-      success: true,
-      errors: null,
-      payload: null,
-      message: null,
-    }
   } catch (err) {
     if (err instanceof HTTPError) {
       const errorBody = await err.response.json()
 
       return {
         success: false,
-        errors: null,
-        payload: formData,
-        message: errorBody.message,
-      }
-    }
-
-    if (err instanceof ZodError) {
-      return {
-        success: false,
-        errors: err.flatten().fieldErrors,
-        payload: formData,
-        message: null,
+        message:
+          errorBody?.message ?? 'Falha ao cadastrar membro da equipe SDHC.',
       }
     }
 
     return {
       success: false,
-      errors: null,
-      payload: formData,
       message: 'Aconteceu um erro inesperado.',
     }
   }
-}
 
-interface IUpdateSDHCTeamMemberProps {
-  member: {
-    id: string
-  }
+  return { success: true }
 }
 
 export async function updateSDHCTeamMemberAction(
-  props: IUpdateSDHCTeamMemberProps,
-  _: unknown,
-  formData: FormData
-): Promise<IActionState> {
+  member: UpdateSDHCTeamMemberInput & {
+    id: string
+  }
+): Promise<SDHCTeamMemberActionResult> {
   try {
-    const { success, data, error } = sdhcTeamMemberSchema.safeParse(
-      Object.fromEntries(formData)
-    )
-
-    if (!success) {
-      return {
-        success: false,
-        errors: error.flatten().fieldErrors,
-        payload: formData,
-        message: null,
-      }
-    }
-
-    await api.put(`team/member/${props.member.id}`, {
-      json: {
-        ...data,
-        id: props.member.id,
-      },
+    await api.put(`team/member/${member.id}`, {
+      json: member,
     })
-
-    revalidatePath(`/area-restrita/${TEAM_TYPE}`)
-
-    return {
-      success: true,
-      errors: null,
-      payload: null,
-      message: null,
-    }
   } catch (err) {
     if (err instanceof HTTPError) {
       const errorBody = await err.response.json()
 
       return {
         success: false,
-        errors: null,
-        payload: formData,
-        message: errorBody.message,
+        message:
+          errorBody?.message ?? 'Falha ao atualizar membro da equipe SDHC.',
       }
     }
 
     return {
       success: false,
-      errors: null,
-      payload: formData,
       message: 'Aconteceu um erro inesperado.',
     }
   }
+
+  return { success: true }
 }

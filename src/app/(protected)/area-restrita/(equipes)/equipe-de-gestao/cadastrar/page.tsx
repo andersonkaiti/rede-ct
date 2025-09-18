@@ -2,13 +2,17 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@components/ui/form'
 import { Input } from '@components/ui/input'
-import { Label } from '@components/ui/label'
 import {
   PageContainer,
-  PageForm,
-  PageFormContent,
-  PageFormContentField,
   PageHeader,
   PageMain,
   PageTitle,
@@ -16,20 +20,17 @@ import {
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../_components/select-member'
 import { TeamMembersTable } from '../_components/team-members-table/team-members-table'
-import { useCreateTeam } from '../_hooks/use-register-team.hook'
+import { useCreateTeam } from './use-register-team.hook'
 
 export default function CadastrarEquipeDeGestao() {
   const {
-    team,
-    inputRef,
-    setSelectedMember,
-    handleIncludeTeamMember,
+    form,
+    isSubmitting,
+    onSubmit,
+    serverError,
+    members,
+    handleIncludeMember,
     handleRemoveMember,
-    formAction,
-    isLoading,
-    errors,
-    payload,
-    message,
   } = useCreateTeam()
 
   return (
@@ -38,59 +39,62 @@ export default function CadastrarEquipeDeGestao() {
         <PageTitle>Cadastrar Equipe</PageTitle>
       </PageHeader>
       <PageMain>
-        <PageForm action={formAction}>
-          <PageFormContent>
-            {message && (
+        <Form {...form}>
+          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+            {serverError && (
               <Alert className="mb-4 border-primary" variant="destructive">
                 <AlertCircle className="size-4" />
-                <AlertDescription>{message}</AlertDescription>
+                <AlertDescription>{serverError}</AlertDescription>
               </Alert>
             )}
 
-            <PageFormContentField>
-              <Label>Nome da equipe</Label>
-
-              <Input
-                defaultValue={payload?.get('name') as string}
-                name="name"
-                placeholder="Nome"
-              />
-
-              {errors?.name && errors?.name && (
-                <Alert className="border-primary p-2" variant="destructive">
-                  <AlertCircle className="size-4" />
-                  <AlertDescription>{errors.name}</AlertDescription>
-                </Alert>
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nome da equipe</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Nome" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
               )}
-            </PageFormContentField>
-            <PageFormContentField>
-              <Label>Membros cadastrados</Label>
+            />
 
-              <SelectMember
-                handleIncludeTeamMember={handleIncludeTeamMember}
-                inputRef={inputRef}
-                setSelectedMember={setSelectedMember}
-              />
+            <FormField
+              control={form.control}
+              name="members"
+              render={() => (
+                <FormItem>
+                  <FormLabel>Membros cadastrados</FormLabel>
+                  <FormControl>
+                    <SelectMember handleIncludeMember={handleIncludeMember} />
+                  </FormControl>
 
-              <TeamMembersTable
-                handleRemoveMember={handleRemoveMember}
-                teamMembers={team}
-              />
+                  <TeamMembersTable
+                    handleRemoveMember={handleRemoveMember}
+                    teamMembers={members.map((member, index) => ({
+                      ...member,
+                      id: String(index),
+                    }))}
+                  />
 
-              {errors?.members && errors.members && (
-                <Alert className="border-primary p-2" variant="destructive">
-                  <AlertCircle className="size-4" />
-                  <AlertDescription>{errors.members}</AlertDescription>
-                </Alert>
+                  <FormMessage />
+                </FormItem>
               )}
-            </PageFormContentField>
-          </PageFormContent>
+            />
 
-          <Button className="cursor-pointer" disabled={isLoading} type="submit">
-            {isLoading && <Loader2 className="size-4 animate-spin" />}
-            Cadastrar equipe
-          </Button>
-        </PageForm>
+            <Button
+              className="w-full cursor-pointer"
+              disabled={isSubmitting}
+              type="submit"
+            >
+              {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+              Cadastrar equipe
+            </Button>
+          </form>
+        </Form>
       </PageMain>
     </PageContainer>
   )

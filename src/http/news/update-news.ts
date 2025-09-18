@@ -6,8 +6,7 @@ interface IUpdateNewsRequest {
   id: string
   title: string
   content: string
-  // biome-ignore lint/suspicious/noExplicitAny: file
-  image: any
+  image: File
 }
 
 export async function updateNews({

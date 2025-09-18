@@ -7,7 +7,7 @@ import {
 } from '@components/ui/card'
 import { Skeleton } from '@components/ui/skeleton'
 
-const ARRAY_SIZE = 6
+const ARRAY_SIZE = 4
 
 export function LoadingSkeleton() {
   return (
@@ -23,23 +23,24 @@ export function LoadingSkeleton() {
                   <Skeleton className="h-4 w-24 rounded-full" />
                 </div>
 
-                <Skeleton className="h-5.5 w-17 rounded-full" />
+                <Skeleton className="h-5 w-17 rounded-full" />
               </div>
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="flex h-full flex-col gap-4">
-            <div className="line-clamp-2 text-justify">
-              <Skeleton className="mb-1 h-3 w-full rounded-full" />
+          <CardContent className="my-1.5 flex h-full flex-col gap-4">
+            <div className="space-y-2">
+              <Skeleton className="h-3 w-full rounded-full" />
               <Skeleton className="h-3 w-3/4 rounded-full" />
             </div>
-            <div className="text-muted-foreground text-xs">
-              <Skeleton className="h-3 w-24 rounded-full" />
+
+            <div className="mt-1">
+              <Skeleton className="h-3 w-40 rounded-full" />
             </div>
           </CardContent>
 
           <CardFooter>
-            <Skeleton className="h-9 w-full rounded-md" />
+            <Skeleton className="h-8.5 w-full rounded-md" />
           </CardFooter>
         </Card>
       ))}

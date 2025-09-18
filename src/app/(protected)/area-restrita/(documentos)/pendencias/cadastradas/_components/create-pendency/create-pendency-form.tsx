@@ -10,13 +10,15 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@components/ui/dialog'
-import { Input } from '@components/ui/input'
-import { Label } from '@components/ui/label'
 import {
-  PageForm,
-  PageFormContent,
-  PageFormContentField,
-} from '@components/ui/page-container'
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@components/ui/form'
+import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { useState } from 'react'
@@ -28,14 +30,10 @@ interface ICreatePendencyFormProps {
 }
 
 export function CreatePendencyForm({ setIsOpen }: ICreatePendencyFormProps) {
-  const { errors, formAction, isLoading, message, payload } =
-    useRegisterPendency({ setIsOpen })
-
-  const [dueDate, setDueDate] = useState<Date | undefined>(
-    payload?.get('dueDate')
-      ? new Date(payload.get('dueDate') as string)
-      : undefined
-  )
+  const { form, serverError, isSubmitting, onSubmit } = useRegisterPendency({
+    setIsOpen,
+  })
+  const [dueDate, setDueDate] = useState<Date | undefined>()
 
   return (
     <DialogContent>
@@ -43,115 +41,114 @@ export function CreatePendencyForm({ setIsOpen }: ICreatePendencyFormProps) {
         <DialogTitle>Cadastrar pendência</DialogTitle>
       </DialogHeader>
 
-      <PageForm action={formAction}>
-        <PageFormContent>
-          {message && (
+      <Form {...form}>
+        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+          {serverError && (
             <Alert className="mb-4 border-primary" variant="destructive">
               <AlertCircle className="size-4" />
-              <AlertDescription>{message}</AlertDescription>
+              <AlertDescription>{serverError}</AlertDescription>
             </Alert>
           )}
 
-          <PageFormContentField>
-            <Label>Membro</Label>
-
-            <SelectMember userId={payload?.get('userId') as string} />
-
-            {errors?.userId && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors.userId}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="userId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Membro</FormLabel>
+                <FormControl>
+                  <SelectMember
+                    onChange={field.onChange}
+                    userId={field.value}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label>Título</Label>
-
-            <Input
-              defaultValue={payload?.get('title') as string}
-              name="title"
-              placeholder="Título da pendência"
-            />
-
-            {errors?.title && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors.title}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Título</FormLabel>
+                <FormControl>
+                  <Input placeholder="Título da pendência" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label>Descrição</Label>
-
-            <Textarea
-              defaultValue={payload?.get('description') as string}
-              name="description"
-              placeholder="Descrição"
-            />
-
-            {errors?.description && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors.description}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Descrição</FormLabel>
+                <FormControl>
+                  <Textarea placeholder="Descrição" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label>Data de vencimento</Label>
-
-            <div className="space-y-2">
-              <DatePicker
-                onChange={setDueDate}
-                placeholder="Selecione uma data de vencimento"
-                value={dueDate}
-              />
-
-              <input
-                name="dueDate"
-                type="hidden"
-                value={dueDate ? dueDate.toISOString().split('T')[0] : ''}
-              />
-            </div>
-
-            {errors?.dueDate && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors.dueDate}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="dueDate"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Data de vencimento</FormLabel>
+                <FormControl>
+                  <div className="space-y-2">
+                    <DatePicker
+                      onChange={(date) => {
+                        setDueDate(date)
+                        field.onChange(
+                          date ? date.toISOString().split('T')[0] : ''
+                        )
+                      }}
+                      placeholder="Selecione uma data de vencimento"
+                      value={dueDate}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label>Documento</Label>
-
-            <Input
-              accept="application/pdf,image/*"
-              name="document"
-              type="file"
-            />
-
-            {errors?.document && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors.document}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="document"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Documento</FormLabel>
+                <FormControl>
+                  <Input
+                    accept="application/pdf,image/*"
+                    onChange={(e) => field.onChange(e.target.files?.[0])}
+                    type="file"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
-        </PageFormContent>
+          />
 
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="ghost">Cancelar</Button>
-          </DialogClose>
-          <Button disabled={isLoading} type="submit">
-            {isLoading && <Loader2 className="size-4 animate-spin" />}
-            Cadastrar pendência
-          </Button>
-        </DialogFooter>
-      </PageForm>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="ghost">Cancelar</Button>
+            </DialogClose>
+            <Button disabled={isSubmitting} type="submit">
+              {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+              Cadastrar pendência
+            </Button>
+          </DialogFooter>
+        </form>
+      </Form>
     </DialogContent>
   )
 }

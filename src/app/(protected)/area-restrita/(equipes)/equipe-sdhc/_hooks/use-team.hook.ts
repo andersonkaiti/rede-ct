@@ -3,7 +3,7 @@ import { getTeams } from '@http/teams/get-teams'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import type { ITeam } from 'types/team'
-import type { ISDHCTeam } from '../_components/table/sdhc-team-table-columns'
+import type { ISDHCTeam } from '../_components/_table/sdhc-team-table-columns'
 
 const TEAM_TYPE = 'equipe-sdhc'
 

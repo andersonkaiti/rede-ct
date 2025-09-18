@@ -3,23 +3,29 @@
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
 import { FileUpload } from '@components/ui/file-upload'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
 import {
   PageContainer,
   PageDescription,
-  PageForm,
-  PageFormContent,
   PageFormContentField,
   PageHeaderContent,
   PageTitle,
 } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useRegisterNews } from '../_hooks/use-register-news.hook'
+import { useCreateNews } from './use-create-news.hook'
 
 export default function CadastrarNoticia() {
-  const { payload, errors, formAction, isLoading, message } = useRegisterNews()
+  const { form, isSubmitting, onSubmit, serverError } = useCreateNews()
 
   return (
     <PageContainer>
@@ -30,74 +36,75 @@ export default function CadastrarNoticia() {
         </PageDescription>
       </PageHeaderContent>
 
-      <PageForm action={formAction}>
-        <PageFormContent>
-          {message && (
+      <Form {...form}>
+        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+          {serverError && (
             <Alert className="mb-4 border-primary" variant="destructive">
               <AlertCircle className="size-4" />
-              <AlertDescription>{message}</AlertDescription>
+              <AlertDescription>{serverError}</AlertDescription>
             </Alert>
           )}
 
-          <PageFormContentField>
-            <Label>
-              Título <span className="text-primary">*</span>
-            </Label>
-
-            <Input
-              defaultValue={payload?.get('title') as string}
-              name="title"
-              placeholder="Digite o título da notícia"
-            />
-
-            {errors?.title && errors?.title && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors?.title}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Título <span className="text-primary">*</span>
+                </FormLabel>
+                <FormControl>
+                  <Input placeholder="Digite o título da notícia" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label>
-              Imagem <span className="text-primary">*</span>
-            </Label>
-
-            <FileUpload maxSizeMB={5} />
-
-            {errors?.image && errors?.image && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors?.image}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="image"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Imagem <span className="text-primary">*</span>
+                </FormLabel>
+                <FormControl>
+                  <FileUpload maxSizeMB={5} onChange={field.onChange} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label>
-              Texto <span className="text-primary">*</span>
-            </Label>
-
-            <Textarea
-              defaultValue={payload?.get('content') as string}
-              name="content"
-              placeholder="Digite o conteúdo da notícia"
-            />
-
-            {errors?.content && errors?.content && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors?.content}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="content"
+            render={({ field }) => (
+              <PageFormContentField>
+                <Label>
+                  Texto <span className="text-primary">*</span>
+                </Label>
+                <Textarea
+                  placeholder="Digite o conteúdo da notícia"
+                  {...field}
+                />
+                <FormMessage />
+              </PageFormContentField>
             )}
-          </PageFormContentField>
+          />
 
-          <Button className="cursor-pointer" disabled={isLoading} type="submit">
-            {isLoading && <Loader2 className="size-4 animate-spin" />}
+          <Button
+            className="w-full cursor-pointer"
+            disabled={isSubmitting}
+            type="submit"
+            variant="outline"
+          >
+            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
             Cadastrar notícia
           </Button>
-        </PageFormContent>
-      </PageForm>
+        </form>
+      </Form>
     </PageContainer>
   )
 }

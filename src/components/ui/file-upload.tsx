@@ -3,7 +3,7 @@
 import { useFileUpload } from '@hooks/use-file-upload'
 import { AlertCircleIcon, ImageUpIcon, XIcon } from 'lucide-react'
 import Image from 'next/image'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 
 const BYTES_IN_KB = 1024
 const KB_IN_MB = 1024
@@ -11,9 +11,14 @@ const KB_IN_MB = 1024
 interface IFileUploadProps {
   maxSizeMB: number
   imageUrl?: string
+  onChange?: (file: File | undefined) => void
 }
 
-export function FileUpload({ maxSizeMB = 50, imageUrl }: IFileUploadProps) {
+export function FileUpload({
+  maxSizeMB = 50,
+  imageUrl,
+  onChange,
+}: IFileUploadProps) {
   const maxSize = maxSizeMB * BYTES_IN_KB * KB_IN_MB
 
   const [
@@ -48,6 +53,18 @@ export function FileUpload({ maxSizeMB = 50, imageUrl }: IFileUploadProps) {
     },
     [files]
   )
+
+  // Chama o onChange sempre que o arquivo mudar
+  useEffect(() => {
+    if (onChange) {
+      if (files.length > 0 && files[0].file instanceof File) {
+        onChange(files[0].file)
+      } else if (files.length === 0) {
+        onChange(undefined)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [files, onChange])
 
   const handleRemoveFile = () => {
     if (files[0]?.id) {

@@ -5,7 +5,7 @@ interface IUpdateManagementTeam {
   name: string
   members: {
     role: string
-    id: string
+    id?: string
     user: {
       id: string
     }

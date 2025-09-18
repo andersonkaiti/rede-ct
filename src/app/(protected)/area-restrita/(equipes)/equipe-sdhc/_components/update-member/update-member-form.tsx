@@ -7,24 +7,28 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@components/ui/dialog'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
-import {
-  PageForm,
-  PageFormContent,
-  PageFormContentField,
-} from '@components/ui/page-container'
+import { PageFormContentField } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../../../_components/select-member'
-import { useUpdateSDHCTeamMember } from '../../_hooks/use-update-member'
+import { useUpdateSDHCTeamMember } from './use-update-member.hook'
 
 interface IUpdateMemberFormProps {
   setIsOpen: (isOpen: boolean) => void
 }
 
 export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
-  const { errors, payload, formAction, isLoading, member, message } =
+  const { form, isSubmitting, member, onSubmit, serverError } =
     useUpdateSDHCTeamMember({
       setIsOpen,
     })
@@ -40,77 +44,75 @@ export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
       </DialogHeader>
 
       <DialogContent>
-        <PageForm action={formAction}>
-          <PageFormContent>
-            {message && (
+        <Form {...form}>
+          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+            {serverError && (
               <Alert className="mb-4 border-primary" variant="destructive">
                 <AlertCircle className="size-4" />
-                <AlertDescription>{message}</AlertDescription>
+                <AlertDescription>{serverError}</AlertDescription>
               </Alert>
             )}
 
-            <PageFormContentField>
-              <Label>Membro</Label>
-
-              <SelectMember
-                userId={member.userId || (payload?.get('memberId') as string)}
-              />
-
-              {errors?.userId && errors.userId && (
-                <Alert className="border-primary p-2" variant="destructive">
-                  <AlertCircle className="size-4" />
-                  <AlertDescription>{errors.userId}</AlertDescription>
-                </Alert>
+            <FormField
+              control={form.control}
+              name="userId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Membro</FormLabel>
+                  <FormControl>
+                    <SelectMember
+                      onChange={field.onChange}
+                      userId={member.userId}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
               )}
-            </PageFormContentField>
+            />
 
-            <PageFormContentField>
-              <Label>Cargo</Label>
-
-              <Input
-                defaultValue={member?.role || (payload?.get('role') as string)}
-                name="role"
-                placeholder="Cargo"
-              />
-
-              {errors?.role && errors.role && (
-                <Alert className="border-primary p-2" variant="destructive">
-                  <AlertCircle className="size-4" />
-                  <AlertDescription>{errors.role}</AlertDescription>
-                </Alert>
+            <FormField
+              control={form.control}
+              name="role"
+              render={({ field }) => (
+                <PageFormContentField>
+                  <Label>Cargo</Label>
+                  <Input
+                    {...field}
+                    onChange={field.onChange}
+                    placeholder="Cargo"
+                  />
+                  <FormMessage />
+                </PageFormContentField>
               )}
-            </PageFormContentField>
+            />
 
-            <PageFormContentField>
-              <Label>Descrição</Label>
-
-              <Textarea
-                defaultValue={
-                  member?.description || (payload?.get('description') as string)
-                }
-                name="description"
-                placeholder="Descrição"
-              />
-
-              {errors?.description && errors.description && (
-                <Alert className="border-primary p-2" variant="destructive">
-                  <AlertCircle className="size-4" />
-                  <AlertDescription>{errors.description}</AlertDescription>
-                </Alert>
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <PageFormContentField>
+                  <Label>Descrição</Label>
+                  <Textarea
+                    {...field}
+                    onChange={field.onChange}
+                    placeholder="Descrição"
+                  />
+                  <FormMessage />
+                </PageFormContentField>
               )}
-            </PageFormContentField>
-          </PageFormContent>
+            />
 
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="ghost">Cancelar</Button>
-            </DialogClose>
-            <Button disabled={isLoading} type="submit">
-              {isLoading && <Loader2 className="size-4 animate-spin" />}
-              Atualizar membro
-            </Button>
-          </DialogFooter>
-        </PageForm>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="ghost">Cancelar</Button>
+              </DialogClose>
+              <Button disabled={isSubmitting} type="submit">
+                {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+                Atualizar membro
+              </Button>
+            </DialogFooter>
+          </form>
+        </Form>
       </DialogContent>
     </DialogContent>
   )

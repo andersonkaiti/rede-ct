@@ -7,10 +7,9 @@ interface IAuthenticatedUserResponse {
   phone: string | null
   lattesUrl: string | null
   id: string
-  passwordHash: string
-  avatarUrl: string | null
-  createdAt: Date
-  updatedAt: Date
+  avatarUrl: string
+  createdAt: string
+  updatedAt: string
   emailAddress: string
   role: 'ADMIN' | 'USER'
 }

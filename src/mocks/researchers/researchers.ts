@@ -21,6 +21,7 @@ const researchers: IResearcher[] = [
   // PESQUISADORES SENIORES
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Alceu Zoia',
       createdAt: '',
@@ -35,6 +36,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Alessandra Marchioni',
       createdAt: '',
@@ -49,6 +51,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Alexandre de Castro Campos',
       createdAt: '',
@@ -63,6 +66,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Alonso Bezerra de Carvalho',
       createdAt: '',
@@ -77,6 +81,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Amanda Pereira da Silva Azinari',
       createdAt: '',
@@ -91,6 +96,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Ana Caroline Amorim Oliveira',
       createdAt: '',
@@ -105,6 +111,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: "Ana D'Arc Martins de Azevedo",
       createdAt: '',
@@ -119,6 +126,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Ana Elisa Bressan Smith Lourenzani',
       createdAt: '',
@@ -133,6 +141,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Ana Margarida Theodoro Caminhas',
       createdAt: '',
@@ -147,6 +156,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Andrea Scalco Rossi',
       createdAt: '',
@@ -161,6 +171,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Angela Inês Liberatti',
       createdAt: '',
@@ -175,6 +186,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Angélica Góis Morales',
       createdAt: '',
@@ -189,6 +201,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Antonia Alves Pereira',
       createdAt: '',
@@ -203,6 +216,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Antonio Jorge Paraense da Paixão',
       createdAt: '',
@@ -217,6 +231,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Cacilene Moura Tavares',
       createdAt: '',
@@ -231,6 +246,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Carina Catiana Foppa',
       createdAt: '',
@@ -245,6 +261,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Carla Giovana Souza Rocha',
       createdAt: '',
@@ -259,6 +276,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Carlos Alberto Sarmento do Nascimento',
       createdAt: '',
@@ -273,6 +291,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Dauto João da Silveira',
       createdAt: '',
@@ -287,6 +306,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Diego Antonio Cabrol',
       createdAt: '',
@@ -301,6 +321,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Edna Ferreira Alencar',
       createdAt: '',
@@ -315,6 +336,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Fábio José Cardias-Gomes',
       createdAt: '',
@@ -329,6 +351,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Fábio Pessoa Vieira',
       createdAt: '',
@@ -343,6 +366,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Francilene de Aguiar Parente',
       createdAt: '',
@@ -357,6 +381,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Francisco Gilson Rebouças Porto Júnior',
       createdAt: '',
@@ -371,6 +396,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Isabella Gonçalves Vido',
       createdAt: '',
@@ -385,6 +411,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Izabel Castanha Gil',
       createdAt: '',
@@ -399,6 +426,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Jacqueline Cunha da Serra Freire',
       createdAt: '',
@@ -413,6 +441,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Jardilene Gualberto Pereira Fôlha',
       createdAt: '',
@@ -427,6 +456,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Joelma Boaventura da Silva',
       createdAt: '',
@@ -441,6 +471,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Josivaldo Alves da Silva',
       createdAt: '',
@@ -455,6 +486,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Layanna Giordana Bernardo Lima',
       createdAt: '',
@@ -469,6 +501,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Lamounier Erthal Villela',
       createdAt: '',
@@ -483,6 +516,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Lorranne Gomes da Silva',
       createdAt: '',
@@ -497,6 +531,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Ludmila Pereira de Almeida',
       createdAt: '',
@@ -511,6 +546,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Luciene Cristina Risso',
       createdAt: '',
@@ -525,6 +561,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Luis Eduardo Acosta Muñoz',
       createdAt: '',
@@ -539,6 +576,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Marcelo Aranda Stortti',
       createdAt: '',
@@ -553,6 +591,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Marcio de Albuquerque Vianna',
       createdAt: '',
@@ -567,6 +606,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Marcos Marques Formigosa',
       createdAt: '',
@@ -581,6 +621,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Mariane Ravagio Catelli',
       createdAt: '',
@@ -595,6 +636,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Marzia Anna Linda Maria Rosti',
       createdAt: '',
@@ -609,6 +651,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Nelson Russo de Moraes',
       createdAt: '',
@@ -623,6 +666,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Pamela Nayara Modesto',
       createdAt: '',
@@ -637,6 +681,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Patrícia Denkewicz',
       createdAt: '',
@@ -651,6 +696,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Patrick Maurice Maury',
       createdAt: '',
@@ -665,6 +711,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Petrônio Lauro Teixeira Potiguar Júnior',
       createdAt: '',
@@ -679,6 +726,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Rejane Cleide Medeiros de Almeida',
       createdAt: '',
@@ -693,6 +741,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Richard Douglas Coelho Leão',
       createdAt: '',
@@ -707,6 +756,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Sidat Yaffa',
       createdAt: '',
@@ -721,6 +771,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Sueli do Nascimento',
       createdAt: '',
@@ -735,6 +786,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Sulivan Souza',
       createdAt: '',
@@ -749,6 +801,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Tapas Pal',
       createdAt: '',
@@ -763,6 +816,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Tânia Regina Zimmermann',
       createdAt: '',
@@ -777,6 +831,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Tiago Tendai Chingore',
       createdAt: '',
@@ -791,6 +846,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Valentin Constantinov',
       createdAt: '',
@@ -805,6 +861,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Vicente Cabrera Calheiros',
       createdAt: '',
@@ -819,6 +876,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Vitor Bini Teodoro',
       createdAt: '',
@@ -833,6 +891,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Vivianne Lindsay Cardoso',
       createdAt: '',
@@ -847,6 +906,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Waldinéia Antunes de Alcântara',
       createdAt: '',
@@ -861,6 +921,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Ana Maria Barbosa Quiqueto',
       createdAt: '',
@@ -875,6 +936,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Ana Maria de Farias Soares',
       createdAt: '',
@@ -889,6 +951,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'André Fernandes da Silva',
       createdAt: '',
@@ -903,6 +966,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Bruno Ricardo Carvalho Pires',
       createdAt: '',
@@ -917,6 +981,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Camila Reis Tomaz',
       createdAt: '',
@@ -931,6 +996,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Carla Yoly Maydana Yugar',
       createdAt: '',
@@ -945,6 +1011,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Cássia Amélia Gomes',
       createdAt: '',
@@ -959,6 +1026,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Celenita Gualberto Pereira Bernieri',
       createdAt: '',
@@ -973,6 +1041,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Cleuma Roberta de Souza Marinho',
       createdAt: '',
@@ -987,6 +1056,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Cristiane Teixeira Bazílio Marchetti',
       createdAt: '',
@@ -1001,6 +1071,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Edelaine Fogaça Avelaneda',
       createdAt: '',
@@ -1015,6 +1086,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Fábio Andrade Dias',
       createdAt: '',
@@ -1029,6 +1101,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Fábio Freitas dos Santos',
       createdAt: '',
@@ -1043,6 +1116,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Gerôncio Silva Barbosa',
       createdAt: '',
@@ -1057,6 +1131,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Isaltina Santos da Costa Oliveira',
       createdAt: '',
@@ -1071,6 +1146,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Issufo Jacinto Francisco Camanguira',
       createdAt: '',
@@ -1085,6 +1161,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: "Joana D'Arc Alves Paes Andrade",
       createdAt: '',
@@ -1099,6 +1176,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Joicileia Juiate Fonseca',
       createdAt: '',
@@ -1113,6 +1191,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Júlio Martins Jerónimo Muhongo',
       createdAt: '',
@@ -1127,6 +1206,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Karina Gasparelli Benites',
       createdAt: '',
@@ -1141,6 +1221,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Laurenita Gualberto Pereira Alves',
       createdAt: '',
@@ -1155,6 +1236,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Letícia Apoliana Ferreira Barbosa',
       createdAt: '',
@@ -1169,6 +1251,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Luis Guilherme Costa Berti',
       createdAt: '',
@@ -1183,6 +1266,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Mailson Lima Nazaré',
       createdAt: '',
@@ -1197,6 +1281,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Marcos Roberto Terra de Oliveira',
       createdAt: '',
@@ -1211,6 +1296,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Maria Rita de Cássia Oliveira',
       createdAt: '',
@@ -1225,6 +1311,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Milene Silva Ferreira',
       createdAt: '',
@@ -1239,6 +1326,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Nicholas Augusto Mendes da Rocha Lima',
       createdAt: '',
@@ -1253,6 +1341,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Patrícia Albuquerque Medeiros',
       createdAt: '',
@@ -1267,6 +1356,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Patrícia Cristina Melero Pereira Leite',
       createdAt: '',
@@ -1281,6 +1371,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Rafaela Rosa Chaves Cardoso',
       createdAt: '',
@@ -1295,6 +1386,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Raimunda Gomes Maciel',
       createdAt: '',
@@ -1309,6 +1401,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Rita do Socorro Osório Epifane',
       createdAt: '',
@@ -1323,6 +1416,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Ronélia do Nascimento',
       createdAt: '',
@@ -1337,6 +1431,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Telma Lima da Cunha Ramos',
       createdAt: '',
@@ -1351,6 +1446,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Telma Maria Maine Manuel',
       createdAt: '',
@@ -1365,6 +1461,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Thaís Andréa Cunha',
       createdAt: '',
@@ -1379,6 +1476,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Thatiana Rodrigues Saqueto',
       createdAt: '',
@@ -1393,6 +1491,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Tobias Ferreira Gomes Terceiro',
       createdAt: '',
@@ -1407,6 +1506,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Valquíria Cristina Martins',
       createdAt: '',
@@ -1421,6 +1521,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Victor Hugo Silva Souza',
       createdAt: '',
@@ -1435,6 +1536,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Wellington de Arruda Jacob',
       createdAt: '',
@@ -1449,6 +1551,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Anne Verônica Mota de Castilho',
       createdAt: '',
@@ -1463,6 +1566,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Bárbara Caroline Ferreira Figueiredo',
       createdAt: '',
@@ -1477,6 +1581,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'João Victor de Melo Schimith',
       createdAt: '',
@@ -1491,6 +1596,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Rafaela Gonçalves Garcia',
       createdAt: '',
@@ -1505,6 +1611,7 @@ const researchers: IResearcher[] = [
   },
   {
     user: {
+      role: 'USER',
       id: '',
       name: 'Valdivino Marques Sobrinho',
       createdAt: '',

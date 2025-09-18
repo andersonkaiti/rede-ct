@@ -5,50 +5,18 @@ import { registerPendency } from '@http/documents/pendencies/register-pendency'
 import { updatePendency } from '@http/documents/pendencies/update-pendency'
 import { HTTPError } from 'ky'
 import { revalidatePath } from 'next/cache'
-import z from 'zod'
+import type { RegisterPendencyInput } from './cadastradas/_components/create-pendency/use-register-pendency'
+import type { UpdatePendencyInput } from './cadastradas/_components/update-pendency/use-update-pendency'
 
-const registerPendencySchema = z.object({
-  userId: z.uuid('id do usuário inválido'),
-  title: z.string().min(1, 'Título é obrigatório'),
-  description: z.string().min(1, 'Descrição é obrigatória'),
-  status: z.enum(['PENDING', 'PAID']).default('PENDING'),
-  dueDate: z.string().optional(),
-  document: z
-    .any()
-    .refine(
-      (file) => file instanceof File && file.size > 0,
-      'Documento é obrigatório'
-    ),
-})
-
-export interface IRegisterActionState {
-  success: boolean
-  errors:
-    | z.inferFlattenedErrors<typeof registerPendencySchema>['fieldErrors']
-    | null
-  payload: FormData | null
-  message: string | null
-}
+export type RegisterPendencyActionResult =
+  | { success: true }
+  | { success: false; message: string }
 
 export async function registerPendencyAction(
-  _: unknown,
-  formData: FormData
-): Promise<IRegisterActionState> {
-  const { success, data, error } = registerPendencySchema.safeParse(
-    Object.fromEntries(formData)
-  )
-
-  if (!success) {
-    return {
-      success: false,
-      errors: error.flatten().fieldErrors,
-      payload: formData,
-      message: null,
-    }
-  }
-
+  values: RegisterPendencyInput
+): Promise<RegisterPendencyActionResult> {
   try {
-    await registerPendency(data)
+    await registerPendency(values)
 
     revalidatePath('/area-restrita/pendencias')
   } catch (err) {
@@ -57,73 +25,35 @@ export async function registerPendencyAction(
 
       return {
         success: false,
-        errors: null,
-        payload: formData,
-        message: errorBody.message,
+        message: errorBody?.message ?? 'Falha ao cadastrar pendência.',
       }
     }
 
     return {
       success: false,
-      errors: null,
-      payload: formData,
       message: 'Aconteceu um erro inesperado.',
     }
   }
 
-  return {
-    success: true,
-    errors: null,
-    payload: null,
-    message: null,
-  }
+  return { success: true }
 }
 
-const updatePendencySchema = z.object({
-  id: z.uuid(),
-  title: z.string().min(1, 'Título é obrigatório.'),
-  description: z.string().min(1, 'Descrição é obrigatória.'),
-  status: z.enum(['PENDING', 'PAID']).default('PENDING'),
-  dueDate: z.string().optional(),
-  document: z
-    .any()
-    .refine(
-      (file) => file.size === 0 || (file instanceof File && file.size > 0),
-      'Documento é inválido'
-    )
-    .optional(),
-})
-
-export interface IUpdateActionState {
-  success: boolean
-  errors:
-    | z.inferFlattenedErrors<typeof updatePendencySchema>['fieldErrors']
-    | null
-  payload: FormData | null
-  message: string | null
-}
+export type UpdatePendencyActionResult =
+  | { success: true }
+  | { success: false; message: string }
 
 export async function updatePendencyAction(
-  pendencyId: string,
-  _: unknown,
-  formData: FormData
-): Promise<IUpdateActionState> {
-  const { success, data, error } = updatePendencySchema.safeParse({
-    ...Object.fromEntries(formData),
-    id: pendencyId,
-  })
-
-  if (!success) {
-    return {
-      success: false,
-      errors: error.flatten().fieldErrors,
-      payload: formData,
-      message: null,
-    }
-  }
-
+  values: UpdatePendencyInput
+): Promise<UpdatePendencyActionResult> {
   try {
-    await updatePendency(data)
+    await updatePendency({
+      id: values.id,
+      title: values.title,
+      description: values.description,
+      status: values.status ?? 'PENDING',
+      dueDate: values.dueDate,
+      document: values.document,
+    })
 
     revalidatePath('/area-restrita/pendencias')
   } catch (err) {
@@ -132,26 +62,17 @@ export async function updatePendencyAction(
 
       return {
         success: false,
-        errors: null,
-        payload: formData,
-        message: errorBody.message,
+        message: errorBody?.message ?? 'Falha ao atualizar pendência.',
       }
     }
 
     return {
       success: false,
-      errors: null,
-      payload: formData,
       message: 'Aconteceu um erro inesperado.',
     }
   }
 
-  return {
-    success: true,
-    errors: null,
-    payload: null,
-    message: null,
-  }
+  return { success: true }
 }
 
 export interface IDeleteActionState {

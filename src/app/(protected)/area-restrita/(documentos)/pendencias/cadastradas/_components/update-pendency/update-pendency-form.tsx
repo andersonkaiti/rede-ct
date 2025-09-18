@@ -10,60 +10,44 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@components/ui/dialog'
-import { Input } from '@components/ui/input'
-import { Label } from '@components/ui/label'
 import {
-  PageForm,
-  PageFormContent,
-  PageFormContentField,
-} from '@components/ui/page-container'
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@components/ui/form'
+import { Input } from '@components/ui/input'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
+  SelectValue,
 } from '@components/ui/select'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { SelectMember } from '../../../../../_components/select-member'
 import { useUpdatePendency } from './use-update-pendency'
 
 interface IUpdatePendencyFormProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const statusMapping = {
-  PENDING: 'Pendente',
-  PAID: 'Pago',
-}
-
 export function UpdatePendencyForm({ setIsOpen }: IUpdatePendencyFormProps) {
-  const { pendency, errors, formAction, isLoading, message, payload } =
+  const { pendency, form, serverError, isSubmitting, onSubmit } =
     useUpdatePendency({ setIsOpen })
 
   const [dueDate, setDueDate] = useState<Date | undefined>()
 
   useEffect(() => {
-    if (payload?.get('dueDate')) {
-      const dueDateValue = payload?.get('dueDate')
-
-      if (typeof dueDateValue === 'string' && dueDateValue) {
-        setDueDate(new Date(dueDateValue))
-      }
-
-      return
-    }
-
     if (pendency?.dueDate) {
       setDueDate(new Date(pendency.dueDate))
-
-      return
+    } else {
+      setDueDate(undefined)
     }
-    setDueDate(undefined)
-  }, [payload, pendency])
-
-  const [status, setStatus] = useState('PENDING')
+  }, [pendency])
 
   return (
     <DialogContent>
@@ -71,141 +55,119 @@ export function UpdatePendencyForm({ setIsOpen }: IUpdatePendencyFormProps) {
         <DialogTitle>Atualizar pendência</DialogTitle>
       </DialogHeader>
 
-      <PageForm action={formAction}>
-        <PageFormContent>
-          {message && (
+      <Form {...form}>
+        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+          {serverError && (
             <Alert className="mb-4 border-primary" variant="destructive">
               <AlertCircle className="size-4" />
-              <AlertDescription>{message}</AlertDescription>
+              <AlertDescription>{serverError}</AlertDescription>
             </Alert>
           )}
 
-          <PageFormContentField>
-            <Label>Membro</Label>
-            <SelectMember
-              userId={(payload?.get('userId') as string) || pendency?.userId}
-            />
-          </PageFormContentField>
-
-          <PageFormContentField>
-            <Label>Título</Label>
-
-            <Input
-              defaultValue={
-                (payload?.get('title') as string) ?? pendency?.title ?? ''
-              }
-              name="title"
-              placeholder="Título da pendência"
-            />
-
-            {errors?.title && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors.title}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Título</FormLabel>
+                <FormControl>
+                  <Input placeholder="Título da pendência" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label>Descrição</Label>
-
-            <Textarea
-              defaultValue={
-                (payload?.get('description') as string) ??
-                pendency?.description ??
-                ''
-              }
-              name="description"
-              placeholder="Descrição"
-            />
-
-            {errors?.description && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors.description}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Descrição</FormLabel>
+                <FormControl>
+                  <Textarea placeholder="Descrição" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label>Data de vencimento</Label>
-
-            <div className="space-y-2">
-              <DatePicker
-                onChange={setDueDate}
-                placeholder="Selecione uma data de vencimento"
-                value={dueDate}
-              />
-              <input
-                name="dueDate"
-                type="hidden"
-                value={dueDate ? dueDate.toISOString().split('T')[0] : ''}
-              />
-            </div>
-
-            {errors?.dueDate && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors.dueDate}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="dueDate"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Data de vencimento</FormLabel>
+                <FormControl>
+                  <div className="space-y-2">
+                    <DatePicker
+                      onChange={(date) => {
+                        setDueDate(date)
+                        field.onChange(
+                          date ? date.toISOString().split('T')[0] : ''
+                        )
+                      }}
+                      placeholder="Selecione uma data de vencimento"
+                      value={dueDate}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label>Documento (opcional)</Label>
-            <Input
-              accept="application/pdf,image/*"
-              name="document"
-              type="file"
-            />
-            {errors?.document && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors.document}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="document"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Documento (opcional)</FormLabel>
+                <FormControl>
+                  <Input
+                    accept="application/pdf,image/*"
+                    onChange={(e) => field.onChange(e.target.files?.[0])}
+                    type="file"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
+          />
 
-          <PageFormContentField>
-            <Label>Status</Label>
-
-            <Select
-              defaultValue={
-                (payload?.get('status') as string) ??
-                pendency?.status ??
-                'PENDING'
-              }
-              onValueChange={setStatus}
-              name="status"
-            >
-              <SelectTrigger className="w-full">
-                {statusMapping[status as keyof typeof statusMapping]}
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="PENDING">Pendente</SelectItem>
-                <SelectItem value="PAID">Pago</SelectItem>
-              </SelectContent>
-            </Select>
-
-            {errors?.status && (
-              <Alert className="border-primary p-2" variant="destructive">
-                <AlertCircle className="size-4" />
-                <AlertDescription>{errors.status}</AlertDescription>
-              </Alert>
+          <FormField
+            control={form.control}
+            name="status"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Status</FormLabel>
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Selecione o status" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="PENDING">Pendente</SelectItem>
+                    <SelectItem value="PAID">Pago</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
             )}
-          </PageFormContentField>
-        </PageFormContent>
+          />
 
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="ghost">Cancelar</Button>
-          </DialogClose>
-          <Button disabled={isLoading} type="submit">
-            {isLoading && <Loader2 className="size-4 animate-spin" />}
-            Atualizar pendência
-          </Button>
-        </DialogFooter>
-      </PageForm>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="ghost">Cancelar</Button>
+            </DialogClose>
+            <Button disabled={isSubmitting} type="submit">
+              {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+              Atualizar pendência
+            </Button>
+          </DialogFooter>
+        </form>
+      </Form>
     </DialogContent>
   )
 }

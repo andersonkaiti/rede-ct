@@ -47,7 +47,10 @@ export const teamMembersTableColumns: ColumnDef<ITeamMember>[] = [
       <Button
         className="cursor-pointer"
         onClick={() =>
+        {
+          console.log(original.id)
           original.id ? meta?.handleRemove?.(original.id) : undefined
+        }
         }
         type="button"
         variant="ghost"

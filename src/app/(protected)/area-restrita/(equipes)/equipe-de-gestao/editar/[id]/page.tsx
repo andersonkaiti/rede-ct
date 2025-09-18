@@ -2,13 +2,17 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@components/ui/form'
 import { Input } from '@components/ui/input'
-import { Label } from '@components/ui/label'
 import {
   PageContainer,
-  PageForm,
-  PageFormContent,
-  PageFormContentField,
   PageHeader,
   PageMain,
   PageTitle,
@@ -16,23 +20,20 @@ import {
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../_components/select-member'
 import { TeamMembersTable } from '../../_components/team-members-table/team-members-table'
-import { useUpdateTeam } from '../../_hooks/use-update-team.hook'
 import { LoadingInputSkeleton } from './_components/loading-input-skeleton'
 import { LoadingTableSkeleton } from './_components/loading-table-skeleton'
+import { useUpdateTeam } from './use-update-team.hook'
 
 export default function EditarEquipeDeGestao() {
   const {
-    incomingTeam,
-    team,
-    isTeamLoading,
-    inputRef,
-    setSelectedMember,
-    handleIncludeTeamMember,
+    form,
+    handleIncludeMember,
     handleRemoveMember,
-    errors,
-    formAction,
-    isLoading,
-    message,
+    isSubmitting,
+    members,
+    isTeamLoading,
+    onSubmit,
+    serverError,
   } = useUpdateTeam()
 
   return (
@@ -41,70 +42,66 @@ export default function EditarEquipeDeGestao() {
         <PageTitle>Editar Equipe</PageTitle>
       </PageHeader>
       <PageMain>
-        <PageForm action={formAction}>
-          <PageFormContent>
-            {message && (
+        <Form {...form}>
+          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+            {serverError && (
               <Alert className="mb-4 border-primary" variant="destructive">
                 <AlertCircle className="size-4" />
-                <AlertDescription>{message}</AlertDescription>
+                <AlertDescription>{serverError}</AlertDescription>
               </Alert>
             )}
 
-            <PageFormContentField>
-              <Label>Nome da equipe</Label>
-              {isTeamLoading ? (
-                <LoadingInputSkeleton />
-              ) : (
-                <Input
-                  defaultValue={incomingTeam?.name}
-                  name="name"
-                  placeholder="Nome"
-                />
-              )}
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nome da equipe</FormLabel>
 
-              {errors?.name && errors?.name && (
-                <Alert className="border-primary p-2" variant="destructive">
-                  <AlertCircle className="size-4" />
-                  <AlertDescription>{errors?.name}</AlertDescription>
-                </Alert>
-              )}
-            </PageFormContentField>
-            <PageFormContentField>
-              <Label>Membros cadastrados</Label>
+                  {isTeamLoading && <LoadingInputSkeleton />}
 
-              <SelectMember
-                handleIncludeTeamMember={handleIncludeTeamMember}
-                inputRef={inputRef}
-                setSelectedMember={setSelectedMember}
-              />
-
-              {isTeamLoading ? (
-                <LoadingTableSkeleton />
-              ) : (
-                <TeamMembersTable
-                  handleRemoveMember={handleRemoveMember}
-                  teamMembers={team}
-                />
+                  {!isTeamLoading && (
+                    <FormControl>
+                      <Input {...field} placeholder="Nome" />
+                    </FormControl>
+                  )}
+                </FormItem>
               )}
+            />
 
-              {errors?.members && errors?.members && (
-                <Alert className="border-primary p-2" variant="destructive">
-                  <AlertCircle className="size-4" />
-                  <AlertDescription>{errors?.members}</AlertDescription>
-                </Alert>
+            <FormField
+              control={form.control}
+              name="members"
+              render={() => (
+                <FormItem>
+                  <FormLabel>Membros cadastrados</FormLabel>
+                  <FormControl>
+                    <SelectMember handleIncludeMember={handleIncludeMember} />
+                  </FormControl>
+
+                  {isTeamLoading && <LoadingTableSkeleton />}
+
+                  {!isTeamLoading && (
+                    <TeamMembersTable
+                      handleRemoveMember={handleRemoveMember}
+                      teamMembers={members}
+                    />
+                  )}
+                  <FormMessage />
+                </FormItem>
               )}
-            </PageFormContentField>
+            />
 
             <Button
-              className="cursor-pointer"
-              disabled={isLoading}
+              className="w-full cursor-pointer"
+              disabled={isSubmitting}
               type="submit"
             >
-              {isLoading && <Loader2 className="size-4 animate-spin" />}
+              {isSubmitting && <Loader2 className="size-4 animate-spin" />}
               Atualizar equipe
             </Button>
-          </PageFormContent>
-        </PageForm>
+          </form>
+        </Form>
       </PageMain>
     </PageContainer>
   )

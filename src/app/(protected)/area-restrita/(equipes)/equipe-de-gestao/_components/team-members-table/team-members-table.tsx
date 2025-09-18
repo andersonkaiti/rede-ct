@@ -5,7 +5,7 @@ import { teamMembersTableColumns } from './team-members-table-columns'
 
 interface ITeamMembersTableProps {
   teamMembers: ITeamMember[]
-  handleRemoveMember: (id: string) => void
+  handleRemoveMember: (memberId: string) => void
 }
 
 export function TeamMembersTable({

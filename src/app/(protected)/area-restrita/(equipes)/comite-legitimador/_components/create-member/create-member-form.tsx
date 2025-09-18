@@ -7,24 +7,27 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@components/ui/dialog'
-import { Input } from '@components/ui/input'
-import { Label } from '@components/ui/label'
 import {
-  PageForm,
-  PageFormContent,
-  PageFormContentField,
-} from '@components/ui/page-container'
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@components/ui/form'
+import { Input } from '@components/ui/input'
+import { PageFormContentField } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../../../_components/select-member'
-import { useCreateLegitimatorCommitteeTeamMember } from '../../_hooks/use-create-member'
+import { useCreateLegitimatorCommitteeTeamMember } from './use-create-member.hook'
 
 interface ICreateMemberFormProps {
   setIsOpen: (isOpen: boolean) => void
 }
 
 export function CreateMemberForm({ setIsOpen }: ICreateMemberFormProps) {
-  const { errors, payload, formAction, message, isLoading } =
+  const { form, isSubmitting, onSubmit, serverError } =
     useCreateLegitimatorCommitteeTeamMember(setIsOpen)
 
   return (
@@ -34,73 +37,68 @@ export function CreateMemberForm({ setIsOpen }: ICreateMemberFormProps) {
       </DialogHeader>
 
       <DialogContent>
-        <PageForm action={formAction}>
-          <PageFormContent>
-            {message && (
+        <Form {...form}>
+          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+            {serverError && (
               <Alert className="mb-4 border-primary" variant="destructive">
                 <AlertCircle className="size-4" />
-                <AlertDescription>{message}</AlertDescription>
+                <AlertDescription>{serverError}</AlertDescription>
               </Alert>
             )}
 
-            <PageFormContentField>
-              <Label>Membro</Label>
-
-              <SelectMember userId={payload?.get('userId') as string} />
-
-              {errors?.userId && errors.userId && (
-                <Alert className="border-primary p-2" variant="destructive">
-                  <AlertCircle className="size-4" />
-                  <AlertDescription>{errors?.userId}</AlertDescription>
-                </Alert>
+            <FormField
+              control={form.control}
+              name="userId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Membro</FormLabel>
+                  <FormControl>
+                    <SelectMember onChange={field.onChange} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
               )}
-            </PageFormContentField>
+            />
 
-            <PageFormContentField>
-              <Label>Cargo</Label>
-
-              <Input
-                defaultValue={payload?.get('role') as string}
-                name="role"
-                placeholder="Cargo"
-              />
-
-              {errors?.role && errors.role && (
-                <Alert className="border-primary p-2" variant="destructive">
-                  <AlertCircle className="size-4" />
-                  <AlertDescription>{errors?.role}</AlertDescription>
-                </Alert>
+            <FormField
+              control={form.control}
+              name="role"
+              render={({ field }) => (
+                <PageFormContentField>
+                  <FormLabel>Cargo</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Cargo" />
+                  </FormControl>
+                  <FormMessage />
+                </PageFormContentField>
               )}
-            </PageFormContentField>
+            />
 
-            <PageFormContentField>
-              <Label>Descrição</Label>
-
-              <Textarea
-                defaultValue={payload?.get('description') as string}
-                name="description"
-                placeholder="Descrição"
-              />
-
-              {errors?.description && errors.description && (
-                <Alert className="border-primary p-2" variant="destructive">
-                  <AlertCircle className="size-4" />
-                  <AlertDescription>{errors?.description}</AlertDescription>
-                </Alert>
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <PageFormContentField>
+                  <FormLabel>Descrição</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} placeholder="Descrição" />
+                  </FormControl>
+                  <FormMessage />
+                </PageFormContentField>
               )}
-            </PageFormContentField>
-          </PageFormContent>
+            />
 
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="ghost">Cancelar</Button>
-            </DialogClose>
-            <Button disabled={isLoading} type="submit">
-              {isLoading && <Loader2 className="size-4 animate-spin" />}
-              Cadastrar membro
-            </Button>
-          </DialogFooter>
-        </PageForm>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="ghost">Cancelar</Button>
+              </DialogClose>
+              <Button disabled={isSubmitting} type="submit">
+                {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+                Cadastrar membro
+              </Button>
+            </DialogFooter>
+          </form>
+        </Form>
       </DialogContent>
     </DialogContent>
   )

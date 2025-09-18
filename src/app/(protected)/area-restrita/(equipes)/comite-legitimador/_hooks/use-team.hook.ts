@@ -3,7 +3,7 @@ import { getTeams } from '@http/teams/get-teams'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import type { ITeam } from 'types/team'
-import type { ILegitimatorCommittee } from '../_components/table/legitimator-committee-table-columns'
+import type { ILegitimatorCommittee } from '../_components/_table/legitimator-committee-table-columns'
 
 const TEAM_TYPE = 'comite-legitimador'
 

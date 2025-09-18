@@ -22,6 +22,7 @@ export function CreateMemberButton({ children }: ICreateMemberButtonProps) {
           {children}
         </Button>
       </DialogTrigger>
+
       <CreateMemberForm setIsOpen={setIsOpen} />
     </Dialog>
   )

@@ -6,7 +6,7 @@ import { Pendency } from './pendency'
 import { usePendencies } from './use-pendencies.hook'
 
 export function PendencyList() {
-  const { paginatedResults, isLoading, page } = usePendencies()
+  const { paginatedResults, isLoading, page, limit } = usePendencies()
 
   const pendencies =
     paginatedResults?.pendencies.filter(
@@ -37,7 +37,7 @@ export function PendencyList() {
 
       <PaginatorComponent
         currentPage={Number(page)}
-        defaultRowsPerPage={9}
+        defaultRowsPerPage={Number(limit)}
         totalPages={paginatedResults?.totalPages ?? 1}
       />
     </>

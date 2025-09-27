@@ -26,5 +26,6 @@ export function useContributions() {
     paginatedResults,
     isLoading,
     page,
+    limit,
   }
 }

@@ -6,7 +6,7 @@ import { LoadingSkeleton } from './loading-skeleton'
 import { useCertifications } from './use-certifications.hook'
 
 export function CertificationList() {
-  const { paginatedResults, isLoading, page } = useCertifications()
+  const { paginatedResults, isLoading, page, limit } = useCertifications()
 
   const certifications = paginatedResults?.certifications ?? []
 
@@ -34,7 +34,7 @@ export function CertificationList() {
 
       <PaginatorComponent
         currentPage={Number(page)}
-        defaultRowsPerPage={9}
+        defaultRowsPerPage={Number(limit)}
         totalPages={paginatedResults?.totalPages ?? 1}
       />
     </>

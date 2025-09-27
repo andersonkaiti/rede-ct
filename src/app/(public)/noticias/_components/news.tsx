@@ -21,7 +21,7 @@ export function Noticia({
         tabIndex={-1}
       >
         <header className="h-60">
-          <picture className="relative flex size-full overflow-hidden rounded-lg border-1 border-gray-200/20">
+          <picture className="relative flex size-full overflow-hidden rounded-lg border-1 border-slate-900">
             <Image
               alt={title}
               className="object-cover"

@@ -26,5 +26,6 @@ export function useCertifications() {
     paginatedResults,
     isLoading,
     page,
+    limit,
   }
 }

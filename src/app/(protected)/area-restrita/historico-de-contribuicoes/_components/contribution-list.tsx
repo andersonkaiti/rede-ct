@@ -6,7 +6,7 @@ import { LoadingSkeleton } from './loading-skeleton'
 import { useContributions } from './use-contributions.hook'
 
 export function ContributionList() {
-  const { paginatedResults, isLoading, page } = useContributions()
+  const { paginatedResults, isLoading, page, limit } = useContributions()
 
   const contributions = paginatedResults?.pendencies ?? []
 
@@ -34,7 +34,7 @@ export function ContributionList() {
 
       <PaginatorComponent
         currentPage={Number(page)}
-        defaultRowsPerPage={9}
+        defaultRowsPerPage={Number(limit)}
         totalPages={paginatedResults?.totalPages ?? 1}
       />
     </>

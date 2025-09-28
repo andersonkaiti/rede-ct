@@ -15,7 +15,7 @@ export function HeroSection() {
         }}
       />
 
-      <h1 className="text-center font-semibold text-4xl text-foreground tracking-wide md:text-5xl xl:text-6xl">
+      <h1 className="text-center font-bold text-4xl text-foreground tracking-wide md:text-5xl xl:text-6xl">
         RedeCT
       </h1>
 

@@ -15,6 +15,7 @@ import {
 } from '@components/ui/timeline'
 import { getTimelineRedeCT } from '@mocks/timeline-rede-ct'
 import { Users } from 'lucide-react'
+import Image from 'next/image'
 import { Countries } from './_components/countries'
 import { WhatAreRedeCTCard } from './_components/whats-are-cards/rede-ct'
 import { WhatAreTraditionalPeopleCard } from './_components/whats-are-cards/traditional-people'
@@ -23,26 +24,41 @@ export default async function ApresentacaoEHistoria() {
   const timelineData = await getTimelineRedeCT()
 
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <section className="flex flex-col items-center justify-center text-white">
-        <h1 className="title-2 text-foreground">História da RedeCT</h1>
-        <p className="w-fit font-light text-muted-foreground">
-          desde 02/09/2002
-        </p>
+    <main className="relative mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
+      <div
+        aria-hidden
+        className="-translate-x-1/2 pointer-events-none absolute top-0 left-1/2 z-0 hidden h-48 w-full dark:flex"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 100% at 50% 0%, oklch(0.637 0.237 25.331 / 0.25) 0%, transparent 80%)',
+        }}
+      />
+
+      <section className="space-y-8 px-4 py-16 text-white">
+        <Image
+          alt="Rede CT"
+          className="mx-auto invert-100 dark:invert-0"
+          height={75}
+          priority
+          src="/images/favicon.png"
+          width={75}
+        />
+
+        <h1 className="title-2 text-center text-foreground">RedeCT</h1>
       </section>
 
       <section className="space-y-14">
-        <h2 className="text-center font-semibold text-3xl">Sobre a RedeCT</h2>
-
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
           <WhatAreRedeCTCard />
 
           <WhatAreTraditionalPeopleCard />
         </div>
+      </section>
 
+      <section className="space-y-14">
         <div className="flex items-center justify-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <EarthIcon />
+            <EarthIcon className="!size-7" />
           </Badge>
           <h2 className="font-semibold text-3xl">Presença internacional</h2>
         </div>

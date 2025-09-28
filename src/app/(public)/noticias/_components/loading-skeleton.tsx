@@ -14,30 +14,41 @@ export default function LoadingSkeleton() {
     <div className="grid w-full grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
       {Array.from({ length: limit }).map((_, index: number) => (
         <div className="flex flex-col gap-2" key={index}>
-          <div className="h-60 w-full overflow-hidden rounded-lg border-1 border-gray-200/20">
-            <Skeleton className="flex size-full items-center justify-center">
-              <ImageIcon className="text-muted-foreground" />
-            </Skeleton>
-          </div>
-          <div className="flex flex-grow flex-col gap-4.5 pb-2">
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <Skeleton className="h-4 w-24 rounded-full" />
-              </div>
-              <Skeleton className="h-7 w-3/4 rounded-md" />
+          <header className="h-60">
+            <div className="relative flex size-full overflow-hidden rounded-lg border-1 border-background-900">
+              <Skeleton className="flex size-full items-center justify-center">
+                <ImageIcon className="text-muted-foreground" />
+              </Skeleton>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent dark:from-black/50 dark:to-transparent" />
             </div>
+          </header>
+
+          <div className="flex h-fit flex-grow flex-col justify-between gap-4 py-8">
             <div className="space-y-2">
-              <Skeleton className="h-5 w-full rounded-full" />
+              <Skeleton className="h-6 w-full rounded-md" />
+              <Skeleton className="h-6 w-4/5 rounded-md" />
+              <Skeleton className="h-6 w-3/5 rounded-md" />
             </div>
-            <Skeleton className="h-px w-full" />
+
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-full rounded-full" />
+              <Skeleton className="h-4 w-5/6 rounded-full" />
+              <Skeleton className="h-4 w-4/5 rounded-full" />
+            </div>
           </div>
-          <div className="flex w-full items-center justify-between gap-x-2 pt-1">
-            <div className="flex w-full items-center gap-x-2">
+
+          <footer className="flex w-full items-center gap-x-4">
+            <div className="flex items-center gap-2">
               <Skeleton className="size-8 rounded-full" />
-              <Skeleton className="h-4.5 w-full rounded-full" />
+              <Skeleton className="h-4 w-20 rounded-full" />
             </div>
-            <Skeleton className="size-4 rounded-full" />
-          </div>
+
+            <Skeleton className="h-4 w-px" />
+
+            <div className="flex items-center gap-2">
+              <Skeleton className="h-3 w-16 rounded-full" />
+            </div>
+          </footer>
         </div>
       ))}
     </div>

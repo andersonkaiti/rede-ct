@@ -46,20 +46,11 @@ export function useUpdateLegitimatorCommitteeTeamMember({
   const form = useForm({
     resolver: zodResolver(legitimatorCommitteeTeamMemberSchema),
     values: {
-      description: '',
-      role: '',
-      userId: '',
+      description: member?.description ?? '',
+      role: member?.role ?? '',
+      userId: member?.userId ?? '',
     },
   })
-
-  useEffect(() => {
-    if (member) {
-      form.reset({
-        ...member,
-        description: member.description || '',
-      })
-    }
-  }, [member, form])
 
   async function onSubmit(values: UpdateLegitimatorCommitteeTeamMemberInput) {
     const result: LegitimatorCommitteeTeamMemberActionResult =

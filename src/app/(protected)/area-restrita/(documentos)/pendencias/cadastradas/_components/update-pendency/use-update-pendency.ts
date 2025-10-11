@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getPendency } from '@http/documents/pendencies/get-pendency'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
@@ -58,27 +58,16 @@ export function useUpdatePendency({ setIsOpen }: IUseUpdatePendencyProps) {
 
   const form = useForm<UpdatePendencyInput>({
     resolver: zodResolver(updatePendencySchema),
-    defaultValues: {
-      id: pendencyId,
-      title: '',
-      description: '',
-      status: 'PENDING',
-      dueDate: '',
+    values: {
+      id: pendency?.id ?? '',
+      title: pendency?.title ?? '',
+      description: pendency?.description ?? '',
+      status: pendency?.status ?? 'PENDING',
+      dueDate: pendency?.dueDate ?? '',
       document: undefined,
     },
     mode: 'onChange',
   })
-
-  useEffect(() => {
-    if (pendency) {
-      form.reset({
-        ...pendency,
-        description: pendency.description || '',
-        dueDate: pendency.dueDate || '',
-        document: undefined,
-      })
-    }
-  }, [pendency, form])
 
   async function onSubmit(values: UpdatePendencyInput) {
     const result: UpdatePendencyActionResult = await updatePendencyAction({

@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getCertification } from '@http/documents/certifications/get-certification'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
@@ -58,18 +58,12 @@ export function useUpdateCertification({
   const form = useForm<UpdateCertificationInput>({
     resolver: zodResolver(updateCertificationSchema),
     values: {
-      id: '',
-      title: '',
-      description: '',
+      id: certification?.id ?? '',
+      title: certification?.title ?? '',
+      description: certification?.description ?? '',
       certification: undefined,
     },
   })
-
-  useEffect(() => {
-    if (certification) {
-      form.reset(certification)
-    }
-  }, [certification, form])
 
   async function onSubmit(values: UpdateCertificationInput) {
     const result: UpdateCertificationActionResult =

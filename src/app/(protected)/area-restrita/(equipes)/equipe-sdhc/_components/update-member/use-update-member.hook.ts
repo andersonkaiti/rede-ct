@@ -46,20 +46,11 @@ export function useUpdateSDHCTeamMember({
   const form = useForm({
     resolver: zodResolver(updateSDHCTeamMemberSchema),
     values: {
-      userId: '',
-      role: '',
-      description: '',
+      description: member?.description ?? '',
+      role: member?.role ?? '',
+      userId: member?.userId ?? '',
     },
   })
-
-  useEffect(() => {
-    if (member) {
-      form.reset({
-        ...member,
-        description: member.description || '',
-      })
-    }
-  }, [member, form])
 
   async function onSubmit(values: UpdateSDHCTeamMemberInput) {
     const result: SDHCTeamMemberActionResult = await updateSDHCTeamMemberAction(

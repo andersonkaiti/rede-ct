@@ -65,18 +65,12 @@ export function useUpdateNews() {
   const form = useForm({
     resolver: zodResolver(updateNewsSchema),
     values: {
-      id,
-      title: '',
-      content: '',
+      id: news?.id ?? '',
+      title: news?.title ?? '',
+      content: news?.content ?? '',
       image: undefined,
     },
   })
-
-  useEffect(() => {
-    if (news) {
-      form.reset(news)
-    }
-  }, [news, form])
 
   const router = useRouter()
 

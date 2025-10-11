@@ -59,9 +59,7 @@ export function useUpdateTeam() {
 
   useEffect(() => {
     if (!isTeamLoading && incomingTeam) {
-      form.reset({
-        ...incomingTeam,
-      })
+      form.reset(incomingTeam)
 
       setMembers(incomingTeam.members)
     }

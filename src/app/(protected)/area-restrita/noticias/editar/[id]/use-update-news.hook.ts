@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getNewsById } from '@http/news/get-news-by-id'
 import { useQuery } from '@tanstack/react-query'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
@@ -17,36 +17,17 @@ export const updateNewsSchema = z.object({
   id: z.uuid(),
   title: z.string().min(1, 'Título é obrigatório'),
   content: z.string().min(1, 'Texto é obrigatório'),
-  image: z
-    .any()
-    .refine(
-      (value) => {
-        if (value instanceof File) {
-          return value.size > 0
-        }
+  image: z.any().refine((value) => {
+    if (value instanceof File) {
+      return value.size <= TOTAL_SIZE
+    }
 
-        if (typeof value === 'string') {
-          return value.length > 0
-        }
+    if (value === undefined) {
+      return true
+    }
 
-        return false
-      },
-      { message: 'Imagem é obrigatória' }
-    )
-    .refine(
-      (value) => {
-        if (value instanceof File) {
-          return value.size <= TOTAL_SIZE
-        }
-
-        if (typeof value === 'string') {
-          return true
-        }
-
-        return false
-      },
-      { message: 'A imagem deve ter no máximo 5MB' }
-    ),
+    return false
+  }, 'A imagem deve ter no máximo 5MB'),
 })
 
 export type UpdateNewsInput = z.infer<typeof updateNewsSchema>

@@ -19,9 +19,11 @@ export async function registerPendency({
 
   formData.append('title', title)
   formData.append('description', description)
+
   if (dueDate) {
     formData.append('dueDate', dueDate)
   }
+
   formData.append('document', document)
 
   await api

@@ -71,7 +71,7 @@ export function useUpdateCertification({
 
     if (result.success) {
       queryClient.invalidateQueries({
-        queryKey: ['users', 'certifications', filter, orderBy, page, limit],
+        queryKey: ['user', 'certifications', filter, orderBy, page, limit],
       })
 
       toast.success('Certificado atualizado com sucesso!')

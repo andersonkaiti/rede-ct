@@ -1,5 +1,4 @@
 import { api } from '@http/api-client'
-import { redirect } from 'next/navigation'
 
 interface IAuthenticatedUserCertificationsRequest {
   filter: string
@@ -33,14 +32,10 @@ export async function getAuthenticatedUserCertifications({
   searchParams.set('title', filter)
   searchParams.set('description', filter)
 
-  searchParams.set('order_by', orderBy)
+  searchParams.set('orderBy', orderBy)
 
   searchParams.set('page', page)
   searchParams.set('limit', limit)
 
-  try {
-    return await api.get(`auth/certifications?${searchParams}`).json()
-  } catch {
-    redirect('/')
-  }
+  return await api.get(`auth/certifications?${searchParams}`).json()
 }

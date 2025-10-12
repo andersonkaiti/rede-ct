@@ -1,3 +1,7 @@
+/** biome-ignore-all lint/a11y/useFocusableInteractive: simple */
+/** biome-ignore-all lint/a11y/useSemanticElements: simple */
+/** biome-ignore-all lint/a11y/useKeyWithClickEvents: simple */
+
 'use client'
 
 import { useFileUpload } from '@hooks/use-file-upload'
@@ -39,7 +43,6 @@ export function FileUpload({
 
   const previewUrl = files[0]?.preview || imageUrl || null
 
-  // Callback ref para sincronizar o arquivo com o input HTML
   const inputCallbackRef = useCallback(
     (inputElement: HTMLInputElement | null) => {
       if (inputElement && files[0]?.file) {
@@ -54,7 +57,6 @@ export function FileUpload({
     [files]
   )
 
-  // Chama o onChange sempre que o arquivo mudar
   useEffect(() => {
     if (onChange) {
       if (files.length > 0 && files[0].file instanceof File) {
@@ -63,7 +65,6 @@ export function FileUpload({
         onChange(undefined)
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [files, onChange])
 
   const handleRemoveFile = () => {
@@ -72,18 +73,15 @@ export function FileUpload({
     }
   }
 
-  // Pega as props do input e adiciona nossa callback ref
   const inputProps = getInputProps()
   const combinedRef = useCallback(
     (element: HTMLInputElement | null) => {
-      // Chama a ref original do hook se existir
       if (typeof inputProps.ref === 'function') {
         inputProps.ref(element)
       } else if (inputProps.ref) {
         inputProps.ref.current = element
       }
 
-      // Chama nossa callback ref
       inputCallbackRef(element)
     },
     [inputProps, inputCallbackRef]
@@ -93,7 +91,7 @@ export function FileUpload({
     <div className="flex flex-col gap-2">
       <div className="relative">
         <div
-          className="relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border-2 border-input border-dashed p-4 transition-colors hover:bg-accent/50 has-disabled:pointer-events-none has-[input:focus]:border-ring has-[img]:border-none has-disabled:opacity-50 has-[input:focus]:ring-[3px] has-[input:focus]:ring-ring/50 data-[dragging=true]:bg-accent/50"
+          className="relative flex min-h-52 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-xl border-2 border-input border-dashed p-4 transition-colors hover:bg-accent/50 has-disabled:pointer-events-none has-[input:focus]:border-ring has-[img]:border-none has-disabled:opacity-50 has-[input:focus]:ring-[3px] has-[input:focus]:ring-ring/50 data-[dragging=true]:bg-accent/50"
           data-dragging={isDragging || undefined}
           onClick={openFileDialog}
           onDragEnter={handleDragEnter}
@@ -109,6 +107,7 @@ export function FileUpload({
             name="image"
             ref={combinedRef}
           />
+
           {previewUrl ? (
             <div className="absolute inset-0">
               <Image

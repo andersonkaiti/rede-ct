@@ -95,17 +95,17 @@ export function UpdateCertificationForm({
               </FormItem>
             )}
           />
-        </form>
 
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="ghost">Cancelar</Button>
-          </DialogClose>
-          <Button disabled={isSubmitting} type="submit">
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
-            Atualizar certificado
-          </Button>
-        </DialogFooter>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="ghost">Cancelar</Button>
+            </DialogClose>
+            <Button disabled={isSubmitting} type="submit">
+              {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+              Atualizar certificado
+            </Button>
+          </DialogFooter>
+        </form>
       </Form>
     </DialogContent>
   )

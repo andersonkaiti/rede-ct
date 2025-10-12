@@ -20,11 +20,11 @@ export async function getNews({
 
   searchParams.set('title', filter)
   searchParams.set('content', filter)
-  searchParams.set('updated_at', filter)
+  searchParams.set('updatedAt', filter)
 
-  searchParams.set('order_by', orderBy)
+  searchParams.set('orderBy', orderBy)
 
-  searchParams.set('author_id', authorId)
+  searchParams.set('authorId', authorId)
 
   searchParams.set('page', page)
   searchParams.set('limit', limit)

@@ -1,5 +1,4 @@
 import { api } from '@http/api-client'
-import { getAuthenticatedUser } from '@http/auth/get-user'
 
 interface ICreateNewsRequest {
   title: string
@@ -23,15 +22,9 @@ export async function createNews(
 ): Promise<ICreateNewsResponse> {
   const news = new FormData()
 
-  const user = await getAuthenticatedUser()
-
   news.append('title', data.title)
   news.append('content', data.content)
   news.append('image', data.image)
-
-  if (user.id) {
-    news.append('author_id', user.id)
-  }
 
   return await api
     .post('news', {

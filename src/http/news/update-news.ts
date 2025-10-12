@@ -1,5 +1,4 @@
 import { api } from '@http/api-client'
-import { getAuthenticatedUser } from '@http/auth/get-user'
 import type { INews } from 'types/news'
 
 interface IUpdateNewsRequest {
@@ -17,15 +16,9 @@ export async function updateNews({
 }: IUpdateNewsRequest): Promise<INews> {
   const news = new FormData()
 
-  const user = await getAuthenticatedUser()
-
   news.append('title', title)
   news.append('content', content)
   news.append('image', image)
-
-  if (user.id) {
-    news.append('author_id', user.id)
-  }
 
   return await api
     .put(`news/${id}`, {

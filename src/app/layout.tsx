@@ -15,12 +15,12 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'RedeCT - Rede Internacional de Pesquisadores',
+  title: {
+    template: 'RedeCT - %s',
+    default: 'RedeCT',
+  },
   description:
     'Rede Internacional de Pesquisadores sobre Povos Originários e Comunidades Tradicionais',
-  icons: {
-    icon: '/images/favicon.png',
-  },
 }
 
 export default function RootLayout({

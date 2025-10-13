@@ -6,11 +6,21 @@ import Image from 'next/image'
 import { NotFound } from './_components/not-found'
 import { ShareButton } from './_components/share-button'
 
-export default async function NewsPage({
-  params,
-}: {
+interface INewsPageProps {
   params: Promise<{ id: string }>
-}) {
+}
+
+export async function generateMetadata({ params }: INewsPageProps) {
+  const { id } = await params
+
+  const news = await getNewsById(id)
+
+  return {
+    title: news.title,
+  }
+}
+
+export default async function NewsPage({ params }: INewsPageProps) {
   const { id } = await params
 
   const news = await getNewsById(id)

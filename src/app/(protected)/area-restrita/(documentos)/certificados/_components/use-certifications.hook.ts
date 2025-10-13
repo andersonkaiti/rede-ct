@@ -9,7 +9,7 @@ export function useCertifications() {
     parseAsStringEnum(['desc', 'asc']).withDefault('desc')
   )
   const [page] = useQueryState('page', parseAsString.withDefault('1'))
-  const [limit] = useQueryState('limit', parseAsString.withDefault('6'))
+  const [limit] = useQueryState('limit', parseAsString.withDefault('4'))
 
   const { data: paginatedResults, isLoading } = useQuery({
     queryKey: ['user', 'certifications', filter, orderBy, page, limit],

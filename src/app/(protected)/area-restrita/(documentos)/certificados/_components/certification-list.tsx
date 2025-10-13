@@ -15,7 +15,7 @@ export function CertificationList() {
   return (
     <>
       {hasCertifications && !isLoading && (
-        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 xlg:grid-cols-3">
           {certifications.map((certification) => (
             <Certification key={certification.id} {...certification} />
           ))}

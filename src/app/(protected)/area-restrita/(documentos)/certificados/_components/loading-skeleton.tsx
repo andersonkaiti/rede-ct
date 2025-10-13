@@ -7,11 +7,11 @@ import {
 } from '@components/ui/card'
 import { Skeleton } from '@components/ui/skeleton'
 
-const ARRAY_SIZE = 6
+const ARRAY_SIZE = 4
 
 export function LoadingSkeleton() {
   return (
-    <section className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 xlg:grid-cols-3">
       {[...new Array(ARRAY_SIZE)].map((_, index) => (
         <Card key={index}>
           <CardHeader>

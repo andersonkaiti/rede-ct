@@ -10,10 +10,10 @@ const DynamicEquipeSdhc = dynamicImport(() =>
   import('./_components/equipe-sdhc').then((m) => m.EquipeSdhc)
 )
 
-export default function EquipeSdhc() {
+export default function EquipeSDHC() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <BackArrow />
+      <BackArrow href="/quem-somos/instituto-de-pesquisas-amazonicas-e-de-povos-tradicionais" />
 
       <div className="space-y-8">
         <h1 className="title-2 text-center">

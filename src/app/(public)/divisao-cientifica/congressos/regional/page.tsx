@@ -12,7 +12,7 @@ const DynamicCongresses = dynamic(() =>
 export default function CongressosRegionais() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <BackArrow />
+      <BackArrow href="/divisao-cientifica/congressos" />
 
       <header className="space-y-8">
         <div className="flex items-center gap-4">

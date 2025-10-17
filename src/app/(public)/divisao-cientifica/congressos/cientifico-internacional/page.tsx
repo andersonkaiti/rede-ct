@@ -9,7 +9,8 @@ export default async function CongressoCientificoInternacional() {
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8">
-      <BackArrow />
+      <BackArrow href="/divisao-cientifica/congressos" />
+
       <div className="space-y-7">
         {congresses.map((congress, index: number) => (
           <Fragment key={index}>

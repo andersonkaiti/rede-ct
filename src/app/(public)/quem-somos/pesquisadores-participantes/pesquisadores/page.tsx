@@ -8,7 +8,7 @@ import { ResearcherTabs } from './_components/researcher-tabs'
 export default function PesquisadoresParticipantesRedeCT() {
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-14 p-6 py-10 lg:p-28">
-      <BackArrow />
+      <BackArrow href="/quem-somos/pesquisadores-participantes" />
 
       <header className="space-y-8">
         <div className="flex items-center gap-4">

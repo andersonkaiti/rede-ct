@@ -11,7 +11,7 @@ import { Presidency } from './_components/presidency'
 export default function Filiacao() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <BackArrow />
+      <BackArrow href="/quem-somos/apresentacao-e-historia" />
 
       <section className="space-y-14">
         <div className="flex items-center justify-center gap-4">

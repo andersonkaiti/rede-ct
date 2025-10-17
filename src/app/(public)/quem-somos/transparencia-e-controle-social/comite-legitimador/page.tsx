@@ -22,7 +22,7 @@ const DynamicComiteLegitimador = dynamicImport(() =>
 export default function ComiteLegitimador() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-7 p-5 py-8 lg:p-25">
-      <BackArrow />
+      <BackArrow href="/quem-somos/transparencia-e-controle-social" />
 
       <div className="space-y-8">
         <h2 className="text-center font-bold text-3xl md:text-4xl">

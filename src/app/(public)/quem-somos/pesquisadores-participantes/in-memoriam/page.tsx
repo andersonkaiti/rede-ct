@@ -18,7 +18,8 @@ const DynamicPovosTradicionais = dynamic(() =>
 export default function InMemorian() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <BackArrow />
+      <BackArrow href="/quem-somos/pesquisadores-participantes" />
+
       <h1 className="mx-auto flex items-center gap-2 text-center font-semibold text-3xl">
         <Badge className="rounded-full bg-primary/20 py-2 text-primary">
           <Heart className="!size-7 fill-primary" />

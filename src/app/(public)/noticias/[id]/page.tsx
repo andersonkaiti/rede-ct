@@ -31,7 +31,7 @@ export default async function NewsPage({ params }: INewsPageProps) {
 
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <BackArrow />
+      <BackArrow href="/noticias" />
 
       <header className="space-y-8">
         <h1 className="font-bold text-5xl text-foreground tracking-tight">

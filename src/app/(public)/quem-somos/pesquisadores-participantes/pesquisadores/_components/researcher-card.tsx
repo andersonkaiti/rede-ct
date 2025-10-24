@@ -1,77 +1,258 @@
-import { Card, CardContent } from '@components/ui/card'
+import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
+import { Badge } from '@components/ui/badge'
+import { Button } from '@components/ui/button'
 import {
-  type IResearcher,
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@components/ui/collapsible'
+import UserProfileHoverCard from '@components/user-profile-hover-card'
+import { getInitials } from '@utils/get-initials'
+import {
+  Book,
+  BookOpen,
+  Briefcase,
+  Building2,
+  ChevronUp,
+  ExternalLink,
+  GraduationCap,
+  Hash,
+  IdCard,
+  Mail,
+  Medal,
+  Smile,
+} from 'lucide-react'
+import Link from 'next/link'
+import type { IResearcher } from 'types/researcher'
+import { DEGREE_LABEL_MAP } from '../_constants/degrees'
+import {
   type Seniority,
   seniorityMapping,
-} from '@mocks/researchers/researchers'
-import { ExternalLink, GraduationCap, Mail } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
+} from '../_hooks/use-researchers.hook'
 
 interface IResearcherCardProps {
   researcher: IResearcher
 }
 
-export function ResearcherCard({
-  researcher: {
-  seniority,
-    user: { avatarUrl, emailAddress, lattesUrl, name },
-    description,
-  },
-}: IResearcherCardProps) {
+export function ResearcherCard({ researcher }: IResearcherCardProps) {
+  const {
+    seniority,
+    biography,
+    degrees,
+    createdAt,
+    institutions,
+    formations,
+    mainEtps,
+    occupations,
+    registrationNumber,
+    user,
+  } = researcher
+
+  const { emailAddress, lattesUrl, orcid, name, avatarUrl } = user
+
   return (
-    <Card className="relative overflow-hidden bg-gradient-to-br from-white via-background to-primary/10 shadow-lg transition-all hover:shadow-xl dark:from-background dark:via-background dark:to-primary/10 dark:[background-image:linear-gradient(to_bottom_right,var(--background),var(--background),rgba(244,63,94,0.08))]">
-      <div className="-top-6 pointer-events-none absolute right-4 select-none text-primary opacity-20 dark:text-primary">
-        <GraduationCap className="size-20" />
-      </div>
-      <CardContent className="flex flex-grow flex-col justify-between gap-3 px-4 pt-8 pb-4">
-        <div className="flex items-center gap-3">
-          {avatarUrl ? (
-            <Image
-              alt={name}
-              className="size-10 rounded-full border border-primary/30 object-cover"
-              height={40}
-              src={avatarUrl}
-              width={40}
-            />
-          ) : null}
-          <span className="flex items-center gap-2 font-bold text-foreground text-lg dark:text-white">
-            {name}
-          </span>
-        </div>
-        <span className="font-semibold text-primary text-xs uppercase tracking-wide">
-          {seniorityMapping[seniority as Seniority] || seniority}
-        </span>
-        <div className="flex flex-col gap-1 text-muted-foreground text-sm dark:text-white">
-          {description}
-        </div>
-        <div className="mt-2 flex flex-wrap gap-3">
-          {emailAddress && (
-            <Link
-              className="flex items-center gap-1 rounded bg-primary/10 px-2 py-1 font-medium text-primary text-xs transition hover:bg-primary/20"
-              href={`mailto:${emailAddress}`}
-              rel="noopener noreferrer"
-              target="_blank"
-              title={`Enviar e-mail para ${emailAddress}`}
-            >
-              <Mail className="size-4" />
-              <span>{emailAddress}</span>
-            </Link>
+    <div className="flex w-full flex-col overflow-hidden rounded-lg border border-border bg-background">
+      <header className="mb-2 flex flex-row items-center gap-4 p-6">
+        <Avatar className="size-20 flex-shrink-0">
+          <AvatarImage alt={`Avatar de ${name}`} src={avatarUrl ?? undefined} />
+          <AvatarFallback>{getInitials(name)}</AvatarFallback>
+        </Avatar>
+        <div className="flex flex-col items-start justify-center gap-1">
+          <UserProfileHoverCard avatarVisibility={false} user={user} />
+
+          <p className="flex items-center gap-1 text-muted-foreground text-sm">
+            <Medal className="h-3.5 w-3.5" />
+            <span className="truncate">
+              {seniorityMapping[seniority as Seniority]}
+            </span>
+
+            {orcid && (
+              <Button
+                asChild
+                className="ml-2 h-auto py-1 text-xs"
+                variant="outline"
+              >
+                <Link
+                  className="flex items-center gap-1"
+                  href={`https://orcid.org/${orcid}`}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  title="Ver perfil ORCID"
+                >
+                  <IdCard className="mr-1 inline size-4" />
+                  <span>ORCID</span>
+                </Link>
+              </Button>
+            )}
+          </p>
+
+          {createdAt && (
+            <span className="flex items-center gap-1 text-muted-foreground text-xs">
+              <Smile className="h-3.5 w-3.5" />
+              Desde{' '}
+              {new Date(createdAt).toLocaleDateString('pt-BR', {
+                year: 'numeric',
+                month: 'long',
+              })}
+            </span>
           )}
-          {lattesUrl && lattesUrl.trim() !== '' && (
+        </div>
+      </header>
+
+      {biography && (
+        <div className="p-6">
+          <Collapsible className="group group space-y-4">
+            <CollapsibleTrigger className="flex w-full cursor-pointer items-center justify-between gap-2 text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <BookOpen className="size-4" />
+                <span>Ler biografia</span>
+              </div>
+              <ChevronUp className="size-4 transition group-data-[state=open]:rotate-180" />
+            </CollapsibleTrigger>
+
+            <CollapsibleContent>
+              <p className="whitespace-pre-line text-foreground text-sm leading-relaxed">
+                {biography}
+              </p>
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
+      )}
+
+      <div className="p-6">
+        <h3 className="mb-3 font-semibold text-muted-foreground text-xs uppercase tracking-widest">
+          Credenciais
+        </h3>
+        {/* Deixar 2 tópicos por linha ao organizar o grid */}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {registrationNumber && (
+            <div className="flex items-center gap-2">
+              <div className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-muted p-2">
+                <Hash className="h-5 w-5 text-muted-foreground" />
+              </div>
+              <div className="flex flex-col justify-center">
+                <p className="mb-0.5 text-muted-foreground text-xs">
+                  Matrícula
+                </p>
+                <p className="truncate font-medium text-foreground text-sm">
+                  {registrationNumber}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {degrees && degrees.length > 0 && (
+            <div className="flex items-center gap-2">
+              <div className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-muted p-2">
+                <GraduationCap className="h-5 w-5 text-muted-foreground" />
+              </div>
+              <div className="flex w-full flex-col justify-center">
+                <p className="mb-0.5 text-muted-foreground text-xs">Títulos</p>
+                <div className="mt-0.5 flex flex-wrap gap-1">
+                  {degrees.map((degree) => (
+                    <Badge
+                      className="px-1.5 py-0 text-xs"
+                      key={degree}
+                      variant="secondary"
+                    >
+                      {DEGREE_LABEL_MAP[degree]}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {formations && (
+            <div className="flex items-center gap-2">
+              <div className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-muted p-2">
+                <Book className="h-5 w-5 text-muted-foreground" />
+              </div>
+              <div className="flex flex-col justify-center">
+                <p className="mb-0.5 text-muted-foreground text-xs">
+                  Formações
+                </p>
+                <p className="truncate font-medium text-foreground text-sm">
+                  {formations}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {mainEtps && (
+            <div className="flex items-center gap-2">
+              <div className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-muted p-2">
+                <Medal className="h-5 w-5 text-muted-foreground" />
+              </div>
+              <div className="flex flex-col justify-center">
+                <p className="mb-0.5 text-muted-foreground text-xs">
+                  Principais ETPs
+                </p>
+                <p className="truncate font-medium text-foreground text-sm">
+                  {mainEtps}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {institutions && institutions.length > 0 && (
+            <div className="flex items-center gap-2">
+              <div className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-muted p-2">
+                <Building2 className="h-5 w-5 text-muted-foreground" />
+              </div>
+              <div className="flex flex-col justify-center">
+                <p className="mb-0.5 text-muted-foreground text-xs">
+                  Instituições
+                </p>
+                <p className="font-medium text-foreground text-sm">
+                  {institutions}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {occupations && occupations.length > 0 && (
+            <div className="flex items-center gap-2">
+              <div className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-muted p-2">
+                <Briefcase className="h-5 w-5 text-muted-foreground" />
+              </div>
+              <div className="flex flex-col justify-center">
+                <p className="mb-0.5 text-muted-foreground text-xs">
+                  Ocupações
+                </p>
+                <p className="font-medium text-foreground text-sm">
+                  {occupations}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-2 p-6">
+        {emailAddress && (
+          <Button asChild className="w-fit" size="sm" variant="ghost">
+            <Link href={`mailto:${emailAddress}`}>
+              <Mail className="mr-2 h-3.5 w-3.5" />
+              <span className="truncate">{emailAddress}</span>
+            </Link>
+          </Button>
+        )}
+
+        {lattesUrl && (
+          <Button asChild className="w-fit" size="sm" variant="ghost">
             <Link
-              className="flex items-center gap-1 rounded bg-primary/10 px-2 py-1 font-medium text-primary text-xs transition hover:bg-primary/20"
               href={lattesUrl}
               rel="noopener noreferrer"
               target="_blank"
-              title="Ver currículo Lattes"
+              title="Ver Currículo Lattes"
             >
-              <ExternalLink className="size-4" />
-              <span>Lattes</span>
+              <ExternalLink className="mr-2 h-3.5 w-3.5" />
+              Lattes
             </Link>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+          </Button>
+        )}
+      </div>
+    </div>
   )
 }

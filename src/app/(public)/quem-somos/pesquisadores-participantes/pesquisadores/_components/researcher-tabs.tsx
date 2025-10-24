@@ -1,46 +1,24 @@
 'use client'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@components/ui/tabs'
+
 import {
-  getResearchers,
+  type Seniority,
   seniorities,
   seniorityMapping,
-  type Seniority,
-} from '@mocks/researchers/researchers'
-import { useQuery } from '@tanstack/react-query'
-import { useQueryState } from 'nuqs'
+  useResearchers,
+} from '../_hooks/use-researchers.hook'
 import { LoadingSkeleton } from './loading-skeleton'
 import { ResearcherCard } from './researcher-card'
 import { ResearcherFilterInput } from './researcher-filter-input'
 
 export function ResearcherTabs() {
-  const [nome] = useQueryState('nome')
-  const [tab, setTab] = useQueryState('tab')
-
-  const { data: researchers, isLoading } = useQuery({
-    queryKey: ['researchers'],
-    queryFn: getResearchers,
-  })
-
-  const currentTab =
-    tab && seniorities.includes(tab as Seniority)
-      ? (tab as Seniority)
-      : seniorities[0]
-
-  const filteredByName = researchers?.filter((researcher) =>
-    nome
-      ? researcher.user.name.toLowerCase().includes(nome.toLowerCase())
-      : true
-  )
-
-  const hasNoResults = filteredByName?.length && filteredByName?.length < 1
-
-  const shouldShowResults = !(isLoading || hasNoResults)
+  const { currentTab, filteredByName, isLoading, setTab } = useResearchers()
 
   const numberOfRows = filteredByName?.length
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-8">
       <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
         <div className="w-full flex-1">
           <ResearcherFilterInput />
@@ -51,7 +29,7 @@ export function ResearcherTabs() {
       </div>
 
       <Tabs
-        className="items-center"
+        className="items-center gap-8"
         defaultValue={currentTab}
         onValueChange={setTab}
       >
@@ -80,14 +58,14 @@ export function ResearcherTabs() {
             >
               {isLoading && <LoadingSkeleton />}
 
-              {!isLoading && hasNoResults && (
+              {!isLoading && filteredByName && filteredByName?.length < 1 && (
                 <span className="mt-4 flex py-4 text-muted-foreground text-sm">
                   Nenhum pesquisador cadastrado nesta categoria.
                 </span>
               )}
 
-              {shouldShowResults && (
-                <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+              {filteredByName && filteredByName?.length > 0 && (
+                <div className="grid gap-6 lg:grid-cols-2">
                   {filteredBySeniority?.map((researcher) => (
                     <ResearcherCard
                       key={`${researcher.user.name} ${researcher.user.emailAddress}`}

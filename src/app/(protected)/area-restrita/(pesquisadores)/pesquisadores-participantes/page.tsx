@@ -10,7 +10,9 @@ import {
 
 import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
 import { FilterInput } from '../../_components/filter-input'
-import { CreateResearcherButton } from './create-researcher/create-researcher-button'
+import { CreateResearcherButton } from './_components/create-researcher-button'
+import { ResearchersDisplayOptions } from './_components/researchers-display-options'
+import { Table } from './_components/table/table'
 
 export default function PesquisadoresParticipantes() {
   return (
@@ -28,11 +30,16 @@ export default function PesquisadoresParticipantes() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <ResearchersDisplayOptions />
           </PageActionsContainer>
+
           <CreateResearcherButton />
         </PageHeader>
 
-        <PageMain>Pesquisadores Participantes</PageMain>
+        <PageMain>
+          <Table />
+        </PageMain>
       </PageContainer>
     </AuthWrapper>
   )

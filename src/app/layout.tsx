@@ -41,7 +41,7 @@ export default function RootLayout({
             <NuqsAdapter>
               <Suspense>{children}</Suspense>
             </NuqsAdapter>
-            <Toaster position="bottom-center" richColors />
+            <Toaster position="bottom-center" />
           </ThemeProvider>
         </body>
       </html>

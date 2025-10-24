@@ -1,0 +1,91 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import { getResearcherById } from '@http/researchers/get-researcher-by-id'
+import { updateResearcher } from '@http/researchers/update-researcher'
+import { useQuery } from '@tanstack/react-query'
+import { HTTPError } from 'ky'
+import { useParams, useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import z from 'zod'
+
+export const updateResearcherSchema = z.object({
+  id: z.string().min(1, 'ID é obrigatório.'),
+  registrationNumber: z.string().min(1, 'Matrícula é obrigatória.'),
+  curriculumUrl: z.string().url('URL do currículo inválida.').optional(),
+  orcid: z.string().optional(),
+  mainEtps: z.string().optional(),
+  formations: z.string().optional(),
+  degrees: z.array(
+    z.enum(['DOCTOR', 'MASTER', 'BACHELOR', 'TECHNICAL', 'POSTGRADUATE']),
+    'Grau inválido.'
+  ),
+  occupations: z.string('Ocupação obrigatória.'),
+  seniority: z.enum(
+    ['SENIOR', 'RESEARCHER', 'JUNIOR', 'HONOR'],
+    'Senioridade obrigatória.'
+  ),
+  institutions: z.string('Instituição obrigatória.'),
+  biography: z.string().optional(),
+})
+
+export type UpdateResearcherInput = z.infer<typeof updateResearcherSchema>
+
+const STATUS_CODE_OK = 200
+
+export function useUpdateResearcher() {
+  const [serverError, setServerError] = useState<string | null>(null)
+
+  const { id } = useParams<{ id: string }>()
+  const router = useRouter()
+
+  const { data: researcher, ...rest } = useQuery({
+    queryKey: ['researcher', id],
+    queryFn: () => getResearcherById(id),
+    enabled: !!id,
+  })
+
+  const form = useForm<UpdateResearcherInput>({
+    resolver: zodResolver(updateResearcherSchema),
+    values: {
+      id: researcher?.id ?? '',
+      registrationNumber: researcher?.registrationNumber ?? '',
+      orcid: researcher?.orcid ?? '',
+      mainEtps: researcher?.mainEtps ?? '',
+      formations: researcher?.formations ?? '',
+      degrees: researcher?.degrees ?? [],
+      occupations: researcher?.occupations ?? '',
+      seniority: researcher?.seniority ?? 'JUNIOR',
+      institutions: researcher?.institutions ?? '',
+      biography: researcher?.biography ?? '',
+    },
+  })
+
+  const submit = form.handleSubmit(async (values: UpdateResearcherInput) => {
+    try {
+      const response = await updateResearcher(values)
+
+      if (response.status === STATUS_CODE_OK) {
+        toast.success('Pesquisador atualizado com sucesso')
+
+        router.replace('/area-restrita/pesquisadores-participantes')
+
+        return
+      }
+    } catch (err) {
+      if (err instanceof HTTPError) {
+        const errorBody = await err.response.json()
+
+        setServerError(errorBody.message)
+      }
+    }
+  })
+
+  return {
+    form,
+    serverError,
+    submit,
+    ...rest,
+    researcher,
+  }
+}

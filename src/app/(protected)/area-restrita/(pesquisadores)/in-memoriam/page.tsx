@@ -7,10 +7,13 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-
-import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
+import { Suspense } from 'react'
+import { AuthWrapper } from '../../../_components/hoc/auth'
 import { FilterInput } from '../../_components/filter-input'
-import { CreateInMemoriamButton } from './create-in-memoriam/create-in-memoriam-button'
+import { CreateInMemoriamButton } from './_components/create-in-memoriam-button'
+import { InMemoriamDisplayOptions } from './_components/in-memoriam-display-options'
+import { LoadingSkeleton } from './_components/table/loading-skeleton'
+import { Table } from './_components/table/table'
 
 export default function InMemoriam() {
   return (
@@ -26,11 +29,18 @@ export default function InMemoriam() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <InMemoriamDisplayOptions />
           </PageActionsContainer>
+
           <CreateInMemoriamButton />
         </PageHeader>
 
-        <PageMain>In Memoriam</PageMain>
+        <PageMain>
+          <Suspense fallback={<LoadingSkeleton />}>
+            <Table />
+          </Suspense>
+        </PageMain>
       </PageContainer>
     </AuthWrapper>
   )

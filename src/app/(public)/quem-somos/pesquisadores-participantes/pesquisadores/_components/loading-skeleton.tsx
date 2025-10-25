@@ -1,42 +1,103 @@
-import { Card, CardContent } from '@components/ui/card'
 import { Skeleton } from '@components/ui/skeleton'
 
-const ARRAY_SIZE = 6
+const SKELETON_COUNT = 6
 
 export function LoadingSkeleton() {
   return (
-    <div className="mt-4 grid w-full gap-6 sm:grid-cols-2 md:grid-cols-3">
-      {[...new Array(ARRAY_SIZE)].map((_, index) => (
-        <Card key={index}>
-          <div className="-top-6 pointer-events-none absolute right-4 select-none text-primary opacity-20 dark:text-primary">
-            <Skeleton className="size-20 rounded-full" />
+    <div className="mt-4 grid w-full gap-6 lg:grid-cols-2">
+      {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+        <div
+          className="flex w-full flex-col overflow-hidden rounded-lg border border-border bg-background"
+          key={i}
+        >
+          <header className="mb-2 flex flex-row items-center gap-4 p-6">
+            <Skeleton className="size-20 flex-shrink-0 rounded-full" />
+
+            <div className="flex flex-col items-start justify-center gap-1">
+              <Skeleton className="h-5 w-40 rounded-full" />
+
+              <div className="flex items-center gap-2">
+                <Skeleton className="h-5 w-24 rounded-full" />
+                <Skeleton className="h-6 w-16 rounded-md" />
+              </div>
+              {/* Creation date skeleton */}
+              <Skeleton className="h-4 w-32 rounded-full" />
+            </div>
+          </header>
+
+          {/* Optional biography section skeleton */}
+          <div className="p-6">
+            <div className="flex w-full cursor-pointer items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Skeleton className="h-4 w-4 rounded" />
+                <Skeleton className="h-4 w-24 rounded-full" />
+              </div>
+              <Skeleton className="h-4 w-4 rounded" />
+            </div>
           </div>
-          <CardContent className="flex flex-grow flex-col justify-between gap-3 px-4 pt-8 pb-4">
-            <div className="flex items-center gap-3">
-              <Skeleton className="size-10 rounded-full" />
-              <span className="flex items-center gap-2 font-bold text-foreground text-lg dark:text-white">
-                <Skeleton className="h-6 w-32 rounded-full" />
-              </span>
+
+          <div className="p-6">
+            <Skeleton className="mb-3 h-4 w-20 rounded-full" />
+
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="flex items-center gap-2">
+                <Skeleton className="h-11 w-11 rounded-lg" />
+                <div className="flex flex-col justify-center">
+                  <Skeleton className="mb-0.5 h-3 w-16 rounded-full" />
+                  <Skeleton className="h-4 w-20 rounded-full" />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Skeleton className="h-11 w-11 rounded-lg" />
+                <div className="flex w-full flex-col justify-center">
+                  <Skeleton className="mb-0.5 h-3 w-12 rounded-full" />
+                  <div className="mt-0.5 flex flex-wrap gap-1">
+                    <Skeleton className="h-5 w-16 rounded-full" />
+                    <Skeleton className="h-5 w-20 rounded-full" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Skeleton className="h-11 w-11 rounded-lg" />
+                <div className="flex flex-col justify-center">
+                  <Skeleton className="mb-0.5 h-3 w-16 rounded-full" />
+                  <Skeleton className="h-4 w-32 rounded-full" />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Skeleton className="h-11 w-11 rounded-lg" />
+                <div className="flex flex-col justify-center">
+                  <Skeleton className="mb-0.5 h-3 w-20 rounded-full" />
+                  <Skeleton className="h-4 w-28 rounded-full" />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Skeleton className="h-11 w-11 rounded-lg" />
+                <div className="flex flex-col justify-center">
+                  <Skeleton className="mb-0.5 h-3 w-20 rounded-full" />
+                  <Skeleton className="h-4 w-36 rounded-full" />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Skeleton className="h-11 w-11 rounded-lg" />
+                <div className="flex flex-col justify-center">
+                  <Skeleton className="mb-0.5 h-3 w-18 rounded-full" />
+                  <Skeleton className="h-4 w-32 rounded-full" />
+                </div>
+              </div>
             </div>
-            <span className="font-semibold text-primary text-xs uppercase tracking-wide">
-              <Skeleton className="h-4 w-24 rounded-full" />
-            </span>
-            <div className="flex flex-col gap-1 text-muted-foreground text-sm dark:text-white">
-              <Skeleton className="h-4 w-full rounded-full" />
-              <Skeleton className="h-4 w-full rounded-full" />
-              <Skeleton className="h-4 w-full rounded-full" />
-              <Skeleton className="h-4 w-full rounded-full" />
-              <Skeleton className="h-4 w-full rounded-full" />
-              <Skeleton className="h-4 w-full rounded-full" />
-              <Skeleton className="h-4 w-full rounded-full" />
-              <Skeleton className="h-4 w-3/4 rounded-full" />
-            </div>
-            <div className="mt-2 flex flex-wrap gap-3">
-              <Skeleton className="h-6 w-24 rounded" />
-              <Skeleton className="h-6 w-16 rounded" />
-            </div>
-          </CardContent>
-        </Card>
+          </div>
+
+          <div className="flex flex-col gap-2 p-6">
+            <Skeleton className="h-8 w-48 rounded-md" />
+            <Skeleton className="h-8 w-22 rounded-md" />
+          </div>
+        </div>
       ))}
     </div>
   )

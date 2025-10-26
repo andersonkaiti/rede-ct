@@ -1,7 +1,7 @@
 'use client'
 
 import { Alert, AlertDescription } from '@components/ui/alert'
-import AvatarUpload from '@components/ui/avatar-upload'
+import { AvatarUploader } from '@components/ui/avatar-uploader'
 import { Button } from '@components/ui/button'
 import {
   Form,
@@ -14,200 +14,200 @@ import {
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
 import {
-  PageFormContent,
+  PageContainer,
   PageFormContentField,
 } from '@components/ui/page-container'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { PatternFormat } from 'react-number-format'
 import type { IUser } from 'types/user'
-import { useUserProfile } from './use-user-profile.hook'
+import { ROLE_MAPPING } from '../_constants/roles'
+import { MAX_AVATAR_SIZE_BYTES } from '../_constants/zod'
+import { useUserProfile } from '../_hooks/use-user-profile.hook'
 
 interface IUserProfileProps {
   user: IUser
 }
 
-const roleMapping = {
-  ADMIN: 'Administrador',
-  USER: 'Usuário',
-}
-
 export function UserProfile({ user }: IUserProfileProps) {
-  const { form, isSubmitting, onSubmit, serverError } = useUserProfile(user)
+  const { form, submit, serverError } = useUserProfile(user)
 
-  const role = roleMapping[user.role]
+  const role = ROLE_MAPPING[user.role]
 
   return (
-    <div className="mt-10 flex flex-col items-center justify-evenly gap-8 md:gap-12 lg:flex-row lg:items-start">
-      <div className="flex flex-1 flex-col items-center gap-4">
-        <AvatarUpload defaultAvatar={user.avatarUrl} />
+    <PageContainer>
+      <Form {...form}>
+        <form className="space-y-6" onSubmit={submit}>
+          {serverError && (
+            <Alert className="mb-4 border-primary" variant="destructive">
+              <AlertCircle className="size-4" />
+              <AlertDescription>{serverError}</AlertDescription>
+            </Alert>
+          )}
 
-        <div className="flex flex-col items-center gap-1">
-          <h2 className="text-center font-semibold text-2xl">{user.name}</h2>
-          <span className="flex items-center gap-1 text-muted-foreground text-sm">
-            {role}
-          </span>
-        </div>
-      </div>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="flex flex-col items-center justify-center">
+              <FormField
+                control={form.control}
+                name="avatarImage"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <AvatarUploader
+                        defaultAvatar={field.value || user.avatarUrl}
+                        maxSize={MAX_AVATAR_SIZE_BYTES}
+                        name={field.name}
+                        onFileChange={field.onChange}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-      <div className="flex w-full flex-col gap-6 md:w-2/3">
-        {serverError && (
-          <Alert className="mb-4 border-primary" variant="destructive">
-            <AlertCircle className="size-4" />
-            <AlertDescription>{serverError}</AlertDescription>
-          </Alert>
-        )}
+            <div className="flex flex-col gap-6">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      Nome <span className="text-primary">*</span>
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder="Informe seu nome" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-        <Form {...form}>
-          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-            <PageFormContent>
-              <PageFormContentField>
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="font-medium text-muted-foreground text-xs">
-                        Nome
-                      </FormLabel>
-                      <FormControl>
-                        <Input placeholder="Informe seu nome" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </PageFormContentField>
-            </PageFormContent>
-
-            <div className="flex flex-col gap-4 md:flex-row">
-              <div className="flex flex-1 flex-col gap-2">
-                <Label className="font-medium text-muted-foreground text-xs">
-                  Membro desde
+              <div className="flex flex-col gap-2">
+                <Label
+                  className="font-medium text-muted-foreground text-xs"
+                  htmlFor="role"
+                >
+                  Função
                 </Label>
-                <div className="flex items-center gap-2 rounded-md">
-                  <span className="text-xs">
-                    {new Date(user.createdAt).toLocaleDateString('pt-BR', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </span>
-                </div>
+
+                <Input defaultValue={role} disabled={true} />
               </div>
-              <div className="flex flex-1 flex-col gap-2">
-                <Label className="font-medium text-muted-foreground text-xs">
-                  Atualizado em
+
+              <div className="flex flex-col gap-2">
+                <Label
+                  className="font-medium text-muted-foreground text-xs"
+                  htmlFor="email"
+                >
+                  E-mail
                 </Label>
-                <div className="flex items-center gap-2 rounded-md">
-                  <span className="text-xs">
-                    {new Date(user.updatedAt).toLocaleDateString('pt-BR', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </span>
+                <Input defaultValue={user.emailAddress} disabled={true} />
+              </div>
+
+              <div className="flex flex-col gap-4 md:flex-row">
+                <div className="flex flex-1 flex-col gap-2">
+                  <Label className="font-medium text-muted-foreground text-xs">
+                    Membro desde
+                  </Label>
+                  <div className="flex items-center gap-2 rounded-md">
+                    <span className="text-xs">
+                      {new Date(user.createdAt).toLocaleDateString('pt-BR', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col gap-2">
+                  <Label className="font-medium text-muted-foreground text-xs">
+                    Atualizado em
+                  </Label>
+                  <div className="flex items-center gap-2 rounded-md">
+                    <span className="text-xs">
+                      {new Date(user.updatedAt).toLocaleDateString('pt-BR', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="flex flex-col gap-2">
-              <Label
-                className="font-medium text-muted-foreground text-xs"
-                htmlFor="email"
-              >
-                E-mail
-              </Label>
+          <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <FormField
+              control={form.control}
+              name="lattesUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Lattes (opcional)</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="https://lattes.cnpq.br/..."
+                      type="url"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-              <Input defaultValue={user.emailAddress} disabled={true} />
-            </div>
+            <FormField
+              control={form.control}
+              name="orcid"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>ORCID (opcional)</FormLabel>
+                  <FormControl>
+                    <PatternFormat
+                      customInput={Input}
+                      format="####-####-####-####"
+                      onValueChange={(v) => field.onChange(v.formattedValue)}
+                      value={field.value}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
-            <PageFormContent>
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
               <PageFormContentField>
-                <FormField
-                  control={form.control}
-                  name="lattesUrl"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="font-medium text-muted-foreground text-xs">
-                        Lattes (opcional)
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="https://lattes.cnpq.br/..."
-                          type="url"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <FormLabel>Celular (opcional)</FormLabel>
+                <FormControl>
+                  <PatternFormat
+                    allowEmptyFormatting
+                    customInput={Input}
+                    format="(##) #####-####"
+                    onValueChange={(v) => field.onChange(v.formattedValue)}
+                    value={field.value as string}
+                  />
+                </FormControl>
+                <FormMessage />
               </PageFormContentField>
+            )}
+          />
 
-              <PageFormContentField>
-                <FormField
-                  control={form.control}
-                  name="orcid"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="font-medium text-muted-foreground text-xs">
-                        ORCID (opcional)
-                      </FormLabel>
-                      <FormControl>
-                        <PatternFormat
-                          customInput={Input}
-                          format="####-####-####-####"
-                          onValueChange={(v) =>
-                            field.onChange(v.formattedValue)
-                          }
-                          value={field.value}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </PageFormContentField>
-
-              <PageFormContentField>
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="font-medium text-muted-foreground text-xs">
-                        Celular (opcional)
-                      </FormLabel>
-                      <FormControl>
-                        <PatternFormat
-                          allowEmptyFormatting
-                          customInput={Input}
-                          format="(##) #####-####"
-                          onValueChange={(v) =>
-                            field.onChange(v.formattedValue)
-                          }
-                          value={field.value as string}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </PageFormContentField>
-
-              <Button
-                className="w-full cursor-pointer"
-                disabled={isSubmitting}
-                type="submit"
-                variant="outline"
-              >
-                {isSubmitting && <Loader2 className="size-4 animate-spin" />}
-                Atualizar usuário
-              </Button>
-            </PageFormContent>
-          </form>
-        </Form>
-      </div>
-    </div>
+          <Button
+            className="w-full cursor-pointer"
+            disabled={form.formState.isSubmitting}
+            type="submit"
+            variant="outline"
+          >
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
+            Atualizar usuário
+          </Button>
+        </form>
+      </Form>
+    </PageContainer>
   )
 }

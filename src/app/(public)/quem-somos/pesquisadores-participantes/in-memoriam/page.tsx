@@ -1,18 +1,17 @@
 import { BackArrow } from '@components/back-arrow'
-import { Badge } from '@components/ui/badge'
-import { UserCardWrapper } from '@components/ui/user-card'
-import { Globe, GraduationCap, Heart } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
-
+import { GaleriaInMemoriamTitle } from './_components/galeria-in-memoriam-title'
 import { LoadingSkeleton } from './_components/loading-skeleton'
+import { ResearchersTitle } from './_components/researchers-title'
+import { TraditionalLeadersTitle } from './_components/traditional-leaders-title'
 
 const DynamicPesquisadores = dynamic(() =>
-  import('./_components/pesquisadores').then((m) => m.Pesquisadores)
+  import('./_components/researchers').then((m) => m.Researchers)
 )
 
 const DynamicPovosTradicionais = dynamic(() =>
-  import('./_components/povos-tradicionais').then((m) => m.PovosTradicionais)
+  import('./_components/traditional-leaders').then((m) => m.TraditionalLeaders)
 )
 
 export default function InMemorian() {
@@ -20,19 +19,11 @@ export default function InMemorian() {
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <BackArrow href="/quem-somos/pesquisadores-participantes" />
 
-      <h1 className="mx-auto flex items-center gap-2 text-center font-semibold text-3xl">
-        <Badge className="rounded-full bg-primary/20 py-2 text-primary">
-          <Heart className="!size-7 fill-primary" />
-        </Badge>
-        Galeria in memoriam
-      </h1>
+      <GaleriaInMemoriamTitle />
+
       <section className="space-y-8">
-        <h2 className="flex items-center gap-4 font-semibold text-2xl">
-          <Badge className="rounded-full bg-primary/20 p-1 text-primary">
-            <GraduationCap className="!size-6" />
-          </Badge>
-          Pesquisadores da RedeCT
-        </h2>
+        <ResearchersTitle />
+
         <p className="text-justify">
           Nesta seção, mantemos nossa homenagem aos saudosos Pesquisadores
           Filiados falecidos que deixaram sua contribuição e legado junto à
@@ -40,17 +31,10 @@ export default function InMemorian() {
         </p>
       </section>
       <Suspense fallback={<LoadingSkeleton />}>
-        <UserCardWrapper>
-          <DynamicPesquisadores />
-        </UserCardWrapper>
+        <DynamicPesquisadores />
       </Suspense>
       <section className="space-y-8">
-        <h2 className="flex items-center gap-4 font-semibold text-2xl">
-          <Badge className="rounded-full bg-primary/20 p-1 text-primary">
-            <Globe className="!size-6" />
-          </Badge>
-          Povos Tradicionais
-        </h2>
+        <TraditionalLeadersTitle />
 
         <p className="text-justify">
           Nesta seção, mantemos nossa homenagem aos líderes de Povos
@@ -60,9 +44,7 @@ export default function InMemorian() {
         </p>
       </section>
       <Suspense fallback={<LoadingSkeleton />}>
-        <UserCardWrapper>
-          <DynamicPovosTradicionais />
-        </UserCardWrapper>
+        <DynamicPovosTradicionais />
       </Suspense>
     </main>
   )

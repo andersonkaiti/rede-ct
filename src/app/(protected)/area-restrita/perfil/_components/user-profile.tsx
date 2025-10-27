@@ -17,6 +17,7 @@ import {
   PageContainer,
   PageFormContentField,
 } from '@components/ui/page-container'
+import { format } from 'date-fns'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { PatternFormat } from 'react-number-format'
 import type { IUser } from 'types/user'
@@ -110,11 +111,7 @@ export function UserProfile({ user }: IUserProfileProps) {
                   </Label>
                   <div className="flex items-center gap-2 rounded-md">
                     <span className="text-xs">
-                      {new Date(user.createdAt).toLocaleDateString('pt-BR', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
+                      {format(user.createdAt, 'dd/MM/yyyy')}
                     </span>
                   </div>
                 </div>
@@ -124,11 +121,7 @@ export function UserProfile({ user }: IUserProfileProps) {
                   </Label>
                   <div className="flex items-center gap-2 rounded-md">
                     <span className="text-xs">
-                      {new Date(user.updatedAt).toLocaleDateString('pt-BR', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
+                      {format(user.updatedAt, 'dd/MM/yyyy')}
                     </span>
                   </div>
                 </div>
@@ -165,7 +158,9 @@ export function UserProfile({ user }: IUserProfileProps) {
                     <PatternFormat
                       customInput={Input}
                       format="####-####-####-####"
-                      onValueChange={(v) => field.onChange(v.formattedValue)}
+                      onValueChange={(value) =>
+                        field.onChange(value.formattedValue)
+                      }
                       value={field.value}
                     />
                   </FormControl>
@@ -186,7 +181,9 @@ export function UserProfile({ user }: IUserProfileProps) {
                     allowEmptyFormatting
                     customInput={Input}
                     format="(##) #####-####"
-                    onValueChange={(v) => field.onChange(v.formattedValue)}
+                    onValueChange={(value) =>
+                      field.onChange(value.formattedValue)
+                    }
                     value={field.value as string}
                   />
                 </FormControl>

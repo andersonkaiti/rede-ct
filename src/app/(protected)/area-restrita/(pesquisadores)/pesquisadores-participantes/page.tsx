@@ -1,3 +1,4 @@
+import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
 import {
   PageActionsContainer,
   PageContainer,
@@ -7,11 +8,11 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-
-import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
+import { Suspense } from 'react'
 import { FilterInput } from '../../_components/filter-input'
 import { CreateResearcherButton } from './_components/create-researcher-button'
 import { ResearchersDisplayOptions } from './_components/researchers-display-options'
+import { LoadingSkeleton } from './_components/table/loading-skeleton'
 import { Table } from './_components/table/table'
 
 export default function PesquisadoresParticipantes() {
@@ -38,7 +39,9 @@ export default function PesquisadoresParticipantes() {
         </PageHeader>
 
         <PageMain>
-          <Table />
+          <Suspense fallback={<LoadingSkeleton />}>
+            <Table />
+          </Suspense>
         </PageMain>
       </PageContainer>
     </AuthWrapper>

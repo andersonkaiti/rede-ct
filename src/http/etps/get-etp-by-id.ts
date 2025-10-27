@@ -1,4 +1,6 @@
-interface IUser {
+import { api } from '@http/api-client'
+
+interface IUserResponse {
   id: string
   name: string
   avatarUrl: string | null
@@ -11,7 +13,7 @@ interface IUser {
   role: string
 }
 
-interface IResearcher {
+interface IResearcherResponse {
   id: string
   registrationNumber: string
   mainEtps: string | null
@@ -23,17 +25,17 @@ interface IResearcher {
   biography: string | null
   createdAt: Date
   updatedAt: Date
-  user: IUser
+  user: IUserResponse
 }
 
 interface IETPResearcher {
   etpId: string
   id: string
-  researcher: IResearcher
+  researcher: IResearcherResponse
   researcherId: string
 }
 
-export interface IETP {
+interface IGetETPByIdResponse {
   id: string
   createdAt: Date
   updatedAt: Date
@@ -44,5 +46,9 @@ export interface IETP {
   leader: IETPResearcher | null
   deputyLeader: IETPResearcher | null
   secretary: IETPResearcher | null
-  members: IResearcher[]
+  members: IResearcherResponse[]
+}
+
+export async function getETPById(id: string): Promise<IGetETPByIdResponse> {
+  return await api.get(`etp/${id}`).json()
 }

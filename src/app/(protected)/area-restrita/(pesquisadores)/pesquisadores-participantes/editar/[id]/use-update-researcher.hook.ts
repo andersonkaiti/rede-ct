@@ -31,8 +31,6 @@ export const updateResearcherSchema = z.object({
 
 export type UpdateResearcherInput = z.infer<typeof updateResearcherSchema>
 
-const STATUS_CODE_OK = 200
-
 export function useUpdateResearcher() {
   const [serverError, setServerError] = useState<string | null>(null)
 
@@ -63,15 +61,11 @@ export function useUpdateResearcher() {
 
   const submit = form.handleSubmit(async (values: UpdateResearcherInput) => {
     try {
-      const response = await updateResearcher(values)
+      await updateResearcher(values)
 
-      if (response.status === STATUS_CODE_OK) {
-        toast.success('Pesquisador atualizado com sucesso')
+      toast.success('Pesquisador atualizado com sucesso')
 
-        router.replace('/area-restrita/pesquisadores-participantes')
-
-        return
-      }
+      router.replace('/area-restrita/pesquisadores-participantes')
     } catch (err) {
       if (err instanceof HTTPError) {
         const errorBody = await err.response.json()

@@ -51,15 +51,11 @@ export function useCreateResearcher() {
 
   const submit = form.handleSubmit(async (values: CreateResearcherInput) => {
     try {
-      const response = await createResearcher(values)
+      await createResearcher(values)
 
-      if (response.ok) {
-        toast.success('Pesquisador cadastrado com sucesso')
+      toast.success('Pesquisador cadastrado com sucesso')
 
-        router.replace('/area-restrita/pesquisadores-participantes')
-
-        return
-      }
+      router.replace('/area-restrita/pesquisadores-participantes')
     } catch (err) {
       if (err instanceof HTTPError) {
         const errorBody = await err.response.json()

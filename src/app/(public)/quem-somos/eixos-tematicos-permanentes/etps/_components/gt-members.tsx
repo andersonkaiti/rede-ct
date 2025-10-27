@@ -6,17 +6,13 @@ import {
   TableHeader,
   TableRow,
 } from '@components/ui/table'
-import type { IETP } from 'types/etp'
+import type { IResearcher } from 'types/etp'
 
 interface IGTMembersProps {
-  gtMembers: IETP['gtMembers']
+  gtMembers: IResearcher[]
 }
 
-export function GTMembers({ gtMembers: members }: IGTMembersProps) {
-  if (!members || members.length === 0) {
-    return null
-  }
-
+export function GTMembers({ gtMembers }: IGTMembersProps) {
   return (
     <>
       <h3 className="mb-2 font-semibold text-muted-foreground text-sm">
@@ -30,17 +26,15 @@ export function GTMembers({ gtMembers: members }: IGTMembersProps) {
               <TableHead>Função</TableHead>
               <TableHead>Instituição</TableHead>
               <TableHead>Registro</TableHead>
-              <TableHead>Notas</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {members.map((gt, idx) => (
-              <TableRow key={gt.name + idx}>
-                <TableCell>{gt.name}</TableCell>
-                <TableCell>{gt.role}</TableCell>
-                <TableCell>{gt.institution}</TableCell>
-                <TableCell>{gt.registration}</TableCell>
-                <TableCell>{gt.notes}</TableCell>
+            {gtMembers.map((member, idx) => (
+              <TableRow key={member.user.name + idx}>
+                <TableCell>{member.user.name || ''}</TableCell>
+                <TableCell>{member.occupations || ''}</TableCell>
+                <TableCell>{member.institutions || ''}</TableCell>
+                <TableCell>{member.registrationNumber || ''}</TableCell>
               </TableRow>
             ))}
           </TableBody>

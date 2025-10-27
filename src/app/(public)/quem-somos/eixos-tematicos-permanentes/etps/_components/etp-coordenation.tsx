@@ -4,17 +4,14 @@ import {
   UserCardImage,
   UserCardWrapper,
 } from '@components/ui/user-card'
-import type { IETP } from 'types/etp'
+import type { IETPResearcher } from 'types/etp'
+import { ROLE_MAPPING, type Role } from '../_contents/roles'
 
 interface IETPCoordenationProps {
-  members: IETP['members']
+  members: IETPResearcher[]
 }
 
 export function ETPCoordenation({ members }: IETPCoordenationProps) {
-  if (!members || members.length === 0) {
-    return null
-  }
-
   return (
     <>
       <h3 className="mb-2 font-semibold text-muted-foreground text-sm">
@@ -22,24 +19,21 @@ export function ETPCoordenation({ members }: IETPCoordenationProps) {
       </h3>
       <UserCardWrapper>
         {members.map((member) => (
-          <UserCard key={member.user.name}>
+          <UserCard key={member.id}>
             <UserCardImage
-              alt={member.user.name}
-              src={member.user?.avatarUrl || '/images/placeholder.png'}
+              alt={member.researcher.user.name}
+              src={
+                member.researcher.user.avatarUrl || '/images/placeholder.png'
+              }
             />
             <UserCardContent>
               <div className="flex flex-grow flex-col items-center justify-between gap-1">
                 <h1 className="text-center font-bold text-base">
-                  {member.user.title} {member.user?.name}
+                  {member.researcher.user.name}
                 </h1>
                 <h2 className="text-center font-semibold text-muted-foreground text-xs">
-                  {member.role}
+                  {ROLE_MAPPING[member.researcher.user.role as Role]}
                 </h2>
-                {member.user?.institution && (
-                  <span className="text-muted-foreground text-xs">
-                    {member.user.institution}
-                  </span>
-                )}
               </div>
             </UserCardContent>
           </UserCard>

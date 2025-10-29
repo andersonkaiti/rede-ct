@@ -1,3 +1,4 @@
+import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
 import {
   PageActionsContainer,
   PageContainer,
@@ -7,12 +8,13 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-
-import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
-import { CreateButton } from '../_components/create-button'
+import { Suspense } from 'react'
 import { FilterInput } from '../_components/filter-input'
+import { CreatePartnerButton } from './_components/create-partner-button'
+import { LoadingSkeleton } from './_components/table/loading-skeleton'
+import { Table } from './_components/table/table'
 
-export default function ParceirosEFinanciadores() {
+export default function PartnersAndFunders() {
   return (
     <AuthWrapper>
       <PageContainer>
@@ -29,12 +31,15 @@ export default function ParceirosEFinanciadores() {
           <PageActionsContainer>
             <FilterInput />
           </PageActionsContainer>
-          <CreateButton href="/area-restrita/parceiros-e-financiadores/cadastrar">
-            Cadastrar Parceiro
-          </CreateButton>
+
+          <CreatePartnerButton />
         </PageHeader>
 
-        <PageMain>Parceiros e Financiadores</PageMain>
+        <PageMain>
+          <Suspense fallback={<LoadingSkeleton />}>
+            <Table />
+          </Suspense>
+        </PageMain>
       </PageContainer>
     </AuthWrapper>
   )

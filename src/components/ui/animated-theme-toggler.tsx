@@ -9,7 +9,7 @@ type props = {
   className?: string
 }
 
-export const AnimatedThemeToggler = ({ className }: props) => {
+export function AnimatedThemeToggler({ className }: props) {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   const buttonRef = useRef<HTMLButtonElement | null>(null)
   const changeTheme = async () => {

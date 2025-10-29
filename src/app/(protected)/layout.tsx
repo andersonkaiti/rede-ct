@@ -1,5 +1,5 @@
 import { isAuthenticated } from '@auth/auth'
-import { AnimatedThemeToggler } from '@components/magicui/animated-theme-toggler'
+import { AnimatedThemeToggler } from '@components/ui/animated-theme-toggler'
 import { Button } from '@components/ui/button'
 import {
   SidebarInset,

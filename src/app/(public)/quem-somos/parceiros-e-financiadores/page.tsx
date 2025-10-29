@@ -1,11 +1,14 @@
 import { UsersIcon } from '@components/icons/users'
 import { Badge } from '@components/ui/badge'
-import { getPartnerships } from '@mocks/partnerships'
-import { Partnership } from './_components/partnetship'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+import { LoadingSkeleton } from './_components/loading-skeleton'
 
-export default async function ParceirosEFinanciadores() {
-  const partnerships = await getPartnerships()
+const DynamicPartnerList = dynamic(() =>
+  import('./_components/partner-list').then((m) => m.PartnerList)
+)
 
+export default function ParceirosEFinanciadores() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <section className="space-y-14">
@@ -22,24 +25,9 @@ export default async function ParceirosEFinanciadores() {
         </p>
       </section>
 
-      <section className="grid w-full grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-        {partnerships.map((partnership, index: number) => (
-          <Partnership key={index} partnership={partnership} />
-        ))}
-      </section>
-
-      {/* <NavigationCard href="/contato" variant="red">
-        <div className="flex flex-col gap-4">
-          <h2 className="title-3 flex items-center gap-2">
-            <Handshake />
-            Interessado em ser um parceiro?
-          </h2>
-          <p>
-            Entre em contato conosco para saber mais sobre como podemos
-            colaborar para o sucesso da RedeCT.
-          </p>
-        </div>
-      </NavigationCard> */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <DynamicPartnerList />
+      </Suspense>
     </main>
   )
 }

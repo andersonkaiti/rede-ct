@@ -18,10 +18,9 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
-    serverActions: {
-      bodySizeLimit: '6mb',
-    },
+    turbopackFileSystemCacheForDev: true,
   },
+  reactCompiler: true,
 }
 
 export default nextConfig

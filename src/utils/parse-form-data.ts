@@ -15,6 +15,8 @@ export function parseFormData<T extends object>(params: T): FormData {
         (typeof Blob !== 'undefined' && value instanceof Blob)
       ) {
         formData.append(key as string, value)
+      } else if (typeof value === 'boolean') {
+        formData.append(key as string, value ? 'true' : 'false')
       } else {
         formData.append(key as string, String(value))
       }

@@ -14,15 +14,21 @@ interface IValidateImageFileParams {
   value: unknown
   maxSize?: number
   allowedImageTypes?: readonly string[]
+  optional?: boolean
 }
 
 export function validateImageFile({
   value,
   allowedImageTypes = ALLOWED_IMAGE_TYPES,
   maxSize = MAX_PHOTO_SIZE_BYTES,
+  optional = true,
 }: IValidateImageFileParams): boolean {
-  if (value === undefined || value === null) {
+  if (optional && (value === undefined || value === null)) {
     return true
+  }
+
+  if (!optional && (value === undefined || value === null)) {
+    return false
   }
 
   if (value && typeof value === 'object' && 'file' in value) {

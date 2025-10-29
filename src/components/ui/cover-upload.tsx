@@ -162,7 +162,7 @@ export function CoverUpload({
   const hasImage = Boolean(coverImage?.preview)
   const containerClass = (() => {
     const base =
-      'group relative flex h-80 flex-col justify-center overflow-hidden rounded-xl border border-border transition-all duration-200'
+      'w-full group relative flex h-80 flex-col justify-center overflow-hidden rounded-xl border border-border transition-all duration-200'
     if (isDragging) {
       return cn(base, 'border-primary border-dashed bg-primary/5')
     }

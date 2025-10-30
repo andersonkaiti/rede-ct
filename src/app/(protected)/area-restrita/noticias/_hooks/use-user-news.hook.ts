@@ -1,23 +1,24 @@
-'use client'
-
 import { deleteNewsById } from '@http/news/delete-news-by-id'
 import { getUserNews } from '@http/news/get-user-news'
-import {
-  keepPreviousData,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query'
-import { parseAsString, useQueryState } from 'nuqs'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { parseAsString, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 import type { IPaginatedNews } from 'types/news'
+
+export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = ''
+export const DEFAULT_PAGE = 1
+export const DEFAULT_LIMIT = 7
 
 export function useUserNews() {
   const queryClient = useQueryClient()
 
-  const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
-  const [orderBy] = useQueryState('order_by', parseAsString.withDefault(''))
-  const [page] = useQueryState('page', parseAsString.withDefault('1'))
-  const [limit] = useQueryState('limit', parseAsString.withDefault('7'))
+  const [{ filtro: filter, order_by: orderBy, page, limit }] = useQueryStates({
+    filtro: parseAsString.withDefault(DEFAULT_FILTER),
+    order_by: parseAsString.withDefault(DEFAULT_ORDER_BY),
+    page: parseAsString.withDefault(String(DEFAULT_PAGE)),
+    limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+  })
 
   const QUERY_KEY = ['user-news', filter, orderBy, page, limit]
 
@@ -31,7 +32,6 @@ export function useUserNews() {
         limit,
       }),
     staleTime: 0,
-    placeholderData: keepPreviousData,
   })
 
   async function handleRemoveNews(id: string) {

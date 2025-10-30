@@ -1,38 +1,34 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getNewsById } from '@http/news/get-news-by-id'
+import { updateNews } from '@http/news/update-news'
 import { useQuery } from '@tanstack/react-query'
+import { validateImageFile } from '@utils/validate-image-file'
+import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-import { type CreateNewsActionResult, updateNewsAction } from '../../actions'
 
-const BYTES = 1024
-const MEGABYTES = BYTES * BYTES
 const MAX_FILE_SIZE_MB = 5
-const TOTAL_SIZE = MAX_FILE_SIZE_MB * MEGABYTES
 
 export const updateNewsSchema = z.object({
   id: z.uuid(),
   title: z.string().min(1, 'Título é obrigatório'),
   content: z.string().min(1, 'Texto é obrigatório'),
-  image: z.any().refine((value) => {
-    if (value instanceof File) {
-      return value.size <= TOTAL_SIZE
-    }
-
-    if (value === undefined) {
-      return true
-    }
-
-    return false
-  }, 'A imagem deve ter no máximo 5MB'),
+  image: z.any().refine(
+    (value) =>
+      validateImageFile({
+        value,
+      }),
+    `A imagem deve ter no máximo ${MAX_FILE_SIZE_MB}MB`
+  ),
 })
 
 export type UpdateNewsInput = z.infer<typeof updateNewsSchema>
 
 export function useUpdateNews() {
+  const router = useRouter()
   const [serverError, setServerError] = useState<string | null>(null)
 
   const { id } = useParams<{ id: string }>()
@@ -53,27 +49,27 @@ export function useUpdateNews() {
     },
   })
 
-  const router = useRouter()
+  const submit = form.handleSubmit(async (values: UpdateNewsInput) => {
+    try {
+      await updateNews(values)
 
-  async function onSubmit(values: UpdateNewsInput) {
-    const result: CreateNewsActionResult = await updateNewsAction(values)
-
-    if (result.success) {
       toast.success('Notícia atualizada com sucesso!')
 
       router.replace('/area-restrita/noticias')
+    } catch (err) {
+      if (err instanceof HTTPError) {
+        const errorBody = await err.response.json()
 
-      return
+        setServerError(errorBody.message)
+      }
     }
-
-    setServerError(result.message)
-  }
+  })
 
   return {
     form,
     serverError,
     isSubmitting: form.formState.isSubmitting,
-    onSubmit,
+    submit,
     isNewsLoading: isLoading,
     news,
   }

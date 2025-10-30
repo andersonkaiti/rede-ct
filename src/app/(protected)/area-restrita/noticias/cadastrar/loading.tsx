@@ -18,9 +18,9 @@ export default function Loading() {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Editar Notícia</PageTitle>
+          <PageTitle>Cadastrar Notícia</PageTitle>
           <PageDescription>
-            Preencha os campos abaixo para atualizar a notícia
+            Preencha os campos abaixo para cadastrar uma nova notícia.
           </PageDescription>
         </PageHeaderContent>
       </PageHeader>
@@ -41,7 +41,7 @@ export default function Loading() {
                 Imagem <span className="text-primary">*</span>
               </Label>
 
-              <Skeleton className="flex h-79.5 w-full items-center justify-center rounded-xl">
+              <Skeleton className="flex h-68 w-full items-center justify-center rounded-xl">
                 <div
                   aria-hidden="true"
                   className="mb-2 flex size-11 items-center justify-center rounded-full"
@@ -61,7 +61,7 @@ export default function Loading() {
           </PageFormContent>
 
           <Button className="w-full cursor-pointer" type="submit">
-            Editar notícia
+            Cadastrar notícia
           </Button>
         </PageForm>
       </div>

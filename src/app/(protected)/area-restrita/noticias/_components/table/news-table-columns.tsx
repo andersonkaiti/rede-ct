@@ -21,13 +21,22 @@ export const newsTableColumns: ColumnDef<INews>[] = [
         : title,
   },
   {
-    id: 'date',
-    header: 'Data',
+    id: 'createdAt',
+    header: 'Criado em',
     cell: ({
       row: {
         original: { createdAt },
       },
     }) => formatDate(createdAt),
+  },
+  {
+    id: 'updatedAt',
+    header: 'Atualizado em',
+    cell: ({
+      row: {
+        original: { updatedAt },
+      },
+    }) => formatDate(updatedAt),
   },
   {
     id: 'actions',

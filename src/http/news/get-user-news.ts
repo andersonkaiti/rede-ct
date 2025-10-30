@@ -1,25 +1,22 @@
 import { api } from '@http/api-client'
+import { parseSearchParams } from '@utils/parse-search-params'
 import type { IPaginatedNews } from 'types/news'
 
-interface IGetUserNewsProps {
+interface IGetUserNewsRequest {
   filter: string
   orderBy: string
   page: string
   limit: string
 }
 
-export async function getUserNews({
-  filter,
-  orderBy,
-  page,
-  limit,
-}: IGetUserNewsProps): Promise<IPaginatedNews> {
-  const searchParams = new URLSearchParams()
+export async function getUserNews(
+  params: IGetUserNewsRequest
+): Promise<IPaginatedNews> {
+  const searchParams = parseSearchParams(params)
 
-  searchParams.set('title', filter)
-  searchParams.set('orderBy', orderBy)
-  searchParams.set('page', page)
-  searchParams.set('limit', limit)
-
-  return await api.get(`auth/user/news?${searchParams}`).json()
+  return await api
+    .get('auth/user/news', {
+      searchParams,
+    })
+    .json()
 }

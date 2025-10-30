@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { FileUpload } from '@components/ui/file-upload'
+import { CoverUpload } from '@components/ui/cover-upload'
 import {
   Form,
   FormControl,
@@ -16,7 +16,6 @@ import { Label } from '@components/ui/label'
 import {
   PageContainer,
   PageDescription,
-  PageFormContentField,
   PageHeader,
   PageHeaderContent,
   PageTitle,
@@ -26,8 +25,10 @@ import { AlertCircle, Loader2 } from 'lucide-react'
 import Loading from './loading'
 import { useUpdateNews } from './use-update-news.hook'
 
+const MAX_IMAGE_SIZE_MB = 5
+
 export default function UpdateForm() {
-  const { form, serverError, isSubmitting, onSubmit, isNewsLoading, news } =
+  const { form, serverError, isSubmitting, submit, isNewsLoading, news } =
     useUpdateNews()
 
   if (isNewsLoading) {
@@ -46,7 +47,7 @@ export default function UpdateForm() {
       </PageHeader>
 
       <Form {...form}>
-        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="space-y-6" onSubmit={submit}>
           {serverError && (
             <Alert className="mb-4 border-primary" variant="destructive">
               <AlertCircle className="size-4" />
@@ -70,44 +71,42 @@ export default function UpdateForm() {
             )}
           />
 
-          <PageFormContentField>
-            <Label>
-              Imagem <span className="text-primary">*</span>
-            </Label>
-            <FormField
-              control={form.control}
-              name="image"
-              render={({ field }) => (
-                <>
-                  <FileUpload
-                    imageUrl={news?.imageUrl}
-                    maxSizeMB={5}
-                    onChange={field.onChange}
+          <FormField
+            control={form.control}
+            name="image"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Imagem <span className="text-primary">*</span>
+                </FormLabel>
+                <FormControl>
+                  <CoverUpload
+                    defaultImage={news?.imageUrl}
+                    maxSize={MAX_IMAGE_SIZE_MB}
+                    onImageChange={field.onChange}
                   />
-                  <FormMessage />
-                </>
-              )}
-            />
-          </PageFormContentField>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-          <PageFormContentField>
-            <Label>
-              Texto <span className="text-primary">*</span>
-            </Label>
-            <FormField
-              control={form.control}
-              name="content"
-              render={({ field }) => (
-                <>
-                  <Textarea
-                    placeholder="Digite o conteúdo da notícia"
-                    {...field}
-                  />
-                  <FormMessage />
-                </>
-              )}
-            />
-          </PageFormContentField>
+          <Label>
+            Texto <span className="text-primary">*</span>
+          </Label>
+          <FormField
+            control={form.control}
+            name="content"
+            render={({ field }) => (
+              <>
+                <Textarea
+                  placeholder="Digite o conteúdo da notícia"
+                  {...field}
+                />
+                <FormMessage />
+              </>
+            )}
+          />
 
           <Button
             className="w-full cursor-pointer"

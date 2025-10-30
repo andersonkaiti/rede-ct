@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { FileUpload } from '@components/ui/file-upload'
+import { CoverUpload } from '@components/ui/cover-upload'
 import {
   Form,
   FormControl,
@@ -24,8 +24,10 @@ import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { useCreateNews } from './use-create-news.hook'
 
+const MAX_IMAGE_SIZE_MB = 5
+
 export default function CadastrarNoticia() {
-  const { form, isSubmitting, onSubmit, serverError } = useCreateNews()
+  const { form, isSubmitting, submit, serverError } = useCreateNews()
 
   return (
     <PageContainer>
@@ -37,7 +39,7 @@ export default function CadastrarNoticia() {
       </PageHeaderContent>
 
       <Form {...form}>
-        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="space-y-6" onSubmit={submit}>
           {serverError && (
             <Alert className="mb-4 border-primary" variant="destructive">
               <AlertCircle className="size-4" />
@@ -70,7 +72,10 @@ export default function CadastrarNoticia() {
                   Imagem <span className="text-primary">*</span>
                 </FormLabel>
                 <FormControl>
-                  <FileUpload maxSizeMB={5} onChange={field.onChange} />
+                  <CoverUpload
+                    maxSize={MAX_IMAGE_SIZE_MB}
+                    onImageChange={field.onChange}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

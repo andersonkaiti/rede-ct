@@ -20,19 +20,29 @@ import {
 import { format } from 'date-fns'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { PatternFormat } from 'react-number-format'
-import type { IUser } from 'types/user'
 import { ROLE_MAPPING } from '../_constants/roles'
 import { MAX_AVATAR_SIZE_BYTES } from '../_constants/zod'
 import { useUserProfile } from '../_hooks/use-user-profile.hook'
 
 interface IUserProfileProps {
-  user: IUser
+  user: {
+    avatarUrl: string | null
+    createdAt: string
+    emailAddress: string
+    id: string
+    lattesUrl: string | null
+    name: string
+    orcid: string | null
+    phone: string | null
+    role: 'ADMIN' | 'USER'
+    updatedAt: string
+  }
 }
 
 export function UserProfile({ user }: IUserProfileProps) {
   const { form, submit, serverError } = useUserProfile(user)
 
-  const role = ROLE_MAPPING[user.role]
+  const role = ROLE_MAPPING[user.role as keyof typeof ROLE_MAPPING]
 
   return (
     <PageContainer>
@@ -178,7 +188,6 @@ export function UserProfile({ user }: IUserProfileProps) {
                 <FormLabel>Celular (opcional)</FormLabel>
                 <FormControl>
                   <PatternFormat
-                    allowEmptyFormatting
                     customInput={Input}
                     format="(##) #####-####"
                     onValueChange={(value) =>

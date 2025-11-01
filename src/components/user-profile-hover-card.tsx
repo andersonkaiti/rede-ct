@@ -5,11 +5,21 @@ import {
 } from '@components/ui/hover-card'
 import { getInitials } from '@utils/get-initials'
 import Link from 'next/link'
-import type { IUser } from 'types/user'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 interface UserProfileHoverCardProps {
-  user: IUser
+  user: {
+    name: string
+    orcid: string | null
+    phone: string | null
+    lattesUrl: string | null
+    id: string
+    avatarUrl: string | null
+    createdAt: string
+    updatedAt: string
+    emailAddress: string
+    role: 'ADMIN' | 'USER'
+  }
   avatarVisibility?: boolean
 }
 

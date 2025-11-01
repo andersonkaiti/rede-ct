@@ -5,9 +5,21 @@ import { HTTPError } from 'ky'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import type { IUser } from 'types/user'
 import z from 'zod'
 import { MAX_AVATAR_SIZE_MB, ORCID_REGEX, PHONE_REGEX } from '../_constants/zod'
+
+interface IUser {
+  avatarUrl: string | null
+  createdAt: string
+  emailAddress: string
+  id: string
+  lattesUrl: string | null
+  name: string
+  orcid: string | null
+  phone: string | null
+  role: 'ADMIN' | 'USER'
+  updatedAt: string
+}
 
 export const userProfileSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório'),
@@ -21,11 +33,11 @@ export const userProfileSchema = z.object({
     ),
   phone: z
     .string()
-    .regex(
-      PHONE_REGEX,
+    .optional()
+    .refine(
+      (val) => !val || PHONE_REGEX.test(val),
       'Telefone inválido. Deve estar no formato (99) 99999-9999'
-    )
-    .optional(),
+    ),
   avatarImage: z
     .any()
     .refine(
@@ -40,20 +52,18 @@ export const userProfileSchema = z.object({
 
 export type UserProfileInput = z.infer<typeof userProfileSchema>
 
-const getInitialValues = (user?: IUser): UserProfileInput => ({
-  name: user?.name ?? '',
-  lattesUrl: user?.lattesUrl ?? '',
-  orcid: user?.orcid ?? '',
-  phone: user?.phone ?? '',
-  avatarImage: undefined,
-})
-
 export function useUserProfile(user?: IUser) {
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const form = useForm<UserProfileInput>({
+  const form = useForm({
     resolver: zodResolver(userProfileSchema),
-    values: getInitialValues(user),
+    values: {
+      name: user?.name ?? '',
+      lattesUrl: user?.lattesUrl ?? undefined,
+      orcid: user?.orcid ?? undefined,
+      phone: user?.phone ?? undefined,
+      avatarImage: undefined,
+    },
   })
 
   const submit = form.handleSubmit(async (values: UserProfileInput) => {
@@ -65,9 +75,7 @@ export function useUserProfile(user?: IUser) {
       if (err instanceof HTTPError) {
         const errorBody = await err.response.json()
 
-        setServerError(
-          errorBody?.message || 'Ocorreu um erro ao atualizar o usuário.'
-        )
+        setServerError(errorBody?.message)
       }
     }
   })

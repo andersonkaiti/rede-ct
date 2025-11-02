@@ -11,14 +11,13 @@ import { ArrowDownUp, Search } from 'lucide-react'
 import { parseAsString, useQueryStates } from 'nuqs'
 
 export function FilterInput() {
-  const [{ filtro: filter = '', order_by: orderBy = 'desc' }, setQuery] =
-    useQueryStates({
-      filtro: parseAsString.withDefault(''),
-      order_by: parseAsString.withDefault('desc'),
-    })
+  const [{ filtro: filter, orderBy }, setQuery] = useQueryStates({
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsString.withDefault('desc'),
+  })
 
   const setFilter = (value: string) => setQuery({ filtro: value })
-  const setOrderBy = (value: string) => setQuery({ order_by: value })
+  const setOrderBy = (value: string) => setQuery({ orderBy: value })
 
   function handleOrderBy() {
     setOrderBy(orderBy === 'asc' ? 'desc' : 'asc')

@@ -36,7 +36,7 @@ export default async function Image({ params }: IImageProps) {
     >
       <img
         alt={title}
-        src={imageUrl}
+        src={imageUrl ?? undefined}
         style={{
           width: '100%',
           height: '100%',

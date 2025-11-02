@@ -2,10 +2,28 @@
 
 import { Button } from '@components/ui/button'
 import { Share2 } from 'lucide-react'
-import type { INews } from 'types/news'
 
 interface IShareButtonProps {
-  news: INews
+  news: {
+    id: string
+    createdAt: string
+    updatedAt: string
+    title: string
+    content: string
+    imageUrl: string | null
+    author: {
+      name: string
+      id: string
+      avatarUrl: string | null
+      createdAt: string
+      updatedAt: string
+      emailAddress: string
+      orcid: string | null
+      phone: string | null
+      lattesUrl: string | null
+      role: 'ADMIN' | 'USER'
+    }
+  }
 }
 
 export function ShareButton({ news: { title, content } }: IShareButtonProps) {

@@ -1,5 +1,6 @@
 import { api } from '@http/api-client'
-import type { IPendency } from 'types/pendency'
+import { parseSearchParams } from '@utils/parse-search-params'
+import z from 'zod'
 
 interface IPendenciesRequest {
   filter: string
@@ -9,35 +10,46 @@ interface IPendenciesRequest {
   userId?: string
 }
 
-interface IPaginatedPendenciesResponse {
-  page: number
-  totalPages: number
-  offset: number
-  limit: number
-  pendencies: IPendency[]
-}
+export const getRegisteredPendenciesSchema = z.object({
+  page: z.number(),
+  totalPages: z.number(),
+  offset: z.number(),
+  limit: z.number(),
+  pendencies: z.array(
+    z.object({
+      id: z.string(),
+      title: z.string(),
+      description: z.string(),
+      status: z.literal('PENDING'),
+      dueDate: z.string(),
+      documentUrl: z.string(),
+      createdAt: z.string(),
+      updatedAt: z.string(),
+      userId: z.string(),
+      user: z.object({
+        id: z.string(),
+        name: z.string(),
+        avatarUrl: z.string(),
+        createdAt: z.string(),
+        updatedAt: z.string(),
+        emailAddress: z.string(),
+        orcid: z.string(),
+        phone: z.string(),
+        lattesUrl: z.string(),
+        role: z.literal('ADMIN'),
+      }),
+    })
+  ),
+})
 
-export async function getRegisteredPendencies({
-  filter,
-  limit,
-  orderBy,
-  page,
-  userId,
-}: IPendenciesRequest): Promise<IPaginatedPendenciesResponse> {
-  const searchParams = new URLSearchParams()
+export async function getRegisteredPendencies(params: IPendenciesRequest) {
+  const searchParams = parseSearchParams(params)
 
-  searchParams.set('title', filter)
-  searchParams.set('description', filter)
+  const data = await api
+    .get('pendency', {
+      searchParams,
+    })
+    .json()
 
-  searchParams.set('orderBy', orderBy)
-
-  searchParams.set('page', page)
-  searchParams.set('limit', limit)
-  searchParams.set('status', 'PENDING')
-
-  if (userId) {
-    searchParams.set('userId', userId)
-  }
-
-  return await api.get(`pendency?${searchParams}`).json()
+  return getRegisteredPendenciesSchema.parse(data)
 }

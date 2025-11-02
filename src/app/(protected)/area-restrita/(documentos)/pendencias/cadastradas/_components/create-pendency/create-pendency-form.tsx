@@ -23,14 +23,14 @@ import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { useState } from 'react'
 import { SelectMember } from '../../../../../_components/select-member'
-import { useRegisterPendency } from './use-register-pendency'
+import { useRegisterPendency } from './use-create-pendency'
 
 interface ICreatePendencyFormProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export function CreatePendencyForm({ setIsOpen }: ICreatePendencyFormProps) {
-  const { form, serverError, isSubmitting, onSubmit } = useRegisterPendency({
+  const { form, serverError, isSubmitting, submit } = useRegisterPendency({
     setIsOpen,
   })
   const [dueDate, setDueDate] = useState<Date | undefined>()
@@ -42,7 +42,7 @@ export function CreatePendencyForm({ setIsOpen }: ICreatePendencyFormProps) {
       </DialogHeader>
 
       <Form {...form}>
-        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="space-y-6" onSubmit={submit}>
           {serverError && (
             <Alert className="mb-4 border-primary" variant="destructive">
               <AlertCircle className="size-4" />

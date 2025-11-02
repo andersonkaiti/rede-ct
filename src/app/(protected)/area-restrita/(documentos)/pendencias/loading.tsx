@@ -8,7 +8,7 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { Skeleton } from '@components/ui/skeleton'
-import { LoadingSkeleton as CardsLoadingSkeleton } from './_components/loading-skeleton'
+import { LoadingSkeleton } from './_components/loading-skeleton'
 
 export default function Loading() {
   return (
@@ -35,7 +35,7 @@ export default function Loading() {
       </PageHeader>
 
       <PageMain>
-        <CardsLoadingSkeleton />
+        <LoadingSkeleton />
       </PageMain>
     </PageContainer>
   )

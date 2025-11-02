@@ -4,32 +4,34 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu'
+import { deletePendencyById } from '@http/documents/pendencies/delete-pendency'
 import { useQueryClient } from '@tanstack/react-query'
 import { Ellipsis } from 'lucide-react'
-import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
+import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 import { DeleteDialog } from '../../../_components/delete-dialog'
-import { handleRemovePendencyAction } from '../actions'
 import { UpdatePendencyButton } from '../cadastradas/_components/update-pendency/update-pendency-button'
 
 interface IPendencyActionsProps {
   id: string
 }
 
+const DEFAULT_PAGE = 1
+const DEFAULT_LIMIT = 4
+
 export function PendencyActions({ id }: IPendencyActionsProps) {
-  const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
-  const [orderBy] = useQueryState(
-    'order_by',
-    parseAsStringEnum(['desc', 'asc']).withDefault('desc')
-  )
-  const [page] = useQueryState('page', parseAsString.withDefault('1'))
-  const [limit] = useQueryState('limit', parseAsString.withDefault('6'))
+  const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    page: parseAsString.withDefault(String(DEFAULT_PAGE)),
+    limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+  })
 
   const queryClient = useQueryClient()
 
   async function handleRemove() {
     try {
-      await handleRemovePendencyAction(id)
+      await deletePendencyById(id)
 
       queryClient.invalidateQueries({
         queryKey: ['user', 'pendencies', filter, orderBy, page, limit],

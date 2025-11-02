@@ -1,4 +1,3 @@
-import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
 import {
   PageActionsContainer,
   PageContainer,
@@ -9,6 +8,7 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { Suspense } from 'react'
+import { AuthWrapper } from '../../_components/hoc/auth'
 import { FilterInput } from '../_components/filter-input'
 import { CreatePartnerButton } from './_components/create-partner-button'
 import { LoadingSkeleton } from './_components/table/loading-skeleton'

@@ -1,8 +1,20 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { format } from 'date-fns'
 import { CheckCircle, X } from 'lucide-react'
-import type { IPartner } from 'types/partner'
 import { ActionsRow } from './actions-row'
+
+interface IPartner {
+  name: string
+  id: string
+  logoUrl: string | null
+  websiteUrl: string | null
+  description: string | null
+  category: string | null
+  since: string
+  isActive: boolean
+  createdAt: string
+  updatedAt: string
+}
 
 export const partnersTableColumns: ColumnDef<IPartner>[] = [
   {

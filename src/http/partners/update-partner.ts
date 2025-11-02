@@ -15,7 +15,7 @@ export interface IUpdatePartnerRequest {
 export async function updatePartner({ id, ...data }: IUpdatePartnerRequest) {
   const formData = parseFormData(data)
 
-  return await api.put(`partner/${id}`, {
+  await api.put(`partner/${id}`, {
     body: formData,
   })
 }

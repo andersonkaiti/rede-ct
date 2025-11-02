@@ -3,34 +3,37 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@components/ui/accordion'
-import type { IETP, IETPResearcher, IResearcher } from 'types/etp'
+import type { etpResearcherSchema, etpSchema } from '@http/etps/get-etps'
+import type z from 'zod'
 import { ETPCoordenation } from './etp-coordenation'
 import { GTMembers } from './gt-members'
 
 interface IETPAccordionItemProps {
-  etp: IETP
+  etp: z.infer<typeof etpSchema>
 }
+
+interface IETPResearcher extends z.infer<typeof etpResearcherSchema> {}
 
 export function ETPAccordionItem({ etp }: IETPAccordionItemProps) {
   const coordenation: IETPResearcher[] = []
 
   if (etp.leader) {
-    coordenation.push(etp.leader)
+    coordenation.push(etp.leader.researcher)
   }
 
   if (etp.deputyLeader) {
-    coordenation.push(etp.deputyLeader)
+    coordenation.push(etp.deputyLeader.researcher)
   }
 
   if (etp.secretary) {
-    coordenation.push(etp.secretary)
+    coordenation.push(etp.secretary.researcher)
   }
 
   const coordenationUsers = coordenation.map(
-    (coordenator) => coordenator.researcher
-  ) satisfies IResearcher[]
+    (coordenator) => coordenator
+  ) satisfies IETPResearcher[]
 
-  const workingGroup: IResearcher[] = [...coordenationUsers, ...etp.members]
+  const workingGroup: IETPResearcher[] = [...coordenationUsers, ...etp.members]
 
   return (
     <AccordionItem key={etp.id} value={etp.code}>

@@ -6,10 +6,11 @@ import {
   TableHeader,
   TableRow,
 } from '@components/ui/table'
-import type { IResearcher } from 'types/etp'
+import type { etpResearcherSchema } from '@http/etps/get-etps'
+import type z from 'zod'
 
 interface IGTMembersProps {
-  gtMembers: IResearcher[]
+  gtMembers: z.infer<typeof etpResearcherSchema>[]
 }
 
 export function GTMembers({ gtMembers }: IGTMembersProps) {

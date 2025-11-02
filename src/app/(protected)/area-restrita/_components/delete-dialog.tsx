@@ -47,7 +47,9 @@ export function DeleteDialog({ handleRemove }: IDeleteDialogProps) {
             <Button variant="ghost">Cancelar</Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button onClick={handleRemove}>Excluir</Button>
+            <Button onClick={handleRemove} variant="outline">
+              Excluir
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

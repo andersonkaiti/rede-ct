@@ -20,7 +20,7 @@ export async function updateResearcher({
   id,
   ...researcher
 }: IUpdateResearcherRequest) {
-  return await api.put(
+  await api.put(
     `researcher/${id}
 `,
     { json: researcher }

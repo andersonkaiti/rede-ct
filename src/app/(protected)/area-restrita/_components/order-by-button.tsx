@@ -3,10 +3,13 @@
 import { Button } from '@components/ui/button'
 import { cn } from '@utils/cn'
 import { ArrowDownUp } from 'lucide-react'
-import { useQueryState } from 'nuqs'
+import { parseAsString, useQueryState } from 'nuqs'
 
 export function OrderByButton() {
-  const [orderBy = 'desc', setOrderBy] = useQueryState('order_by')
+  const [orderBy, setOrderBy] = useQueryState(
+    'orderBy',
+    parseAsString.withDefault('desc')
+  )
 
   function handleOrderBy() {
     setOrderBy(orderBy === 'asc' ? 'desc' : 'asc')

@@ -1,7 +1,32 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import type { IResearcher } from 'types/researcher'
 import { SENIORITY_LABEL_MAP } from '../../_constants/seniority'
 import { ActionsRow } from './actions-row'
+
+interface IResearcher {
+  id: string
+  createdAt: string
+  updatedAt: string
+  registrationNumber: string
+  mainEtps: string | null
+  formations: string | null
+  degrees: ('DOCTOR' | 'MASTER' | 'BACHELOR' | 'TECHNICAL' | 'POSTGRADUATE')[]
+  occupations: string
+  seniority: 'SENIOR' | 'RESEARCHER' | 'JUNIOR' | 'HONOR'
+  institutions: string
+  biography: string | null
+  user: {
+    id: string
+    name: string
+    emailAddress: string
+    orcid: string | null
+    lattesUrl: string | null
+    avatarUrl: string | null
+    phone: string | null
+    createdAt: string
+    updatedAt: string
+    role: 'ADMIN' | 'USER'
+  }
+}
 
 export const researchersTableColumns: ColumnDef<IResearcher>[] = [
   {

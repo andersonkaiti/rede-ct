@@ -10,7 +10,7 @@ import {
   CommandList,
 } from '@components/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@components/ui/popover'
-import { getUsers } from '@http/get-users'
+import { getUsers } from '@http/users/get-users'
 import { useQuery } from '@tanstack/react-query'
 import { cn } from '@utils/cn'
 import { CheckIcon, ChevronDownIcon, Loader2 } from 'lucide-react'
@@ -24,7 +24,7 @@ export function FilterSelectUser() {
   })
 
   const [userId, setUserId] = useQueryState(
-    'user_id',
+    'userId',
     parseAsString.withDefault('')
   )
   const [open, setOpen] = useState(false)

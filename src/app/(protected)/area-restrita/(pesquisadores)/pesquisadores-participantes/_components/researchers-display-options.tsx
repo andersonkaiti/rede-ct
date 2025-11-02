@@ -12,8 +12,6 @@ import { Funnel } from 'lucide-react'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { researchersTableColumns } from './table/researchers-table-columns'
 
-type ToggleColumnsKeys = 'registrationNumber' | 'name' | 'seniority'
-
 export function ResearchersDisplayOptions() {
   const [columnsVisibility, setColumnsVisibility] = useQueryStates({
     registrationNumber: parseAsBoolean.withDefault(true),
@@ -33,7 +31,7 @@ export function ResearchersDisplayOptions() {
         <DropdownMenuLabel>Exibir colunas</DropdownMenuLabel>
 
         {researchersTableColumns.map((col) => {
-          const columnKey = col.id as ToggleColumnsKeys
+          const columnKey = col.id as keyof typeof columnsVisibility
 
           if (col.id === 'actions') {
             return null

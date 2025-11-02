@@ -3,26 +3,22 @@
 import PaginatorComponent from '@components/ui/paginator'
 import { Contribution } from './contribution'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useContributions } from './use-contributions.hook'
+import { useContributions } from './use-user-contributions.hook'
 
 export function ContributionList() {
-  const { paginatedResults, isLoading, page, limit } = useContributions()
-
-  const contributions = paginatedResults?.pendencies ?? []
-
-  const hasContributions = contributions.length > 0
+  const { data, isLoading, page, limit } = useContributions()
 
   return (
     <>
-      {hasContributions && !isLoading && (
-        <section className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {contributions.map((contribution) => (
-            <Contribution key={contribution.id} {...contribution} />
+      {data?.pendencies.length && !isLoading && (
+        <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 xlg:grid-cols-3">
+          {data.pendencies.map((contribution) => (
+            <Contribution contribution={contribution} key={contribution.id} />
           ))}
         </section>
       )}
 
-      {!(hasContributions || isLoading) && (
+      {!(data?.pendencies.length || isLoading) && (
         <section className="flex flex-col items-center justify-center py-12">
           <div className="text-center text-muted-foreground">
             <p className="font-medium">Nenhuma contribuição encontrada.</p>
@@ -35,7 +31,7 @@ export function ContributionList() {
       <PaginatorComponent
         currentPage={Number(page)}
         defaultRowsPerPage={Number(limit)}
-        totalPages={paginatedResults?.totalPages ?? 1}
+        totalPages={data?.totalPages ?? 1}
       />
     </>
   )

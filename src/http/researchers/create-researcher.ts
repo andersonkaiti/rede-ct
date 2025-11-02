@@ -15,7 +15,7 @@ interface ICreateResearcherRequest {
 }
 
 export async function createResearcher(data: ICreateResearcherRequest) {
-  return await api.post('researcher', {
+  await api.post('researcher', {
     json: data,
   })
 }

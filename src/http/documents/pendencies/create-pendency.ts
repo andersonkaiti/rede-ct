@@ -1,4 +1,5 @@
 import { api } from '@http/api-client'
+import { parseFormData } from '@utils/parse-form-data'
 
 interface IRegisterPendencyRequest {
   userId: string
@@ -8,23 +9,11 @@ interface IRegisterPendencyRequest {
   document: File
 }
 
-export async function registerPendency({
-  document,
-  description,
-  title,
+export async function createPendency({
   userId,
-  dueDate,
+  ...data
 }: IRegisterPendencyRequest): Promise<void> {
-  const formData = new FormData()
-
-  formData.append('title', title)
-  formData.append('description', description)
-
-  if (dueDate) {
-    formData.append('dueDate', dueDate)
-  }
-
-  formData.append('document', document)
+  const formData = parseFormData(data)
 
   await api
     .post(`pendency/${userId}`, {

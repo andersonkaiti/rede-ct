@@ -12,8 +12,6 @@ import { Funnel } from 'lucide-react'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { partnersTableColumns } from './table/partners-table-columns'
 
-type ToggleColumnsKeys = 'name' | 'createdAt' | 'updatedAt'
-
 export function PartnersDisplayOptions() {
   const [columnsVisibility, setColumnsVisibility] = useQueryStates({
     name: parseAsBoolean.withDefault(true),
@@ -33,7 +31,7 @@ export function PartnersDisplayOptions() {
         <DropdownMenuLabel>Exibir colunas</DropdownMenuLabel>
 
         {partnersTableColumns.map((col) => {
-          const columnKey = col.id as ToggleColumnsKeys
+          const columnKey = col.id as keyof typeof columnsVisibility
 
           if (col.id === 'actions' || !(columnKey in columnsVisibility)) {
             return null

@@ -1,8 +1,16 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { formatDate } from '@utils/format-date'
-import type { INews } from 'types/news'
 
 import { ActionsRow } from './actions-row'
+
+interface INews {
+  id: string
+  createdAt: string
+  updatedAt: string
+  title: string
+  content: string
+  imageUrl: string | null
+}
 
 const TITLE_MAX_LENGTH = 30
 const ELLIPSIS = '...'
@@ -48,8 +56,8 @@ export const newsTableColumns: ColumnDef<INews>[] = [
       },
     }) => (
       <ActionsRow
-        data={original}
         handleRemove={() => meta?.handleRemove?.(original.id)}
+        id={original.id}
       />
     ),
   },

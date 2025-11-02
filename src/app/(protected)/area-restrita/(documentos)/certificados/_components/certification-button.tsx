@@ -14,7 +14,7 @@ export function CertificationButton({ url }: { url: string }) {
   return (
     <Button
       asChild
-      className="w-full"
+      className="w-fit"
       onMouseEnter={() => iconRef.current?.startAnimation()}
       onMouseLeave={() => iconRef.current?.stopAnimation()}
       variant="ghost"

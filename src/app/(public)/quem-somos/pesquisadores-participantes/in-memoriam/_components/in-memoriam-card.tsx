@@ -9,10 +9,19 @@ import {
 import { UserCard, UserCardImage } from '@components/ui/user-card'
 import { format } from 'date-fns'
 import { BookOpen, Dot } from 'lucide-react'
-import type { IInMemoriam } from 'types/in-memoriam'
 
 interface IInMemoriamCardProps {
-  member: IInMemoriam
+  member: {
+    id: string
+    name: string
+    birthDate: string
+    deathDate: string
+    biography: string | null
+    photoUrl: string | null
+    role: 'RESEARCHER' | 'LEADER'
+    createdAt: string
+    updatedAt: string
+  }
 }
 
 export function InMemoriamCard({ member }: IInMemoriamCardProps) {

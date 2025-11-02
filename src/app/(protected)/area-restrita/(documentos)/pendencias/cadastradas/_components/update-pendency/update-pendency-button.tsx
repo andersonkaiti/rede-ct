@@ -14,7 +14,7 @@ interface IUpdatePendencyButtonProps {
 export function UpdatePendencyButton({
   pendencyId,
 }: IUpdatePendencyButtonProps) {
-  const [, setPendencyId] = useQueryState('pendency_id')
+  const [, setPendencyId] = useQueryState('pendencyId')
   const [isOpen, setIsOpen] = useState(false)
 
   return (

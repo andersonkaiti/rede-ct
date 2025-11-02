@@ -3,21 +3,27 @@
 import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
-import { parseAsBoolean, parseAsInteger, useQueryStates } from 'nuqs'
-
-import type { INews } from 'types/news'
+import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { useUserNews } from '../../_hooks/use-user-news.hook'
 import { LoadingSkeleton } from './loading-skeleton'
 import { newsTableColumns } from './news-table-columns'
 
-export function Table() {
-  const { data, handleRemoveNews, isLoading } = useUserNews()
+interface INews {
+  id: string
+  createdAt: string
+  updatedAt: string
+  title: string
+  content: string
+  imageUrl: string | null
+}
 
-  const [{ title, createdAt, updatedAt, page }] = useQueryStates({
+export function Table() {
+  const { data, handleRemoveNews, isLoading, page, limit } = useUserNews()
+
+  const [{ title, createdAt, updatedAt }] = useQueryStates({
     title: parseAsBoolean.withDefault(true),
     createdAt: parseAsBoolean.withDefault(true),
     updatedAt: parseAsBoolean.withDefault(true),
-    page: parseAsInteger.withDefault(1),
   })
 
   const filteredTableColumns: ColumnDef<INews>[] = newsTableColumns.filter(
@@ -51,8 +57,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={page}
-        defaultRowsPerPage={7}
+        currentPage={Number(page)}
+        defaultRowsPerPage={Number(limit)}
         totalPages={data?.totalPages ?? 1}
       />
     </>

@@ -1,15 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { getCertification } from '@http/documents/certifications/get-certification'
+import { getCertificationById } from '@http/documents/certifications/get-certification-by-id'
+import { updateCertification } from '@http/documents/certifications/update-certification'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
+import { HTTPError } from 'ky'
+import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-import {
-  type UpdateCertificationActionResult,
-  updateCertificationAction,
-} from '../../../actions'
 
 const updateCertificationSchema = z.object({
   id: z.uuid(),
@@ -30,6 +28,9 @@ interface IUseUpdateCertificationProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+const DEFAULT_PAGE = 1
+const DEFAULT_LIMIT = 7
+
 export function useUpdateCertification({
   setIsOpen,
 }: IUseUpdateCertificationProps) {
@@ -37,21 +38,18 @@ export function useUpdateCertification({
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const [certificationId] = useQueryState(
-    'certification_id',
-    parseAsString.withDefault('')
-  )
-  const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
-  const [orderBy] = useQueryState(
-    'order_by',
-    parseAsStringEnum(['desc', 'asc']).withDefault('desc')
-  )
-  const [page] = useQueryState('page', parseAsString.withDefault('1'))
-  const [limit] = useQueryState('limit', parseAsString.withDefault('6'))
+  const [{ certificationId, filtro: filter, orderBy, page, limit }] =
+    useQueryStates({
+      certificationId: parseAsString.withDefault(''),
+      filtro: parseAsString.withDefault(''),
+      orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+      page: parseAsString.withDefault(String(DEFAULT_PAGE)),
+      limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+    })
 
   const { data: certification } = useQuery({
     queryKey: ['certification', certificationId],
-    queryFn: () => getCertification(certificationId),
+    queryFn: () => getCertificationById(certificationId),
     enabled: !!certificationId,
   })
 
@@ -65,11 +63,10 @@ export function useUpdateCertification({
     },
   })
 
-  async function onSubmit(values: UpdateCertificationInput) {
-    const result: UpdateCertificationActionResult =
-      await updateCertificationAction(values)
+  const submit = form.handleSubmit(async (values: UpdateCertificationInput) => {
+    try {
+      await updateCertification(values)
 
-    if (result.success) {
       queryClient.invalidateQueries({
         queryKey: ['user', 'certifications', filter, orderBy, page, limit],
       })
@@ -78,17 +75,20 @@ export function useUpdateCertification({
 
       setIsOpen(false)
 
-      return
+      form.reset()
+    } catch (err) {
+      if (err instanceof HTTPError) {
+        const errorBody = await err.response.json()
+        setServerError(errorBody.message)
+      }
     }
-
-    setServerError(result.message)
-  }
+  })
 
   return {
     certification,
     form,
     serverError,
     isSubmitting: form.formState.isSubmitting,
-    onSubmit,
+    submit,
   }
 }

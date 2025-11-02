@@ -14,7 +14,7 @@ export interface ICreatePartnerRequest {
 export async function createPartner(data: ICreatePartnerRequest) {
   const formData = parseFormData(data)
 
-  return await api.post('partner', {
+  await api.post('partner', {
     body: formData,
   })
 }

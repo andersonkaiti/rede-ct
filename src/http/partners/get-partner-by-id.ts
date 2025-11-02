@@ -1,20 +1,21 @@
 import { api } from '@http/api-client'
+import z from 'zod'
 
-interface IGetPartnerByIdResponse {
-  id: string
-  name: string
-  logoUrl: string | null
-  websiteUrl: string | null
-  description: string | null
-  category: string | null
-  since: Date
-  isActive: boolean
-  createdAt: Date
-  updatedAt: Date
-}
+export const getPartnerByIdSchema = z.object({
+  name: z.string(),
+  id: z.string(),
+  logoUrl: z.string().nullable(),
+  websiteUrl: z.string().nullable(),
+  description: z.string().nullable(),
+  category: z.string().nullable(),
+  since: z.coerce.date(),
+  isActive: z.boolean(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
+})
 
-export async function getPartnerById(
-  id: string
-): Promise<IGetPartnerByIdResponse> {
-  return await api.get(`partner/${id}`).json()
+export async function getPartnerById(id: string) {
+  const data = await api.get(`partner/${id}`).json()
+
+  return getPartnerByIdSchema.parse(data)
 }

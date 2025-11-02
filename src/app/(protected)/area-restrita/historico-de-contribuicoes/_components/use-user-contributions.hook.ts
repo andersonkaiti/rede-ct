@@ -1,28 +1,27 @@
-import { getAuthenticatedUserPendencies } from '@http/auth/get-user-pendencies'
-import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { getAuthenticatedUserContributions } from '@http/auth/get-user-contributions'
+import { useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 
 const DEFAULT_PAGE = 1
 const DEFAULT_LIMIT = 4
 
-export function usePendencies() {
-  const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
+export function useContributions() {
+  const [{ filtro: filter, order_by: orderBy, page, limit }] = useQueryStates({
     filtro: parseAsString.withDefault(''),
-    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    order_by: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
   })
 
   const { data, isLoading } = useQuery({
-    queryKey: ['user', 'pendencies', filter, orderBy, page, limit],
+    queryKey: ['user', 'contributions', filter, orderBy, page, limit],
     queryFn: () =>
-      getAuthenticatedUserPendencies({
+      getAuthenticatedUserContributions({
         filter,
         orderBy,
         page,
         limit,
       }),
-    placeholderData: keepPreviousData,
   })
 
   return {

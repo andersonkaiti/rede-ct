@@ -15,10 +15,20 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { IPartner } from 'types/partner'
 
 interface IPartnerProps {
-  partner: IPartner
+  partner: {
+    name: string
+    id: string
+    logoUrl: string | null
+    websiteUrl: string | null
+    description: string | null
+    category: string | null
+    since: string
+    isActive: boolean
+    createdAt: string
+    updatedAt: string
+  }
 }
 
 export function Partner({ partner }: IPartnerProps) {

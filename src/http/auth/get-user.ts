@@ -1,23 +1,26 @@
 import { api } from '@http/api-client'
 import { HTTPError } from 'ky'
 import { redirect } from 'next/navigation'
+import { z } from 'zod'
 
-interface IAuthenticatedUserResponse {
-  name: string
-  orcid: string | null
-  phone: string | null
-  lattesUrl: string | null
-  id: string
-  avatarUrl: string
-  createdAt: string
-  updatedAt: string
-  emailAddress: string
-  role: 'ADMIN' | 'USER'
-}
+export const getAuthenticatedUserSchema = z.object({
+  name: z.string(),
+  orcid: z.string().nullable(),
+  phone: z.string().nullable(),
+  lattesUrl: z.string().nullable(),
+  id: z.string(),
+  avatarUrl: z.string().nullable(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  emailAddress: z.string(),
+  role: z.enum(['ADMIN', 'USER']),
+})
 
-export async function getAuthenticatedUser(): Promise<IAuthenticatedUserResponse> {
+export async function getAuthenticatedUser() {
   try {
-    return await api.get('auth/user').json()
+    const data = await api.get('auth/user').json()
+
+    return getAuthenticatedUserSchema.parse(data)
   } catch (err) {
     if (err instanceof HTTPError) {
       const errorBody = await err.response.json()

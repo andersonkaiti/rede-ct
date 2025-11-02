@@ -1,4 +1,6 @@
 import { api } from '@http/api-client'
+import { parseSearchParams } from '@utils/parse-search-params'
+import z from 'zod'
 
 interface IContributionsRequest {
   filter: string
@@ -7,40 +9,51 @@ interface IContributionsRequest {
   limit: string
 }
 
-interface IPaginatedContributionsResponse {
-  page: number
-  totalPages: number
-  offset: number
-  limit: number
-  pendencies: {
-    title: string
-    description: string | null
-    status: 'PENDING' | 'PAID'
-    id: string
-    dueDate: string | null
-    documentUrl: string
-    createdAt: string
-    updatedAt: string
-    userId: string
-  }[]
-}
+export const getAuthenticatedUserContributionsSchema = z.object({
+  page: z.number(),
+  totalPages: z.number(),
+  offset: z.number(),
+  limit: z.number(),
+  pendencies: z.array(
+    z.object({
+      id: z.string(),
+      title: z.string(),
+      description: z.string(),
+      status: z.literal('PENDING'),
+      dueDate: z.string(),
+      documentUrl: z.string(),
+      createdAt: z.string(),
+      updatedAt: z.string(),
+      userId: z.string(),
+      user: z.object({
+        id: z.string(),
+        name: z.string(),
+        avatarUrl: z.string(),
+        createdAt: z.string(),
+        updatedAt: z.string(),
+        emailAddress: z.string(),
+        orcid: z.string().nullable(),
+        phone: z.string().nullable(),
+        lattesUrl: z.string().nullable(),
+        role: z.literal('ADMIN'),
+      }),
+    })
+  ),
+})
 
-export async function getAuthenticatedUserContributions({
-  filter,
-  limit,
-  orderBy,
-  page,
-}: IContributionsRequest): Promise<IPaginatedContributionsResponse> {
-  const searchParams = new URLSearchParams()
+export async function getAuthenticatedUserContributions(
+  params: IContributionsRequest
+) {
+  const searchParams = parseSearchParams({
+    ...params,
+    status: 'PENDING',
+  })
 
-  searchParams.set('title', filter)
-  searchParams.set('description', filter)
+  const data = await api
+    .get('auth/pendencies', {
+      searchParams,
+    })
+    .json()
 
-  searchParams.set('orderBy', orderBy)
-
-  searchParams.set('page', page)
-  searchParams.set('limit', limit)
-  searchParams.set('status', 'PAID')
-
-  return await api.get(`auth/pendencies?${searchParams}`).json()
+  return getAuthenticatedUserContributionsSchema.parse(data)
 }

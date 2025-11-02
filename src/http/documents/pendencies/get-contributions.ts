@@ -2,34 +2,37 @@ import { api } from '@http/api-client'
 import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
-interface IGetNewsRequest {
-  filter?: string
-  orderBy?: string
-  authorId?: string
-  page?: string
-  limit?: string
+interface IContributionsRequest {
+  filter: string
+  orderBy: string
+  page: string
+  limit: string
+  userId?: string
 }
 
-export const getNewsSchema = z.object({
+const getAllContributionsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
   offset: z.number(),
   limit: z.number(),
-  news: z.array(
+  pendencies: z.array(
     z.object({
+      title: z.string(),
+      description: z.string().nullable(),
+      userId: z.string(),
       id: z.string(),
       createdAt: z.string(),
       updatedAt: z.string(),
-      title: z.string(),
-      content: z.string(),
-      imageUrl: z.string().nullable(),
-      author: z.object({
+      status: z.enum(['PENDING', 'PAID']),
+      dueDate: z.string().nullable(),
+      documentUrl: z.string(),
+      user: z.object({
         name: z.string(),
         id: z.string(),
-        avatarUrl: z.string().nullable(),
         createdAt: z.string(),
         updatedAt: z.string(),
         emailAddress: z.string(),
+        avatarUrl: z.string().nullable(),
         orcid: z.string().nullable(),
         phone: z.string().nullable(),
         lattesUrl: z.string().nullable(),
@@ -39,14 +42,14 @@ export const getNewsSchema = z.object({
   ),
 })
 
-export async function getNews(params: IGetNewsRequest) {
+export async function getContributions(params: IContributionsRequest) {
   const searchParams = parseSearchParams(params)
 
   const data = await api
-    .get('news', {
+    .get('pendency', {
       searchParams,
     })
     .json()
 
-  return getNewsSchema.parse(data)
+  return getAllContributionsSchema.parse(data)
 }

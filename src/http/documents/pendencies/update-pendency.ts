@@ -1,4 +1,5 @@
 import { api } from '@http/api-client'
+import { parseFormData } from '@utils/parse-form-data'
 
 interface IUpdatePendencyRequest {
   id: string
@@ -11,25 +12,9 @@ interface IUpdatePendencyRequest {
 
 export async function updatePendency({
   id,
-  title,
-  description,
-  status,
-  dueDate,
-  document,
+  ...data
 }: IUpdatePendencyRequest): Promise<void> {
-  const formData = new FormData()
-
-  formData.append('title', title)
-  formData.append('description', description)
-  formData.append('status', status)
-
-  if (dueDate) {
-    formData.append('dueDate', dueDate)
-  }
-
-  if (document) {
-    formData.append('document', document)
-  }
+  const formData = parseFormData(data)
 
   await api
     .put(`pendency/${id}`, {

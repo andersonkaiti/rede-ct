@@ -1,14 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { createCertification } from '@http/documents/certifications/create-certification'
 import { useQueryClient } from '@tanstack/react-query'
-import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
+import { HTTPError } from 'ky'
+import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-import {
-  type RegisterCertificationActionResult,
-  registerCertificationAction,
-} from '../../../actions'
 
 const registerCertificationSchema = z.object({
   userId: z.uuid('id do usuário inválido'),
@@ -30,20 +28,22 @@ interface IUseRegisterCertificationProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export function useRegisterCertification({
+const DEFAULT_PAGE = 1
+const DEFAULT_LIMIT = 4
+
+export function useCreateCertification({
   setIsOpen,
 }: IUseRegisterCertificationProps) {
   const queryClient = useQueryClient()
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
-  const [orderBy] = useQueryState(
-    'order_by',
-    parseAsStringEnum(['desc', 'asc']).withDefault('desc')
-  )
-  const [page] = useQueryState('page', parseAsString.withDefault('1'))
-  const [limit] = useQueryState('limit', parseAsString.withDefault('6'))
+  const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    page: parseAsString.withDefault(String(DEFAULT_PAGE)),
+    limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+  })
 
   const form = useForm<RegisterCertificationInput>({
     resolver: zodResolver(registerCertificationSchema),
@@ -55,33 +55,34 @@ export function useRegisterCertification({
     },
   })
 
-  async function onSubmit(values: RegisterCertificationInput) {
-    const result: RegisterCertificationActionResult =
-      await registerCertificationAction({
-        ...values,
-      })
+  const submit = form.handleSubmit(
+    async (values: RegisterCertificationInput) => {
+      try {
+        await createCertification(values)
 
-    if (result.success) {
-      queryClient.invalidateQueries({
-        queryKey: ['users', 'certifications', filter, orderBy, page, limit],
-      })
+        queryClient.invalidateQueries({
+          queryKey: ['users', 'certifications', filter, orderBy, page, limit],
+        })
 
-      toast.success('Certificado cadastrado com sucesso!')
+        toast.success('Certificado cadastrado com sucesso!')
 
-      setIsOpen(false)
+        setIsOpen(false)
 
-      form.reset()
+        form.reset()
+      } catch (err) {
+        if (err instanceof HTTPError) {
+          const errorBody = await err.response.json()
 
-      return
+          setServerError(errorBody.message)
+        }
+      }
     }
-
-    setServerError(result.message)
-  }
+  )
 
   return {
     form,
     serverError,
     isSubmitting: form.formState.isSubmitting,
-    onSubmit,
+    submit,
   }
 }

@@ -4,29 +4,47 @@ import UserProfileHoverCard from '@components/user-profile-hover-card'
 import { formatDate } from '@utils/format-date'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { INews } from 'types/news'
 
-export function Noticia({
-  news: { title, content, updatedAt, imageUrl, author, id },
-}: {
-  news: INews
-}) {
+interface INewsProps {
+  news: {
+    id: string
+    createdAt: string
+    updatedAt: string
+    title: string
+    content: string
+    imageUrl: string | null
+    author: {
+      name: string
+      id: string
+      avatarUrl: string | null
+      createdAt: string
+      updatedAt: string
+      emailAddress: string
+      orcid: string | null
+      phone: string | null
+      lattesUrl: string | null
+      role: 'ADMIN' | 'USER'
+    }
+  }
+}
+
+export function News({ news }: INewsProps) {
   return (
     <div className="flex flex-col gap-2">
       <Link
-        aria-label={`Ver notícia: ${title}`}
+        aria-label={`Ver notícia: ${news.title}`}
         className="group flex flex-col gap-0 focus:outline-none"
-        href={`/noticias/${id}`}
+        href={`/noticias/${news.id}`}
         tabIndex={-1}
       >
         <header className="h-60">
           <picture className="relative flex size-full overflow-hidden rounded-lg border-1 border-background-900">
             <Image
-              alt={title}
+              alt={news.title}
               className="object-cover"
               fill
               priority
-              src={imageUrl}
+              src={news.imageUrl || ''}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent dark:from-black/70 dark:to-transparent" />
           </picture>
@@ -34,23 +52,24 @@ export function Noticia({
 
         <div className="flex h-fit flex-grow flex-col justify-between gap-4 py-8">
           <CardTitle className="line-clamp-3 font-semibold text-2xl leading-tight">
-            {title}
+            {news.title}
           </CardTitle>
 
           <div className="space-y-2">
             <p className="line-clamp-3 text-justify text-muted-foreground text-sm leading-relaxed">
-              {content}
+              {news.content}
             </p>
           </div>
         </div>
       </Link>
-      <footer className="flex w-full items-center gap-x-4">
-        <UserProfileHoverCard user={author} />
+
+      <footer className="mt-auto flex w-full items-center gap-x-4">
+        <UserProfileHoverCard user={news.author} />
 
         <Separator orientation="vertical" />
 
         <div className="flex items-center gap-2 text-muted-foreground text-xs">
-          <time dateTime={updatedAt}>{formatDate(updatedAt)}</time>
+          <time dateTime={news.updatedAt}>{formatDate(news.updatedAt)}</time>
         </div>
       </footer>
     </div>

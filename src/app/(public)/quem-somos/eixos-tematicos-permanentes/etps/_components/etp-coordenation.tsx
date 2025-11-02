@@ -4,11 +4,12 @@ import {
   UserCardImage,
   UserCardWrapper,
 } from '@components/ui/user-card'
-import type { IETPResearcher } from 'types/etp'
+import type { etpResearcherSchema } from '@http/etps/get-etps'
+import type z from 'zod'
 import { ROLE_MAPPING, type Role } from '../_contents/roles'
 
 interface IETPCoordenationProps {
-  members: IETPResearcher[]
+  members: z.infer<typeof etpResearcherSchema>[]
 }
 
 export function ETPCoordenation({ members }: IETPCoordenationProps) {
@@ -21,18 +22,16 @@ export function ETPCoordenation({ members }: IETPCoordenationProps) {
         {members.map((member) => (
           <UserCard key={member.id}>
             <UserCardImage
-              alt={member.researcher.user.name}
-              src={
-                member.researcher.user.avatarUrl || '/images/placeholder.png'
-              }
+              alt={member.user.name}
+              src={member.user.avatarUrl || '/images/placeholder.png'}
             />
             <UserCardContent>
               <div className="flex flex-grow flex-col items-center justify-between gap-1">
                 <h1 className="text-center font-bold text-base">
-                  {member.researcher.user.name}
+                  {member.user.name}
                 </h1>
                 <h2 className="text-center font-semibold text-muted-foreground text-xs">
-                  {ROLE_MAPPING[member.researcher.user.role as Role]}
+                  {ROLE_MAPPING[member.user.role as Role]}
                 </h2>
               </div>
             </UserCardContent>

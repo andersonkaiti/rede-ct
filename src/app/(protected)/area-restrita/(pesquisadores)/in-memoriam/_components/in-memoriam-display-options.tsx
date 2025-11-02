@@ -12,13 +12,6 @@ import { Funnel } from 'lucide-react'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { inMemoriamTableColumns } from './table/in-memoriam-table-columns'
 
-type ToggleColumnsKeys =
-  | 'name'
-  | 'biography'
-  | 'role'
-  | 'birthDate'
-  | 'deathDate'
-
 export function InMemoriamDisplayOptions() {
   const [columnsVisibility, setColumnsVisibility] = useQueryStates({
     name: parseAsBoolean.withDefault(true),
@@ -39,7 +32,7 @@ export function InMemoriamDisplayOptions() {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Exibir colunas</DropdownMenuLabel>
         {inMemoriamTableColumns.map((col) => {
-          const columnKey = col.id as ToggleColumnsKeys
+          const columnKey = col.id as keyof typeof columnsVisibility
 
           if (col.id === 'actions') {
             return null

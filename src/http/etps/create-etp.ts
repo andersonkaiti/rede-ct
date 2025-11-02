@@ -12,7 +12,7 @@ export interface ICreateEtpRequest {
 }
 
 export async function createEtp(data: ICreateEtpRequest) {
-  return await api.post('etp', {
+  await api.post('etp', {
     json: data,
   })
 }

@@ -2,6 +2,7 @@
 
 import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
+import type { etpSchema } from '@http/etps/get-etps'
 import type { ColumnDef } from '@tanstack/react-table'
 import {
   parseAsBoolean,
@@ -9,10 +10,12 @@ import {
   useQueryState,
   useQueryStates,
 } from 'nuqs'
-import type { IETP } from 'types/etp'
+import type z from 'zod'
 import { useEtps } from '../../_hooks/use-etps.hook'
 import { etpsTableColumns } from './etps-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
+
+interface IETP extends z.infer<typeof etpSchema> {}
 
 export function Table() {
   const { data, handleRemoveEtp, isLoading } = useEtps()

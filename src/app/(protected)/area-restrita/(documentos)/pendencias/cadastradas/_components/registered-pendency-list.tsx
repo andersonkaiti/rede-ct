@@ -6,23 +6,19 @@ import { Pendency } from '../../_components/pendency'
 import { useRegisteredPendencies } from './use-registered-pendencies.hook'
 
 export function RegisteredPendencyList() {
-  const { isLoading, paginatedResults, page } = useRegisteredPendencies()
-
-  const pendencies = paginatedResults?.pendencies ?? []
-
-  const hasPendencies = pendencies.length > 0
+  const { data, isLoading, page, limit } = useRegisteredPendencies()
 
   return (
     <>
-      {hasPendencies && !isLoading && (
+      {data?.pendencies.length && !isLoading && (
         <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 xlg:grid-cols-3">
-          {pendencies.map((pendency) => (
-            <Pendency key={pendency.id} {...pendency} />
+          {data?.pendencies.map((pendency) => (
+            <Pendency key={pendency.id} pendency={pendency} />
           ))}
         </section>
       )}
 
-      {!(hasPendencies || isLoading) && (
+      {!(data?.pendencies.length || isLoading) && (
         <section className="flex flex-col items-center justify-center py-12">
           <div className="text-center text-muted-foreground">
             <p className="font-medium">Nenhuma pendência encontrada.</p>
@@ -34,8 +30,8 @@ export function RegisteredPendencyList() {
 
       <PaginatorComponent
         currentPage={Number(page)}
-        defaultRowsPerPage={9}
-        totalPages={paginatedResults?.totalPages ?? 1}
+        defaultRowsPerPage={Number(limit)}
+        totalPages={data?.totalPages ?? 1}
       />
     </>
   )

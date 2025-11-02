@@ -28,13 +28,11 @@ export function useEtps() {
 
   async function handleRemoveEtp(id: string) {
     try {
-      const response = await deleteEtp(id)
+      await deleteEtp(id)
 
-      if (response.ok) {
-        await queryClient.invalidateQueries({ queryKey: QUERY_KEY })
+      await queryClient.invalidateQueries({ queryKey: QUERY_KEY })
 
-        toast.success('ETP removida com sucesso!')
-      }
+      toast.success('ETP removida com sucesso!')
     } catch {
       toast.error('Erro ao remover ETP.')
     }

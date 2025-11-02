@@ -20,7 +20,7 @@ export async function updateInMemoriam({
 }: IUpdateInMemoriamRequest) {
   const formData = parseFormData(data)
 
-  return await api.put(`in-memoriam/${id}`, {
+  await api.put(`in-memoriam/${id}`, {
     body: formData,
   })
 }

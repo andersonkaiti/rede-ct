@@ -1,11 +1,6 @@
 'use client'
 
 import {
-  FileTextIcon,
-  type FileTextIconHandle,
-} from '@components/icons/file-text'
-import { Badge } from '@components/ui/badge'
-import {
   Card,
   CardContent,
   CardDescription,
@@ -13,79 +8,52 @@ import {
   CardHeader,
   CardTitle,
 } from '@components/ui/card'
-import { cn } from '@utils/cn'
-import { formatDate } from '@utils/format-date'
-import { cva } from 'class-variance-authority'
-import { useRef } from 'react'
-import type { IContribution } from 'types/contribution'
+import { format } from 'date-fns'
 import { ContributionButton } from './contribution-button'
 
-const contributionCardVariants = cva('rounded-full text-xs', {
-  variants: {
-    variant: {
-      paid: 'border border-emerald-400 bg-emerald-50 text-emerald-800 dark:border-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-300',
-    },
-    defaultVariants: {
-      variant: 'paid',
-    },
-  },
-})
-
-export function Contribution({
-  documentUrl,
-  description,
-  title,
-  status,
-  createdAt,
-}: IContribution) {
-  const iconRef = useRef<FileTextIconHandle>(null)
-
-  const statusConfig: Record<IContribution['status'], string> = {
-    PAID: 'Pago',
-    PENDING: 'Pendente',
+interface IContributionProps {
+  contribution: {
+    id: string
+    title: string
+    description: string | null
+    status: 'PENDING' | 'PAID'
+    dueDate: string | null
+    documentUrl: string
+    createdAt: string
+    updatedAt: string
+    user: {
+      name: string
+      id: string
+      createdAt: string
+      updatedAt: string
+      emailAddress: string
+      avatarUrl: string | null
+      orcid: string | null
+      phone: string | null
+      lattesUrl: string | null
+      role: 'ADMIN' | 'USER'
+    }
   }
+}
 
-  const currentStatus = statusConfig[status]
-
+export function Contribution({ contribution }: IContributionProps) {
   return (
-    <Card
-      onMouseEnter={() => iconRef.current?.startAnimation()}
-      onMouseLeave={() => iconRef.current?.stopAnimation()}
-    >
+    <Card>
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between gap-3 font-semibold">
-          <div className="flex flex-1 gap-4">
-            <FileTextIcon ref={iconRef} size={20} />
-
-            <div className="flex w-full items-center justify-between gap-4">
-              {title}
-              <Badge
-                className={cn(
-                  contributionCardVariants({
-                    variant: 'paid',
-                  })
-                )}
-                variant="outline"
-              >
-                {currentStatus}
-              </Badge>
-            </div>
-          </div>
+          <span className="text-2xl">{contribution.title}</span>
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="flex h-full flex-col gap-4">
+      <CardContent>
         <CardDescription className="line-clamp-2 text-justify">
-          {description}
+          {contribution.description}
         </CardDescription>
-
-        <div className="text-muted-foreground text-xs">
-          Criado em: {formatDate(createdAt)}
-        </div>
       </CardContent>
 
-      <CardFooter>
-        <ContributionButton url={documentUrl} />
+      <CardFooter className="mt-auto justify-between border-accent border-t">
+        <span>{format(contribution.createdAt, 'dd/MM/yyyy')}</span>
+        <ContributionButton url={contribution.documentUrl} />
       </CardFooter>
     </Card>
   )

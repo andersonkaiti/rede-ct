@@ -14,7 +14,7 @@ export interface IUpdateEtpRequest {
 }
 
 export async function updateETP({ id, ...data }: IUpdateEtpRequest) {
-  return await api.put(`etp/${id}`, {
+  await api.put(`etp/${id}`, {
     json: data,
   })
 }

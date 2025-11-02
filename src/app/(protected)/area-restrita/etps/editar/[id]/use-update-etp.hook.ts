@@ -8,7 +8,6 @@ import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import type { IResearcher } from 'types/etp'
 import z from 'zod'
 
 export const updateEtpSchema = z.object({
@@ -53,7 +52,7 @@ export function useUpdateETP() {
       leaderId: etp?.leader?.researcher?.id ?? '',
       deputyLeaderId: etp?.deputyLeader?.researcher?.id ?? '',
       secretaryId: etp?.secretary?.researcher?.id ?? '',
-      memberIds: etp?.members?.map((r: IResearcher) => r.id) ?? [],
+      memberIds: etp?.members?.map((r) => r.id) ?? [],
     },
   })
 

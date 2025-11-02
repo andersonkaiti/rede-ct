@@ -9,10 +9,21 @@ import {
   useQueryState,
   useQueryStates,
 } from 'nuqs'
-import type { IInMemoriam } from 'types/in-memoriam'
 import { useInMemoriam } from '../../_hooks/use-in-memoriam.hook'
 import { inMemoriamTableColumns } from './in-memoriam-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
+
+interface IInMemoriam {
+  id: string
+  name: string
+  birthDate: string
+  deathDate: string
+  biography: string | null
+  photoUrl: string | null
+  role: 'RESEARCHER' | 'LEADER'
+  createdAt: string
+  updatedAt: string
+}
 
 export function Table() {
   const { data, handleRemoveInMemorian, isLoading } = useInMemoriam()

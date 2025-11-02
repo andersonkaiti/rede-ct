@@ -1,19 +1,20 @@
 import { api } from '@http/api-client'
+import z from 'zod'
 
-export interface InMemoriamResponse {
-  id: string
-  birthDate: string | null
-  deathDate: string | null
-  name: string
-  role: 'RESEARCHER' | 'LEADER'
-  biography: string
-  photoUrl?: string | null
-  createdAt: Date
-  updatedAt: Date
-}
+export const getInMemoriamByIdSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  birthDate: z.string(),
+  deathDate: z.string(),
+  biography: z.string().nullable(),
+  photoUrl: z.string().nullable(),
+  role: z.enum(['RESEARCHER', 'LEADER']),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+})
 
-export async function getInMemoriamById(
-  id: string
-): Promise<InMemoriamResponse> {
-  return await api.get(`in-memoriam/${id}`).json()
+export async function getInMemoriamById(id: string) {
+  const data = await api.get(`in-memoriam/${id}`).json()
+
+  return getInMemoriamByIdSchema.parse(data)
 }

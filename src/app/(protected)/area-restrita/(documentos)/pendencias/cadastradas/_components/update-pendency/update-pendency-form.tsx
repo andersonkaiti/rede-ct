@@ -36,8 +36,10 @@ interface IUpdatePendencyFormProps {
 }
 
 export function UpdatePendencyForm({ setIsOpen }: IUpdatePendencyFormProps) {
-  const { pendency, form, serverError, isSubmitting, onSubmit } =
-    useUpdatePendency({ setIsOpen })
+  const { pendency, form, serverError, isSubmitting, submit } =
+    useUpdatePendency({
+      setIsOpen,
+    })
 
   const [dueDate, setDueDate] = useState<Date | undefined>()
 
@@ -56,7 +58,7 @@ export function UpdatePendencyForm({ setIsOpen }: IUpdatePendencyFormProps) {
       </DialogHeader>
 
       <Form {...form}>
-        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="space-y-6" onSubmit={submit}>
           {serverError && (
             <Alert className="mb-4 border-primary" variant="destructive">
               <AlertCircle className="size-4" />

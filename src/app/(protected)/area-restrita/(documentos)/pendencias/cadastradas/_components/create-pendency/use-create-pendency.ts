@@ -1,14 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { createPendency } from '@http/documents/pendencies/create-pendency'
 import { useQueryClient } from '@tanstack/react-query'
-import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
+import { HTTPError } from 'ky'
+import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-import {
-  type RegisterPendencyActionResult,
-  registerPendencyAction,
-} from '../../../actions'
 
 const registerPendencySchema = z.object({
   userId: z.string().min(1, 'Membro é obrigatório'),
@@ -30,14 +28,16 @@ interface IUseRegisterPendencyProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+const DEFAULT_PAGE = 1
+const DEFAULT_LIMIT = 4
+
 export function useRegisterPendency({ setIsOpen }: IUseRegisterPendencyProps) {
-  const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
-  const [orderBy] = useQueryState(
-    'order_by',
-    parseAsStringEnum(['desc', 'asc']).withDefault('desc')
-  )
-  const [page] = useQueryState('page', parseAsString.withDefault('1'))
-  const [limit] = useQueryState('limit', parseAsString.withDefault('6'))
+  const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    page: parseAsString.withDefault(String(DEFAULT_PAGE)),
+    limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+  })
 
   const queryClient = useQueryClient()
 
@@ -56,13 +56,10 @@ export function useRegisterPendency({ setIsOpen }: IUseRegisterPendencyProps) {
     mode: 'onChange',
   })
 
-  async function onSubmit(values: RegisterPendencyInput) {
-    const result: RegisterPendencyActionResult = await registerPendencyAction({
-      ...values,
-      dueDate: values.dueDate || undefined,
-    })
+  const submit = form.handleSubmit(async (values: RegisterPendencyInput) => {
+    try {
+      await createPendency(values)
 
-    if (result.success) {
       queryClient.invalidateQueries({
         queryKey: ['users', 'pendencies', filter, orderBy, page, limit],
       })
@@ -72,17 +69,18 @@ export function useRegisterPendency({ setIsOpen }: IUseRegisterPendencyProps) {
       setIsOpen(false)
 
       form.reset()
-
-      return
+    } catch (err) {
+      if (err instanceof HTTPError) {
+        const errorBody = await err.response.json()
+        setServerError(errorBody.message)
+      }
     }
-
-    setServerError(result.message)
-  }
+  })
 
   return {
     form,
     serverError,
     isSubmitting: form.formState.isSubmitting,
-    onSubmit,
+    submit,
   }
 }

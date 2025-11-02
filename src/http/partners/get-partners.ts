@@ -1,5 +1,6 @@
 import { api } from '@http/api-client'
 import { parseSearchParams } from '@utils/parse-search-params'
+import z from 'zod'
 
 export interface IGetPartnersRequest {
   page?: string
@@ -9,35 +10,35 @@ export interface IGetPartnersRequest {
   isActive?: boolean
 }
 
-export interface IPartner {
-  name: string
-  id: string
-  logoUrl: string | null
-  websiteUrl: string | null
-  description: string | null
-  category: string | null
-  since: Date
-  isActive: boolean
-  createdAt: Date
-  updatedAt: Date
-}
+export const getPartnersSchema = z.object({
+  page: z.number(),
+  totalPages: z.number(),
+  offset: z.number(),
+  limit: z.number(),
+  partners: z.array(
+    z.object({
+      name: z.string(),
+      id: z.string(),
+      logoUrl: z.string().nullable(),
+      websiteUrl: z.string().nullable(),
+      description: z.string().nullable(),
+      category: z.string().nullable(),
+      since: z.string(),
+      isActive: z.boolean(),
+      createdAt: z.string(),
+      updatedAt: z.string(),
+    })
+  ),
+})
 
-export interface IGetPartnersResponse {
-  page: number
-  totalPages: number
-  offset: number
-  limit: number
-  partners: IPartner[]
-}
-
-export async function getPartners(
-  params: IGetPartnersRequest
-): Promise<IGetPartnersResponse> {
+export async function getPartners(params: IGetPartnersRequest) {
   const searchParams = parseSearchParams(params)
 
-  return await api
+  const data = await api
     .get('partner', {
       searchParams,
     })
     .json()
+
+  return getPartnersSchema.parse(data)
 }

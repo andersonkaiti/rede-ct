@@ -7,49 +7,43 @@ import {
   CardTitle,
 } from '@components/ui/card'
 import { useAuth } from '@hooks/use-auth.hook'
-import { Award } from 'lucide-react'
-import type { ICertification } from 'types/certification'
+import { format } from 'date-fns'
 import { CertificationActions } from './certification-actions'
 import { CertificationButton } from './certification-button'
 
-export function Certification({
-  id,
-  certificationUrl,
-  description,
-  title,
-  user,
-}: ICertification) {
+interface ICertificationProps {
+  id: string
+  createdAt: string
+  updatedAt: string
+  title: string
+  description: string
+  certificationUrl: string
+  userId: string
+}
+
+export function Certification(certification: ICertificationProps) {
   const { isAdmin } = useAuth()
 
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between gap-3 font-semibold">
-          <span className="flex gap-4">
-            <Award size={20} />
+          <span className="text-2xl">{certification.title}</span>
 
-            <div className="flex flex-col">
-              <span>{title}</span>
-              {user && (
-                <span className="line-clamp-1 text-muted-foreground text-sm">
-                  {user.emailAddress}
-                </span>
-              )}
-            </div>
-          </span>
-
-          {isAdmin() && <CertificationActions id={id} />}
+          {isAdmin() && <CertificationActions id={certification.id} />}
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="flex h-full flex-col gap-4">
+      <CardContent>
         <CardDescription className="line-clamp-2 text-justify">
-          {description}
+          {certification.description}
         </CardDescription>
       </CardContent>
 
-      <CardFooter>
-        <CertificationButton url={certificationUrl} />
+      <CardFooter className="mt-auto justify-between border-accent border-t">
+        <span>{format(certification.createdAt, 'dd/MM/yyyy')}</span>
+
+        <CertificationButton url={certification.certificationUrl} />
       </CardFooter>
     </Card>
   )

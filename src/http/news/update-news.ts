@@ -1,5 +1,5 @@
 import { api } from '@http/api-client'
-import type { INews } from 'types/news'
+import { parseFormData } from '@utils/parse-form-data'
 
 interface IUpdateNewsRequest {
   id: string
@@ -8,21 +8,12 @@ interface IUpdateNewsRequest {
   image: File
 }
 
-export async function updateNews({
-  id,
-  title,
-  content,
-  image,
-}: IUpdateNewsRequest): Promise<INews> {
-  const news = new FormData()
+export async function updateNews({ id, ...data }: IUpdateNewsRequest) {
+  const formData = parseFormData(data)
 
-  news.append('title', title)
-  news.append('content', content)
-  news.append('image', image)
-
-  return await api
+  await api
     .put(`news/${id}`, {
-      body: news,
+      body: formData,
     })
     .json()
 }

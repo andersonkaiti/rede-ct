@@ -8,7 +8,7 @@ interface ContributionButtonProps {
 
 export function ContributionButton({ url }: ContributionButtonProps) {
   return (
-    <Button asChild className="w-full" variant="ghost">
+    <Button asChild className="w-fit" variant="ghost">
       <Link href={url} target="_blank">
         <ExternalLink className="mr-2 size-4" />
         Visualizar Documento

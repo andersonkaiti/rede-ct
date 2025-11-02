@@ -12,15 +12,25 @@ import { cn } from '@utils/cn'
 import { getInitials } from '@utils/get-initials'
 import { UserIcon } from 'lucide-react'
 import { parseAsString, useQueryState } from 'nuqs'
-import type { INews } from 'types/news'
 
 interface ISelectAuthorProps {
-  authors: INews['author'][]
+  authors: {
+    id: string
+    name: string
+    avatarUrl: string | null
+    createdAt: string
+    updatedAt: string
+    emailAddress: string
+    orcid: string | null
+    phone: string | null
+    lattesUrl: string | null
+    role: 'ADMIN' | 'USER'
+  }[]
 }
 
 export function SelectAuthor({ authors }: ISelectAuthorProps) {
   const [authorId, setAuthorId] = useQueryState(
-    'author_id',
+    'authorId',
     parseAsString.withDefault('')
   )
 

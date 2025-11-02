@@ -1,4 +1,6 @@
 import { api } from '@http/api-client'
+import { parseSearchParams } from '@utils/parse-search-params'
+import z from 'zod'
 
 interface ICertificationsRequest {
   filter: string
@@ -8,40 +10,46 @@ interface ICertificationsRequest {
   userId: string
 }
 
-interface IPaginatedCertificationsResponse {
-  page: number
-  totalPages: number
-  offset: number
-  limit: number
-  certifications: {
-    id: string
-    title: string
-    description: string
-    certificationUrl: string
-    userId: string
-  }[]
-}
+export const getRegisteredCertificationsSchema = z.object({
+  page: z.number(),
+  totalPages: z.number(),
+  offset: z.number(),
+  limit: z.number(),
+  certifications: z.array(
+    z.object({
+      id: z.string(),
+      title: z.string(),
+      description: z.string(),
+      certificationUrl: z.string(),
+      createdAt: z.string(),
+      updatedAt: z.string(),
+      userId: z.string(),
+      user: z.object({
+        id: z.string(),
+        name: z.string(),
+        avatarUrl: z.string(),
+        createdAt: z.string(),
+        updatedAt: z.string(),
+        emailAddress: z.string(),
+        orcid: z.string(),
+        phone: z.string(),
+        lattesUrl: z.string(),
+        role: z.enum(['ADMIN', 'USER']),
+      }),
+    })
+  ),
+})
 
-export async function getRegisteredCertifications({
-  filter,
-  limit,
-  orderBy,
-  page,
-  userId,
-}: ICertificationsRequest): Promise<IPaginatedCertificationsResponse> {
-  const searchParams = new URLSearchParams()
+export async function getRegisteredCertifications(
+  params: ICertificationsRequest
+) {
+  const searchParams = parseSearchParams(params)
 
-  searchParams.set('title', filter)
-  searchParams.set('description', filter)
+  const data = await api
+    .get('certification', {
+      searchParams,
+    })
+    .json()
 
-  searchParams.set('orderBy', orderBy)
-
-  searchParams.set('page', page)
-  searchParams.set('limit', limit)
-
-  if (userId) {
-    searchParams.set('userId', userId)
-  }
-
-  return await api.get(`certification?${searchParams}`).json()
+  return getRegisteredCertificationsSchema.parse(data)
 }

@@ -48,7 +48,7 @@ export function useUpdateResearcher() {
     values: {
       id: researcher?.id ?? '',
       registrationNumber: researcher?.registrationNumber ?? '',
-      orcid: researcher?.orcid ?? '',
+      orcid: researcher?.user.orcid ?? '',
       mainEtps: researcher?.mainEtps ?? '',
       formations: researcher?.formations ?? '',
       degrees: researcher?.degrees ?? [],

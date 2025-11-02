@@ -9,7 +9,7 @@ import {
 } from '@components/ui/page-container'
 import { Skeleton } from '@components/ui/skeleton'
 
-const DEFAULT_NEWS_LIMIT = 9
+const SKELETON_COUNT = 9
 
 export default function Loading() {
   return (
@@ -44,7 +44,7 @@ export default function Loading() {
             <Skeleton className="h-full flex-3 rounded-md" />
             <Skeleton className="h-full flex-1 rounded-md" />
           </div>
-          {[...new Array(DEFAULT_NEWS_LIMIT)].map((_, index: number) => (
+          {Array.from({ length: SKELETON_COUNT }).map((_, index: number) => (
             <div
               className="flex h-[52.8px] items-center gap-4 px-2 py-3"
               key={index}

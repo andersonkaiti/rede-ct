@@ -9,12 +9,8 @@ import {
   DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu'
 import { Funnel } from 'lucide-react'
-import { parseAsBoolean } from 'nuqs'
+import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { newsTableColumns } from './table/news-table-columns'
-
-type ToggleColumnsKeys = 'title' | 'createdAt' | 'updatedAt'
-
-import { useQueryStates } from 'nuqs'
 
 export function NewsDisplayOptions() {
   const [columnsVisibility, setColumnsVisibility] = useQueryStates({
@@ -35,7 +31,7 @@ export function NewsDisplayOptions() {
         <DropdownMenuLabel>Exibir colunas</DropdownMenuLabel>
 
         {newsTableColumns.map((col) => {
-          const columnKey = col.id as ToggleColumnsKeys
+          const columnKey = col.id as keyof typeof columnsVisibility
 
           if (col.id === 'actions') {
             return null

@@ -6,7 +6,7 @@ import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -44,6 +44,10 @@ export function useCreateNews() {
     },
   })
 
+  const { isSubmitting } = useFormState({
+    control: form.control,
+  })
+
   const submit = form.handleSubmit(async (values: CreateNewsInput) => {
     try {
       await createNews(values)
@@ -63,7 +67,7 @@ export function useCreateNews() {
   return {
     form,
     serverError,
-    isSubmitting: form.formState.isSubmitting,
+    isSubmitting,
     submit,
   }
 }

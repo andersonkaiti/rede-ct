@@ -1,33 +1,52 @@
 import { api } from '@http/api-client'
-import type { IPaginatedNews } from 'types/news'
+import { parseSearchParams } from '@utils/parse-search-params'
+import z from 'zod'
 
-interface IGetNewsProps {
-  filter: string
-  orderBy: string
-  authorId: string
-  page: string
-  limit: string
+interface IGetNewsRequest {
+  filter?: string
+  orderBy?: string
+  authorId?: string
+  page?: string
+  limit?: string
 }
 
-export async function getNews({
-  filter,
-  orderBy,
-  authorId,
-  page,
-  limit,
-}: IGetNewsProps): Promise<IPaginatedNews> {
-  const searchParams = new URLSearchParams()
+export const getNewsSchema = z.object({
+  page: z.number(),
+  totalPages: z.number(),
+  offset: z.number(),
+  limit: z.number(),
+  news: z.array(
+    z.object({
+      id: z.string(),
+      createdAt: z.string(),
+      updatedAt: z.string(),
+      title: z.string(),
+      content: z.string(),
+      imageUrl: z.string().nullable(),
+      author: z.object({
+        name: z.string(),
+        id: z.string(),
+        avatarUrl: z.string().nullable(),
+        createdAt: z.string(),
+        updatedAt: z.string(),
+        emailAddress: z.string(),
+        orcid: z.string().nullable(),
+        phone: z.string().nullable(),
+        lattesUrl: z.string().nullable(),
+        role: z.enum(['ADMIN', 'USER']),
+      }),
+    })
+  ),
+})
 
-  searchParams.set('title', filter)
-  searchParams.set('content', filter)
-  searchParams.set('updatedAt', filter)
+export async function getNews(params: IGetNewsRequest) {
+  const searchParams = parseSearchParams(params)
 
-  searchParams.set('orderBy', orderBy)
+  const data = await api
+    .get('news', {
+      searchParams,
+    })
+    .json()
 
-  searchParams.set('authorId', authorId)
-
-  searchParams.set('page', page)
-  searchParams.set('limit', limit)
-
-  return await api.get(`news?${searchParams}`).json()
+  return getNewsSchema.parse(data)
 }

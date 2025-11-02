@@ -3,7 +3,6 @@ import { getUserNews } from '@http/news/get-user-news'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { parseAsString, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
-import type { IPaginatedNews } from 'types/news'
 
 export const DEFAULT_FILTER = ''
 export const DEFAULT_ORDER_BY = ''
@@ -13,9 +12,9 @@ export const DEFAULT_LIMIT = 7
 export function useUserNews() {
   const queryClient = useQueryClient()
 
-  const [{ filtro: filter, order_by: orderBy, page, limit }] = useQueryStates({
+  const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
     filtro: parseAsString.withDefault(DEFAULT_FILTER),
-    order_by: parseAsString.withDefault(DEFAULT_ORDER_BY),
+    orderBy: parseAsString.withDefault(DEFAULT_ORDER_BY),
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
   })
@@ -37,10 +36,9 @@ export function useUserNews() {
   async function handleRemoveNews(id: string) {
     await deleteNewsById(id)
 
-    queryClient.setQueryData(QUERY_KEY, (data: IPaginatedNews) => ({
-      ...data,
-      news: data.news.filter((news) => news.id !== id),
-    }))
+    queryClient.invalidateQueries({
+      queryKey: QUERY_KEY,
+    })
 
     toast.success('Notícia removida com sucesso!')
   }
@@ -48,6 +46,8 @@ export function useUserNews() {
   return {
     isLoading,
     handleRemoveNews,
+    page,
+    limit,
     ...rest,
   }
 }

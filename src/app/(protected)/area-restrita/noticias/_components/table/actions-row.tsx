@@ -7,16 +7,15 @@ import {
 } from '@components/ui/dropdown-menu'
 import { EditIcon, Ellipsis } from 'lucide-react'
 import Link from 'next/link'
-import type { INews } from 'types/news'
 
 import { DeleteDialog } from '../../../_components/delete-dialog'
 
 interface IActionsRowProps {
-  data: INews
+  id: string
   handleRemove: () => void
 }
 
-export function ActionsRow({ data: news, handleRemove }: IActionsRowProps) {
+export function ActionsRow({ id, handleRemove }: IActionsRowProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -26,7 +25,7 @@ export function ActionsRow({ data: news, handleRemove }: IActionsRowProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem asChild className="p-0">
-          <Link href={`/area-restrita/noticias/editar/${news.id}`}>
+          <Link href={`/area-restrita/noticias/editar/${id}`}>
             <Button
               className="flex w-full justify-between text-xs"
               variant="ghost"

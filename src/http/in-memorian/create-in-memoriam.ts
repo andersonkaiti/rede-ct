@@ -13,7 +13,7 @@ export interface ICreateInMemoriamRequest {
 export async function createInMemoriam(data: ICreateInMemoriamRequest) {
   const formData = parseFormData(data)
 
-  return await api.post('in-memoriam', {
+  await api.post('in-memoriam', {
     body: formData,
   })
 }

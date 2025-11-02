@@ -29,13 +29,11 @@ export function useInMemoriam() {
 
   async function handleRemoveInMemorian(id: string) {
     try {
-      const response = await deleteInMemoriam({ id })
+      await deleteInMemoriam(id)
 
-      if (response.ok) {
-        await queryClient.invalidateQueries({ queryKey: QUERY_KEY })
+      await queryClient.invalidateQueries({ queryKey: QUERY_KEY })
 
-        toast.success('Registro In Memoriam removido com sucesso!')
-      }
+      toast.success('Registro In Memoriam removido com sucesso!')
     } catch {
       toast.error('Erro ao remover registro In Memoriam.')
     }

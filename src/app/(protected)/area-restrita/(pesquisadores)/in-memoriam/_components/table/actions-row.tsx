@@ -24,9 +24,7 @@ export function ActionsRow({ id, handleRemove }: IActionsRowProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem asChild className="p-0">
-          <Link
-            href={`/area-restrita/in-memoriam/editar/${id}`}
-          >
+          <Link href={`/area-restrita/in-memoriam/editar/${id}`}>
             <Button
               className="flex w-full justify-between text-xs"
               variant="ghost"

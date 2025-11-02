@@ -1,7 +1,18 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import type { IInMemoriam } from 'types/in-memoriam'
 import { ROLE_LABEL_MAP } from '../../_constants/role'
 import { ActionsRow } from './actions-row'
+
+interface IInMemoriam {
+  id: string
+  name: string
+  birthDate: string
+  deathDate: string
+  biography: string | null
+  photoUrl: string | null
+  role: 'RESEARCHER' | 'LEADER'
+  createdAt: string
+  updatedAt: string
+}
 
 export const inMemoriamTableColumns: ColumnDef<IInMemoriam>[] = [
   {

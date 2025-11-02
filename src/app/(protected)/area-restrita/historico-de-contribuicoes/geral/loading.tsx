@@ -10,8 +10,6 @@ import {
 import { Skeleton } from '@components/ui/skeleton'
 import { LoadingSkeleton } from '../_components/loading-skeleton'
 
-const ARRAY_SIZE = 6
-
 export default function Loading() {
   return (
     <PageContainer>

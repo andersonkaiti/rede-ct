@@ -11,7 +11,7 @@ import { AuthWrapper } from '../../../_components/hoc/auth'
 import { FilterInput } from '../../_components/filter-input'
 import { FilterSelectUser } from '../../_components/filter-select-user'
 import { OrderByButton } from '../../_components/order-by-button'
-import { AllContributionList } from './_components/all-contribution-list'
+import { AllContributionList } from './_components/contribution-list'
 
 export default function AllContributions() {
   return (

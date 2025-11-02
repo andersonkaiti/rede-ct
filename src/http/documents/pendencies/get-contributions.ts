@@ -7,53 +7,49 @@ interface IContributionsRequest {
   orderBy: string
   page: string
   limit: string
+  userId?: string
 }
 
-export const getAuthenticatedUserContributionsSchema = z.object({
+const getAllContributionsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
   offset: z.number(),
   limit: z.number(),
   pendencies: z.array(
     z.object({
-      id: z.string(),
       title: z.string(),
-      description: z.string(),
-      status: z.literal('PENDING'),
-      dueDate: z.string(),
-      documentUrl: z.string(),
+      description: z.string().nullable(),
+      userId: z.string(),
+      id: z.string(),
       createdAt: z.string(),
       updatedAt: z.string(),
-      userId: z.string(),
+      status: z.enum(['PENDING', 'PAID']),
+      dueDate: z.string().nullable(),
+      documentUrl: z.string(),
       user: z.object({
-        id: z.string(),
         name: z.string(),
-        avatarUrl: z.string(),
+        id: z.string(),
         createdAt: z.string(),
         updatedAt: z.string(),
         emailAddress: z.string(),
+        avatarUrl: z.string().nullable(),
         orcid: z.string().nullable(),
         phone: z.string().nullable(),
         lattesUrl: z.string().nullable(),
-        role: z.literal('ADMIN'),
+        role: z.enum(['ADMIN', 'USER']),
       }),
     })
   ),
 })
 
-export async function getAuthenticatedUserContributions(
-  params: IContributionsRequest
-) {
-  const searchParams = parseSearchParams({
-    ...params,
-    status: 'PENDING',
-  })
+export async function getContributions(params: IContributionsRequest) {
+  const searchParams = parseSearchParams(params)
 
   const data = await api
-    .get('auth/pendencies', {
+    .get('pendency', {
       searchParams,
     })
     .json()
 
-  return getAuthenticatedUserContributionsSchema.parse(data)
+  return getAllContributionsSchema.parse(data)
 }

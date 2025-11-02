@@ -12,8 +12,6 @@ import { Funnel } from 'lucide-react'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { etpsTableColumns } from './table/etps-table-columns'
 
-type ToggleColumnsKeys = 'code' | 'title' | 'createdAt' | 'updatedAt'
-
 export function EtpsDisplayOptions() {
   const [columnsVisibility, setColumnsVisibility] = useQueryStates({
     code: parseAsBoolean.withDefault(true),
@@ -34,7 +32,7 @@ export function EtpsDisplayOptions() {
         <DropdownMenuLabel>Exibir colunas</DropdownMenuLabel>
 
         {etpsTableColumns.map((col) => {
-          const columnKey = col.id as ToggleColumnsKeys
+          const columnKey = col.id as keyof typeof columnsVisibility
 
           if (col.id === 'actions') {
             return null

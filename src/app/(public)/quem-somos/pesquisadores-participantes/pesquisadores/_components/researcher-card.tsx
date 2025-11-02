@@ -23,7 +23,6 @@ import {
   Smile,
 } from 'lucide-react'
 import Link from 'next/link'
-import type { IResearcher } from 'types/researcher'
 import { DEGREE_LABEL_MAP } from '../_constants/degrees'
 import {
   type Seniority,
@@ -31,24 +30,37 @@ import {
 } from '../_hooks/use-researchers.hook'
 
 interface IResearcherCardProps {
-  researcher: IResearcher
+  researcher: {
+    id: string
+    createdAt: string
+    updatedAt: string
+    registrationNumber: string
+    mainEtps: string | null
+    formations: string | null
+    degrees: Array<
+      'DOCTOR' | 'MASTER' | 'BACHELOR' | 'TECHNICAL' | 'POSTGRADUATE'
+    >
+    occupations: string
+    seniority: Seniority
+    institutions: string
+    biography: string | null
+    user: {
+      id: string
+      name: string
+      emailAddress: string
+      orcid: string | null
+      lattesUrl: string | null
+      avatarUrl: string | null
+      phone: string | null
+      createdAt: string
+      updatedAt: string
+      role: 'ADMIN' | 'USER'
+    }
+  }
 }
 
 export function ResearcherCard({ researcher }: IResearcherCardProps) {
-  const {
-    seniority,
-    biography,
-    degrees,
-    createdAt,
-    institutions,
-    formations,
-    mainEtps,
-    occupations,
-    registrationNumber,
-    user,
-  } = researcher
-
-  const { emailAddress, lattesUrl, orcid, name, avatarUrl } = user
+  const { emailAddress, lattesUrl, orcid, name, avatarUrl } = researcher.user
 
   return (
     <div className="flex w-full flex-col overflow-hidden rounded-lg border border-border bg-background">
@@ -58,12 +70,15 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
           <AvatarFallback>{getInitials(name)}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col items-start justify-center gap-1">
-          <UserProfileHoverCard avatarVisibility={false} user={user} />
+          <UserProfileHoverCard
+            avatarVisibility={false}
+            user={researcher.user}
+          />
 
           <p className="flex items-center gap-1 text-muted-foreground text-sm">
             <Medal className="h-3.5 w-3.5" />
             <span className="truncate">
-              {seniorityMapping[seniority as Seniority]}
+              {seniorityMapping[researcher.seniority as Seniority]}
             </span>
 
             {orcid && (
@@ -86,20 +101,22 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
             )}
           </p>
 
-          {createdAt && (
-            <span className="flex items-center gap-1 text-muted-foreground text-xs">
+          {researcher.createdAt && (
+            <div className="flex items-center gap-1 text-muted-foreground text-xs">
               <Smile className="h-3.5 w-3.5" />
-              Desde{' '}
-              {new Date(createdAt).toLocaleDateString('pt-BR', {
-                year: 'numeric',
-                month: 'long',
-              })}
-            </span>
+              Desde
+              <span>
+                {new Date(researcher.createdAt).toLocaleDateString('pt-BR', {
+                  year: 'numeric',
+                  month: 'long',
+                })}
+              </span>
+            </div>
           )}
         </div>
       </header>
 
-      {biography && (
+      {researcher.biography && (
         <div className="p-6">
           <Collapsible className="group group space-y-4">
             <CollapsibleTrigger className="flex w-full cursor-pointer items-center justify-between gap-2 text-muted-foreground">
@@ -112,7 +129,7 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
 
             <CollapsibleContent>
               <p className="whitespace-pre-line text-foreground text-sm leading-relaxed">
-                {biography}
+                {researcher.biography}
               </p>
             </CollapsibleContent>
           </Collapsible>
@@ -123,9 +140,9 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
         <h3 className="mb-3 font-semibold text-muted-foreground text-xs uppercase tracking-widest">
           Credenciais
         </h3>
-        {/* Deixar 2 tópicos por linha ao organizar o grid */}
+
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {registrationNumber && (
+          {researcher.registrationNumber && (
             <div className="flex items-center gap-2">
               <div className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-muted p-2">
                 <Hash className="h-5 w-5 text-muted-foreground" />
@@ -135,13 +152,13 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
                   Matrícula
                 </p>
                 <p className="truncate font-medium text-foreground text-sm">
-                  {registrationNumber}
+                  {researcher.registrationNumber}
                 </p>
               </div>
             </div>
           )}
 
-          {degrees && degrees.length > 0 && (
+          {researcher.degrees && researcher.degrees.length > 0 && (
             <div className="flex items-center gap-2">
               <div className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-muted p-2">
                 <GraduationCap className="h-5 w-5 text-muted-foreground" />
@@ -149,7 +166,7 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
               <div className="flex w-full flex-col justify-center">
                 <p className="mb-0.5 text-muted-foreground text-xs">Títulos</p>
                 <div className="mt-0.5 flex flex-wrap gap-1">
-                  {degrees.map((degree) => (
+                  {researcher.degrees.map((degree) => (
                     <Badge
                       className="px-1.5 py-0 text-xs"
                       key={degree}
@@ -163,7 +180,7 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
             </div>
           )}
 
-          {formations && (
+          {researcher.formations && (
             <div className="flex items-center gap-2">
               <div className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-muted p-2">
                 <Book className="h-5 w-5 text-muted-foreground" />
@@ -173,13 +190,13 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
                   Formações
                 </p>
                 <p className="truncate font-medium text-foreground text-sm">
-                  {formations}
+                  {researcher.formations}
                 </p>
               </div>
             </div>
           )}
 
-          {mainEtps && (
+          {researcher.mainEtps && (
             <div className="flex items-center gap-2">
               <div className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-muted p-2">
                 <Medal className="h-5 w-5 text-muted-foreground" />
@@ -189,13 +206,13 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
                   Principais ETPs
                 </p>
                 <p className="truncate font-medium text-foreground text-sm">
-                  {mainEtps}
+                  {researcher.mainEtps}
                 </p>
               </div>
             </div>
           )}
 
-          {institutions && institutions.length > 0 && (
+          {researcher.institutions.length && (
             <div className="flex items-center gap-2">
               <div className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-muted p-2">
                 <Building2 className="h-5 w-5 text-muted-foreground" />
@@ -205,13 +222,13 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
                   Instituições
                 </p>
                 <p className="font-medium text-foreground text-sm">
-                  {institutions}
+                  {researcher.institutions}
                 </p>
               </div>
             </div>
           )}
 
-          {occupations && occupations.length > 0 && (
+          {researcher.occupations.length && (
             <div className="flex items-center gap-2">
               <div className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-muted p-2">
                 <Briefcase className="h-5 w-5 text-muted-foreground" />
@@ -221,7 +238,7 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
                   Ocupações
                 </p>
                 <p className="font-medium text-foreground text-sm">
-                  {occupations}
+                  {researcher.occupations}
                 </p>
               </div>
             </div>
@@ -248,7 +265,7 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
               title="Ver Currículo Lattes"
             >
               <ExternalLink className="mr-2 h-3.5 w-3.5" />
-              Lattes
+              <span>Lattes</span>
             </Link>
           </Button>
         )}

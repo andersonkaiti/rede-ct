@@ -4,32 +4,34 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu'
+import { deleteCertificationById } from '@http/documents/certifications/delete-certification'
 import { useQueryClient } from '@tanstack/react-query'
 import { Ellipsis } from 'lucide-react'
-import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
+import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 import { DeleteDialog } from '../../../_components/delete-dialog'
-import { handleRemoveCertificationAction } from '../actions'
 import { UpdateCertificationButton } from '../cadastrados/_components/update-certification/update-certification-button'
 
 interface ICertificationActionsProps {
   id: string
 }
 
+const DEFAULT_PAGE = 1
+const DEFAULT_LIMIT = 6
+
 export function CertificationActions({ id }: ICertificationActionsProps) {
-  const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
-  const [orderBy] = useQueryState(
-    'order_by',
-    parseAsStringEnum(['desc', 'asc']).withDefault('desc')
-  )
-  const [page] = useQueryState('page', parseAsString.withDefault('1'))
-  const [limit] = useQueryState('limit', parseAsString.withDefault('6'))
+  const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    page: parseAsString.withDefault(String(DEFAULT_PAGE)),
+    limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+  })
 
   const queryClient = useQueryClient()
 
   async function handleRemove() {
     try {
-      await handleRemoveCertificationAction(id)
+      await deleteCertificationById(id)
 
       queryClient.invalidateQueries({
         queryKey: ['certifications', filter, orderBy, page, limit],

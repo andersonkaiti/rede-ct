@@ -23,7 +23,7 @@ import { PageFormContentField } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../../../../_components/select-member'
-import { useRegisterCertification } from './use-register-certification'
+import { useCreateCertification } from './use-create-certification'
 
 interface ICreateCertificationFormProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -32,10 +32,9 @@ interface ICreateCertificationFormProps {
 export function CreateCertificationForm({
   setIsOpen,
 }: ICreateCertificationFormProps) {
-  const { form, serverError, isSubmitting, onSubmit } =
-    useRegisterCertification({
-      setIsOpen,
-    })
+  const { form, serverError, isSubmitting, submit } = useCreateCertification({
+    setIsOpen,
+  })
 
   return (
     <DialogContent>
@@ -44,7 +43,7 @@ export function CreateCertificationForm({
       </DialogHeader>
 
       <Form {...form}>
-        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="space-y-6" onSubmit={submit}>
           {serverError && (
             <Alert className="mb-4 border-primary" variant="destructive">
               <AlertCircle className="size-4" />
@@ -101,8 +100,8 @@ export function CreateCertificationForm({
                 <Label>Arquivo do certificado</Label>
                 <Input
                   accept="application/pdf,image/*"
-                  onChange={(e) => {
-                    field.onChange(e.target.files?.[0])
+                  onChange={(event) => {
+                    field.onChange(event.target.files?.[0])
                   }}
                   type="file"
                 />
@@ -110,17 +109,17 @@ export function CreateCertificationForm({
               </PageFormContentField>
             )}
           />
-        </form>
 
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="ghost">Cancelar</Button>
-          </DialogClose>
-          <Button disabled={isSubmitting} type="submit">
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
-            Cadastrar certificado
-          </Button>
-        </DialogFooter>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="ghost">Cancelar</Button>
+            </DialogClose>
+            <Button disabled={isSubmitting} type="submit">
+              {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+              Cadastrar certificado
+            </Button>
+          </DialogFooter>
+        </form>
       </Form>
     </DialogContent>
   )

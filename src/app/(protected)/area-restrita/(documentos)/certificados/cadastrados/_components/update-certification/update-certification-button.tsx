@@ -14,7 +14,7 @@ interface IUpdateCertificationButtonProps {
 export function UpdateCertificationButton({
   id,
 }: IUpdateCertificationButtonProps) {
-  const [, setCertificationId] = useQueryState('certification_id')
+  const [, setCertificationId] = useQueryState('certificationId')
 
   const [isOpen, setIsOpen] = useState(false)
 

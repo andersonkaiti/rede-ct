@@ -29,7 +29,7 @@ interface IUpdateCertificationFormProps {
 export function UpdateCertificationForm({
   setIsOpen,
 }: IUpdateCertificationFormProps) {
-  const { form, serverError, isSubmitting, onSubmit } = useUpdateCertification({
+  const { form, serverError, isSubmitting, submit } = useUpdateCertification({
     setIsOpen,
   })
 
@@ -40,7 +40,7 @@ export function UpdateCertificationForm({
       </DialogHeader>
 
       <Form {...form}>
-        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="space-y-6" onSubmit={submit}>
           {serverError && (
             <Alert className="mb-4 border-primary" variant="destructive">
               <AlertCircle className="size-4" />

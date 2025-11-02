@@ -1,23 +1,21 @@
 import { getRegisteredCertifications } from '@http/documents/certifications/get-certitications'
 import { useQuery } from '@tanstack/react-query'
-import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
+import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { useEffect } from 'react'
 
-export function useRegisteredCertifications() {
-  const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
-  const [orderBy] = useQueryState(
-    'order_by',
-    parseAsStringEnum(['desc', 'asc']).withDefault('desc')
-  )
-  const [page] = useQueryState('page', parseAsString.withDefault('1'))
-  const [limit] = useQueryState('limit', parseAsString.withDefault('6'))
-  const [userId] = useQueryState('user_id', parseAsString.withDefault(''))
+const DEFAULT_PAGE = 1
+const DEFAULT_LIMIT = 4
 
-  const {
-    data: paginatedResults,
-    isLoading,
-    refetch,
-  } = useQuery({
+export function useRegisteredCertifications() {
+  const [{ filtro: filter, orderBy, page, limit, userId }] = useQueryStates({
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    userId: parseAsString.withDefault(''),
+    page: parseAsString.withDefault(String(DEFAULT_PAGE)),
+    limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+  })
+
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ['users', 'certifications', filter, orderBy, page, limit, userId],
     queryFn: () =>
       getRegisteredCertifications({
@@ -34,8 +32,9 @@ export function useRegisteredCertifications() {
   }, [refetch])
 
   return {
-    paginatedResults,
+    data,
     isLoading,
     page,
+    limit,
   }
 }

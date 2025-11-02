@@ -1,17 +1,19 @@
 import { getAuthenticatedUserCertifications } from '@http/auth/get-user-certifications'
 import { useQuery } from '@tanstack/react-query'
-import { parseAsString, parseAsStringEnum, useQueryState } from 'nuqs'
+import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
+
+const DEFAULT_PAGE = 1
+const DEFAULT_LIMIT = 4
 
 export function useCertifications() {
-  const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
-  const [orderBy] = useQueryState(
-    'order_by',
-    parseAsStringEnum(['desc', 'asc']).withDefault('desc')
-  )
-  const [page] = useQueryState('page', parseAsString.withDefault('1'))
-  const [limit] = useQueryState('limit', parseAsString.withDefault('4'))
+  const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    page: parseAsString.withDefault(String(DEFAULT_PAGE)),
+    limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+  })
 
-  const { data: paginatedResults, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['user', 'certifications', filter, orderBy, page, limit],
     queryFn: () =>
       getAuthenticatedUserCertifications({
@@ -23,7 +25,7 @@ export function useCertifications() {
   })
 
   return {
-    paginatedResults,
+    data,
     isLoading,
     page,
     limit,

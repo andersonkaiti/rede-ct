@@ -23,7 +23,7 @@ import {
   Star,
   Users,
 } from 'lucide-react'
-import type { NavigationLink } from 'types/navigation-link'
+import type { NavigationLink } from '@/@types/navigation-link'
 
 export const sidebarLinks: NavigationLink[] = [
   {

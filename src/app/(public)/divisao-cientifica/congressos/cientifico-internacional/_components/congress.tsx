@@ -1,6 +1,6 @@
 import { HighlightedLink } from '@components/highlighted-link'
 import { Calendar, MapPin } from 'lucide-react'
-import type { ICongress, IDocument } from 'types/congress'
+import type { ICongress, IDocument } from '@/@types/congress'
 
 interface ICongressProps {
   congress: ICongress

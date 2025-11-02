@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import type { NavigationLink } from 'types/navigation-link'
-
+import type { NavigationLink } from '@/@types/navigation-link'
 import { getAllLinks } from '../_helpers/links'
 
 export default function Links() {

@@ -2,7 +2,7 @@ import { cn } from '@utils/cn'
 import { ChevronDownIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import type { NavigationLink as NavigationLinkType } from 'types/navigation-link'
+import type { NavigationLink as NavigationLinkType } from '@/@types/navigation-link'
 
 import { NavigationBarIcon } from './navigation-bar-icon'
 

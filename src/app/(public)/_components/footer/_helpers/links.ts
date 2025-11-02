@@ -1,14 +1,28 @@
-import * as Icons from 'lucide-react'
+import {
+  BookOpen,
+  FileText,
+  Globe,
+  GraduationCap,
+  Home,
+  Info,
+  Map as MapIcon,
+  Network,
+  Newspaper,
+  ScrollText,
+  Star,
+  Users,
+  UsersRound,
+} from 'lucide-react'
 import type {
   NavigationLink,
   NavigationLink as NavigationLinkType,
-} from 'types/navigation-link'
+} from '@/@types/navigation-link'
 
 export const navigationLinks: NavigationLinkType[] = [
   {
     path: '/',
     label: 'Home',
-    icon: Icons.Home,
+    icon: Home,
   },
   {
     label: 'Quem Somos',
@@ -16,32 +30,32 @@ export const navigationLinks: NavigationLinkType[] = [
       {
         path: '/quem-somos/apresentacao-e-historia',
         label: 'Apresentação e História',
-        icon: Icons.Info,
+        icon: Info,
       },
       {
         path: '/quem-somos/equipe-de-gestao',
         label: 'Equipe de Gestão',
-        icon: Icons.Users,
+        icon: Users,
       },
       {
         path: '/quem-somos/pesquisadores-participantes',
         label: 'Pesquisadores Participantes',
-        icon: Icons.GraduationCap,
+        icon: GraduationCap,
       },
       {
         path: '/quem-somos/eixos-tematicos-permanentes',
         label: 'Eixos Temáticos Permanentes',
-        icon: Icons.BookOpen,
+        icon: BookOpen,
       },
       {
         path: '/quem-somos/regimento-e-atas',
         label: 'Regimento e Atas',
-        icon: Icons.FileText,
+        icon: FileText,
       },
       {
         path: '/quem-somos/parceiros-e-financiadores',
         label: 'Parceiros e Financiadores',
-        icon: Icons.UsersRound,
+        icon: UsersRound,
       },
     ],
   },
@@ -51,37 +65,37 @@ export const navigationLinks: NavigationLinkType[] = [
       {
         path: '/divisao-cientifica/congresso-cientifico-internacional',
         label: 'Congresso Científico Internacional',
-        icon: Icons.Globe,
+        icon: Globe,
       },
       {
         path: '/divisao-cientifica/congressos-regionais',
         label: 'Congressos Regionais',
-        icon: Icons.Map,
+        icon: MapIcon,
       },
       {
         path: '/divisao-cientifica/webinario-permanente',
         label: 'Webinário Permanente',
-        icon: Icons.Network,
+        icon: Network,
       },
       {
         path: '/divisao-cientifica/cursos-e-capacitacoes',
         label: 'Cursos e Capacitações',
-        icon: Icons.GraduationCap,
+        icon: GraduationCap,
       },
       {
         path: '/divisao-cientifica/disciplinas-e-cursos-de-pos-graduacao',
         label: 'Disciplinas e cursos de pós-graduação',
-        icon: Icons.BookOpen,
+        icon: BookOpen,
       },
       {
         path: '/divisao-cientifica/selo-de-qualidade-em-extensao-universitaria',
         label: 'Selo de Qualidade em Extensão Universitária',
-        icon: Icons.Star,
+        icon: Star,
       },
       {
         path: '/divisao-cientifica/calendario-de-eventos',
         label: 'Calendário de Eventos',
-        icon: Icons.ScrollText,
+        icon: ScrollText,
       },
     ],
   },
@@ -91,29 +105,29 @@ export const navigationLinks: NavigationLinkType[] = [
       {
         path: '/publicacoes/periodico-e-revistas-parceiras',
         label: 'Periódico da RedeCT e Revistas Parceiras',
-        icon: Icons.FileText,
+        icon: FileText,
       },
       {
         path: '/publicacoes/livros-da-redect',
         label: 'Coletânea da RedeCT (Livro da RedeCT)',
-        icon: Icons.BookOpen,
+        icon: BookOpen,
       },
       {
         path: '/publicacoes/livros-e-capitulos',
         label: 'Livros e Capítulos de Interesse',
-        icon: Icons.BookOpen,
+        icon: BookOpen,
       },
       {
         path: '/publicacoes/artigos-cientificos',
         label: 'Artigos Científicos de Interesse',
-        icon: Icons.FileText,
+        icon: FileText,
       },
     ],
   },
   {
     path: '/noticias',
     label: 'Notícias',
-    icon: Icons.Newspaper,
+    icon: Newspaper,
   },
 ]
 

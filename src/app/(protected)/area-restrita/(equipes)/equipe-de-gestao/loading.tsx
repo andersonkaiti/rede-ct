@@ -27,10 +27,9 @@ export default function Loading() {
       <PageHeader>
         <PageActionsContainer>
           <Skeleton className="h-9 w-52 max-w-sm" />
-
           <Skeleton className="h-9 w-21" />
+          <Skeleton className="h-9 w-10" />
         </PageActionsContainer>
-
         <Skeleton className="h-9 w-56" />
       </PageHeader>
 

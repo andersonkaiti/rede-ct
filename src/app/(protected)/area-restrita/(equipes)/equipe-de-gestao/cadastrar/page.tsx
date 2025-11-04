@@ -22,11 +22,11 @@ import { SelectMember } from '../_components/select-member'
 import { TeamMembersTable } from '../_components/team-members-table/team-members-table'
 import { useCreateTeam } from './use-register-team.hook'
 
-export default function CadastrarEquipeDeGestao() {
+export default function RegisterManagementTeam() {
   const {
     form,
     isSubmitting,
-    onSubmit,
+    submit,
     serverError,
     members,
     handleIncludeMember,
@@ -38,9 +38,10 @@ export default function CadastrarEquipeDeGestao() {
       <PageHeader>
         <PageTitle>Cadastrar Equipe</PageTitle>
       </PageHeader>
+
       <PageMain>
         <Form {...form}>
-          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+          <form className="space-y-6" onSubmit={submit}>
             {serverError && (
               <Alert className="mb-4 border-primary" variant="destructive">
                 <AlertCircle className="size-4" />
@@ -75,8 +76,9 @@ export default function CadastrarEquipeDeGestao() {
                   <TeamMembersTable
                     handleRemoveMember={handleRemoveMember}
                     teamMembers={members.map((member, index) => ({
-                      ...member,
                       id: String(index),
+                      ...member,
+                      user: member.user,
                     }))}
                   />
 
@@ -89,6 +91,7 @@ export default function CadastrarEquipeDeGestao() {
               className="w-full cursor-pointer"
               disabled={isSubmitting}
               type="submit"
+              variant="outline"
             >
               {isSubmitting && <Loader2 className="size-4 animate-spin" />}
               Cadastrar equipe

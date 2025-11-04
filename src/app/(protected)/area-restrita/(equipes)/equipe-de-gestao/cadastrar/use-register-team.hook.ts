@@ -1,25 +1,36 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { createManagementTeam } from '@http/teams/management-team/create-management-team'
+import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import type { ITeamMember } from 'types/team'
 import z from 'zod'
-import {
-  createManagementTeamAction,
-  type ManagementTeamActionResult,
-} from '../actions'
+
+interface ITeamMember {
+  role: string
+  userId: string
+  user: {
+    name: string
+    id: string
+    role: 'ADMIN' | 'USER'
+    createdAt: string
+    updatedAt: string
+    avatarUrl: string | null
+    emailAddress: string
+    orcid: string | null
+    phone: string | null
+    lattesUrl: string | null
+  }
+}
 
 export const managementTeamSchema = z.object({
   name: z.string().trim().min(1, 'O nome da equipe é obrigatório.').trim(),
   members: z
     .array(
       z.object({
-        role: z.string().trim().min(1, 'Cargo é obrigatório.'),
-        id: z.uuid().optional(),
-        user: z.object({
-          id: z.string(),
-        }),
+        userId: z.uuid(),
+        role: z.string().trim().min(1, 'O cargo é obrigatório.'),
       })
     )
     .min(1, 'Membros são obrigatórios.'),
@@ -56,36 +67,37 @@ export function useCreateTeam() {
     toast.success('Membro adicionado com sucesso!')
   }
 
-  function handleRemoveMember(memberId: string) {
-    const memberIndex = members.findIndex((member) => member.id === memberId)
+  function handleRemoveMember(id: string) {
+    membersForm.remove(Number(id))
 
-    membersForm.remove(memberIndex)
-
-    setMembers((prevMembers) => prevMembers.filter((_, index) => index))
+    setMembers((prevMembers) => prevMembers.filter((_, i) => i !== Number(id)))
 
     toast.success('Usuário removido com sucesso!')
   }
 
-  async function onSubmit(values: CreateManagementTeamInput) {
-    const result: ManagementTeamActionResult =
-      await createManagementTeamAction(values)
+  const submit = form.handleSubmit(
+    async (values: CreateManagementTeamInput) => {
+      try {
+        await createManagementTeam(values)
 
-    if (result.success) {
-      toast.success('Equipe cadastrada com sucesso!')
+        toast.success('Equipe cadastrada com sucesso!')
 
-      router.push('/area-restrita/equipe-de-gestao')
+        router.push('/area-restrita/equipe-de-gestao')
+      } catch (err) {
+        if (err instanceof HTTPError) {
+          const errorBody = await err.response.json()
 
-      return
+          setServerError(errorBody.message)
+        }
+      }
     }
-
-    setServerError(result.message)
-  }
+  )
 
   return {
     form,
     serverError,
     isSubmitting: form.formState.isSubmitting,
-    onSubmit,
+    submit,
     handleIncludeMember,
     handleRemoveMember,
     members,

@@ -1,4 +1,4 @@
-import { getUsers } from '@http/get-users'
+import { getUsers } from '@http/users/get-users'
 import { useQuery } from '@tanstack/react-query'
 
 export function useUsers() {

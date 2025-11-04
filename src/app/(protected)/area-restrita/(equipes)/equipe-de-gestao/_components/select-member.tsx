@@ -10,8 +10,25 @@ import {
 import { Plus } from 'lucide-react'
 import type React from 'react'
 import { useState } from 'react'
-import type { ITeamMember } from 'types/team'
 import { useUsers } from '../../_hooks/use-users.hook'
+
+interface ITeamMember {
+  id: string
+  role: string
+  userId: string
+  user: {
+    name: string
+    id: string
+    role: 'ADMIN' | 'USER'
+    createdAt: string
+    updatedAt: string
+    avatarUrl: string | null
+    emailAddress: string
+    orcid: string | null
+    phone: string | null
+    lattesUrl: string | null
+  }
+}
 
 interface ISelectMemberProps {
   handleIncludeMember: (member: ITeamMember) => void
@@ -23,11 +40,7 @@ export function SelectMember({ handleIncludeMember }: ISelectMemberProps) {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null)
   const [role, setRole] = useState('')
 
-  const isButtonDisabled = !(selectedUserId && role)
-
-  function handleSelectMember(value: string) {
-    setSelectedUserId(value)
-  }
+  const handleSelectMember = (value: string) => setSelectedUserId(value)
 
   function handleRole(event: React.ChangeEvent<HTMLInputElement>) {
     setRole(event.target.value)
@@ -38,7 +51,9 @@ export function SelectMember({ handleIncludeMember }: ISelectMemberProps) {
 
     if (user) {
       const newMember: ITeamMember = {
+        id: user.id,
         role,
+        userId: user.id,
         user,
       }
 
@@ -71,9 +86,10 @@ export function SelectMember({ handleIncludeMember }: ISelectMemberProps) {
 
       <Button
         className="cursor-pointer"
-        disabled={isButtonDisabled}
+        disabled={!(selectedUserId && role)}
         onClick={handleAddMember}
         type="button"
+        variant="outline"
       >
         <Plus />
         Adicionar

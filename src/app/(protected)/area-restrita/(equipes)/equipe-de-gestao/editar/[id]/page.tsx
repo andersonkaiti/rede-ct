@@ -24,7 +24,7 @@ import { LoadingInputSkeleton } from './_components/loading-input-skeleton'
 import { LoadingTableSkeleton } from './_components/loading-table-skeleton'
 import { useUpdateTeam } from './use-update-team.hook'
 
-export default function EditarEquipeDeGestao() {
+export default function EditManagementTeam() {
   const {
     form,
     handleIncludeMember,
@@ -32,7 +32,7 @@ export default function EditarEquipeDeGestao() {
     isSubmitting,
     members,
     isTeamLoading,
-    onSubmit,
+    submit,
     serverError,
   } = useUpdateTeam()
 
@@ -43,7 +43,7 @@ export default function EditarEquipeDeGestao() {
       </PageHeader>
       <PageMain>
         <Form {...form}>
-          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+          <form className="space-y-6" onSubmit={submit}>
             {serverError && (
               <Alert className="mb-4 border-primary" variant="destructive">
                 <AlertCircle className="size-4" />
@@ -96,6 +96,7 @@ export default function EditarEquipeDeGestao() {
               className="w-full cursor-pointer"
               disabled={isSubmitting}
               type="submit"
+              variant="outline"
             >
               {isSubmitting && <Loader2 className="size-4 animate-spin" />}
               Atualizar equipe

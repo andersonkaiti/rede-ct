@@ -8,8 +8,9 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 
-import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
+import { AuthWrapper } from '../../../_components/hoc/auth'
 import { FilterInput } from '../../_components/filter-input'
+import { OrderByButton } from '../../_components/order-by-button'
 import { Table } from './_components/_table/table'
 import { CreateMemberButton } from './_components/create-member/create-member-button'
 import { TeamMemberDisplayOptions } from './_components/team-member-display-options'
@@ -30,7 +31,10 @@ export default function EquipeSDHC() {
             <FilterInput />
 
             <TeamMemberDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
+
           <CreateMemberButton>Adicionar membro</CreateMemberButton>
         </PageHeader>
 

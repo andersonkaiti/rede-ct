@@ -1,101 +1,92 @@
 'use client'
 
 import { DataTable } from '@components/ui/data-table'
-import { parseAsBoolean, parseAsString, useQueryState } from 'nuqs'
-import { useSDHCTeam } from '../../_hooks/use-team.hook'
+import type { ColumnDef } from '@tanstack/react-table'
+import { parseAsBoolean, useQueryStates } from 'nuqs'
+import { useSDHCTeam } from '../../_hooks/use-sdhc-team.hook'
 import { LoadingSkeleton } from './loading-skeleton'
-import {
-  type ISDHCTeamMember,
-  sdhcTeamTableColumns,
-} from './sdhc-team-table-columns'
+import { sdhcTeamTableColumns } from './sdhc-team-table-columns'
+
+export interface ISDHCTeamMemberUser {
+  id: string
+  name: string
+  avatarUrl: string | null
+  createdAt: string
+  updatedAt: string
+  emailAddress: string
+  orcid: string | null
+  phone: string | null
+  lattesUrl: string | null
+  role: 'ADMIN' | 'USER'
+}
+
+export interface ISDHCTeamMember {
+  id: string
+  role: string
+  description: string | null
+  createdAt: string
+  updatedAt: string
+  userId: string
+  user: ISDHCTeamMemberUser
+}
 
 export function Table() {
-  const { data: team, isLoading, handleRemoveMember } = useSDHCTeam()
+  const { data, isLoading, handleRemoveMember } = useSDHCTeam()
 
-  const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
-
-  const [hasName] = useQueryState('nome', parseAsBoolean.withDefault(true))
-  const [hasEmail] = useQueryState('email', parseAsBoolean.withDefault(true))
-  const [hasRole] = useQueryState('cargo', parseAsBoolean.withDefault(true))
-  const [hasDescription] = useQueryState(
-    'descricao',
-    parseAsBoolean.withDefault(true)
-  )
-  const [hasCreatedAt] = useQueryState(
-    'created_at',
-    parseAsBoolean.withDefault(true)
-  )
-  const [hasUpdatedAt] = useQueryState(
-    'updated_at',
-    parseAsBoolean.withDefault(true)
-  )
+  const [{ name, email, role, description, createdAt, updatedAt }] =
+    useQueryStates({
+      name: parseAsBoolean.withDefault(true),
+      email: parseAsBoolean.withDefault(true),
+      role: parseAsBoolean.withDefault(true),
+      description: parseAsBoolean.withDefault(true),
+      createdAt: parseAsBoolean.withDefault(true),
+      updatedAt: parseAsBoolean.withDefault(true),
+    })
 
   if (isLoading) {
     return <LoadingSkeleton />
   }
 
-  const noneOfThem = !(hasName || hasRole || hasDescription)
+  const filteredSDHCTeamTableColumns: ColumnDef<ISDHCTeamMember>[] =
+    sdhcTeamTableColumns.filter((column) => {
+      if (column.id === 'name') {
+        return name
+      }
 
-  const filteredSDHCTeamTableColumns = noneOfThem
-    ? []
-    : sdhcTeamTableColumns.filter((column) => {
-        if (column.id === 'name' && !hasEmail) {
-          return false
-        }
+      if (column.id === 'name') {
+        return email
+      }
 
-        if (column.id === 'name' && !hasName) {
-          return false
-        }
+      if (column.id === 'role') {
+        return role
+      }
 
-        if (column.id === 'role' && !hasRole) {
-          return false
-        }
+      if (column.id === 'description') {
+        return description
+      }
 
-        if (column.id === 'description' && !hasDescription) {
-          return false
-        }
+      if (column.id === 'createdAt') {
+        return createdAt
+      }
 
-        if (column.id === 'created_at' && !hasCreatedAt) {
-          return false
-        }
+      if (column.id === 'updatedAt') {
+        return updatedAt
+      }
 
-        if (column.id === 'updated_at' && !hasUpdatedAt) {
-          return false
-        }
-
-        return true
-      })
-
-  const onlyInclude = ['name', 'role', 'description']
-
-  const filteredTeamMembers =
-    team?.members.filter((member) =>
-      Object.entries(member).some(([key, value]) => {
-        if (!onlyInclude.includes(key)) {
-          return false
-        }
-
-        if (typeof value === 'string') {
-          return value.toLowerCase().includes(filter.toLowerCase())
-        }
-
-        if (typeof value === 'object' && value !== null) {
-          return Object.values(value).some(
-            (innerValue) =>
-              typeof innerValue === 'string' &&
-              innerValue.toLowerCase().includes(filter.toLowerCase())
-          )
-        }
-
-        return false
-      })
-    ) || []
+      return true
+    })
 
   return (
-    <DataTable<ISDHCTeamMember, unknown>
-      columns={filteredSDHCTeamTableColumns}
-      data={filteredTeamMembers}
-      handleRemove={handleRemoveMember}
-    />
+    <>
+      {!isLoading && (
+        <DataTable
+          columns={filteredSDHCTeamTableColumns}
+          data={data?.members}
+          handleRemove={handleRemoveMember}
+        />
+      )}
+
+      {isLoading && <LoadingSkeleton />}
+    </>
   )
 }

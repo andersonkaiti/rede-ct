@@ -1,25 +1,29 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { formatDate } from '@utils/format-date'
-import type { IUser } from 'types/user'
 import { ActionsRow } from '../../../../_components/actions-row'
 import { UpdateMemberForm } from '../update-member/update-member-form'
 
-export interface ILegitimatorCommitteeTeamMember {
-  role: string
-  id: string
-  createdAt: string
-  updatedAt: string
-  description: string
-  user: IUser
-}
-
-export interface ILegitimatorCommittee {
+interface IUser {
   id: string
   name: string
-  type: string
+  avatarUrl: string | null
   createdAt: string
   updatedAt: string
-  members: ILegitimatorCommitteeTeamMember[]
+  emailAddress: string
+  orcid: string | null
+  phone: string | null
+  lattesUrl: string | null
+  role: 'ADMIN' | 'USER'
+}
+
+interface ILegitimatorCommitteeTeamMember {
+  id: string
+  role: string
+  description: string | null
+  createdAt: string
+  updatedAt: string
+  userId: string
+  user: IUser
 }
 
 export const legitimatorCommitteeTableColumns: ColumnDef<ILegitimatorCommitteeTeamMember>[] =
@@ -67,7 +71,7 @@ export const legitimatorCommitteeTableColumns: ColumnDef<ILegitimatorCommitteeTe
       }) => description,
     },
     {
-      id: 'created_at',
+      id: 'createdAt',
       header: 'Criado em',
       cell: ({
         row: {
@@ -76,7 +80,7 @@ export const legitimatorCommitteeTableColumns: ColumnDef<ILegitimatorCommitteeTe
       }) => formatDate(createdAt),
     },
     {
-      id: 'updated_at',
+      id: 'updatedAt',
       header: 'Atualizado em',
       cell: ({
         row: {

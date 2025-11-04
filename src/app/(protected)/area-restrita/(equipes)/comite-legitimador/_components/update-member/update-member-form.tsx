@@ -28,7 +28,7 @@ interface IUpdateMemberFormProps {
 }
 
 export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
-  const { form, member, onSubmit, serverError, isSubmitting } =
+  const { form, member, submit, serverError, isSubmitting } =
     useUpdateLegitimatorCommitteeTeamMember({
       setIsOpen,
     })
@@ -45,7 +45,7 @@ export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
 
       <DialogContent>
         <Form {...form}>
-          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+          <form className="space-y-6" onSubmit={submit}>
             {serverError && (
               <Alert className="mb-4 border-primary" variant="destructive">
                 <AlertCircle className="size-4" />
@@ -102,7 +102,7 @@ export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
               <DialogClose asChild>
                 <Button variant="ghost">Cancelar</Button>
               </DialogClose>
-              <Button disabled={isSubmitting} type="submit">
+              <Button disabled={isSubmitting} type="submit" variant="outline">
                 {isSubmitting && <Loader2 className="size-4 animate-spin" />}
                 Atualizar membro
               </Button>

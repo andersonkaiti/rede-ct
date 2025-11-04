@@ -1,15 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { getTeams } from '@http/teams/get-teams'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { createLegitimatorCommitteeMember } from '@http/teams/legitimator-committee/create-legitimator-committee-member'
+import { useQueryClient } from '@tanstack/react-query'
+import { HTTPError } from 'ky'
+import { parseAsString, useQueryState } from 'nuqs'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-import {
-  createLegitimatorCommitteeTeamMemberAction,
-  type LegitimatorCommitteeTeamMemberActionResult,
-} from '../../actions'
-import type { ILegitimatorCommittee } from '../_table/legitimator-committee-table-columns'
 
 export const legitimatorCommitteeTeamMemberSchema = z.object({
   userId: z.string().min(1, 'Membro é obrigatório'),
@@ -21,8 +18,6 @@ export type CreateLegitimatorCommitteeTeamMemberInput = z.infer<
   typeof legitimatorCommitteeTeamMemberSchema
 >
 
-const TEAM_TYPE = 'comite-legitimador'
-
 export function useCreateLegitimatorCommitteeTeamMember(
   setIsOpen: (isOpen: boolean) => void
 ) {
@@ -30,14 +25,7 @@ export function useCreateLegitimatorCommitteeTeamMember(
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const QUERY_KEY = ['team', TEAM_TYPE]
-
-  const { data: teamId } = useQuery({
-    queryKey: QUERY_KEY,
-    queryFn: async () =>
-      await getTeams<ILegitimatorCommittee[]>({ type: TEAM_TYPE }),
-    select: (data: ILegitimatorCommittee[]) => data[0].id,
-  })
+  const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
 
   const form = useForm({
     resolver: zodResolver(legitimatorCommitteeTeamMemberSchema),
@@ -48,34 +36,38 @@ export function useCreateLegitimatorCommitteeTeamMember(
     },
   })
 
-  async function onSubmit(values: CreateLegitimatorCommitteeTeamMemberInput) {
-    const result: LegitimatorCommitteeTeamMemberActionResult =
-      await createLegitimatorCommitteeTeamMemberAction({
-        ...values,
-        teamId,
-      })
+  const { isSubmitting } = useFormState({
+    control: form.control,
+  })
 
-    if (result.success) {
-      queryClient.invalidateQueries({
-        queryKey: QUERY_KEY,
-      })
+  const submit = form.handleSubmit(
+    async (values: CreateLegitimatorCommitteeTeamMemberInput) => {
+      try {
+        await createLegitimatorCommitteeMember(values)
 
-      toast.success('Membro cadastrado com sucesso!')
+        queryClient.invalidateQueries({
+          queryKey: ['comite-legitimador', filter],
+        })
 
-      setIsOpen(false)
+        toast.success('Membro cadastrado com sucesso!')
 
-      form.reset()
+        setIsOpen(false)
 
-      return
+        form.reset()
+      } catch (err) {
+        if (err instanceof HTTPError) {
+          const errorBody = await err.response.json()
+
+          setServerError(errorBody.message)
+        }
+      }
     }
-
-    setServerError(result.message)
-  }
+  )
 
   return {
     form,
     serverError,
-    isSubmitting: form.formState.isSubmitting,
-    onSubmit,
+    isSubmitting,
+    submit,
   }
 }

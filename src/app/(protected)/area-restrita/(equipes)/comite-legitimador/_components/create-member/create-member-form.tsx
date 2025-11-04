@@ -27,7 +27,7 @@ interface ICreateMemberFormProps {
 }
 
 export function CreateMemberForm({ setIsOpen }: ICreateMemberFormProps) {
-  const { form, isSubmitting, onSubmit, serverError } =
+  const { form, isSubmitting, submit, serverError } =
     useCreateLegitimatorCommitteeTeamMember(setIsOpen)
 
   return (
@@ -38,7 +38,7 @@ export function CreateMemberForm({ setIsOpen }: ICreateMemberFormProps) {
 
       <DialogContent>
         <Form {...form}>
-          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+          <form className="space-y-6" onSubmit={submit}>
             {serverError && (
               <Alert className="mb-4 border-primary" variant="destructive">
                 <AlertCircle className="size-4" />
@@ -92,7 +92,7 @@ export function CreateMemberForm({ setIsOpen }: ICreateMemberFormProps) {
               <DialogClose asChild>
                 <Button variant="ghost">Cancelar</Button>
               </DialogClose>
-              <Button disabled={isSubmitting} type="submit">
+              <Button disabled={isSubmitting} type="submit" variant="outline">
                 {isSubmitting && <Loader2 className="size-4 animate-spin" />}
                 Cadastrar membro
               </Button>

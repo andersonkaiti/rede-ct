@@ -2,17 +2,15 @@ import { api } from '@http/api-client'
 
 interface ICreateManagementTeamRequest {
   name: string
-  type: string
+  description?: string
   members: {
+    userId: string
     role: string
-    user: {
-      id: string
-    }
   }[]
 }
 
 export async function createManagementTeam(data: ICreateManagementTeamRequest) {
-  await api.post('team', {
+  await api.post('management-team', {
     json: data,
   })
 }

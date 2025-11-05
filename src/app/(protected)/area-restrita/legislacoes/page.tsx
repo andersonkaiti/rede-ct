@@ -7,14 +7,13 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-
-import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
+import { AdminWrapper } from '../../_components/hoc/admin'
 import { CreateButton } from '../_components/create-button'
 import { FilterInput } from '../_components/filter-input'
 
 export default function Legislacoes() {
   return (
-    <AuthWrapper>
+    <AdminWrapper>
       <PageContainer>
         <PageHeader>
           <PageHeaderContent>
@@ -34,6 +33,6 @@ export default function Legislacoes() {
 
         <PageMain>Legislações</PageMain>
       </PageContainer>
-    </AuthWrapper>
+    </AdminWrapper>
   )
 }

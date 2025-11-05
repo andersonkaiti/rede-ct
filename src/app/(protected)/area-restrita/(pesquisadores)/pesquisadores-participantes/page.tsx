@@ -8,7 +8,7 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { Suspense } from 'react'
-import { AuthWrapper } from '../../../_components/hoc/auth'
+import { AdminWrapper } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
 import { CreateResearcherButton } from './_components/create-researcher-button'
 import { ResearchersDisplayOptions } from './_components/researchers-display-options'
@@ -17,7 +17,7 @@ import { Table } from './_components/table/table'
 
 export default function PesquisadoresParticipantes() {
   return (
-    <AuthWrapper>
+    <AdminWrapper>
       <PageContainer>
         <PageHeader>
           <PageHeaderContent>
@@ -44,6 +44,6 @@ export default function PesquisadoresParticipantes() {
           </Suspense>
         </PageMain>
       </PageContainer>
-    </AuthWrapper>
+    </AdminWrapper>
   )
 }

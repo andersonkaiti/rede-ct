@@ -8,14 +8,14 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 
-import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
+import { AdminWrapper } from '../../../_components/hoc/admin'
 import { CreateButton } from '../../_components/create-button'
 import { FilterInput } from '../../_components/filter-input'
 import { GrupoDePesquisaTable } from './_components/table/table'
 
 export default function GrupoDePesquisa() {
   return (
-    <AuthWrapper>
+    <AdminWrapper>
       <PageContainer>
         <PageHeader>
           <PageHeaderContent>
@@ -37,6 +37,6 @@ export default function GrupoDePesquisa() {
           <GrupoDePesquisaTable />
         </PageMain>
       </PageContainer>
-    </AuthWrapper>
+    </AdminWrapper>
   )
 }

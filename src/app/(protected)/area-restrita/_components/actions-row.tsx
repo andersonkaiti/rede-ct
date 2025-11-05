@@ -8,7 +8,7 @@ import {
 } from '@components/ui/dropdown-menu'
 import { EditIcon, Ellipsis } from 'lucide-react'
 import { useQueryState } from 'nuqs'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { DeleteDialog } from './delete-dialog'
 
 interface IActionsRowProps {
@@ -25,12 +25,15 @@ export function ActionsRow({
   form: Form,
 }: IActionsRowProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [, setMemberId] = useQueryState('memberId')
 
-  const [, setMemberId] = useQueryState('member_id')
+  function handleOpenChange(open: boolean) {
+    setIsOpen(open)
 
-  useEffect(() => {
-    setMemberId(memberId)
-  }, [memberId, setMemberId])
+    if (open) {
+      setMemberId(memberId)
+    }
+  }
 
   return (
     <DropdownMenu>
@@ -41,7 +44,7 @@ export function ActionsRow({
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem asChild className="p-0">
-          <Dialog onOpenChange={setIsOpen} open={isOpen}>
+          <Dialog onOpenChange={handleOpenChange} open={isOpen}>
             <DialogTrigger asChild>
               <Button
                 className="flex w-full justify-between p-3 text-xs"

@@ -1,8 +1,6 @@
-'use server'
 
-import 'server-only'
 
-import type { ICongress } from 'types/congress'
+import type { ICongress } from '@/@types/congress'
 
 const internationalScientificCongress: ICongress[] = [
   {

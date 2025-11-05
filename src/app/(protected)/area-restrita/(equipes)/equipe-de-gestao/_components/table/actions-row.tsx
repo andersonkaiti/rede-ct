@@ -7,9 +7,37 @@ import {
 } from '@components/ui/dropdown-menu'
 import { EditIcon, Ellipsis } from 'lucide-react'
 import Link from 'next/link'
-import type { ITeam } from 'types/team'
 
 import { DeleteDialog } from '@/app/(protected)/area-restrita/_components/delete-dialog'
+
+interface ITeam {
+  id: string
+  name: string
+  description: string | null
+  createdAt: string
+  updatedAt: string
+  members: {
+    id: string
+    role: string
+    description: string | null
+    createdAt: string
+    updatedAt: string
+    teamId: string
+    userId: string
+    user: {
+      id: string
+      name: string
+      role: string
+      createdAt: string
+      updatedAt: string
+      avatarUrl: string | null
+      emailAddress: string
+      orcid: string | null
+      phone: string | null
+      lattesUrl: string | null
+    }
+  }[]
+}
 
 interface IActionsRowProps {
   data: ITeam

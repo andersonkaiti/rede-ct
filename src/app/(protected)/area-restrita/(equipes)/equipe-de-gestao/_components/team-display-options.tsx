@@ -9,50 +9,48 @@ import {
   DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu'
 import { Funnel } from 'lucide-react'
-import { parseAsBoolean, useQueryState } from 'nuqs'
-import { useState } from 'react'
+import { parseAsBoolean, useQueryStates } from 'nuqs'
+import { managementTeamTableColumns } from './table/management-team-table-columns'
 
 export function TeamDisplayOptions() {
-  const [name, setName] = useQueryState(
-    'nome',
-    parseAsBoolean.withDefault(true)
-  )
-  const [quantity, setQuantity] = useQueryState(
-    'quantidade',
-    parseAsBoolean.withDefault(true)
-  )
-
-  const [open, setOpen] = useState<boolean>()
+  const [columnsVisibility, setColumnsVisibility] = useQueryStates({
+    name: parseAsBoolean.withDefault(true),
+    quantity: parseAsBoolean.withDefault(true),
+  })
 
   return (
-    <DropdownMenu onOpenChange={setOpen} open={open}>
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
-          <Funnel />
+          <Funnel aria-hidden="true" className="-ms-1 opacity-60" size={16} />
           Exibir
         </Button>
       </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuLabel>Exibir colunas</DropdownMenuLabel>
+        {managementTeamTableColumns.map((col) => {
+          const columnKey = col.id as keyof typeof columnsVisibility
 
-      <DropdownMenuContent>
-        <DropdownMenuLabel className="text-muted-foreground">
-          Exibir
-        </DropdownMenuLabel>
+          if (col.id === 'actions') {
+            return null
+          }
 
-        <DropdownMenuCheckboxItem
-          checked={name}
-          onCheckedChange={(checked) => setName(checked)}
-          onSelect={(event) => event.preventDefault()}
-        >
-          <span className="ml-5">Nome</span>
-        </DropdownMenuCheckboxItem>
-
-        <DropdownMenuCheckboxItem
-          checked={quantity}
-          onCheckedChange={(checked) => setQuantity(checked)}
-          onSelect={(event) => event.preventDefault()}
-        >
-          <span className="ml-5">Quantidade de membros</span>
-        </DropdownMenuCheckboxItem>
+          return (
+            <DropdownMenuCheckboxItem
+              checked={columnsVisibility[columnKey]}
+              key={col.id}
+              onCheckedChange={(value) => {
+                setColumnsVisibility((prev) => ({
+                  ...prev,
+                  [columnKey]: value,
+                }))
+              }}
+              onSelect={(event) => event.preventDefault()}
+            >
+              <span className="ml-5">{col.header as string}</span>
+            </DropdownMenuCheckboxItem>
+          )
+        })}
       </DropdownMenuContent>
     </DropdownMenu>
   )

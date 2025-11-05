@@ -11,7 +11,7 @@ import {
 } from '@components/ui/sidebar'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
-import type { NavigationLink } from 'types/navigation-link'
+import type { NavigationLink } from '@/@types/navigation-link'
 import { SidebarBackButton } from './sidebar-back-button'
 import { SidebarItem } from './sidebar-item'
 import { sidebarLinks } from './sidebar-links'

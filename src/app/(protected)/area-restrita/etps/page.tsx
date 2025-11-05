@@ -8,7 +8,7 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { Suspense } from 'react'
-import { AuthWrapper } from '../../_components/hoc/auth'
+import { AdminWrapper } from '../../_components/hoc/admin'
 import { FilterInput } from '../_components/filter-input'
 import { CreateEtpButton } from './_components/create-etp-button'
 import { EtpsDisplayOptions } from './_components/etps-display-options'
@@ -17,7 +17,7 @@ import { Table } from './_components/table/table'
 
 export default function ETPS() {
   return (
-    <AuthWrapper>
+    <AdminWrapper>
       <PageContainer>
         <PageHeader>
           <PageHeaderContent>
@@ -42,6 +42,6 @@ export default function ETPS() {
           </Suspense>
         </PageMain>
       </PageContainer>
-    </AuthWrapper>
+    </AdminWrapper>
   )
 }

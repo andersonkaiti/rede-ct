@@ -2,13 +2,11 @@ import { api } from '@http/api-client'
 
 interface IUpdateManagementTeam {
   id: string
-  name: string
-  members: {
+  name?: string
+  description?: string
+  members?: {
+    userId: string
     role: string
-    id?: string
-    user: {
-      id: string
-    }
   }[]
 }
 
@@ -16,7 +14,7 @@ export async function updateManagementTeam({
   id,
   ...team
 }: IUpdateManagementTeam) {
-  return await api.put(`team/${id}`, {
+  await api.put(`management-team/${id}`, {
     json: team,
   })
 }

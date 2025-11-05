@@ -19,7 +19,7 @@ interface ISelectMemberProps {
 }
 
 export function SelectMember({ userId, onChange }: ISelectMemberProps) {
-  const { data: users = [], isLoading } = useUsers()
+  const { data: users, isLoading } = useUsers()
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState<string>(userId || '')
 
@@ -27,7 +27,7 @@ export function SelectMember({ userId, onChange }: ISelectMemberProps) {
     setSelected(userId || '')
   }, [userId])
 
-  const user = users.find((u) => u.id === selected)
+  const user = users?.find((u) => u.id === selected)
 
   function renderSelectPlaceholder() {
     if (selected && !isLoading) {
@@ -84,7 +84,7 @@ export function SelectMember({ userId, onChange }: ISelectMemberProps) {
             <CommandList>
               <CommandEmpty>Nenhum membro encontrado.</CommandEmpty>
               <CommandGroup>
-                {users.map((u) => (
+                {users?.map((u) => (
                   <CommandItem
                     key={u.id}
                     onSelect={(currentValue) => {

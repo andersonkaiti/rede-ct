@@ -1,17 +1,15 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { getTeamMemberById } from '@http/teams/get-team-member-by-id'
+import { api } from '@http/api-client'
+import { getLegitimatorCommitteeMemberById } from '@http/teams/legitimator-committee/get-legitimator-committee-member-by-id'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { parseAsString, useQueryState } from 'nuqs'
-import { useEffect, useState } from 'react'
+import { HTTPError } from 'ky'
+import { parseAsString, useQueryStates } from 'nuqs'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-import {
-  type LegitimatorCommitteeTeamMemberActionResult,
-  updateLegitimatorCommitteeTeamMemberAction,
-} from '../../actions'
 
 export const legitimatorCommitteeTeamMemberSchema = z.object({
   userId: z.string().min(1, 'Membro é obrigatório'),
@@ -27,8 +25,6 @@ interface IUseRegisterMemberProps {
   setIsOpen: (isOpen: boolean) => void
 }
 
-const TEAM_TYPE = 'comite-legitimador'
-
 export function useUpdateLegitimatorCommitteeTeamMember({
   setIsOpen,
 }: IUseRegisterMemberProps) {
@@ -36,11 +32,14 @@ export function useUpdateLegitimatorCommitteeTeamMember({
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const [memberId] = useQueryState('member_id', parseAsString.withDefault(''))
+  const [{ memberId, filtro: filter }] = useQueryStates({
+    memberId: parseAsString.withDefault(''),
+    filtro: parseAsString.withDefault(''),
+  })
 
   const { data: member } = useQuery({
     queryKey: ['member', memberId],
-    queryFn: () => getTeamMemberById(memberId),
+    queryFn: () => getLegitimatorCommitteeMemberById(memberId),
   })
 
   const form = useForm({
@@ -52,39 +51,40 @@ export function useUpdateLegitimatorCommitteeTeamMember({
     },
   })
 
-  async function onSubmit(values: UpdateLegitimatorCommitteeTeamMemberInput) {
-    const result: LegitimatorCommitteeTeamMemberActionResult =
-      await updateLegitimatorCommitteeTeamMemberAction({
-        ...values,
-        id: memberId,
-      })
+  const submit = form.handleSubmit(
+    async (values: UpdateLegitimatorCommitteeTeamMemberInput) => {
+      try {
+        await api.put(`team/member/${memberId}`, {
+          json: {
+            ...values,
+            id: memberId,
+          },
+        })
 
-    if (result.success) {
-      queryClient.invalidateQueries({
-        queryKey: ['team', TEAM_TYPE],
-      })
+        queryClient.invalidateQueries({
+          queryKey: ['comite-legitimador', filter],
+        })
 
-      queryClient.invalidateQueries({
-        queryKey: ['member', memberId],
-      })
+        toast.success('Membro atualizado com sucesso!')
 
-      toast.success('Membro atualizado com sucesso!')
+        setIsOpen(false)
 
-      setIsOpen(false)
+        form.reset()
+      } catch (err) {
+        if (err instanceof HTTPError) {
+          const errorBody = await err.response.json()
 
-      form.reset()
-
-      return
+          setServerError(errorBody.message)
+        }
+      }
     }
-
-    setServerError(result.message)
-  }
+  )
 
   return {
     member,
     form,
     serverError,
     isSubmitting: form.formState.isSubmitting,
-    onSubmit,
+    submit,
   }
 }

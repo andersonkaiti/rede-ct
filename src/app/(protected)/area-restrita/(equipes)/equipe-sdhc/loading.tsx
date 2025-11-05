@@ -16,10 +16,10 @@ export default function Loading() {
       <PageHeader>
         <PageHeaderContent>
           <PageTitle>
-            <Skeleton className="h-9 w-46" />
+            <Skeleton className="h-9 w-61" />
           </PageTitle>
           <PageDescription>
-            <Skeleton className="h-5 w-37.5" />
+            <Skeleton className="mt-2 h-4 w-47" />
           </PageDescription>
         </PageHeaderContent>
       </PageHeader>
@@ -27,11 +27,10 @@ export default function Loading() {
       <PageHeader>
         <PageActionsContainer>
           <Skeleton className="h-9 w-52 max-w-sm" />
-
           <Skeleton className="h-9 w-21" />
+          <Skeleton className="h-9 w-10" />
         </PageActionsContainer>
-
-        <Skeleton className="h-9 w-40" />
+        <Skeleton className="h-9 w-56" />
       </PageHeader>
 
       <PageMain>

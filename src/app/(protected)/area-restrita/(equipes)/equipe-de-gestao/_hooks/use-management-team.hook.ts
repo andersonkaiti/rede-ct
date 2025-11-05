@@ -1,21 +1,23 @@
-import { deleteTeamById } from '@http/teams/delete-team-by-id'
-import { getTeams } from '@http/teams/get-teams'
+import { deleteManagementTeamById } from '@http/teams/management-team/delete-management-team-by-id'
+import { getManagementTeam } from '@http/teams/management-team/get-management-team'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { parseAsString, useQueryState } from 'nuqs'
 import { useEffect } from 'react'
 import { toast } from 'sonner'
-import type { ITeam } from 'types/team'
 
-export function useManagementTeam(type: string) {
+export function useManagementTeam() {
   const queryClient = useQueryClient()
 
   const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
 
-  const QUERY_KEY = ['team', type, filter || '']
+  const QUERY_KEY = ['equipe-de-gestao', filter]
 
-  const { isLoading, refetch, ...rest } = useQuery<ITeam[]>({
+  const { refetch, ...rest } = useQuery({
     queryKey: QUERY_KEY,
-    queryFn: () => getTeams({ type, filter }),
+    queryFn: async () =>
+      getManagementTeam({
+        filter,
+      }),
   })
 
   useEffect(() => {
@@ -23,17 +25,16 @@ export function useManagementTeam(type: string) {
   }, [refetch])
 
   async function handleRemoveTeam(teamId: string) {
-    await deleteTeamById(teamId)
+    await deleteManagementTeamById(teamId)
 
-    queryClient.setQueryData(QUERY_KEY, (oldTeam: ITeam[] = []) =>
-      oldTeam.filter((team) => team.id !== teamId)
-    )
+    queryClient.invalidateQueries({
+      queryKey: ['equipe-de-gestao', filter],
+    })
 
     toast.success('Equipe removida com sucesso!')
   }
 
   return {
-    isLoading,
     handleRemoveTeam,
     ...rest,
   }

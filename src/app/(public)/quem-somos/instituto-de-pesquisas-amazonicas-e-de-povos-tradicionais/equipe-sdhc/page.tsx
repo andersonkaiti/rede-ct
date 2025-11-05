@@ -6,8 +6,8 @@ import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
-const DynamicEquipeSdhc = dynamicImport(() =>
-  import('./_components/equipe-sdhc').then((m) => m.EquipeSdhc)
+const DynamicSDHCTeam = dynamicImport(() =>
+  import('./_components/sdhc-team').then((m) => m.SDHCTeam)
 )
 
 export default function EquipeSDHC() {
@@ -24,7 +24,7 @@ export default function EquipeSDHC() {
       </div>
 
       <Suspense fallback={<LoadingSkeleton />}>
-        <DynamicEquipeSdhc />
+        <DynamicSDHCTeam />
       </Suspense>
     </main>
   )

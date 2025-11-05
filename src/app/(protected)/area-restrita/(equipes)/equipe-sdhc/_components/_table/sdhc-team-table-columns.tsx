@@ -1,25 +1,29 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { formatDate } from '@utils/format-date'
-import type { IUser } from 'types/user'
 import { ActionsRow } from '../../../../_components/actions-row'
 import { UpdateMemberForm } from '../update-member/update-member-form'
 
-export interface ISDHCTeamMember {
-  role: string
-  id: string
-  createdAt: string
-  updatedAt: string
-  description: string
-  user: IUser
-}
-
-export interface ISDHCTeam {
+interface ISDHCTeamMemberUser {
   id: string
   name: string
-  type: string
+  avatarUrl: string | null
   createdAt: string
   updatedAt: string
-  members: ISDHCTeamMember[]
+  emailAddress: string
+  orcid: string | null
+  phone: string | null
+  lattesUrl: string | null
+  role: 'ADMIN' | 'USER'
+}
+
+interface ISDHCTeamMember {
+  id: string
+  role: string
+  description: string | null
+  createdAt: string
+  updatedAt: string
+  userId: string
+  user: ISDHCTeamMemberUser
 }
 
 export const sdhcTeamTableColumns: ColumnDef<ISDHCTeamMember>[] = [
@@ -64,7 +68,7 @@ export const sdhcTeamTableColumns: ColumnDef<ISDHCTeamMember>[] = [
     }) => description,
   },
   {
-    id: 'created_at',
+    id: 'createdAt',
     header: 'Criado em',
     cell: ({
       row: {
@@ -73,7 +77,7 @@ export const sdhcTeamTableColumns: ColumnDef<ISDHCTeamMember>[] = [
     }) => formatDate(createdAt),
   },
   {
-    id: 'updated_at',
+    id: 'updatedAt',
     header: 'Atualizado em',
     cell: ({
       row: {

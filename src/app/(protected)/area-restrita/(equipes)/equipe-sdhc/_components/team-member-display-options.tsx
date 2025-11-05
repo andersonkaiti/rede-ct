@@ -9,98 +9,54 @@ import {
   DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu'
 import { Funnel } from 'lucide-react'
-import { parseAsBoolean, useQueryState } from 'nuqs'
-import { useState } from 'react'
+import { parseAsBoolean, useQueryStates } from 'nuqs'
+import { sdhcTeamTableColumns } from './_table/sdhc-team-table-columns'
 
 export function TeamMemberDisplayOptions() {
-  const [name, setName] = useQueryState(
-    'nome',
-    parseAsBoolean.withDefault(true)
-  )
-  const [email, setEmail] = useQueryState(
-    'email',
-    parseAsBoolean.withDefault(true)
-  )
-  const [role, setRole] = useQueryState(
-    'cargo',
-    parseAsBoolean.withDefault(true)
-  )
-  const [description, setDescription] = useQueryState(
-    'descricao',
-    parseAsBoolean.withDefault(true)
-  )
-  const [createdAt, setCreatedAt] = useQueryState(
-    'created_at',
-    parseAsBoolean.withDefault(true)
-  )
-  const [updatedAt, setUpdatedAt] = useQueryState(
-    'updated_at',
-    parseAsBoolean.withDefault(true)
-  )
-
-  const [open, setOpen] = useState<boolean>()
+  const [columnsVisibility, setColumnsVisibility] = useQueryStates({
+    name: parseAsBoolean.withDefault(true),
+    email: parseAsBoolean.withDefault(true),
+    role: parseAsBoolean.withDefault(true),
+    description: parseAsBoolean.withDefault(true),
+    createdAt: parseAsBoolean.withDefault(true),
+    updatedAt: parseAsBoolean.withDefault(true),
+  })
 
   return (
-    <DropdownMenu onOpenChange={setOpen} open={open}>
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
-          <Funnel />
+          <Funnel aria-hidden="true" className="-ms-1 opacity-60" size={16} />
           Exibir
         </Button>
       </DropdownMenuTrigger>
-
-      <DropdownMenuContent>
+      <DropdownMenuContent align="end">
         <DropdownMenuLabel className="text-muted-foreground">
-          Exibir
+          Exibir colunas
         </DropdownMenuLabel>
+        {sdhcTeamTableColumns.map((col) => {
+          const columnKey = col.id as keyof typeof columnsVisibility
 
-        <DropdownMenuCheckboxItem
-          checked={name}
-          onCheckedChange={(checked) => setName(checked)}
-          onSelect={(event) => event.preventDefault()}
-        >
-          <span className="ml-5">Nome</span>
-        </DropdownMenuCheckboxItem>
+          if (col.id === 'actions') {
+            return null
+          }
 
-        <DropdownMenuCheckboxItem
-          checked={email}
-          onCheckedChange={(checked) => setEmail(checked)}
-          onSelect={(event) => event.preventDefault()}
-        >
-          <span className="ml-5">E-mail</span>
-        </DropdownMenuCheckboxItem>
-
-        <DropdownMenuCheckboxItem
-          checked={role}
-          onCheckedChange={(checked) => setRole(checked)}
-          onSelect={(event) => event.preventDefault()}
-        >
-          <span className="ml-5">Cargo</span>
-        </DropdownMenuCheckboxItem>
-
-        <DropdownMenuCheckboxItem
-          checked={description}
-          onCheckedChange={(checked) => setDescription(checked)}
-          onSelect={(event) => event.preventDefault()}
-        >
-          <span className="ml-5">Descrição</span>
-        </DropdownMenuCheckboxItem>
-
-        <DropdownMenuCheckboxItem
-          checked={createdAt}
-          onCheckedChange={(checked) => setCreatedAt(checked)}
-          onSelect={(event) => event.preventDefault()}
-        >
-          <span className="ml-5">Criado em</span>
-        </DropdownMenuCheckboxItem>
-
-        <DropdownMenuCheckboxItem
-          checked={updatedAt}
-          onCheckedChange={(checked) => setUpdatedAt(checked)}
-          onSelect={(event) => event.preventDefault()}
-        >
-          <span className="ml-5">Atualizado em</span>
-        </DropdownMenuCheckboxItem>
+          return (
+            <DropdownMenuCheckboxItem
+              checked={columnsVisibility[columnKey]}
+              key={col.id}
+              onCheckedChange={(value) => {
+                setColumnsVisibility((prev) => ({
+                  ...prev,
+                  [columnKey]: value,
+                }))
+              }}
+              onSelect={(event) => event.preventDefault()}
+            >
+              <span className="ml-5">{col.header as string}</span>
+            </DropdownMenuCheckboxItem>
+          )
+        })}
       </DropdownMenuContent>
     </DropdownMenu>
   )

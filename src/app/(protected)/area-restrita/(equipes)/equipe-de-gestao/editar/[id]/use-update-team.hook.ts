@@ -1,27 +1,39 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { getTeam } from '@http/teams/get-team'
+import { getManagementTeamById } from '@http/teams/management-team/get-management-team-by-id'
+import { updateManagementTeam } from '@http/teams/management-team/update-management-team'
 import { useQuery } from '@tanstack/react-query'
+import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import type { ITeam, ITeamMember } from 'types/team'
 import z from 'zod'
-import {
-  type ManagementTeamActionResult,
-  updateManagementTeamAction,
-} from '../../actions'
+
+interface ITeamMember {
+  id: string
+  role: string
+  userId: string
+  user: {
+    name: string
+    id: string
+    role: 'ADMIN' | 'USER'
+    createdAt: string
+    updatedAt: string
+    avatarUrl: string | null
+    emailAddress: string
+    orcid: string | null
+    phone: string | null
+    lattesUrl: string | null
+  }
+}
 
 export const managementTeamSchema = z.object({
   name: z.string().trim().min(1, 'O nome da equipe é obrigatório.').trim(),
   members: z
     .array(
       z.object({
-        role: z.string().trim().min(1, 'Cargo é obrigatório.'),
-        id: z.uuid().optional(),
-        user: z.object({
-          id: z.string(),
-        }),
+        userId: z.uuid(),
+        role: z.string().trim().min(1, 'O cargo é obrigatório.'),
       })
     )
     .min(1, 'Membros são obrigatórios.'),
@@ -30,15 +42,14 @@ export const managementTeamSchema = z.object({
 export type UpdateManagementTeamInput = z.infer<typeof managementTeamSchema>
 
 export function useUpdateTeam() {
-  const { id } = useParams<{ id: string }>()
-
+  const { id: teamId } = useParams<{ id: string }>()
   const router = useRouter()
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const { data: incomingTeam, isLoading: isTeamLoading } = useQuery<ITeam>({
-    queryKey: ['team', id],
-    queryFn: () => getTeam(id),
+  const { data: incomingTeam, isLoading: isTeamLoading } = useQuery({
+    queryKey: ['team', teamId],
+    queryFn: async () => await getManagementTeamById(teamId),
   })
 
   const [members, setMembers] = useState<ITeamMember[]>([])
@@ -59,54 +70,74 @@ export function useUpdateTeam() {
 
   useEffect(() => {
     if (!isTeamLoading && incomingTeam) {
-      form.reset(incomingTeam)
+      const formMembers = incomingTeam.members.map((member) => ({
+        userId: member.user.id,
+        role: member.role,
+      }))
 
-      setMembers(incomingTeam.members)
+      form.reset({
+        name: incomingTeam.name,
+        members: formMembers,
+      })
+
+      setMembers(
+        incomingTeam.members.map((member) => ({
+          ...member,
+          user: {
+            ...member.user,
+            role: member.user.role as 'ADMIN' | 'USER',
+          },
+        }))
+      )
     }
   }, [incomingTeam, form, isTeamLoading])
 
   function handleIncludeMember(member: ITeamMember) {
-    membersForm.append(member)
+    membersForm.append({ userId: member.user.id, role: member.role })
 
     setMembers((prevMembers) => [...prevMembers, member])
 
     toast.success('Membro adicionado com sucesso!')
   }
 
-  function handleRemoveMember(memberId: string) {
-    const memberIndex = members.findIndex((member) => member.id === memberId)
+  function handleRemoveMember(id: string) {
+    membersForm.remove(Number(id))
 
-    membersForm.remove(memberIndex)
-
-    setMembers((prevMembers) => prevMembers.filter((_, index) => index))
+    setMembers((prevMembers) => prevMembers.filter((_, i) => i !== Number(id)))
 
     toast.success('Usuário removido com sucesso!')
   }
 
-  async function onSubmit(values: UpdateManagementTeamInput) {
-    const result: ManagementTeamActionResult = await updateManagementTeamAction(
-      {
-        ...values,
-        id: incomingTeam?.id ?? '',
+  const submit = form.handleSubmit(
+    async (values: UpdateManagementTeamInput) => {
+      try {
+        await updateManagementTeam({
+          id: teamId,
+          name: values.name,
+          members: values.members.map((member) => ({
+            userId: member.userId,
+            role: member.role,
+          })),
+        })
+
+        toast.success('Equipe atualizada com sucesso!')
+
+        router.push('/area-restrita/equipe-de-gestao')
+      } catch (err) {
+        if (err instanceof HTTPError) {
+          const errorBody = await err.response.json()
+
+          setServerError(errorBody.message)
+        }
       }
-    )
-
-    if (result.success) {
-      toast.success('Equipe atualizada com sucesso!')
-
-      router.push('/area-restrita/equipe-de-gestao')
-
-      return
     }
-
-    setServerError(result.message)
-  }
+  )
 
   return {
     form,
     serverError,
     isSubmitting: form.formState.isSubmitting,
-    onSubmit,
+    submit,
     handleIncludeMember,
     handleRemoveMember,
     members,

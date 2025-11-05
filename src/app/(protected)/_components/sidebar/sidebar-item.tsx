@@ -11,7 +11,7 @@ import {
 } from '@components/ui/sidebar'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
-import type { NavigationLink } from 'types/navigation-link'
+import type { NavigationLink } from '@/@types/navigation-link'
 import { SidebarButton } from './sidebar-button'
 
 interface ISidebarItemProps {

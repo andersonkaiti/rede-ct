@@ -4,9 +4,32 @@ import {
   UserCardImage,
 } from '@components/ui/user-card'
 import UserProfileHoverCard from '@components/user-profile-hover-card'
-import type { ITeamMember } from 'types/team'
 
-export function UserCardComponent({ member }: { member: ITeamMember }) {
+interface IUserCardComponentProps {
+  member: {
+    id: string
+    role: string
+    description: string | null
+    createdAt: string
+    updatedAt: string
+    teamId: string
+    userId: string
+    user: {
+      id: string
+      name: string
+      role: 'ADMIN' | 'USER'
+      createdAt: string
+      updatedAt: string
+      avatarUrl: string | null
+      emailAddress: string
+      orcid: string | null
+      phone: string | null
+      lattesUrl: string | null
+    }
+  }
+}
+
+export function UserCardComponent({ member }: IUserCardComponentProps) {
   return (
     <UserCard>
       <UserCardImage

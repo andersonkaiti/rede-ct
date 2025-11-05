@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import type { IGalleryItem } from 'types/congress'
+import type { IGalleryItem } from '@/@types/congress'
 
 interface ICongressGalleryItemProps {
   item: IGalleryItem

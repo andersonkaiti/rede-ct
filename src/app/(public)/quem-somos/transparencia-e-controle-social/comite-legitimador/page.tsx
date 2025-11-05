@@ -15,8 +15,10 @@ import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
-const DynamicComiteLegitimador = dynamicImport(() =>
-  import('./_components/comite-legitimador').then((m) => m.ComiteLegitimador)
+const DynamicLegitimatorCommittee = dynamicImport(() =>
+  import('./_components/legitimator-committee').then(
+    (m) => m.LegitimatorCommittee
+  )
 )
 
 export default function ComiteLegitimador() {
@@ -32,7 +34,7 @@ export default function ComiteLegitimador() {
       </div>
 
       <Suspense fallback={<LoadingSkeleton />}>
-        <DynamicComiteLegitimador />
+        <DynamicLegitimatorCommittee />
       </Suspense>
 
       <Card className="border-0 shadow-lg">

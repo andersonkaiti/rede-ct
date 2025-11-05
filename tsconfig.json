@@ -31,7 +31,6 @@
       "@components/*": ["./src/components/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@utils/*": ["./src/utils/*"],
-      "types/*": ["./src/@types/*"],
       "@/*": ["./src/*"]
     },
     "strictNullChecks": true

@@ -1,105 +1,92 @@
 'use client'
 
 import { DataTable } from '@components/ui/data-table'
-import { parseAsBoolean, parseAsString, useQueryState } from 'nuqs'
-import { useLegitimatorCommittee } from '../../_hooks/use-team.hook'
-import {
-  type ILegitimatorCommitteeTeamMember,
-  legitimatorCommitteeTableColumns,
-} from './legitimator-committee-table-columns'
+import type { ColumnDef } from '@tanstack/react-table'
+import { parseAsBoolean, useQueryStates } from 'nuqs'
+import { useLegitimatorCommittee } from '../../_hooks/use-legitimator-committee.hook'
+import { legitimatorCommitteeTableColumns } from './legitimator-committee-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
 
+interface IUser {
+  id: string
+  name: string
+  avatarUrl: string | null
+  createdAt: string
+  updatedAt: string
+  emailAddress: string
+  orcid: string | null
+  phone: string | null
+  lattesUrl: string | null
+  role: 'ADMIN' | 'USER'
+}
+
+interface ILegitimatorCommitteeTeamMember {
+  id: string
+  role: string
+  description: string | null
+  createdAt: string
+  updatedAt: string
+  userId: string
+  user: IUser
+}
+
 export function Table() {
-  const {
-    data: team,
-    isLoading,
-    handleRemoveMember,
-  } = useLegitimatorCommittee()
+  const { data, isLoading, handleRemoveMember } = useLegitimatorCommittee()
 
-  const [filter] = useQueryState('filtro', parseAsString.withDefault(''))
-
-  const [hasName] = useQueryState('nome', parseAsBoolean.withDefault(true))
-  const [hasEmail] = useQueryState('email', parseAsBoolean.withDefault(true))
-  const [hasRole] = useQueryState('cargo', parseAsBoolean.withDefault(true))
-  const [hasDescription] = useQueryState(
-    'descricao',
-    parseAsBoolean.withDefault(true)
-  )
-  const [hasCreatedAt] = useQueryState(
-    'created_at',
-    parseAsBoolean.withDefault(true)
-  )
-  const [hasUpdatedAt] = useQueryState(
-    'updated_at',
-    parseAsBoolean.withDefault(true)
-  )
+  const [{ name, email, role, description, createdAt, updatedAt }] =
+    useQueryStates({
+      name: parseAsBoolean.withDefault(true),
+      email: parseAsBoolean.withDefault(true),
+      role: parseAsBoolean.withDefault(true),
+      description: parseAsBoolean.withDefault(true),
+      createdAt: parseAsBoolean.withDefault(true),
+      updatedAt: parseAsBoolean.withDefault(true),
+    })
 
   if (isLoading) {
     return <LoadingSkeleton />
   }
 
-  const noneOfThem = !(hasName || hasRole || hasDescription)
+  const filteredLegitimatorCommitteeTableColumns: ColumnDef<ILegitimatorCommitteeTeamMember>[] =
+    legitimatorCommitteeTableColumns.filter((column) => {
+      if (column.id === 'name') {
+        return name
+      }
 
-  const filteredLegitimatorCommitteeTableColumns = noneOfThem
-    ? []
-    : legitimatorCommitteeTableColumns.filter((column) => {
-        if (column.id === 'name' && !hasName) {
-          return false
-        }
+      if (column.id === 'email') {
+        return email
+      }
 
-        if (column.id === 'email' && !hasEmail) {
-          return false
-        }
+      if (column.id === 'role') {
+        return role
+      }
 
-        if (column.id === 'role' && !hasRole) {
-          return false
-        }
+      if (column.id === 'description') {
+        return description
+      }
 
-        if (column.id === 'description' && !hasDescription) {
-          return false
-        }
+      if (column.id === 'createdAt') {
+        return createdAt
+      }
 
-        if (column.id === 'created_at' && !hasCreatedAt) {
-          return false
-        }
+      if (column.id === 'updatedAt') {
+        return updatedAt
+      }
 
-        if (column.id === 'updated_at' && !hasUpdatedAt) {
-          return false
-        }
-
-        return true
-      })
-
-  const onlyInclude = ['name', 'role', 'description']
-
-  const filteredTeamMembers =
-    team?.members.filter((member) =>
-      Object.entries(member).some(([key, value]) => {
-        if (!onlyInclude.includes(key)) {
-          return false
-        }
-
-        if (typeof value === 'string') {
-          return value.toLowerCase().includes(filter.toLowerCase())
-        }
-
-        if (typeof value === 'object' && value !== null) {
-          return Object.values(value).some(
-            (innerValue) =>
-              typeof innerValue === 'string' &&
-              innerValue.toLowerCase().includes(filter.toLowerCase())
-          )
-        }
-
-        return false
-      })
-    ) || []
+      return true
+    })
 
   return (
-    <DataTable<ILegitimatorCommitteeTeamMember, unknown>
-      columns={filteredLegitimatorCommitteeTableColumns}
-      data={filteredTeamMembers}
-      handleRemove={handleRemoveMember}
-    />
+    <>
+      {!isLoading && (
+        <DataTable
+          columns={filteredLegitimatorCommitteeTableColumns}
+          data={data?.members}
+          handleRemove={handleRemoveMember}
+        />
+      )}
+
+      {isLoading && <LoadingSkeleton />}
+    </>
   )
 }

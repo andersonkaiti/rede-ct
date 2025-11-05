@@ -1,7 +1,24 @@
 import { Button } from '@components/ui/button'
 import type { ColumnDef } from '@tanstack/react-table'
 import { Trash } from 'lucide-react'
-import type { ITeamMember } from 'types/team'
+
+interface ITeamMember {
+  id: string
+  role: string
+  userId: string
+  user: {
+    name: string
+    id: string
+    role: 'ADMIN' | 'USER'
+    createdAt: string
+    updatedAt: string
+    avatarUrl: string | null
+    emailAddress: string
+    orcid: string | null
+    phone: string | null
+    lattesUrl: string | null
+  }
+}
 
 export const teamMembersTableColumns: ColumnDef<ITeamMember>[] = [
   {
@@ -46,12 +63,9 @@ export const teamMembersTableColumns: ColumnDef<ITeamMember>[] = [
     }) => (
       <Button
         className="cursor-pointer"
-        onClick={() =>
-        {
-          console.log(original.id)
+        onClick={() => {
           original.id ? meta?.handleRemove?.(original.id) : undefined
-        }
-        }
+        }}
         type="button"
         variant="ghost"
       >

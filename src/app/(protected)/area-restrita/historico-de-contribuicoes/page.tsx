@@ -11,7 +11,7 @@ import {
 import { FilterInput } from '../_components/filter-input'
 import { OrderByButton } from '../_components/order-by-button'
 import { AllContributionsButton } from './_components/all-contributions-button'
-import { ContributionList } from './_components/user-contribution-list'
+import { UserContributionsList } from './_components/user-contributions-list'
 
 export default async function HistoricoDeContribuicoes() {
   return (
@@ -36,7 +36,7 @@ export default async function HistoricoDeContribuicoes() {
       </PageHeader>
 
       <PageMain>
-        <ContributionList />
+        <UserContributionsList />
       </PageMain>
     </PageContainer>
   )

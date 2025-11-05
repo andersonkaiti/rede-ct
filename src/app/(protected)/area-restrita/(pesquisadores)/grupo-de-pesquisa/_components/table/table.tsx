@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Table,
@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@components/ui/table";
+} from '@components/ui/table'
 
 export function GrupoDePesquisaTable() {
   return (
@@ -25,5 +25,5 @@ export function GrupoDePesquisaTable() {
         </TableRow>
       </TableBody>
     </Table>
-  );
+  )
 }

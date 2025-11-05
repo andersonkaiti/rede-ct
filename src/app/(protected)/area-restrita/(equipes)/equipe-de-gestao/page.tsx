@@ -7,16 +7,18 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-
-import { AuthWrapper } from '@/app/(protected)/_components/hoc/auth'
-import { CreateButton } from '../../_components/create-button'
+import { Suspense } from 'react'
+import { AdminWrapper } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
+import { OrderByButton } from '../../_components/order-by-button'
+import { CreateManagementTeamButton } from './_components/create-management-team-button'
+import { LoadingSkeleton } from './_components/table/loading-skeleton'
 import Table from './_components/table/table'
 import { TeamDisplayOptions } from './_components/team-display-options'
 
 export default function EquipeDeGestao() {
   return (
-    <AuthWrapper>
+    <AdminWrapper>
       <PageContainer>
         <PageHeader>
           <PageHeaderContent>
@@ -30,16 +32,19 @@ export default function EquipeDeGestao() {
             <FilterInput />
 
             <TeamDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
-          <CreateButton href="/area-restrita/equipe-de-gestao/cadastrar">
-            Criar Equipe de Gestão
-          </CreateButton>
+
+          <CreateManagementTeamButton />
         </PageHeader>
 
         <PageMain>
-          <Table />
+          <Suspense fallback={<LoadingSkeleton />}>
+            <Table />
+          </Suspense>
         </PageMain>
       </PageContainer>
-    </AuthWrapper>
+    </AdminWrapper>
   )
 }

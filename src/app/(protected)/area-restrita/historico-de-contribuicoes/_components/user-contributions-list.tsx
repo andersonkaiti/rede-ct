@@ -5,7 +5,7 @@ import { Contribution } from './contribution'
 import { LoadingSkeleton } from './loading-skeleton'
 import { useContributions } from './use-user-contributions.hook'
 
-export function ContributionList() {
+export function UserContributionsList() {
   const { data, isLoading, page, limit } = useContributions()
 
   return (

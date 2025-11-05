@@ -11,7 +11,7 @@ import { AuthWrapper } from '../../../_components/hoc/auth'
 import { FilterInput } from '../../_components/filter-input'
 import { FilterSelectUser } from '../../_components/filter-select-user'
 import { OrderByButton } from '../../_components/order-by-button'
-import { AllContributionList } from './_components/contribution-list'
+import { ContributionsList } from './_components/contributions-list'
 
 export default function AllContributions() {
   return (
@@ -37,7 +37,7 @@ export default function AllContributions() {
         </PageHeader>
 
         <PageMain>
-          <AllContributionList />
+          <ContributionsList />
         </PageMain>
       </PageContainer>
     </AuthWrapper>

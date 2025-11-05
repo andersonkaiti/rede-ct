@@ -8,7 +8,7 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 
-import { AuthWrapper } from '../../../_components/hoc/auth'
+import { AdminWrapper } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
 import { OrderByButton } from '../../_components/order-by-button'
 import { Table } from './_components/_table/table'
@@ -17,7 +17,7 @@ import { TeamMemberDisplayOptions } from './_components/team-member-display-opti
 
 export default function LegitimatorCommittee() {
   return (
-    <AuthWrapper>
+    <AdminWrapper>
       <PageContainer>
         <PageHeader>
           <PageHeaderContent>
@@ -42,6 +42,6 @@ export default function LegitimatorCommittee() {
           <Table />
         </PageMain>
       </PageContainer>
-    </AuthWrapper>
+    </AdminWrapper>
   )
 }

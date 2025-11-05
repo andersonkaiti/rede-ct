@@ -8,7 +8,7 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { Suspense } from 'react'
-import { AuthWrapper } from '../../_components/hoc/auth'
+import { AdminWrapper } from '../../_components/hoc/admin'
 import { FilterInput } from '../_components/filter-input'
 import { CreatePartnerButton } from './_components/create-partner-button'
 import { LoadingSkeleton } from './_components/table/loading-skeleton'
@@ -16,7 +16,7 @@ import { Table } from './_components/table/table'
 
 export default function PartnersAndFunders() {
   return (
-    <AuthWrapper>
+    <AdminWrapper>
       <PageContainer>
         <PageHeader>
           <PageHeaderContent>
@@ -41,6 +41,6 @@ export default function PartnersAndFunders() {
           </Suspense>
         </PageMain>
       </PageContainer>
-    </AuthWrapper>
+    </AdminWrapper>
   )
 }

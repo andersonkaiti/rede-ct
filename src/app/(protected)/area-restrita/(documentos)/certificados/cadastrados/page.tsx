@@ -7,7 +7,7 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-import { AuthWrapper } from '../../../../_components/hoc/auth'
+import { AdminWrapper } from '../../../../_components/hoc/admin'
 import { FilterInput } from '../../../_components/filter-input'
 import { FilterSelectUser } from '../../../_components/filter-select-user'
 import { OrderByButton } from '../../../_components/order-by-button'
@@ -16,7 +16,7 @@ import { RegisteredCertificationList } from './_components/registered-certificat
 
 export default function RegisteredCertifications() {
   return (
-    <AuthWrapper>
+    <AdminWrapper>
       <PageContainer>
         <PageHeader>
           <PageHeaderContent>
@@ -45,6 +45,6 @@ export default function RegisteredCertifications() {
           <RegisteredCertificationList />
         </PageMain>
       </PageContainer>
-    </AuthWrapper>
+    </AdminWrapper>
   )
 }

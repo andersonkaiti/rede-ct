@@ -8,7 +8,7 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { Suspense } from 'react'
-import { AuthWrapper } from '../../../_components/hoc/auth'
+import { AdminWrapper } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
 import { OrderByButton } from '../../_components/order-by-button'
 import { CreateManagementTeamButton } from './_components/create-management-team-button'
@@ -18,7 +18,7 @@ import { TeamDisplayOptions } from './_components/team-display-options'
 
 export default function EquipeDeGestao() {
   return (
-    <AuthWrapper>
+    <AdminWrapper>
       <PageContainer>
         <PageHeader>
           <PageHeaderContent>
@@ -45,6 +45,6 @@ export default function EquipeDeGestao() {
           </Suspense>
         </PageMain>
       </PageContainer>
-    </AuthWrapper>
+    </AdminWrapper>
   )
 }

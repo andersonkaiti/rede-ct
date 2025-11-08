@@ -9,8 +9,8 @@ import {
 } from '@components/ui/page-container'
 
 import { AdminWrapper } from '../../../_components/hoc/admin'
-import { CreateButton } from '../../_components/create-button'
 import { FilterInput } from '../../_components/filter-input'
+import { CreateRegimentButton } from './_components/create-regiment-button'
 
 export default function Regiments() {
 	return (
@@ -27,9 +27,8 @@ export default function Regiments() {
 					<PageActionsContainer>
 						<FilterInput />
 					</PageActionsContainer>
-					<CreateButton href="/area-restrita/institucional/regimentos/cadastrar">
-						Cadastrar Regimento
-					</CreateButton>
+
+					<CreateRegimentButton />
 				</PageHeader>
 
 				<PageMain>Regimentos</PageMain>

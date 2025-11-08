@@ -11,6 +11,8 @@ import {
 import { AdminWrapper } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
 import { CreateRegimentButton } from './_components/create-regiment-button'
+import { RegimentsDisplayOptions } from './_components/regiments-display-options'
+import { Table } from './_components/table/table'
 
 export default function Regiments() {
 	return (
@@ -26,12 +28,16 @@ export default function Regiments() {
 				<PageHeader>
 					<PageActionsContainer>
 						<FilterInput />
+
+						<RegimentsDisplayOptions />
 					</PageActionsContainer>
 
 					<CreateRegimentButton />
 				</PageHeader>
 
-				<PageMain>Regimentos</PageMain>
+				<PageMain>
+					<Table />
+				</PageMain>
 			</PageContainer>
 		</AdminWrapper>
 	)

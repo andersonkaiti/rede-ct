@@ -1,6 +1,5 @@
 import { Button } from '@components/ui/button'
 import type { ColumnDef } from '@tanstack/react-table'
-import { cn } from '@utils/cn'
 import { Ban, Eye, FileCheck2, FileClock } from 'lucide-react'
 import Link from 'next/link'
 import { ActionsRow } from './actions-row'
@@ -16,26 +15,23 @@ interface IRegiment {
 	updatedAt: string
 }
 
-const STATUS_INFO_MAP: Record<
-	IRegiment['status'],
-	{ label: string; color: string; Icon: React.ElementType }
-> = {
-	DRAFT: {
-		label: 'Rascunho',
-		color: 'text-muted-foreground',
-		Icon: FileClock,
-	},
-	IN_FORCE: {
-		label: 'Em vigor',
-		color: 'text-emerald-700',
-		Icon: FileCheck2,
-	},
-	REVOKED: {
-		label: 'Revogado',
-		color: 'text-red-700',
-		Icon: Ban,
-	},
+const STATUS_LABEL_MAP: Record<IRegiment['status'], string> = {
+	DRAFT: 'Rascunho',
+	IN_FORCE: 'Em vigor',
+	REVOKED: 'Revogado',
 }
+
+const STATUS_ICON_MAP: Record<
+	IRegiment['status'],
+	{ icon: React.ElementType; color: string }
+> = {
+	DRAFT: { icon: FileClock, color: 'text-muted-foreground' },
+	IN_FORCE: { icon: FileCheck2, color: 'text-emerald-600' },
+	REVOKED: { icon: Ban, color: 'text-destructive' },
+}
+
+const TITLE_MAX_LENGTH = 30
+const ELLIPSIS = '...'
 
 export const regimentsTableColumns: ColumnDef<IRegiment>[] = [
 	{
@@ -45,7 +41,10 @@ export const regimentsTableColumns: ColumnDef<IRegiment>[] = [
 			row: {
 				original: { title },
 			},
-		}) => title,
+		}) =>
+			title.length > TITLE_MAX_LENGTH
+				? `${title.slice(0, TITLE_MAX_LENGTH)}${ELLIPSIS}`
+				: title,
 	},
 	{
 		id: 'version',
@@ -73,18 +72,12 @@ export const regimentsTableColumns: ColumnDef<IRegiment>[] = [
 				original: { status },
 			},
 		}) => {
-			const { label, color, Icon } = STATUS_INFO_MAP[status]
-
+			const { icon: Icon, color } = STATUS_ICON_MAP[status]
 			return (
-				<div
-					className={cn(
-						'flex items-center gap-1.5 px-2 py-1 text-xs font-medium capitalize',
-						color,
-					)}
-				>
-					<Icon className="size-4.5 mr-1" />
-					{label}
-				</div>
+				<span className="inline-flex items-center gap-2">
+					<Icon className={`size-4 ${color}`} />
+					<span className={color}>{STATUS_LABEL_MAP[status]}</span>
+				</span>
 			)
 		},
 	},

@@ -16,11 +16,19 @@ interface IPartner {
   updatedAt: string
 }
 
+const NAME_MAX_LENGTH = 30
+const ELLIPSIS = '...'
+
 export const partnersTableColumns: ColumnDef<IPartner>[] = [
   {
     id: 'name',
     header: 'Nome',
-    cell: ({ row: { original } }) => original.name || '-',
+    cell: ({ row: { original } }) => {
+      const name = original.name || '-'
+      return name.length > NAME_MAX_LENGTH
+        ? `${name.slice(0, NAME_MAX_LENGTH)}${ELLIPSIS}`
+        : name
+    },
   },
   {
     id: 'isActive',

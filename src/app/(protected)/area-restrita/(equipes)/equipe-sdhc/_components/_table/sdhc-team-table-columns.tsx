@@ -26,6 +26,12 @@ interface ISDHCTeamMember {
   user: ISDHCTeamMemberUser
 }
 
+const NAME_MAX_LENGTH = 30
+const EMAIL_MAX_LENGTH = 30
+const ROLE_MAX_LENGTH = 25
+const DESCRIPTION_MAX_LENGTH = 40
+const ELLIPSIS = '...'
+
 export const sdhcTeamTableColumns: ColumnDef<ISDHCTeamMember>[] = [
   {
     id: 'name',
@@ -36,7 +42,10 @@ export const sdhcTeamTableColumns: ColumnDef<ISDHCTeamMember>[] = [
           user: { name },
         },
       },
-    }) => name,
+    }) =>
+      name.length > NAME_MAX_LENGTH
+        ? `${name.slice(0, NAME_MAX_LENGTH)}${ELLIPSIS}`
+        : name,
   },
   {
     id: 'email',
@@ -47,7 +56,10 @@ export const sdhcTeamTableColumns: ColumnDef<ISDHCTeamMember>[] = [
           user: { emailAddress },
         },
       },
-    }) => emailAddress,
+    }) =>
+      emailAddress.length > EMAIL_MAX_LENGTH
+        ? `${emailAddress.slice(0, EMAIL_MAX_LENGTH)}${ELLIPSIS}`
+        : emailAddress,
   },
   {
     id: 'role',
@@ -56,7 +68,10 @@ export const sdhcTeamTableColumns: ColumnDef<ISDHCTeamMember>[] = [
       row: {
         original: { role },
       },
-    }) => role,
+    }) =>
+      role.length > ROLE_MAX_LENGTH
+        ? `${role.slice(0, ROLE_MAX_LENGTH)}${ELLIPSIS}`
+        : role,
   },
   {
     id: 'description',
@@ -65,7 +80,12 @@ export const sdhcTeamTableColumns: ColumnDef<ISDHCTeamMember>[] = [
       row: {
         original: { description },
       },
-    }) => description,
+    }) => {
+      if (!description) return '-'
+      return description.length > DESCRIPTION_MAX_LENGTH
+        ? `${description.slice(0, DESCRIPTION_MAX_LENGTH)}${ELLIPSIS}`
+        : description
+    },
   },
   {
     id: 'createdAt',

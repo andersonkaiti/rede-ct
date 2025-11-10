@@ -30,6 +30,9 @@ interface ITeam {
   }[]
 }
 
+const NAME_MAX_LENGTH = 30
+const ELLIPSIS = '...'
+
 export const managementTeamTableColumns: ColumnDef<ITeam>[] = [
   {
     id: 'name',
@@ -38,7 +41,10 @@ export const managementTeamTableColumns: ColumnDef<ITeam>[] = [
       row: {
         original: { name },
       },
-    }) => name,
+    }) =>
+      name.length > NAME_MAX_LENGTH
+        ? `${name.slice(0, NAME_MAX_LENGTH)}${ELLIPSIS}`
+        : name,
   },
   {
     id: 'membersQuantity',

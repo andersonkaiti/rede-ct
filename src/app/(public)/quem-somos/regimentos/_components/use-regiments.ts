@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 
 const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 2
+const DEFAULT_LIMIT = 6
 const DEFAULT_TOTAL_PAGES = 1
 
 export function useRegiments() {

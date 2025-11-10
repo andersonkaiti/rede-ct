@@ -28,6 +28,9 @@ interface IResearcher {
   }
 }
 
+const NAME_MAX_LENGTH = 30
+const ELLIPSIS = '...'
+
 export const researchersTableColumns: ColumnDef<IResearcher>[] = [
   {
     id: 'registrationNumber',
@@ -47,7 +50,10 @@ export const researchersTableColumns: ColumnDef<IResearcher>[] = [
           user: { name },
         },
       },
-    }) => name,
+    }) =>
+      name.length > NAME_MAX_LENGTH
+        ? `${name.slice(0, NAME_MAX_LENGTH)}${ELLIPSIS}`
+        : name,
   },
   {
     id: 'seniority',

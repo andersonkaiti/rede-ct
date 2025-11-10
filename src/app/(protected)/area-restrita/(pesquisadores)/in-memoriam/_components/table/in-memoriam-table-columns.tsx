@@ -14,6 +14,9 @@ interface IInMemoriam {
   updatedAt: string
 }
 
+const NAME_MAX_LENGTH = 30
+const ELLIPSIS = '...'
+
 export const inMemoriamTableColumns: ColumnDef<IInMemoriam>[] = [
   {
     id: 'name',
@@ -22,7 +25,10 @@ export const inMemoriamTableColumns: ColumnDef<IInMemoriam>[] = [
       row: {
         original: { name },
       },
-    }) => name,
+    }) =>
+      name.length > NAME_MAX_LENGTH
+        ? `${name.slice(0, NAME_MAX_LENGTH)}${ELLIPSIS}`
+        : name,
   },
   {
     id: 'role',

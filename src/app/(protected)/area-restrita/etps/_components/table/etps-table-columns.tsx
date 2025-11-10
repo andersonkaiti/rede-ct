@@ -6,6 +6,9 @@ import { ActionsRow } from './actions-row'
 
 interface IETP extends z.infer<typeof etpSchema> {}
 
+const TITLE_MAX_LENGTH = 30
+const ELLIPSIS = '...'
+
 export const etpsTableColumns: ColumnDef<IETP>[] = [
   {
     id: 'code',
@@ -23,7 +26,12 @@ export const etpsTableColumns: ColumnDef<IETP>[] = [
       row: {
         original: { title },
       },
-    }) => title || '-',
+    }) => {
+      const titleText = title || '-'
+      return titleText.length > TITLE_MAX_LENGTH
+        ? `${titleText.slice(0, TITLE_MAX_LENGTH)}${ELLIPSIS}`
+        : titleText
+    },
   },
   {
     id: 'createdAt',

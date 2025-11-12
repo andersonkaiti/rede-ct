@@ -41,7 +41,7 @@ export function LoadingSkeleton() {
 						</div>
 					</div>
 
-					<Skeleton className="h-8 w-full rounded-md mt-5" />
+					<Skeleton className="h-8 w-full rounded-md" />
 				</Card>
 			))}
 		</div>

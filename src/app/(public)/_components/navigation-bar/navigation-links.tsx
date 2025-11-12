@@ -49,8 +49,8 @@ export const navigationLinks: NavigationLinkType[] = [
 				icon: BookOpen,
 			},
 			{
-				path: '/quem-somos/regimento-e-atas',
-				label: 'Regimento e Atas',
+				path: '/quem-somos/reunioes-e-atas',
+				label: 'Reuniões e Atas',
 				icon: FileText,
 			},
 			{

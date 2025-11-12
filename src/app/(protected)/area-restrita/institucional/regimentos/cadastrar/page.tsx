@@ -3,6 +3,7 @@
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
 import { DatePicker } from '@components/ui/date-picker'
+import { FileUploader } from '@components/ui/file-uploader'
 import {
 	Form,
 	FormControl,
@@ -110,14 +111,7 @@ export default function CreateRegiment() {
 										Arquivo (PDF) <span className="text-primary">*</span>
 									</FormLabel>
 									<FormControl>
-										<Input
-											type="file"
-											accept="application/pdf"
-											onChange={(e) => {
-												const file = e.target.files?.[0]
-												field.onChange(file ?? null)
-											}}
-										/>
+										<FileUploader onFileChange={field.onChange} {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>

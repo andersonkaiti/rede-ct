@@ -3,6 +3,7 @@
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
 import { DatePicker } from '@components/ui/date-picker'
+import { FileUploader } from '@components/ui/file-uploader'
 import {
 	Form,
 	FormControl,
@@ -25,7 +26,6 @@ import {
 	SelectTrigger,
 } from '@components/ui/select'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import Link from 'next/link'
 import { STATUS_OPTIONS } from '../../_constants/status'
 import Loading from './loading'
 import { useUpdateRegiment } from './use-update-regiment.hook'
@@ -117,29 +117,13 @@ export default function UpdateRegimentPage() {
 										Arquivo (PDF) <span className="text-primary">*</span>
 									</FormLabel>
 									<FormControl>
-										<Input
-											type="file"
-											accept="application/pdf"
-											onChange={(e) => {
-												const file = e.target.files?.[0]
-												field.onChange(file ?? null)
-											}}
+										<FileUploader
+											onFileChange={field.onChange}
+											defaultFile={regiment.documentUrl}
+											{...field}
 										/>
 									</FormControl>
 									<FormMessage />
-									{regiment?.documentUrl && (
-										<div className="mt-2 text-xs">
-											Documento atual:{' '}
-											<Link
-												href={regiment.documentUrl}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="text-primary underline"
-											>
-												Visualizar
-											</Link>
-										</div>
-									)}
 								</FormItem>
 							)}
 						/>

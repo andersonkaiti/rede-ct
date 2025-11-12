@@ -9,8 +9,10 @@ import {
 } from '@components/ui/page-container'
 
 import { AdminWrapper } from '../../../_components/hoc/admin'
-import { CreateButton } from '../../_components/create-button'
 import { FilterInput } from '../../_components/filter-input'
+import { CreateMeetingButton } from './_components/create-meeting-button'
+import { MeetingDisplayOptions } from './_components/meeting-display-options'
+import { Table } from './_components/table/table'
 
 export default function Meetings() {
 	return (
@@ -26,13 +28,16 @@ export default function Meetings() {
 				<PageHeader>
 					<PageActionsContainer>
 						<FilterInput />
+
+						<MeetingDisplayOptions />
 					</PageActionsContainer>
-					<CreateButton href="/area-restrita/institucional/reunioes/cadastrar">
-						Cadastrar Reunião
-					</CreateButton>
+
+					<CreateMeetingButton />
 				</PageHeader>
 
-				<PageMain>Reuniões</PageMain>
+				<PageMain>
+					<Table />
+				</PageMain>
 			</PageContainer>
 		</AdminWrapper>
 	)

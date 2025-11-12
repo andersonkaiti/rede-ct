@@ -1,5 +1,4 @@
 import {
-	PageActionsContainer,
 	PageContainer,
 	PageDescription,
 	PageHeader,
@@ -9,8 +8,7 @@ import {
 } from '@components/ui/page-container'
 
 import { AdminWrapper } from '../../../_components/hoc/admin'
-import { CreateButton } from '../../_components/create-button'
-import { FilterInput } from '../../_components/filter-input'
+import { CreateMeetingButton } from './_components/create-meeting-button'
 
 export default function Meetings() {
 	return (
@@ -24,12 +22,7 @@ export default function Meetings() {
 				</PageHeader>
 
 				<PageHeader>
-					<PageActionsContainer>
-						<FilterInput />
-					</PageActionsContainer>
-					<CreateButton href="/area-restrita/institucional/reunioes/cadastrar">
-						Cadastrar Reunião
-					</CreateButton>
+					<CreateMeetingButton />
 				</PageHeader>
 
 				<PageMain>Reuniões</PageMain>

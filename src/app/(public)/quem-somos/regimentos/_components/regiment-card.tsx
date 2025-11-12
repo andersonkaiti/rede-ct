@@ -64,14 +64,14 @@ export function RegimentCard({ regiment }: RegimentCardProps) {
 
 	return (
 		<Card
-			className="group relative border bg-background rounded-lg p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/20"
+			className="relative border bg-background rounded-lg p-6 transition-all duration-300"
 			role="article"
 			aria-labelledby={`regiment-title-${regiment.id}`}
 		>
 			<div className="flex flex-col sm:flex-row items-start justify-between gap-4">
 				<div className="flex items-start gap-3 flex-1 min-w-0">
 					<div
-						className="mt-1 p-2.5 bg-muted/50 rounded-lg shrink-0 transition-colors group-hover:bg-muted"
+						className="mt-1 p-2.5 bg-muted/50 rounded-lg shrink-0 transition-colors"
 						aria-hidden="true"
 					>
 						<FileText className="size-5 text-muted-foreground" />
@@ -135,12 +135,7 @@ export function RegimentCard({ regiment }: RegimentCardProps) {
 				</div>
 			</div>
 
-			<Button
-				variant="outline"
-				size="sm"
-				className="w-full mt-5 bg-transparent group/button hover:bg-accent"
-				asChild
-			>
+			<Button variant="default" size="sm" className="w-full" asChild>
 				<Link
 					href={regiment.documentUrl}
 					target="_blank"
@@ -148,7 +143,7 @@ export function RegimentCard({ regiment }: RegimentCardProps) {
 					className="flex items-center justify-center gap-2"
 					aria-label={`Visualizar documento: ${regiment.title}`}
 				>
-					<Eye className="w-4 h-4 transition-transform group-hover/button:scale-110" />
+					<Eye className="size-4" />
 					Visualizar
 				</Link>
 			</Button>

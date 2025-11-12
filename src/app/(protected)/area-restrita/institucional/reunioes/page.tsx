@@ -1,4 +1,5 @@
 import {
+	PageActionsContainer,
 	PageContainer,
 	PageDescription,
 	PageHeader,
@@ -8,7 +9,10 @@ import {
 } from '@components/ui/page-container'
 
 import { AdminWrapper } from '../../../_components/hoc/admin'
+import { FilterInput } from '../../_components/filter-input'
 import { CreateMeetingButton } from './_components/create-meeting-button'
+import { MeetingDisplayOptions } from './_components/meeting-display-options'
+import { Table } from './_components/table/table'
 
 export default function Meetings() {
 	return (
@@ -22,10 +26,18 @@ export default function Meetings() {
 				</PageHeader>
 
 				<PageHeader>
+					<PageActionsContainer>
+						<FilterInput />
+
+						<MeetingDisplayOptions />
+					</PageActionsContainer>
+
 					<CreateMeetingButton />
 				</PageHeader>
 
-				<PageMain>Reuniões</PageMain>
+				<PageMain>
+					<Table />
+				</PageMain>
 			</PageContainer>
 		</AdminWrapper>
 	)

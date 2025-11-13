@@ -11,7 +11,7 @@ function InputGroup({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
       className={cn(
-        'group/input-group relative flex w-full items-center rounded-md border border-input shadow-xs outline-none transition-[color,box-shadow] dark:bg-input/30',
+        'group/input-group relative flex w-full items-center rounded-md border border-input shadow-xs outline-none transition-[color,box-shadow] dark:bg-background',
         'h-9 min-w-0 has-[>textarea]:h-auto',
 
         'has-[>[data-align=inline-start]]:[&>input]:pl-2',
@@ -159,5 +159,6 @@ export {
   InputGroupButton,
   InputGroupInput,
   InputGroupText,
-  InputGroupTextarea,
+  InputGroupTextarea
 }
+

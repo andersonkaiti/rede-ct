@@ -28,10 +28,18 @@ import {
 } from '@components/ui/page-container'
 import { Separator } from '@components/ui/separator'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useCreateMinute } from './use-create-minute'
+import { DeleteMinuteButton } from './_components/delete-minute-button'
+import { useUpsertMinute } from './use-upsert-minute.hook'
 
-export default function ManageMinutePage() {
-	const { form, submit, serverError, isSubmitting, minute } = useCreateMinute()
+export default function UpsertMinutePage() {
+	const {
+		form,
+		submit,
+		serverError,
+		isSubmitting,
+		minute,
+		handleRemoveMinute,
+	} = useUpsertMinute()
 
 	return (
 		<PageContainer>
@@ -124,15 +132,18 @@ export default function ManageMinutePage() {
 
 					<Separator />
 
-					<Button
-						className="w-full cursor-pointer"
-						variant="outline"
-						disabled={isSubmitting}
-						type="submit"
-					>
-						{isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
-						{minute ? 'Salvar Alterações' : 'Cadastrar Ata'}
-					</Button>
+					<footer className="space-y-2">
+						{minute && <DeleteMinuteButton handleRemove={handleRemoveMinute} />}
+
+						<Button
+							className="w-full cursor-pointer"
+							disabled={isSubmitting}
+							type="submit"
+						>
+							{isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
+							{minute ? 'Salvar Alterações' : 'Cadastrar Ata'}
+						</Button>
+					</footer>
 				</form>
 			</Form>
 		</PageContainer>

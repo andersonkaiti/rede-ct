@@ -5,6 +5,8 @@ import z from 'zod'
 export interface IGetPartnersRequest {
   page?: string
   limit?: string
+  orderBy?: 'asc' | 'desc'
+  filter?:string
   category?: string
   search?: string
   isActive?: boolean

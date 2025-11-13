@@ -28,13 +28,18 @@
 			"a11y": {
 				"noNoninteractiveElementInteractions": "off",
 				"noStaticElementInteractions": "off"
+			},
+			"nursery": {
+				"useSortedClasses": "error"
 			}
 		}
 	},
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "single",
-			"semicolons": "asNeeded"
+			"semicolons": "asNeeded",
+			"indentStyle": "space",
+			"indentWidth": 80
 		}
 	},
 	"assist": {

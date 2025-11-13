@@ -28,10 +28,10 @@ import {
 } from '@components/ui/page-container'
 import { Separator } from '@components/ui/separator'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useCreateMinute } from './use-create-minute'
+import { useUpsertMinute } from './use-upsert-minute.hook'
 
-export default function ManageMinutePage() {
-	const { form, submit, serverError, isSubmitting, minute } = useCreateMinute()
+export default function UpsertMinutePage() {
+	const { form, submit, serverError, isSubmitting, minute } = useUpsertMinute()
 
 	return (
 		<PageContainer>
@@ -126,7 +126,6 @@ export default function ManageMinutePage() {
 
 					<Button
 						className="w-full cursor-pointer"
-						variant="outline"
 						disabled={isSubmitting}
 						type="submit"
 					>

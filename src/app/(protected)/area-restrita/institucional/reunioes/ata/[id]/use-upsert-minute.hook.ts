@@ -19,7 +19,23 @@ export const createMinuteSchema = z.object({
 	meetingId: z.string().min(1, 'ID da reunião é obrigatório'),
 })
 
+export const updateMinuteSchema = z.object({
+	title: z.string().min(1, 'Título é obrigatório'),
+	publishedAt: z.date('Data de publicação é obrigatória'),
+	document: z
+		.union([
+			z
+				.instanceof(File)
+				.refine((file) => !!file && file.size > 0, 'Arquivo inválido')
+				.optional(),
+			z.undefined(),
+		])
+		.optional(),
+	meetingId: z.string().min(1, 'ID da reunião é obrigatório'),
+})
+
 export type CreateMinuteInput = z.infer<typeof createMinuteSchema>
+export type UpdateMinuteInput = z.infer<typeof updateMinuteSchema>
 
 const INITIAL_VALUES: Partial<CreateMinuteInput> = {
 	title: '',
@@ -28,19 +44,24 @@ const INITIAL_VALUES: Partial<CreateMinuteInput> = {
 	meetingId: '',
 }
 
-export function useCreateMinute() {
+export function useUpsertMinute() {
 	const [serverError, setServerError] = useState<string | null>(null)
 
 	const { id } = useParams<{ id: string }>()
 	const router = useRouter()
 
+	const QUERY_KEY = ['minute', id]
+
 	const { data: minute } = useSuspenseQuery({
-		queryKey: ['minute', id],
+		queryKey: QUERY_KEY,
 		queryFn: () => getMeetingMinuteByMeetingId(id),
+		staleTime: 0,
 	})
 
-	const form = useForm<CreateMinuteInput>({
-		resolver: zodResolver(createMinuteSchema),
+	const formSchema = minute ? updateMinuteSchema : createMinuteSchema
+
+	const form = useForm<CreateMinuteInput | UpdateMinuteInput>({
+		resolver: zodResolver(formSchema),
 		defaultValues: {
 			...INITIAL_VALUES,
 			meetingId: id,
@@ -67,30 +88,33 @@ export function useCreateMinute() {
 		control: form.control,
 	})
 
-	const submit = form.handleSubmit(async (values: CreateMinuteInput) => {
-		try {
-			const alreadyHasMinute = !!minute
+	const submit = form.handleSubmit(
+		async (values: CreateMinuteInput | UpdateMinuteInput) => {
+			try {
+				const alreadyHasMinute = !!minute
 
-			if (alreadyHasMinute) {
-				await updateMeetingMinute(values)
+				if (alreadyHasMinute) {
+					await updateMeetingMinute(values)
 
-				toast.success('Ata atualizada com sucesso.')
-			} else {
-				await createMeetingMinute(values)
+					toast.success('Ata atualizada com sucesso.')
+				} else {
+					await createMeetingMinute(values as CreateMinuteInput)
 
-				toast.success('Ata cadastrada com sucesso.')
+					toast.success('Ata cadastrada com sucesso.')
+				}
+
+				router.replace(`/area-restrita/institucional/reunioes`)
+			} catch (err) {
+				if (err instanceof HTTPError) {
+					const errorBody = await err.response.json()
+
+					setServerError(
+						errorBody?.message || 'Ocorreu um erro ao cadastrar a ata.',
+					)
+				}
 			}
-
-			router.replace(`/area-restrita/institucional/reunioes`)
-		} catch (err) {
-			if (err instanceof HTTPError) {
-				const errorBody = await err.response.json()
-				setServerError(
-					errorBody?.message || 'Ocorreu um erro ao cadastrar a ata.',
-				)
-			}
-		}
-	})
+		},
+	)
 
 	return {
 		form,
@@ -98,5 +122,6 @@ export function useCreateMinute() {
 		submit,
 		isSubmitting,
 		minute,
+		handleRemoveMinute,
 	}
 }

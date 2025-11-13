@@ -1,8 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createMeetingMinute } from '@http/institutional/meetings/minutes/create-minute'
+import { deleteMeetingMinute } from '@http/institutional/meetings/minutes/delete-minute'
 import { getMeetingMinuteByMeetingId } from '@http/institutional/meetings/minutes/get-minute-by-meeting-id'
 import { updateMeetingMinute } from '@http/institutional/meetings/minutes/update-minute'
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -56,6 +57,11 @@ export function useUpsertMinute() {
 		queryKey: QUERY_KEY,
 		queryFn: () => getMeetingMinuteByMeetingId(id),
 		staleTime: 0,
+	})
+
+	const { mutate: removeMinute } = useMutation({
+		mutationKey: QUERY_KEY,
+		mutationFn: async () => await deleteMeetingMinute(id),
 	})
 
 	const formSchema = minute ? updateMinuteSchema : createMinuteSchema
@@ -115,6 +121,14 @@ export function useUpsertMinute() {
 			}
 		},
 	)
+
+	function handleRemoveMinute() {
+		removeMinute()
+
+		router.replace(`/area-restrita/institucional/reunioes`)
+
+		toast.success('Ata removida com sucesso.')
+	}
 
 	return {
 		form,

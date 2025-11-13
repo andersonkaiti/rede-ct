@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useFormState } from 'react-hook-form'
 import z from 'zod'
 import { signInAction } from '../actions'
 
@@ -12,7 +12,7 @@ export const signInSchema = z.object({
     .string('A senha é obrigatória.')
     .min(
       PASSWORD_MIN_LENGTH,
-      `A senha deve ter pelo menos ${PASSWORD_MIN_LENGTH} caracteres.`
+      `A senha deve ter pelo menos ${PASSWORD_MIN_LENGTH} caracteres.`,
     ),
 })
 
@@ -31,6 +31,10 @@ export function useSignIn() {
     mode: 'onChange',
   })
 
+  const { isSubmitting } = useFormState({
+    control: form.control,
+  })
+
   function togglePasswordVisibility() {
     setPasswordVisibility((v) => !v)
   }
@@ -47,7 +51,7 @@ export function useSignIn() {
     serverError,
     form,
     passwordVisibility,
-    isSubmitting: form.formState.isSubmitting,
+    isSubmitting,
     togglePasswordVisibility,
     onSubmit,
   }

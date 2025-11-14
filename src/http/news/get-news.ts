@@ -39,8 +39,12 @@ export const getNewsSchema = z.object({
   ),
 })
 
-export async function getNews(params: IGetNewsRequest) {
-  const searchParams = parseSearchParams(params)
+export async function getNews({ filter, ...params }: IGetNewsRequest) {
+  const searchParams = parseSearchParams({
+    ...params,
+    title: filter,
+    content: filter
+  })
 
   const data = await api
     .get('news', {

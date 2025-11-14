@@ -6,7 +6,7 @@ export interface IGetPartnersRequest {
   page?: string
   limit?: string
   orderBy?: 'asc' | 'desc'
-  filter?:string
+  filter?: string
   category?: string
   search?: string
   isActive?: boolean
@@ -33,8 +33,13 @@ export const getPartnersSchema = z.object({
   ),
 })
 
-export async function getPartners(params: IGetPartnersRequest) {
-  const searchParams = parseSearchParams(params)
+export async function getPartners({ filter, ...params }: IGetPartnersRequest) {
+  const searchParams = parseSearchParams({
+    params,
+    name: filter,
+    description: filter,
+    category: filter,
+  })
 
   const data = await api
     .get('partner', {

@@ -14,14 +14,16 @@ export const seniorityMapping: Record<Seniority, string> = {
 }
 
 export function useResearchers() {
-  const [{ nome, tab = seniorities[0] }, setQueryStates] = useQueryStates({
-    nome: parseAsString.withDefault(''),
+  const [{ tab = seniorities[0], filtro: filter }, setQueryStates] = useQueryStates({
     tab: parseAsString.withDefault(seniorities[0]),
+    filtro: parseAsString.withDefault(''),
   })
 
-  const { data, isLoading } = useQuery({
-    queryKey: ['researchers'],
-    queryFn: async () => await getResearchers({}),
+  const result = useQuery({
+    queryKey: ['researchers', filter],
+    queryFn: async () => await getResearchers({
+      filter,
+    }),
   })
 
   const currentTab: Seniority | undefined = seniorities.includes(
@@ -30,12 +32,6 @@ export function useResearchers() {
     ? (tab as Seniority)
     : undefined
 
-  const filteredByName = data?.researchers?.filter((researcher) =>
-    nome
-      ? researcher.user.name.toLowerCase().includes(nome.toLowerCase())
-      : true
-  )
-
   return {
     currentTab,
     setTab: (value: string) =>
@@ -43,7 +39,6 @@ export function useResearchers() {
         ...prevState,
         tab: value,
       })),
-    filteredByName,
-    isLoading,
+    ...result,
   }
 }

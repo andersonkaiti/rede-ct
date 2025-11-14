@@ -44,8 +44,18 @@ export const getResearchersSchema = z.object({
   ),
 })
 
-export async function getResearchers(params: IGetResearchersRequest) {
-  const searchParams = parseSearchParams(params)
+export async function getResearchers({ filter, ...params }: IGetResearchersRequest) {
+  const searchParams = parseSearchParams({
+    params,
+    registrationNumber: filter,
+    name: filter,
+    emailAddress: filter,
+    mainEtps: filter,
+    formations: filter,
+    occupations: filter,
+    institutions: filter,
+    biography: filter,
+  })
 
   const data = await api
     .get('researcher', {

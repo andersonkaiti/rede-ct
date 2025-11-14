@@ -13,9 +13,9 @@ import { ResearcherCard } from './researcher-card'
 import { ResearcherFilterInput } from './researcher-filter-input'
 
 export function ResearcherTabs() {
-  const { currentTab, filteredByName, isLoading, setTab } = useResearchers()
+  const { data, currentTab, isLoading, setTab } = useResearchers()
 
-  const numberOfRows = filteredByName?.length
+  const numberOfRows = data?.researchers?.length
 
   return (
     <div className="space-y-8">
@@ -41,12 +41,17 @@ export function ResearcherTabs() {
               value={seniority}
             >
               {seniorityMapping[seniority as Seniority] || seniority}
+              <span className="ml-2">
+                {data?.researchers?.filter(
+                  (researcher) => researcher.seniority === seniority
+                ).length}
+              </span>
             </TabsTrigger>
           ))}
         </TabsList>
 
         {seniorities.map((seniority) => {
-          const filteredBySeniority = filteredByName?.filter(
+          const filteredBySeniority = data?.researchers?.filter(
             (researcher) => researcher.seniority === seniority
           )
 
@@ -58,13 +63,13 @@ export function ResearcherTabs() {
             >
               {isLoading && <LoadingSkeleton />}
 
-              {!isLoading && filteredByName && filteredByName?.length < 1 && (
+              {!isLoading && data?.researchers && data?.researchers?.length < 1 && (
                 <span className="mt-4 flex py-4 text-muted-foreground text-sm">
                   Nenhum pesquisador cadastrado nesta categoria.
                 </span>
               )}
 
-              {filteredByName && filteredByName?.length > 0 && (
+              {data?.researchers && data?.researchers?.length > 0 && (
                 <div className="grid gap-6 lg:grid-cols-2">
                   {filteredBySeniority?.map((researcher) => (
                     <ResearcherCard

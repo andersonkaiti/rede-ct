@@ -26,7 +26,7 @@ export function RegimentsList() {
 				</div>
 			)}
 
-			{!isLoading && data?.regiments?.length === 0 && (
+			{!isLoading && !data?.regiments?.length && (
 				<div className="col-end-3 flex w-full flex-col items-center justify-center">
 					<p className="font-medium text-lg text-muted-foreground">
 						Nenhum regimento encontrado.

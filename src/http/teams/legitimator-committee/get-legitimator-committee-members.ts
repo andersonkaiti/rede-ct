@@ -33,9 +33,11 @@ export const getLegitimatorCommitteeSchema = z.object({
 })
 
 export async function getLegitimatorCommitteeMembers(
-  params: IGetLegitimatorCommitteeRequest
+  { filter }: IGetLegitimatorCommitteeRequest
 ) {
-  const searchParams = parseSearchParams(params)
+  const searchParams = parseSearchParams({
+    role: filter,
+  })
 
   const data = await api
     .get('legitimator-committee-member', {

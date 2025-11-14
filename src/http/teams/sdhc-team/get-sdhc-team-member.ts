@@ -32,8 +32,11 @@ export const getSDHCTeamMembersSchema = z.object({
   ),
 })
 
-export async function getSDHCTeamMembers(params: IGetSDHCTeamMembersRequest) {
-  const searchParams = parseSearchParams(params)
+export async function getSDHCTeamMembers({ filter }: IGetSDHCTeamMembersRequest) {
+  const searchParams = parseSearchParams({
+    name: filter,
+    description: filter,
+  })
 
   const data = await api
     .get('sdhc-team-member', {

@@ -2,16 +2,12 @@ import { api } from '@http/api-client'
 import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
-export type RegimentStatus = 'IN_FORCE' | 'REVOKED'
-export type RegimentOrderBy = 'asc' | 'desc'
-
 interface IGetRegimentsRequest {
 	page?: string
 	limit?: string
-	title?: string
-	version?: string
-	status?: RegimentStatus
-	orderBy?: RegimentOrderBy
+	filter?: string
+	status?: 'DRAFT' | 'IN_FORCE' | 'REVOKED'
+	orderBy?: 'asc' | 'desc' 
 }
 
 export const getRegimentsSchema = z.object({
@@ -33,8 +29,12 @@ export const getRegimentsSchema = z.object({
 	),
 })
 
-export async function getRegiments(params: IGetRegimentsRequest) {
-	const searchParams = parseSearchParams(params)
+export async function getRegiments({ filter, ...params }: IGetRegimentsRequest) {
+	const searchParams = parseSearchParams({
+		params,
+		title: filter,
+		version: filter,
+	})
 
 	const data = await api
 		.get('regiment', {

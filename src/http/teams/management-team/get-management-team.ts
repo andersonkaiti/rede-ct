@@ -42,8 +42,11 @@ export const getManagementTeamSchema = z.object({
   ),
 })
 
-export async function getManagementTeam(params: IGetManagementTeamRequest) {
-  const searchParams = parseSearchParams(params)
+export async function getManagementTeam({ filter }: IGetManagementTeamRequest) {
+  const searchParams = parseSearchParams({
+    name: filter,
+    description: filter,
+  })
 
   const data = await api
     .get('management-team', {

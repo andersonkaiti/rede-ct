@@ -10,7 +10,7 @@ import { parseAsString, useQueryState } from 'nuqs'
 
 export function ResearcherFilterInput() {
   const [filter, setFilter] = useQueryState(
-    'nome',
+    'filtro',
     parseAsString.withDefault('')
   )
 
@@ -20,9 +20,9 @@ export function ResearcherFilterInput() {
         <Search className="size-3" />
       </InputGroupAddon>
       <InputGroupInput
-        name="nome"
+        name="filtro"
         onChange={(event) => setFilter(event.currentTarget.value)}
-        placeholder="Filtrar por nome"
+        placeholder="Filtrar"
         value={filter}
       />
     </InputGroup>

@@ -9,130 +9,108 @@ import {
   CommandItem,
   CommandList,
 } from '@components/ui/command'
-import { Label } from '@components/ui/label'
 import { Popover, PopoverContent, PopoverTrigger } from '@components/ui/popover'
 import { cn } from '@utils/cn'
 import { CheckIcon, ChevronDownIcon } from 'lucide-react'
-import { useId, useState } from 'react'
+import { ReactNode, useId, useState } from 'react'
 
-const frameworks = [
-  {
-    value: 'next.js',
-    label: 'Next.js',
-  },
-  {
-    value: 'sveltekit',
-    label: 'SvelteKit',
-  },
-  {
-    value: 'nuxt.js',
-    label: 'Nuxt.js',
-  },
-  {
-    value: 'remix',
-    label: 'Remix',
-  },
-  {
-    value: 'astro',
-    label: 'Astro',
-  },
-  {
-    value: 'angular',
-    label: 'Angular',
-  },
-  {
-    value: 'vue',
-    label: 'Vue.js',
-  },
-  {
-    value: 'react',
-    label: 'React',
-  },
-  {
-    value: 'ember',
-    label: 'Ember.js',
-  },
-  {
-    value: 'gatsby',
-    label: 'Gatsby',
-  },
-  {
-    value: 'eleventy',
-    label: 'Eleventy',
-  },
-  {
-    value: 'solid',
-    label: 'SolidJS',
-  },
-  {
-    value: 'preact',
-    label: 'Preact',
-  },
-  {
-    value: 'qwik',
-    label: 'Qwik',
-  },
-  {
-    value: 'alpine',
-    label: 'Alpine.js',
-  },
-  {
-    value: 'lit',
-    label: 'Lit',
-  },
-]
+interface IOption {
+  value: string
+  label: string
+}
 
-export default function SelectWithSearch() {
+interface ISelectWithSearchProps {
+  options: IOption[]
+  placeholder: string
+  emptyMessage: string
+  selectPlaceholder: string
+  value: string
+  onChange: (value: string) => void
+  children?: ReactNode
+}
+
+export default function SelectWithSearch({
+  options,
+  placeholder,
+  emptyMessage,
+  selectPlaceholder,
+  value,
+  onChange,
+  children,
+}: ISelectWithSearchProps) {
   const id = useId()
   const [open, setOpen] = useState<boolean>(false)
-  const [value, setValue] = useState<string>('')
+
+  const defaultTrigger = (
+    <Button
+      aria-expanded={open}
+      className="w-full justify-between border-input bg-background px-3 font-normal outline-none outline-offset-0 hover:bg-background focus-visible:outline-[3px]"
+      id={id}
+      role="combobox"
+      variant="ghost"
+    >
+      <span className={cn('truncate', !value && 'text-muted-foreground')}>
+        {value
+          ? options.find((option) => option.value === value)?.label
+          : selectPlaceholder}
+      </span>
+      <ChevronDownIcon
+        aria-hidden="true"
+        className="shrink-0 text-muted-foreground/80 size-4"
+      />
+    </Button>
+  )
 
   return (
     <div className="*:not-first:mt-2">
-      <Label htmlFor={id}>Select with search</Label>
       <Popover onOpenChange={setOpen} open={open}>
         <PopoverTrigger asChild>
-          <Button
-            aria-expanded={open}
-            className="w-full justify-between border-input bg-background px-3 font-normal outline-none outline-offset-0 hover:bg-background focus-visible:outline-[3px]"
-            id={id}
-            role="combobox"
-            variant="outline"
-          >
-            <span className={cn('truncate', !value && 'text-muted-foreground')}>
-              {value
-                ? frameworks.find((framework) => framework.value === value)
-                    ?.label
-                : 'Select framework'}
-            </span>
-            <ChevronDownIcon
-              aria-hidden="true"
-              className="shrink-0 text-muted-foreground/80"
-              size={16}
-            />
-          </Button>
+          {children ? children : defaultTrigger}
         </PopoverTrigger>
         <PopoverContent
           align="start"
-          className="w-full min-w-[var(--radix-popper-anchor-width)] border-input p-0"
+          className="w-full border-input p-0"
         >
-          <Command>
-            <CommandInput placeholder="Search framework..." />
+          <Command
+            filter={(value, search) => {
+              const option = options.find((option) => option.value === value)
+
+              if (option?.label.toLowerCase().includes(search.toLowerCase())) {
+                return 1
+              }
+
+              return 0
+            }}
+          >
+            <CommandInput placeholder={placeholder} />
             <CommandList>
-              <CommandEmpty>No framework found.</CommandEmpty>
+              <CommandEmpty>{emptyMessage}</CommandEmpty>
               <CommandGroup>
-                {frameworks.map((framework) => (
+                <CommandItem
+                  key="__none__"
+                  onSelect={() => {
+                    onChange('')
+                    setOpen(false)
+                  }}
+                  value=""
+                  className="hover:bg-accent cursor-pointer"
+                >
+                  <span className="text-muted-foreground">Nenhum selecionado</span>
+                  {value === '' && <CheckIcon className="ml-auto size-4" />}
+                </CommandItem>
+                {options.map((option) => (
                   <CommandItem
-                    key={framework.value}
+                    key={option.value}
                     onSelect={(currentValue) => {
-                      setValue(currentValue === value ? '' : currentValue)
+                      onChange(currentValue === value ? '' : currentValue)
                       setOpen(false)
                     }}
-                    value={framework.value}
+                    value={option.value}
+                    className="cursor-pointer"
                   >
-                    {framework.label}
-                    {value === framework.value && (
-                      <CheckIcon className="ml-auto" size={16} />
+                    {option.label}
+                    {value === option.value && (
+                      <CheckIcon className="ml-auto size-4" />
                     )}
                   </CommandItem>
                 ))}

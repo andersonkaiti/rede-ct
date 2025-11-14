@@ -23,6 +23,7 @@ export function useRegiments() {
 				orderBy,
 				page,
 				limit,
+				filter,
 			}),
 	})
 

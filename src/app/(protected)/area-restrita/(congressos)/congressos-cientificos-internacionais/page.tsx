@@ -11,6 +11,8 @@ import {
 import { AdminWrapper } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
 import { CreateMeetingButton } from './_components/create-international-scientific-congress-button'
+import { InternationalScientificCongressesDisplayOptions } from './_components/international-scientific-congress-display-options'
+import { Table } from './_components/table/table'
 
 export default function InternationalScientificCongresses() {
   return (
@@ -28,12 +30,16 @@ export default function InternationalScientificCongresses() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <InternationalScientificCongressesDisplayOptions />
           </PageActionsContainer>
 
           <CreateMeetingButton />
         </PageHeader>
 
-        <PageMain>Congressos Científicos Internacionais</PageMain>
+        <PageMain>
+          <Table />
+        </PageMain>
       </PageContainer>
     </AdminWrapper>
   )

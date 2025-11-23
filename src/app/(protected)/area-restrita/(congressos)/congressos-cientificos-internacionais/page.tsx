@@ -9,10 +9,12 @@ import {
 } from '@components/ui/page-container'
 
 import { AdminWrapper } from '../../../_components/hoc/admin'
-import { CreateButton } from '../../_components/create-button'
 import { FilterInput } from '../../_components/filter-input'
+import { CreateMeetingButton } from './_components/create-international-scientific-congress-button'
+import { InternationalScientificCongressesDisplayOptions } from './_components/international-scientific-congress-display-options'
+import { Table } from './_components/table/table'
 
-export default function CongressosCientificosInternacionais() {
+export default function InternationalScientificCongresses() {
   return (
     <AdminWrapper>
       <PageContainer>
@@ -20,7 +22,7 @@ export default function CongressosCientificosInternacionais() {
           <PageHeaderContent>
             <PageTitle>Congressos Científicos Internacionais</PageTitle>
             <PageDescription>
-              Gerencie os Congressos Científicos Internacionais
+              Gerencie os congressos científicos internacionais
             </PageDescription>
           </PageHeaderContent>
         </PageHeader>
@@ -28,13 +30,16 @@ export default function CongressosCientificosInternacionais() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <InternationalScientificCongressesDisplayOptions />
           </PageActionsContainer>
-          <CreateButton href="/area-restrita/congressos-cientificos-internacionais/cadastrar">
-            Cadastrar Congresso
-          </CreateButton>
+
+          <CreateMeetingButton />
         </PageHeader>
 
-        <PageMain>Congressos Científicos Internacionais</PageMain>
+        <PageMain>
+          <Table />
+        </PageMain>
       </PageContainer>
     </AdminWrapper>
   )

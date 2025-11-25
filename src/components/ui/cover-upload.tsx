@@ -7,6 +7,7 @@ import { cn } from '@utils/cn'
 import {
   CloudUpload,
   ImageIcon,
+  Sparkles,
   TriangleAlert,
   Upload,
   XIcon,
@@ -171,7 +172,7 @@ export function CoverUpload({
     }
     return cn(
       base,
-      'border-muted-foreground/25 border-dashed bg-muted/30 hover:border-primary hover:bg-primary/5'
+      'border-muted-foreground/25 border-dashed bg-background hover:border-primary hover:bg-primary/5',
     )
   })()
   const PERCENT_MAX = 100
@@ -213,7 +214,7 @@ export function CoverUpload({
                 alt="Capa"
                 className={cn(
                   'h-full w-full object-cover transition-opacity duration-300',
-                  imageLoading ? 'opacity-0' : 'opacity-100'
+                  imageLoading ? 'opacity-0' : 'opacity-100',
                 )}
                 height={IMAGE_CIRCLE_SIZE * IMAGE_HEIGHT_MULTIPLIER}
                 onError={() => setImageLoading(false)}
@@ -326,22 +327,11 @@ export function CoverUpload({
               <p className="text-muted-foreground text-sm">
                 Arraste e solte uma imagem aqui, ou clique para buscar
               </p>
-              <p className="text-muted-foreground text-xs">
+              <p className="flex items-center justify-center gap-2 text-muted-foreground text-xs">
+                <Sparkles className="size-3.5" />
                 Tamanho máximo: {Math.round(maxSize / MB_IN_BYTES)} MB
               </p>
             </div>
-
-            <Button asChild size="sm" variant="outline">
-              {/* biome-ignore lint: cannot render a <button> inside another <button> */}
-              <span
-                className="inline-flex items-center gap-2"
-                role="button"
-                tabIndex={0}
-              >
-                <ImageIcon />
-                Buscar arquivo
-              </span>
-            </Button>
           </div>
         )}
       </button>
@@ -366,14 +356,12 @@ export function CoverUpload({
 
       {uploadError && (
         <Alert className="mt-5" variant="destructive">
-          <span className="inline-flex items-center pr-2 text-destructive">
-            <TriangleAlert />
-          </span>
+          <TriangleAlert />
           <div>
             <AlertTitle>Falha no envio</AlertTitle>
             <AlertDescription>
               <p>{uploadError}</p>
-              <Button onClick={retryUpload} size="sm" variant="default">
+              <Button onClick={retryUpload} size="sm" variant="ghost">
                 Tentar novamente
               </Button>
             </AlertDescription>

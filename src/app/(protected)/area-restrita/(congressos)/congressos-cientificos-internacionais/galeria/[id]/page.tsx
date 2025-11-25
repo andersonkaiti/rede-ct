@@ -10,6 +10,8 @@ import {
 import { AdminWrapper } from '../../../../../_components/hoc/admin'
 import { FilterInput } from '../../../../_components/filter-input'
 import { CreateGalleryImageButton } from './_components/create-gallery-image-button'
+import { GalleryDisplayOptions } from './_components/gallery-display-options'
+import { Table } from './_components/table/table'
 
 export default function CongressGallery() {
   return (
@@ -27,12 +29,16 @@ export default function CongressGallery() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <GalleryDisplayOptions />
           </PageActionsContainer>
 
           <CreateGalleryImageButton />
         </PageHeader>
 
-        <PageMain>Galeria do Congresso</PageMain>
+        <PageMain>
+          <Table />
+        </PageMain>
       </PageContainer>
     </AdminWrapper>
   )

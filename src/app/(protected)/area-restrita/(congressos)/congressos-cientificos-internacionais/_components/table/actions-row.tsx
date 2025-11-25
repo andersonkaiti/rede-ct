@@ -39,7 +39,7 @@ export function ActionsRow({ id, handleRemove }: IActionsRowProps) {
 
         <DropdownMenuItem asChild className="p-0">
           <Link
-            href={`/area-restrita/congressos-cientificos-internacionais/${id}/galerias`}
+            href={`/area-restrita/congressos-cientificos-internacionais/galeria/${id}`}
           >
             <Button
               className="flex w-full justify-between text-xs"
@@ -53,7 +53,7 @@ export function ActionsRow({ id, handleRemove }: IActionsRowProps) {
 
         <DropdownMenuItem asChild className="p-0">
           <Link
-            href={`/area-restrita/congressos-cientificos-internacionais/${id}/parceiros`}
+            href={`/area-restrita/congressos-cientificos-internacionais/parceiros/${id}`}
           >
             <Button
               className="flex w-full justify-between text-xs"

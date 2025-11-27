@@ -10,6 +10,8 @@ import {
 import { AdminWrapper } from '../../../../../_components/hoc/admin'
 import { FilterInput } from '../../../../_components/filter-input'
 import { CreatePartnerButton } from './_components/create-partner-button'
+import { PartnersDisplayOptions } from './_components/partners-display-options'
+import { Table } from './_components/table/table'
 
 export default function CongressPartners() {
   return (
@@ -27,12 +29,16 @@ export default function CongressPartners() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <PartnersDisplayOptions />
           </PageActionsContainer>
 
           <CreatePartnerButton />
         </PageHeader>
 
-        <PageMain>Parceiros</PageMain>
+        <PageMain>
+          <Table />
+        </PageMain>
       </PageContainer>
     </AdminWrapper>
   )

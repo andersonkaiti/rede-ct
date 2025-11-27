@@ -3,12 +3,9 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IGetInternationalScientificCongressesRequest {
+  filter?: string
   page?: string
   limit?: string
-  title?: string
-  edition?: string
-  startDate?: string
-  endDate?: string
   orderBy?: 'asc' | 'desc'
 }
 
@@ -34,16 +31,38 @@ export const getInternationalScientificCongressesSchema = z.object({
       proceedingsUrl: z.string().nullable(),
       createdAt: z.string(),
       updatedAt: z.string(),
-      partners: z.array(z.object()),
-      galleries: z.array(z.object()),
+      partners: z.array(
+        z.object({
+          id: z.string(),
+          name: z.string(),
+          logoUrl: z.string(),
+          congressId: z.string(),
+        }),
+      ),
+      galleries: z.array(
+        z.object({
+          id: z.string(),
+          imageUrl: z.string(),
+          caption: z.string().nullable(),
+          congressId: z.string(),
+        }),
+      ),
     }),
   ),
 })
 
-export async function getInternationalScientificCongresses(
-  params: IGetInternationalScientificCongressesRequest,
-) {
-  const searchParams = parseSearchParams(params)
+export async function getInternationalScientificCongresses({
+  filter,
+  ...params
+}: IGetInternationalScientificCongressesRequest) {
+  const searchParams = parseSearchParams({
+    params,
+    title: filter,
+    edition: Number(filter) > 0 ? Number(filter) : undefined,
+    location: filter,
+    startDate: filter,
+    endDate: filter,
+  })
 
   const data = await api
     .get('international-scientific-congress', {

@@ -1,9 +1,11 @@
 import { BackArrow } from '@components/back-arrow'
 import { Badge } from '@components/ui/badge'
+import { Separator } from '@components/ui/separator'
+import { Skeleton } from '@components/ui/skeleton'
 import { GraduationCap } from 'lucide-react'
-import { CongressList } from './_components/congress-list'
+import { LoadingSkeleton } from './_components/loading-skeleton'
 
-export default function CongressoCientificoInternacional() {
+export default function Loading() {
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <BackArrow href="/divisao-cientifica/congressos" />
@@ -22,7 +24,25 @@ export default function CongressoCientificoInternacional() {
         </p>
       </header>
 
-      <CongressList />
+      <div className="flex w-full gap-2 sm:flex-row sm:items-center sm:gap-4">
+        <div className="flex w-full gap-2 sm:w-fit">
+          <Skeleton className="h-9 w-52" />
+          <Skeleton className="h-9 w-10" />
+        </div>
+      </div>
+
+      <LoadingSkeleton />
+
+      <Separator />
+
+      <div className="flex items-center justify-between">
+        <Skeleton className="h-9 w-52" />
+        <div className="flex items-center gap-2">
+          <Skeleton className="h-9 w-9" />
+          <Skeleton className="h-9 w-9" />
+          <Skeleton className="h-9 w-9" />
+        </div>
+      </div>
     </main>
   )
 }

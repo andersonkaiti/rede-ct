@@ -1,5 +1,12 @@
 import { api } from '@http/api-client'
+import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
+
+interface GetInternationalScientificCongressGalleryImagesParams {
+  id: string
+  page?: string
+  limit?: string
+}
 
 const getInternationalScientificCongressGalleryImagesResponseSchema = z.object({
   page: z.number(),
@@ -16,14 +23,15 @@ const getInternationalScientificCongressGalleryImagesResponseSchema = z.object({
   ),
 })
 
-export async function getInternationalScientificCongressGalleryImages(
-  id: string,
-  page: number = 1,
-  limit: number = 9,
-) {
+export async function getInternationalScientificCongressGalleryImages({
+  id,
+  ...params
+}: GetInternationalScientificCongressGalleryImagesParams) {
+  const searchParams = parseSearchParams(params)
+
   const data = await api
     .get(`international-scientific-congress/${id}/gallery`, {
-      searchParams: { page: String(page), limit: String(limit) },
+      searchParams,
     })
     .json()
 

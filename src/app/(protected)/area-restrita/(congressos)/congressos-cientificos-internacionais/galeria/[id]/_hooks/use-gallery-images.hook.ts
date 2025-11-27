@@ -24,7 +24,11 @@ export function useGalleryImages() {
   const { isLoading, ...rest } = useSuspenseQuery({
     queryKey: QUERY_KEY,
     queryFn: async () =>
-      await getInternationalScientificCongressGalleryImages(id),
+      await getInternationalScientificCongressGalleryImages({
+        id,
+        page,
+        limit,
+      }),
     staleTime: 0,
   })
 

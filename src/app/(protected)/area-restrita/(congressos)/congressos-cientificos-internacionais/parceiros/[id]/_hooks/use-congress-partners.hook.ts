@@ -1,5 +1,5 @@
-import { deleteInternationalScientificCongressGalleryImage } from '@http/congress/international-scientific/gallery/delete-international-scientific-congress-gallery-image'
-import { getInternationalScientificCongressGalleryImages } from '@http/congress/international-scientific/gallery/get-international-scientific-congress-gallery-images'
+import { deleteInternationalScientificCongressPartner } from '@http/congress/international-scientific/partner/delete-international-scientific-congress-partner'
+import { getInternationalScientificCongressPartnerByCongressId } from '@http/congress/international-scientific/partner/get-international-scientific-congress-partner-by-congress-id'
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
 import { parseAsString, useQueryStates } from 'nuqs'
@@ -8,7 +8,7 @@ import { toast } from 'sonner'
 const DEFAULT_PAGE = 1
 const DEFAULT_LIMIT = 7
 
-export function useGalleryImages() {
+export function useCongressPartners() {
   const queryClient = useQueryClient()
   const { id } = useParams<{
     id: string
@@ -19,34 +19,34 @@ export function useGalleryImages() {
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
   })
 
-  const QUERY_KEY = ['gallery-images', id, page, limit]
+  const QUERY_KEY = ['congress-partners', id, page, limit]
 
   const { isLoading, ...rest } = useSuspenseQuery({
     queryKey: QUERY_KEY,
     queryFn: async () =>
-      await getInternationalScientificCongressGalleryImages({
+      await getInternationalScientificCongressPartnerByCongressId({
         id,
-        page,
-        limit,
+        page: Number(page),
+        limit: Number(limit),
       }),
     staleTime: 0,
   })
 
-  async function handleRemoveGalleryImage(id: string) {
+  async function handleRemovePartner(id: string) {
     try {
-      await deleteInternationalScientificCongressGalleryImage(id)
+      await deleteInternationalScientificCongressPartner(id)
 
       await queryClient.invalidateQueries({ queryKey: QUERY_KEY })
 
-      toast.success('Imagem da galeria removida com sucesso!')
+      toast.success('Parceiro removido com sucesso!')
     } catch {
-      toast.error('Erro ao remover imagem da galeria.')
+      toast.error('Erro ao remover parceiro.')
     }
   }
 
   return {
     isLoading,
-    handleRemoveGalleryImage,
+    handleRemovePartner,
     page,
     limit,
     ...rest,

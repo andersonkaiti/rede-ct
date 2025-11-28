@@ -290,7 +290,7 @@ export default function CreateInternationalScientificCongressPage() {
                     name="scheduleUrl"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Link da Programação</FormLabel>
+                        <FormLabel>Link do Cronograma</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="https://congresso.com/programacao"
@@ -307,10 +307,10 @@ export default function CreateInternationalScientificCongressPage() {
                     name="programUrl"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Link do Programa</FormLabel>
+                        <FormLabel>Link da Programação</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="https://congresso.com/programa"
+                            placeholder="https://congresso.com/programacao"
                             {...field}
                             value={field.value ?? ''}
                           />

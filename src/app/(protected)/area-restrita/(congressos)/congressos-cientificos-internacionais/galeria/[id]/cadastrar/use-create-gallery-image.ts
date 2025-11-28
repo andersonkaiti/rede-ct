@@ -11,7 +11,7 @@ import z from 'zod'
 const MAX_IMAGE_SIZE_MB = 2
 const KILOBYTE = 1024
 const MEGABYTE = KILOBYTE * KILOBYTE
-const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
+export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
 
 export const createGalleryImageSchema = z.object({
   image: z
@@ -23,6 +23,7 @@ export const createGalleryImageSchema = z.object({
       (file) =>
         validateImageFile({
           value: file,
+          maxSize: MAX_IMAGE_SIZE_BYTES,
         }),
       'Apenas imagens JPEG, PNG ou WebP são permitidas',
     ),

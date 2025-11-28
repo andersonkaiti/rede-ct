@@ -13,7 +13,7 @@ import z from 'zod'
 const MAX_IMAGE_SIZE_MB = 2
 const KILOBYTE = 1024
 const MEGABYTE = KILOBYTE * KILOBYTE
-const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
+export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
 
 export const updateGalleryImageSchema = z.object({
   image: z

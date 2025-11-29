@@ -11,6 +11,8 @@ import {
 import { AdminWrapper } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
 import { CreateRegionalCongressButton } from './_components/create-regional-congress-button'
+import { RegionalCongressesDisplayOptions } from './_components/regional-congress-display-options'
+import { Table } from './_components/table/table'
 
 export default function CongressosRegionais() {
   return (
@@ -26,12 +28,16 @@ export default function CongressosRegionais() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <RegionalCongressesDisplayOptions />
           </PageActionsContainer>
 
           <CreateRegionalCongressButton />
         </PageHeader>
 
-        <PageMain>Congressos Regionais</PageMain>
+        <PageMain>
+          <Table />
+        </PageMain>
       </PageContainer>
     </AdminWrapper>
   )

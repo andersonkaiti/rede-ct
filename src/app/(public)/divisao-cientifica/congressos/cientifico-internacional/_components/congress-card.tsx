@@ -84,7 +84,7 @@ export function CongressCard({ congress }: CongressCardProps) {
             </Badge>
           </div>
 
-          <h4 className="text-balance font-normal text-muted-foreground text-sm">
+          <h4 className="text-justify font-normal text-muted-foreground text-sm">
             {congress.title}
           </h4>
         </div>

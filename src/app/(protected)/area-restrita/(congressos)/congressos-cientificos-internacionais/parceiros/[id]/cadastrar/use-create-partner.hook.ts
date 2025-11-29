@@ -8,17 +8,19 @@ import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
-export const MAX_LOGO_SIZE_MB = 2
+export const MAX_IMAGE_SIZE_MB = 2
+const KILOBYTE = 1024
+const MEGABYTE = KILOBYTE * KILOBYTE
+export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
 
 export const createPartnerSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório'),
-  logo: z.any().refine(
-    (value) =>
-      validateImageFile({
-        value,
-        optional: false,
-      }),
-    `Deve haver uma imagem de no máximo ${MAX_LOGO_SIZE_MB}MB.`,
+  logo: z.any().refine((value) =>
+    validateImageFile({
+      value,
+      optional: false,
+      maxSize: MAX_IMAGE_SIZE_BYTES,
+    }),
   ),
 })
 

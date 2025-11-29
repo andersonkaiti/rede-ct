@@ -20,12 +20,10 @@ import {
 import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useUpdateGalleryImage } from './use-update-gallery-image'
-
-const MAX_IMAGE_SIZE_MB = 2
-const KILOBYTE = 1024
-const MEGABYTE = KILOBYTE * KILOBYTE
-const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
+import {
+  MAX_IMAGE_SIZE_BYTES,
+  useUpdateGalleryImage,
+} from './use-update-gallery-image'
 
 export default function EditGalleryImagePage() {
   const { form, submit, serverError, isSubmitting, image } =

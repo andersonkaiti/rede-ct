@@ -1,19 +1,13 @@
 import { CalendarDaysIcon } from '@components/icons/calendar-days'
 import { Button } from '@components/ui/button'
+import { Spotlight } from '@components/ui/spotlight'
 import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 
 export function HeroSection() {
   return (
-    <div className="relative mx-auto grid h-full gap-8 overflow-hidden px-4 py-8 pt-16 lg:pt-48 lg:pb-16">
-      <div
-        aria-hidden
-        className="-translate-x-1/2 pointer-events-none absolute top-0 left-1/2 z-0 hidden h-48 w-full dark:flex"
-        style={{
-          background:
-            'radial-gradient(ellipse 60% 100% at 50% 0%, oklch(0.637 0.237 25.331 / 0.25) 0%, transparent 80%)',
-        }}
-      />
+    <div className="mx-auto grid h-full gap-8 overflow-hidden px-4 py-8 pt-16 lg:pt-48 lg:pb-16">
+      <Spotlight />
 
       <h1 className="text-center font-bold text-4xl text-foreground tracking-wide md:text-5xl xl:text-6xl">
         RedeCT

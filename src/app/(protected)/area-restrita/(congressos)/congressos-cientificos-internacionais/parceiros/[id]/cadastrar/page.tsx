@@ -19,7 +19,11 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { MAX_LOGO_SIZE_MB, useCreatePartner } from './use-create-partner.hook'
+import {
+  MAX_IMAGE_SIZE_BYTES,
+  MAX_IMAGE_SIZE_MB,
+  useCreatePartner,
+} from './use-create-partner.hook'
 
 export default function CreatePartnerPage() {
   const { form, submit, serverError } = useCreatePartner()
@@ -72,12 +76,12 @@ export default function CreatePartnerPage() {
                     Faça upload do logo do parceiro
                   </p>
                   <p className="text-muted-foreground text-xs">
-                    Máximo {MAX_LOGO_SIZE_MB}MB
+                    Máximo {MAX_IMAGE_SIZE_MB}MB
                   </p>
                 </div>
                 <FormControl>
                   <CoverUpload
-                    maxSize={MAX_LOGO_SIZE_MB}
+                    maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

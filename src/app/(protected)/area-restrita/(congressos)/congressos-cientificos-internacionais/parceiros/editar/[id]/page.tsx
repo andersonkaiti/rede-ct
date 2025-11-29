@@ -20,7 +20,11 @@ import {
 } from '@components/ui/page-container'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import Loading from './loading'
-import { MAX_LOGO_SIZE_MB, useUpdatePartner } from './use-update-partner.hook'
+import {
+  MAX_IMAGE_SIZE_BYTES,
+  MAX_IMAGE_SIZE_MB,
+  useUpdatePartner,
+} from './use-update-partner.hook'
 
 export default function UpdatePartnerForm() {
   const { form, submit, serverError, partner, isLoading } = useUpdatePartner()
@@ -76,13 +80,13 @@ export default function UpdatePartnerForm() {
                     Faça upload do logo do parceiro
                   </p>
                   <p className="text-muted-foreground text-xs">
-                    Máximo {MAX_LOGO_SIZE_MB}MB
+                    Máximo {MAX_IMAGE_SIZE_MB}MB
                   </p>
                 </div>
                 <FormControl>
                   <CoverUpload
                     defaultImage={partner?.logoUrl || null}
-                    maxSize={MAX_LOGO_SIZE_MB}
+                    maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

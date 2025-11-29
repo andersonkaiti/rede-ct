@@ -9,8 +9,8 @@ import {
 } from '@components/ui/page-container'
 
 import { AdminWrapper } from '../../../_components/hoc/admin'
-import { CreateButton } from '../../_components/create-button'
 import { FilterInput } from '../../_components/filter-input'
+import { CreateRegionalCongressButton } from './_components/create-regional-congress-button'
 
 export default function CongressosRegionais() {
   return (
@@ -27,9 +27,8 @@ export default function CongressosRegionais() {
           <PageActionsContainer>
             <FilterInput />
           </PageActionsContainer>
-          <CreateButton href="/area-restrita/congressos-regionais/cadastrar">
-            Cadastrar Congresso
-          </CreateButton>
+
+          <CreateRegionalCongressButton />
         </PageHeader>
 
         <PageMain>Congressos Regionais</PageMain>

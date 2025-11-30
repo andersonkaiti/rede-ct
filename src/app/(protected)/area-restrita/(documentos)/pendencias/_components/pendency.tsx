@@ -30,9 +30,9 @@ interface IPendencyProps {
       createdAt: string
       updatedAt: string
       emailAddress: string
-      orcid: string
-      phone: string
-      lattesUrl: string
+      orcid: string | null
+      phone: string | null
+      lattesUrl: string | null
       role: 'ADMIN' | 'USER'
     }
   }

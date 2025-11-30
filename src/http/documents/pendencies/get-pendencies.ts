@@ -20,7 +20,7 @@ export const getRegisteredPendenciesSchema = z.object({
       id: z.string(),
       title: z.string(),
       description: z.string(),
-      status: z.literal('PENDING'),
+      status: z.literal('PENDING', 'PAID'),
       dueDate: z.string(),
       documentUrl: z.string(),
       createdAt: z.string(),
@@ -33,12 +33,12 @@ export const getRegisteredPendenciesSchema = z.object({
         createdAt: z.string(),
         updatedAt: z.string(),
         emailAddress: z.string(),
-        orcid: z.string(),
-        phone: z.string(),
-        lattesUrl: z.string(),
-        role: z.literal('ADMIN'),
+        orcid: z.string().nullable(),
+        phone: z.string().nullable(),
+        lattesUrl: z.string().nullable(),
+        role: z.literal('ADMIN', 'USER'),
       }),
-    })
+    }),
   ),
 })
 

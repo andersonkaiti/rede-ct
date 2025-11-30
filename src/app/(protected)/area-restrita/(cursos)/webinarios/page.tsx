@@ -7,10 +7,9 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-
 import { AdminWrapper } from '../../../_components/hoc/admin'
-import { CreateButton } from '../../_components/create-button'
 import { FilterInput } from '../../_components/filter-input'
+import { CreateWebinarButton } from './_components/create-webinar-button'
 
 export default function Webinarios() {
   return (
@@ -27,9 +26,8 @@ export default function Webinarios() {
           <PageActionsContainer>
             <FilterInput />
           </PageActionsContainer>
-          <CreateButton href="/area-restrita/webinarios/cadastrar">
-            Cadastrar Webinário
-          </CreateButton>
+
+          <CreateWebinarButton />
         </PageHeader>
 
         <PageMain>Webinários</PageMain>

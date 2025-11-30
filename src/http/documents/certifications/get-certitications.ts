@@ -31,17 +31,17 @@ export const getRegisteredCertificationsSchema = z.object({
         createdAt: z.string(),
         updatedAt: z.string(),
         emailAddress: z.string(),
-        orcid: z.string(),
-        phone: z.string(),
-        lattesUrl: z.string(),
+        orcid: z.string().nullable(),
+        phone: z.string().nullable(),
+        lattesUrl: z.string().nullable(),
         role: z.enum(['ADMIN', 'USER']),
       }),
-    })
+    }),
   ),
 })
 
 export async function getRegisteredCertifications(
-  params: ICertificationsRequest
+  params: ICertificationsRequest,
 ) {
   const searchParams = parseSearchParams(params)
 

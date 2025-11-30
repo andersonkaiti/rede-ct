@@ -21,11 +21,9 @@ import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { useParams } from 'next/navigation'
+import { MAX_IMAGE_SIZE_MB } from '../../[id]/cadastrar/use-create-gallery-image.hook'
 import Loading from './loading'
-import {
-  MAX_IMAGE_SIZE_MB,
-  useUpdateGalleryImage,
-} from './use-update-gallery-image.hook'
+import { useUpdateGalleryImage } from './use-update-gallery-image.hook'
 
 export default function UpdateGalleryImagePage() {
   const { id, congressId } = useParams<{ id: string; congressId?: string }>()
@@ -67,7 +65,7 @@ export default function UpdateGalleryImagePage() {
                   <FormControl>
                     <CoverUpload
                       accept="image/jpeg,image/jpg,image/png,image/webp"
-                      maxSize={MAX_IMAGE_SIZE_}
+                      maxSize={MAX_IMAGE_SIZE_MB}
                       onImageChange={(file) => onChange(file)}
                       {...field}
                     />

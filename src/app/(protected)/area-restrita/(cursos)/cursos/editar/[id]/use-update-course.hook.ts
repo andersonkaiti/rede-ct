@@ -1,0 +1,130 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import { getCourseById } from '@http/courses/get-course-by-id'
+import { updateCourse } from '@http/courses/update-course'
+import { useQuery } from '@tanstack/react-query'
+import { validateImageFile } from '@utils/validate-image-file'
+import { HTTPError } from 'ky'
+import { useParams, useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useForm, useFormState } from 'react-hook-form'
+import { toast } from 'sonner'
+import z from 'zod'
+
+export const MAX_IMAGE_SIZE_MB = 2
+const KILOBYTE = 1024
+const MEGABYTE = KILOBYTE * KILOBYTE
+export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
+
+const updateCourseSchema = z.object({
+  title: z.string().min(1, 'Título é obrigatório.'),
+  coordinatorId: z.string().min(1, 'Coordenador é obrigatório.'),
+  email: z.email('E-mail inválido.'),
+  location: z.string().min(1, 'Localização é obrigatória.'),
+  scheduledAt: z.date('Data e hora são obrigatórias.'),
+  registrationLink: z.union([z.url('Link inválido'), z.literal('')]),
+  description: z.string().optional(),
+  image: z.any().refine(
+    (value) =>
+      validateImageFile({
+        value,
+        maxSize: MAX_IMAGE_SIZE_BYTES,
+        optional: true,
+      }),
+    'A imagem é obrigatória',
+  ),
+  instructorIds: z
+    .array(z.uuid())
+    .min(1, 'Pelo menos um(a) instrutor(a) é obrigatório(a).'),
+})
+
+type UpdateCourseInput = z.infer<typeof updateCourseSchema>
+
+const INITIAL_VALUES: UpdateCourseInput = {
+  title: '',
+  coordinatorId: '',
+  email: '',
+  location: '',
+  scheduledAt: new Date(),
+  registrationLink: '',
+  description: '',
+  image: undefined,
+  instructorIds: [],
+}
+
+export function useUpdateCourse() {
+  const router = useRouter()
+  const { id } = useParams<{ id: string }>()
+
+  const [serverError, setServerError] = useState<string | null>(null)
+
+  const { data: course, isLoading: isCourseLoading } = useQuery({
+    queryKey: ['course', id],
+    queryFn: () => getCourseById(id),
+  })
+
+  console.log(course)
+
+  const form = useForm<UpdateCourseInput>({
+    resolver: zodResolver(updateCourseSchema),
+    defaultValues: INITIAL_VALUES,
+  })
+
+  const { isSubmitting } = useFormState({
+    control: form.control,
+  })
+
+  useEffect(() => {
+    if (course) {
+      form.reset({
+        title: course.title,
+        coordinatorId: course.coordinator.id,
+        email: course.email,
+        location: course.location,
+        scheduledAt: course.scheduledAt
+          ? new Date(course.scheduledAt)
+          : new Date(),
+        registrationLink: course.registrationLink || '',
+        description: course.description || '',
+        image: undefined,
+        instructorIds:
+          course.instructors.map((instructor) => instructor.id) || [],
+      })
+    }
+  }, [course, form])
+
+  const submit = form.handleSubmit(async (values) => {
+    setServerError(null)
+
+    try {
+      await updateCourse({
+        id,
+        title: values.title,
+        coordinatorId: values.coordinatorId,
+        email: values.email,
+        location: values.location,
+        scheduledAt: new Date(values.scheduledAt),
+        registrationLink: values.registrationLink || undefined,
+        description: values.description,
+        image: values.image,
+        instructorIds: values.instructorIds,
+      })
+
+      toast.success('Curso atualizado com sucesso!')
+      router.push('/area-restrita/cursos')
+    } catch (err) {
+      if (err instanceof HTTPError) {
+        const errorBody = await err.response.json()
+        setServerError(errorBody.message)
+      }
+    }
+  })
+
+  return {
+    form,
+    serverError,
+    isSubmitting,
+    submit,
+    isCourseLoading,
+    course,
+  }
+}

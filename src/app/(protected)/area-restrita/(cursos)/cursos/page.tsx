@@ -7,19 +7,18 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-
 import { AdminWrapper } from '../../../_components/hoc/admin'
-import { CreateButton } from '../../_components/create-button'
 import { FilterInput } from '../../_components/filter-input'
+import { CreateCourseButton } from './_components/create-course-button'
 
-export default function Capacitacoes() {
+export default function Cursos() {
   return (
     <AdminWrapper>
       <PageContainer>
         <PageHeader>
           <PageHeaderContent>
-            <PageTitle>Capacitações</PageTitle>
-            <PageDescription>Gerencie as suas capacitações</PageDescription>
+            <PageTitle>Cursos</PageTitle>
+            <PageDescription>Gerencie os cursos</PageDescription>
           </PageHeaderContent>
         </PageHeader>
 
@@ -27,12 +26,11 @@ export default function Capacitacoes() {
           <PageActionsContainer>
             <FilterInput />
           </PageActionsContainer>
-          <CreateButton href="/area-restrita/capacitacoes/cadastrar">
-            Cadastrar Capacitação
-          </CreateButton>
+
+          <CreateCourseButton />
         </PageHeader>
 
-        <PageMain>Capacitações</PageMain>
+        <PageMain>Cursos</PageMain>
       </PageContainer>
     </AdminWrapper>
   )

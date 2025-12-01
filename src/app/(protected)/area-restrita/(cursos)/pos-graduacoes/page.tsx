@@ -7,9 +7,14 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
+import { Suspense } from 'react'
 import { AdminWrapper } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
+import { OrderByButton } from '../../_components/order-by-button'
 import { CreateProgramButton } from './_components/create-program-button'
+import { ProgramDisplayOptions } from './_components/program-display-options'
+import { LoadingSkeleton } from './_components/table/loading-skeleton'
+import { Table } from './_components/table/table'
 
 export default function PosGraduacoes() {
   return (
@@ -27,12 +32,20 @@ export default function PosGraduacoes() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <ProgramDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
 
           <CreateProgramButton />
         </PageHeader>
 
-        <PageMain>Programas de Pós-Graduação</PageMain>
+        <PageMain>
+          <Suspense fallback={<LoadingSkeleton />}>
+            <Table />
+          </Suspense>
+        </PageMain>
       </PageContainer>
     </AdminWrapper>
   )

@@ -1,3 +1,4 @@
+import type { NavigationLink as NavigationLinkType } from '@/@types/navigation-link'
 import {
   BarChart2,
   BookOpen,
@@ -17,7 +18,6 @@ import {
   Users,
   UsersRound,
 } from 'lucide-react'
-import type { NavigationLink as NavigationLinkType } from '@/@types/navigation-link'
 
 export const navigationLinks: NavigationLinkType[] = [
   {
@@ -94,8 +94,8 @@ export const navigationLinks: NavigationLinkType[] = [
         icon: GraduationCap,
       },
       {
-        path: '/divisao-cientifica/disciplinas-e-cursos-de-pos-graduacao',
-        label: 'Disciplinas e cursos de pós-graduação',
+        path: '/divisao-cientifica/pos-graduacao',
+        label: 'Cursos de Pós-Graduação',
         icon: BookOpen,
       },
       {

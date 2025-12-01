@@ -7,10 +7,9 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-
 import { AdminWrapper } from '../../../_components/hoc/admin'
-import { CreateButton } from '../../_components/create-button'
 import { FilterInput } from '../../_components/filter-input'
+import { CreateProgramButton } from './_components/create-program-button'
 
 export default function PosGraduacoes() {
   return (
@@ -18,8 +17,10 @@ export default function PosGraduacoes() {
       <PageContainer>
         <PageHeader>
           <PageHeaderContent>
-            <PageTitle>Pós-Graduações</PageTitle>
-            <PageDescription>Gerencie as pós-graduações</PageDescription>
+            <PageTitle>Programas de Pós-Graduação</PageTitle>
+            <PageDescription>
+              Gerencie os programas de pós-graduação
+            </PageDescription>
           </PageHeaderContent>
         </PageHeader>
 
@@ -27,12 +28,11 @@ export default function PosGraduacoes() {
           <PageActionsContainer>
             <FilterInput />
           </PageActionsContainer>
-          <CreateButton href="/area-restrita/pos-graduacoes/cadastrar">
-            Cadastrar Pós-Graduação
-          </CreateButton>
+
+          <CreateProgramButton />
         </PageHeader>
 
-        <PageMain>Pós-Graduações</PageMain>
+        <PageMain>Programas de Pós-Graduação</PageMain>
       </PageContainer>
     </AdminWrapper>
   )

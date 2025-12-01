@@ -16,18 +16,24 @@ export function LoadingSkeleton() {
             </div>
           </header>
 
-          <div className="flex h-fit flex-grow flex-col justify-between gap-4 py-2">
+          <div className="flex h-fit grow flex-col justify-between gap-4 py-2">
             <div className="space-y-4">
               <div className="flex items-center gap-2 text-sm leading-4">
                 <Skeleton className="h-4 w-48 rounded-full" />
               </div>
+
+              <div className="flex flex-wrap gap-2">
+                <Skeleton className="h-6 w-32 rounded-lg" />
+                <Skeleton className="h-6 w-24 rounded-lg" />
+              </div>
+
               <Skeleton className="h-8 w-2/3 rounded-md" />
             </div>
 
             <div className="space-y-2">
               <Skeleton className="h-5 w-20 rounded-full" />
               <div className="flex items-center">
-                <Skeleton className="!size-4 mr-1.5 rounded-full" />
+                <Skeleton className="mr-1.5 size-4 rounded-full" />
                 <Skeleton className="h-4 w-32 rounded-full" />
               </div>
             </div>

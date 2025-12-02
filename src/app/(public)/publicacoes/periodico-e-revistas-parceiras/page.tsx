@@ -4,13 +4,15 @@ import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
-const DynamicMagazines = dynamic(() =>
-  import('./_components/magazines').then((mod) => mod.Magazines)
+const DynamicScientificJournalList = dynamic(() =>
+  import('./_components/scientific-journal-list').then(
+    (mod) => mod.ScientificJournalList,
+  ),
 )
 
 export default function PeriodicoERevistasParceiras() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 md:gap-20 lg:p-25">
+    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
       <header className="space-y-8">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
@@ -18,7 +20,7 @@ export default function PeriodicoERevistasParceiras() {
           </Badge>
           <h1 className="title-2">Periódico Científico da RedeCT</h1>
         </div>
-        <p className="text-muted-foreground">
+        <p className="text-lg text-muted-foreground">
           A RedeCT está orientada para a criação de sua Revista Científica, com
           identidade específica entre universidade, ciência e Povos
           Tradicionais.
@@ -40,12 +42,13 @@ export default function PeriodicoERevistasParceiras() {
         <h3 className="text-center font-semibold text-3xl md:text-4xl">
           Revistas Científicas Parceiras
         </h3>
-        <p className="text-center text-muted-foreground">
+        <p className="text-center text-lg text-muted-foreground">
           Colaboramos com revistas científicas renomadas para fortalecer a
           pesquisa e divulgação científica
         </p>
+
         <Suspense fallback={<LoadingSkeleton />}>
-          <DynamicMagazines />
+          <DynamicScientificJournalList />
         </Suspense>
       </section>
     </main>

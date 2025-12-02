@@ -7,10 +7,9 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-
 import { AdminWrapper } from '../../../../_components/hoc/admin'
-import { CreateButton } from '../../../_components/create-button'
 import { FilterInput } from '../../../_components/filter-input'
+import { CreateJournalButton } from './_components/create-journal-button'
 
 export default function Revistas() {
   return (
@@ -27,9 +26,8 @@ export default function Revistas() {
           <PageActionsContainer>
             <FilterInput />
           </PageActionsContainer>
-          <CreateButton href="/area-restrita/revistas/cadastrar">
-            Cadastrar Revista
-          </CreateButton>
+
+          <CreateJournalButton />
         </PageHeader>
 
         <PageMain>Revistas</PageMain>

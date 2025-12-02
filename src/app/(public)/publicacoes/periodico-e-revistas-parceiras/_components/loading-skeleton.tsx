@@ -1,22 +1,25 @@
 import { Skeleton } from '@components/ui/skeleton'
 
+const SKELETON_CARD_COUNT = 6
+
 export function LoadingSkeleton() {
   return (
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {Array.from({ length: 3 }).map((_, index: number) => (
-        <div
-          className="flex w-full flex-col gap-2 rounded-lg shadow-lg"
-          key={index}
-        >
-          <Skeleton className="h-64 w-full rounded-t-lg" />
-          <div className="w-full space-y-4 p-6">
-            <Skeleton className="h-7 w-full rounded-full" />
-            <div className="space-y-3">
-              <Skeleton className="h-5.5 w-full rounded-full" />
-              <Skeleton className="h-5.5 w-full rounded-full" />
-              <Skeleton className="h-5.5 w-2/3 rounded-full" />
+    <div className="grid grid-cols-1 gap-x-8 gap-y-20 sm:grid-cols-2">
+      {Array.from({ length: SKELETON_CARD_COUNT }).map((_, index) => (
+        <div className="flex flex-col gap-2" key={index}>
+          <Skeleton className="h-80 w-full rounded-md" />
+
+          <div className="flex h-fit grow flex-col gap-4 py-2">
+            <div className="space-y-4">
+              <Skeleton className="h-4 w-32" />
+              <Skeleton className="h-8 w-full" />
             </div>
-            <div className="h-9 w-full rounded-md" />
+
+            <Skeleton className="h-4 w-24" />
+            <Skeleton className="h-4 w-24" />
+            <Skeleton className="h-4 w-36" />
+
+            <Skeleton className="mt-auto h-10 w-full" />
           </div>
         </div>
       ))}

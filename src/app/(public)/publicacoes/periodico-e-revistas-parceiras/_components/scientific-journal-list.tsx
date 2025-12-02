@@ -1,0 +1,49 @@
+'use client'
+
+import PaginatorComponent from '@components/ui/paginator'
+import { Separator } from '@components/ui/separator'
+import { FilterInput } from './filter-input'
+import { LoadingSkeleton } from './loading-skeleton'
+import { ScientificJournalCard } from './scientific-journal-card'
+import { useScientificJournals } from './use-scientific-journals'
+
+export function ScientificJournalList() {
+  const { data, isLoading, page, limit } = useScientificJournals()
+
+  return (
+    <>
+      <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center">
+        <FilterInput />
+      </div>
+
+      {isLoading && <LoadingSkeleton />}
+
+      {data?.scientificJournals && (
+        <div className="grid grid-cols-1 gap-x-8 gap-y-20 sm:grid-cols-2">
+          {data.scientificJournals.map((journal) => (
+            <ScientificJournalCard key={journal.id} journal={journal} />
+          ))}
+        </div>
+      )}
+
+      {!isLoading && !data?.scientificJournals.length && (
+        <div className="col-end-3 flex w-full flex-col items-center justify-center">
+          <p className="font-medium text-lg text-muted-foreground">
+            Nenhuma revista científica encontrada.
+          </p>
+          <span className="mt-2 text-muted-foreground text-sm">
+            Tente ajustar o filtro ou pesquise por outro termo.
+          </span>
+        </div>
+      )}
+
+      <Separator />
+
+      <PaginatorComponent
+        currentPage={Number(page)}
+        defaultRowsPerPage={Number(limit)}
+        totalPages={data?.totalPages ?? 1}
+      />
+    </>
+  )
+}

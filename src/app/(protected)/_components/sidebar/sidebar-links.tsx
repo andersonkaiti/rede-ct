@@ -1,4 +1,3 @@
-import type { NavigationLink } from '@/@types/navigation-link'
 import {
   Award,
   Book,
@@ -24,6 +23,7 @@ import {
   Star,
   Users,
 } from 'lucide-react'
+import type { NavigationLink } from '@/@types/navigation-link'
 
 export const sidebarLinks: NavigationLink[] = [
   {
@@ -181,8 +181,8 @@ export const sidebarLinks: NavigationLink[] = [
         icon: BookOpen,
       },
       {
-        label: 'Capítulos',
-        path: '/area-restrita/capitulos-de-livros',
+        label: 'Volumes',
+        path: '/area-restrita/volumes-de-livros',
         icon: BookOpen,
       },
       {

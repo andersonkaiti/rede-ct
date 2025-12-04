@@ -7,8 +7,8 @@ import Link from 'next/link'
 import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
-const DynamicBooks = dynamic(() =>
-  import('./_components/books').then((mod) => mod.Books)
+const DynamicBookVolumeList = dynamic(() =>
+  import('./_components/book-volume-list').then((mod) => mod.BookVolumeList),
 )
 
 const requirements = [
@@ -129,7 +129,7 @@ export default function ColetaneaRedeCT() {
           </p>
           <Button variant="secondary">
             <Link
-              href="https://onedrive.live.com/embed?cid=6afd3e4c750a5cf9&id=6AFD3E4C750A5CF9!s6451fa92e2c3450f879aa5dbc391cdda&resid=6AFD3E4C750A5CF9!s6451fa92e2c3450f879aa5dbc391cdda&ithint=file,pdf&embed=1&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL2IvYy82YWZkM2U0Yzc1MGE1Y2Y5L0lRU1MtbEZrdy1JUFJZZWFwZHZEa2MzYUFlS2h1Tld4c0ZGRURJbjdKTnlrOHVj"
+              href="https://onedrive.live.com/embed?cid=6afd3e4c750a5cf9&id=6AFD3E4C750A5CF9!s6451fa92e2c3450f879aa5dbc391cdda&resid=6AFD3E4C750A5CF9!s6451fa92e2c3450f879aa5dbc391cdda&ithint=file,pdf&embed=1&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL2IvYy82YWZkM2U0Yzc1MGE1Y2Y5L0lRU0MtbEZrdy1JUFJZZWFwZHZEa2MzYUFlS2h1Tld4c0ZGRURJbjdKTnlrOHVj"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -163,7 +163,7 @@ export default function ColetaneaRedeCT() {
             Acesso aos volumes já publicados e índice remissivo por assunto
           </h2>
           <Suspense fallback={<LoadingSkeleton />}>
-            <DynamicBooks />
+            <DynamicBookVolumeList />
           </Suspense>
         </section>
       </main>

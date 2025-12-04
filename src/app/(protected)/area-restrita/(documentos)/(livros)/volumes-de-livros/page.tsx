@@ -8,17 +8,17 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { AdminWrapper } from '../../../../_components/hoc/admin'
-import { CreateButton } from '../../../_components/create-button'
 import { FilterInput } from '../../../_components/filter-input'
+import { CreateBookVolumeButton } from './_components/create-book-volume-button'
 
-export default function CapitulosDeLivros() {
+export default function VolumesDeLivros() {
   return (
     <AdminWrapper>
       <PageContainer>
         <PageHeader>
           <PageHeaderContent>
-            <PageTitle>Capítulos de Livros</PageTitle>
-            <PageDescription>Gerencie os seus livros</PageDescription>
+            <PageTitle>Volumes de Livros</PageTitle>
+            <PageDescription>Gerencie os volumes de livros</PageDescription>
           </PageHeaderContent>
         </PageHeader>
 
@@ -26,12 +26,11 @@ export default function CapitulosDeLivros() {
           <PageActionsContainer>
             <FilterInput />
           </PageActionsContainer>
-          <CreateButton href="/area-restrita/capitulos-de-livros/cadastrar">
-            Cadastrar Livro
-          </CreateButton>
+
+          <CreateBookVolumeButton />
         </PageHeader>
 
-        <PageMain>Livros</PageMain>
+        <PageMain>Volumes de Livros</PageMain>
       </PageContainer>
     </AdminWrapper>
   )

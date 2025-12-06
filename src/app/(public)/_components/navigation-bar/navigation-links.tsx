@@ -1,4 +1,3 @@
-import type { NavigationLink as NavigationLinkType } from '@/@types/navigation-link'
 import {
   BarChart2,
   BookOpen,
@@ -18,6 +17,7 @@ import {
   Users,
   UsersRound,
 } from 'lucide-react'
+import type { NavigationLink as NavigationLinkType } from '@/@types/navigation-link'
 
 export const navigationLinks: NavigationLinkType[] = [
   {
@@ -121,11 +121,6 @@ export const navigationLinks: NavigationLinkType[] = [
       {
         path: '/publicacoes/livros-da-redect',
         label: 'Coletânea da RedeCT (Livro da RedeCT)',
-        icon: BookOpen,
-      },
-      {
-        path: '/publicacoes/livros-e-capitulos',
-        label: 'Livros e Capítulos de Interesse',
         icon: BookOpen,
       },
       {

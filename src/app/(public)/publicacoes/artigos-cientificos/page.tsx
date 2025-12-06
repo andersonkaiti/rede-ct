@@ -1,9 +1,14 @@
-import { Building } from '@components/building'
 import { FileTextIcon } from '@components/icons/file-text'
 import { Badge } from '@components/ui/badge'
-import { Button } from '@components/ui/button'
-import { Card, CardFooter, CardHeader, CardTitle } from '@components/ui/card'
-import Link from 'next/link'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+import { LoadingSkeleton } from './_components/loading-skeleton'
+
+const DynamicScientificArticleList = dynamic(() =>
+  import('./_components/scientific-article-list').then(
+    (mod) => mod.ScientificArticleList,
+  ),
+)
 
 export default function ArtigosCientificos() {
   return (
@@ -13,57 +18,31 @@ export default function ArtigosCientificos() {
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
             <FileTextIcon />
           </Badge>
-          <h1 className="title-2">Congressos da RedeCT</h1>
+          <h1 className="title-2">Artigos Científicos da RedeCT</h1>
         </div>
         <p className="text-justify text-muted-foreground">
-          Nesta seção (
-          <span className="font-bold text-primary">AINDA EM CONSTRUÇÃO</span>)
-          serão publicadas as apresentações e links de acesso a artigos
-          científicos publicados em periódicos e que sejam de interesse dos
-          Pesquisadores Filiados à RedeCT (artigos com temas relacionados aos
-          Povos Tradicionais).{' '}
-          <span className="font-bold text-primary">
-            ESTA ÁREA AINDA ESTÁ EM CONSTRUÇÃO.
-          </span>
+          Nesta seção são publicadas apresentações e links de acesso a artigos
+          científicos publicados em periódicos de interesse dos Pesquisadores
+          Filiados à RedeCT. Todos os artigos abordam temas relacionados aos
+          Povos Originários e Comunidades Tradicionais.
         </p>
       </header>
 
-      <section className="space-y-8">
-        <h2 className="title-3">
-          Listagem de Artigos Científicos de Interesse{' '}
-          <span className="text-primary">
-            (Artigos Publicados em Periódicos/Revistas Científicas)
-          </span>
+      <Suspense fallback={<LoadingSkeleton />}>
+        <DynamicScientificArticleList />
+      </Suspense>
+
+      <section className="space-y-6 rounded-md bg-linear-to-br from-primary to-red-700 p-6 text-center text-white md:p-10">
+        <h2 className="font-semibold text-3xl text-white">
+          Submeta seu artigo científico
         </h2>
-        <p className="text-muted-foreground">
-          Nesta área, a RedeCT traz alguns artigos publicados em periódicos e
-          que são de alto interesse dos pesquisadores da RedeCT.
+        <p className="text-white leading-relaxed">
+          A RedeCT está desenvolvendo um sistema de avaliação e certificação de
+          artigos científicos. Em breve, você poderá submeter seus trabalhos
+          para análise e publicação nesta plataforma. Acompanhe as novidades
+          através dos nossos canais oficiais.
         </p>
-
-        <Card className="border-l-4 border-l-primary transition-all duration-200 hover:shadow-lg">
-          <CardHeader>
-            <CardTitle className="font-semibold text-muted-foreground">
-              CARVALHO, José Jorge de. Notório saber para os Mestres e Mestras
-              dos Povos e Comunidades Tradicionais: uma revolução no mundo
-              acadêmico brasileiro. Revista UFMG, v.28, n.1, p. 54-77, jan./abr.
-              2021. Belo Horizonte/MG: UFMG, 2021.
-            </CardTitle>
-          </CardHeader>
-          <CardFooter>
-            <Link
-              href="https://periodicos.ufmg.br/index.php/revistadaufmg/article/view/29103"
-              target="_blank"
-            >
-              <Button className="font-bold">Acessar artigo</Button>
-            </Link>
-          </CardFooter>
-        </Card>
       </section>
-
-      <Building>
-        A RedeCT está desenvolvendo o sistema de avaliação e certificação. Em
-        breve, você poderá submeter seus artigos para análise.
-      </Building>
     </main>
   )
 }

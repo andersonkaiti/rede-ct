@@ -7,10 +7,9 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-
 import { AdminWrapper } from '../../../../_components/hoc/admin'
-import { CreateButton } from '../../../_components/create-button'
 import { FilterInput } from '../../../_components/filter-input'
+import { CreateArticleButton } from './_components/create-article-button'
 
 export default function Artigos() {
   return (
@@ -19,7 +18,7 @@ export default function Artigos() {
         <PageHeader>
           <PageHeaderContent>
             <PageTitle>Artigos</PageTitle>
-            <PageDescription>Gerencie os artigos</PageDescription>
+            <PageDescription>Gerencie os artigos científicos</PageDescription>
           </PageHeaderContent>
         </PageHeader>
 
@@ -27,9 +26,8 @@ export default function Artigos() {
           <PageActionsContainer>
             <FilterInput />
           </PageActionsContainer>
-          <CreateButton href="/area-restrita/artigos/cadastrar">
-            Cadastrar Artigo
-          </CreateButton>
+
+          <CreateArticleButton />
         </PageHeader>
 
         <PageMain>Artigos</PageMain>

@@ -7,10 +7,14 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-
+import { Suspense } from 'react'
 import { AdminWrapper } from '../../../../_components/hoc/admin'
-import { CreateButton } from '../../../_components/create-button'
 import { FilterInput } from '../../../_components/filter-input'
+import { OrderByButton } from '../../../_components/order-by-button'
+import { ArticleDisplayOptions } from './_components/article-display-options'
+import { CreateArticleButton } from './_components/create-article-button'
+import { LoadingSkeleton } from './_components/table/loading-skeleton'
+import { Table } from './_components/table/table'
 
 export default function Artigos() {
   return (
@@ -19,21 +23,29 @@ export default function Artigos() {
         <PageHeader>
           <PageHeaderContent>
             <PageTitle>Artigos</PageTitle>
-            <PageDescription>Gerencie os artigos</PageDescription>
+            <PageDescription>Gerencie os artigos científicos</PageDescription>
           </PageHeaderContent>
         </PageHeader>
 
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <ArticleDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
-          <CreateButton href="/area-restrita/artigos/cadastrar">
-            Cadastrar Artigo
-          </CreateButton>
+
+          <CreateArticleButton />
         </PageHeader>
 
-        <PageMain>Artigos</PageMain>
+        <PageMain>
+          <Suspense fallback={<LoadingSkeleton />}>
+            <Table />
+          </Suspense>
+        </PageMain>
       </PageContainer>
     </AdminWrapper>
   )
 }
+

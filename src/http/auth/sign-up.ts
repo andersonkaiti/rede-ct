@@ -2,7 +2,7 @@ import { api } from '@http/api-client'
 
 interface ISignUpRequest {
   name: string
-  email: string
+  emailAddress: string
   password: string
   confirmPassword: string
 }

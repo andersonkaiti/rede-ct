@@ -11,6 +11,7 @@ export function Building({ children }: BuildingProps) {
       <div className="rounded-full bg-primary/20 p-3">
         <ConstructionIcon className="text-primary" />
       </div>
+
       <div className="flex flex-col">
         <CardHeader className="p-0">
           <CardTitle className="mb-2 font-semibold text-lg text-primary">

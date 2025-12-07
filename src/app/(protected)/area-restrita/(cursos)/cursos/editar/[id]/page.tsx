@@ -22,8 +22,8 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
+import { useUsers } from '@hooks/use-users.hook'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useUsers } from '../../../../(equipes)/_hooks/use-users.hook'
 import { SelectMember } from '../../../../_components/select-member'
 import Loading from './loading'
 import { MAX_IMAGE_SIZE_BYTES, useUpdateCourse } from './use-update-course.hook'

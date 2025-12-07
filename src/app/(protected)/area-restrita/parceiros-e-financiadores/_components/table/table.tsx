@@ -4,7 +4,7 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, parseAsInteger, useQueryStates } from 'nuqs'
-import { usePartners } from '../../_hooks/use-partners.hook'
+import { usePartners } from './use-partners.hook'
 import { LoadingSkeleton } from './loading-skeleton'
 import { partnersTableColumns } from './partners-table-columns'
 

@@ -4,7 +4,7 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useRegiments } from '../../_hooks/use-regiments.hook'
+import { useRegiments } from './use-regiments.hook'
 import { LoadingSkeleton } from './loading-skeleton'
 import { regimentsTableColumns } from './regiments-table-columns'
 

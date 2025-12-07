@@ -4,7 +4,7 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useEvents } from '../../_hooks/use-events.hook'
+import { useEvents } from './use-events.hook'
 import { eventTableColumns } from './event-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
 

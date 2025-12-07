@@ -3,7 +3,7 @@
 import { cn } from '@utils/cn'
 import { motion, useAnimation } from 'motion/react'
 import type { HTMLAttributes } from 'react'
-import { useImperativeHandle, useRef } from 'react'
+import { useEffect, useImperativeHandle, useRef } from 'react'
 
 export interface ConstructionIconHandle {
   startAnimation: () => void
@@ -46,6 +46,20 @@ export function ConstructionIcon({
         controls.start({ x: 0, transition: { duration: 0.2 } }),
     }
   })
+
+  useEffect(() => {
+    if (!isControlledRef.current) {
+      controls.start({
+        x: [0, STRIPES_ANIMATION_DISTANCE],
+        transition: {
+          duration: STRIPES_ANIMATION_DURATION,
+          ease: 'linear',
+          repeat: Number.POSITIVE_INFINITY,
+          repeatType: 'loop',
+        },
+      })
+    }
+  }, [controls])
 
   return (
     <div className={cn(className)} {...props}>

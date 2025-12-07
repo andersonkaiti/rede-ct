@@ -22,7 +22,7 @@ import { AlertCircle, Loader2 } from 'lucide-react'
 import { PatternFormat } from 'react-number-format'
 import { ROLE_MAPPING } from '../_constants/roles'
 import { MAX_AVATAR_SIZE_BYTES } from '../_constants/zod'
-import { useUserProfile } from '../_hooks/use-user-profile.hook'
+import { useUserProfile } from './use-user-profile.hook'
 
 interface IUserProfileProps {
   user: {

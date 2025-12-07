@@ -4,7 +4,7 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useScientificArticles } from '../../_hooks/use-scientific-articles.hook'
+import { useScientificArticles } from './use-scientific-articles.hook'
 import { scientificArticleTableColumns } from './article-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
 

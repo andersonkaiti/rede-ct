@@ -2,7 +2,7 @@
 
 import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
-import { useRegionalCongresses } from '../../_hooks/use-regional-congresses.hook'
+import { useRegionalCongresses } from './use-regional-congresses.hook'
 import { LoadingSkeleton } from './loading-skeleton'
 import { regionalCongressesTableColumns } from './regional-congresses-table-columns'
 

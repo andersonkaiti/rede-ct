@@ -4,7 +4,7 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useCourses } from '../../_hooks/use-courses.hook'
+import { useCourses } from './use-courses.hook'
 import { courseTableColumns } from './course-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
 

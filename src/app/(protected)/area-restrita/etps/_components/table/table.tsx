@@ -11,7 +11,7 @@ import {
   useQueryStates,
 } from 'nuqs'
 import type z from 'zod'
-import { useEtps } from '../../_hooks/use-etps.hook'
+import { useEtps } from './use-etps.hook'
 import { etpsTableColumns } from './etps-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
 

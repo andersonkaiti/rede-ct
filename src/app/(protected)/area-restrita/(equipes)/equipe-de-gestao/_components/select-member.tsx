@@ -7,10 +7,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@components/ui/select'
+import { useUsers } from '@hooks/use-users.hook'
 import { Plus } from 'lucide-react'
 import type React from 'react'
 import { useState } from 'react'
-import { useUsers } from '../../_hooks/use-users.hook'
 
 interface ITeamMember {
   id: string

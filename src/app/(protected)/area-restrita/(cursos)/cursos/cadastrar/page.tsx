@@ -21,9 +21,9 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
+import { useUsers } from '@hooks/use-users.hook'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../../_components/select-member'
-import { useUsers } from '../../../(equipes)/_hooks/use-users.hook'
 import { MAX_IMAGE_SIZE_BYTES, useCreateCourse } from './use-create-course.hook'
 
 export default function CadastrarCurso() {

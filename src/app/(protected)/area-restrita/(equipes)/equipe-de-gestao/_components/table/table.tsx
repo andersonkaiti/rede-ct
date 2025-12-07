@@ -3,7 +3,7 @@
 import { DataTable } from '@components/ui/data-table'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useManagementTeam } from '../../_hooks/use-management-team.hook'
+import { useManagementTeam } from './use-management-team.hook'
 import { LoadingSkeleton } from './loading-skeleton'
 import { managementTeamTableColumns } from './management-team-table-columns'
 

@@ -2,15 +2,15 @@
 
 import { Button } from '@components/ui/button'
 import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
+    DropdownMenu,
+    DropdownMenuCheckboxItem,
+    DropdownMenuContent,
+    DropdownMenuLabel,
+    DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu'
 import { Funnel } from 'lucide-react'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { sdhcTeamTableColumns } from './_table/sdhc-team-table-columns'
+import { sdhcTeamTableColumns } from './table/sdhc-team-table-columns'
 
 export function TeamMemberDisplayOptions() {
   const [columnsVisibility, setColumnsVisibility] = useQueryStates({

@@ -4,7 +4,7 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useMeetings } from '../../_hooks/use-meetings.hook'
+import { useMeetings } from './use-meetings.hook'
 import { LoadingSkeleton } from './loading-skeleton'
 import { meetingsTableColumns } from './meetings-table-columns'
 

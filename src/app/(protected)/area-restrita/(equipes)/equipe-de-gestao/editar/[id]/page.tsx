@@ -19,7 +19,7 @@ import {
 } from '@components/ui/page-container'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../_components/select-member'
-import { TeamMembersTable } from '../../_components/team-members-table/team-members-table'
+import { TeamMembersTable } from '../../_components/table/team-members-table'
 import { LoadingInputSkeleton } from './_components/loading-input-skeleton'
 import { LoadingTableSkeleton } from './_components/loading-table-skeleton'
 import { useUpdateTeam } from './use-update-team.hook'

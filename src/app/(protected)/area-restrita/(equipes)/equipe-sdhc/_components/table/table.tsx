@@ -3,11 +3,11 @@
 import { DataTable } from '@components/ui/data-table'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useLegitimatorCommittee } from '../../_hooks/use-legitimator-committee.hook'
-import { legitimatorCommitteeTableColumns } from './legitimator-committee-table-columns'
+import { useSDHCTeam } from './use-sdhc-team.hook'
 import { LoadingSkeleton } from './loading-skeleton'
+import { sdhcTeamTableColumns } from './sdhc-team-table-columns'
 
-interface IUser {
+export interface ISDHCTeamMemberUser {
   id: string
   name: string
   avatarUrl: string | null
@@ -20,18 +20,18 @@ interface IUser {
   role: 'ADMIN' | 'USER'
 }
 
-interface ILegitimatorCommitteeTeamMember {
+export interface ISDHCTeamMember {
   id: string
   role: string
   description: string | null
   createdAt: string
   updatedAt: string
   userId: string
-  user: IUser
+  user: ISDHCTeamMemberUser
 }
 
 export function Table() {
-  const { data, isLoading, handleRemoveMember } = useLegitimatorCommittee()
+  const { data, isLoading, handleRemoveMember } = useSDHCTeam()
 
   const [{ name, email, role, description, createdAt, updatedAt }] =
     useQueryStates({
@@ -47,13 +47,13 @@ export function Table() {
     return <LoadingSkeleton />
   }
 
-  const filteredLegitimatorCommitteeTableColumns: ColumnDef<ILegitimatorCommitteeTeamMember>[] =
-    legitimatorCommitteeTableColumns.filter((column) => {
+  const filteredSDHCTeamTableColumns: ColumnDef<ISDHCTeamMember>[] =
+    sdhcTeamTableColumns.filter((column) => {
       if (column.id === 'name') {
         return name
       }
 
-      if (column.id === 'email') {
+      if (column.id === 'name') {
         return email
       }
 
@@ -80,7 +80,7 @@ export function Table() {
     <>
       {!isLoading && (
         <DataTable
-          columns={filteredLegitimatorCommitteeTableColumns}
+          columns={filteredSDHCTeamTableColumns}
           data={data?.members}
           handleRemove={handleRemoveMember}
         />

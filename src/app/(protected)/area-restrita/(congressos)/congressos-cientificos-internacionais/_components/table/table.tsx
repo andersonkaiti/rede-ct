@@ -4,7 +4,7 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useInternationalScientificCongresses } from '../../_hooks/use-international-scientific-congresses.hook'
+import { useInternationalScientificCongresses } from './use-international-scientific-congresses.hook'
 import { internationalScientificCongressesTableColumns } from './international-scientific-congresses-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
 

@@ -8,10 +8,10 @@ import {
   CommandList,
 } from '@components/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@components/ui/popover'
+import { useUsers } from '@hooks/use-users.hook'
 import { cn } from '@utils/cn'
 import { CheckIcon, ChevronDownIcon, Loader2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { useUsers } from '../(equipes)/_hooks/use-users.hook'
 
 interface ISelectMemberProps {
   userId?: string

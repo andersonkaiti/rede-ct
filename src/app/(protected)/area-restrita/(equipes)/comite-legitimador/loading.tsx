@@ -1,14 +1,14 @@
 import {
-  PageActionsContainer,
-  PageContainer,
-  PageDescription,
-  PageHeader,
-  PageHeaderContent,
-  PageMain,
-  PageTitle,
+    PageActionsContainer,
+    PageContainer,
+    PageDescription,
+    PageHeader,
+    PageHeaderContent,
+    PageMain,
+    PageTitle,
 } from '@components/ui/page-container'
 import { Skeleton } from '@components/ui/skeleton'
-import { LoadingSkeleton as TableLoadingSkeleton } from './_components/_table/loading-skeleton'
+import { LoadingSkeleton as TableLoadingSkeleton } from './_components/table/loading-skeleton'
 
 export default function Loading() {
   return (

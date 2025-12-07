@@ -3,11 +3,11 @@
 import { DataTable } from '@components/ui/data-table'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useSDHCTeam } from '../../_hooks/use-sdhc-team.hook'
+import { useLegitimatorCommittee } from './use-legitimator-committee.hook'
+import { legitimatorCommitteeTableColumns } from './legitimator-committee-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
-import { sdhcTeamTableColumns } from './sdhc-team-table-columns'
 
-export interface ISDHCTeamMemberUser {
+interface IUser {
   id: string
   name: string
   avatarUrl: string | null
@@ -20,18 +20,18 @@ export interface ISDHCTeamMemberUser {
   role: 'ADMIN' | 'USER'
 }
 
-export interface ISDHCTeamMember {
+interface ILegitimatorCommitteeTeamMember {
   id: string
   role: string
   description: string | null
   createdAt: string
   updatedAt: string
   userId: string
-  user: ISDHCTeamMemberUser
+  user: IUser
 }
 
 export function Table() {
-  const { data, isLoading, handleRemoveMember } = useSDHCTeam()
+  const { data, isLoading, handleRemoveMember } = useLegitimatorCommittee()
 
   const [{ name, email, role, description, createdAt, updatedAt }] =
     useQueryStates({
@@ -47,13 +47,13 @@ export function Table() {
     return <LoadingSkeleton />
   }
 
-  const filteredSDHCTeamTableColumns: ColumnDef<ISDHCTeamMember>[] =
-    sdhcTeamTableColumns.filter((column) => {
+  const filteredLegitimatorCommitteeTableColumns: ColumnDef<ILegitimatorCommitteeTeamMember>[] =
+    legitimatorCommitteeTableColumns.filter((column) => {
       if (column.id === 'name') {
         return name
       }
 
-      if (column.id === 'name') {
+      if (column.id === 'email') {
         return email
       }
 
@@ -80,7 +80,7 @@ export function Table() {
     <>
       {!isLoading && (
         <DataTable
-          columns={filteredSDHCTeamTableColumns}
+          columns={filteredLegitimatorCommitteeTableColumns}
           data={data?.members}
           handleRemove={handleRemoveMember}
         />

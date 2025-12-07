@@ -14,9 +14,9 @@ import {
   TimelineSeparator,
   TimelineTitle,
 } from '@components/ui/timeline'
-import { getTimelineRedeCT } from '@mocks/timeline-rede-ct'
 import { Users } from 'lucide-react'
 import Image from 'next/image'
+import { getTimelineRedeCT } from '@/app/(public)/quem-somos/apresentacao-e-historia/_components/timeline-rede-ct'
 import { Countries } from './_components/countries'
 import { WhatAreRedeCTCard } from './_components/whats-are-cards/rede-ct'
 import { WhatAreTraditionalPeopleCard } from './_components/whats-are-cards/traditional-people'

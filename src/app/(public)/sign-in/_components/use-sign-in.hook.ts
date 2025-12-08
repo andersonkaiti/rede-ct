@@ -1,8 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { signIn } from '@http/auth/sign-in'
+import { useCookiesNext } from 'cookies-next'
+import { HTTPError } from 'ky'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm, useFormState } from 'react-hook-form'
+import { toast } from 'sonner'
 import z from 'zod'
-import { signInAction } from '../actions'
 
 const PASSWORD_MIN_LENGTH = 8
 
@@ -19,6 +23,9 @@ export const signInSchema = z.object({
 export type SignInInput = z.infer<typeof signInSchema>
 
 export function useSignIn() {
+  const cookies = useCookiesNext()
+  const router = useRouter()
+
   const [serverError, setServerError] = useState<string | null>(null)
   const [passwordVisibility, setPasswordVisibility] = useState(false)
 
@@ -39,13 +46,22 @@ export function useSignIn() {
     setPasswordVisibility((v) => !v)
   }
 
-  async function onSubmit(values: SignInInput) {
-    const result = await signInAction(values)
+  const submit = form.handleSubmit(async (values) => {
+    try {
+      const { token } = await signIn(values)
 
-    if (!result.success) {
-      setServerError(result.message)
+      cookies.setCookie('token', token)
+
+      toast.success('Login realizado com sucesso.')
+
+      router.push('/area-restrita')
+    } catch (error) {
+      if (error instanceof HTTPError) {
+        const errorBody = await error.response.json()
+        setServerError(errorBody.message)
+      }
     }
-  }
+  })
 
   return {
     serverError,
@@ -53,6 +69,6 @@ export function useSignIn() {
     passwordVisibility,
     isSubmitting,
     togglePasswordVisibility,
-    onSubmit,
+    submit,
   }
 }

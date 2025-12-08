@@ -1,0 +1,46 @@
+import {
+  PageActionsContainer,
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderContent,
+  PageMain,
+  PageTitle,
+} from '@components/ui/page-container'
+import { AdminWrapper } from '../../_components/hoc/admin'
+import { FilterInput } from '../_components/filter-input'
+import { OrderByButton } from '../_components/order-by-button'
+import { CreateMemberButton } from './_components/create-member/create-member-button'
+import { Table } from './_components/table/table'
+import { TeamMemberDisplayOptions } from './_components/team-member-display-options'
+
+export default function GrupoDeTrabalho() {
+  return (
+    <AdminWrapper>
+      <PageContainer>
+        <PageHeader>
+          <PageHeaderContent>
+            <PageTitle>Grupo de Trabalho</PageTitle>
+            <PageDescription>Gerencie o Grupo de Trabalho</PageDescription>
+          </PageHeaderContent>
+        </PageHeader>
+
+        <PageHeader>
+          <PageActionsContainer>
+            <FilterInput />
+
+            <TeamMemberDisplayOptions />
+
+            <OrderByButton />
+          </PageActionsContainer>
+
+          <CreateMemberButton>Adicionar membro</CreateMemberButton>
+        </PageHeader>
+
+        <PageMain>
+          <Table />
+        </PageMain>
+      </PageContainer>
+    </AdminWrapper>
+  )
+}

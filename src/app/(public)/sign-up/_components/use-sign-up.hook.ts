@@ -1,15 +1,18 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { signUp } from '@http/auth/sign-up'
+import { HTTPError } from 'ky'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm, useFormState } from 'react-hook-form'
+import { toast } from 'sonner'
 import z from 'zod'
-import { signUpAction } from '../actions'
 
 const PASSWORD_MIN_LENGTH = 8
 
 export const signUpSchema = z
   .object({
     name: z.string('Nome é obrigatório. ').min(1, 'Nome é obrigatório.'),
-    email: z.email('E-mail inválido. ').min(1, 'E-mail é obrigatório.'),
+    emailAddress: z.email('E-mail inválido. ').min(1, 'E-mail é obrigatório.'),
     password: z
       .string('A senha é obrigatória. ')
       .min(
@@ -31,6 +34,8 @@ export const signUpSchema = z
 export type SignUpInput = z.infer<typeof signUpSchema>
 
 export function useSignUp() {
+  const router = useRouter()
+
   const [serverError, setServerError] = useState<string | null>(null)
   const [passwordVisibility, setPasswordVisibility] = useState(false)
   const [confirmPasswordVisibility, setConfirmPasswordVisibility] =
@@ -40,7 +45,7 @@ export function useSignUp() {
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: '',
-      email: '',
+      emailAddress: '',
       password: '',
       confirmPassword: '',
     },
@@ -59,13 +64,20 @@ export function useSignUp() {
     setConfirmPasswordVisibility((v) => !v)
   }
 
-  async function onSubmit(values: SignUpInput) {
-    const result = await signUpAction(values)
+  const submit = form.handleSubmit(async (values) => {
+    try {
+      await signUp(values)
 
-    if (!result.success) {
-      setServerError(result.message)
+      toast.success('Cadastro realizado com sucesso.')
+
+      router.push('/sign-in')
+    } catch (error) {
+      if (error instanceof HTTPError) {
+        const errorData = await error.response.json()
+        setServerError(errorData.message)
+      }
     }
-  }
+  })
 
   return {
     serverError,
@@ -75,6 +87,6 @@ export function useSignUp() {
     isSubmitting,
     togglePasswordVisibility,
     toggleConfirmPasswordVisibility,
-    onSubmit,
+    submit,
   }
 }

@@ -9,7 +9,10 @@ import {
 } from '@components/ui/page-container'
 import { AdminWrapper } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
+import { OrderByButton } from '../../_components/order-by-button'
 import { CreateMemberButton } from './_components/create-member/create-member-button'
+import { Table } from './_components/table/table'
+import { TeamMemberDisplayOptions } from './_components/team-member-display-options'
 
 export default function CentroDeReferencia() {
   return (
@@ -25,12 +28,18 @@ export default function CentroDeReferencia() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <TeamMemberDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
 
           <CreateMemberButton>Adicionar membro</CreateMemberButton>
         </PageHeader>
 
-        <PageMain>Centro de Referência</PageMain>
+        <PageMain>
+          <Table />
+        </PageMain>
       </PageContainer>
     </AdminWrapper>
   )

@@ -33,7 +33,7 @@ export function UserCardComponent({ member }: IUserCardComponentProps) {
     <UserCard>
       <UserCardImage
         alt={`${member.user.name}`}
-        src={member.user.avatarUrl || '/images/placeholder.png'}
+        src={member.user.avatarUrl as string}
       />
       <UserCardContent>
         <div className="flex flex-grow flex-col items-center justify-between gap-1">

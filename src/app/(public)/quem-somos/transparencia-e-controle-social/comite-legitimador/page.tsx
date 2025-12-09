@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 import { BackArrow } from '@components/back-arrow'
 import { Badge } from '@components/ui/badge'
 import {
@@ -17,8 +15,8 @@ import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicLegitimatorCommittee = dynamicImport(() =>
   import('./_components/legitimator-committee').then(
-    (m) => m.LegitimatorCommittee
-  )
+    (m) => m.LegitimatorCommittee,
+  ),
 )
 
 export default function ComiteLegitimador() {

@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 import { BackArrow } from '@components/back-arrow'
 import { UserCardRedLine } from '@components/ui/user-card'
 import dynamicImport from 'next/dynamic'
@@ -7,7 +5,7 @@ import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicSDHCTeam = dynamicImport(() =>
-  import('./_components/sdhc-team').then((m) => m.SDHCTeam)
+  import('./_components/sdhc-team').then((m) => m.SDHCTeam),
 )
 
 export default function EquipeSDHC() {

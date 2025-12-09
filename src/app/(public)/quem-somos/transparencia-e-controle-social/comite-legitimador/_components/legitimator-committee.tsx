@@ -8,10 +8,9 @@ export async function LegitimatorCommittee() {
   return (
     <>
       <UserCardWrapper>
-        {data.members.length &&
-          data.members.map((member, index: number) => (
-            <UserCardComponent key={index} member={member} />
-          ))}
+        {data.members.map((member, index: number) => (
+          <UserCardComponent key={index} member={member} />
+        ))}
       </UserCardWrapper>
 
       {!data.members.length && (

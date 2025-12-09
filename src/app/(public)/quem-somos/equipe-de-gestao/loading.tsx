@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 import { UsersIcon } from '@components/icons/users'
 import { Badge } from '@components/ui/badge'
 import LoadingSkeleton from './_components/loading-skeleton'

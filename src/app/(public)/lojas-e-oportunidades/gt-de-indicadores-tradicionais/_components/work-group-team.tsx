@@ -3,27 +3,21 @@ import { getWorkGroupTeamMembers } from '@http/teams/work-group-team/get-work-gr
 import { UserCardComponent } from './user-card'
 
 export async function WorkGroupTeam() {
-  const data = await getWorkGroupTeamMembers({
-    filter: '',
-    orderBy: '',
-    page: '1',
-    limit: '50',
-  })
+  const data = await getWorkGroupTeamMembers({})
+
+  if (!data.members.length) {
+    return (
+      <div className="py-8 text-center text-muted-foreground">
+        Nenhum membro encontrado no Grupo de Trabalho.
+      </div>
+    )
+  }
 
   return (
-    <>
-      <UserCardWrapper>
-        {data.members.length &&
-          data.members?.map((member, index: number) => (
-            <UserCardComponent key={index} member={member} />
-          ))}
-      </UserCardWrapper>
-
-      {!data.members.length && (
-        <div className="py-8 text-center text-muted-foreground">
-          Nenhum membro encontrado no Grupo de Trabalho.
-        </div>
-      )}
-    </>
+    <UserCardWrapper>
+      {data.members.map((member, index: number) => (
+        <UserCardComponent key={index} member={member} />
+      ))}
+    </UserCardWrapper>
   )
 }

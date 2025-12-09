@@ -1,6 +1,3 @@
-export const dynamic = 'force-dynamic'
-
-import { BackArrow } from '@components/back-arrow'
 import { Badge } from '@components/ui/badge'
 import { UserCardRedLine } from '@components/ui/user-card'
 import { Award } from 'lucide-react'
@@ -15,8 +12,6 @@ const DynamicWorkGroupTeam = dynamicImport(() =>
 export default function GTDeIndicadoresTradicionais() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <BackArrow href="/lojas-e-oportunidades" />
-
       <header className="space-y-8">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">

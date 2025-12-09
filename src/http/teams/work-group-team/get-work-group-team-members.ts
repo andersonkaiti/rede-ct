@@ -3,10 +3,10 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IGetWorkGroupTeamMembersRequest {
-  filter: string
-  orderBy: string
-  page: string
-  limit: string
+  filter?: string
+  orderBy?: string
+  page?: string
+  limit?: string
 }
 
 export const getWorkGroupTeamMembersSchema = z.object({

@@ -19,7 +19,7 @@ function UserCardWrapper({ children }: IUserCardProps) {
 
 function UserCard({ children }: IUserCardProps) {
   return (
-    <Card className="flex w-full flex-1 flex-col items-center justify-center gap-8 border-none bg-background shadow-none">
+    <Card className="flex w-full flex-1 flex-col items-center justify-center gap-2 border-none bg-background shadow-none">
       {children}
     </Card>
   )
@@ -27,13 +27,13 @@ function UserCard({ children }: IUserCardProps) {
 
 function UserCardRedLine() {
   return (
-    <div className="mx-auto h-[1px] w-1/2 bg-gradient-to-r from-transparent via-primary/80 to-transparent" />
+    <div className="mx-auto h-px w-1/2 bg-linear-to-r from-transparent via-primary/80 to-transparent" />
   )
 }
 
 function UserCardContent({ children }: IUserCardProps) {
   return (
-    <CardContent className="flex w-full flex-grow flex-col items-center justify-between gap-8">
+    <CardContent className="flex w-full grow flex-col items-center justify-between gap-8">
       {children}
     </CardContent>
   )
@@ -42,14 +42,12 @@ function UserCardContent({ children }: IUserCardProps) {
 function UserCardImage({ alt, src, ...rest }: ImageProps) {
   return (
     <Avatar className="relative size-40 rounded-full shadow-2xl ring-4 ring-primary/20">
-      <div className="absolute inset-0 scale-110 rounded-full bg-gradient-to-r from-primary to-red-600 opacity-20 blur-lg" />
       <AvatarImage
         alt={alt}
         className="absolute h-full w-full rounded-full object-cover"
-        src={src as string}
+        src={(src as string) || '/images/placeholder.png'}
         {...rest}
       />
-      <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 to-transparent" />
     </Avatar>
   )
 }
@@ -80,7 +78,7 @@ function UserCardSkeleton() {
         <ImageIcon className="size-10 text-background" />
       </Skeleton>
 
-      <div className="flex w-full flex-grow flex-col items-center justify-between gap-2">
+      <div className="flex w-full grow flex-col items-center justify-between gap-2">
         <Skeleton className="h-5 w-full rounded-full" />
         <Skeleton className="mx-auto h-4 w-26.5 rounded-full" />
       </div>

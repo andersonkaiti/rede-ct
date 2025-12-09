@@ -1,7 +1,7 @@
 import {
   BarChart2,
   BookOpen,
-  FilePlus,
+  Building,
   FileText,
   Globe,
   GraduationCap,
@@ -144,63 +144,58 @@ export const navigationLinks: NavigationLinkType[] = [
         label: 'GT Indicadores de Origem Tradicional',
         icon: BarChart2,
       },
-      {
-        path: '/lojas-e-oportunidades/editais-e-oportunidades',
-        label: 'Editais e Oportunidades',
-        icon: FilePlus,
-      },
     ],
   },
   {
     path: '/portfolio',
     label: 'Portfólio',
-    // children: [
-    //   {
-    //     path: "/portfolio/legislacoes-mapas",
-    //     label: "Legislações",
-    //     icon: ScrollText,
-    //   },
-    //   {
-    //     path: "/portfolio/legislacoes-mapas",
-    //     label: "Mapas",
-    //     icon: Map,
-    //   },
-    //   {
-    //     path: "/portfolio/povos-originarios",
-    //     label: "Povos Originários",
-    //     icon: Users,
-    //   },
-    //   {
-    //     path: "/portfolio/comunidades-tradicionais",
-    //     label: "Comunidades Tradicionais",
-    //     icon: UsersRound,
-    //   },
-    //   {
-    //     path: "/portfolio/grupos-pesquisa",
-    //     label: "Grupos de Pesquisa",
-    //     icon: Network,
-    //   },
-    //   {
-    //     path: "/portfolio/redes-e-coletivos",
-    //     label: "Redes e Coletivos",
-    //     icon: Network,
-    //   },
-    //   {
-    //     path: "/portfolio/museus-espacos",
-    //     label: "Museus e Espaços Museológicos",
-    //     icon: GalleryHorizontal,
-    //   },
-    //   {
-    //     path: "/portfolio/destaques-redect",
-    //     label: "Destaques RedeCT",
-    //     icon: Star,
-    //   },
-    //   {
-    //     path: "/portfolio/centro-de-referencia-unesp",
-    //     label: "Centro de Referência UNESP",
-    //     icon: Building,
-    //   },
-    // ],
+    children: [
+      {
+        path: '/portfolio/centro-de-referencia-unesp',
+        label: 'Centro de Referência UNESP',
+        icon: Building,
+      },
+      // {
+      //   path: "/portfolio/legislacoes-mapas",
+      //   label: "Legislações",
+      //   icon: ScrollText,
+      // },
+      // {
+      //   path: "/portfolio/legislacoes-mapas",
+      //   label: "Mapas",
+      //   icon: Map,
+      // },
+      // {
+      //   path: "/portfolio/povos-originarios",
+      //   label: "Povos Originários",
+      //   icon: Users,
+      // },
+      // {
+      //   path: "/portfolio/comunidades-tradicionais",
+      //   label: "Comunidades Tradicionais",
+      //   icon: UsersRound,
+      // },
+      // {
+      //   path: "/portfolio/grupos-pesquisa",
+      //   label: "Grupos de Pesquisa",
+      //   icon: Network,
+      // },
+      // {
+      //   path: "/portfolio/redes-e-coletivos",
+      //   label: "Redes e Coletivos",
+      //   icon: Network,
+      // },
+      // {
+      //   path: "/portfolio/museus-espacos",
+      //   label: "Museus e Espaços Museológicos",
+      //   icon: GalleryHorizontal,
+      // },
+      // {
+      //   path: "/portfolio/destaques-redect",
+      //   label: "Destaques RedeCT",
+      //   icon: Star,
+      // },
+    ],
   },
   {
     path: '/noticias',

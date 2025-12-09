@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 import { UsersIcon } from '@components/icons/users'
 import { Badge } from '@components/ui/badge'
 import dynamicImport from 'next/dynamic'
@@ -7,7 +5,7 @@ import { Suspense } from 'react'
 import LoadingSkeleton from './_components/loading-skeleton'
 
 const ManagementTeamsDynamic = dynamicImport(() =>
-  import('./_components/management-teams').then((m) => m.ManagementTeams)
+  import('./_components/management-teams').then((m) => m.ManagementTeams),
 )
 
 export default function EquipeDeGestao() {

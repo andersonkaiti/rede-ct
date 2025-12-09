@@ -2,14 +2,14 @@ import { api } from '@http/api-client'
 import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
-interface IGetWorkGroupTeamMembersRequest {
+interface IGetReferenceCenterTeamMembersRequest {
   filter?: string
   orderBy?: string
   page?: string
   limit?: string
 }
 
-export const getWorkGroupTeamMembersSchema = z.object({
+export const getReferenceCenterTeamMembersSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
   offset: z.number(),
@@ -38,16 +38,16 @@ export const getWorkGroupTeamMembersSchema = z.object({
   ),
 })
 
-export async function getWorkGroupTeamMembers(
-  params: IGetWorkGroupTeamMembersRequest,
+export async function getReferenceCenterTeamMembers(
+  params: IGetReferenceCenterTeamMembersRequest,
 ) {
   const searchParams = parseSearchParams(params)
 
   const data = await api
-    .get('work-group-team-member', {
+    .get('reference-center-team-member', {
       searchParams,
     })
     .json()
 
-  return getWorkGroupTeamMembersSchema.parse(data)
+  return getReferenceCenterTeamMembersSchema.parse(data)
 }

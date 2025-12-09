@@ -1,14 +1,14 @@
 import { UserCardWrapper } from '@components/ui/user-card'
-import { getWorkGroupTeamMembers } from '@http/teams/work-group-team/get-work-group-team-members'
+import { getReferenceCenterTeamMembers } from '@http/teams/reference-center-team/get-reference-center-team-members'
 import { UserCardComponent } from './user-card'
 
-export async function WorkGroupTeam() {
-  const data = await getWorkGroupTeamMembers({})
+export async function ReferenceCenterTeam() {
+  const data = await getReferenceCenterTeamMembers({})
 
   if (!data.members.length) {
     return (
       <div className="py-8 text-center text-muted-foreground">
-        Nenhum membro encontrado no Grupo de Trabalho.
+        Nenhum membro encontrado no Centro de Referência.
       </div>
     )
   }

@@ -7,6 +7,12 @@ export async function ManagementTeams() {
 
   return (
     <>
+      {!data.teams.length && (
+        <div className="py-8 text-center text-muted-foreground">
+          Nenhum membro encontrado na Equipe de Gestão.
+        </div>
+      )}
+
       {data.teams.map((teamSection, index: number) => (
         <section className="space-y-4 md:space-y-8" key={index}>
           <div className="space-y-8">

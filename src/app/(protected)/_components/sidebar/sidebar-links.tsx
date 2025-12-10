@@ -241,6 +241,12 @@ export const sidebarLinks: NavigationLink[] = [
         isProtected: true,
         path: '/area-restrita/portfolio/centro-de-referencia-unesp',
       },
+      {
+        label: 'Grupo de Pesquisa',
+        icon: Users,
+        isProtected: true,
+        path: '/area-restrita/portfolio/grupo-de-pesquisa',
+      },
     ],
   },
 ]

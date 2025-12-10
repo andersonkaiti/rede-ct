@@ -7,9 +7,9 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
-import { AdminWrapper } from '../../_components/hoc/admin'
-import { CreateButton } from '../_components/create-button'
-import { FilterInput } from '../_components/filter-input'
+import { AdminWrapper } from '../../../_components/hoc/admin'
+import { FilterInput } from '../../_components/filter-input'
+import { CreateLawButton } from './_components/create-law/create-law-button'
 
 export default function Legislacoes() {
   return (
@@ -26,9 +26,8 @@ export default function Legislacoes() {
           <PageActionsContainer>
             <FilterInput />
           </PageActionsContainer>
-          <CreateButton href="/area-restrita/legislacoes/cadastrar">
-            Cadastrar legislação
-          </CreateButton>
+
+          <CreateLawButton>Adicionar lei</CreateLawButton>
         </PageHeader>
 
         <PageMain>Legislações</PageMain>

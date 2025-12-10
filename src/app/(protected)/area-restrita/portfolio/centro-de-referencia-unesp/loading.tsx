@@ -7,6 +7,7 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { Skeleton } from '@components/ui/skeleton'
+import { LoadingSkeleton } from './_components/table/loading-skeleton'
 
 export default function Loading() {
   return (
@@ -27,11 +28,7 @@ export default function Loading() {
       </PageHeader>
 
       <PageMain>
-        <div className="space-y-4">
-          <Skeleton className="h-24 w-full" />
-          <Skeleton className="h-24 w-full" />
-          <Skeleton className="h-24 w-full" />
-        </div>
+        <LoadingSkeleton />
 
         <div className="mt-4 flex items-center justify-between">
           <Skeleton className="h-9 w-52" />

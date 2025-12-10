@@ -1,3 +1,4 @@
+import type { NavigationLink as NavigationLinkType } from '@/@types/navigation-link'
 import {
   BarChart2,
   BookOpen,
@@ -17,7 +18,6 @@ import {
   Users,
   UsersRound,
 } from 'lucide-react'
-import type { NavigationLink as NavigationLinkType } from '@/@types/navigation-link'
 
 export const navigationLinks: NavigationLinkType[] = [
   {
@@ -155,16 +155,11 @@ export const navigationLinks: NavigationLinkType[] = [
         label: 'Centro de Referência UNESP',
         icon: Building,
       },
-      // {
-      //   path: "/portfolio/legislacoes-mapas",
-      //   label: "Legislações",
-      //   icon: ScrollText,
-      // },
-      // {
-      //   path: "/portfolio/legislacoes-mapas",
-      //   label: "Mapas",
-      //   icon: Map,
-      // },
+      {
+        path: '/portfolio/legislacoes',
+        label: 'Legislações',
+        icon: ScrollText,
+      },
       // {
       //   path: "/portfolio/povos-originarios",
       //   label: "Povos Originários",

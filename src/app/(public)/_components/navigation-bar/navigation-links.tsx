@@ -160,6 +160,11 @@ export const navigationLinks: NavigationLinkType[] = [
         label: 'Legislações',
         icon: ScrollText,
       },
+      {
+        path: '/portfolio/grupo-de-pesquisa',
+        label: 'Grupos de Pesquisa',
+        icon: Network,
+      },
       // {
       //   path: "/portfolio/povos-originarios",
       //   label: "Povos Originários",
@@ -169,11 +174,6 @@ export const navigationLinks: NavigationLinkType[] = [
       //   path: "/portfolio/comunidades-tradicionais",
       //   label: "Comunidades Tradicionais",
       //   icon: UsersRound,
-      // },
-      // {
-      //   path: "/portfolio/grupos-pesquisa",
-      //   label: "Grupos de Pesquisa",
-      //   icon: Network,
       // },
       // {
       //   path: "/portfolio/redes-e-coletivos",

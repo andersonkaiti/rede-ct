@@ -14,8 +14,8 @@ export default function Loading() {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Portfólio</PageTitle>
-          <PageDescription>Gerencie o portfólio</PageDescription>
+          <PageTitle>Legislações</PageTitle>
+          <PageDescription>Gerencie as legislações</PageDescription>
         </PageHeaderContent>
       </PageHeader>
 

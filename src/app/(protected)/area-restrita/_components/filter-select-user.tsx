@@ -25,7 +25,7 @@ export function FilterSelectUser() {
 
   const [userId, setUserId] = useQueryState(
     'userId',
-    parseAsString.withDefault('')
+    parseAsString.withDefault(''),
   )
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState<string>(userId || '')
@@ -59,8 +59,15 @@ export function FilterSelectUser() {
       setSelected('')
       setUserId('')
     } else {
-      setSelected(currentValue)
-      setUserId(currentValue)
+      const foundUser = users.find(
+        (u) =>
+          `${u.name} (${u.emailAddress})`.toLowerCase() ===
+          currentValue.toLowerCase(),
+      )
+      if (foundUser) {
+        setSelected(foundUser.id)
+        setUserId(foundUser.id)
+      }
     }
     setOpen(false)
   }
@@ -96,7 +103,7 @@ export function FilterSelectUser() {
         </PopoverTrigger>
         <PopoverContent
           align="start"
-          className="w-full min-w-[var(--radix-popper-anchor-width)] border-input p-0"
+          className="w-full min-w-(--radix-popper-anchor-width) border-input p-0"
         >
           <Command>
             <CommandInput placeholder="Buscar usuário..." />
@@ -123,8 +130,8 @@ export function FilterSelectUser() {
                   users.map((u) => (
                     <CommandItem
                       key={u.id}
-                      onSelect={() => handleSelect(u.id)}
-                      value={u.id}
+                      onSelect={handleSelect}
+                      value={`${u.name} (${u.emailAddress})`}
                     >
                       {u.name}
                       {selected === u.id && (

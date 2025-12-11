@@ -10,7 +10,7 @@ export function RegisteredCertificationList() {
 
   return (
     <>
-      {data?.certifications.length && !isLoading && (
+      {!!data?.certifications.length && !isLoading && (
         <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 xlg:grid-cols-3">
           {data?.certifications.map((certification) => (
             <Certification key={certification.id} {...certification} />

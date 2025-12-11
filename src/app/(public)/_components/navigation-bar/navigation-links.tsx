@@ -4,6 +4,7 @@ import {
   BookOpen,
   Building,
   FileText,
+  GalleryHorizontal,
   Globe,
   GraduationCap,
   Home,
@@ -165,26 +166,11 @@ export const navigationLinks: NavigationLinkType[] = [
         label: 'Grupos de Pesquisa',
         icon: Network,
       },
-      // {
-      //   path: "/portfolio/povos-originarios",
-      //   label: "Povos Originários",
-      //   icon: Users,
-      // },
-      // {
-      //   path: "/portfolio/comunidades-tradicionais",
-      //   label: "Comunidades Tradicionais",
-      //   icon: UsersRound,
-      // },
-      // {
-      //   path: "/portfolio/redes-e-coletivos",
-      //   label: "Redes e Coletivos",
-      //   icon: Network,
-      // },
-      // {
-      //   path: "/portfolio/museus-espacos",
-      //   label: "Museus e Espaços Museológicos",
-      //   icon: GalleryHorizontal,
-      // },
+      {
+        path: '/portfolio/museus',
+        label: 'Museus',
+        icon: GalleryHorizontal,
+      },
       // {
       //   path: "/portfolio/destaques-redect",
       //   label: "Destaques RedeCT",

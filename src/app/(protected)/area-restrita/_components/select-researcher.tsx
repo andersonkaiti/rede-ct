@@ -96,11 +96,19 @@ export function SelectResearcher({
                   <CommandItem
                     key={r.id}
                     onSelect={(currentValue) => {
-                      setSelected(currentValue)
-                      setOpen(false)
-                      onChange?.(currentValue)
+                      // Find researcher by the searchable value (name + email)
+                      const foundResearcher = data?.researchers.find(
+                        (researcher) =>
+                          `${researcher.user.name} (${researcher.user.emailAddress})`.toLowerCase() ===
+                          currentValue.toLowerCase(),
+                      )
+                      if (foundResearcher) {
+                        setSelected(foundResearcher.id)
+                        setOpen(false)
+                        onChange?.(foundResearcher.id)
+                      }
                     }}
-                    value={r.id}
+                    value={`${r.user.name} (${r.user.emailAddress})`}
                   >
                     {r.user.name} ({r.user.emailAddress})
                     {selected === r.id && (

@@ -7,9 +7,14 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
+import { Suspense } from 'react'
 import { AdminWrapper } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
+import { OrderByButton } from '../../_components/order-by-button'
 import { CreateMuseumButton } from './_components/create-museum-button'
+import { MuseumDisplayOptions } from './_components/museum-display-options'
+import { LoadingSkeleton } from './_components/table/loading-skeleton'
+import { Table } from './_components/table/table'
 
 export default function Museus() {
   return (
@@ -25,12 +30,20 @@ export default function Museus() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <MuseumDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
 
           <CreateMuseumButton />
         </PageHeader>
 
-        <PageMain>Museus</PageMain>
+        <PageMain>
+          <Suspense fallback={<LoadingSkeleton />}>
+            <Table />
+          </Suspense>
+        </PageMain>
       </PageContainer>
     </AdminWrapper>
   )

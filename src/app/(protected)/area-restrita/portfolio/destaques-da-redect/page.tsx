@@ -7,9 +7,14 @@ import {
   PageMain,
   PageTitle,
 } from '@components/ui/page-container'
+import { Suspense } from 'react'
 import { AdminWrapper } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
+import { OrderByButton } from '../../_components/order-by-button'
 import { CreateRedeCTHighlightButton } from './_components/create-redect-highlight-button'
+import { RedeCTHighlightDisplayOptions } from './_components/redect-highlight-display-options'
+import { LoadingSkeleton } from './_components/table/loading-skeleton'
+import { Table } from './_components/table/table'
 
 export default function DestaquesRedeCT() {
   return (
@@ -27,12 +32,20 @@ export default function DestaquesRedeCT() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <RedeCTHighlightDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
 
           <CreateRedeCTHighlightButton />
         </PageHeader>
 
-        <PageMain>Destaques RedeCT</PageMain>
+        <PageMain>
+          <Suspense fallback={<LoadingSkeleton />}>
+            <Table />
+          </Suspense>
+        </PageMain>
       </PageContainer>
     </AdminWrapper>
   )

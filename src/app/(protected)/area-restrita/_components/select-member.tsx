@@ -88,11 +88,19 @@ export function SelectMember({ userId, onChange }: ISelectMemberProps) {
                   <CommandItem
                     key={u.id}
                     onSelect={(currentValue) => {
-                      setSelected(currentValue)
-                      setOpen(false)
-                      onChange?.(currentValue)
+                      // Find user by the searchable value (name + email)
+                      const foundUser = users.find(
+                        (user) =>
+                          `${user.name} (${user.emailAddress})`.toLowerCase() ===
+                          currentValue.toLowerCase(),
+                      )
+                      if (foundUser) {
+                        setSelected(foundUser.id)
+                        setOpen(false)
+                        onChange?.(foundUser.id)
+                      }
                     }}
-                    value={u.id}
+                    value={`${u.name} (${u.emailAddress})`}
                   >
                     {u.name} ({u.emailAddress})
                     {selected === u.id && (

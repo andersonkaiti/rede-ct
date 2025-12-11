@@ -171,11 +171,11 @@ export const navigationLinks: NavigationLinkType[] = [
         label: 'Museus',
         icon: GalleryHorizontal,
       },
-      // {
-      //   path: "/portfolio/destaques-redect",
-      //   label: "Destaques RedeCT",
-      //   icon: Star,
-      // },
+      {
+        path: '/portfolio/destaques-da-redect',
+        label: 'Destaques RedeCT',
+        icon: Star,
+      },
     ],
   },
   {

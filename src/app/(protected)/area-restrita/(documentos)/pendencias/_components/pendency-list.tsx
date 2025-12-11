@@ -13,7 +13,7 @@ export function PendencyList() {
 
   return (
     <>
-      {data?.pendencies.length && !isLoading && (
+      {!!data && !isLoading && (
         <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 xlg:grid-cols-3">
           {pendencies.map((pendency) => (
             <Pendency key={pendency.id} pendency={pendency} />

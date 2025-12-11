@@ -233,7 +233,7 @@ export const sidebarLinks: NavigationLink[] = [
         label: 'Destaques RedeCT',
         icon: Star,
         isProtected: true,
-        path: '/area-restrita/portfolio/destaques-redect',
+        path: '/area-restrita/portfolio/destaques-da-redect',
       },
       {
         label: 'Centro de Referência UNESP',

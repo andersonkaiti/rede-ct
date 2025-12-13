@@ -5,7 +5,7 @@ import { SocialMedia } from './_components/social-media'
 export function Footer() {
   return (
     <footer className="relative bg-background text-background-foreground">
-      <div className="mx-auto w-full max-w-screen-xl space-y-8 p-4 py-6 sm:space-y-20 lg:py-8">
+      <div className="mx-auto w-full max-w-(--breakpoint-xl) space-y-8 p-4 py-6 sm:space-y-20 lg:py-8">
         <div className="gap-16 space-y-10 md:flex md:justify-between">
           <div className="max-w-xs space-y-8">
             <div className="flex items-center gap-2">

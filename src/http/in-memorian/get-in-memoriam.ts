@@ -30,7 +30,7 @@ export const getInMemoriamSchema = z.object({
       role: z.enum(['RESEARCHER', 'LEADER']),
       createdAt: z.string(),
       updatedAt: z.string(),
-    })
+    }),
   ),
 })
 

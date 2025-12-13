@@ -13,17 +13,19 @@ export function SelectAuthor() {
 
   const [authorId, setAuthorId] = useQueryState(
     'authorId',
-    parseAsString.withDefault('')
+    parseAsString.withDefault(''),
   )
 
   return (
     <SelectWithSearch
       emptyMessage="Nenhum autor"
       onChange={setAuthorId}
-      options={users?.map(user => ({
-        label: user.name,
-        value: user.id,
-      })) || []} 
+      options={
+        users?.map((user) => ({
+          label: user.name,
+          value: user.id,
+        })) || []
+      }
       placeholder="Selecione um autor"
       selectPlaceholder="Buscar autor..."
       value={authorId}

@@ -25,7 +25,7 @@ export const createNewsSchema = z.object({
         maxSize: TOTAL_SIZE,
         optional: false,
       }),
-    'A imagem é obrigatória'
+    'A imagem é obrigatória',
   ),
 })
 

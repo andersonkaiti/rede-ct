@@ -52,14 +52,14 @@ export type FileUploadActions = {
   handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void
   openFileDialog: () => void
   getInputProps: (
-    props?: InputHTMLAttributes<HTMLInputElement>
+    props?: InputHTMLAttributes<HTMLInputElement>,
   ) => InputHTMLAttributes<HTMLInputElement> & {
     ref: React.Ref<HTMLInputElement>
   }
 }
 
 export function useAvatarUploader(
-  options: FileUploadOptions = {}
+  options: FileUploadOptions = {},
 ): [FileUploadState, FileUploadActions] {
   const {
     maxFiles = Number.POSITIVE_INFINITY,
@@ -90,7 +90,7 @@ export function useAvatarUploader(
       }
       return file.url
     },
-    []
+    [],
   )
 
   const generateUniqueId = useCallback((file: File | FileMetadata): string => {
@@ -142,7 +142,7 @@ export function useAvatarUploader(
         preview: createPreview(file),
       }))
     },
-    [generateUniqueId, createPreview]
+    [generateUniqueId, createPreview],
   )
 
   const checkFileLimit = useCallback(
@@ -153,7 +153,7 @@ export function useAvatarUploader(
         state.files.length + newFilesCount > maxFiles
       )
     },
-    [multiple, maxFiles, state.files.length]
+    [multiple, maxFiles, state.files.length],
   )
 
   const addFiles = useCallback(
@@ -209,7 +209,7 @@ export function useAvatarUploader(
       processFiles,
       onFilesAdded,
       onFilesChange,
-    ]
+    ],
   )
 
   const removeFile = useCallback(
@@ -234,7 +234,7 @@ export function useAvatarUploader(
         }
       })
     },
-    [onFilesChange]
+    [onFilesChange],
   )
 
   const clearErrors = useCallback(() => {
@@ -285,7 +285,7 @@ export function useAvatarUploader(
         }
       }
     },
-    [addFiles, multiple]
+    [addFiles, multiple],
   )
 
   const handleFileChange = useCallback(
@@ -294,7 +294,7 @@ export function useAvatarUploader(
         addFiles(e.target.files)
       }
     },
-    [addFiles]
+    [addFiles],
   )
 
   const openFileDialog = useCallback(() => {
@@ -314,7 +314,7 @@ export function useAvatarUploader(
         ref: inputRef,
       }
     },
-    [accept, multiple, handleFileChange]
+    [accept, multiple, handleFileChange],
   )
 
   return [

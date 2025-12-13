@@ -4,15 +4,13 @@ import { cn } from '@utils/cn'
 import { Slot } from 'radix-ui'
 import * as React from 'react'
 
-// Types
 type TimelineContextValue = {
   activeStep: number
   setActiveStep: (step: number) => void
 }
 
-// Context
 const TimelineContext = React.createContext<TimelineContextValue | undefined>(
-  undefined
+  undefined,
 )
 
 const useTimeline = () => {
@@ -23,7 +21,6 @@ const useTimeline = () => {
   return context
 }
 
-// Components
 interface TimelineProps extends React.HTMLAttributes<HTMLDivElement> {
   defaultValue?: number
   value?: number
@@ -48,7 +45,7 @@ function Timeline({
       }
       onValueChange?.(step)
     },
-    [value, onValueChange]
+    [value, onValueChange],
   )
 
   const currentStep = value ?? activeStep
@@ -60,7 +57,7 @@ function Timeline({
       <div
         className={cn(
           'group/timeline flex data-[orientation=horizontal]:w-full data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col',
-          className
+          className,
         )}
         data-orientation={orientation}
         data-slot="timeline"
@@ -70,7 +67,6 @@ function Timeline({
   )
 }
 
-// TimelineContent
 function TimelineContent({
   className,
   ...props
@@ -84,7 +80,6 @@ function TimelineContent({
   )
 }
 
-// TimelineDate
 interface TimelineDateProps extends React.HTMLAttributes<HTMLTimeElement> {
   asChild?: boolean
 }
@@ -100,7 +95,7 @@ function TimelineDate({
     <Comp
       className={cn(
         'mb-1 block font-medium text-muted-foreground text-xs group-data-[orientation=vertical]/timeline:max-sm:h-4',
-        className
+        className,
       )}
       data-slot="timeline-date"
       {...props}
@@ -108,7 +103,6 @@ function TimelineDate({
   )
 }
 
-// TimelineHeader
 function TimelineHeader({
   className,
   ...props
@@ -118,7 +112,6 @@ function TimelineHeader({
   )
 }
 
-// TimelineIndicator
 interface TimelineIndicatorProps extends React.HTMLAttributes<HTMLDivElement> {
   asChild?: boolean
 }
@@ -134,7 +127,7 @@ function TimelineIndicator({
       aria-hidden="true"
       className={cn(
         'group-data-[orientation=horizontal]/timeline:-top-6 group-data-[orientation=horizontal]/timeline:-translate-y-1/2 group-data-[orientation=vertical]/timeline:-left-6 group-data-[orientation=vertical]/timeline:-translate-x-1/2 absolute size-4 rounded-full border-2 border-primary/20 group-data-[orientation=vertical]/timeline:top-0 group-data-[orientation=horizontal]/timeline:left-0 group-data-completed/timeline-item:border-primary',
-        className
+        className,
       )}
       data-slot="timeline-indicator"
       {...props}
@@ -144,7 +137,6 @@ function TimelineIndicator({
   )
 }
 
-// TimelineItem
 interface TimelineItemProps extends React.HTMLAttributes<HTMLDivElement> {
   step: number
 }
@@ -155,8 +147,8 @@ function TimelineItem({ step, className, ...props }: TimelineItemProps) {
   return (
     <div
       className={cn(
-        'group/timeline-item relative flex flex-1 flex-col gap-0.5 group-data-[orientation=vertical]/timeline:ms-8 group-data-[orientation=horizontal]/timeline:mt-8 group-data-[orientation=horizontal]/timeline:not-last:pe-8 group-data-[orientation=vertical]/timeline:not-last:pb-12 has-[+[data-completed]]:[&_[data-slot=timeline-separator]]:bg-primary',
-        className
+        'group/timeline-item relative flex flex-1 flex-col gap-0.5 has-[+[data-completed]]:**:data-[slot=timeline-separator]:bg-primary group-data-[orientation=vertical]/timeline:ms-8 group-data-[orientation=horizontal]/timeline:mt-8 group-data-[orientation=horizontal]/timeline:not-last:pe-8 group-data-[orientation=vertical]/timeline:not-last:pb-12',
+        className,
       )}
       data-completed={step <= activeStep || undefined}
       data-slot="timeline-item"
@@ -165,7 +157,6 @@ function TimelineItem({ step, className, ...props }: TimelineItemProps) {
   )
 }
 
-// TimelineSeparator
 function TimelineSeparator({
   className,
   ...props
@@ -175,7 +166,7 @@ function TimelineSeparator({
       aria-hidden="true"
       className={cn(
         'group-data-[orientation=horizontal]/timeline:-top-6 group-data-[orientation=horizontal]/timeline:-translate-y-1/2 group-data-[orientation=vertical]/timeline:-left-6 group-data-[orientation=vertical]/timeline:-translate-x-1/2 absolute self-start bg-primary/10 group-last/timeline-item:hidden group-data-[orientation=horizontal]/timeline:h-0.5 group-data-[orientation=vertical]/timeline:h-[calc(100%-1rem-0.25rem)] group-data-[orientation=horizontal]/timeline:w-[calc(100%-1rem-0.25rem)] group-data-[orientation=vertical]/timeline:w-0.5 group-data-[orientation=horizontal]/timeline:translate-x-4.5 group-data-[orientation=vertical]/timeline:translate-y-4.5',
-        className
+        className,
       )}
       data-slot="timeline-separator"
       {...props}
@@ -183,7 +174,6 @@ function TimelineSeparator({
   )
 }
 
-// TimelineTitle
 function TimelineTitle({
   className,
   ...props

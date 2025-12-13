@@ -29,7 +29,7 @@ export const managementTeamByIdSchema = z.object({
         phone: z.string().nullable(),
         lattesUrl: z.url().nullable(),
       }),
-    })
+    }),
   ),
 })
 

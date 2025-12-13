@@ -64,7 +64,7 @@ export default async function NewsPage({ params }: INewsPageProps) {
           fill
           src={news.imageUrl ?? ''}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
       </picture>
 
       <p className="text-justify text-base/7 text-muted-foreground">

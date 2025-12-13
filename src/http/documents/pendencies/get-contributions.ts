@@ -38,7 +38,7 @@ const getAllContributionsSchema = z.object({
         lattesUrl: z.string().nullable(),
         role: z.enum(['ADMIN', 'USER']),
       }),
-    })
+    }),
   ),
 })
 

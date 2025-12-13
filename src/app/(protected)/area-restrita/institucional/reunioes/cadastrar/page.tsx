@@ -3,38 +3,38 @@
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
 import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from '@components/ui/card'
 import { DatePicker } from '@components/ui/date-picker'
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import {
-	InputGroup,
-	InputGroupAddon,
-	InputGroupInput,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
 } from '@components/ui/input-group'
 import {
-	PageContainer,
-	PageDescription,
-	PageHeaderContent,
-	PageTitle,
+  PageContainer,
+  PageDescription,
+  PageHeaderContent,
+  PageTitle,
 } from '@components/ui/page-container'
 import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
 } from '@components/ui/select'
 import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
@@ -44,252 +44,252 @@ import { STATUS_OPTIONS } from '../_constants/status'
 import { useCreateMeeting } from './use-create-meeting'
 
 export default function CreateMeeting() {
-	const { form, submit, serverError, isSubmitting } = useCreateMeeting()
+  const { form, submit, serverError, isSubmitting } = useCreateMeeting()
 
-	return (
-		<PageContainer>
-			<PageHeaderContent>
-				<PageTitle>Cadastrar Reunião</PageTitle>
-				<PageDescription>
-					Preencha os campos para cadastrar uma nova reunião institucional.
-				</PageDescription>
-			</PageHeaderContent>
+  return (
+    <PageContainer>
+      <PageHeaderContent>
+        <PageTitle>Cadastrar Reunião</PageTitle>
+        <PageDescription>
+          Preencha os campos para cadastrar uma nova reunião institucional.
+        </PageDescription>
+      </PageHeaderContent>
 
-			<Form {...form}>
-				<form className="space-y-8" onSubmit={submit}>
-					{serverError && (
-						<Alert className="border-primary" variant="destructive">
-							<AlertCircle className="size-4" />
-							<AlertDescription>{serverError}</AlertDescription>
-						</Alert>
-					)}
+      <Form {...form}>
+        <form className="space-y-8" onSubmit={submit}>
+          {serverError && (
+            <Alert className="border-primary" variant="destructive">
+              <AlertCircle className="size-4" />
+              <AlertDescription>{serverError}</AlertDescription>
+            </Alert>
+          )}
 
-					<div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-						<Card className="lg:col-span-2">
-							<CardHeader>
-								<CardTitle>Informações Básicas</CardTitle>
-								<CardDescription>
-									Preencha os dados principais da reunião
-								</CardDescription>
-							</CardHeader>
-							<CardContent className="space-y-6">
-								<div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-									<FormField
-										control={form.control}
-										name="title"
-										render={({ field }) => (
-											<FormItem className="sm:col-span-2">
-												<FormLabel>
-													Título <span className="text-primary">*</span>
-												</FormLabel>
-												<FormControl>
-													<Input
-														placeholder="Digite o título da reunião"
-														{...field}
-													/>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <Card className="lg:col-span-2">
+              <CardHeader>
+                <CardTitle>Informações Básicas</CardTitle>
+                <CardDescription>
+                  Preencha os dados principais da reunião
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <FormField
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                      <FormItem className="sm:col-span-2">
+                        <FormLabel>
+                          Título <span className="text-primary">*</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Digite o título da reunião"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-									<div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:col-span-2">
-										<FormField
-											control={form.control}
-											name="scheduledAt"
-											render={({ field }) => (
-												<FormItem>
-													<FormLabel>
-														Data e Horário{' '}
-														<span className="text-primary">*</span>
-													</FormLabel>
-													<FormControl>
-														<DatePicker {...field} />
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
+                  <div className="grid grid-cols-1 gap-6 sm:col-span-2 sm:grid-cols-3">
+                    <FormField
+                      control={form.control}
+                      name="scheduledAt"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Data e Horário{' '}
+                            <span className="text-primary">*</span>
+                          </FormLabel>
+                          <FormControl>
+                            <DatePicker {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-										<FormField
-											control={form.control}
-											name="format"
-											render={({ field }) => (
-												<FormItem>
-													<FormLabel>
-														Formato <span className="text-primary">*</span>
-													</FormLabel>
-													<FormControl>
-														<Select
-															value={field.value}
-															onValueChange={field.onChange}
-														>
-															<SelectTrigger className="w-full">
-																{FORMAT_OPTIONS.find(
-																	(f) => f.value === field.value,
-																)?.label || 'Selecione o formato'}
-															</SelectTrigger>
-															<SelectContent>
-																{FORMAT_OPTIONS.map((format) => (
-																	<SelectItem
-																		key={format.value}
-																		value={format.value}
-																	>
-																		{format.label}
-																	</SelectItem>
-																))}
-															</SelectContent>
-														</Select>
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
+                    <FormField
+                      control={form.control}
+                      name="format"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Formato <span className="text-primary">*</span>
+                          </FormLabel>
+                          <FormControl>
+                            <Select
+                              value={field.value}
+                              onValueChange={field.onChange}
+                            >
+                              <SelectTrigger className="w-full">
+                                {FORMAT_OPTIONS.find(
+                                  (f) => f.value === field.value,
+                                )?.label || 'Selecione o formato'}
+                              </SelectTrigger>
+                              <SelectContent>
+                                {FORMAT_OPTIONS.map((format) => (
+                                  <SelectItem
+                                    key={format.value}
+                                    value={format.value}
+                                  >
+                                    {format.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-										<FormField
-											control={form.control}
-											name="status"
-											render={({ field }) => (
-												<FormItem>
-													<FormLabel>
-														Status <span className="text-primary">*</span>
-													</FormLabel>
-													<FormControl>
-														<Select
-															value={field.value}
-															onValueChange={field.onChange}
-														>
-															<SelectTrigger className="w-full">
-																{STATUS_OPTIONS.find(
-																	(option) => option.value === field.value,
-																)?.label || 'Selecione o status'}
-															</SelectTrigger>
-															<SelectContent>
-																{STATUS_OPTIONS.map((option) => (
-																	<SelectItem
-																		key={option.value}
-																		value={option.value}
-																	>
-																		{option.label}
-																	</SelectItem>
-																))}
-															</SelectContent>
-														</Select>
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
-									</div>
-								</div>
+                    <FormField
+                      control={form.control}
+                      name="status"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Status <span className="text-primary">*</span>
+                          </FormLabel>
+                          <FormControl>
+                            <Select
+                              value={field.value}
+                              onValueChange={field.onChange}
+                            >
+                              <SelectTrigger className="w-full">
+                                {STATUS_OPTIONS.find(
+                                  (option) => option.value === field.value,
+                                )?.label || 'Selecione o status'}
+                              </SelectTrigger>
+                              <SelectContent>
+                                {STATUS_OPTIONS.map((option) => (
+                                  <SelectItem
+                                    key={option.value}
+                                    value={option.value}
+                                  >
+                                    {option.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
 
-								<FormField
-									control={form.control}
-									name="agenda"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>
-												Pauta <span className="text-primary">*</span>
-											</FormLabel>
-											<FormControl>
-												<Textarea
-													placeholder="Digite a pauta da reunião"
-													{...field}
-													rows={6}
-													className="resize-none"
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</CardContent>
-						</Card>
+                <FormField
+                  control={form.control}
+                  name="agenda"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        Pauta <span className="text-primary">*</span>
+                      </FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Digite a pauta da reunião"
+                          {...field}
+                          rows={6}
+                          className="resize-none"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
 
-						<Card>
-							<CardHeader>
-								<div className="flex items-center gap-2">
-									<Video className="size-5 text-primary" />
-									<CardTitle>Reunião Online</CardTitle>
-								</div>
-								<CardDescription>
-									Informe o link caso a reunião seja online
-								</CardDescription>
-							</CardHeader>
-							<CardContent>
-								<FormField
-									control={form.control}
-									name="meetingLink"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Link da Reunião</FormLabel>
-											<FormControl>
-												<InputGroup>
-													<InputGroupAddon>
-														<Link className="size-4" />
-													</InputGroupAddon>
-													<InputGroupInput
-														placeholder="https://meet.exemplo.com/reuniao"
-														{...field}
-													/>
-												</InputGroup>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</CardContent>
-						</Card>
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <Video className="size-5 text-primary" />
+                  <CardTitle>Reunião Online</CardTitle>
+                </div>
+                <CardDescription>
+                  Informe o link caso a reunião seja online
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={form.control}
+                  name="meetingLink"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Link da Reunião</FormLabel>
+                      <FormControl>
+                        <InputGroup>
+                          <InputGroupAddon>
+                            <Link className="size-4" />
+                          </InputGroupAddon>
+                          <InputGroupInput
+                            placeholder="https://meet.exemplo.com/reuniao"
+                            {...field}
+                          />
+                        </InputGroup>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
 
-						<Card>
-							<CardHeader>
-								<div className="flex items-center gap-2">
-									<MapPin className="size-5 text-primary" />
-									<CardTitle>Reunião Presencial</CardTitle>
-								</div>
-								<CardDescription>
-									Informe o local caso a reunião seja presencial
-								</CardDescription>
-							</CardHeader>
-							<CardContent>
-								<FormField
-									control={form.control}
-									name="location"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Local da Reunião</FormLabel>
-											<FormControl>
-												<InputGroup>
-													<InputGroupAddon>
-														<MapPin className="size-4" />
-													</InputGroupAddon>
-													<InputGroupInput
-														placeholder="Digite o local da reunião"
-														{...field}
-													/>
-												</InputGroup>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</CardContent>
-						</Card>
-					</div>
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <MapPin className="size-5 text-primary" />
+                  <CardTitle>Reunião Presencial</CardTitle>
+                </div>
+                <CardDescription>
+                  Informe o local caso a reunião seja presencial
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={form.control}
+                  name="location"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Local da Reunião</FormLabel>
+                      <FormControl>
+                        <InputGroup>
+                          <InputGroupAddon>
+                            <MapPin className="size-4" />
+                          </InputGroupAddon>
+                          <InputGroupInput
+                            placeholder="Digite o local da reunião"
+                            {...field}
+                          />
+                        </InputGroup>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+          </div>
 
-					<Separator />
+          <Separator />
 
-					<Button
-						className="w-full cursor-pointer"
-						variant="outline"
-						disabled={isSubmitting}
-						type="submit"
-					>
-						{isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
-						Cadastrar Reunião
-					</Button>
-				</form>
-			</Form>
-		</PageContainer>
-	)
+          <Button
+            className="w-full cursor-pointer"
+            variant="outline"
+            disabled={isSubmitting}
+            type="submit"
+          >
+            {isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
+            Cadastrar Reunião
+          </Button>
+        </form>
+      </Form>
+    </PageContainer>
+  )
 }

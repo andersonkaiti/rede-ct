@@ -39,7 +39,7 @@ export default function ComiteLegitimador() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-              <InfoIcon className="!size-5" />
+              <InfoIcon className="size-5" />
             </Badge>
             <span className="font-bold text-2xl">Sobre o Comitê</span>
           </CardTitle>

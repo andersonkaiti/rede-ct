@@ -26,7 +26,6 @@ export function LockIcon({
   const controls = useAnimation()
   const isControlledRef = useRef(false)
 
-  // Expose methods through ref
   React.useImperativeHandle(ref, () => {
     isControlledRef.current = true
 
@@ -44,7 +43,7 @@ export function LockIcon({
         controls.start('animate')
       }
     },
-    [controls, onMouseEnter]
+    [controls, onMouseEnter],
   )
 
   const handleMouseLeave = useCallback(
@@ -55,7 +54,7 @@ export function LockIcon({
         controls.start('normal')
       }
     },
-    [controls, onMouseLeave]
+    [controls, onMouseLeave],
   )
 
   return (
@@ -92,6 +91,7 @@ export function LockIcon({
         width={size}
         xmlns="http://www.w3.org/2000/svg"
       >
+        <title>Lock icon</title>
         <rect height="11" rx="2" ry="2" width="18" x="3" y="11" />
         <motion.path
           animate={controls}

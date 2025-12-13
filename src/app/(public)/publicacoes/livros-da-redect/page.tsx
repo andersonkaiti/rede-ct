@@ -110,7 +110,7 @@ export default function ColetaneaRedeCT() {
           </p>
         </section>
 
-        <section className="space-y-6 rounded-md bg-gradient-to-br from-primary to-red-700 p-6 text-center text-white md:p-10">
+        <section className="space-y-6 rounded-md bg-linear-to-br from-primary to-red-700 p-6 text-center text-white md:p-10">
           <h2 className="font-semibold text-3xl text-white">
             Chamada para publicação do volume 14 (2025)
           </h2>
@@ -145,7 +145,7 @@ export default function ColetaneaRedeCT() {
           <ol className="space-y-4">
             {requirements.map((item, index: number) => (
               <li className="flex items-start" key={index}>
-                <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
+                <span className="mt-1 mr-3 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
                   {index + 1}
                 </span>
                 {item}

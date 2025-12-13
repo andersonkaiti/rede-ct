@@ -79,7 +79,7 @@ export function useUpdateSDHCTeamMember({
           setServerError(errorBody.message)
         }
       }
-    }
+    },
   )
 
   return {

@@ -5,7 +5,7 @@ import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicPartnerList = dynamic(() =>
-  import('./_components/partner-list').then((m) => m.PartnerList)
+  import('./_components/partner-list').then((m) => m.PartnerList),
 )
 
 export default function ParceirosEFinanciadores() {

@@ -19,7 +19,7 @@ export function InternationalCongressCard() {
 
   return (
     <Card
-      className="relative overflow-hidden rounded-2xl border-2 border-white/20 bg-gradient-to-br from-blue-500 to-purple-600 text-white dark:border-white/30 dark:from-blue-900 dark:to-purple-900 dark:text-white"
+      className="relative overflow-hidden rounded-2xl border-2 border-white/20 bg-linear-to-br from-blue-500 to-purple-600 text-white dark:border-white/30 dark:from-blue-900 dark:to-purple-900 dark:text-white"
       onMouseEnter={() => iconRef.current?.startAnimation()}
       onMouseLeave={() => iconRef.current?.stopAnimation()}
     >
@@ -49,7 +49,7 @@ export function InternationalCongressCard() {
         >
           <Button className="group w-full bg-white font-semibold text-indigo-500 hover:bg-white hover:text-indigo-500 dark:bg-white dark:text-indigo-700 dark:hover:bg-white dark:hover:text-indigo-700">
             Ver mais
-            <ArrowRight className="!size-4 transition-all duration-300 group-hover:translate-x-1" />
+            <ArrowRight className="size-4 transition-all duration-300 group-hover:translate-x-1" />
           </Button>
         </Link>
       </CardFooter>

@@ -6,9 +6,9 @@ import Link from 'next/link'
 
 export default function UserNotFoundError() {
   return (
-    <main className="bg-gradient-to-b from-primary/20 via-background to-background p-4 py-10 lg:p-25 dark:from-destructive/10">
-      <div className="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
-        <div className="mx-auto max-w-screen-sm space-y-4 text-center">
+    <main className="bg-linear-to-b from-primary/20 via-background to-background p-4 py-10 lg:p-25 dark:from-destructive/10">
+      <div className="mx-auto max-w-(--breakpoint-xl) px-4 py-8 lg:px-6 lg:py-16">
+        <div className="mx-auto max-w-(--breakpoint-sm) space-y-4 text-center">
           <span className="mb-4 inline-flex items-center justify-center rounded-full bg-destructive/10 p-4">
             <AlertTriangle className="h-12 w-12 animate-pulse text-destructive" />
           </span>

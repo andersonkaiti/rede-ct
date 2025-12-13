@@ -32,7 +32,7 @@ export const etpResearcherSchema = z.object({
   mainEtps: z.string(),
   formations: z.string(),
   degrees: z.array(
-    z.enum(['DOCTOR', 'MASTER', 'BACHELOR', 'TECHNICAL', 'POSTGRADUATE'])
+    z.enum(['DOCTOR', 'MASTER', 'BACHELOR', 'TECHNICAL', 'POSTGRADUATE']),
   ),
   occupations: z.string(),
   seniority: z.enum(['SENIOR', 'RESEARCHER', 'JUNIOR', 'HONOR']),

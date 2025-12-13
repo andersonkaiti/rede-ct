@@ -34,7 +34,7 @@ export function DeleteDialog({ handleRemove }: IDeleteDialogProps) {
         <DialogHeader>
           <div className="flex items-center gap-2">
             <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-              <Info className="!size-5" />
+              <Info className="size-5" />
             </Badge>
             <DialogTitle>Tem certeza de que deseja excluir?</DialogTitle>
           </div>

@@ -2,60 +2,60 @@
 
 import { Button } from '@components/ui/button'
 import {
-	DropdownMenu,
-	DropdownMenuCheckboxItem,
-	DropdownMenuContent,
-	DropdownMenuLabel,
-	DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu'
 import { Funnel } from 'lucide-react'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { meetingsTableColumns } from './table/meetings-table-columns'
 
 export function MeetingDisplayOptions() {
-	const [columnsVisibility, setColumnsVisibility] = useQueryStates({
-		title: parseAsBoolean.withDefault(true),
-		scheduledAt: parseAsBoolean.withDefault(true),
-		format: parseAsBoolean.withDefault(true),
-		agenda: parseAsBoolean.withDefault(true),
-		status: parseAsBoolean.withDefault(true),
-	})
+  const [columnsVisibility, setColumnsVisibility] = useQueryStates({
+    title: parseAsBoolean.withDefault(true),
+    scheduledAt: parseAsBoolean.withDefault(true),
+    format: parseAsBoolean.withDefault(true),
+    agenda: parseAsBoolean.withDefault(true),
+    status: parseAsBoolean.withDefault(true),
+  })
 
-	return (
-		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
-				<Button variant="outline">
-					<Funnel aria-hidden="true" className="-ms-1 opacity-60" size={16} />
-					Exibir
-				</Button>
-			</DropdownMenuTrigger>
-			<DropdownMenuContent align="end">
-				<DropdownMenuLabel>Exibir colunas</DropdownMenuLabel>
-				{meetingsTableColumns.map((col) => {
-					const columnKey = col.id as keyof typeof columnsVisibility
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">
+          <Funnel aria-hidden="true" className="-ms-1 opacity-60" size={16} />
+          Exibir
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuLabel>Exibir colunas</DropdownMenuLabel>
+        {meetingsTableColumns.map((col) => {
+          const columnKey = col.id as keyof typeof columnsVisibility
 
-					if (col.id === 'actions') {
-						return null
-					}
+          if (col.id === 'actions') {
+            return null
+          }
 
-					return (
-						<DropdownMenuCheckboxItem
-							checked={columnsVisibility[columnKey]}
-							className="capitalize"
-							key={col.id}
-							onCheckedChange={(value) => {
-								setColumnsVisibility((prev) => ({
-									...prev,
-									[columnKey]: value,
-								}))
-							}}
-							onSelect={(event) => event.preventDefault()}
-						>
-							<span className="ml-5">{col.header as string}</span>
-						</DropdownMenuCheckboxItem>
-					)
-				})}
-			</DropdownMenuContent>
-		</DropdownMenu>
-	)
+          return (
+            <DropdownMenuCheckboxItem
+              checked={columnsVisibility[columnKey]}
+              className="capitalize"
+              key={col.id}
+              onCheckedChange={(value) => {
+                setColumnsVisibility((prev) => ({
+                  ...prev,
+                  [columnKey]: value,
+                }))
+              }}
+              onSelect={(event) => event.preventDefault()}
+            >
+              <span className="ml-5">{col.header as string}</span>
+            </DropdownMenuCheckboxItem>
+          )
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
 }

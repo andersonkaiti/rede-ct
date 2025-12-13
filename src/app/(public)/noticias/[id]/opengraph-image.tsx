@@ -1,4 +1,3 @@
-/** biome-ignore-all lint/nursery/useImageSize: needed */
 /** biome-ignore-all lint/performance/noImgElement: needed */
 
 import { getNewsById } from '@http/news/get-news-by-id'
@@ -45,6 +44,6 @@ export default async function Image({ params }: IImageProps) {
           display: 'block',
         }}
       />
-    </div>
+    </div>,
   )
 }

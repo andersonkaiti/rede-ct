@@ -36,9 +36,9 @@ export const getManagementTeamSchema = z.object({
             phone: z.string().nullable(),
             lattesUrl: z.url().nullable(),
           }),
-        })
+        }),
       ),
-    })
+    }),
   ),
 })
 

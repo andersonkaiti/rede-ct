@@ -43,7 +43,7 @@ export function SettingsGearIcon({
         controls.start('animate')
       }
     },
-    [controls, onMouseEnter]
+    [controls, onMouseEnter],
   )
 
   const handleMouseLeave = useCallback(
@@ -54,7 +54,7 @@ export function SettingsGearIcon({
         controls.start('normal')
       }
     },
-    [controls, onMouseLeave]
+    [controls, onMouseLeave],
   )
 
   return (

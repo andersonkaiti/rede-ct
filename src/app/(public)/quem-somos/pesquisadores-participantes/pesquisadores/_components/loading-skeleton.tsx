@@ -11,7 +11,7 @@ export function LoadingSkeleton() {
           key={i}
         >
           <header className="mb-2 flex flex-row items-center gap-4 p-6">
-            <Skeleton className="size-20 flex-shrink-0 rounded-full" />
+            <Skeleton className="size-20 shrink-0 rounded-full" />
 
             <div className="flex flex-col items-start justify-center gap-1">
               <Skeleton className="h-5 w-40 rounded-full" />
@@ -20,12 +20,10 @@ export function LoadingSkeleton() {
                 <Skeleton className="h-5 w-24 rounded-full" />
                 <Skeleton className="h-6 w-16 rounded-md" />
               </div>
-              {/* Creation date skeleton */}
               <Skeleton className="h-4 w-32 rounded-full" />
             </div>
           </header>
 
-          {/* Optional biography section skeleton */}
           <div className="p-6">
             <div className="flex w-full cursor-pointer items-center justify-between gap-2">
               <div className="flex items-center gap-2">

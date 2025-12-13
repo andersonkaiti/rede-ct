@@ -3,9 +3,9 @@
 import { DataTable } from '@components/ui/data-table'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useLegitimatorCommittee } from './use-legitimator-committee.hook'
 import { legitimatorCommitteeTableColumns } from './legitimator-committee-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
+import { useLegitimatorCommittee } from './use-legitimator-committee.hook'
 
 interface IUser {
   id: string

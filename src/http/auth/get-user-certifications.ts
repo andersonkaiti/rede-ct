@@ -24,12 +24,12 @@ export const getAuthenticatedUserCertificationsSchema = z.object({
       description: z.string(),
       certificationUrl: z.string(),
       userId: z.string(),
-    })
+    }),
   ),
 })
 
 export async function getAuthenticatedUserCertifications(
-  params: IAuthenticatedUserCertificationsRequest
+  params: IAuthenticatedUserCertificationsRequest,
 ) {
   const searchParams = parseSearchParams(params)
 

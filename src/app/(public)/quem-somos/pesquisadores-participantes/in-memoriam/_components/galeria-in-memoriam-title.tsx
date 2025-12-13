@@ -14,7 +14,7 @@ export function GaleriaInMemoriamTitle() {
       onMouseLeave={() => iconRef.current?.stopAnimation()}
     >
       <Badge className="rounded-full bg-primary/20 py-2 text-primary">
-        <HeartIcon className="!size-7 fill-primary" ref={iconRef} />
+        <HeartIcon className="size-7 fill-primary" ref={iconRef} />
       </Badge>
       Galeria in memoriam
     </h1>

@@ -14,7 +14,7 @@ export function LoadingSkeleton() {
             </Skeleton>
           </header>
 
-          <div className="flex h-fit flex-grow flex-col justify-between gap-4 py-2">
+          <div className="flex h-fit grow flex-col justify-between gap-4 py-2">
             <div className="space-y-4">
               <div className="flex items-center gap-2 text-sm leading-4">
                 <Skeleton className="h-4 w-32 rounded-full" />

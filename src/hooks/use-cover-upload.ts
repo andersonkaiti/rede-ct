@@ -54,7 +54,7 @@ export type FileUploadActions = {
   handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void
   openFileDialog: () => void
   getInputProps: (
-    props?: InputHTMLAttributes<HTMLInputElement>
+    props?: InputHTMLAttributes<HTMLInputElement>,
   ) => InputHTMLAttributes<HTMLInputElement> & {
     ref: React.Ref<HTMLInputElement>
   }
@@ -84,7 +84,7 @@ function normalizeMaxSize(rawMaxSize?: number) {
 }
 
 export function useCoverUpload(
-  options: FileUploadOptions = {}
+  options: FileUploadOptions = {},
 ): [FileUploadState, FileUploadActions] {
   const {
     maxFiles = Number.POSITIVE_INFINITY,
@@ -122,7 +122,7 @@ export function useCoverUpload(
         )
       })
     },
-    []
+    [],
   )
 
   const validateFileSize = useCallback(
@@ -132,7 +132,7 @@ export function useCoverUpload(
       }
       return null
     },
-    [maxSize]
+    [maxSize],
   )
 
   const validateFileType = useCallback(
@@ -159,7 +159,7 @@ export function useCoverUpload(
       }
       return null
     },
-    [accept]
+    [accept],
   )
 
   const validateIncomingFile = useCallback(
@@ -169,7 +169,7 @@ export function useCoverUpload(
       }
       return validateFileSize(file) || validateFileType(file)
     },
-    [maxSize, validateFileSize, validateFileType]
+    [maxSize, validateFileSize, validateFileType],
   )
 
   const createPreview = useCallback(
@@ -179,7 +179,7 @@ export function useCoverUpload(
       }
       return file.url
     },
-    []
+    [],
   )
 
   const generateUniqueId = useCallback((file: File | FileMetadata): string => {
@@ -195,7 +195,7 @@ export function useCoverUpload(
     (
       existingFiles: FileWithPreview[],
       incomingFiles: File[],
-      allowMultiple: boolean
+      allowMultiple: boolean,
     ): { validFiles: FileWithPreview[]; errors: string[] } => {
       const validFiles: FileWithPreview[] = []
       const errors: string[] = []
@@ -208,7 +208,7 @@ export function useCoverUpload(
           errors.push(
             allowMultiple && error.startsWith('File exceeds')
               ? `Some files exceed the maximum size of ${formatBytes(maxSize)}.`
-              : error
+              : error,
           )
           continue
         }
@@ -226,7 +226,7 @@ export function useCoverUpload(
       maxSize,
       generateUniqueId,
       createPreview,
-    ]
+    ],
   )
 
   const clearFiles = useCallback(() => {
@@ -279,7 +279,7 @@ export function useCoverUpload(
       const { validFiles, errors: collectedErrors } = processFiles(
         state.files,
         newFilesArray,
-        multiple
+        multiple,
       )
       if (collectedErrors.length > 0) {
         errors.push(...collectedErrors)
@@ -320,7 +320,7 @@ export function useCoverUpload(
       onFilesAdded,
       onError,
       processFiles,
-    ]
+    ],
   )
 
   const removeFile = useCallback(
@@ -345,7 +345,7 @@ export function useCoverUpload(
         }
       })
     },
-    [onFilesChange]
+    [onFilesChange],
   )
 
   const clearErrors = useCallback(() => {
@@ -396,7 +396,7 @@ export function useCoverUpload(
         }
       }
     },
-    [addFiles, multiple]
+    [addFiles, multiple],
   )
 
   const handleFileChange = useCallback(
@@ -405,7 +405,7 @@ export function useCoverUpload(
         addFiles(e.target.files)
       }
     },
-    [addFiles]
+    [addFiles],
   )
 
   const openFileDialog = useCallback(() => {
@@ -425,7 +425,7 @@ export function useCoverUpload(
         ref: inputRef,
       }
     },
-    [accept, multiple, handleFileChange]
+    [accept, multiple, handleFileChange],
   )
 
   return [

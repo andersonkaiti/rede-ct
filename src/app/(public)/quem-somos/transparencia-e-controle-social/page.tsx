@@ -136,13 +136,13 @@ export default function TransparenciaEControleSocial() {
         <h2 className="title-2">Observações</h2>
         <ol className="space-y-4">
           <li className="flex items-start">
-            <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
+            <span className="mt-1 mr-3 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
               1
             </span>
             O arquivo do extrato detalhado será atualizado mensalmente.
           </li>
           <li className="flex items-start">
-            <span className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
+            <span className="mt-1 mr-3 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-base text-primary">
               2
             </span>
             Em breve, a RedeCT contará com conta corrente de pessoa jurídica

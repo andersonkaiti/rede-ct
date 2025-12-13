@@ -12,7 +12,7 @@ export const getInMemoriamByRoleSchema = z.array(
     role: z.enum(['RESEARCHER', 'LEADER']),
     createdAt: z.string(),
     updatedAt: z.string(),
-  })
+  }),
 )
 
 export async function getInMemoriamByRole(role: string) {

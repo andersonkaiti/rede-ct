@@ -69,7 +69,7 @@ export function SidebarItem({
                     </Link>
                   </SidebarButton>
                 </SidebarMenuSubItem>
-              )
+              ),
             )}
           </SidebarMenuSub>
         </CollapsibleContent>

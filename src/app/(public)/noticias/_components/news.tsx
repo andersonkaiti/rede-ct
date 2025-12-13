@@ -38,7 +38,7 @@ export function News({ news }: INewsProps) {
         tabIndex={-1}
       >
         <header className="h-60">
-          <picture className="relative flex size-full overflow-hidden rounded-lg border-1 border-background-900">
+          <picture className="relative flex size-full overflow-hidden rounded-lg border border-background-900">
             <Image
               alt={news.title}
               className="object-cover"
@@ -46,11 +46,11 @@ export function News({ news }: INewsProps) {
               priority
               src={news.imageUrl || ''}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent dark:from-black/70 dark:to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent dark:from-black/70 dark:to-transparent" />
           </picture>
         </header>
 
-        <div className="flex h-fit flex-grow flex-col justify-between gap-4 py-8">
+        <div className="flex h-fit grow flex-col justify-between gap-4 py-8">
           <CardTitle className="line-clamp-3 font-semibold text-2xl leading-tight">
             {news.title}
           </CardTitle>

@@ -99,7 +99,7 @@ function removePickedOption(groupOption: GroupOption, picked: Option[]) {
 
   for (const [key, value] of Object.entries(cloneOption)) {
     cloneOption[key] = value.filter(
-      (val) => !picked.find((p) => p.value === val.value)
+      (val) => !picked.find((p) => p.value === val.value),
     )
   }
   return cloneOption
@@ -170,7 +170,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
 
   const [selected, setSelected] = React.useState<Option[]>(value || [])
   const [options, setOptions] = React.useState<GroupOption>(
-    transToGroupOption(arrayDefaultOptions, groupBy)
+    transToGroupOption(arrayDefaultOptions, groupBy),
   )
   const [inputValue, setInputValue] = React.useState('')
   const debouncedSearchTerm = useDebounce(inputValue, delay || 500)
@@ -193,7 +193,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
       setSelected(newOptions)
       onChange?.(newOptions)
     },
-    [onChange, selected]
+    [onChange, selected],
   )
 
   const handleKeyDown = React.useCallback(
@@ -215,7 +215,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
         }
       }
     },
-    [handleUnselect, selected]
+    [handleUnselect, selected],
   )
 
   useEffect(() => {
@@ -358,12 +358,12 @@ function MultipleSelector(props: MultipleSelectorProps) {
 
       return <CommandEmpty>{emptyIndicator}</CommandEmpty>
     },
-    [creatable, emptyIndicator, onSearch, options]
+    [creatable, emptyIndicator, onSearch, options],
   )
 
   const selectables = React.useMemo<GroupOption>(
     () => removePickedOption(options, selected),
-    [options, selected]
+    [options, selected],
   )
 
   const commandFilter = React.useCallback(() => {
@@ -384,7 +384,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
       {...commandProps}
       className={cn(
         'h-auto overflow-visible bg-transparent',
-        commandProps?.className
+        commandProps?.className,
       )}
       filter={commandFilter()}
       onKeyDown={(e) => {
@@ -405,7 +405,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
             'cursor-text': !disabled && selected.length !== 0,
           },
           !hideClearAllButton && 'pe-9',
-          className
+          className,
         )}
         onClick={() => {
           if (disabled) return
@@ -417,7 +417,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
             <div
               className={cn(
                 'relative inline-flex h-7 animate-fadeIn cursor-default items-center rounded-md border bg-background ps-2 pe-7 pl-2 font-medium text-secondary-foreground text-xs transition-all hover:bg-background disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-fixed:pe-2',
-                badgeClassName
+                badgeClassName,
               )}
               data-disabled={disabled || undefined}
               data-fixed={option.fixed}
@@ -453,7 +453,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
                 'px-3 py-2': selected.length === 0,
                 'ml-1': selected.length !== 0,
               },
-              inputProps?.className
+              inputProps?.className,
             )}
             disabled={disabled}
             onBlur={(event) => {
@@ -489,7 +489,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
                 disabled ||
                 selected.length < 1 ||
                 selected.filter((s) => s.fixed).length === selected.length) &&
-                'hidden'
+                'hidden',
             )}
             onClick={() => {
               setSelected(selected.filter((s) => s.fixed))
@@ -506,7 +506,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
           className={cn(
             'absolute top-2 z-10 w-full overflow-hidden rounded-md border border-input',
             'data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=open]:animate-in',
-            !open && 'hidden'
+            !open && 'hidden',
           )}
           data-state={open ? 'open' : 'closed'}
         >
@@ -544,7 +544,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
                             className={cn(
                               'cursor-pointer',
                               option.disable &&
-                                'pointer-events-none cursor-not-allowed opacity-50'
+                                'pointer-events-none cursor-not-allowed opacity-50',
                             )}
                             disabled={option.disable}
                             key={option.value}

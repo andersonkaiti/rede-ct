@@ -45,7 +45,7 @@ export function FilterInput() {
         <ArrowDownUp
           className={cn(
             'text-muted-foreground transition-transform',
-            orderBy === 'asc' && 'rotate-180'
+            orderBy === 'asc' && 'rotate-180',
           )}
         />
       </Button>

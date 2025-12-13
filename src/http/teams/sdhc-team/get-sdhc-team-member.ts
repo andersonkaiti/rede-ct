@@ -28,11 +28,13 @@ export const getSDHCTeamMembersSchema = z.object({
         lattesUrl: z.string().nullable(),
         role: z.enum(['ADMIN', 'USER']),
       }),
-    })
+    }),
   ),
 })
 
-export async function getSDHCTeamMembers({ filter }: IGetSDHCTeamMembersRequest) {
+export async function getSDHCTeamMembers({
+  filter,
+}: IGetSDHCTeamMembersRequest) {
   const searchParams = parseSearchParams({
     name: filter,
     description: filter,

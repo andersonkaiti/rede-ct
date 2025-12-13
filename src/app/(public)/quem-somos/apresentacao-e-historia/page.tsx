@@ -53,7 +53,7 @@ export default async function ApresentacaoEHistoria() {
         <section className="space-y-14">
           <div className="flex items-center justify-center gap-4">
             <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-              <EarthIcon className="!size-7" />
+              <EarthIcon className="size-7" />
             </Badge>
             <h2 className="font-semibold text-3xl">Presença internacional</h2>
           </div>
@@ -64,7 +64,7 @@ export default async function ApresentacaoEHistoria() {
         <section className="space-y-14">
           <div className="flex items-center gap-4">
             <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-              <ClockIcon className="!size-7" />
+              <ClockIcon className="size-7" />
             </Badge>
             <h2 className="font-semibold text-3xl">História</h2>
           </div>
@@ -96,7 +96,7 @@ export default async function ApresentacaoEHistoria() {
         <section className="space-y-14">
           <div className="flex items-center gap-4">
             <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-              <BookTextIcon className="!size-7" />
+              <BookTextIcon className="size-7" />
             </Badge>
             <h2 className="font-semibold text-3xl">Publicações</h2>
           </div>

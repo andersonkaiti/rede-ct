@@ -123,7 +123,7 @@ export default function UpdateInMemoriamForm() {
                         <SelectTrigger className="w-full">
                           {
                             ROLE_OPTIONS.find(
-                              (role) => role.value === field.value
+                              (role) => role.value === field.value,
                             )?.label
                           }
                         </SelectTrigger>

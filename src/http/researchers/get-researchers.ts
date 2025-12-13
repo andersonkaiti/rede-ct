@@ -22,7 +22,7 @@ export const getResearchersSchema = z.object({
       mainEtps: z.string().nullable(),
       formations: z.string().nullable(),
       degrees: z.array(
-        z.enum(['DOCTOR', 'MASTER', 'BACHELOR', 'TECHNICAL', 'POSTGRADUATE'])
+        z.enum(['DOCTOR', 'MASTER', 'BACHELOR', 'TECHNICAL', 'POSTGRADUATE']),
       ),
       occupations: z.string(),
       seniority: z.enum(['SENIOR', 'RESEARCHER', 'JUNIOR', 'HONOR']),
@@ -40,11 +40,14 @@ export const getResearchersSchema = z.object({
         updatedAt: z.string(),
         role: z.enum(['ADMIN', 'USER']),
       }),
-    })
+    }),
   ),
 })
 
-export async function getResearchers({ filter, ...params }: IGetResearchersRequest) {
+export async function getResearchers({
+  filter,
+  ...params
+}: IGetResearchersRequest) {
   const searchParams = parseSearchParams({
     params,
     registrationNumber: filter,

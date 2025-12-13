@@ -9,7 +9,7 @@ export const getResearcherByIdSchema = z.object({
   mainEtps: z.string().nullable(),
   formations: z.string().nullable(),
   degrees: z.array(
-    z.enum(['DOCTOR', 'MASTER', 'BACHELOR', 'TECHNICAL', 'POSTGRADUATE'])
+    z.enum(['DOCTOR', 'MASTER', 'BACHELOR', 'TECHNICAL', 'POSTGRADUATE']),
   ),
   occupations: z.string(),
   seniority: z.enum(['SENIOR', 'RESEARCHER', 'JUNIOR', 'HONOR']),

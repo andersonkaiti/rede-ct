@@ -23,6 +23,6 @@ export async function updateResearcher({
   await api.put(
     `researcher/${id}
 `,
-    { json: researcher }
+    { json: researcher },
   )
 }

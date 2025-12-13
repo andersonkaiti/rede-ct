@@ -82,7 +82,7 @@ export function AvatarUploader({
             isDragging
               ? 'border-primary bg-primary/5'
               : 'border-muted-foreground/25 hover:border-muted-foreground/20',
-            previewUrl && 'border-solid'
+            previewUrl && 'border-solid',
           )}
           onClick={openFileDialog}
           onDragEnter={handleDragEnter}

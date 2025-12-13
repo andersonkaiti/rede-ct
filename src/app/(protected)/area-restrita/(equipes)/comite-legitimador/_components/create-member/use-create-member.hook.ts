@@ -19,7 +19,7 @@ export type CreateLegitimatorCommitteeTeamMemberInput = z.infer<
 >
 
 export function useCreateLegitimatorCommitteeTeamMember(
-  setIsOpen: (isOpen: boolean) => void
+  setIsOpen: (isOpen: boolean) => void,
 ) {
   const queryClient = useQueryClient()
 
@@ -61,7 +61,7 @@ export function useCreateLegitimatorCommitteeTeamMember(
           setServerError(errorBody.message)
         }
       }
-    }
+    },
   )
 
   return {

@@ -3,9 +3,9 @@
 import { DataTable } from '@components/ui/data-table'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useSDHCTeam } from './use-sdhc-team.hook'
 import { LoadingSkeleton } from './loading-skeleton'
 import { sdhcTeamTableColumns } from './sdhc-team-table-columns'
+import { useSDHCTeam } from './use-sdhc-team.hook'
 
 export interface ISDHCTeamMemberUser {
   id: string

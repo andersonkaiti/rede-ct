@@ -35,7 +35,7 @@ export const getNewsSchema = z.object({
         lattesUrl: z.string().nullable(),
         role: z.enum(['ADMIN', 'USER']),
       }),
-    })
+    }),
   ),
 })
 
@@ -43,7 +43,7 @@ export async function getNews({ filter, ...params }: IGetNewsRequest) {
   const searchParams = parseSearchParams({
     ...params,
     title: filter,
-    content: filter
+    content: filter,
   })
 
   const data = await api

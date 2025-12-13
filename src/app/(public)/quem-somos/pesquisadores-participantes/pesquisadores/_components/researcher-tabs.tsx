@@ -42,9 +42,11 @@ export function ResearcherTabs() {
             >
               {seniorityMapping[seniority as Seniority] || seniority}
               <span className="ml-2">
-                {data?.researchers?.filter(
-                  (researcher) => researcher.seniority === seniority
-                ).length}
+                {
+                  data?.researchers?.filter(
+                    (researcher) => researcher.seniority === seniority,
+                  ).length
+                }
               </span>
             </TabsTrigger>
           ))}
@@ -52,7 +54,7 @@ export function ResearcherTabs() {
 
         {seniorities.map((seniority) => {
           const filteredBySeniority = data?.researchers?.filter(
-            (researcher) => researcher.seniority === seniority
+            (researcher) => researcher.seniority === seniority,
           )
 
           return (
@@ -63,11 +65,13 @@ export function ResearcherTabs() {
             >
               {isLoading && <LoadingSkeleton />}
 
-              {!isLoading && data?.researchers && data?.researchers?.length < 1 && (
-                <span className="mt-4 flex py-4 text-muted-foreground text-sm">
-                  Nenhum pesquisador cadastrado nesta categoria.
-                </span>
-              )}
+              {!isLoading &&
+                data?.researchers &&
+                data?.researchers?.length < 1 && (
+                  <span className="mt-4 flex py-4 text-muted-foreground text-sm">
+                    Nenhum pesquisador cadastrado nesta categoria.
+                  </span>
+                )}
 
               {data?.researchers && data?.researchers?.length > 0 && (
                 <div className="grid gap-6 lg:grid-cols-2">

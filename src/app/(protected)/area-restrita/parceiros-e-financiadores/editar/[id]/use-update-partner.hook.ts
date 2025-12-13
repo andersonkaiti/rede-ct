@@ -20,7 +20,7 @@ export const updatePartnerSchema = z.object({
       validateImageFile({
         value,
       }),
-    `Deve haver uma imagem de no máximo ${MAX_LOGO_SIZE_MB}MB.`
+    `Deve haver uma imagem de no máximo ${MAX_LOGO_SIZE_MB}MB.`,
   ),
   websiteUrl: z.url('URL do site deve ser válida').optional().or(z.literal('')),
   description: z.string().optional(),

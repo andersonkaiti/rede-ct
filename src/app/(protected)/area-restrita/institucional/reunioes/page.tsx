@@ -1,11 +1,11 @@
 import {
-	PageActionsContainer,
-	PageContainer,
-	PageDescription,
-	PageHeader,
-	PageHeaderContent,
-	PageMain,
-	PageTitle,
+  PageActionsContainer,
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderContent,
+  PageMain,
+  PageTitle,
 } from '@components/ui/page-container'
 
 import { AdminWrapper } from '../../../_components/hoc/admin'
@@ -15,30 +15,30 @@ import { MeetingDisplayOptions } from './_components/meeting-display-options'
 import { Table } from './_components/table/table'
 
 export default function Meetings() {
-	return (
-		<AdminWrapper>
-			<PageContainer>
-				<PageHeader>
-					<PageHeaderContent>
-						<PageTitle>Reuniões</PageTitle>
-						<PageDescription>Gerencie as reuniões</PageDescription>
-					</PageHeaderContent>
-				</PageHeader>
+  return (
+    <AdminWrapper>
+      <PageContainer>
+        <PageHeader>
+          <PageHeaderContent>
+            <PageTitle>Reuniões</PageTitle>
+            <PageDescription>Gerencie as reuniões</PageDescription>
+          </PageHeaderContent>
+        </PageHeader>
 
-				<PageHeader>
-					<PageActionsContainer>
-						<FilterInput />
+        <PageHeader>
+          <PageActionsContainer>
+            <FilterInput />
 
-						<MeetingDisplayOptions />
-					</PageActionsContainer>
+            <MeetingDisplayOptions />
+          </PageActionsContainer>
 
-					<CreateMeetingButton />
-				</PageHeader>
+          <CreateMeetingButton />
+        </PageHeader>
 
-				<PageMain>
-					<Table />
-				</PageMain>
-			</PageContainer>
-		</AdminWrapper>
-	)
+        <PageMain>
+          <Table />
+        </PageMain>
+      </PageContainer>
+    </AdminWrapper>
+  )
 }

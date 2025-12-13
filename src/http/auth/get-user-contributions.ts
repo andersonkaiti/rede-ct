@@ -37,12 +37,12 @@ export const getAuthenticatedUserContributionsSchema = z.object({
         lattesUrl: z.string().nullable(),
         role: z.literal('ADMIN'),
       }),
-    })
+    }),
   ),
 })
 
 export async function getAuthenticatedUserContributions(
-  params: IContributionsRequest
+  params: IContributionsRequest,
 ) {
   const searchParams = parseSearchParams({
     ...params,

@@ -16,7 +16,7 @@ const registerCertificationSchema = z.object({
     .any()
     .refine(
       (file) => file instanceof File && file.size > 0,
-      'Arquivo do certificado é obrigatório'
+      'Arquivo do certificado é obrigatório',
     ),
 })
 
@@ -76,7 +76,7 @@ export function useCreateCertification({
           setServerError(errorBody.message)
         }
       }
-    }
+    },
   )
 
   return {

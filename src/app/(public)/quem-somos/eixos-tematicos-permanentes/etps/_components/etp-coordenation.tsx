@@ -26,7 +26,7 @@ export function ETPCoordenation({ members }: IETPCoordenationProps) {
               src={member.user.avatarUrl || '/images/placeholder.png'}
             />
             <UserCardContent>
-              <div className="flex flex-grow flex-col items-center justify-between gap-1">
+              <div className="flex grow flex-col items-center justify-between gap-1">
                 <h1 className="text-center font-bold text-base">
                   {member.user.name}
                 </h1>

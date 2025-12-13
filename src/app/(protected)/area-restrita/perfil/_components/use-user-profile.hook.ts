@@ -29,14 +29,14 @@ export const userProfileSchema = z.object({
     .optional()
     .refine(
       (val) => !val || ORCID_REGEX.test(val),
-      'ORCID inválido. Deve estar no formato 0000-0000-0000-0000'
+      'ORCID inválido. Deve estar no formato 0000-0000-0000-0000',
     ),
   phone: z
     .string()
     .optional()
     .refine(
       (val) => !val || PHONE_REGEX.test(val),
-      'Telefone inválido. Deve estar no formato (99) 99999-9999'
+      'Telefone inválido. Deve estar no formato (99) 99999-9999',
     ),
   avatarImage: z
     .any()
@@ -45,7 +45,7 @@ export const userProfileSchema = z.object({
         validateImageFile({
           value,
         }),
-      `A imagem deve ser um arquivo PNG, JPG ou WEBP com no máximo ${MAX_AVATAR_SIZE_MB}MB.`
+      `A imagem deve ser um arquivo PNG, JPG ou WEBP com no máximo ${MAX_AVATAR_SIZE_MB}MB.`,
     )
     .optional(),
 })

@@ -7,7 +7,7 @@ const DEFAULT_NEWS_LIMIT = 9
 export default function LoadingSkeleton() {
   const [limit] = useQueryState(
     'limit',
-    parseAsInteger.withDefault(DEFAULT_NEWS_LIMIT)
+    parseAsInteger.withDefault(DEFAULT_NEWS_LIMIT),
   )
 
   return (
@@ -15,15 +15,15 @@ export default function LoadingSkeleton() {
       {Array.from({ length: limit }).map((_, index: number) => (
         <div className="flex flex-col gap-2" key={index}>
           <header className="h-60">
-            <div className="relative flex size-full overflow-hidden rounded-lg border-1 border-background-900">
+            <div className="relative flex size-full overflow-hidden rounded-lg border border-background-900">
               <Skeleton className="flex size-full items-center justify-center">
                 <ImageIcon className="text-muted-foreground" />
               </Skeleton>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent dark:from-black/50 dark:to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent dark:from-black/50 dark:to-transparent" />
             </div>
           </header>
 
-          <div className="flex h-fit flex-grow flex-col justify-between gap-4 py-8">
+          <div className="flex h-fit grow flex-col justify-between gap-4 py-8">
             <div className="space-y-2">
               <Skeleton className="h-6 w-full rounded-md" />
               <Skeleton className="h-6 w-4/5 rounded-md" />

@@ -11,14 +11,14 @@ export default function LoadingSkeleton() {
         <section className="space-y-4 md:space-y-8" key={sectionIdx}>
           <div className="space-y-8">
             <Skeleton className="mx-auto h-10 w-60 rounded-full px-4 text-center" />
-            <Skeleton className="mx-auto h-[1px] w-1/2 bg-gradient-to-r from-transparent via-[var(--skeleton)] to-transparent" />
+            <Skeleton className="mx-auto h-px w-1/2 bg-linear-to-r from-transparent via-(--skeleton) to-transparent" />
           </div>
 
           <div className="grid w-full grid-cols-1 gap-10 md:grid-cols-3">
             {Array.from({ length: MEMBERS_PER_SECTION_COUNT }).map(
               (__, memberIdx) => (
                 <UserCardSkeleton key={memberIdx} />
-              )
+              ),
             )}
           </div>
         </section>

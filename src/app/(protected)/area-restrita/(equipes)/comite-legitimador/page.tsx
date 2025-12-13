@@ -1,11 +1,11 @@
 import {
-    PageActionsContainer,
-    PageContainer,
-    PageDescription,
-    PageHeader,
-    PageHeaderContent,
-    PageMain,
-    PageTitle,
+  PageActionsContainer,
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderContent,
+  PageMain,
+  PageTitle,
 } from '@components/ui/page-container'
 
 import { AdminWrapper } from '../../../_components/hoc/admin'

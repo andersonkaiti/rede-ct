@@ -27,7 +27,7 @@ interface IInMemoriamCardProps {
 export function InMemoriamCard({ member }: IInMemoriamCardProps) {
   return (
     <UserCard>
-      <div className="flex flex-grow flex-col items-center justify-between gap-2">
+      <div className="flex grow flex-col items-center justify-between gap-2">
         <UserCardImage
           alt={member.name}
           src={member.photoUrl || '/placeholder.svg'}

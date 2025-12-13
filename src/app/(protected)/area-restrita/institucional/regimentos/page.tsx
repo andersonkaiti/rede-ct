@@ -1,11 +1,11 @@
 import {
-	PageActionsContainer,
-	PageContainer,
-	PageDescription,
-	PageHeader,
-	PageHeaderContent,
-	PageMain,
-	PageTitle,
+  PageActionsContainer,
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderContent,
+  PageMain,
+  PageTitle,
 } from '@components/ui/page-container'
 
 import { AdminWrapper } from '../../../_components/hoc/admin'
@@ -15,30 +15,30 @@ import { RegimentsDisplayOptions } from './_components/regiments-display-options
 import { Table } from './_components/table/table'
 
 export default function Regiments() {
-	return (
-		<AdminWrapper>
-			<PageContainer>
-				<PageHeader>
-					<PageHeaderContent>
-						<PageTitle>Regimentos</PageTitle>
-						<PageDescription>Gerencie os regimentos</PageDescription>
-					</PageHeaderContent>
-				</PageHeader>
+  return (
+    <AdminWrapper>
+      <PageContainer>
+        <PageHeader>
+          <PageHeaderContent>
+            <PageTitle>Regimentos</PageTitle>
+            <PageDescription>Gerencie os regimentos</PageDescription>
+          </PageHeaderContent>
+        </PageHeader>
 
-				<PageHeader>
-					<PageActionsContainer>
-						<FilterInput />
+        <PageHeader>
+          <PageActionsContainer>
+            <FilterInput />
 
-						<RegimentsDisplayOptions />
-					</PageActionsContainer>
+            <RegimentsDisplayOptions />
+          </PageActionsContainer>
 
-					<CreateRegimentButton />
-				</PageHeader>
+          <CreateRegimentButton />
+        </PageHeader>
 
-				<PageMain>
-					<Table />
-				</PageMain>
-			</PageContainer>
-		</AdminWrapper>
-	)
+        <PageMain>
+          <Table />
+        </PageMain>
+      </PageContainer>
+    </AdminWrapper>
+  )
 }

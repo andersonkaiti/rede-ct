@@ -4,9 +4,9 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useUserNews } from './use-user-news.hook'
 import { LoadingSkeleton } from './loading-skeleton'
 import { newsTableColumns } from './news-table-columns'
+import { useUserNews } from './use-user-news.hook'
 
 interface INews {
   id: string
@@ -41,7 +41,7 @@ export function Table() {
       }
 
       return true
-    }
+    },
   )
 
   return (

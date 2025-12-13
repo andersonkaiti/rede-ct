@@ -65,7 +65,7 @@ export function ResearcherCard({ researcher }: IResearcherCardProps) {
   return (
     <div className="flex w-full flex-col overflow-hidden rounded-lg border border-border bg-background">
       <header className="mb-2 flex flex-row items-center gap-4 p-6">
-        <Avatar className="size-20 flex-shrink-0">
+        <Avatar className="size-20 shrink-0">
           <AvatarImage alt={`Avatar de ${name}`} src={avatarUrl ?? undefined} />
           <AvatarFallback>{getInitials(name)}</AvatarFallback>
         </Avatar>

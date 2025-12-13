@@ -7,7 +7,7 @@ interface ICreateLegitimatorCommitteeMemberRequest {
 }
 
 export async function createLegitimatorCommitteeMember(
-  data: ICreateLegitimatorCommitteeMemberRequest
+  data: ICreateLegitimatorCommitteeMemberRequest,
 ) {
   await api.post('legitimator-committee-member', {
     json: data,

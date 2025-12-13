@@ -34,7 +34,7 @@ export const managementTeamSchema = z.object({
       z.object({
         userId: z.uuid(),
         role: z.string().trim().min(1, 'O cargo é obrigatório.'),
-      })
+      }),
     )
     .min(1, 'Membros são obrigatórios.'),
 })
@@ -87,7 +87,7 @@ export function useUpdateTeam() {
             ...member.user,
             role: member.user.role as 'ADMIN' | 'USER',
           },
-        }))
+        })),
       )
     }
   }, [incomingTeam, form, isTeamLoading])
@@ -130,7 +130,7 @@ export function useUpdateTeam() {
           setServerError(errorBody.message)
         }
       }
-    }
+    },
   )
 
   return {

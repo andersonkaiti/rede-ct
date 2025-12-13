@@ -48,7 +48,7 @@ const WifiIcon = forwardRef<WifiIconHandle, WifiIconProps>(
           controls.start('fadeIn')
         }
       },
-      [controls, onMouseEnter]
+      [controls, onMouseEnter],
     )
 
     const handleMouseLeave = useCallback(
@@ -56,7 +56,7 @@ const WifiIcon = forwardRef<WifiIconHandle, WifiIconProps>(
         controls.start('fadeIn')
         onMouseLeave?.(e)
       },
-      [controls, onMouseLeave]
+      [controls, onMouseLeave],
     )
 
     return (
@@ -104,7 +104,7 @@ const WifiIcon = forwardRef<WifiIconHandle, WifiIconProps>(
         </svg>
       </div>
     )
-  }
+  },
 )
 
 WifiIcon.displayName = 'WifiIcon'

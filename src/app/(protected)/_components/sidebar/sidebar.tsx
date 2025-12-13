@@ -18,7 +18,7 @@ import { sidebarLinks } from './sidebar-links'
 import { LoadingSkeleton } from './user-profile/loading-skeleton'
 
 const DynamicUserProfile = dynamic(() =>
-  import('./user-profile/user-profile').then((mod) => mod.UserProfile)
+  import('./user-profile/user-profile').then((mod) => mod.UserProfile),
 )
 
 export async function SidebarContainer() {

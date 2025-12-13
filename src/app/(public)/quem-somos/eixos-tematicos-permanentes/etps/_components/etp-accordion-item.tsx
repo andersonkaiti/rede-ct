@@ -30,7 +30,7 @@ export function ETPAccordionItem({ etp }: IETPAccordionItemProps) {
   }
 
   const coordenationUsers = coordenation.map(
-    (coordenator) => coordenator
+    (coordenator) => coordenator,
   ) satisfies IETPResearcher[]
 
   const workingGroup: IETPResearcher[] = [...coordenationUsers, ...etp.members]

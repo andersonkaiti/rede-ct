@@ -10,7 +10,7 @@ export default function PesquisadoresParticipantes() {
     <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <div className="flex items-center gap-4">
         <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-          <GraduationCap className="!size-7" />
+          <GraduationCap className="size-7" />
         </Badge>
         <h1 className="title-2">Pesquisadores da RedeCT</h1>
       </div>
@@ -25,7 +25,7 @@ export default function PesquisadoresParticipantes() {
           Regimento Interno da Rede:
         </p>
 
-        <div className="space-y-6 rounded-md bg-gradient-to-br from-primary to-primary/80 p-6 text-slate-100 md:p-10 dark:border dark:border-primary/20 dark:from-primary/15 dark:to-primary/5">
+        <div className="space-y-6 rounded-md bg-linear-to-br from-primary to-primary/80 p-6 text-slate-100 md:p-10 dark:border dark:border-primary/20 dark:from-primary/15 dark:to-primary/5">
           <h2 className="title-3 flex items-center gap-2 font-bold">
             <GraduationCap /> Tipos de pesquisadores
           </h2>

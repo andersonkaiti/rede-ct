@@ -1,5 +1,5 @@
 export function parseSearchParams<T extends object>(
-  params: T
+  params: T,
 ): URLSearchParams {
   const searchParams = new URLSearchParams()
 

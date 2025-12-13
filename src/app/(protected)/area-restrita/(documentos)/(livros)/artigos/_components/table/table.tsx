@@ -4,9 +4,9 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useScientificArticles } from './use-scientific-articles.hook'
 import { scientificArticleTableColumns } from './article-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
+import { useScientificArticles } from './use-scientific-articles.hook'
 
 interface IScientificArticle {
   id: string
@@ -34,25 +34,16 @@ export function Table() {
   const { data, handleRemoveArticle, isLoading, page, limit } =
     useScientificArticles()
 
-  const [
-    {
-      title,
-      author,
-      journal,
-      year,
-      publisher,
-      createdAt,
-      updatedAt,
-    },
-  ] = useQueryStates({
-    title: parseAsBoolean.withDefault(true),
-    author: parseAsBoolean.withDefault(true),
-    journal: parseAsBoolean.withDefault(true),
-    year: parseAsBoolean.withDefault(true),
-    publisher: parseAsBoolean.withDefault(true),
-    createdAt: parseAsBoolean.withDefault(true),
-    updatedAt: parseAsBoolean.withDefault(true),
-  })
+  const [{ title, author, journal, year, publisher, createdAt, updatedAt }] =
+    useQueryStates({
+      title: parseAsBoolean.withDefault(true),
+      author: parseAsBoolean.withDefault(true),
+      journal: parseAsBoolean.withDefault(true),
+      year: parseAsBoolean.withDefault(true),
+      publisher: parseAsBoolean.withDefault(true),
+      createdAt: parseAsBoolean.withDefault(true),
+      updatedAt: parseAsBoolean.withDefault(true),
+    })
 
   const filteredTableColumns: ColumnDef<IScientificArticle>[] =
     scientificArticleTableColumns.filter((column) => {

@@ -66,7 +66,7 @@ export function UsersIcon({
         controls.start('animate')
       }
     },
-    [controls, onMouseEnter]
+    [controls, onMouseEnter],
   )
 
   const handleMouseLeave = useCallback(
@@ -77,7 +77,7 @@ export function UsersIcon({
         controls.start('normal')
       }
     },
-    [controls, onMouseLeave]
+    [controls, onMouseLeave],
   )
 
   return (

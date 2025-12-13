@@ -21,7 +21,7 @@ export const updateNewsSchema = z.object({
       validateImageFile({
         value,
       }),
-    `A imagem deve ter no máximo ${MAX_FILE_SIZE_MB}MB`
+    `A imagem deve ter no máximo ${MAX_FILE_SIZE_MB}MB`,
   ),
 })
 

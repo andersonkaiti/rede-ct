@@ -7,11 +7,11 @@ import { ResearchersTitle } from './_components/researchers-title'
 import { TraditionalLeadersTitle } from './_components/traditional-leaders-title'
 
 const DynamicPesquisadores = dynamic(() =>
-  import('./_components/researchers').then((m) => m.Researchers)
+  import('./_components/researchers').then((m) => m.Researchers),
 )
 
 const DynamicPovosTradicionais = dynamic(() =>
-  import('./_components/traditional-leaders').then((m) => m.TraditionalLeaders)
+  import('./_components/traditional-leaders').then((m) => m.TraditionalLeaders),
 )
 
 export default function InMemorian() {

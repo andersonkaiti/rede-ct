@@ -19,13 +19,13 @@ export function RegionalCongressCard() {
 
   return (
     <Card
-      className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-red-800 text-white dark:from-primary dark:to-red-950 dark:text-white"
+      className="relative overflow-hidden rounded-2xl bg-linear-to-br from-primary to-red-800 text-white dark:from-primary dark:to-red-950 dark:text-white"
       onMouseEnter={() => iconRef.current?.startAnimation()}
       onMouseLeave={() => iconRef.current?.stopAnimation()}
     >
       <CardHeader className="relative space-y-2 text-white dark:text-white">
         <MapPinIcon
-          className="!size-20 text-white dark:text-white"
+          className="size-20 text-white dark:text-white"
           ref={iconRef}
           size={70}
         />
@@ -46,7 +46,7 @@ export function RegionalCongressCard() {
         <Link className="w-full" href="/divisao-cientifica/congressos/regional">
           <Button className="group w-full bg-white font-semibold text-primary hover:bg-white hover:text-primary dark:bg-white dark:text-primary dark:hover:bg-white dark:hover:text-primary">
             Ver mais
-            <ArrowRight className="!size-4 transition-all duration-300 group-hover:translate-x-1" />
+            <ArrowRight className="size-4 transition-all duration-300 group-hover:translate-x-1" />
           </Button>
         </Link>
       </CardFooter>

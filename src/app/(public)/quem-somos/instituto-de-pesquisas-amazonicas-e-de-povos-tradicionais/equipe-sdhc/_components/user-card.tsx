@@ -31,7 +31,7 @@ export function UserCardComponent({ member }: UserCardComponentProps) {
         alt={member.user.name}
         src={member.user.avatarUrl as string}
       />
-      <div className="flex flex-grow flex-col items-center justify-between gap-1">
+      <div className="flex grow flex-col items-center justify-between gap-1">
         <h1 className="text-center font-bold text-xl">
           <UserProfileHoverCard avatarVisibility={false} user={member.user} />
         </h1>

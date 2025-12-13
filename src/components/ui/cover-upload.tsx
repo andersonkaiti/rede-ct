@@ -309,7 +309,7 @@ export function CoverUpload({
           </div>
         ) : (
           <div
-            className="flex aspect-[21/5] w-full cursor-pointer flex-col items-center justify-center gap-4 p-8 text-center"
+            className="flex aspect-21/5 w-full cursor-pointer flex-col items-center justify-center gap-4 p-8 text-center"
             onClick={openFileDialog}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {

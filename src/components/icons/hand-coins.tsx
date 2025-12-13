@@ -104,7 +104,7 @@ export function HandCoinsIcon({
         controls.start('animate')
       }
     },
-    [controls, onMouseEnter]
+    [controls, onMouseEnter],
   )
 
   const handleMouseLeave = useCallback(
@@ -115,7 +115,7 @@ export function HandCoinsIcon({
         controls.start('normal')
       }
     },
-    [controls, onMouseLeave]
+    [controls, onMouseLeave],
   )
 
   return (

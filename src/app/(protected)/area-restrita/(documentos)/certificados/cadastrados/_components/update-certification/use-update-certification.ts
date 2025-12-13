@@ -17,7 +17,7 @@ const updateCertificationSchema = z.object({
     .any()
     .refine(
       (file) => file.size === 0 || (file instanceof File && file.size > 0),
-      'Arquivo do certificado é inválido'
+      'Arquivo do certificado é inválido',
     )
     .optional(),
 })

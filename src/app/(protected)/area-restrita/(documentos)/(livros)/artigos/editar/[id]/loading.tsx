@@ -1,7 +1,7 @@
 import {
-    PageContainer,
-    PageHeaderContent,
-    PageTitle,
+  PageContainer,
+  PageHeaderContent,
+  PageTitle,
 } from '@components/ui/page-container'
 import { Skeleton } from '@components/ui/skeleton'
 

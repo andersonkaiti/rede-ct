@@ -57,7 +57,7 @@ export function useCreateSDHCTeamMember(setIsOpen: (isOpen: boolean) => void) {
           setServerError(errorBody.message)
         }
       }
-    }
+    },
   )
 
   return {

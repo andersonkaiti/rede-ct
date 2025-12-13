@@ -19,7 +19,7 @@ const updatePendencySchema = z.object({
     .any()
     .refine(
       (file) => !file || (file instanceof File && file.size > 0),
-      'Documento é inválido'
+      'Documento é inválido',
     )
     .optional(),
 })
@@ -45,7 +45,7 @@ export function useUpdatePendency({ setIsOpen }: IUseUpdatePendencyProps) {
       orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
       page: parseAsString.withDefault(String(DEFAULT_PAGE)),
       limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
-    }
+    },
   )
 
   const { data: pendency } = useQuery({

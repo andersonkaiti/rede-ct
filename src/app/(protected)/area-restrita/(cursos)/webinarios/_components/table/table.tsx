@@ -4,8 +4,8 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useWebinars } from './use-webinars.hook'
 import { LoadingSkeleton } from './loading-skeleton'
+import { useWebinars } from './use-webinars.hook'
 import { webinarTableColumns } from './webinar-table-columns'
 
 interface IWebinar {

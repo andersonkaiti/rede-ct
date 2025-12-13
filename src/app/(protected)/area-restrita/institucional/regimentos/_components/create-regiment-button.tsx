@@ -3,19 +3,19 @@ import { Plus } from 'lucide-react'
 import Link from 'next/link'
 
 export function CreateRegimentButton() {
-	return (
-		<Button
-			asChild
-			className="w-full cursor-pointer lg:w-fit"
-			variant="outline"
-		>
-			<Link
-				className="w-full"
-				href="/area-restrita/institucional/regimentos/cadastrar"
-			>
-				<Plus />
-				Novo Regimento
-			</Link>
-		</Button>
-	)
+  return (
+    <Button
+      asChild
+      className="w-full cursor-pointer lg:w-fit"
+      variant="outline"
+    >
+      <Link
+        className="w-full"
+        href="/area-restrita/institucional/regimentos/cadastrar"
+      >
+        <Plus />
+        Novo Regimento
+      </Link>
+    </Button>
+  )
 }

@@ -51,7 +51,7 @@ export function SocialMedia() {
         </Link>
       </div>
       <div className="flex items-center gap-2 text-muted-foreground text-sm">
-        <MailIcon className="!size-4" />
+        <MailIcon className="size-4" />
         contato@redect.org
       </div>
     </div>

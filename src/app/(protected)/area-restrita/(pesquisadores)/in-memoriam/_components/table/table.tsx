@@ -9,9 +9,9 @@ import {
   useQueryState,
   useQueryStates,
 } from 'nuqs'
-import { useInMemoriam } from './use-in-memoriam.hook'
 import { inMemoriamTableColumns } from './in-memoriam-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
+import { useInMemoriam } from './use-in-memoriam.hook'
 
 interface IInMemoriam {
   id: string

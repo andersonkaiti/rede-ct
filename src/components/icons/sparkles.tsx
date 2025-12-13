@@ -85,7 +85,7 @@ export function SparklesIcon({
         starControls.start('blink', { delay: 1 })
       }
     },
-    [onMouseEnter, sparkleControls, starControls]
+    [onMouseEnter, sparkleControls, starControls],
   )
 
   const handleMouseLeave = useCallback(
@@ -97,7 +97,7 @@ export function SparklesIcon({
         starControls.start('initial')
       }
     },
-    [sparkleControls, starControls, onMouseLeave]
+    [sparkleControls, starControls, onMouseLeave],
   )
 
   return (

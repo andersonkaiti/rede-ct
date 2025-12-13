@@ -18,12 +18,12 @@ export const updateResearcherSchema = z.object({
   formations: z.string().optional(),
   degrees: z.array(
     z.enum(['DOCTOR', 'MASTER', 'BACHELOR', 'TECHNICAL', 'POSTGRADUATE']),
-    'Grau inválido.'
+    'Grau inválido.',
   ),
   occupations: z.string('Ocupação obrigatória.'),
   seniority: z.enum(
     ['SENIOR', 'RESEARCHER', 'JUNIOR', 'HONOR'],
-    'Senioridade obrigatória.'
+    'Senioridade obrigatória.',
   ),
   institutions: z.string('Instituição obrigatória.'),
   biography: z.string().optional(),

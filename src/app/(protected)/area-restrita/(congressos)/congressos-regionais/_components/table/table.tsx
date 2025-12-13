@@ -2,9 +2,9 @@
 
 import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
-import { useRegionalCongresses } from './use-regional-congresses.hook'
 import { LoadingSkeleton } from './loading-skeleton'
 import { regionalCongressesTableColumns } from './regional-congresses-table-columns'
+import { useRegionalCongresses } from './use-regional-congresses.hook'
 
 export function Table() {
   const { data, handleRemoveRegionalCongress, isLoading, page, limit } =

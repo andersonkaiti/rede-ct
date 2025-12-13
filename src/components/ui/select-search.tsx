@@ -12,7 +12,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@components/ui/popover'
 import { cn } from '@utils/cn'
 import { CheckIcon, ChevronDownIcon } from 'lucide-react'
-import { ReactNode, useId, useState } from 'react'
+import { type ReactNode, useId, useState } from 'react'
 
 interface IOption {
   value: string
@@ -56,7 +56,7 @@ export default function SelectWithSearch({
       </span>
       <ChevronDownIcon
         aria-hidden="true"
-        className="shrink-0 text-muted-foreground/80 size-4"
+        className="size-4 shrink-0 text-muted-foreground/80"
       />
     </Button>
   )
@@ -67,10 +67,7 @@ export default function SelectWithSearch({
         <PopoverTrigger asChild>
           {children ? children : defaultTrigger}
         </PopoverTrigger>
-        <PopoverContent
-          align="start"
-          className="w-full border-input p-0"
-        >
+        <PopoverContent align="start" className="w-full border-input p-0">
           <Command
             filter={(value, search) => {
               const option = options.find((option) => option.value === value)
@@ -93,9 +90,11 @@ export default function SelectWithSearch({
                     setOpen(false)
                   }}
                   value=""
-                  className="hover:bg-accent cursor-pointer"
+                  className="cursor-pointer hover:bg-accent"
                 >
-                  <span className="text-muted-foreground">Nenhum selecionado</span>
+                  <span className="text-muted-foreground">
+                    Nenhum selecionado
+                  </span>
                   {value === '' && <CheckIcon className="ml-auto size-4" />}
                 </CommandItem>
                 {options.map((option) => (

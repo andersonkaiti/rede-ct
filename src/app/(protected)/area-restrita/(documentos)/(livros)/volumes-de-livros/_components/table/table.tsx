@@ -4,9 +4,9 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useBookVolumes } from './use-book-volumes.hook'
 import { bookVolumeTableColumns } from './book-volume-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
+import { useBookVolumes } from './use-book-volumes.hook'
 
 interface IBookVolume {
   id: string

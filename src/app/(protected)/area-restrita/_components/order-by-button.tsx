@@ -8,7 +8,7 @@ import { parseAsString, useQueryState } from 'nuqs'
 export function OrderByButton() {
   const [orderBy, setOrderBy] = useQueryState(
     'orderBy',
-    parseAsString.withDefault('desc')
+    parseAsString.withDefault('desc'),
   )
 
   function handleOrderBy() {
@@ -24,7 +24,7 @@ export function OrderByButton() {
       <ArrowDownUp
         className={cn(
           'text-muted-foreground transition-transform',
-          orderBy === 'asc' && 'rotate-180'
+          orderBy === 'asc' && 'rotate-180',
         )}
       />
     </Button>

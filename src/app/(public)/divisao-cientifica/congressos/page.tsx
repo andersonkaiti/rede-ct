@@ -9,7 +9,7 @@ export default function Congressos() {
       <header className="space-y-7">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <EarthIcon className="!size-7" />
+            <EarthIcon className="size-7" />
           </Badge>
           <h1 className="title-2">Congressos da RedeCT</h1>
         </div>

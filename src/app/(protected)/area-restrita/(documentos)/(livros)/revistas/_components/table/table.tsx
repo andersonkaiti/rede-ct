@@ -4,9 +4,9 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useScientificJournals } from './use-scientific-journals.hook'
 import { scientificJournalTableColumns } from './journal-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
+import { useScientificJournals } from './use-scientific-journals.hook'
 
 interface IScientificJournal {
   id: string

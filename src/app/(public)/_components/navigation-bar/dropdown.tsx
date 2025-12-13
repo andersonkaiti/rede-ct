@@ -25,7 +25,7 @@ export function Dropdown({
 
   function getTransformClass(
     hoveringIndex: number,
-    currentIndex: number
+    currentIndex: number,
   ): string {
     if (hoveringIndex === currentIndex) {
       return 'transform-none'
@@ -49,7 +49,7 @@ export function Dropdown({
   return (
     <div
       className={cn(
-        'absolute top-14 w-fit overflow-hidden rounded-lg border border-background-foreground/40 bg-background p-2 shadow transition-all duration-300'
+        'absolute top-14 w-fit overflow-hidden rounded-lg border border-background-foreground/40 bg-background p-2 shadow transition-all duration-300',
       )}
       style={{
         left: leftOffset || 0,
@@ -63,7 +63,7 @@ export function Dropdown({
             className={cn(
               'flex-col gap-2 transition-opacity',
               hovering === index ? 'flex' : 'hidden',
-              getTransformClass(hovering, index)
+              getTransformClass(hovering, index),
             )}
             key={index}
             ref={(element) => {
@@ -73,12 +73,12 @@ export function Dropdown({
             {children?.map(
               (
                 { path, label, icon }: NavigationLinkType,
-                childIndex: number
+                childIndex: number,
               ) => (
                 <Link
                   className={cn(
                     'group flex items-center gap-2 truncate rounded-md p-2 text-muted-foreground text-sm transition-colors hover:text-foreground',
-                    isCurrentPath(path) && 'text-foreground'
+                    isCurrentPath(path) && 'text-foreground',
                   )}
                   href={path as string}
                   key={`${index}-${childIndex}`}
@@ -86,10 +86,10 @@ export function Dropdown({
                   <NavigationBarIcon icon={icon} />
                   {label}
                 </Link>
-              )
+              ),
             )}
           </div>
-        )
+        ),
       )}
     </div>
   )

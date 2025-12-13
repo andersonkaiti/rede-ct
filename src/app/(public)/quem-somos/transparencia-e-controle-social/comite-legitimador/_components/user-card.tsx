@@ -36,7 +36,7 @@ export function UserCardComponent({ member }: IUserCardComponentProps) {
         src={member.user.avatarUrl as string}
       />
       <UserCardContent>
-        <div className="flex flex-grow flex-col items-center justify-between gap-1">
+        <div className="flex grow flex-col items-center justify-between gap-1">
           <h1 className="text-center font-bold text-base">
             <UserProfileHoverCard avatarVisibility={false} user={member.user} />
           </h1>

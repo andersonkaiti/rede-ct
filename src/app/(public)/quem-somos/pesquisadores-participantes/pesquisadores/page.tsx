@@ -13,7 +13,7 @@ export default function PesquisadoresParticipantesRedeCT() {
       <header className="space-y-8">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <GraduationCap className="!size-7" />
+            <GraduationCap className="size-7" />
           </Badge>
           <h1 className="title-2">Pesquisadores Participantes da RedeCT</h1>
         </div>

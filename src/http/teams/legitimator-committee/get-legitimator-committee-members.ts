@@ -28,13 +28,13 @@ export const getLegitimatorCommitteeSchema = z.object({
         lattesUrl: z.string().nullable(),
         role: z.enum(['ADMIN', 'USER']),
       }),
-    })
+    }),
   ),
 })
 
-export async function getLegitimatorCommitteeMembers(
-  { filter }: IGetLegitimatorCommitteeRequest
-) {
+export async function getLegitimatorCommitteeMembers({
+  filter,
+}: IGetLegitimatorCommitteeRequest) {
   const searchParams = parseSearchParams({
     role: filter,
   })

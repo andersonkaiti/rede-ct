@@ -14,20 +14,22 @@ export const seniorityMapping: Record<Seniority, string> = {
 }
 
 export function useResearchers() {
-  const [{ tab = seniorities[0], filtro: filter }, setQueryStates] = useQueryStates({
-    tab: parseAsString.withDefault(seniorities[0]),
-    filtro: parseAsString.withDefault(''),
-  })
+  const [{ tab = seniorities[0], filtro: filter }, setQueryStates] =
+    useQueryStates({
+      tab: parseAsString.withDefault(seniorities[0]),
+      filtro: parseAsString.withDefault(''),
+    })
 
   const result = useQuery({
     queryKey: ['researchers', filter],
-    queryFn: async () => await getResearchers({
-      filter,
-    }),
+    queryFn: async () =>
+      await getResearchers({
+        filter,
+      }),
   })
 
   const currentTab: Seniority | undefined = seniorities.includes(
-    tab as Seniority
+    tab as Seniority,
   )
     ? (tab as Seniority)
     : undefined

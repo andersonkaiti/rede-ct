@@ -24,7 +24,7 @@ const navigationCardVariants = cva(
     defaultVariants: {
       variant: 'default',
     },
-  }
+  },
 )
 
 const arrowIconVariants = cva(
@@ -39,7 +39,7 @@ const arrowIconVariants = cva(
     defaultVariants: {
       variant: 'default',
     },
-  }
+  },
 )
 
 type NavigationCardVariant = 'default' | 'red'

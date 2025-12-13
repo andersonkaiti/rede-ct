@@ -5,7 +5,7 @@ import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicEPTAccordion = dynamic(() =>
-  import('./_components/etp-accordion').then((m) => m.EPTAccordion)
+  import('./_components/etp-accordion').then((m) => m.EPTAccordion),
 )
 
 export default function EixosTematicosPermanentesETPs() {

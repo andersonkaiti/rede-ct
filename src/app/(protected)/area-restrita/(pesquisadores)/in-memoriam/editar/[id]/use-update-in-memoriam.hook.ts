@@ -26,7 +26,7 @@ export const updateInMemoriamSchema = z
           validateImageFile({
             value,
           }),
-        `A imagem deve ter no máximo ${MAX_PHOTO_SIZE_MB}MB.`
+        `A imagem deve ter no máximo ${MAX_PHOTO_SIZE_MB}MB.`,
       )
       .optional(),
     role: z.enum(['RESEARCHER', 'LEADER']),

@@ -2,11 +2,11 @@
 
 import { Button } from '@components/ui/button'
 import {
-    DropdownMenu,
-    DropdownMenuCheckboxItem,
-    DropdownMenuContent,
-    DropdownMenuLabel,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu'
 import { Funnel } from 'lucide-react'
 import { parseAsBoolean, useQueryStates } from 'nuqs'

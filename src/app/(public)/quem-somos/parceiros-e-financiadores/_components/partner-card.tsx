@@ -35,13 +35,13 @@ interface IPartnerProps {
 
 export function PartnerCard({ partner }: IPartnerProps) {
   return (
-    <Card className="h-full flex flex-col overflow-hidden">
+    <Card className="flex h-full flex-col overflow-hidden">
       <CardHeader className="flex flex-row items-center gap-4">
-        <Avatar className="w-16 h-16 shrink-0 border">
+        <Avatar className="h-16 w-16 shrink-0 border">
           <AvatarImage
             src={partner.logoUrl || undefined}
             alt={partner.name}
-            className="object-cover size-full"
+            className="size-full object-cover"
           />
           <AvatarFallback className="text-base">
             {partner.name.slice(0, 2).toUpperCase()}
@@ -50,7 +50,7 @@ export function PartnerCard({ partner }: IPartnerProps) {
         <div>
           <CardTitle className="mb-1 line-clamp-2">{partner.name}</CardTitle>
           {partner.category && (
-            <CardDescription className="capitalize text-xs">
+            <CardDescription className="text-xs capitalize">
               {partner.category}
             </CardDescription>
           )}
@@ -62,7 +62,7 @@ export function PartnerCard({ partner }: IPartnerProps) {
           <Collapsible>
             <CollapsibleTrigger asChild>
               <Button
-                className="w-full flex justify-between group"
+                className="group flex w-full justify-between"
                 variant="ghost"
               >
                 Descrição
@@ -71,11 +71,11 @@ export function PartnerCard({ partner }: IPartnerProps) {
             </CollapsibleTrigger>
 
             <CollapsibleContent className="p-3">
-              <p className="text-sm text-justify">{partner.description}</p>
+              <p className="text-justify text-sm">{partner.description}</p>
             </CollapsibleContent>
           </Collapsible>
         ) : (
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             {partner.description || <em>Sem descrição</em>}
           </p>
         )}
@@ -84,8 +84,8 @@ export function PartnerCard({ partner }: IPartnerProps) {
       <Separator />
 
       <CardFooter className="flex items-end justify-between gap-2 px-6">
-        <div className='space-y-2'>
-          <span className="text-xs text-muted-foreground leading-tight">
+        <div className="space-y-2">
+          <span className="text-muted-foreground text-xs leading-tight">
             Parceiro(a) desde
           </span>
           <div className="font-semibold text-sm">

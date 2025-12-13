@@ -107,7 +107,7 @@ export function CreatePendencyForm({ setIsOpen }: ICreatePendencyFormProps) {
                       onChange={(date) => {
                         setDueDate(date)
                         field.onChange(
-                          date ? date.toISOString().split('T')[0] : ''
+                          date ? date.toISOString().split('T')[0] : '',
                         )
                       }}
                       placeholder="Selecione uma data de vencimento"

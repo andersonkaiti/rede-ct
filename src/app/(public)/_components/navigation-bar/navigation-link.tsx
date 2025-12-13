@@ -42,7 +42,7 @@ export function NavigationLink({
       (child: NavigationLinkType) =>
         child.path &&
         (pathname === child.path ||
-          (child.path !== '/' && pathname.startsWith(child.path)))
+          (child.path !== '/' && pathname.startsWith(child.path))),
     )
 
   function handleMouseEnter(event: React.MouseEvent<HTMLElement>) {
@@ -68,7 +68,7 @@ export function NavigationLink({
         className={cn(
           'group inline-flex h-9 w-full items-center justify-between 2lg:rounded-full rounded-md px-4 py-2 text-sm outline-none transition-[color,box-shadow] hover:bg-gray-400/25 hover:text-foreground hover:text-red-200-foreground focus:text-red-200-foreground focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-red-200-foreground dark:text-muted-foreground',
           (isHovered || isActived || isCurrent || isAnyChildCurrent) &&
-            'text-foreground'
+            'text-foreground',
         )}
         data-state={isHovered || isActived ? 'open' : 'closed'}
         href={path || '#'}
@@ -85,7 +85,7 @@ export function NavigationLink({
         {children && (
           <ChevronDownIcon
             aria-hidden="true"
-            className="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
+            className="relative top-px ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
           />
         )}
       </Link>
@@ -94,7 +94,7 @@ export function NavigationLink({
         <div
           className={cn(
             'flex 2lg:w-52 w-full flex-col items-center gap-1 overflow-hidden pl-5 transition-all duration-300 ease-in-out',
-            isActived ? 'max-h-120 opacity-100' : 'max-h-0 opacity-0'
+            isActived ? 'max-h-120 opacity-100' : 'max-h-0 opacity-0',
           )}
         >
           {children.map(
@@ -104,7 +104,7 @@ export function NavigationLink({
                 label: childLabel,
                 icon: childIcon,
               }: NavigationLinkType,
-              childIndex: number
+              childIndex: number,
             ) => {
               const isChildCurrent =
                 childPath &&
@@ -115,7 +115,7 @@ export function NavigationLink({
                 <Link
                   className={cn(
                     'mt-2 flex w-full items-center gap-2 2lg:rounded-full rounded-md p-2 text-center text-sm dark:text-muted-foreground',
-                    isChildCurrent && 'bg-gray-400/25 text-foreground'
+                    isChildCurrent && 'bg-gray-400/25 text-foreground',
                   )}
                   href={childPath || '#'}
                   key={childIndex}
@@ -125,7 +125,7 @@ export function NavigationLink({
                   {childLabel}
                 </Link>
               )
-            }
+            },
           )}
         </div>
       )}

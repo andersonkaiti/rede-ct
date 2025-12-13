@@ -13,7 +13,7 @@ export const getUsersSchema = z.array(
     phone: z.string().nullable(),
     lattesUrl: z.string().nullable(),
     role: z.enum(['ADMIN', 'USER']),
-  })
+  }),
 )
 
 export async function getUsers() {

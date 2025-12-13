@@ -257,7 +257,6 @@ export default function CreateInternationalScientificCongressPage() {
 
           <Separator />
 
-          {/* Nova grid para as informações adicionais ocupando uma linha só */}
           <div className="grid grid-cols-1 gap-6">
             <Card>
               <CardHeader>

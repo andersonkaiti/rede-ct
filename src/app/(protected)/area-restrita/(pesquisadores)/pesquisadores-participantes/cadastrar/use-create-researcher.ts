@@ -14,13 +14,13 @@ export const createResearcherSchema = z.object({
   degrees: z
     .array(
       z.enum(['DOCTOR', 'MASTER', 'BACHELOR', 'TECHNICAL', 'POSTGRADUATE']),
-      'Grau inválido.'
+      'Grau inválido.',
     )
     .min(1, 'Pelo menos um grau deve ser selecionado.'),
   occupations: z.string().min(1, 'Ocupação obrigatória.'),
   seniority: z.enum(
     ['SENIOR', 'RESEARCHER', 'JUNIOR', 'HONOR'],
-    'Senioridade obrigatória.'
+    'Senioridade obrigatória.',
   ),
   institutions: z.string().min(1, 'Instituição obrigatória.'),
   biography: z.string().optional(),

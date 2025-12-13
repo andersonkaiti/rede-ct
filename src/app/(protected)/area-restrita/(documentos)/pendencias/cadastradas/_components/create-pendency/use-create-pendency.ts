@@ -18,7 +18,7 @@ const registerPendencySchema = z.object({
     .any()
     .refine(
       (file) => file instanceof File && file.size > 0,
-      'Documento é obrigatório'
+      'Documento é obrigatório',
     ),
 })
 

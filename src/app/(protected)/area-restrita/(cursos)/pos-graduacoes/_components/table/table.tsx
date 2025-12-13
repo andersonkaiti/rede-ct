@@ -4,9 +4,9 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { usePostGraduatePrograms } from './use-post-graduate-programs.hook'
 import { LoadingSkeleton } from './loading-skeleton'
 import { postGraduateProgramTableColumns } from './program-table-columns'
+import { usePostGraduatePrograms } from './use-post-graduate-programs.hook'
 
 interface IPostGraduateProgram {
   id: string

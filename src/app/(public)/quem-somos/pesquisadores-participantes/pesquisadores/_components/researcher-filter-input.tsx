@@ -11,7 +11,7 @@ import { parseAsString, useQueryState } from 'nuqs'
 export function ResearcherFilterInput() {
   const [filter, setFilter] = useQueryState(
     'filtro',
-    parseAsString.withDefault('')
+    parseAsString.withDefault(''),
   )
 
   return (

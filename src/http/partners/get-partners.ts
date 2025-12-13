@@ -29,7 +29,7 @@ export const getPartnersSchema = z.object({
       isActive: z.boolean(),
       createdAt: z.string(),
       updatedAt: z.string(),
-    })
+    }),
   ),
 })
 

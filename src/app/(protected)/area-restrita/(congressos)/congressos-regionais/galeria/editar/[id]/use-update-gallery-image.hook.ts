@@ -51,7 +51,7 @@ export function useUpdateGalleryImage(id: string, congressId: string) {
         })
 
         setIsLoading(false)
-      } catch (error) {
+      } catch {
         toast.error('Erro ao carregar imagem da galeria.')
         router.push(`/area-restrita/congressos-regionais/galeria/${congressId}`)
       }

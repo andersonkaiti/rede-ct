@@ -22,7 +22,7 @@ export const getUserNewsSchema = z.object({
       title: z.string(),
       content: z.string(),
       imageUrl: z.string().nullable(),
-    })
+    }),
   ),
 })
 

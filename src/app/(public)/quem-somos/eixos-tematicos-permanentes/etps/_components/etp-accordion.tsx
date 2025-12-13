@@ -21,9 +21,9 @@ export function EPTAccordion() {
       ? Object.entries(etp).some(
           ([, value]) =>
             typeof value === 'string' &&
-            value.toLowerCase().includes(filter.toLowerCase())
+            value.toLowerCase().includes(filter.toLowerCase()),
         )
-      : true
+      : true,
   )
 
   return (

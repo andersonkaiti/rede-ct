@@ -12,7 +12,7 @@ export default function EixosTematicosPermanentes() {
       <section className="space-y-14">
         <div className="flex items-center gap-4">
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <BookOpen className="!size-7" />
+            <BookOpen className="size-7" />
           </Badge>
           <h1 className="title-2">ETPs e GTCs</h1>
         </div>

@@ -23,7 +23,7 @@ export const createInMemoriamSchema = z
           validateImageFile({
             value,
           }),
-        `A imagem deve ser um arquivo PNG, JPG ou WEBP com no máximo ${MAX_PHOTO_SIZE_MB}MB.`
+        `A imagem deve ser um arquivo PNG, JPG ou WEBP com no máximo ${MAX_PHOTO_SIZE_MB}MB.`,
       )
       .optional(),
     role: z.enum(['RESEARCHER', 'LEADER']),
@@ -65,7 +65,7 @@ export function useCreateInMemoriam() {
       if (err instanceof HTTPError) {
         const errorBody = await err.response.json()
         setServerError(
-          errorBody?.message || 'Ocorreu um erro ao cadastrar no In Memoriam.'
+          errorBody?.message || 'Ocorreu um erro ao cadastrar no In Memoriam.',
         )
       }
     }

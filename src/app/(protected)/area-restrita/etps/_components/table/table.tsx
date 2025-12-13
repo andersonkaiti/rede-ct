@@ -11,9 +11,9 @@ import {
   useQueryStates,
 } from 'nuqs'
 import type z from 'zod'
-import { useEtps } from './use-etps.hook'
 import { etpsTableColumns } from './etps-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
+import { useEtps } from './use-etps.hook'
 
 interface IETP extends z.infer<typeof etpSchema> {}
 
@@ -48,7 +48,7 @@ export function Table() {
       }
 
       return true
-    }
+    },
   )
 
   return (

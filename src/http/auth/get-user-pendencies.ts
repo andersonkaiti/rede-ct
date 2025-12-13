@@ -25,12 +25,12 @@ export const getAuthenticatedUserPendenciesSchema = z.object({
       createdAt: z.string(),
       updatedAt: z.string(),
       userId: z.string(),
-    })
+    }),
   ),
 })
 
 export async function getAuthenticatedUserPendencies(
-  params: IPendenciesRequest
+  params: IPendenciesRequest,
 ) {
   const searchParams = parseSearchParams({
     ...params,

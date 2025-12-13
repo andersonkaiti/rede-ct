@@ -49,7 +49,7 @@ export function BlocksIcon({
         controls.start('animate')
       }
     },
-    [controls, onMouseEnter]
+    [controls, onMouseEnter],
   )
 
   const handleMouseLeave = useCallback(
@@ -60,7 +60,7 @@ export function BlocksIcon({
         controls.start('normal')
       }
     },
-    [controls, onMouseLeave]
+    [controls, onMouseLeave],
   )
 
   return (

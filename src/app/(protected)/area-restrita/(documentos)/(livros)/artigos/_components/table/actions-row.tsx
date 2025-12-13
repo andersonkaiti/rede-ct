@@ -1,9 +1,9 @@
 import { Button } from '@components/ui/button'
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu'
 import { EditIcon, Ellipsis } from 'lucide-react'
 import Link from 'next/link'

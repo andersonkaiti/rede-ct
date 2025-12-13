@@ -163,7 +163,7 @@ export default function UpdateETPForm() {
                       value={
                         researchers
                           ?.filter((researcher) =>
-                            field.value?.includes(researcher.id)
+                            field.value?.includes(researcher.id),
                           )
                           .map((researcher) => ({
                             value: researcher.id,

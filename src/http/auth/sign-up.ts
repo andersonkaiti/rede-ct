@@ -8,9 +8,7 @@ interface ISignUpRequest {
 }
 
 export async function signUp(data: ISignUpRequest) {
-  return await api
-    .post('auth/sign-up', {
-      json: data,
-    })
-    .json()
+  return await api.post('auth/sign-up', {
+    json: data,
+  })
 }

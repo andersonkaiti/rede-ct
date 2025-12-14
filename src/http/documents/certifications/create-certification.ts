@@ -14,9 +14,7 @@ export async function createCertification({
 }: IRegisterCertificationRequest): Promise<void> {
   const formData = parseFormData(data)
 
-  await api
-    .post(`certification/${userId}`, {
-      body: formData,
-    })
-    .json()
+  await api.post(`certification/${userId}`, {
+    body: formData,
+  })
 }

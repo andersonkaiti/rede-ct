@@ -1,6 +1,6 @@
 'use client'
 
-import { BackArrow } from '@components/back-arrow'
+import { BackArrow } from '@components/ui/back-arrow'
 import { Badge } from '@components/ui/badge'
 import { GraduationCap } from 'lucide-react'
 import { ResearcherTabs } from './_components/researcher-tabs'

@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import {
   Form,
   FormControl,
@@ -72,7 +72,7 @@ export default function CadastrarNoticia() {
                   Imagem <span className="text-primary">*</span>
                 </FormLabel>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     maxSize={MAX_IMAGE_SIZE_MB}
                     onImageChange={field.onChange}
                   />

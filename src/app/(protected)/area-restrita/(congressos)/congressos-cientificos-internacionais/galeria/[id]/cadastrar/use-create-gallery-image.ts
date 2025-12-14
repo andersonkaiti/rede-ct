@@ -4,7 +4,7 @@ import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -47,10 +47,6 @@ export function useCreateGalleryImage() {
     values: INITIAL_VALUES,
   })
 
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
   const submit = form.handleSubmit(async (values: CreateGalleryImageInput) => {
     try {
       await createInternationalScientificCongressGalleryImage({
@@ -79,6 +75,5 @@ export function useCreateGalleryImage() {
     form,
     serverError,
     submit,
-    isSubmitting,
   }
 }

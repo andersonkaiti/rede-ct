@@ -6,7 +6,7 @@ import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -44,7 +44,7 @@ export function useUpdateInMemoriam() {
   const { id } = useParams<{ id: string }>()
   const router = useRouter()
 
-  const { data: inMemoriam, ...rest } = useSuspenseQuery({
+  const { data: inMemoriam } = useSuspenseQuery({
     queryKey: ['in-memoriam', id],
     queryFn: () => getInMemoriamById(id),
   })
@@ -66,6 +66,10 @@ export function useUpdateInMemoriam() {
     },
   })
 
+  const { isSubmitting } = useFormState({
+    control: form.control,
+  })
+
   const submit = form.handleSubmit(async (values: UpdateInMemoriamInput) => {
     try {
       await updateInMemoriam(values)
@@ -85,8 +89,8 @@ export function useUpdateInMemoriam() {
   return {
     form,
     serverError,
+    isSubmitting,
     submit,
     inMemoriam,
-    ...rest,
   }
 }

@@ -1,5 +1,5 @@
-import { BackArrow } from '@components/back-arrow'
-import UserProfileHoverCard from '@components/user-profile-hover-card'
+import { BackArrow } from '@components/ui/back-arrow'
+import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { getNewsById } from '@http/news/get-news-by-id'
 import { formatDate } from '@utils/format-date'
 import Image from 'next/image'

@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import {
   Form,
   FormControl,
@@ -26,8 +26,7 @@ import {
 } from './use-update-gallery-image'
 
 export default function EditGalleryImagePage() {
-  const { form, submit, serverError, isSubmitting, image } =
-    useUpdateGalleryImage()
+  const { form, submit, serverError, image } = useUpdateGalleryImage()
 
   return (
     <PageContainer>
@@ -56,7 +55,7 @@ export default function EditGalleryImagePage() {
                 <FormItem>
                   <FormLabel>Imagem</FormLabel>
                   <FormControl>
-                    <CoverUpload
+                    <CoverUploader
                       accept="image/jpeg,image/jpg,image/png,image/webp"
                       maxSize={MAX_IMAGE_SIZE_BYTES}
                       defaultImage={image?.imageUrl}
@@ -95,10 +94,12 @@ export default function EditGalleryImagePage() {
           <Button
             className="w-full cursor-pointer"
             variant="outline"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
           >
-            {isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="mr-2 size-4 animate-spin" />
+            )}
             Atualizar Imagem
           </Button>
         </form>

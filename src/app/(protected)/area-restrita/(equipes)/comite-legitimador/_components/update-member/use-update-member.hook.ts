@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { api } from '@http/api-client'
 import { getLegitimatorCommitteeMemberById } from '@http/teams/legitimator-committee/get-legitimator-committee-member-by-id'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { parseAsString, useQueryStates } from 'nuqs'
 import { useState } from 'react'
@@ -37,7 +37,7 @@ export function useUpdateLegitimatorCommitteeTeamMember({
     filtro: parseAsString.withDefault(''),
   })
 
-  const { data: member } = useQuery({
+  const { data: member } = useSuspenseQuery({
     queryKey: ['member', memberId],
     queryFn: () => getLegitimatorCommitteeMemberById(memberId),
   })
@@ -84,7 +84,6 @@ export function useUpdateLegitimatorCommitteeTeamMember({
     member,
     form,
     serverError,
-    isSubmitting: form.formState.isSubmitting,
     submit,
   }
 }

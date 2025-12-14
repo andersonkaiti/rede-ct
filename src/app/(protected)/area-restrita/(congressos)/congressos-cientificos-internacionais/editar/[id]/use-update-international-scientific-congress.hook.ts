@@ -5,7 +5,7 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -56,10 +56,6 @@ export function useUpdateInternationalScientificCongress() {
     },
   })
 
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
   const submit = form.handleSubmit(async (values) => {
     try {
       await updateInternationalScientificCongress({
@@ -87,7 +83,6 @@ export function useUpdateInternationalScientificCongress() {
     form,
     serverError,
     submit,
-    isSubmitting,
     ...rest,
   }
 }

@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import { DatePicker } from '@components/ui/date-picker'
 import {
   Form,
@@ -24,7 +24,6 @@ import {
 import { Textarea } from '@components/ui/textarea'
 import { useUsers } from '@hooks/use-users.hook'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import Loading from './loading'
 import {
   MAX_IMAGE_SIZE_BYTES,
   useUpdateWebinar,
@@ -33,12 +32,7 @@ import {
 export default function EditarWebinario() {
   const { data: users } = useUsers()
 
-  const { form, serverError, isSubmitting, submit, isWebinarLoading, webinar } =
-    useUpdateWebinar()
-
-  if (isWebinarLoading) {
-    return <Loading />
-  }
+  const { form, serverError, submit, webinar } = useUpdateWebinar()
 
   return (
     <PageContainer>
@@ -88,7 +82,7 @@ export default function EditarWebinario() {
                   Thumbnail <span className="text-primary">*</span>
                 </FormLabel>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     defaultImage={webinar?.thumbnailUrl}
                     maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
@@ -187,11 +181,13 @@ export default function EditarWebinario() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Editar webinário
           </Button>
         </form>

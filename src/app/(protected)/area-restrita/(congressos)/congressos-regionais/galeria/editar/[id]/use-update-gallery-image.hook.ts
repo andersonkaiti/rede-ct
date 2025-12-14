@@ -1,11 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getRegionalCongressGalleryImageById } from '@http/congress/regional/gallery/get-regional-congress-gallery-image-by-id'
 import { updateRegionalCongressGalleryImage } from '@http/congress/regional/gallery/update-regional-congress-gallery-image'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useParams, useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -27,38 +28,23 @@ export const updateGalleryImageSchema = z.object({
 
 export type UpdateGalleryImageInput = z.infer<typeof updateGalleryImageSchema>
 
-export function useUpdateGalleryImage(id: string, congressId: string) {
+export function useUpdateGalleryImage() {
   const [serverError, setServerError] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
+  const { id } = useParams<{ id: string }>()
+
+  const { data: galleryImage } = useSuspenseQuery({
+    queryKey: ['regional-congress-gallery-image', id],
+    queryFn: () => getRegionalCongressGalleryImageById(id),
+  })
 
   const form = useForm<UpdateGalleryImageInput>({
     resolver: zodResolver(updateGalleryImageSchema),
+    values: {
+      caption: galleryImage?.caption || '',
+      image: undefined,
+    },
   })
-
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
-  useEffect(() => {
-    async function loadGalleryImage() {
-      try {
-        const galleryImage = await getRegionalCongressGalleryImageById(id)
-
-        form.reset({
-          caption: galleryImage.caption || '',
-          image: undefined,
-        })
-
-        setIsLoading(false)
-      } catch {
-        toast.error('Erro ao carregar imagem da galeria.')
-        router.push(`/area-restrita/congressos-regionais/galeria/${congressId}`)
-      }
-    }
-
-    loadGalleryImage()
-  }, [id, congressId, form, router])
 
   const submit = form.handleSubmit(async (values: UpdateGalleryImageInput) => {
     try {
@@ -66,7 +52,7 @@ export function useUpdateGalleryImage(id: string, congressId: string) {
 
       toast.success('Imagem atualizada com sucesso.')
 
-      router.push(`/area-restrita/congressos-regionais/galeria/${congressId}`)
+      router.push(`/area-restrita/congressos-regionais/galeria/${id}`)
     } catch (err) {
       if (err instanceof HTTPError) {
         const errorBody = await err.response.json()
@@ -83,7 +69,5 @@ export function useUpdateGalleryImage(id: string, congressId: string) {
     form,
     serverError,
     submit,
-    isSubmitting,
-    isLoading,
   }
 }

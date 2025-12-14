@@ -3,7 +3,7 @@ import { signUp } from '@http/auth/sign-up'
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -52,10 +52,6 @@ export function useSignUp() {
     mode: 'onChange',
   })
 
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
   function togglePasswordVisibility() {
     setPasswordVisibility((v) => !v)
   }
@@ -84,7 +80,6 @@ export function useSignUp() {
     form,
     passwordVisibility,
     confirmPasswordVisibility,
-    isSubmitting,
     togglePasswordVisibility,
     toggleConfirmPasswordVisibility,
     submit,

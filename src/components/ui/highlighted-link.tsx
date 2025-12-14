@@ -2,7 +2,7 @@
 
 import Link, { type LinkProps } from 'next/link'
 import { useRef } from 'react'
-import { LinkIcon, type LinkIconHandle } from './icons/link'
+import { LinkIcon, type LinkIconHandle } from '../icons/link'
 
 interface HighlightedLinkProps extends LinkProps {
   children: React.ReactNode

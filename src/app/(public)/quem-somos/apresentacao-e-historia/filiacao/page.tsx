@@ -1,6 +1,6 @@
-import { BackArrow } from '@components/back-arrow'
 import { BlocksIcon } from '@components/icons/blocks'
 import { FileTextIcon } from '@components/icons/file-text'
+import { BackArrow } from '@components/ui/back-arrow'
 import { Badge } from '@components/ui/badge'
 import { FiliationProcess } from './_components/cards/filiation-process'
 import { ResearchersClassificationCard } from './_components/cards/researchers-classification'

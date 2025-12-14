@@ -28,14 +28,9 @@ interface IUpdateMemberFormProps {
 }
 
 export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
-  const { form, isSubmitting, member, submit, serverError } =
-    useUpdateWorkGroupTeamMember({
-      setIsOpen,
-    })
-
-  if (!member) {
-    return null
-  }
+  const { form, member, submit, serverError } = useUpdateWorkGroupTeamMember({
+    setIsOpen,
+  })
 
   return (
     <DialogContent className="max-h-[100vh-2rem] space-y-8 overflow-y-auto">
@@ -106,8 +101,14 @@ export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
               <DialogClose asChild>
                 <Button variant="ghost">Cancelar</Button>
               </DialogClose>
-              <Button disabled={isSubmitting} type="submit" variant="outline">
-                {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+              <Button
+                disabled={form.formState.isSubmitting}
+                type="submit"
+                variant="outline"
+              >
+                {form.formState.isSubmitting && (
+                  <Loader2 className="size-4 animate-spin" />
+                )}
                 Atualizar membro
               </Button>
             </DialogFooter>

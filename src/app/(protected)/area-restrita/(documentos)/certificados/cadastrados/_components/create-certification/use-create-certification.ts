@@ -38,9 +38,10 @@ export function useCreateCertification({
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
+  const [{ filtro: filter, orderBy, page, limit, userId }] = useQueryStates({
     filtro: parseAsString.withDefault(''),
     orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    userId: parseAsString.withDefault(''),
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
   })
@@ -61,7 +62,7 @@ export function useCreateCertification({
         await createCertification(values)
 
         queryClient.invalidateQueries({
-          queryKey: ['users', 'certifications', filter, orderBy, page, limit],
+          queryKey: ['users', 'certifications', filter, orderBy, page, limit, userId],
         })
 
         toast.success('Certificado cadastrado com sucesso!')
@@ -82,7 +83,6 @@ export function useCreateCertification({
   return {
     form,
     serverError,
-    isSubmitting: form.formState.isSubmitting,
     submit,
   }
 }

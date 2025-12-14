@@ -7,7 +7,6 @@ import {
   CircleDollarSign,
   Earth,
   File,
-  FilePlus,
   FileText,
   GalleryHorizontal,
   Globe,
@@ -112,11 +111,6 @@ export const sidebarLinks: NavigationLink[] = [
         path: '/area-restrita/in-memoriam',
         icon: Heart,
       },
-      {
-        label: 'Grupo de Pesquisa',
-        path: '/area-restrita/grupo-de-pesquisa',
-        icon: Network,
-      },
     ],
   },
   {
@@ -198,19 +192,14 @@ export const sidebarLinks: NavigationLink[] = [
     isProtected: true,
     children: [
       {
-        label: 'Editais',
-        icon: FilePlus,
+        label: 'Grupo de Trabalho',
+        icon: Network,
         isProtected: true,
-        path: '/area-restrita/editais',
+        path: '/area-restrita/grupo-de-trabalho',
       },
     ],
   },
-  {
-    label: 'Grupo de Trabalho',
-    icon: Network,
-    isProtected: true,
-    path: '/area-restrita/grupo-de-trabalho',
-  },
+
   {
     label: 'Portfólio',
     path: '/area-restrita/portfolio',

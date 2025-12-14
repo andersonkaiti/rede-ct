@@ -1,6 +1,5 @@
 'use client'
 
-import { HighlightedLink } from '@components/highlighted-link'
 import { Badge } from '@components/ui/badge'
 import { Button } from '@components/ui/button'
 import { Card, CardContent, CardHeader } from '@components/ui/card'
@@ -9,6 +8,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@components/ui/collapsible'
+import { HighlightedLink } from '@components/ui/highlighted-link'
 import { Separator } from '@components/ui/separator'
 import { cn } from '@utils/cn'
 import { format } from 'date-fns'

@@ -1,5 +1,5 @@
-import { Copy } from '@components/copy'
 import { Card } from '@components/ui/card'
+import { Copy } from '@components/ui/copy'
 
 export function InstituteDataCard() {
   return (

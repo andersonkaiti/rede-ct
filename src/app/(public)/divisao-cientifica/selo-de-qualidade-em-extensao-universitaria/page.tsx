@@ -1,6 +1,6 @@
-import { Building } from '@components/building'
 import { SparklesIcon } from '@components/icons/sparkles'
 import { Badge } from '@components/ui/badge'
+import { Building } from '@components/ui/building'
 
 export default function SeloDeQualidadeEmExtensaoUniversitaria() {
   return (

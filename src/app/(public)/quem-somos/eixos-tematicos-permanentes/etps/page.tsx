@@ -1,4 +1,4 @@
-import { BackArrow } from '@components/back-arrow'
+import { BackArrow } from '@components/ui/back-arrow'
 import { Axis3DIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'

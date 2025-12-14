@@ -3,7 +3,7 @@ import { createScientificArticle } from '@http/scientific-articles/create-scient
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -58,10 +58,6 @@ export function useCreateScientificArticle() {
     defaultValues: INITIAL_VALUES,
   })
 
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
   const submit = form.handleSubmit(
     async (values: CreateScientificArticleFormData) => {
       try {
@@ -81,7 +77,6 @@ export function useCreateScientificArticle() {
 
   return {
     form,
-    isSubmitting,
     submit,
     serverError,
   }

@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import {
   Form,
   FormControl,
@@ -26,7 +26,7 @@ import {
 } from './use-create-book-volume.hook'
 
 export default function CadastrarCapitulo() {
-  const { form, isSubmitting, submit, serverError } = useCreateBookVolume()
+  const { form, submit, serverError } = useCreateBookVolume()
 
   return (
     <PageContainer>
@@ -155,7 +155,7 @@ export default function CadastrarCapitulo() {
                     Imagem do Autor <span className="text-primary">*</span>
                   </FormLabel>
                   <FormControl>
-                    <CoverUpload
+                    <CoverUploader
                       maxSize={MAX_FILE_SIZE_BYTES}
                       onImageChange={field.onChange}
                     />
@@ -174,7 +174,7 @@ export default function CadastrarCapitulo() {
                     Imagem da Capa <span className="text-primary">*</span>
                   </FormLabel>
                   <FormControl>
-                    <CoverUpload
+                    <CoverUploader
                       maxSize={MAX_FILE_SIZE_BYTES}
                       onImageChange={field.onChange}
                     />
@@ -193,7 +193,7 @@ export default function CadastrarCapitulo() {
                     Ficha Catalográfica <span className="text-primary">*</span>
                   </FormLabel>
                   <FormControl>
-                    <CoverUpload
+                    <CoverUploader
                       maxSize={MAX_FILE_SIZE_BYTES}
                       onImageChange={field.onChange}
                     />
@@ -206,11 +206,13 @@ export default function CadastrarCapitulo() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Cadastrar volume
           </Button>
         </form>

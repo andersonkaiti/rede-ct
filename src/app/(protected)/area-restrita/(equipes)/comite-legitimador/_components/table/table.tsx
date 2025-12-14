@@ -43,10 +43,6 @@ export function Table() {
       updatedAt: parseAsBoolean.withDefault(true),
     })
 
-  if (isLoading) {
-    return <LoadingSkeleton />
-  }
-
   const filteredLegitimatorCommitteeTableColumns: ColumnDef<ILegitimatorCommitteeTeamMember>[] =
     legitimatorCommitteeTableColumns.filter((column) => {
       if (column.id === 'name') {

@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getNewsById } from '@http/news/get-news-by-id'
 import { updateNews } from '@http/news/update-news'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
@@ -33,10 +33,9 @@ export function useUpdateNews() {
 
   const { id } = useParams<{ id: string }>()
 
-  const { data: news, isLoading } = useQuery({
+  const { data: news } = useSuspenseQuery({
     queryKey: ['news', id],
     queryFn: () => getNewsById(id),
-    enabled: !!id,
   })
 
   const form = useForm({
@@ -74,7 +73,6 @@ export function useUpdateNews() {
     serverError,
     isSubmitting,
     submit,
-    isNewsLoading: isLoading,
     news,
   }
 }

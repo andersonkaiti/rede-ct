@@ -38,10 +38,11 @@ export function useUpdateCertification({
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const [{ certificationId, filtro: filter, orderBy, page, limit }] =
+  const [{ certificationId, filtro: filter, orderBy, page, limit, userId }] =
     useQueryStates({
       certificationId: parseAsString.withDefault(''),
       filtro: parseAsString.withDefault(''),
+      userId: parseAsString.withDefault(''),
       orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
       page: parseAsString.withDefault(String(DEFAULT_PAGE)),
       limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
@@ -68,7 +69,15 @@ export function useUpdateCertification({
       await updateCertification(values)
 
       queryClient.invalidateQueries({
-        queryKey: ['user', 'certifications', filter, orderBy, page, limit],
+        queryKey: [
+          'user',
+          'certifications',
+          filter,
+          orderBy,
+          page,
+          limit,
+          userId,
+        ],
       })
 
       toast.success('Certificado atualizado com sucesso!')
@@ -88,7 +97,6 @@ export function useUpdateCertification({
     certification,
     form,
     serverError,
-    isSubmitting: form.formState.isSubmitting,
     submit,
   }
 }

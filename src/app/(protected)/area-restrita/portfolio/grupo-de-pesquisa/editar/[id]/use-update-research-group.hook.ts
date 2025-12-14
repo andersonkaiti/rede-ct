@@ -6,7 +6,7 @@ import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -67,10 +67,6 @@ export function useUpdateResearchGroup() {
     defaultValues: INITIAL_VALUES,
   })
 
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
   useEffect(() => {
     if (researchGroup) {
       form.reset({
@@ -108,7 +104,6 @@ export function useUpdateResearchGroup() {
   return {
     form,
     serverError,
-    isSubmitting,
     submit,
     researchGroup,
   }

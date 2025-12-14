@@ -4,7 +4,7 @@ import { useCookiesNext } from 'cookies-next'
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -38,10 +38,6 @@ export function useSignIn() {
     mode: 'onChange',
   })
 
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
   function togglePasswordVisibility() {
     setPasswordVisibility((v) => !v)
   }
@@ -67,7 +63,6 @@ export function useSignIn() {
     serverError,
     form,
     passwordVisibility,
-    isSubmitting,
     togglePasswordVisibility,
     submit,
   }

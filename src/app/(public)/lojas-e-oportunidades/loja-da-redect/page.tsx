@@ -1,5 +1,5 @@
-import { Building } from '@components/building'
 import { Badge } from '@components/ui/badge'
+import { Building } from '@components/ui/building'
 import { ShoppingCart } from 'lucide-react'
 
 export default function LojaDaRedeCT() {

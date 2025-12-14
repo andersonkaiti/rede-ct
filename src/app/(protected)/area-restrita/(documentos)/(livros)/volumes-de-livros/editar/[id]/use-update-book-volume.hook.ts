@@ -1,12 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getBookVolumeById } from '@http/book-volumes/get-book-volume-by-id'
 import { updateBookVolume } from '@http/book-volumes/update-book-volume'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -69,39 +69,21 @@ export function useUpdateBookVolume() {
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const { data: bookVolume } = useQuery({
+  const { data: bookVolume } = useSuspenseQuery({
     queryKey: ['book-volume', id],
     queryFn: () => getBookVolumeById(id),
-    enabled: !!id,
   })
 
   const form = useForm<UpdateBookVolumeFormData>({
     resolver: zodResolver(updateBookVolumeFormSchema),
-    defaultValues: {
-      volumeNumber: 1,
-      year: new Date().getFullYear(),
-      title: '',
-      author: '',
-      accessUrl: '',
-      description: '',
+    values: {
+      volumeNumber: bookVolume?.volumeNumber ?? 1,
+      year: bookVolume?.year ?? new Date().getFullYear(),
+      title: bookVolume?.title ?? '',
+      author: bookVolume?.author ?? '',
+      accessUrl: bookVolume?.accessUrl ?? '',
+      description: bookVolume?.description ?? '',
     },
-  })
-
-  useEffect(() => {
-    if (bookVolume) {
-      form.reset({
-        volumeNumber: bookVolume.volumeNumber,
-        year: bookVolume.year,
-        title: bookVolume.title,
-        author: bookVolume.author,
-        accessUrl: bookVolume.accessUrl || '',
-        description: bookVolume.description || '',
-      })
-    }
-  }, [bookVolume, form])
-
-  const { isSubmitting } = useFormState({
-    control: form.control,
   })
 
   const submit = form.handleSubmit(async (values: UpdateBookVolumeFormData) => {
@@ -124,7 +106,6 @@ export function useUpdateBookVolume() {
 
   return {
     form,
-    isSubmitting,
     submit,
     serverError,
     bookVolume,

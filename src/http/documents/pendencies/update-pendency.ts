@@ -6,7 +6,7 @@ interface IUpdatePendencyRequest {
   title: string
   description: string
   status: string
-  dueDate?: string
+  dueDate?: Date
   document?: File | null
 }
 

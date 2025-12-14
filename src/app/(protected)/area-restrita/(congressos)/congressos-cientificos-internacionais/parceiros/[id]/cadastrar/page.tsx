@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import {
   Form,
   FormControl,
@@ -80,7 +80,7 @@ export default function CreatePartnerPage() {
                   </p>
                 </div>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />

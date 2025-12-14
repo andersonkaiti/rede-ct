@@ -14,7 +14,7 @@ const updatePendencySchema = z.object({
   title: z.string().min(1, 'Título é obrigatório.'),
   description: z.string().min(1, 'Descrição é obrigatória.'),
   status: z.enum(['PENDING', 'PAID']),
-  dueDate: z.string().optional(),
+  dueDate: z.date().optional(),
   document: z
     .any()
     .refine(
@@ -38,15 +38,15 @@ export function useUpdatePendency({ setIsOpen }: IUseUpdatePendencyProps) {
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const [{ pendencyId, filtro: filter, orderBy, page, limit }] = useQueryStates(
-    {
+  const [{ pendencyId, filtro: filter, orderBy, page, limit, userId }] =
+    useQueryStates({
       pendencyId: parseAsString.withDefault(''),
       filtro: parseAsString.withDefault(''),
+      userId: parseAsString.withDefault(''),
       orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
       page: parseAsString.withDefault(String(DEFAULT_PAGE)),
       limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
-    },
-  )
+    })
 
   const { data: pendency } = useQuery({
     queryKey: ['pendency', pendencyId],
@@ -61,7 +61,7 @@ export function useUpdatePendency({ setIsOpen }: IUseUpdatePendencyProps) {
       title: pendency?.title ?? '',
       description: pendency?.description ?? '',
       status: pendency?.status ?? 'PENDING',
-      dueDate: pendency?.dueDate ?? '',
+      dueDate: pendency?.dueDate ? new Date(pendency.dueDate) : undefined,
       document: undefined,
     },
     mode: 'onChange',
@@ -72,7 +72,7 @@ export function useUpdatePendency({ setIsOpen }: IUseUpdatePendencyProps) {
       await updatePendency(values)
 
       queryClient.invalidateQueries({
-        queryKey: ['users', 'pendencies', filter, orderBy, page, limit],
+        queryKey: ['users', 'pendencies', filter, orderBy, page, limit, userId],
       })
 
       toast.success('Pendência atualizada com sucesso!')
@@ -92,7 +92,6 @@ export function useUpdatePendency({ setIsOpen }: IUseUpdatePendencyProps) {
     pendency,
     form,
     serverError,
-    isSubmitting: form.formState.isSubmitting,
     submit,
   }
 }

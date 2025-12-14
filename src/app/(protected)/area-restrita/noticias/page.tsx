@@ -33,6 +33,7 @@ export default function Noticias() {
 
           <OrderByButton />
         </PageActionsContainer>
+
         <CreateNewsButton />
       </PageHeader>
 

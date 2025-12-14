@@ -1,12 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getPartnerById } from '@http/partners/get-partner-by-id'
 import { updatePartner } from '@http/partners/update-partner'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -38,10 +38,9 @@ export function useUpdatePartner() {
   const { id } = useParams<{ id: string }>()
   const router = useRouter()
 
-  const { data: partner, ...rest } = useQuery({
+  const { data: partner } = useSuspenseQuery({
     queryKey: ['partner', id],
     queryFn: () => getPartnerById(id),
-    enabled: !!id,
   })
 
   const form = useForm<UpdatePartnerInput>({
@@ -56,6 +55,10 @@ export function useUpdatePartner() {
       since: INITIAL_VALUE_SINCE,
       isActive: partner?.isActive ?? true,
     },
+  })
+
+  const { isSubmitting } = useFormState({
+    control: form.control,
   })
 
   const submit = form.handleSubmit(async (values: UpdatePartnerInput) => {
@@ -74,8 +77,8 @@ export function useUpdatePartner() {
   return {
     form,
     serverError,
+    isSubmitting,
     submit,
     partner,
-    ...rest,
   }
 }

@@ -4,9 +4,9 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useCongressGallery } from '../../_hooks/use-congress-gallery.hook'
 import { galleryTableColumns } from './gallery-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
+import { useCongressGallery } from './use-congress-gallery.hook'
 
 interface IGalleryImage {
   id: string

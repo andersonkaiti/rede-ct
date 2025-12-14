@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import {
   Form,
   FormControl,
@@ -20,19 +20,11 @@ import {
 import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useParams } from 'next/navigation'
 import { MAX_IMAGE_SIZE_MB } from '../../[id]/cadastrar/use-create-gallery-image.hook'
-import Loading from './loading'
 import { useUpdateGalleryImage } from './use-update-gallery-image.hook'
 
 export default function UpdateGalleryImagePage() {
-  const { id, congressId } = useParams<{ id: string; congressId?: string }>()
-  const { form, submit, serverError, isLoading, isSubmitting } =
-    useUpdateGalleryImage(id, congressId || '')
-
-  if (isLoading) {
-    return <Loading />
-  }
+  const { form, submit, serverError } = useUpdateGalleryImage()
 
   return (
     <PageContainer>
@@ -63,7 +55,7 @@ export default function UpdateGalleryImagePage() {
                     Máximo {MAX_IMAGE_SIZE_MB}MB
                   </p>
                   <FormControl>
-                    <CoverUpload
+                    <CoverUploader
                       accept="image/jpeg,image/jpg,image/png,image/webp"
                       maxSize={MAX_IMAGE_SIZE_MB}
                       onImageChange={(file) => onChange(file)}
@@ -101,10 +93,12 @@ export default function UpdateGalleryImagePage() {
           <Button
             className="w-full cursor-pointer"
             variant="outline"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
           >
-            {isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="mr-2 size-4 animate-spin" />
+            )}
             Atualizar Imagem
           </Button>
         </form>

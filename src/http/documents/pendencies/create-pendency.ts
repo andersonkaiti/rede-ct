@@ -5,7 +5,7 @@ interface IRegisterPendencyRequest {
   userId: string
   title: string
   description: string
-  dueDate?: string
+  dueDate?: Date
   document: File
 }
 
@@ -15,9 +15,7 @@ export async function createPendency({
 }: IRegisterPendencyRequest): Promise<void> {
   const formData = parseFormData(data)
 
-  await api
-    .post(`pendency/${userId}`, {
-      body: formData,
-    })
-    .json()
+  await api.post(`pendency/${userId}`, {
+    body: formData,
+  })
 }

@@ -6,7 +6,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@components/ui/collapsible'
-import UserProfileHoverCard from '@components/user-profile-hover-card'
+import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { getInitials } from '@utils/get-initials'
 import {
   Book,

@@ -29,7 +29,6 @@ import { useSignUp } from './use-sign-up.hook'
 
 export function SignUpForm() {
   const {
-    isSubmitting,
     form,
     submit,
     passwordVisibility,
@@ -174,11 +173,13 @@ export function SignUpForm() {
 
           <Button
             className="w-full"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Criar conta
           </Button>
         </form>

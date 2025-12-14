@@ -36,7 +36,7 @@ import { AlertCircle, Link, Loader2, MapPin, Video } from 'lucide-react'
 import { useCreateInternationalScientificCongress } from './use-create-international-scientific-congress'
 
 export default function CreateInternationalScientificCongressPage() {
-  const { form, submit, serverError, isSubmitting } =
+  const { form, submit, serverError } =
     useCreateInternationalScientificCongress()
 
   return (
@@ -362,10 +362,12 @@ export default function CreateInternationalScientificCongressPage() {
           <Button
             className="w-full cursor-pointer"
             variant="outline"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
           >
-            {isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="mr-2 size-4 animate-spin" />
+            )}
             Cadastrar Congresso
           </Button>
         </form>

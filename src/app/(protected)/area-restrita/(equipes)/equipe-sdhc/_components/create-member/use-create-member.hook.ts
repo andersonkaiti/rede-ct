@@ -63,7 +63,6 @@ export function useCreateSDHCTeamMember(setIsOpen: (isOpen: boolean) => void) {
   return {
     form,
     serverError,
-    isSubmitting: form.formState.isSubmitting,
     submit,
   }
 }

@@ -44,10 +44,6 @@ export default function Table() {
     quantity: parseAsBoolean.withDefault(true),
   })
 
-  if (isLoading) {
-    return <LoadingSkeleton />
-  }
-
   const filteredManagementTeamTableColumns: ColumnDef<ITeam>[] =
     managementTeamTableColumns.filter((column) => {
       if (column.id === 'name') {

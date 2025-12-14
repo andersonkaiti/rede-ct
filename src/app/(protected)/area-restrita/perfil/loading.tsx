@@ -12,9 +12,11 @@ export default function Loading() {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Perfil do Usuário</PageTitle>
+          <PageTitle>
+            <Skeleton className="h-9 w-28.5" />
+          </PageTitle>
           <PageDescription>
-            Veja e gerencie suas informações de perfil
+            <Skeleton className="h-5 w-38" />
           </PageDescription>
         </PageHeaderContent>
       </PageHeader>

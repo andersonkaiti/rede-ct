@@ -4,9 +4,9 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useGalleryImages } from '../../_hooks/use-gallery-images.hook'
 import { galleryTableColumns } from './gallery-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
+import { useGalleryImages } from './use-gallery-images.hook'
 
 interface IGalleryImage {
   id: string

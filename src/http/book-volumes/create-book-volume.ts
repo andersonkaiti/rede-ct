@@ -1,4 +1,5 @@
 import { api } from '@http/api-client'
+import { parseFormData } from '@utils/parse-form-data'
 
 interface ICreateBookVolumeRequest {
   volumeNumber: number
@@ -12,43 +13,8 @@ interface ICreateBookVolumeRequest {
   catalogSheet?: File
 }
 
-export async function createBookVolume({
-  volumeNumber,
-  year,
-  title,
-  author,
-  accessUrl,
-  description,
-  authorImage,
-  coverImage,
-  catalogSheet,
-}: ICreateBookVolumeRequest) {
-  const formData = new FormData()
-
-  formData.append('volumeNumber', volumeNumber.toString())
-  formData.append('year', year.toString())
-  formData.append('title', title)
-  formData.append('author', author)
-
-  if (accessUrl) {
-    formData.append('accessUrl', accessUrl)
-  }
-
-  if (description) {
-    formData.append('description', description)
-  }
-
-  if (authorImage) {
-    formData.append('authorImage', authorImage)
-  }
-
-  if (coverImage) {
-    formData.append('coverImage', coverImage)
-  }
-
-  if (catalogSheet) {
-    formData.append('catalogSheet', catalogSheet)
-  }
+export async function createBookVolume(data: ICreateBookVolumeRequest) {
+  const formData = parseFormData(data)
 
   await api.post('book-volumes', {
     body: formData,

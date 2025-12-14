@@ -4,7 +4,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { parseAsString, useQueryState } from 'nuqs'
 import { useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -36,10 +36,6 @@ export function useCreateLegitimatorCommitteeTeamMember(
     },
   })
 
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
   const submit = form.handleSubmit(
     async (values: CreateLegitimatorCommitteeTeamMemberInput) => {
       try {
@@ -67,7 +63,6 @@ export function useCreateLegitimatorCommitteeTeamMember(
   return {
     form,
     serverError,
-    isSubmitting,
     submit,
   }
 }

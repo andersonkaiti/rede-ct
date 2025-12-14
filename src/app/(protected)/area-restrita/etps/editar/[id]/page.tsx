@@ -24,15 +24,11 @@ import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { PatternFormat } from 'react-number-format'
 import { SelectResearcher } from '../../../_components/select-researcher'
-import Loading from './loading'
 import { useUpdateETP } from './use-update-etp.hook'
 
 export default function UpdateETPForm() {
-  const { form, serverError, submit, researchers, isLoading } = useUpdateETP()
-
-  if (isLoading) {
-    return <Loading />
-  }
+  const { form, serverError, isSubmitting, submit, researchers } =
+    useUpdateETP()
 
   return (
     <PageContainer>
@@ -207,13 +203,11 @@ export default function UpdateETPForm() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={form.formState.isSubmitting}
+            disabled={isSubmitting}
             type="submit"
             variant="outline"
           >
-            {form.formState.isSubmitting && (
-              <Loader2 className="size-4 animate-spin" />
-            )}
+            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
             Atualizar ETP
           </Button>
         </form>

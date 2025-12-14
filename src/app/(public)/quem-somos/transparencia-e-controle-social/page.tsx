@@ -1,7 +1,7 @@
-import { Copy } from '@components/copy'
 import { SearchIcon } from '@components/icons/search'
 import { Badge } from '@components/ui/badge'
 import { Card } from '@components/ui/card'
+import { Copy } from '@components/ui/copy'
 import { CurrentBalanceCard } from './_components/accounting/current-balance'
 import { DetailedExtractCard } from './_components/accounting/detailed-extract'
 import { TotalBalanceCard } from './_components/accounting/total-balance'

@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import {
   Form,
   FormControl,
@@ -24,7 +24,7 @@ import { AlertCircle, Loader2 } from 'lucide-react'
 import { MAX_IMAGE_SIZE_BYTES, useUpdateMuseum } from './use-update-museum.hook'
 
 export default function EditarMuseu() {
-  const { form, serverError, isSubmitting, submit, museum } = useUpdateMuseum()
+  const { form, serverError, submit, museum } = useUpdateMuseum()
 
   return (
     <PageContainer>
@@ -69,7 +69,7 @@ export default function EditarMuseu() {
               <FormItem>
                 <FormLabel>Logo</FormLabel>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     defaultImage={museum?.logoUrl}
                     maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
@@ -222,11 +222,13 @@ export default function EditarMuseu() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Editar museu
           </Button>
         </form>

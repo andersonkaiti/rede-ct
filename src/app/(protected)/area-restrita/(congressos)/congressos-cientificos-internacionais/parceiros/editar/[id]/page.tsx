@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import {
   Form,
   FormControl,
@@ -19,7 +19,6 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import Loading from './loading'
 import {
   MAX_IMAGE_SIZE_BYTES,
   MAX_IMAGE_SIZE_MB,
@@ -27,11 +26,7 @@ import {
 } from './use-update-partner.hook'
 
 export default function UpdatePartnerForm() {
-  const { form, submit, serverError, partner, isLoading } = useUpdatePartner()
-
-  if (isLoading) {
-    return <Loading />
-  }
+  const { form, submit, serverError, partner } = useUpdatePartner()
 
   return (
     <PageContainer>
@@ -84,7 +79,7 @@ export default function UpdatePartnerForm() {
                   </p>
                 </div>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     defaultImage={partner?.logoUrl || null}
                     maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}

@@ -1,6 +1,6 @@
 import { CardTitle } from '@components/ui/card'
 import { Separator } from '@components/ui/separator'
-import UserProfileHoverCard from '@components/user-profile-hover-card'
+import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { formatDate } from '@utils/format-date'
 import Image from 'next/image'
 import Link from 'next/link'

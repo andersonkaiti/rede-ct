@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import { DatePicker } from '@components/ui/date-picker'
 import {
   Form,
@@ -29,8 +29,7 @@ import {
 } from './use-update-research-group.hook'
 
 export default function EditarGrupoDePesquisa() {
-  const { form, serverError, isSubmitting, submit, researchGroup } =
-    useUpdateResearchGroup()
+  const { form, serverError, submit, researchGroup } = useUpdateResearchGroup()
 
   return (
     <PageContainer>
@@ -190,7 +189,7 @@ export default function EditarGrupoDePesquisa() {
               <FormItem>
                 <FormLabel>Logo</FormLabel>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     defaultImage={researchGroup?.logoUrl}
                     maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
@@ -220,11 +219,13 @@ export default function EditarGrupoDePesquisa() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Editar grupo de pesquisa
           </Button>
         </form>

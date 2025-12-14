@@ -6,7 +6,7 @@ import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -39,7 +39,7 @@ export function useUpdateGalleryImage() {
   const { id } = useParams<{ id: string }>()
   const router = useRouter()
 
-  const { data: image, ...rest } = useSuspenseQuery({
+  const { data: image } = useSuspenseQuery({
     queryKey: ['gallery-image', id],
     queryFn: () => getInternationalScientificCongressGalleryImageById(id),
   })
@@ -50,10 +50,6 @@ export function useUpdateGalleryImage() {
       image: undefined,
       caption: image?.caption ?? '',
     },
-  })
-
-  const { isSubmitting } = useFormState({
-    control: form.control,
   })
 
   const submit = form.handleSubmit(async (values) => {
@@ -83,8 +79,6 @@ export function useUpdateGalleryImage() {
     form,
     serverError,
     submit,
-    isSubmitting,
     image,
-    ...rest,
   }
 }

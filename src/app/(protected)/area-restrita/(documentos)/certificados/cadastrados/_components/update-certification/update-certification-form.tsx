@@ -29,7 +29,7 @@ interface IUpdateCertificationFormProps {
 export function UpdateCertificationForm({
   setIsOpen,
 }: IUpdateCertificationFormProps) {
-  const { form, serverError, isSubmitting, submit } = useUpdateCertification({
+  const { form, serverError, submit } = useUpdateCertification({
     setIsOpen,
   })
 
@@ -100,8 +100,14 @@ export function UpdateCertificationForm({
             <DialogClose asChild>
               <Button variant="ghost">Cancelar</Button>
             </DialogClose>
-            <Button disabled={isSubmitting} type="submit">
-              {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            <Button
+              disabled={form.formState.isSubmitting}
+              type="submit"
+              variant="outline"
+            >
+              {form.formState.isSubmitting && (
+                <Loader2 className="size-4 animate-spin" />
+              )}
               Atualizar certificado
             </Button>
           </DialogFooter>

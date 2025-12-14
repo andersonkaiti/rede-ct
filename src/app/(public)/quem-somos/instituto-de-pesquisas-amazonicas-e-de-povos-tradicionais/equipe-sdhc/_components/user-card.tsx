@@ -1,5 +1,5 @@
 import { UserCard, UserCardImage } from '@components/ui/user-card'
-import UserProfileHoverCard from '@components/user-profile-hover-card'
+import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 
 interface UserCardComponentProps {
   member: {

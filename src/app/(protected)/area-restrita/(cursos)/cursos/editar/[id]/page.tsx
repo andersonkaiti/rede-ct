@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import { DatePicker } from '@components/ui/date-picker'
 import {
   Form,
@@ -25,18 +25,12 @@ import { Textarea } from '@components/ui/textarea'
 import { useUsers } from '@hooks/use-users.hook'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../../../_components/select-member'
-import Loading from './loading'
 import { MAX_IMAGE_SIZE_BYTES, useUpdateCourse } from './use-update-course.hook'
 
 export default function EditarCurso() {
   const { data: users } = useUsers()
 
-  const { form, serverError, isSubmitting, submit, isCourseLoading, course } =
-    useUpdateCourse()
-
-  if (isCourseLoading) {
-    return <Loading />
-  }
+  const { form, serverError, submit, course } = useUpdateCourse()
 
   return (
     <PageContainer>
@@ -138,7 +132,7 @@ export default function EditarCurso() {
                   Imagem <span className="text-primary">*</span>
                 </FormLabel>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     defaultImage={course?.imageUrl}
                     maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
@@ -238,11 +232,13 @@ export default function EditarCurso() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Editar curso
           </Button>
         </form>

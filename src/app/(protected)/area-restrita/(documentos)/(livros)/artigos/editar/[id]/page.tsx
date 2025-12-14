@@ -21,16 +21,10 @@ import {
 } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import Loading from './loading'
 import { useUpdateScientificArticle } from './use-update-scientific-article.hook'
 
 export default function EditarArtigo() {
-  const { form, serverError, isSubmitting, submit, isArticleLoading } =
-    useUpdateScientificArticle()
-
-  if (isArticleLoading) {
-    return <Loading />
-  }
+  const { form, serverError, submit } = useUpdateScientificArticle()
 
   return (
     <PageContainer>
@@ -337,11 +331,13 @@ export default function EditarArtigo() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Editar artigo
           </Button>
         </form>

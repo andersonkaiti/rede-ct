@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import {
   Form,
   FormControl,
@@ -22,18 +22,12 @@ import {
 } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import Loading from './loading'
 import { useUpdateNews } from './use-update-news.hook'
 
 const MAX_IMAGE_SIZE_MB = 5
 
 export default function UpdateForm() {
-  const { form, serverError, isSubmitting, submit, isNewsLoading, news } =
-    useUpdateNews()
-
-  if (isNewsLoading) {
-    return <Loading />
-  }
+  const { form, serverError, isSubmitting, submit, news } = useUpdateNews()
 
   return (
     <PageContainer>
@@ -80,7 +74,7 @@ export default function UpdateForm() {
                   Imagem <span className="text-primary">*</span>
                 </FormLabel>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     defaultImage={news?.imageUrl}
                     maxSize={MAX_IMAGE_SIZE_MB}
                     onImageChange={field.onChange}

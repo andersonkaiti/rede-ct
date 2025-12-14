@@ -1,12 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getWebinarById } from '@http/webinars/get-webinar-by-id'
 import { updateWebinar } from '@http/webinars/update-webinar'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -36,49 +36,30 @@ const updateWebinarSchema = z.object({
 
 type UpdateWebinarInput = z.infer<typeof updateWebinarSchema>
 
-const INITIAL_VALUES: UpdateWebinarInput = {
-  title: '',
-  description: '',
-  scheduledAt: new Date(),
-  webinarLink: '',
-  thumbnail: undefined,
-  guestIds: [],
-}
-
 export function useUpdateWebinar() {
   const router = useRouter()
   const { id } = useParams<{ id: string }>()
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const { data: webinar, isLoading: isWebinarLoading } = useQuery({
+  const { data: webinar } = useSuspenseQuery({
     queryKey: ['webinar', id],
     queryFn: () => getWebinarById(id),
   })
 
   const form = useForm<UpdateWebinarInput>({
     resolver: zodResolver(updateWebinarSchema),
-    defaultValues: INITIAL_VALUES,
+    values: {
+      title: webinar?.title ?? '',
+      description: webinar?.description ?? '',
+      scheduledAt: webinar?.scheduledAt
+        ? new Date(webinar.scheduledAt)
+        : new Date(),
+      webinarLink: webinar?.webinarLink ?? '',
+      thumbnail: undefined,
+      guestIds: webinar?.guests.map((guest) => guest.id) ?? [],
+    },
   })
-
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
-  useEffect(() => {
-    if (webinar) {
-      form.reset({
-        title: webinar.title,
-        description: webinar.description || '',
-        scheduledAt: webinar.scheduledAt
-          ? new Date(webinar.scheduledAt)
-          : new Date(),
-        webinarLink: webinar.webinarLink || '',
-        thumbnail: undefined,
-        guestIds: webinar.guests.map((guest) => guest.id) || [],
-      })
-    }
-  }, [webinar, form])
 
   const submit = form.handleSubmit(async (values) => {
     setServerError(null)
@@ -107,9 +88,7 @@ export function useUpdateWebinar() {
   return {
     form,
     serverError,
-    isSubmitting,
     submit,
-    isWebinarLoading,
     webinar,
   }
 }

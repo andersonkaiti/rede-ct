@@ -15,32 +15,36 @@ export default function Loading() {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle className="hidden lg:flex">
-            <Skeleton className="h-9 w-93.5" />
+          <PageTitle className="w-full">
+            <Skeleton className="h-9 w-2/4" />
           </PageTitle>
-
-          <PageTitle className="flex flex-col gap-1 lg:hidden">
-            <Skeleton className="h-9 w-43" />
-            <Skeleton className="h-9 w-48" />
-          </PageTitle>
-          <PageDescription>
-            <Skeleton className="h-5 w-73.5" />
+          <PageDescription className="w-full">
+            <Skeleton className="h-5 w-1/4" />
           </PageDescription>
         </PageHeaderContent>
       </PageHeader>
 
       <PageHeader>
         <PageActionsContainer>
-          <Skeleton className="h-9 w-full lg:w-52" />
+          <Skeleton className="h-9 w-full lg:w-51" />
 
-          <Skeleton className="h-9 w-10" />
+          <Skeleton className="size-9" />
         </PageActionsContainer>
 
-        <Skeleton className="h-9 w-full lg:w-60" />
+        <Skeleton className="h-9 w-full lg:w-52" />
       </PageHeader>
 
       <PageMain>
         <CardsLoadingSkeleton />
+
+        <div className="mt-4 flex items-center justify-between">
+          <Skeleton className="h-9 w-52" />
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-9 w-9" />
+            <Skeleton className="h-9 w-9" />
+            <Skeleton className="h-9 w-9" />
+          </div>
+        </div>
       </PageMain>
     </PageContainer>
   )

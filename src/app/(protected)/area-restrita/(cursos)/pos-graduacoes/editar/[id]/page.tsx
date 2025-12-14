@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import { DatePicker } from '@components/ui/date-picker'
 import {
   Form,
@@ -22,19 +22,13 @@ import {
 } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import Loading from './loading'
 import {
   MAX_IMAGE_SIZE_BYTES,
   useUpdatePostGraduateProgram,
 } from './use-update-post-graduate-program.hook'
 
 export default function EditarPosGraduacao() {
-  const { form, serverError, isSubmitting, submit, isProgramLoading, program } =
-    useUpdatePostGraduateProgram()
-
-  if (isProgramLoading) {
-    return <Loading />
-  }
+  const { form, serverError, submit, program } = useUpdatePostGraduateProgram()
 
   return (
     <PageContainer>
@@ -100,7 +94,7 @@ export default function EditarPosGraduacao() {
                   Imagem <span className="text-primary">*</span>
                 </FormLabel>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     defaultImage={program?.imageUrl}
                     maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
@@ -179,11 +173,13 @@ export default function EditarPosGraduacao() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Editar programa
           </Button>
         </form>

@@ -3,7 +3,7 @@
 import { useCopyClipboard } from '@hooks/copy-clipboard.hook'
 import { cn } from '@utils/cn'
 import { Check } from 'lucide-react'
-import { CopyIcon } from './icons/copy'
+import { CopyIcon } from '../icons/copy'
 
 interface ICopyProps extends React.HTMLAttributes<HTMLOrSVGElement> {
   children: React.ReactNode

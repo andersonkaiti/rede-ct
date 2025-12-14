@@ -36,7 +36,7 @@ import { AlertCircle, Link, Loader2, MapPin, Video } from 'lucide-react'
 import { useUpdateInternationalScientificCongress } from './use-update-international-scientific-congress.hook'
 
 export default function EditInternationalScientificCongressPage() {
-  const { form, submit, serverError, isSubmitting } =
+  const { form, submit, serverError } =
     useUpdateInternationalScientificCongress()
 
   return (
@@ -362,10 +362,12 @@ export default function EditInternationalScientificCongressPage() {
           <Button
             className="w-full cursor-pointer"
             variant="outline"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
           >
-            {isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="mr-2 size-4 animate-spin" />
+            )}
             Atualizar Congresso
           </Button>
         </form>

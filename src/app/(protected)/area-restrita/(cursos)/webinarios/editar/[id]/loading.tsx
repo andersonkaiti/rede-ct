@@ -1,4 +1,3 @@
-import { Label } from '@components/ui/label'
 import {
   PageContainer,
   PageDescription,
@@ -27,44 +26,32 @@ export default function Loading() {
         <PageForm>
           <PageFormContent>
             <PageFormContentField>
-              <Label>
-                Título <span className="text-primary">*</span>
-              </Label>
-
+              <Skeleton className="h-4 w-16 rounded-md" />
               <Skeleton className="h-9 w-full rounded-md" />
             </PageFormContentField>
 
             <PageFormContentField>
-              <Label>
-                Thumbnail <span className="text-primary">*</span>
-              </Label>
-
+              <Skeleton className="h-4 w-24 rounded-md" />
               <Skeleton className="h-80 w-full rounded-md" />
             </PageFormContentField>
 
             <PageFormContentField>
-              <Label>Convidados(as)</Label>
-
+              <Skeleton className="h-4 w-32 rounded-md" />
               <Skeleton className="h-9 w-full rounded-md" />
             </PageFormContentField>
 
             <PageFormContentField>
-              <Label>
-                Data e Hora <span className="text-primary">*</span>
-              </Label>
-
+              <Skeleton className="h-4 w-28 rounded-md" />
               <Skeleton className="h-9 w-full rounded-md" />
             </PageFormContentField>
 
             <PageFormContentField>
-              <Label>Link do Webinário</Label>
-
+              <Skeleton className="h-4 w-36 rounded-md" />
               <Skeleton className="h-9 w-full rounded-md" />
             </PageFormContentField>
 
             <PageFormContentField>
-              <Label>Descrição</Label>
-
+              <Skeleton className="h-4 w-20 rounded-md" />
               <Skeleton className="h-16 w-full rounded-md" />
             </PageFormContentField>
           </PageFormContent>

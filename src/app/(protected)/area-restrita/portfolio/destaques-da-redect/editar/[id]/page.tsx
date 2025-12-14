@@ -3,7 +3,7 @@
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
 import { Checkbox } from '@components/ui/checkbox'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import { DatePicker } from '@components/ui/date-picker'
 import {
   Form,
@@ -35,8 +35,7 @@ import {
 } from './use-update-redect-highlight.hook'
 
 export default function EditarDestaque() {
-  const { form, isSubmitting, submit, serverError, highlight } =
-    useUpdateRedeCTHighlight()
+  const { form, submit, serverError, highlight } = useUpdateRedeCTHighlight()
 
   return (
     <PageContainer>
@@ -166,7 +165,7 @@ export default function EditarDestaque() {
               <FormItem>
                 <FormLabel>Imagem</FormLabel>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                     defaultImage={highlight?.imageUrl}
@@ -196,11 +195,13 @@ export default function EditarDestaque() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Atualizar destaque
           </Button>
         </form>

@@ -1,12 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getCourseById } from '@http/courses/get-course-by-id'
 import { updateCourse } from '@http/courses/update-course'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -39,58 +39,34 @@ const updateCourseSchema = z.object({
 
 type UpdateCourseInput = z.infer<typeof updateCourseSchema>
 
-const INITIAL_VALUES: UpdateCourseInput = {
-  title: '',
-  coordinatorId: '',
-  email: '',
-  location: '',
-  scheduledAt: new Date(),
-  registrationLink: '',
-  description: '',
-  image: undefined,
-  instructorIds: [],
-}
-
 export function useUpdateCourse() {
   const router = useRouter()
   const { id } = useParams<{ id: string }>()
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const { data: course, isLoading: isCourseLoading } = useQuery({
+  const { data: course } = useSuspenseQuery({
     queryKey: ['course', id],
     queryFn: () => getCourseById(id),
   })
 
-  console.log(course)
-
   const form = useForm<UpdateCourseInput>({
     resolver: zodResolver(updateCourseSchema),
-    defaultValues: INITIAL_VALUES,
+    values: {
+      title: course?.title ?? '',
+      coordinatorId: course?.coordinator.id ?? '',
+      email: course?.email ?? '',
+      location: course?.location ?? '',
+      scheduledAt: course?.scheduledAt
+        ? new Date(course.scheduledAt)
+        : new Date(),
+      registrationLink: course?.registrationLink ?? '',
+      description: course?.description ?? '',
+      image: undefined,
+      instructorIds:
+        course?.instructors.map((instructor) => instructor.id) ?? [],
+    },
   })
-
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
-  useEffect(() => {
-    if (course) {
-      form.reset({
-        title: course.title,
-        coordinatorId: course.coordinator.id,
-        email: course.email,
-        location: course.location,
-        scheduledAt: course.scheduledAt
-          ? new Date(course.scheduledAt)
-          : new Date(),
-        registrationLink: course.registrationLink || '',
-        description: course.description || '',
-        image: undefined,
-        instructorIds:
-          course.instructors.map((instructor) => instructor.id) || [],
-      })
-    }
-  }, [course, form])
 
   const submit = form.handleSubmit(async (values) => {
     setServerError(null)
@@ -122,9 +98,7 @@ export function useUpdateCourse() {
   return {
     form,
     serverError,
-    isSubmitting,
     submit,
-    isCourseLoading,
     course,
   }
 }

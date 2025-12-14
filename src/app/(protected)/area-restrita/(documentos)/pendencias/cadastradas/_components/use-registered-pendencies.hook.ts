@@ -1,7 +1,6 @@
 import { getRegisteredPendencies } from '@http/documents/pendencies/get-pendencies'
-import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
-import { useEffect } from 'react'
 
 const DEFAULT_PAGE = 1
 const DEFAULT_LIMIT = 4
@@ -15,7 +14,7 @@ export function useRegisteredPendencies() {
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
   })
 
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['users', 'pendencies', filter, orderBy, page, limit, userId],
     queryFn: () =>
       getRegisteredPendencies({
@@ -25,12 +24,7 @@ export function useRegisteredPendencies() {
         limit,
         userId,
       }),
-    placeholderData: keepPreviousData,
   })
-
-  useEffect(() => {
-    refetch()
-  }, [refetch])
 
   return {
     data,

@@ -23,8 +23,7 @@ import { AlertCircle, Loader2 } from 'lucide-react'
 import { useCreateScientificArticle } from './use-create-scientific-article.hook'
 
 export default function CadastrarArtigo() {
-  const { form, isSubmitting, submit, serverError } =
-    useCreateScientificArticle()
+  const { form, serverError, submit } = useCreateScientificArticle()
 
   return (
     <PageContainer>
@@ -326,11 +325,13 @@ export default function CadastrarArtigo() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Cadastrar artigo
           </Button>
         </form>

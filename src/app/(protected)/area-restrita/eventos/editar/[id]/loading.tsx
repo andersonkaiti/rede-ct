@@ -1,4 +1,3 @@
-import { Label } from '@components/ui/label'
 import {
   PageContainer,
   PageDescription,
@@ -26,45 +25,51 @@ export default function Loading() {
       <PageForm>
         <PageFormContent>
           <PageFormContentField>
-            <Label>
-              Título <span className="text-primary">*</span>
-            </Label>
+            <Skeleton className="h-4 w-16 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </PageFormContentField>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <PageFormContentField>
+              <Skeleton className="h-4 w-20 rounded-md" />
+              <Skeleton className="h-9 w-full rounded-md" />
+            </PageFormContentField>
+
+            <PageFormContentField>
+              <Skeleton className="h-4 w-16 rounded-md" />
+              <Skeleton className="h-9 w-full rounded-md" />
+            </PageFormContentField>
+          </div>
+
+          <PageFormContentField>
+            <Skeleton className="h-4 w-32 rounded-md" />
             <Skeleton className="h-9 w-full rounded-md" />
           </PageFormContentField>
 
           <PageFormContentField>
-            <Label>
-              Formato <span className="text-primary">*</span>
-            </Label>
+            <Skeleton className="h-4 w-24 rounded-md" />
             <Skeleton className="h-9 w-full rounded-md" />
           </PageFormContentField>
 
           <PageFormContentField>
-            <Label>Imagem</Label>
+            <Skeleton className="h-4 w-20 rounded-md" />
             <Skeleton className="h-79.5 w-full rounded-md" />
           </PageFormContentField>
 
-          <PageFormContentField>
-            <Label>
-              Data de Início <span className="text-primary">*</span>
-            </Label>
-            <Skeleton className="h-9 w-full rounded-md" />
-          </PageFormContentField>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <PageFormContentField>
+              <Skeleton className="h-4 w-32 rounded-md" />
+              <Skeleton className="h-9 w-full rounded-md" />
+            </PageFormContentField>
+
+            <PageFormContentField>
+              <Skeleton className="h-4 w-32 rounded-md" />
+              <Skeleton className="h-9 w-full rounded-md" />
+            </PageFormContentField>
+          </div>
 
           <PageFormContentField>
-            <Label>
-              Data de Término <span className="text-primary">*</span>
-            </Label>
-            <Skeleton className="h-9 w-full rounded-md" />
-          </PageFormContentField>
-
-          <PageFormContentField>
-            <Label>Status</Label>
-            <Skeleton className="h-9 w-full rounded-md" />
-          </PageFormContentField>
-
-          <PageFormContentField>
-            <Label>Descrição</Label>
+            <Skeleton className="h-4 w-24 rounded-md" />
             <Skeleton className="h-29.5 w-full rounded-md" />
           </PageFormContentField>
         </PageFormContent>

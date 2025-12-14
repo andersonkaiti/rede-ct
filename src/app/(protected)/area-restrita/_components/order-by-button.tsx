@@ -20,6 +20,7 @@ export function OrderByButton() {
       aria-label={`Ordenar por data ${orderBy === 'asc' ? 'crescente' : 'decrescente'}`}
       onClick={handleOrderBy}
       variant="ghost"
+      className="size-9"
     >
       <ArrowDownUp
         className={cn(

@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createScientificJournal } from '@http/scientific-journals/create-scientific-journal'
-import { useMutation } from '@tanstack/react-query'
+import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -17,7 +17,7 @@ const createScientificJournalFormSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório.'),
   issn: z.string().min(1, 'ISSN é obrigatório.'),
   description: z.string().min(1, 'Descrição é obrigatória.'),
-  journalUrl: z.string().url('URL da revista deve ser válida.'),
+  journalUrl: z.url('URL da revista deve ser válida.'),
   directors: z.string().optional(),
   editorialBoard: z.string().optional(),
   logo: z
@@ -36,6 +36,7 @@ type CreateScientificJournalFormData = z.infer<
 
 export function useCreateScientificJournal() {
   const router = useRouter()
+
   const [serverError, setServerError] = useState<string | null>(null)
 
   const form = useForm<CreateScientificJournalFormData>({
@@ -50,34 +51,25 @@ export function useCreateScientificJournal() {
     },
   })
 
-  const { mutateAsync: createJournal, isPending: isSubmitting } = useMutation({
-    mutationFn: createScientificJournal,
-    onSuccess: () => {
-      toast.success('Revista criada com sucesso!')
-      router.push('/area-restrita/revistas')
+  const submit = form.handleSubmit(
+    async (values: CreateScientificJournalFormData) => {
+      try {
+        await createScientificJournal(values)
+
+        toast.success('Revista criada com sucesso!')
+
+        router.push('/area-restrita/revistas')
+      } catch (err) {
+        if (err instanceof HTTPError) {
+          const errorBody = await err.response.json()
+          setServerError(errorBody.message)
+        }
+      }
     },
-    onError: (error: Error) => {
-      setServerError(error.message)
-    },
-  })
-
-  async function submit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    setServerError(null)
-
-    const isValid = await form.trigger()
-
-    if (!isValid) return
-
-    const data = form.getValues()
-
-    await createJournal(data)
-  }
+  )
 
   return {
     form,
-    isSubmitting,
     submit,
     serverError,
   }

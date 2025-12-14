@@ -15,22 +15,25 @@ export default function Loading() {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>
-            <Skeleton className="h-9 w-61" />
+          <PageTitle className="w-full">
+            <Skeleton className="h-9 w-2/4" />
           </PageTitle>
-          <PageDescription>
-            <Skeleton className="mt-2 h-4 w-47" />
+          <PageDescription className="w-full">
+            <Skeleton className="h-5 w-1/4" />
           </PageDescription>
         </PageHeaderContent>
       </PageHeader>
 
       <PageHeader>
         <PageActionsContainer>
-          <Skeleton className="h-9 w-52 max-w-sm" />
-          <Skeleton className="h-9 w-21" />
-          <Skeleton className="h-9 w-10" />
+          <Skeleton className="h-9 w-full lg:w-51" />
+
+          <Skeleton className="h-9 w-20.5" />
+
+          <Skeleton className="size-9" />
         </PageActionsContainer>
-        <Skeleton className="h-9 w-56" />
+
+        <Skeleton className="h-9 w-full lg:w-42" />
       </PageHeader>
 
       <PageMain>

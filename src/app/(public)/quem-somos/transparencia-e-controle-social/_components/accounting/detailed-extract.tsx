@@ -1,11 +1,11 @@
 'use client'
 
-import { HighlightedLink } from '@components/highlighted-link'
 import {
   FileTextIcon,
   type FileTextIconHandle,
 } from '@components/icons/file-text'
 import { Card, CardFooter, CardHeader } from '@components/ui/card'
+import { HighlightedLink } from '@components/ui/highlighted-link'
 import { useRef } from 'react'
 
 export function DetailedExtractCard() {

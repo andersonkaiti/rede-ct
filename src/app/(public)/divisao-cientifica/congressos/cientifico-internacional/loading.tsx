@@ -1,4 +1,4 @@
-import { BackArrow } from '@components/back-arrow'
+import { BackArrow } from '@components/ui/back-arrow'
 import { Badge } from '@components/ui/badge'
 import { Separator } from '@components/ui/separator'
 import { Skeleton } from '@components/ui/skeleton'

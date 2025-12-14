@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import {
   Form,
   FormControl,
@@ -20,7 +20,6 @@ import {
 import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useParams } from 'next/navigation'
 import {
   MAX_IMAGE_SIZE_BYTES,
   MAX_IMAGE_SIZE_MB,
@@ -28,8 +27,7 @@ import {
 } from './use-create-gallery-image.hook'
 
 export default function CreateGalleryImagePage() {
-  const { id } = useParams<{ id: string }>()
-  const { form, submit, serverError, isSubmitting } = useCreateGalleryImage(id)
+  const { form, submit, serverError } = useCreateGalleryImage()
 
   return (
     <PageContainer>
@@ -62,7 +60,7 @@ export default function CreateGalleryImagePage() {
                     Máximo {MAX_IMAGE_SIZE_MB}MB
                   </p>
                   <FormControl>
-                    <CoverUpload
+                    <CoverUploader
                       accept="image/jpeg,image/jpg,image/png,image/webp"
                       maxSize={MAX_IMAGE_SIZE_BYTES}
                       onImageChange={(file) =>
@@ -102,10 +100,12 @@ export default function CreateGalleryImagePage() {
           <Button
             className="w-full cursor-pointer"
             variant="outline"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
           >
-            {isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="mr-2 size-4 animate-spin" />
+            )}
             Adicionar Imagem
           </Button>
         </form>

@@ -1,4 +1,4 @@
-import { BackArrow } from '@components/back-arrow'
+import { BackArrow } from '@components/ui/back-arrow'
 import { Badge } from '@components/ui/badge'
 import { MapIcon } from 'lucide-react'
 import { CongressList } from './_components/congress-list'

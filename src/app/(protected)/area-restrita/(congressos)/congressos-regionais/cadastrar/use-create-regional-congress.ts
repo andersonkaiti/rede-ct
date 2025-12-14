@@ -3,7 +3,7 @@ import { createRegionalCongress } from '@http/congress/regional/create-regional-
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -50,10 +50,6 @@ export function useCreateRegionalCongress() {
     values: INITIAL_VALUES,
   })
 
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
   const submit = form.handleSubmit(
     async (values: CreateRegionalCongressInput) => {
       try {
@@ -79,6 +75,5 @@ export function useCreateRegionalCongress() {
     form,
     serverError,
     submit,
-    isSubmitting,
   }
 }

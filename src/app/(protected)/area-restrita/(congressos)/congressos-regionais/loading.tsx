@@ -14,19 +14,23 @@ export default function Loading() {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Congressos Regionais</PageTitle>
-          <PageDescription>Gerencie os congressos regionais</PageDescription>
+          <PageTitle className="w-full">
+            <Skeleton className="h-9 w-2/4" />
+          </PageTitle>
+          <PageDescription className="w-full">
+            <Skeleton className="h-5 w-1/4" />
+          </PageDescription>
         </PageHeaderContent>
       </PageHeader>
 
       <PageHeader>
         <div className="flex w-full items-center gap-2">
           <Skeleton className="h-9 w-full lg:w-51" />
-          <Skeleton className="h-9 w-24" />
-          <Skeleton className="size-9" />
+
+          <Skeleton className="h-9 w-20.5" />
         </div>
 
-        <Skeleton className="h-9 w-full lg:w-44" />
+        <Skeleton className="h-9 w-full lg:w-76" />
       </PageHeader>
 
       <PageMain>

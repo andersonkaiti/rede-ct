@@ -1,11 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getResearcherById } from '@http/researchers/get-researcher-by-id'
 import { updateResearcher } from '@http/researchers/update-researcher'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -37,10 +37,9 @@ export function useUpdateResearcher() {
   const { id } = useParams<{ id: string }>()
   const router = useRouter()
 
-  const { data: researcher, ...rest } = useQuery({
+  const { data: researcher } = useSuspenseQuery({
     queryKey: ['researcher', id],
     queryFn: () => getResearcherById(id),
-    enabled: !!id,
   })
 
   const form = useForm<UpdateResearcherInput>({
@@ -57,6 +56,10 @@ export function useUpdateResearcher() {
       institutions: researcher?.institutions ?? '',
       biography: researcher?.biography ?? '',
     },
+  })
+
+  const { isSubmitting } = useFormState({
+    control: form.control,
   })
 
   const submit = form.handleSubmit(async (values: UpdateResearcherInput) => {
@@ -78,8 +81,8 @@ export function useUpdateResearcher() {
   return {
     form,
     serverError,
+    isSubmitting,
     submit,
-    ...rest,
     researcher,
   }
 }

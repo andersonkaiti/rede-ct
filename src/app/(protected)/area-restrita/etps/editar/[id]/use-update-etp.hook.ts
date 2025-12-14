@@ -2,11 +2,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getETPById } from '@http/etps/get-etp-by-id'
 import { updateETP } from '@http/etps/update-etp'
 import { getResearchers } from '@http/researchers/get-researchers'
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -30,10 +30,9 @@ export function useUpdateETP() {
   const { id } = useParams<{ id: string }>()
   const router = useRouter()
 
-  const { data: etp, ...rest } = useQuery({
+  const { data: etp } = useSuspenseQuery({
     queryKey: ['etp', id],
     queryFn: () => getETPById(id),
-    enabled: !!id,
   })
 
   const { data } = useSuspenseQuery({
@@ -56,6 +55,10 @@ export function useUpdateETP() {
     },
   })
 
+  const { isSubmitting } = useFormState({
+    control: form.control,
+  })
+
   const submit = form.handleSubmit(async (values: UpdateEtpInput) => {
     try {
       await updateETP(values)
@@ -75,8 +78,8 @@ export function useUpdateETP() {
   return {
     form,
     serverError,
+    isSubmitting,
     submit,
-    ...rest,
     etp,
     researchers: data?.researchers,
   }

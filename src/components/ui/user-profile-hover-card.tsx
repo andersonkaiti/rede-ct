@@ -5,7 +5,7 @@ import {
 } from '@components/ui/hover-card'
 import { getInitials } from '@utils/get-initials'
 import Link from 'next/link'
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from './avatar'
 
 interface UserProfileHoverCardProps {
   user: {
@@ -23,7 +23,7 @@ interface UserProfileHoverCardProps {
   avatarVisibility?: boolean
 }
 
-export default function UserProfileHoverCard({
+export function UserProfileHoverCard({
   user,
   avatarVisibility = true,
 }: UserProfileHoverCardProps) {

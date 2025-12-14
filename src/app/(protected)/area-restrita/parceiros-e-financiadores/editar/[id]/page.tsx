@@ -3,7 +3,7 @@
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
 import { Checkbox } from '@components/ui/checkbox'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import { DatePicker } from '@components/ui/date-picker'
 import {
   Form,
@@ -22,15 +22,11 @@ import {
 } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import Loading from './loading'
 import { MAX_LOGO_SIZE_MB, useUpdatePartner } from './use-update-partner.hook'
 
 export default function UpdatePartnerForm() {
-  const { form, submit, serverError, partner, isLoading } = useUpdatePartner()
-
-  if (isLoading) {
-    return <Loading />
-  }
+  const { form, submit, serverError, partner, isSubmitting } =
+    useUpdatePartner()
 
   return (
     <PageContainer>
@@ -170,7 +166,7 @@ export default function UpdatePartnerForm() {
                         </p>
                       </div>
                       <FormControl>
-                        <CoverUpload
+                        <CoverUploader
                           defaultImage={partner?.logoUrl || null}
                           maxSize={MAX_LOGO_SIZE_MB}
                           onImageChange={field.onChange}
@@ -214,13 +210,11 @@ export default function UpdatePartnerForm() {
           <div className="flex justify-end pt-6">
             <Button
               className="w-full"
-              disabled={form.formState.isSubmitting}
+              disabled={isSubmitting}
               type="submit"
               variant="outline"
             >
-              {form.formState.isSubmitting && (
-                <Loader2 className="mr-2 size-4 animate-spin" />
-              )}
+              {isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
               Atualizar parceiro/financiador
             </Button>
           </div>

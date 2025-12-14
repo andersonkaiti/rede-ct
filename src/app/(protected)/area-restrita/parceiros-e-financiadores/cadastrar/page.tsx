@@ -3,7 +3,7 @@
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
 import { Checkbox } from '@components/ui/checkbox'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import { DatePicker } from '@components/ui/date-picker'
 import {
   Form,
@@ -168,7 +168,7 @@ export default function CreatePartner() {
                         </p>
                       </div>
                       <FormControl>
-                        <CoverUpload
+                        <CoverUploader
                           maxSize={MAX_IMAGE_SIZE_MB}
                           onImageChange={field.onChange}
                         />

@@ -4,7 +4,7 @@ import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -60,10 +60,6 @@ export function useCreateMuseum() {
     defaultValues: INITIAL_VALUES,
   })
 
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
   const submit = form.handleSubmit(async (values) => {
     try {
       await createMuseum(values)
@@ -82,7 +78,6 @@ export function useCreateMuseum() {
   return {
     form,
     serverError,
-    isSubmitting,
     submit,
   }
 }

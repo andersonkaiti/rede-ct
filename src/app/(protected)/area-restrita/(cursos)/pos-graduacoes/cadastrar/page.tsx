@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import { DatePicker } from '@components/ui/date-picker'
 import {
   Form,
@@ -27,8 +27,7 @@ import {
 } from './use-create-post-graduate-program.hook'
 
 export default function CadastrarPosGraduacao() {
-  const { form, isSubmitting, submit, serverError } =
-    useCreatePostGraduateProgram()
+  const { form, submit, serverError } = useCreatePostGraduateProgram()
 
   return (
     <PageContainer>
@@ -93,7 +92,7 @@ export default function CadastrarPosGraduacao() {
                   Imagem <span className="text-primary">*</span>
                 </FormLabel>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
@@ -171,11 +170,13 @@ export default function CadastrarPosGraduacao() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Cadastrar programa
           </Button>
         </form>

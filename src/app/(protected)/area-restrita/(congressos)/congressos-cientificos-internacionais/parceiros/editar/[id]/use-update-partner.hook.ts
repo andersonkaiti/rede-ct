@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getInternationalScientificCongressPartnerById } from '@http/congress/international-scientific/partner/get-international-scientific-congress-partner-by-id'
 import { updateInternationalScientificCongressPartner } from '@http/congress/international-scientific/partner/update-international-scientific-congress-partner'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
@@ -33,13 +33,10 @@ export function useUpdatePartner() {
   const { id } = useParams<{ id: string }>()
   const router = useRouter()
 
-  const { data: partner, ...rest } = useQuery({
+  const { data: partner } = useSuspenseQuery({
     queryKey: ['congress-partner', id],
     queryFn: () => getInternationalScientificCongressPartnerById(id),
-    enabled: !!id,
   })
-
-  console.log(partner)
 
   const form = useForm<UpdatePartnerInput>({
     resolver: zodResolver(updatePartnerSchema),
@@ -70,6 +67,5 @@ export function useUpdatePartner() {
     serverError,
     submit,
     partner,
-    ...rest,
   }
 }

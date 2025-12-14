@@ -5,31 +5,30 @@ import { AvatarUploader } from '@components/ui/avatar-uploader'
 import { Button } from '@components/ui/button'
 import { DatePicker } from '@components/ui/date-picker'
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
 import {
-  PageContainer,
-  PageDescription,
-  PageFormContentField,
-  PageHeaderContent,
-  PageTitle,
+    PageContainer,
+    PageDescription,
+    PageFormContentField,
+    PageHeaderContent,
+    PageTitle,
 } from '@components/ui/page-container'
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
 } from '@components/ui/select'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import Loading from './loading'
 import { useUpdateInMemoriam } from './use-update-in-memoriam.hook'
 
 const ROLE_OPTIONS = [
@@ -43,12 +42,8 @@ const KB_PER_MB = 1024
 const MAX_AVATAR_SIZE_BYTES = MAX_AVATAR_SIZE_MB * KB_PER_MB * BYTES_PER_KB
 
 export default function UpdateInMemoriamForm() {
-  const { form, isLoading, serverError, submit, inMemoriam } =
+  const { form, isSubmitting, serverError, submit, inMemoriam } =
     useUpdateInMemoriam()
-
-  if (isLoading) {
-    return <Loading />
-  }
 
   return (
     <PageContainer>
@@ -194,13 +189,11 @@ export default function UpdateInMemoriamForm() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={form.formState.isSubmitting}
+            disabled={isSubmitting}
             type="submit"
             variant="outline"
           >
-            {form.formState.isSubmitting && (
-              <Loader2 className="size-4 animate-spin" />
-            )}
+            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
             Atualizar In Memoriam
           </Button>
         </form>

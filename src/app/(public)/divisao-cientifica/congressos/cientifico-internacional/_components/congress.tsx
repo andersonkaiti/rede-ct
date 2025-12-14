@@ -1,4 +1,4 @@
-import { HighlightedLink } from '@components/highlighted-link'
+import { HighlightedLink } from '@components/ui/highlighted-link'
 import { format } from 'date-fns'
 import { CongressGalleryImage } from './congress-gallery-image'
 

@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import {
   Form,
   FormControl,
@@ -23,7 +23,7 @@ import { AlertCircle, Loader2 } from 'lucide-react'
 import { MAX_IMAGE_SIZE_BYTES, useCreateMuseum } from './use-create-museum.hook'
 
 export default function CadastrarMuseu() {
-  const { form, isSubmitting, submit, serverError } = useCreateMuseum()
+  const { form, submit, serverError } = useCreateMuseum()
 
   return (
     <PageContainer>
@@ -66,7 +66,7 @@ export default function CadastrarMuseu() {
               <FormItem>
                 <FormLabel>Logo</FormLabel>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
@@ -218,11 +218,13 @@ export default function CadastrarMuseu() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Cadastrar museu
           </Button>
         </form>

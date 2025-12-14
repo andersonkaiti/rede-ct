@@ -36,8 +36,7 @@ import { AlertCircle, Link, Loader2, MapPin, Video } from 'lucide-react'
 import { useCreateRegionalCongress } from './use-create-regional-congress'
 
 export default function CreateRegionalCongressPage() {
-  const { form, submit, serverError, isSubmitting } =
-    useCreateRegionalCongress()
+  const { form, submit, serverError } = useCreateRegionalCongress()
 
   return (
     <PageContainer>
@@ -361,10 +360,12 @@ export default function CreateRegionalCongressPage() {
           <Button
             className="w-full cursor-pointer"
             variant="outline"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
           >
-            {isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="mr-2 size-4 animate-spin" />
+            )}
             Cadastrar Congresso Regional
           </Button>
         </form>

@@ -16,7 +16,7 @@ export function CreateMemberButton({ children }: CreateMemberButtonProps) {
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" className="w-full lg:w-fit">
           <Plus className="size-4" />
           {children}
         </Button>

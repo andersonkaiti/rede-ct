@@ -13,7 +13,7 @@ const registerPendencySchema = z.object({
   title: z.string().min(1, 'Título é obrigatório'),
   description: z.string().min(1, 'Descrição é obrigatória'),
   status: z.enum(['PENDING', 'PAID']),
-  dueDate: z.string().optional(),
+  dueDate: z.date().optional(),
   document: z
     .any()
     .refine(
@@ -28,13 +28,22 @@ interface IUseRegisterPendencyProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+const INITIAL_VALUES: Omit<RegisterPendencyInput, 'userId'> = {
+  title: '',
+  description: '',
+  status: 'PENDING',
+  dueDate: new Date(),
+  document: undefined,
+}
+
 const DEFAULT_PAGE = 1
 const DEFAULT_LIMIT = 4
 
 export function useRegisterPendency({ setIsOpen }: IUseRegisterPendencyProps) {
-  const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
+  const [{ filtro: filter, orderBy, page, limit, userId }] = useQueryStates({
     filtro: parseAsString.withDefault(''),
     orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    userId: parseAsString.withDefault(''),
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
   })
@@ -46,12 +55,8 @@ export function useRegisterPendency({ setIsOpen }: IUseRegisterPendencyProps) {
   const form = useForm<RegisterPendencyInput>({
     resolver: zodResolver(registerPendencySchema),
     defaultValues: {
-      userId: '',
-      title: '',
-      description: '',
-      status: 'PENDING',
-      dueDate: '',
-      document: undefined,
+      ...INITIAL_VALUES,
+      userId,
     },
     mode: 'onChange',
   })
@@ -61,7 +66,7 @@ export function useRegisterPendency({ setIsOpen }: IUseRegisterPendencyProps) {
       await createPendency(values)
 
       queryClient.invalidateQueries({
-        queryKey: ['users', 'pendencies', filter, orderBy, page, limit],
+        queryKey: ['users', 'pendencies', filter, orderBy, page, limit, userId],
       })
 
       toast.success('Pendência cadastrada com sucesso!')
@@ -80,7 +85,6 @@ export function useRegisterPendency({ setIsOpen }: IUseRegisterPendencyProps) {
   return {
     form,
     serverError,
-    isSubmitting: form.formState.isSubmitting,
     submit,
   }
 }

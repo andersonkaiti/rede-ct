@@ -15,18 +15,25 @@ export default function Loading() {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Grupo de Trabalho</PageTitle>
-          <PageDescription>Gerencie o Grupo de Trabalho</PageDescription>
+          <PageTitle className="w-full">
+            <Skeleton className="h-9 w-2/4" />
+          </PageTitle>
+          <PageDescription className="w-full">
+            <Skeleton className="h-5 w-1/4" />
+          </PageDescription>
         </PageHeaderContent>
       </PageHeader>
 
       <PageHeader>
         <PageActionsContainer>
-          <Skeleton className="h-10 w-64" />
-          <Skeleton className="h-10 w-10" />
-          <Skeleton className="h-10 w-10" />
+          <Skeleton className="h-9 w-full lg:w-51" />
+
+          <Skeleton className="h-9 w-20.5" />
+
+          <Skeleton className="size-9" />
         </PageActionsContainer>
-        <Skeleton className="h-10 w-40" />
+
+        <Skeleton className="h-10 w-full lg:w-42" />
       </PageHeader>
 
       <PageMain>

@@ -96,7 +96,6 @@ export function useCreateTeam() {
   return {
     form,
     serverError,
-    isSubmitting: form.formState.isSubmitting,
     submit,
     handleIncludeMember,
     handleRemoveMember,

@@ -27,28 +27,18 @@ import {
   SelectTrigger,
 } from '@components/ui/select'
 import { Textarea } from '@components/ui/textarea'
-import UserProfileHoverCard from '@components/user-profile-hover-card'
+import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { DEGREE_LABEL_MAP } from '../../_constants/degrees'
 import {
   SENIORITY_LABEL_MAP,
   SENIORITY_OPTIONS,
 } from '../../_constants/seniority'
-import Loading from './loading'
 import { useUpdateResearcher } from './use-update-researcher.hook'
 
 export default function UpdateForm() {
-  const {
-    form,
-    isLoading: isResearcherLoading,
-    serverError,
-    submit,
-    researcher,
-  } = useUpdateResearcher()
-
-  if (isResearcherLoading) {
-    return <Loading />
-  }
+  const { form, isSubmitting, serverError, submit, researcher } =
+    useUpdateResearcher()
 
   return (
     <PageContainer>
@@ -244,13 +234,11 @@ export default function UpdateForm() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={form.formState.isSubmitting}
+            disabled={isSubmitting}
             type="submit"
             variant="outline"
           >
-            {form.formState.isSubmitting && (
-              <Loader2 className="size-4 animate-spin" />
-            )}
+            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
             Atualizar pesquisador
           </Button>
         </form>

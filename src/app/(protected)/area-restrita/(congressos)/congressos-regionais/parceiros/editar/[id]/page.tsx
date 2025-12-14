@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import {
   Form,
   FormControl,
@@ -19,20 +19,10 @@ import {
   PageTitle,
 } from '@components/ui/page-container'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useParams } from 'next/navigation'
-import Loading from './loading'
 import { MAX_LOGO_SIZE_MB, useUpdatePartner } from './use-update-partner.hook'
 
 export default function UpdatePartnerForm() {
-  const { id, congressId } = useParams<{ id: string; congressId?: string }>()
-  const { form, submit, serverError, isLoading } = useUpdatePartner(
-    id,
-    congressId || '',
-  )
-
-  if (isLoading) {
-    return <Loading />
-  }
+  const { form, submit, serverError } = useUpdatePartner()
 
   return (
     <PageContainer>
@@ -83,7 +73,7 @@ export default function UpdatePartnerForm() {
                   </p>
                 </div>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     maxSize={MAX_LOGO_SIZE_MB}
                     onImageChange={field.onChange}
                   />

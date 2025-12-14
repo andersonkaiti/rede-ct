@@ -21,7 +21,6 @@ import {
 import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useState } from 'react'
 import { SelectMember } from '../../../../../_components/select-member'
 import { useRegisterPendency } from './use-create-pendency'
 
@@ -30,10 +29,9 @@ interface ICreatePendencyFormProps {
 }
 
 export function CreatePendencyForm({ setIsOpen }: ICreatePendencyFormProps) {
-  const { form, serverError, isSubmitting, submit } = useRegisterPendency({
+  const { form, serverError, submit } = useRegisterPendency({
     setIsOpen,
   })
-  const [dueDate, setDueDate] = useState<Date | undefined>()
 
   return (
     <DialogContent>
@@ -105,13 +103,12 @@ export function CreatePendencyForm({ setIsOpen }: ICreatePendencyFormProps) {
                   <div className="space-y-2">
                     <DatePicker
                       onChange={(date) => {
-                        setDueDate(date)
                         field.onChange(
                           date ? date.toISOString().split('T')[0] : '',
                         )
                       }}
                       placeholder="Selecione uma data de vencimento"
-                      value={dueDate}
+                      value={field.value}
                     />
                   </div>
                 </FormControl>
@@ -142,8 +139,14 @@ export function CreatePendencyForm({ setIsOpen }: ICreatePendencyFormProps) {
             <DialogClose asChild>
               <Button variant="ghost">Cancelar</Button>
             </DialogClose>
-            <Button disabled={isSubmitting} type="submit">
-              {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            <Button
+              disabled={form.formState.isSubmitting}
+              type="submit"
+              variant="outline"
+            >
+              {form.formState.isSubmitting && (
+                <Loader2 className="size-4 animate-spin" />
+              )}
               Cadastrar pendência
             </Button>
           </DialogFooter>

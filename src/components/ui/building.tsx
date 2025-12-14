@@ -1,5 +1,5 @@
-import { ConstructionIcon } from './icons/construction'
-import { Card, CardDescription, CardHeader, CardTitle } from './ui/card'
+import { ConstructionIcon } from '../icons/construction'
+import { Card, CardDescription, CardHeader, CardTitle } from './card'
 
 interface BuildingProps {
   children: React.ReactNode

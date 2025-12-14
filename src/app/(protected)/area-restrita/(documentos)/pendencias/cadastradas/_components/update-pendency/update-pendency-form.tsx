@@ -28,7 +28,6 @@ import {
 } from '@components/ui/select'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useEffect, useState } from 'react'
 import { useUpdatePendency } from './use-update-pendency'
 
 interface IUpdatePendencyFormProps {
@@ -36,20 +35,9 @@ interface IUpdatePendencyFormProps {
 }
 
 export function UpdatePendencyForm({ setIsOpen }: IUpdatePendencyFormProps) {
-  const { pendency, form, serverError, isSubmitting, submit } =
-    useUpdatePendency({
-      setIsOpen,
-    })
-
-  const [dueDate, setDueDate] = useState<Date | undefined>()
-
-  useEffect(() => {
-    if (pendency?.dueDate) {
-      setDueDate(new Date(pendency.dueDate))
-    } else {
-      setDueDate(undefined)
-    }
-  }, [pendency])
+  const { form, serverError, submit } = useUpdatePendency({
+    setIsOpen,
+  })
 
   return (
     <DialogContent>
@@ -104,13 +92,12 @@ export function UpdatePendencyForm({ setIsOpen }: IUpdatePendencyFormProps) {
                   <div className="space-y-2">
                     <DatePicker
                       onChange={(date) => {
-                        setDueDate(date)
                         field.onChange(
                           date ? date.toISOString().split('T')[0] : '',
                         )
                       }}
                       placeholder="Selecione uma data de vencimento"
-                      value={dueDate}
+                      value={field.value}
                     />
                   </div>
                 </FormControl>
@@ -163,8 +150,14 @@ export function UpdatePendencyForm({ setIsOpen }: IUpdatePendencyFormProps) {
             <DialogClose asChild>
               <Button variant="ghost">Cancelar</Button>
             </DialogClose>
-            <Button disabled={isSubmitting} type="submit">
-              {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            <Button
+              disabled={form.formState.isSubmitting}
+              type="submit"
+              variant="outline"
+            >
+              {form.formState.isSubmitting && (
+                <Loader2 className="size-4 animate-spin" />
+              )}
               Atualizar pendência
             </Button>
           </DialogFooter>

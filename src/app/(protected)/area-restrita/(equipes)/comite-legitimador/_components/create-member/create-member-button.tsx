@@ -17,7 +17,7 @@ export function CreateMemberButton({ children }: ICreateMemberButtonProps) {
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger asChild>
-        <Button className="w-full cursor-pointer xl:w-fit" variant="outline">
+        <Button className="w-full cursor-pointer lg:w-fit" variant="outline">
           <PlusIcon className="h-4 w-4" />
           {children}
         </Button>

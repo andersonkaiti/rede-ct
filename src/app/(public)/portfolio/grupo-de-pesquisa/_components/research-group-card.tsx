@@ -5,7 +5,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@components/ui/collapsible'
-import UserProfileHoverCard from '@components/user-profile-hover-card'
+import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { format } from 'date-fns'
 import { ChevronUp, Globe } from 'lucide-react'
 import Image from 'next/image'

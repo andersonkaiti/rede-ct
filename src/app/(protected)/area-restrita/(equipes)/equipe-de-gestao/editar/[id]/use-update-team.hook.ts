@@ -4,7 +4,7 @@ import { updateManagementTeam } from '@http/teams/management-team/update-managem
 import { useQuery } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
@@ -52,13 +52,25 @@ export function useUpdateTeam() {
     queryFn: async () => await getManagementTeamById(teamId),
   })
 
-  const [members, setMembers] = useState<ITeamMember[]>([])
+  const [members, setMembers] = useState<ITeamMember[]>(
+    incomingTeam?.members.map((member) => ({
+      ...member,
+      user: {
+        ...member.user,
+        role: member.user.role as 'ADMIN' | 'USER',
+      },
+    })) ?? [],
+  )
 
   const form = useForm<UpdateManagementTeamInput>({
     resolver: zodResolver(managementTeamSchema),
     values: {
-      name: '',
-      members: [],
+      name: incomingTeam?.name ?? '',
+      members:
+        incomingTeam?.members.map((member) => ({
+          userId: member.user.id,
+          role: member.role,
+        })) ?? [],
     },
     mode: 'onChange',
   })
@@ -67,30 +79,6 @@ export function useUpdateTeam() {
     control: form.control,
     name: 'members',
   })
-
-  useEffect(() => {
-    if (!isTeamLoading && incomingTeam) {
-      const formMembers = incomingTeam.members.map((member) => ({
-        userId: member.user.id,
-        role: member.role,
-      }))
-
-      form.reset({
-        name: incomingTeam.name,
-        members: formMembers,
-      })
-
-      setMembers(
-        incomingTeam.members.map((member) => ({
-          ...member,
-          user: {
-            ...member.user,
-            role: member.user.role as 'ADMIN' | 'USER',
-          },
-        })),
-      )
-    }
-  }, [incomingTeam, form, isTeamLoading])
 
   function handleIncludeMember(member: ITeamMember) {
     membersForm.append({ userId: member.user.id, role: member.role })
@@ -136,7 +124,6 @@ export function useUpdateTeam() {
   return {
     form,
     serverError,
-    isSubmitting: form.formState.isSubmitting,
     submit,
     handleIncludeMember,
     handleRemoveMember,

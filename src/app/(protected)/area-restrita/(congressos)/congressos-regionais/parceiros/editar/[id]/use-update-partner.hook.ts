@@ -1,10 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getRegionalCongressPartnerById } from '@http/congress/regional/partner/get-regional-congress-partner-by-id'
 import { updateRegionalCongressPartner } from '@http/congress/regional/partner/update-regional-congress-partner'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useParams, useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
@@ -25,41 +26,27 @@ export const updatePartnerSchema = z.object({
 
 export type UpdatePartnerInput = z.infer<typeof updatePartnerSchema>
 
-export function useUpdatePartner(id: string, congressId: string) {
+export function useUpdatePartner() {
   const [serverError, setServerError] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
+  const { id } = useParams<{ id: string }>()
+
+  const { data: partner } = useSuspenseQuery({
+    queryKey: ['regional-congress-partner', id],
+    queryFn: () => getRegionalCongressPartnerById(id),
+  })
 
   const form = useForm<UpdatePartnerInput>({
     resolver: zodResolver(updatePartnerSchema),
+    values: {
+      name: partner?.name ?? '',
+      logo: undefined,
+    },
   })
 
   const { isSubmitting } = useFormState({
     control: form.control,
   })
-
-  useEffect(() => {
-    async function loadPartner() {
-      try {
-        const partner = await getRegionalCongressPartnerById(id)
-
-        form.reset({
-          name: partner.name,
-          logo: undefined,
-        })
-
-        setIsLoading(false)
-      } catch {
-        toast.error('Erro ao carregar parceiro.')
-
-        router.push(
-          `/area-restrita/congressos-regionais/parceiros/${congressId}`,
-        )
-      }
-    }
-
-    loadPartner()
-  }, [id, congressId, form, router])
 
   const submit = form.handleSubmit(async (values: UpdatePartnerInput) => {
     try {
@@ -67,7 +54,7 @@ export function useUpdatePartner(id: string, congressId: string) {
 
       toast.success('Parceiro atualizado com sucesso.')
 
-      router.push(`/area-restrita/congressos-regionais/parceiros/${congressId}`)
+      router.push(`/area-restrita/congressos-regionais/parceiros/${id}`)
     } catch (err) {
       if (err instanceof HTTPError) {
         const errorBody = await err.response.json()
@@ -84,6 +71,5 @@ export function useUpdatePartner(id: string, congressId: string) {
     serverError,
     submit,
     isSubmitting,
-    isLoading,
   }
 }

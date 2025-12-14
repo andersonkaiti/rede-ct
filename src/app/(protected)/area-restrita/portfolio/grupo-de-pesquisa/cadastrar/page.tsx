@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { CoverUpload } from '@components/ui/cover-upload'
+import { CoverUploader } from '@components/ui/cover-uploader'
 import { DatePicker } from '@components/ui/date-picker'
 import {
   Form,
@@ -28,7 +28,7 @@ import {
 } from './use-create-research-group.hook'
 
 export default function CadastrarGrupoDePesquisa() {
-  const { form, isSubmitting, submit, serverError } = useCreateResearchGroup()
+  const { form, submit, serverError } = useCreateResearchGroup()
 
   return (
     <PageContainer>
@@ -186,7 +186,7 @@ export default function CadastrarGrupoDePesquisa() {
               <FormItem>
                 <FormLabel>Logo</FormLabel>
                 <FormControl>
-                  <CoverUpload
+                  <CoverUploader
                     maxSize={MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
@@ -215,11 +215,13 @@ export default function CadastrarGrupoDePesquisa() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Cadastrar grupo de pesquisa
           </Button>
         </form>

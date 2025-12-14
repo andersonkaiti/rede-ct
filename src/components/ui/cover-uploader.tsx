@@ -39,7 +39,7 @@ interface CoverUploadProps {
   defaultImage?: string | null
 }
 
-export function CoverUpload({
+export function CoverUploader({
   maxSize = DEFAULT_MAX_SIZE,
   accept = 'image/*',
   className,

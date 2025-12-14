@@ -6,7 +6,7 @@ import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -69,10 +69,6 @@ export function useUpdateMuseum() {
     defaultValues: INITIAL_VALUES,
   })
 
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
   useEffect(() => {
     if (museum) {
       form.reset({
@@ -99,6 +95,7 @@ export function useUpdateMuseum() {
       })
 
       toast.success('Museu atualizado com sucesso!')
+
       router.push('/area-restrita/portfolio/museus')
     } catch (err) {
       if (err instanceof HTTPError) {
@@ -111,7 +108,6 @@ export function useUpdateMuseum() {
   return {
     form,
     serverError,
-    isSubmitting,
     submit,
     museum,
   }

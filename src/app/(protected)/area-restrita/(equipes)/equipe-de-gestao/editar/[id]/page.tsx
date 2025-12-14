@@ -29,7 +29,6 @@ export default function EditManagementTeam() {
     form,
     handleIncludeMember,
     handleRemoveMember,
-    isSubmitting,
     members,
     isTeamLoading,
     submit,
@@ -94,11 +93,13 @@ export default function EditManagementTeam() {
 
             <Button
               className="w-full cursor-pointer"
-              disabled={isSubmitting}
+              disabled={form.formState.isSubmitting}
               type="submit"
               variant="outline"
             >
-              {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+              {form.formState.isSubmitting && (
+                <Loader2 className="size-4 animate-spin" />
+              )}
               Atualizar equipe
             </Button>
           </form>

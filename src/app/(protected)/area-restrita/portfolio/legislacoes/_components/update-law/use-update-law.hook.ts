@@ -3,17 +3,17 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getLawById } from '@http/laws/get-law-by-id'
 import { updateLaw } from '@http/laws/update-law'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { parseAsString, useQueryStates } from 'nuqs'
 import { useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
 export const updateLawSchema = z.object({
   title: z.string().min(1, 'Título é obrigatório'),
-  link: z.string().url('Link deve ser uma URL válida'),
+  link: z.url('Link deve ser uma URL válida'),
   country: z.string().min(1, 'País é obrigatório'),
 })
 
@@ -33,7 +33,7 @@ export function useUpdateLaw({ setIsOpen }: IUseUpdateLawProps) {
     filtro: parseAsString.withDefault(''),
   })
 
-  const { data: law } = useQuery({
+  const { data: law } = useSuspenseQuery({
     queryKey: ['law', memberId],
     queryFn: async () => getLawById(memberId),
   })
@@ -45,10 +45,6 @@ export function useUpdateLaw({ setIsOpen }: IUseUpdateLawProps) {
       link: law?.link ?? '',
       country: law?.country ?? '',
     },
-  })
-
-  const { isSubmitting } = useFormState({
-    control: form.control,
   })
 
   const submit = form.handleSubmit(async (values: UpdateLawInput) => {
@@ -77,10 +73,8 @@ export function useUpdateLaw({ setIsOpen }: IUseUpdateLawProps) {
   })
 
   return {
-    law,
     form,
     serverError,
-    isSubmitting,
     submit,
   }
 }

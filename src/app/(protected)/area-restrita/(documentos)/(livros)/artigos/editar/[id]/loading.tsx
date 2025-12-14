@@ -1,5 +1,10 @@
 import {
   PageContainer,
+  PageDescription,
+  PageForm,
+  PageFormContent,
+  PageFormContentField,
+  PageHeader,
   PageHeaderContent,
   PageTitle,
 } from '@components/ui/page-container'
@@ -8,24 +13,111 @@ import { Skeleton } from '@components/ui/skeleton'
 export default function Loading() {
   return (
     <PageContainer>
-      <PageHeaderContent>
-        <PageTitle>Carregando artigo...</PageTitle>
-      </PageHeaderContent>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Editar Artigo</PageTitle>
+          <PageDescription>
+            Preencha os campos abaixo para atualizar o artigo científico
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-      <div className="space-y-6">
-        <Skeleton className="h-10 w-full" />
-        <Skeleton className="h-10 w-full" />
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <Skeleton className="h-10 w-full" />
-          <Skeleton className="h-10 w-full" />
-        </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <Skeleton className="h-10 w-full" />
-          <Skeleton className="h-10 w-full" />
-          <Skeleton className="h-10 w-full" />
-        </div>
-        <Skeleton className="h-32 w-full" />
-        <Skeleton className="h-10 w-full" />
+      <div>
+        <PageForm>
+          <PageFormContent>
+            <PageFormContentField>
+              <Skeleton className="h-4 w-16 rounded-md" />
+              <Skeleton className="h-9 w-full rounded-md" />
+            </PageFormContentField>
+
+            <PageFormContentField>
+              <Skeleton className="h-4 w-16 rounded-md" />
+              <Skeleton className="h-9 w-full rounded-md" />
+            </PageFormContentField>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <PageFormContentField>
+                <Skeleton className="h-4 w-32 rounded-md" />
+                <Skeleton className="h-9 w-full rounded-md" />
+              </PageFormContentField>
+
+              <PageFormContentField>
+                <Skeleton className="h-4 w-36 rounded-md" />
+                <Skeleton className="h-9 w-full rounded-md" />
+              </PageFormContentField>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              <PageFormContentField>
+                <Skeleton className="h-4 w-16 rounded-md" />
+                <Skeleton className="h-9 w-full rounded-md" />
+              </PageFormContentField>
+
+              <PageFormContentField>
+                <Skeleton className="h-4 w-16 rounded-md" />
+                <Skeleton className="h-9 w-full rounded-md" />
+              </PageFormContentField>
+
+              <PageFormContentField>
+                <Skeleton className="h-4 w-12 rounded-md" />
+                <Skeleton className="h-9 w-full rounded-md" />
+              </PageFormContentField>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <PageFormContentField>
+                <Skeleton className="h-4 w-28 rounded-md" />
+                <Skeleton className="h-9 w-full rounded-md" />
+              </PageFormContentField>
+
+              <PageFormContentField>
+                <Skeleton className="h-4 w-28 rounded-md" />
+                <Skeleton className="h-9 w-full rounded-md" />
+              </PageFormContentField>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <PageFormContentField>
+                <Skeleton className="h-4 w-28 rounded-md" />
+                <Skeleton className="h-9 w-full rounded-md" />
+              </PageFormContentField>
+
+              <PageFormContentField>
+                <Skeleton className="h-4 w-28 rounded-md" />
+                <Skeleton className="h-9 w-full rounded-md" />
+              </PageFormContentField>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              <PageFormContentField>
+                <Skeleton className="h-4 w-16 rounded-md" />
+                <Skeleton className="h-9 w-full rounded-md" />
+              </PageFormContentField>
+
+              <PageFormContentField>
+                <Skeleton className="h-4 w-16 rounded-md" />
+                <Skeleton className="h-9 w-full rounded-md" />
+              </PageFormContentField>
+
+              <PageFormContentField>
+                <Skeleton className="h-4 w-12 rounded-md" />
+                <Skeleton className="h-9 w-full rounded-md" />
+              </PageFormContentField>
+            </div>
+
+            <PageFormContentField>
+              <Skeleton className="h-4 w-28 rounded-md" />
+              <Skeleton className="h-9 w-full rounded-md" />
+            </PageFormContentField>
+
+            <PageFormContentField>
+              <Skeleton className="h-4 w-20 rounded-md" />
+              <Skeleton className="h-24 w-full rounded-md" />
+            </PageFormContentField>
+          </PageFormContent>
+
+          <Skeleton className="h-9 w-full rounded-md" />
+        </PageForm>
       </div>
     </PageContainer>
   )

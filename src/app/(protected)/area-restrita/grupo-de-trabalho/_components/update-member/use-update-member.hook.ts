@@ -3,11 +3,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getWorkGroupTeamMemberById } from '@http/teams/work-group-team/get-work-group-member-by-id'
 import { updateWorkGroupTeamMember } from '@http/teams/work-group-team/update-work-group-member'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { parseAsString, useQueryStates } from 'nuqs'
 import { useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -37,7 +37,7 @@ export function useUpdateWorkGroupTeamMember({
     filtro: parseAsString.withDefault(''),
   })
 
-  const { data: member } = useQuery({
+  const { data: member } = useSuspenseQuery({
     queryKey: ['member', memberId],
     queryFn: async () => getWorkGroupTeamMemberById(memberId),
   })
@@ -49,10 +49,6 @@ export function useUpdateWorkGroupTeamMember({
       role: member?.role ?? '',
       userId: member?.userId ?? '',
     },
-  })
-
-  const { isSubmitting } = useFormState({
-    control: form.control,
   })
 
   const submit = form.handleSubmit(
@@ -86,7 +82,6 @@ export function useUpdateWorkGroupTeamMember({
     member,
     form,
     serverError,
-    isSubmitting,
     submit,
   }
 }

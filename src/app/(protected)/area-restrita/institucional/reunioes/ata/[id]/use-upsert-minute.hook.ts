@@ -7,7 +7,7 @@ import { useMutation, useSuspenseQuery } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -90,10 +90,6 @@ export function useUpsertMinute() {
     }
   }, [minute, id, form])
 
-  const { isSubmitting } = useFormState({
-    control: form.control,
-  })
-
   const submit = form.handleSubmit(
     async (values: CreateMinuteInput | UpdateMinuteInput) => {
       try {
@@ -134,7 +130,6 @@ export function useUpsertMinute() {
     form,
     serverError,
     submit,
-    isSubmitting,
     minute,
     handleRemoveMinute,
   }

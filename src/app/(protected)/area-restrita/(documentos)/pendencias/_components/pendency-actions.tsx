@@ -20,9 +20,10 @@ const DEFAULT_PAGE = 1
 const DEFAULT_LIMIT = 4
 
 export function PendencyActions({ id }: IPendencyActionsProps) {
-  const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
+  const [{ filtro: filter, orderBy, page, limit, userId }] = useQueryStates({
     filtro: parseAsString.withDefault(''),
     orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    userId: parseAsString.withDefault(''),
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
   })
@@ -34,7 +35,7 @@ export function PendencyActions({ id }: IPendencyActionsProps) {
       await deletePendencyById(id)
 
       queryClient.invalidateQueries({
-        queryKey: ['user', 'pendencies', filter, orderBy, page, limit],
+        queryKey: ['user', 'pendencies', filter, orderBy, page, limit, userId],
       })
 
       toast.success('Pendência deletada com sucesso!')

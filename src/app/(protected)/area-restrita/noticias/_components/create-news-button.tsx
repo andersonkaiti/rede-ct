@@ -6,11 +6,11 @@ export function CreateNewsButton() {
   return (
     <Button
       asChild
-      className="w-full cursor-pointer sm:w-fit"
+      className="w-full cursor-pointer lg:w-fit"
       variant="outline"
     >
       <Link
-        className="w-full sm:w-fit"
+        className="w-full lg:w-fit"
         href="/area-restrita/noticias/cadastrar"
       >
         <Plus />

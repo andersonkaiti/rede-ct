@@ -1,4 +1,4 @@
-import { BackArrow } from '@components/back-arrow'
+import { BackArrow } from '@components/ui/back-arrow'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { GaleriaInMemoriamTitle } from './_components/galeria-in-memoriam-title'

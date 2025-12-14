@@ -1,5 +1,3 @@
-import { Button } from '@components/ui/button'
-import { Label } from '@components/ui/label'
 import {
   PageContainer,
   PageDescription,
@@ -29,18 +27,12 @@ export default function Loading() {
         <PageForm>
           <PageFormContent>
             <PageFormContentField>
-              <Label>
-                Título <span className="text-primary">*</span>
-              </Label>
-
+              <Skeleton className="h-4 w-16 rounded-md" />
               <Skeleton className="h-9 w-full rounded-md" />
             </PageFormContentField>
 
             <PageFormContentField>
-              <Label>
-                Imagem <span className="text-primary">*</span>
-              </Label>
-
+              <Skeleton className="h-4 w-20 rounded-md" />
               <Skeleton className="flex h-68 w-full items-center justify-center rounded-xl">
                 <div
                   aria-hidden="true"
@@ -52,17 +44,12 @@ export default function Loading() {
             </PageFormContentField>
 
             <PageFormContentField>
-              <Label>
-                Texto <span className="text-primary">*</span>
-              </Label>
-
+              <Skeleton className="h-4 w-16 rounded-md" />
               <Skeleton className="h-16 w-full rounded-md" />
             </PageFormContentField>
           </PageFormContent>
 
-          <Button className="w-full cursor-pointer" type="submit">
-            Cadastrar notícia
-          </Button>
+          <Skeleton className="h-9 w-full rounded-md" />
         </PageForm>
       </div>
     </PageContainer>

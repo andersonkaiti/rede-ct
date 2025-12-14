@@ -21,7 +21,6 @@ import { useSignIn } from './use-sign-in.hook'
 
 export function SignInForm() {
   const {
-    isSubmitting,
     form,
     submit,
     passwordVisibility,
@@ -103,11 +102,13 @@ export function SignInForm() {
 
           <Button
             className="w-full"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Entrar
           </Button>
         </form>

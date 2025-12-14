@@ -1,11 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getScientificArticleById } from '@http/scientific-articles/get-scientific-article-by-id'
 import { updateScientificArticle } from '@http/scientific-articles/update-scientific-article'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -39,54 +39,31 @@ export function useUpdateScientificArticle() {
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const { data: article, isLoading: isArticleLoading } = useQuery({
+  const { data: article } = useSuspenseQuery({
     queryKey: ['scientific-article', id],
     queryFn: () => getScientificArticleById(id),
-    enabled: !!id,
   })
 
   const form = useForm<UpdateScientificArticleFormData>({
     resolver: zodResolver(updateScientificArticleFormSchema),
-    defaultValues: {
-      title: '',
-      author: '',
-      journal: '',
-      volume: '',
-      edition: '',
-      city: '',
-      state: '',
-      country: '',
-      publisher: '',
-      description: '',
-      accessUrl: '',
+    values: {
+      title: article?.title ?? '',
+      author: article?.author ?? '',
+      journal: article?.journal ?? '',
+      volume: article?.volume ?? '',
+      edition: article?.edition ?? '',
+      pageStart: article?.pageStart ?? undefined,
+      pageEnd: article?.pageEnd ?? undefined,
+      startDate: article?.startDate ? new Date(article.startDate) : undefined,
+      endDate: article?.endDate ? new Date(article.endDate) : undefined,
+      city: article?.city ?? '',
+      state: article?.state ?? '',
+      country: article?.country ?? '',
+      publisher: article?.publisher ?? '',
+      description: article?.description ?? '',
+      year: article?.year ?? undefined,
+      accessUrl: article?.accessUrl ?? '',
     },
-  })
-
-  useEffect(() => {
-    if (article) {
-      form.reset({
-        title: article.title,
-        author: article.author,
-        journal: article.journal || '',
-        volume: article.volume || '',
-        edition: article.edition || '',
-        pageStart: article.pageStart || undefined,
-        pageEnd: article.pageEnd || undefined,
-        startDate: new Date(article.startDate),
-        endDate: new Date(article.endDate),
-        city: article.city || '',
-        state: article.state || '',
-        country: article.country || '',
-        publisher: article.publisher || '',
-        description: article.description || '',
-        year: article.year || undefined,
-        accessUrl: article.accessUrl || '',
-      })
-    }
-  }, [article, form])
-
-  const { isSubmitting } = useFormState({
-    control: form.control,
   })
 
   const submit = form.handleSubmit(
@@ -111,10 +88,8 @@ export function useUpdateScientificArticle() {
 
   return {
     form,
-    isSubmitting,
     submit,
     serverError,
-    isArticleLoading,
     article,
   }
 }

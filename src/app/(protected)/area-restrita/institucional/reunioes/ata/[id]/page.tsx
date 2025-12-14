@@ -32,14 +32,8 @@ import { DeleteMinuteButton } from './_components/delete-minute-button'
 import { useUpsertMinute } from './use-upsert-minute.hook'
 
 export default function UpsertMinutePage() {
-  const {
-    form,
-    submit,
-    serverError,
-    isSubmitting,
-    minute,
-    handleRemoveMinute,
-  } = useUpsertMinute()
+  const { form, submit, serverError, minute, handleRemoveMinute } =
+    useUpsertMinute()
 
   return (
     <PageContainer>
@@ -137,10 +131,13 @@ export default function UpsertMinutePage() {
 
             <Button
               className="w-full cursor-pointer"
-              disabled={isSubmitting}
+              disabled={form.formState.isSubmitting}
               type="submit"
+              variant="outline"
             >
-              {isSubmitting && <Loader2 className="mr-2 size-4 animate-spin" />}
+              {form.formState.isSubmitting && (
+                <Loader2 className="mr-2 size-4 animate-spin" />
+              )}
               {minute ? 'Salvar Alterações' : 'Cadastrar Ata'}
             </Button>
           </footer>

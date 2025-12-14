@@ -12,11 +12,11 @@ export default function Loading() {
   return (
     <PageContainer>
       <PageHeaderContent>
-        <PageTitle>
-          <Skeleton className="h-10 w-64" />
+        <PageTitle className="w-full">
+          <Skeleton className="h-9 w-2/4" />
         </PageTitle>
-        <PageDescription>
-          <Skeleton className="h-5 w-96" />
+        <PageDescription className="w-full">
+          <Skeleton className="h-4 w-1/4" />
         </PageDescription>
       </PageHeaderContent>
 
@@ -52,7 +52,11 @@ export default function Loading() {
 
         <Separator />
 
-        <Skeleton className="h-10 w-full" />
+        <div className="space-y-2">
+          <Skeleton className="h-10 w-full" />
+
+          <Skeleton className="h-10 w-full" />
+        </div>
       </div>
     </PageContainer>
   )

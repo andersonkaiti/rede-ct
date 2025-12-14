@@ -1,4 +1,4 @@
-import { BackArrow } from '@components/back-arrow'
+import { BackArrow } from '@components/ui/back-arrow'
 import { UserCardRedLine } from '@components/ui/user-card'
 import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'

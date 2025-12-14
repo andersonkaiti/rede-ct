@@ -1,9 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getScientificJournalById } from '@http/scientific-journals/get-scientific-journal-by-id'
 import { updateScientificJournal } from '@http/scientific-journals/update-scientific-journal'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
@@ -43,71 +44,46 @@ export function useUpdateScientificJournal() {
 
   const [serverError, setServerError] = useState<string | null>(null)
 
-  const { data: journal, isLoading: isJournalLoading } = useQuery({
+  const { data: journal } = useSuspenseQuery({
     queryKey: ['scientific-journal', id],
     queryFn: () => getScientificJournalById(id),
-    enabled: !!id,
   })
 
   const form = useForm<UpdateScientificJournalFormData>({
     resolver: zodResolver(updateScientificJournalFormSchema),
-    defaultValues: {
-      name: '',
-      issn: '',
-      description: '',
-      journalUrl: '',
-      directors: '',
-      editorialBoard: '',
+    values: {
+      name: journal?.name ?? '',
+      issn: journal?.issn ?? '',
+      description: journal?.description ?? '',
+      journalUrl: journal?.journalUrl ?? '',
+      directors: journal?.directors ?? '',
+      editorialBoard: journal?.editorialBoard ?? '',
     },
   })
 
-  useEffect(() => {
-    if (journal) {
-      form.reset({
-        name: journal.name,
-        issn: journal.issn,
-        description: journal.description,
-        journalUrl: journal.journalUrl,
-        directors: journal.directors || '',
-        editorialBoard: journal.editorialBoard || '',
-      })
-    }
-  }, [journal, form])
+  const submit = form.handleSubmit(
+    async (values: UpdateScientificJournalFormData) => {
+      try {
+        await updateScientificJournal({
+          id,
+          ...values,
+        })
 
-  const { mutateAsync: updateJournal, isPending: isSubmitting } = useMutation({
-    mutationFn: updateScientificJournal,
-    onSuccess: () => {
-      toast.success('Revista atualizada com sucesso!')
-      router.push('/area-restrita/revistas')
+        toast.success('Revista atualizada com sucesso!')
+        router.push('/area-restrita/revistas')
+      } catch (err) {
+        if (err instanceof HTTPError) {
+          const errorBody = await err.response.json()
+          setServerError(errorBody.message)
+        }
+      }
     },
-    onError: (error: Error) => {
-      setServerError(error.message)
-    },
-  })
-
-  async function submit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    setServerError(null)
-
-    const isValid = await form.trigger()
-
-    if (!isValid) return
-
-    const data = form.getValues()
-
-    await updateJournal({
-      id,
-      ...data,
-    })
-  }
+  )
 
   return {
     form,
-    isSubmitting,
     submit,
     serverError,
-    isJournalLoading,
     journal,
   }
 }

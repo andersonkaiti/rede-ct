@@ -35,7 +35,7 @@ interface ISelectMemberProps {
 }
 
 export function SelectMember({ handleIncludeMember }: ISelectMemberProps) {
-  const { data: users } = useUsers()
+  const { data } = useUsers()
 
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null)
   const [role, setRole] = useState('')
@@ -47,7 +47,7 @@ export function SelectMember({ handleIncludeMember }: ISelectMemberProps) {
   }
 
   function handleAddMember() {
-    const user = users?.find((u) => u.id === selectedUserId)
+    const user = data?.users?.find((u) => u.id === selectedUserId)
 
     if (user) {
       const newMember: ITeamMember = {
@@ -68,7 +68,7 @@ export function SelectMember({ handleIncludeMember }: ISelectMemberProps) {
           <SelectValue placeholder="Selecione o membro" />
         </SelectTrigger>
         <SelectContent>
-          {users?.map((user) => (
+          {data?.users?.map((user) => (
             <SelectItem key={user.id} value={user.id}>
               {user.name} ({user.emailAddress})
             </SelectItem>

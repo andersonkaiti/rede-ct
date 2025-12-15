@@ -30,7 +30,7 @@ import {
 } from './use-update-webinar.hook'
 
 export default function EditarWebinario() {
-  const { data: users } = useUsers()
+  const { data } = useUsers()
 
   const { form, serverError, submit, webinar } = useUpdateWebinar()
 
@@ -112,13 +112,13 @@ export default function EditarWebinario() {
                       field.onChange(selected.map((item) => item.value))
                     }
                     value={field.value?.map((id: string) => {
-                      const user = users?.find((u) => u.id === id)
+                      const user = data?.users?.find((u) => u.id === id)
                       return {
                         value: id,
                         label: user?.name || id,
                       }
                     })}
-                    options={users?.map((user) => ({
+                    options={data?.users?.map((user) => ({
                       label: user.name,
                       value: user.id,
                     }))}

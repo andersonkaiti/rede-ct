@@ -6,9 +6,9 @@ import { UserIcon } from 'lucide-react'
 import { parseAsString, useQueryState } from 'nuqs'
 
 export function SelectAuthor() {
-  const { data: users } = useQuery({
+  const { data } = useQuery({
     queryKey: ['users'],
-    queryFn: getUsers,
+    queryFn: async () => await getUsers({}),
   })
 
   const [authorId, setAuthorId] = useQueryState(
@@ -21,7 +21,7 @@ export function SelectAuthor() {
       emptyMessage="Nenhum autor"
       onChange={setAuthorId}
       options={
-        users?.map((user) => ({
+        data?.users?.map((user) => ({
           label: user.name,
           value: user.id,
         })) || []
@@ -32,7 +32,7 @@ export function SelectAuthor() {
     >
       <Button className="text-muted-foreground" variant="ghost">
         <UserIcon />
-        {users?.length}
+        {data?.users?.length}
       </Button>
     </SelectWithSearch>
   )

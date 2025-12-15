@@ -238,4 +238,10 @@ export const sidebarLinks: NavigationLink[] = [
       },
     ],
   },
+  {
+    label: 'Usuários',
+    path: '/area-restrita/usuarios',
+    icon: Users,
+    isProtected: true,
+  },
 ]

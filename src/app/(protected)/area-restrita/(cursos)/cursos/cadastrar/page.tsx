@@ -152,13 +152,13 @@ export default function CadastrarCurso() {
                       field.onChange(selected.map((item) => item.value))
                     }
                     value={field.value?.map((id: string) => {
-                      const user = users?.find((u) => u.id === id)
+                      const user = users?.users?.find((u) => u.id === id)
                       return {
                         value: id,
                         label: user?.name || id,
                       }
                     })}
-                    options={users?.map((user) => ({
+                    options={users?.users?.map((user) => ({
                       label: user.name,
                       value: user.id,
                     }))}

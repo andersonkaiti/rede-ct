@@ -18,9 +18,9 @@ import { parseAsString, useQueryState } from 'nuqs'
 import { useEffect, useState } from 'react'
 
 export function FilterSelectUser() {
-  const { data: users = [], isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['users'],
-    queryFn: getUsers,
+    queryFn: () => getUsers({}),
   })
 
   const [userId, setUserId] = useQueryState(
@@ -34,7 +34,7 @@ export function FilterSelectUser() {
     setSelected(userId || '')
   }, [userId])
 
-  const user = users.find((u) => u.id === selected)
+  const user = data?.users?.find((u) => u.id === selected)
   const ALL_USERS_VALUE = 'all'
 
   function renderSelectPlaceholder() {
@@ -59,7 +59,7 @@ export function FilterSelectUser() {
       setSelected('')
       setUserId('')
     } else {
-      const foundUser = users.find(
+      const foundUser = data?.users?.find(
         (u) =>
           `${u.name} (${u.emailAddress})`.toLowerCase() ===
           currentValue.toLowerCase(),
@@ -127,7 +127,7 @@ export function FilterSelectUser() {
                   </div>
                 )}
                 {!isLoading &&
-                  users.map((u) => (
+                  data?.users?.map((u) => (
                     <CommandItem
                       key={u.id}
                       onSelect={handleSelect}

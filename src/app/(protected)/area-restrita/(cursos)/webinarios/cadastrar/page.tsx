@@ -29,7 +29,7 @@ import {
 } from './use-create-webinar.hook'
 
 export default function CadastrarWebinario() {
-  const { data: users } = useUsers()
+  const { data } = useUsers()
 
   const { form, submit, serverError } = useCreateWebinar()
 
@@ -101,13 +101,13 @@ export default function CadastrarWebinario() {
                       field.onChange(selected.map((item) => item.value))
                     }
                     value={field.value?.map((id: string) => {
-                      const user = users?.find((u) => u.id === id)
+                      const user = data?.users?.find((u) => u.id === id)
                       return {
                         value: id,
                         label: user?.name || id,
                       }
                     })}
-                    options={users?.map((user) => ({
+                    options={data?.users?.map((user) => ({
                       label: user.name,
                       value: user.id,
                     }))}

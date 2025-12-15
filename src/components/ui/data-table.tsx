@@ -19,13 +19,17 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data?: TData[]
-  handleRemove: (id: string) => void
+  handleRemove?: (id: string) => void
+  handlePromote?: (id: string) => void
+  handleDemote?: (id: string) => void
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data = [],
   handleRemove,
+  handlePromote,
+  handleDemote,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -33,6 +37,8 @@ export function DataTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
     meta: {
       handleRemove,
+      handlePromote,
+      handleDemote,
     },
   })
 

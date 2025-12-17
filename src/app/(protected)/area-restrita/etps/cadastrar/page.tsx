@@ -13,16 +13,16 @@ import {
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
 import MultipleSelector from '@components/ui/multiselect'
+import { Separator } from '@components/ui/separator'
+import { Textarea } from '@components/ui/textarea'
+import { AlertCircle, Loader2 } from 'lucide-react'
+import { PatternFormat } from 'react-number-format'
 import {
   PageContainer,
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@components/ui/page-container'
-import { Separator } from '@components/ui/separator'
-import { Textarea } from '@components/ui/textarea'
-import { AlertCircle, Loader2 } from 'lucide-react'
-import { PatternFormat } from 'react-number-format'
+} from '@/app/(protected)/_components/page-container'
 import { SelectResearcher } from '../../_components/select-researcher'
 import { useCreateETP } from './use-create-etp'
 

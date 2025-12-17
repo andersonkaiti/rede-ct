@@ -6,7 +6,7 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@components/ui/page-container'
+} from '@/app/(protected)/_components/page-container'
 import { AdminWrapper } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
 import { FilterSelectUser } from '../../_components/filter-select-user'

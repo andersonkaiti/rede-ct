@@ -1,3 +1,4 @@
+import { getAuthenticatedUser } from '@http/auth/get-user'
 import {
   PageContainer,
   PageDescription,
@@ -5,8 +6,7 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@components/ui/page-container'
-import { getAuthenticatedUser } from '@http/auth/get-user'
+} from '@/app/(protected)/_components/page-container'
 import { UserProfile } from './_components/user-profile'
 
 export default async function UserProfilePage() {

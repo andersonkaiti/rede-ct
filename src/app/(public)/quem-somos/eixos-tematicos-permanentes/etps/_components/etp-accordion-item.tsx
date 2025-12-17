@@ -39,7 +39,9 @@ export function ETPAccordionItem({ etp }: IETPAccordionItemProps) {
     <AccordionItem key={etp.id} value={etp.code}>
       <AccordionTrigger>
         <div className="flex flex-col gap-1 text-left">
-          <span className="title-3">{etp.code}</span>
+          <span className="whitespace-normal font-bold text-xl lg:text-2xl">
+            {etp.code}
+          </span>
           <span className="font-medium text-base text-muted-foreground">
             {etp.title}
           </span>

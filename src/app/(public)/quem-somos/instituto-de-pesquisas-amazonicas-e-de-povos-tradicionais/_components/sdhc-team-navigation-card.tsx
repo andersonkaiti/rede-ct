@@ -21,7 +21,9 @@ export function SDHCTeamNavigationCard() {
           <div className="rounded-full bg-primary/20 p-2">
             <FileTextIcon className="text-primary" ref={iconRef} />
           </div>
-          <h2 className="title-3 font-bold">Conheça nossa equipe de gestão</h2>
+          <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
+            Conheça nossa equipe de gestão
+          </h2>
         </div>
         <p>
           Descubra os membros da atual equipe de gestão da associação Social

@@ -19,7 +19,6 @@ export default function LoadingSkeleton() {
               <Skeleton className="flex size-full items-center justify-center">
                 <ImageIcon className="text-muted-foreground" />
               </Skeleton>
-              <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent dark:from-black/50 dark:to-transparent" />
             </div>
           </header>
 

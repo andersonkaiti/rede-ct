@@ -18,7 +18,9 @@ export default function EixosTematicosPermanentesETPs() {
           <div className="rounded-full bg-primary/20 p-2">
             <Axis3DIcon className="text-primary" />
           </div>
-          <h1 className="title-3 font-bold">Eixos Temáticos Permanentes</h1>
+          <h1 className="whitespace-normal font-bold text-xl lg:text-2xl">
+            Eixos Temáticos Permanentes
+          </h1>
         </div>
         <p className="text-muted-foreground">
           Conheça os Eixos Temáticos Permanentes (ETPs) da Rede CT, suas áreas

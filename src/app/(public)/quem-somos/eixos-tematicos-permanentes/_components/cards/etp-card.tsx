@@ -18,7 +18,7 @@ export function ETPCard() {
       onMouseLeave={() => iconRef.current?.stopAnimation()}
     >
       <CardHeader>
-        <h2 className="title-3 flex items-center gap-4">
+        <h2 className="flex items-center gap-4 whitespace-normal font-bold text-xl lg:text-2xl">
           <Badge className="rounded-full bg-primary/20 p-1 text-primary">
             <BookTextIcon ref={iconRef} />
           </Badge>
@@ -26,7 +26,9 @@ export function ETPCard() {
         </h2>
       </CardHeader>
       <CardContent className="space-y-7">
-        <h3 className="title-3">O que são os ETPs?</h3>
+        <h3 className="whitespace-normal font-bold text-xl lg:text-2xl">
+          O que são os ETPs?
+        </h3>
         <p className="text-justify">
           O EIXO TEMÁTICO PERMANENTE - ETP assemelha-se e funciona como um
           &quot;grupo de pesquisa&quot;, se constituindo em um espaço imaterial
@@ -44,7 +46,9 @@ export function ETPCard() {
           projeto de extensão universitária e mesmo um processo de captação de
           recursos de modo vinculado à RedeCT e ao seu CNPJ.
         </p>
-        <h3 className="title-3">Quantos ETPs a RedeCT possui?</h3>
+        <h3 className="whitespace-normal font-bold text-xl lg:text-2xl">
+          Quantos ETPs a RedeCT possui?
+        </h3>
         <p className="text-justify">
           Em 10/11/2023, dentro do IV CCI (Belém/PA), em Reunião Técnica da
           RedeCT (aberta aos interessados), foram propostos 22 ETPs, que estão

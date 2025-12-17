@@ -14,7 +14,7 @@ export function Composition() {
       onMouseLeave={() => iconRef.current?.stopAnimation()}
     >
       <CardHeader>
-        <h2 className="title-3 flex items-center gap-2">
+        <h2 className="flex items-center gap-2 whitespace-normal font-bold text-xl lg:text-2xl">
           <div className="mr-2 rounded-full bg-primary/20 p-2">
             <CheckIcon className="text-primary" ref={iconRef} />
           </div>

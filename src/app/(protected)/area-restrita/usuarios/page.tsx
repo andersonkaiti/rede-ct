@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import {
   PageActionsContainer,
   PageContainer,
@@ -6,8 +7,7 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@components/ui/page-container'
-import { Suspense } from 'react'
+} from '@/app/(protected)/_components/page-container'
 import { AdminWrapper } from '../../_components/hoc/admin'
 import { FilterInput } from '../_components/filter-input'
 import { LoadingSkeleton } from './_components/table/loading-skeleton'

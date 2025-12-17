@@ -1,6 +1,12 @@
-import { Badge } from '@components/ui/badge'
 import { NavigationCard } from '@components/ui/navigation-card'
 import { Axis3DIcon, BookOpen } from 'lucide-react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderIcon,
+  PageHeaderTitle,
+} from '../../_components/page-container'
 import { Composition } from './_components/cards/composition'
 import { Duties } from './_components/cards/duties'
 import { ETPCard } from './_components/cards/etp-card'
@@ -8,20 +14,20 @@ import { GTCCard } from './_components/cards/gtc-card'
 
 export default function EixosTematicosPermanentes() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <section className="space-y-14">
-        <div className="flex items-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <BookOpen className="size-7" />
-          </Badge>
-          <h1 className="title-2">ETPs e GTCs</h1>
-        </div>
-        <p className="text-justify">
-          Nesta seção você encontra informações sobre o que são os ETPs e as
-          suas identidades (áreas de pesquisa e de ação) e os GTCs e sua
-          composição (Pesquisadores Filiados que compõem cada um dos grupos).
-        </p>
-      </section>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderIcon>
+          <BookOpen className="size-7" />
+        </PageHeaderIcon>
+
+        <PageHeaderTitle>ETPs e GTCs</PageHeaderTitle>
+      </PageHeader>
+
+      <PageDescription>
+        Nesta seção você encontra informações sobre o que são os ETPs e as suas
+        identidades (áreas de pesquisa e de ação) e os GTCs e sua composição
+        (Pesquisadores Filiados que compõem cada um dos grupos).
+      </PageDescription>
 
       <section className="flex flex-col gap-10 lg:flex-row">
         <ETPCard />
@@ -30,7 +36,9 @@ export default function EixosTematicosPermanentes() {
       </section>
 
       <section className="space-y-14">
-        <h2 className="title-2">Listagem dos 22 ETPs da RedeCT:</h2>
+        <h2 className="whitespace-normal font-bold text-2xl lg:text-4xl">
+          Listagem dos 22 ETPs da RedeCT:
+        </h2>
         <p className="text-justify">
           A partir de um estudo detalhado sobre as temáticas tratadas (nos 12
           volumes já publicados do Livro RedeCT, nos webinários conduzidos e nas
@@ -50,7 +58,9 @@ export default function EixosTematicosPermanentes() {
               <div className="rounded-full bg-primary/20 p-2">
                 <Axis3DIcon className="text-primary" />
               </div>
-              <h2 className="title-3 font-bold">ETPs</h2>
+              <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
+                ETPs
+              </h2>
             </div>
             <p>Confira os Eixos Temáticos Permanentes (ETPs) da RedeCT.</p>
           </div>
@@ -60,7 +70,7 @@ export default function EixosTematicosPermanentes() {
       <Composition />
 
       <section className="space-y-7">
-        <h2 className="title-3">
+        <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
           Qual a autonomia, a linha de comando e o controle externo sobre o ETP
           e o GTC ?
         </h2>
@@ -87,6 +97,6 @@ export default function EixosTematicosPermanentes() {
       </section>
 
       <Duties />
-    </main>
+    </PageContainer>
   )
 }

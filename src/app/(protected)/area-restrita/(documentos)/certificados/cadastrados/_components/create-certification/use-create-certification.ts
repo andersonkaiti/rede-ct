@@ -62,7 +62,15 @@ export function useCreateCertification({
         await createCertification(values)
 
         queryClient.invalidateQueries({
-          queryKey: ['users', 'certifications', filter, orderBy, page, limit, userId],
+          queryKey: [
+            'users',
+            'certifications',
+            filter,
+            orderBy,
+            page,
+            limit,
+            userId,
+          ],
         })
 
         toast.success('Certificado cadastrado com sucesso!')

@@ -15,12 +15,6 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import {
-  PageContainer,
-  PageDescription,
-  PageHeaderContent,
-  PageTitle,
-} from '@components/ui/page-container'
-import {
   Select,
   SelectContent,
   SelectItem,
@@ -29,6 +23,12 @@ import {
 } from '@components/ui/select'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeaderContent,
+  PageTitle,
+} from '@/app/(protected)/_components/page-container'
 import {
   MAX_IMAGE_SIZE_BYTES,
   useUpdateRedeCTHighlight,

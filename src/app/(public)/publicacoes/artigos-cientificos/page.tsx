@@ -1,7 +1,13 @@
 import { FileTextIcon } from '@components/icons/file-text'
-import { Badge } from '@components/ui/badge'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderIcon,
+  PageHeaderTitle,
+} from '../../_components/page-container'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicScientificArticleList = dynamic(() =>
@@ -12,21 +18,21 @@ const DynamicScientificArticleList = dynamic(() =>
 
 export default function ArtigosCientificos() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <header className="space-y-8">
-        <div className="flex items-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <FileTextIcon />
-          </Badge>
-          <h1 className="title-2">Artigos Científicos da RedeCT</h1>
-        </div>
-        <p className="text-justify text-muted-foreground">
-          Nesta seção são publicadas apresentações e links de acesso a artigos
-          científicos publicados em periódicos de interesse dos Pesquisadores
-          Filiados à RedeCT. Todos os artigos abordam temas relacionados aos
-          Povos Originários e Comunidades Tradicionais.
-        </p>
-      </header>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderIcon>
+          <FileTextIcon />
+        </PageHeaderIcon>
+
+        <PageHeaderTitle>Artigos Científicos da RedeCT</PageHeaderTitle>
+      </PageHeader>
+
+      <PageDescription>
+        Nesta seção são publicadas apresentações e links de acesso a artigos
+        científicos publicados em periódicos de interesse dos Pesquisadores
+        Filiados à RedeCT. Todos os artigos abordam temas relacionados aos Povos
+        Originários e Comunidades Tradicionais.
+      </PageDescription>
 
       <Suspense fallback={<LoadingSkeleton />}>
         <DynamicScientificArticleList />
@@ -43,6 +49,6 @@ export default function ArtigosCientificos() {
           através dos nossos canais oficiais.
         </p>
       </section>
-    </main>
+    </PageContainer>
   )
 }

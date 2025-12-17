@@ -1,30 +1,36 @@
 import { BlocksIcon } from '@components/icons/blocks'
-import { Badge } from '@components/ui/badge'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderIcon,
+  PageHeaderTitle,
+} from '../../_components/page-container'
 import { InstituteDataCard } from './_components/institute-data'
 import { SDHCTeamNavigationCard } from './_components/sdhc-team-navigation-card'
 
 export default function InstitutoDePesquisasAmazonicas() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <section className="space-y-14">
-        <div className="flex items-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <BlocksIcon />
-          </Badge>
-          <h1 className="title-2">
-            Instituto de Pesquisas Amazônicas e de Povos Tradicionais
-          </h1>
-        </div>
-        <p className="text-justify">
-          Aqui você tem acesso às informações básicas e à equipe de gestão, além
-          de conhecer a história, as gestões anteriores e os projetos já
-          desenvolvidos pelo Instituto, desde a sua criação em 02 de setembro de
-          2002.
-        </p>
-      </section>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderIcon>
+          <BlocksIcon />
+        </PageHeaderIcon>
+
+        <PageHeaderTitle>
+          Instituto de Pesquisas Amazônicas e de Povos Tradicionais
+        </PageHeaderTitle>
+      </PageHeader>
+
+      <PageDescription>
+        Aqui você tem acesso às informações básicas e à equipe de gestão, além
+        de conhecer a história, as gestões anteriores e os projetos já
+        desenvolvidos pelo Instituto, desde a sua criação em 02 de setembro de
+        2002.
+      </PageDescription>
 
       <section className="space-y-14">
-        <h2 className="title-3">
+        <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
           Dados principais do Instituto (OSCIP RedeCT)
         </h2>
 
@@ -34,7 +40,7 @@ export default function InstitutoDePesquisasAmazonicas() {
       <SDHCTeamNavigationCard />
 
       <section className="space-y-7">
-        <h2 className="title-3">
+        <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
           HISTÓRIA DA SUA FUNDAÇÃO (em 2002) ATÉ OS TEMPOS ATUAIS
         </h2>
         <p className="text-justify">
@@ -92,6 +98,6 @@ export default function InstitutoDePesquisasAmazonicas() {
           escritório de representação em Bauru (estado de São Paulo – Brasil).
         </p>
       </section>
-    </main>
+    </PageContainer>
   )
 }

@@ -1,3 +1,4 @@
+import { Skeleton } from '@components/ui/skeleton'
 import {
   PageActionsContainer,
   PageContainer,
@@ -6,8 +7,7 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@components/ui/page-container'
-import { Skeleton } from '@components/ui/skeleton'
+} from '@/app/(protected)/_components/page-container'
 import { LoadingSkeleton as CardsLoadingSkeleton } from './_components/loading-skeleton'
 
 export default function Loading() {

@@ -19,7 +19,9 @@ export function CommitteeLegitimator() {
       <div className="rounded-full bg-primary/20 p-2">
         <FileTextIcon className="text-primary" ref={iconRef} />
       </div>
-      <h2 className="title-3 font-bold">Comitê Legitimador</h2>
+      <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
+        Comitê Legitimador
+      </h2>
     </NavigationCard>
   )
 }

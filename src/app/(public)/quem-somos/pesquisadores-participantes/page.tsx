@@ -1,21 +1,27 @@
-import { Badge } from '@components/ui/badge'
 import { ListNumber } from '@components/ui/list-number'
 import { GraduationCap } from 'lucide-react'
 import Link from 'next/link'
+import {
+  PageContainer,
+  PageHeader,
+  PageHeaderIcon,
+  PageHeaderTitle,
+} from '../../_components/page-container'
 import { InMemoriamNavigationCard } from './_components/navigation-cards/in-memoriam'
 import { ResearchersNavigationCard } from './_components/navigation-cards/researchers-navigation-card'
 
 export default function PesquisadoresParticipantes() {
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <div className="flex items-center gap-4">
-        <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderIcon>
           <GraduationCap className="size-7" />
-        </Badge>
-        <h1 className="title-2">Pesquisadores da RedeCT</h1>
-      </div>
+        </PageHeaderIcon>
+
+        <PageHeaderTitle>Pesquisadores da RedeCT</PageHeaderTitle>
+      </PageHeader>
       <section className="space-y-8">
-        <h2 className="title-3">
+        <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
           CATEGORIAS DE PESQUISADORES FILIADOS, VALOR DE ANUIDADE E PESO DO VOTO
         </h2>
         <p className="text-justify">
@@ -26,12 +32,14 @@ export default function PesquisadoresParticipantes() {
         </p>
 
         <div className="space-y-6 rounded-md bg-linear-to-br from-primary to-primary/80 p-6 text-slate-100 md:p-10 dark:border dark:border-primary/20 dark:from-primary/15 dark:to-primary/5">
-          <h2 className="title-3 flex items-center gap-2 font-bold">
+          <h2 className="flex items-center gap-2 whitespace-normal font-bold text-xl lg:text-2xl">
             <GraduationCap /> Tipos de pesquisadores
           </h2>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             <div className="space-y-4 rounded-md text-justify md:p-6">
-              <h3 className="title-3 font-bold">PESQUISADOR SÊNIOR:</h3>
+              <h3 className="d whitespace-normal font-bold text-xl lg:text-2xl">
+                PESQUISADOR SÊNIOR:
+              </h3>
               <p>
                 Todo pesquisador afiliado que possua o título de Doutor ou de
                 Livre-docente. Em pautas levadas à votação plenária, seu voto
@@ -41,7 +49,9 @@ export default function PesquisadoresParticipantes() {
               </p>
             </div>
             <div className="space-y-4 rounded-md text-justify md:p-6">
-              <h3 className="title-3 font-bold">PESQUISADOR:</h3>
+              <h3 className="whitespace-normal font-bold text-xl lg:text-2xl">
+                PESQUISADOR:
+              </h3>
               <p className="text-justify">
                 Todo pesquisador afiliado que possua título de Mestre ou
                 certificado de graduação. Em pautas levadas à votação plenária
@@ -50,7 +60,9 @@ export default function PesquisadoresParticipantes() {
               </p>
             </div>
             <div className="space-y-4 rounded-md text-justify md:p-6">
-              <h3 className="title-3 font-bold">PESQUISADOR JÚNIOR:</h3>
+              <h3 className="whitespace-normal font-bold text-xl lg:text-2xl">
+                PESQUISADOR JÚNIOR:
+              </h3>
               <p className="text-justify">
                 Todo estudante-pesquisador, maior de idade (18 anos, segundo a
                 legislação brasileira), que esteja regularmente matriculado em
@@ -60,7 +72,9 @@ export default function PesquisadoresParticipantes() {
               </p>
             </div>
             <div className="space-y-4 rounded-md text-justify md:p-6">
-              <h3 className="title-3 font-bold">MEMBRO HONORÁRIO:</h3>
+              <h3 className="whitespace-normal font-bold text-xl lg:text-2xl">
+                MEMBRO HONORÁRIO:
+              </h3>
               <p className="text-justify">
                 Pessoa, maior de idade (segundo a legislação brasileira) que
                 tenha sido convidada para participação nesta categoria pela
@@ -93,7 +107,9 @@ export default function PesquisadoresParticipantes() {
       </section>
 
       <section className="space-y-8">
-        <h2 className="title-3">COMO SE FILIAR À REDECT?</h2>
+        <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
+          COMO SE FILIAR À REDECT?
+        </h2>
         <ol className="space-y-4">
           <li className="flex items-start">
             <ListNumber>1</ListNumber>
@@ -145,6 +161,6 @@ export default function PesquisadoresParticipantes() {
           devolução do valor da inscrição).
         </aside>
       </section>
-    </main>
+    </PageContainer>
   )
 }

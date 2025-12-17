@@ -39,7 +39,9 @@ export default async function ApresentacaoEHistoria() {
             width={75}
           />
 
-          <h1 className="title-2 text-center text-foreground">RedeCT</h1>
+          <h1 className="whitespace-normal text-center font-bold text-2xl text-foreground lg:text-4xl">
+            RedeCT
+          </h1>
         </section>
 
         <section className="space-y-14">
@@ -118,7 +120,9 @@ export default async function ApresentacaoEHistoria() {
             <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
               <ClockIcon />
             </Badge>
-            <h2 className="title-3">Linha do tempo da RedeCT</h2>
+            <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
+              Linha do tempo da RedeCT
+            </h2>
           </div>
           <div className="relative w-full space-y-7 sm:space-y-14">
             <Timeline defaultValue={timelineData.length}>
@@ -145,7 +149,7 @@ export default async function ApresentacaoEHistoria() {
           href="/quem-somos/apresentacao-e-historia/filiacao"
           variant="red"
         >
-          <h2 className="title-3 flex items-center gap-2">
+          <h2 className="flex items-center gap-2 whitespace-normal font-bold text-xl lg:text-2xl">
             <Users />
             Como se filiar à RedeCT?
           </h2>

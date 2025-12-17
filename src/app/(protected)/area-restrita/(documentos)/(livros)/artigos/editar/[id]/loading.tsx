@@ -1,10 +1,10 @@
+import { Separator } from '@components/ui/separator'
+import { Skeleton } from '@components/ui/skeleton'
 import {
   PageContainer,
   PageHeader,
   PageHeaderContent,
-} from '@components/ui/page-container'
-import { Separator } from '@components/ui/separator'
-import { Skeleton } from '@components/ui/skeleton'
+} from '@/app/(protected)/_components/page-container'
 
 export default function Loading() {
   return (

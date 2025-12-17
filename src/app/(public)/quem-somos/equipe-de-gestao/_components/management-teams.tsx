@@ -16,7 +16,7 @@ export async function ManagementTeams() {
       {data.teams.map((teamSection, index: number) => (
         <section className="space-y-4 md:space-y-8" key={index}>
           <div className="space-y-8">
-            <h2 className="title-2 relative z-10 bg-background px-4 text-center">
+            <h2 className="relative z-10 whitespace-normal bg-background px-4 text-center font-bold text-2xl lg:text-4xl">
               {teamSection.name}
             </h2>
             <UserCardRedLine />

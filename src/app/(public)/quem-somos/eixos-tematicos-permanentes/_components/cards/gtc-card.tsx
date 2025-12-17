@@ -15,7 +15,7 @@ export function GTCCard() {
       onMouseLeave={() => iconRef.current?.stopAnimation()}
     >
       <CardHeader>
-        <h2 className="title-3 flex items-center gap-4">
+        <h2 className="flex items-center gap-4 whitespace-normal font-bold text-xl lg:text-2xl">
           <Badge className="rounded-full bg-primary/20 p-1 text-primary">
             <UsersIcon ref={iconRef} />
           </Badge>
@@ -23,7 +23,9 @@ export function GTCCard() {
         </h2>
       </CardHeader>
       <CardContent className="space-y-7">
-        <h3 className="title-3">O que são os GTCs?</h3>
+        <h3 className="whitespace-normal font-bold text-xl lg:text-2xl">
+          O que são os GTCs?
+        </h3>
         <p className="text-justify">
           O Grupo de Trabalho Científico - GTC é um grupo de Pesquisadores
           Filiados à RedeCT, que por sua vez, se organizam a partir de um líder

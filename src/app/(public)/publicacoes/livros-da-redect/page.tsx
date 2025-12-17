@@ -1,10 +1,16 @@
 import { BookTextIcon } from '@components/icons/book-text'
-import { Badge } from '@components/ui/badge'
 import { Button } from '@components/ui/button'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderIcon,
+  PageHeaderTitle,
+} from '../../_components/page-container'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicBookVolumeList = dynamic(() =>
@@ -27,21 +33,20 @@ const requirements = [
 
 export default function ColetaneaRedeCT() {
   return (
-    <div className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <header className="space-y-8">
-        <div className="flex items-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <BookTextIcon />
-          </Badge>
-          <h1 className="title-2">Livros da RedeCT</h1>
-        </div>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderIcon>
+          <BookTextIcon />
+        </PageHeaderIcon>
 
-        <p className="text-muted-foreground">
-          Série internacional sobre Povos Originários e Comunidades
-          Tradicionais. Conheça os volumes publicados, critérios de qualidade e
-          participe da chamada para o volume 14 (2025).
-        </p>
-      </header>
+        <PageHeaderTitle>Livros da RedeCT</PageHeaderTitle>
+      </PageHeader>
+
+      <PageDescription>
+        Série internacional sobre Povos Originários e Comunidades Tradicionais.
+        Conheça os volumes publicados, critérios de qualidade e participe da
+        chamada para o volume 14 (2025).
+      </PageDescription>
 
       <div className="mx-auto grid max-w-5xl items-center gap-8 md:grid-cols-2">
         <div className="space-y-4 text-left">
@@ -100,7 +105,9 @@ export default function ColetaneaRedeCT() {
 
       <main className="space-y-20">
         <section className="space-y-8">
-          <h2 className="title-2">Apresentação da série de livros da RedeCT</h2>
+          <h2 className="whitespace-normal font-bold text-2xl lg:text-4xl">
+            Apresentação da série de livros da RedeCT
+          </h2>
           <p className="text-justify text-muted-foreground leading-relaxed">
             A RedeCT reúne uma coletânea crescente de capítulos de livros, com
             mais de 150 capítulos publicados. A série apresenta pesquisas e
@@ -139,7 +146,7 @@ export default function ColetaneaRedeCT() {
         </section>
 
         <section className="space-y-8">
-          <h2 className="title-3">
+          <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
             Requisitos de qualidade do sistema CAPES-Livro atendidos
           </h2>
           <ol className="space-y-4">
@@ -159,7 +166,7 @@ export default function ColetaneaRedeCT() {
         </section>
 
         <section className="space-y-8">
-          <h2 className="title-3">
+          <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
             Acesso aos volumes já publicados e índice remissivo por assunto
           </h2>
           <Suspense fallback={<LoadingSkeleton />}>
@@ -167,6 +174,6 @@ export default function ColetaneaRedeCT() {
           </Suspense>
         </section>
       </main>
-    </div>
+    </PageContainer>
   )
 }

@@ -14,7 +14,7 @@ export function ResearchersNavigationCard() {
       onMouseLeave={() => iconRef.current?.stopAnimation()}
     >
       <div className="flex flex-col gap-4">
-        <h2 className="title-3 flex items-center gap-2 font-bold">
+        <h2 className="flex items-center gap-2 whitespace-normal font-bold text-xl lg:text-2xl">
           <UsersIcon className="text-primary" ref={iconRef} />
           Pesquisadores Participantes
         </h2>

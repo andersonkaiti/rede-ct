@@ -6,7 +6,7 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@components/ui/page-container'
+} from '@/app/(protected)/_components/page-container'
 import { CertificationsNavigationCard } from './_components/navigation-cards/certifications'
 import { HistoryNavigationCard } from './_components/navigation-cards/history'
 import { NewsNavigationCard } from './_components/navigation-cards/news'

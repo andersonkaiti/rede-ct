@@ -17,7 +17,6 @@ import { Label } from '@components/ui/label'
 import {
   PageContainer,
   PageDescription,
-  PageFormContentField,
   PageHeaderContent,
   PageTitle,
 } from '@components/ui/page-container'
@@ -173,7 +172,7 @@ export default function CreateInMemoriam() {
             control={form.control}
             name="biography"
             render={({ field }) => (
-              <PageFormContentField>
+              <FormItem>
                 <Label>Biografia</Label>
                 <Textarea
                   placeholder="Digite uma breve biografia"
@@ -181,7 +180,7 @@ export default function CreateInMemoriam() {
                   rows={6}
                 />
                 <FormMessage />
-              </PageFormContentField>
+              </FormItem>
             )}
           />
 

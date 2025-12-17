@@ -16,10 +16,10 @@ import MultipleSelector from '@components/ui/multiselect'
 import {
   PageContainer,
   PageDescription,
-  PageFormContentField,
   PageHeaderContent,
   PageTitle,
 } from '@components/ui/page-container'
+import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { PatternFormat } from 'react-number-format'
@@ -61,6 +61,7 @@ export default function UpdateETPForm() {
                     <PatternFormat
                       customInput={Input}
                       format="ETP-###"
+                      placeholder="ETP-000"
                       onValueChange={(value) =>
                         field.onChange(value.formattedValue)
                       }
@@ -87,7 +88,11 @@ export default function UpdateETPForm() {
                 </FormItem>
               )}
             />
+          </div>
 
+          <Separator />
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <FormField
               control={form.control}
               name="leaderId"
@@ -147,6 +152,7 @@ export default function UpdateETPForm() {
                   <FormLabel>Membros</FormLabel>
                   <FormControl>
                     <MultipleSelector
+                      placeholder="Selecione os membros"
                       onChange={(options) => {
                         field.onChange(options.map((option) => option.value))
                       }}
@@ -174,15 +180,17 @@ export default function UpdateETPForm() {
             />
           </div>
 
+          <Separator />
+
           <FormField
             control={form.control}
             name="description"
             render={({ field }) => (
-              <PageFormContentField>
+              <FormItem>
                 <Label>Descrição</Label>
                 <Textarea placeholder="Digite uma breve descrição" {...field} />
                 <FormMessage />
-              </PageFormContentField>
+              </FormItem>
             )}
           />
 
@@ -190,14 +198,14 @@ export default function UpdateETPForm() {
             control={form.control}
             name="notes"
             render={({ field }) => (
-              <PageFormContentField>
+              <FormItem>
                 <Label>Observações</Label>
                 <Textarea
                   placeholder="Digite observações (opcional)"
                   {...field}
                 />
                 <FormMessage />
-              </PageFormContentField>
+              </FormItem>
             )}
           />
 

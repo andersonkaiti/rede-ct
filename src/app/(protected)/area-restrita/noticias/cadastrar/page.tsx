@@ -16,7 +16,6 @@ import { Label } from '@components/ui/label'
 import {
   PageContainer,
   PageDescription,
-  PageFormContentField,
   PageHeaderContent,
   PageTitle,
 } from '@components/ui/page-container'
@@ -86,7 +85,7 @@ export default function CadastrarNoticia() {
             control={form.control}
             name="content"
             render={({ field }) => (
-              <PageFormContentField>
+              <FormItem>
                 <Label>
                   Texto <span className="text-primary">*</span>
                 </Label>
@@ -95,7 +94,7 @@ export default function CadastrarNoticia() {
                   {...field}
                 />
                 <FormMessage />
-              </PageFormContentField>
+              </FormItem>
             )}
           />
 

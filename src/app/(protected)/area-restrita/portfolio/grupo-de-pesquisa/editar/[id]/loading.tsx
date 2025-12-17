@@ -2,7 +2,6 @@ import {
   PageContainer,
   PageHeader,
   PageHeaderContent,
-  PageTitle,
 } from '@components/ui/page-container'
 import { Skeleton } from '@components/ui/skeleton'
 
@@ -11,19 +10,65 @@ export default function Loading() {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Editar Grupo de Pesquisa</PageTitle>
+          <Skeleton className="h-9 w-2/4" />
+          <Skeleton className="h-5 w-1/4" />
         </PageHeaderContent>
       </PageHeader>
 
       <div className="space-y-6">
-        <Skeleton className="h-20 w-full" />
-        <Skeleton className="h-20 w-full" />
-        <Skeleton className="h-20 w-full" />
-        <Skeleton className="h-20 w-full" />
-        <Skeleton className="h-20 w-full" />
-        <Skeleton className="h-20 w-full" />
-        <Skeleton className="h-40 w-full" />
-        <Skeleton className="h-10 w-full" />
+        <div className="space-y-6">
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-16 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
+
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-12 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
+
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-12 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
+
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-20 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
+
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-14 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
+
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-32 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
+
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-12 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
+
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-16 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
+
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-12 rounded-md" />
+            <Skeleton className="h-80 w-full rounded-xl" />
+          </div>
+
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-20 rounded-md" />
+            <Skeleton className="h-16 w-full rounded-md" />
+          </div>
+        </div>
+
+        <Skeleton className="h-9 w-full rounded-md" />
       </div>
     </PageContainer>
   )

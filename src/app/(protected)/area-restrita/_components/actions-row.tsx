@@ -1,5 +1,11 @@
 import { Button } from '@components/ui/button'
-import { Dialog, DialogTrigger } from '@components/ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@components/ui/dialog'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -55,7 +61,13 @@ export function ActionsRow({
                 <EditIcon className="size-4 text-foreground" />
               </Button>
             </DialogTrigger>
-            <Form setIsOpen={setIsOpen} />
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Editar</DialogTitle>
+              </DialogHeader>
+
+              <Form setIsOpen={setIsOpen} />
+            </DialogContent>
           </Dialog>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>

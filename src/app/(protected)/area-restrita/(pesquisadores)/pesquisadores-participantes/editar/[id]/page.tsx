@@ -16,7 +16,6 @@ import MultipleSelector from '@components/ui/multiselect'
 import {
   PageContainer,
   PageDescription,
-  PageFormContentField,
   PageHeaderContent,
   PageTitle,
 } from '@components/ui/page-container'
@@ -26,6 +25,7 @@ import {
   SelectItem,
   SelectTrigger,
 } from '@components/ui/select'
+import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
 import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { AlertCircle, Loader2 } from 'lucide-react'
@@ -59,21 +59,21 @@ export default function UpdateForm() {
             </Alert>
           )}
 
-          {researcher?.user && (
-            <div className="space-y-2">
-              <Label>
-                Usuário <span className="text-primary">*</span>
-              </Label>
-              <div className="mt-1">
-                <UserProfileHoverCard
-                  avatarVisibility={true}
-                  user={researcher.user}
-                />
-              </div>
-            </div>
-          )}
-
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {researcher?.user && (
+              <div className="space-y-2">
+                <Label>
+                  Usuário <span className="text-primary">*</span>
+                </Label>
+                <div className="mt-1">
+                  <UserProfileHoverCard
+                    avatarVisibility={true}
+                    user={researcher.user}
+                  />
+                </div>
+              </div>
+            )}
+
             <FormField
               control={form.control}
               name="registrationNumber"
@@ -140,7 +140,6 @@ export default function UpdateForm() {
                           Nenhum grau encontrado
                         </p>
                       }
-                      hideClearAllButton
                       hidePlaceholderWhenSelected
                       onChange={(selected) =>
                         field.onChange(selected.map((item) => item.value))
@@ -156,23 +155,27 @@ export default function UpdateForm() {
                 </FormItem>
               )}
             />
-
-            <FormField
-              control={form.control}
-              name="formations"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Formações</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Digite as formações" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </div>
 
-          <div className="grid grid-cols-1 gap-6">
+          <Separator />
+
+          <FormField
+            control={form.control}
+            name="formations"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Formações</FormLabel>
+                <FormControl>
+                  <Textarea placeholder="Digite as formações" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Separator />
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <FormField
               control={form.control}
               name="occupations"
@@ -206,6 +209,8 @@ export default function UpdateForm() {
             />
           </div>
 
+          <Separator />
+
           <FormField
             control={form.control}
             name="mainEtps"
@@ -224,11 +229,11 @@ export default function UpdateForm() {
             control={form.control}
             name="biography"
             render={({ field }) => (
-              <PageFormContentField>
+              <FormItem>
                 <Label>Biografia</Label>
                 <Textarea placeholder="Digite uma breve biografia" {...field} />
                 <FormMessage />
-              </PageFormContentField>
+              </FormItem>
             )}
           />
 

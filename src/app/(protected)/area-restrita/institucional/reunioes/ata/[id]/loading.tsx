@@ -53,9 +53,9 @@ export default function Loading() {
         <Separator />
 
         <div className="space-y-2">
-          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-9 w-full" />
 
-          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-9 w-full" />
         </div>
       </div>
     </PageContainer>

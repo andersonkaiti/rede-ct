@@ -57,7 +57,7 @@ export function LoadingSkeleton() {
           </CardContent>
 
           <CardFooter className="mt-auto pt-0">
-            <Skeleton className="h-10 w-full rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
           </CardFooter>
         </Card>
       ))}

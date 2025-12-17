@@ -26,10 +26,10 @@ const userSchema = z.object({
 })
 
 export const getUsersSchema = z.object({
-  page: z.number(),
-  totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  page: z.number().nullable(),
+  totalPages: z.number().nullable(),
+  offset: z.number().nullable(),
+  limit: z.number().nullable(),
   users: z.array(userSchema),
 })
 

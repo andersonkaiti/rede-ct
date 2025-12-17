@@ -41,7 +41,6 @@ export function MeetingDisplayOptions() {
           return (
             <DropdownMenuCheckboxItem
               checked={columnsVisibility[columnKey]}
-              className="capitalize"
               key={col.id}
               onCheckedChange={(value) => {
                 setColumnsVisibility((prev) => ({

@@ -13,10 +13,7 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
-import {
-  PageContainer,
-  PageFormContentField,
-} from '@components/ui/page-container'
+import { PageContainer } from '@components/ui/page-container'
 import { format } from 'date-fns'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { PatternFormat } from 'react-number-format'
@@ -184,7 +181,7 @@ export function UserProfile({ user }: IUserProfileProps) {
             control={form.control}
             name="phone"
             render={({ field }) => (
-              <PageFormContentField>
+              <FormItem>
                 <FormLabel>Celular (opcional)</FormLabel>
                 <FormControl>
                   <PatternFormat
@@ -197,7 +194,7 @@ export function UserProfile({ user }: IUserProfileProps) {
                   />
                 </FormControl>
                 <FormMessage />
-              </PageFormContentField>
+              </FormItem>
             )}
           />
 

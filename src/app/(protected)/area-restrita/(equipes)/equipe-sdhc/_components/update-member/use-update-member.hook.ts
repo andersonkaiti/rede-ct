@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getSDHCTeamMemberById } from '@http/teams/sdhc-team/get-sdhc-member-by-id'
 import { updateSDHCTeamMember } from '@http/teams/sdhc-team/update-sdhc-member'
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { parseAsString, useQueryStates } from 'nuqs'
 import { useState } from 'react'
@@ -37,7 +37,7 @@ export function useUpdateSDHCTeamMember({
     filtro: parseAsString.withDefault(''),
   })
 
-  const { data: member } = useSuspenseQuery({
+  const { data: member } = useQuery({
     queryKey: ['member', memberId],
     queryFn: async () => getSDHCTeamMemberById(memberId),
   })

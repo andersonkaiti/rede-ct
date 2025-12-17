@@ -16,7 +16,6 @@ import {
   FormMessage,
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
-import { PageFormContentField } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../../../_components/select-member'
@@ -64,13 +63,13 @@ export function CreateMemberForm({ setIsOpen }: ICreateMemberFormProps) {
               control={form.control}
               name="role"
               render={({ field }) => (
-                <PageFormContentField>
+                <FormItem>
                   <FormLabel>Cargo</FormLabel>
                   <FormControl>
                     <Input {...field} placeholder="Cargo" />
                   </FormControl>
                   <FormMessage />
-                </PageFormContentField>
+                </FormItem>
               )}
             />
 
@@ -78,13 +77,13 @@ export function CreateMemberForm({ setIsOpen }: ICreateMemberFormProps) {
               control={form.control}
               name="description"
               render={({ field }) => (
-                <PageFormContentField>
+                <FormItem>
                   <FormLabel>Descrição</FormLabel>
                   <FormControl>
                     <Textarea {...field} placeholder="Descrição" />
                   </FormControl>
                   <FormMessage />
-                </PageFormContentField>
+                </FormItem>
               )}
             />
 

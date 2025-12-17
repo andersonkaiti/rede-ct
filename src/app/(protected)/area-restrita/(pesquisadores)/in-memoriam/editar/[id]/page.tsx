@@ -5,27 +5,26 @@ import { AvatarUploader } from '@components/ui/avatar-uploader'
 import { Button } from '@components/ui/button'
 import { DatePicker } from '@components/ui/date-picker'
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
 import {
-    PageContainer,
-    PageDescription,
-    PageFormContentField,
-    PageHeaderContent,
-    PageTitle,
+  PageContainer,
+  PageDescription,
+  PageHeaderContent,
+  PageTitle,
 } from '@components/ui/page-container'
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
 } from '@components/ui/select'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
@@ -175,7 +174,7 @@ export default function UpdateInMemoriamForm() {
             control={form.control}
             name="biography"
             render={({ field }) => (
-              <PageFormContentField>
+              <FormItem>
                 <Label>Biografia</Label>
                 <Textarea
                   placeholder="Digite uma breve biografia"
@@ -183,7 +182,7 @@ export default function UpdateInMemoriamForm() {
                   rows={6}
                 />
                 <FormMessage />
-              </PageFormContentField>
+              </FormItem>
             )}
           />
 

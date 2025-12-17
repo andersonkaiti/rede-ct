@@ -151,6 +151,7 @@ export default function CadastrarCurso() {
                     onChange={(selected) =>
                       field.onChange(selected.map((item) => item.value))
                     }
+                    hidePlaceholderWhenSelected
                     value={field.value?.map((id: string) => {
                       const user = users?.users?.find((u) => u.id === id)
                       return {

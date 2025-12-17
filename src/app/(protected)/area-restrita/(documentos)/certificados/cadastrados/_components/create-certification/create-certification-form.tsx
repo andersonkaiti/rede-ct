@@ -19,7 +19,6 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
-import { PageFormContentField } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../../../../_components/select-member'
@@ -72,11 +71,11 @@ export function CreateCertificationForm({
             control={form.control}
             name="title"
             render={({ field }) => (
-              <PageFormContentField>
+              <FormItem>
                 <Label>Título</Label>
                 <Input placeholder="Título do certificado" {...field} />
                 <FormMessage />
-              </PageFormContentField>
+              </FormItem>
             )}
           />
 
@@ -84,11 +83,11 @@ export function CreateCertificationForm({
             control={form.control}
             name="description"
             render={({ field }) => (
-              <PageFormContentField>
+              <FormItem>
                 <Label>Descrição</Label>
                 <Textarea placeholder="Descrição" {...field} />
                 <FormMessage />
-              </PageFormContentField>
+              </FormItem>
             )}
           />
 
@@ -96,7 +95,7 @@ export function CreateCertificationForm({
             control={form.control}
             name="certification"
             render={({ field }) => (
-              <PageFormContentField>
+              <FormItem>
                 <Label>Arquivo do certificado</Label>
                 <Input
                   accept="application/pdf,image/*"
@@ -106,7 +105,7 @@ export function CreateCertificationForm({
                   type="file"
                 />
                 <FormMessage />
-              </PageFormContentField>
+              </FormItem>
             )}
           />
 
@@ -114,8 +113,14 @@ export function CreateCertificationForm({
             <DialogClose asChild>
               <Button variant="ghost">Cancelar</Button>
             </DialogClose>
-            <Button disabled={form.formState.isSubmitting} type="submit" variant="outline">
-              {form.formState.isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            <Button
+              disabled={form.formState.isSubmitting}
+              type="submit"
+              variant="outline"
+            >
+              {form.formState.isSubmitting && (
+                <Loader2 className="size-4 animate-spin" />
+              )}
               Cadastrar certificado
             </Button>
           </DialogFooter>

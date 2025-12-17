@@ -11,9 +11,7 @@ export async function updateSDHCTeamMember({
   id,
   ...data
 }: IUpdateSDHCTeamMemberRequest) {
-  return await api
-    .put(`sdhc-team-member/${id}`, {
-      json: data,
-    })
-    .json()
+  await api.put(`sdhc-team-member/${id}`, {
+    json: data,
+  })
 }

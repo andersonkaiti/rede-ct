@@ -33,7 +33,7 @@ export default function Loading() {
           <Skeleton className="size-9" />
         </PageActionsContainer>
 
-        <Skeleton className="h-10 w-full lg:w-42" />
+        <Skeleton className="h-9 w-full lg:w-42" />
       </PageHeader>
 
       <PageMain>

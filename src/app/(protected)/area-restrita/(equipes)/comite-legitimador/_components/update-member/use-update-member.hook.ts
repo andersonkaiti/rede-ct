@@ -1,9 +1,9 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { api } from '@http/api-client'
 import { getLegitimatorCommitteeMemberById } from '@http/teams/legitimator-committee/get-legitimator-committee-member-by-id'
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { updateLegitimatorCommitteeMember } from '@http/teams/legitimator-committee/update-legitimator-committee-member'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { parseAsString, useQueryStates } from 'nuqs'
 import { useState } from 'react'
@@ -29,7 +29,6 @@ export function useUpdateLegitimatorCommitteeTeamMember({
   setIsOpen,
 }: IUseRegisterMemberProps) {
   const queryClient = useQueryClient()
-
   const [serverError, setServerError] = useState<string | null>(null)
 
   const [{ memberId, filtro: filter }] = useQueryStates({
@@ -37,9 +36,9 @@ export function useUpdateLegitimatorCommitteeTeamMember({
     filtro: parseAsString.withDefault(''),
   })
 
-  const { data: member } = useSuspenseQuery({
+  const { data: member } = useQuery({
     queryKey: ['member', memberId],
-    queryFn: () => getLegitimatorCommitteeMemberById(memberId),
+    queryFn: async () => await getLegitimatorCommitteeMemberById(memberId),
   })
 
   const form = useForm({
@@ -54,11 +53,9 @@ export function useUpdateLegitimatorCommitteeTeamMember({
   const submit = form.handleSubmit(
     async (values: UpdateLegitimatorCommitteeTeamMemberInput) => {
       try {
-        await api.put(`team/member/${memberId}`, {
-          json: {
-            ...values,
-            id: memberId,
-          },
+        await updateLegitimatorCommitteeMember({
+          ...values,
+          id: memberId,
         })
 
         queryClient.invalidateQueries({

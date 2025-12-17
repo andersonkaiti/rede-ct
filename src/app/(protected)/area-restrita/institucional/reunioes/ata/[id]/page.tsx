@@ -2,13 +2,6 @@
 
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@components/ui/card'
 import { DatePicker } from '@components/ui/date-picker'
 import { FileUploader } from '@components/ui/file-uploader'
 import {
@@ -46,7 +39,7 @@ export default function UpsertMinutePage() {
         </PageDescription>
       </PageHeaderContent>
       <Form {...form}>
-        <form className="space-y-8" onSubmit={submit}>
+        <form className="space-y-6" onSubmit={submit}>
           {serverError && (
             <Alert className="border-primary" variant="destructive">
               <AlertCircle className="size-4" />
@@ -54,74 +47,58 @@ export default function UpsertMinutePage() {
             </Alert>
           )}
 
-          <div className="grid grid-cols-1 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Informações da Ata</CardTitle>
-                <CardDescription>
-                  {minute
-                    ? 'Altere os campos obrigatórios para atualizar a ata.'
-                    : 'Preencha as informações obrigatórias para cadastrar a ata.'}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>
-                        Título <span className="text-primary">*</span>
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Digite o título da ata"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+          <div className="space-y-6">
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    Título <span className="text-primary">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input placeholder="Digite o título da ata" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-                <FormField
-                  control={form.control}
-                  name="publishedAt"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>
-                        Data de Publicação{' '}
-                        <span className="text-primary">*</span>
-                      </FormLabel>
-                      <FormControl>
-                        <DatePicker {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+            <FormField
+              control={form.control}
+              name="publishedAt"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    Data de Publicação <span className="text-primary">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <DatePicker {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-                <FormField
-                  control={form.control}
-                  name="document"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>
-                        Arquivo da Ata <span className="text-primary">*</span>
-                      </FormLabel>
-                      <FormControl>
-                        <FileUploader
-                          onFileChange={field.onChange}
-                          defaultFile={minute?.documentUrl}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </CardContent>
-            </Card>
+            <FormField
+              control={form.control}
+              name="document"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    Arquivo da Ata <span className="text-primary">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <FileUploader
+                      onFileChange={field.onChange}
+                      defaultFile={minute?.documentUrl}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
 
           <Separator />

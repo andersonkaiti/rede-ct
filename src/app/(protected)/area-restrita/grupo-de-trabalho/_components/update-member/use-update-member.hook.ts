@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getWorkGroupTeamMemberById } from '@http/teams/work-group-team/get-work-group-member-by-id'
 import { updateWorkGroupTeamMember } from '@http/teams/work-group-team/update-work-group-member'
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { parseAsString, useQueryStates } from 'nuqs'
 import { useState } from 'react'
@@ -37,7 +37,7 @@ export function useUpdateWorkGroupTeamMember({
     filtro: parseAsString.withDefault(''),
   })
 
-  const { data: member } = useSuspenseQuery({
+  const { data: member } = useQuery({
     queryKey: ['member', memberId],
     queryFn: async () => getWorkGroupTeamMemberById(memberId),
   })

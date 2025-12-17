@@ -10,6 +10,7 @@ export interface IGetPartnersRequest {
   category?: string
   search?: string
   isActive?: boolean
+  onlyActive?: boolean
 }
 
 export const getPartnersSchema = z.object({
@@ -33,12 +34,17 @@ export const getPartnersSchema = z.object({
   ),
 })
 
-export async function getPartners({ filter, ...params }: IGetPartnersRequest) {
+export async function getPartners({
+  filter,
+  onlyActive = false,
+  ...params
+}: IGetPartnersRequest) {
   const searchParams = parseSearchParams({
     params,
     name: filter,
     description: filter,
     category: filter,
+    isActive: onlyActive ? true : undefined,
   })
 
   const data = await api

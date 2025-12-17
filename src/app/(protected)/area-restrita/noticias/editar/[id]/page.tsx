@@ -85,20 +85,20 @@ export default function UpdateForm() {
             )}
           />
 
-          <Label>
-            Texto <span className="text-primary">*</span>
-          </Label>
           <FormField
             control={form.control}
             name="content"
             render={({ field }) => (
-              <>
+              <FormItem>
+                <Label>
+                  Texto <span className="text-primary">*</span>
+                </Label>
                 <Textarea
                   placeholder="Digite o conteúdo da notícia"
                   {...field}
                 />
                 <FormMessage />
-              </>
+              </FormItem>
             )}
           />
 

@@ -69,7 +69,7 @@ export function useCreateBookVolume() {
 
       toast.success('Volume criado com sucesso!')
 
-      router.push('/area-restrita/capitulos-de-livros')
+      router.push('/area-restrita/volumes-de-livros')
     } catch (err) {
       if (err instanceof HTTPError) {
         const errorBody = await err.response.json()

@@ -9,16 +9,17 @@ import { toast } from 'sonner'
 import z from 'zod'
 
 export const MAX_LOGO_SIZE_MB = 2
+export const KILOBYTE = 1024
+export const MEGABYTE = KILOBYTE * KILOBYTE
+export const MAX_LOGO_SIZE_BYTES = MAX_LOGO_SIZE_MB * MEGABYTE
 
 export const createPartnerSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório'),
-  logo: z.any().refine(
-    (value) =>
-      validateImageFile({
-        value,
-        optional: false,
-      }),
-    `Deve haver uma imagem de no máximo ${MAX_LOGO_SIZE_MB}MB.`,
+  logo: z.any().refine((value) =>
+    validateImageFile({
+      value,
+      optional: false,
+    }),
   ),
   websiteUrl: z.url('URL do site deve ser válida').optional().or(z.literal('')),
   description: z.string().optional(),

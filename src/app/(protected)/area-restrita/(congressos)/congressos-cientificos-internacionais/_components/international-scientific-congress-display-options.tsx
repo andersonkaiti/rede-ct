@@ -43,7 +43,6 @@ export function InternationalScientificCongressesDisplayOptions() {
           return (
             <DropdownMenuCheckboxItem
               checked={columnsVisibility[columnKey]}
-              className="capitalize"
               key={col.id}
               onCheckedChange={(value) => {
                 setColumnsVisibility((prev) => ({

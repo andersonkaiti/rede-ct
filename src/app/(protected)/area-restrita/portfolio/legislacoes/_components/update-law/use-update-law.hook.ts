@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getLawById } from '@http/laws/get-law-by-id'
 import { updateLaw } from '@http/laws/update-law'
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { parseAsString, useQueryStates } from 'nuqs'
 import { useState } from 'react'
@@ -33,7 +33,7 @@ export function useUpdateLaw({ setIsOpen }: IUseUpdateLawProps) {
     filtro: parseAsString.withDefault(''),
   })
 
-  const { data: law } = useSuspenseQuery({
+  const { data: law } = useQuery({
     queryKey: ['law', memberId],
     queryFn: async () => getLawById(memberId),
   })

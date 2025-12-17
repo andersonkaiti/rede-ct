@@ -7,10 +7,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@components/ui/dialog'
-import { Form, FormField, FormMessage } from '@components/ui/form'
+import { Form, FormField, FormItem, FormMessage } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
-import { PageFormContentField } from '@components/ui/page-container'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { useUpdateLaw } from './use-update-law.hook'
 
@@ -43,11 +42,11 @@ export function UpdateLawForm({ setIsOpen }: IUpdateLawFormProps) {
               control={form.control}
               name="title"
               render={({ field }) => (
-                <PageFormContentField>
+                <FormItem>
                   <Label>Título</Label>
                   <Input {...field} placeholder="Título da lei" />
                   <FormMessage />
-                </PageFormContentField>
+                </FormItem>
               )}
             />
 
@@ -55,7 +54,7 @@ export function UpdateLawForm({ setIsOpen }: IUpdateLawFormProps) {
               control={form.control}
               name="link"
               render={({ field }) => (
-                <PageFormContentField>
+                <FormItem>
                   <Label>Link</Label>
                   <Input
                     {...field}
@@ -63,7 +62,7 @@ export function UpdateLawForm({ setIsOpen }: IUpdateLawFormProps) {
                     type="url"
                   />
                   <FormMessage />
-                </PageFormContentField>
+                </FormItem>
               )}
             />
 
@@ -71,11 +70,11 @@ export function UpdateLawForm({ setIsOpen }: IUpdateLawFormProps) {
               control={form.control}
               name="country"
               render={({ field }) => (
-                <PageFormContentField>
+                <FormItem>
                   <Label>País</Label>
                   <Input {...field} placeholder="Brasil" />
                   <FormMessage />
-                </PageFormContentField>
+                </FormItem>
               )}
             />
 

@@ -92,6 +92,7 @@ export function useUpdateResearchGroup() {
       })
 
       toast.success('Grupo de pesquisa atualizado com sucesso!')
+
       router.push('/area-restrita/portfolio/grupo-de-pesquisa')
     } catch (err) {
       if (err instanceof HTTPError) {

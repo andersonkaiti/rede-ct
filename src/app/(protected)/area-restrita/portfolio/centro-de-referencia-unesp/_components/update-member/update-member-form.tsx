@@ -17,7 +17,6 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
-import { PageFormContentField } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../../../_components/select-member'
@@ -58,7 +57,7 @@ export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
                   <FormControl>
                     <SelectMember
                       onChange={field.onChange}
-                      userId={member.userId}
+                      userId={member?.userId}
                     />
                   </FormControl>
                   <FormMessage />
@@ -70,7 +69,7 @@ export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
               control={form.control}
               name="role"
               render={({ field }) => (
-                <PageFormContentField>
+                <FormItem>
                   <Label>Cargo</Label>
                   <Input
                     {...field}
@@ -78,7 +77,7 @@ export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
                     placeholder="Cargo"
                   />
                   <FormMessage />
-                </PageFormContentField>
+                </FormItem>
               )}
             />
 
@@ -86,7 +85,7 @@ export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
               control={form.control}
               name="description"
               render={({ field }) => (
-                <PageFormContentField>
+                <FormItem>
                   <Label>Descrição</Label>
                   <Textarea
                     {...field}
@@ -94,7 +93,7 @@ export function UpdateMemberForm({ setIsOpen }: IUpdateMemberFormProps) {
                     placeholder="Descrição"
                   />
                   <FormMessage />
-                </PageFormContentField>
+                </FormItem>
               )}
             />
 

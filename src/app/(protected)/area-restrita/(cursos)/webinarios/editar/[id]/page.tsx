@@ -101,12 +101,12 @@ export default function EditarWebinario() {
                 <FormLabel>Convidados(as)</FormLabel>
                 <FormControl>
                   <MultipleSelector
+                    placeholder="Selecione os convidados(as)"
                     emptyIndicator={
                       <p className="text-center text-sm">
-                        Nenhum grau encontrado
+                        Nenhum convidado encontrado
                       </p>
                     }
-                    hideClearAllButton
                     hidePlaceholderWhenSelected
                     onChange={(selected) =>
                       field.onChange(selected.map((item) => item.value))

@@ -1,9 +1,7 @@
 import {
   PageContainer,
-  PageDescription,
   PageHeader,
   PageHeaderContent,
-  PageTitle,
 } from '@components/ui/page-container'
 import { Skeleton } from '@components/ui/skeleton'
 
@@ -12,8 +10,8 @@ export default function Loading() {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Editar Volume</PageTitle>
-          <PageDescription>Carregando dados do volume...</PageDescription>
+          <Skeleton className="h-9 w-2/4" />
+          <Skeleton className="h-5 w-1/4" />
         </PageHeaderContent>
       </PageHeader>
 
@@ -21,32 +19,32 @@ export default function Loading() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="space-y-2">
             <Skeleton className="h-4 w-32" />
-            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-9 w-full" />
           </div>
           <div className="space-y-2">
             <Skeleton className="h-4 w-32" />
-            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-9 w-full" />
           </div>
         </div>
 
         <div className="space-y-2">
           <Skeleton className="h-4 w-32" />
-          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-9 w-full" />
         </div>
 
         <div className="space-y-2">
           <Skeleton className="h-4 w-32" />
-          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-9 w-full" />
         </div>
 
         <div className="space-y-2">
           <Skeleton className="h-4 w-32" />
-          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-9 w-full" />
         </div>
 
         <div className="space-y-2">
           <Skeleton className="h-4 w-32" />
-          <Skeleton className="h-24 w-full" />
+          <Skeleton className="h-16 w-full" />
         </div>
 
         <div className="space-y-4">
@@ -54,21 +52,21 @@ export default function Loading() {
 
           <div className="space-y-2">
             <Skeleton className="h-4 w-32" />
-            <Skeleton className="h-32 w-full" />
+            <Skeleton className="h-79.5 w-full rounded-xl" />
           </div>
 
           <div className="space-y-2">
             <Skeleton className="h-4 w-32" />
-            <Skeleton className="h-32 w-full" />
+            <Skeleton className="h-79.5 w-full rounded-xl" />
           </div>
 
           <div className="space-y-2">
             <Skeleton className="h-4 w-32" />
-            <Skeleton className="h-32 w-full" />
+            <Skeleton className="h-79.5 w-full rounded-xl" />
           </div>
         </div>
 
-        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-9 w-full" />
       </div>
     </PageContainer>
   )

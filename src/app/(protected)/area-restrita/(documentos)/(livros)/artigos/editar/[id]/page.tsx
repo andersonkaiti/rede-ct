@@ -19,6 +19,7 @@ import {
   PageHeaderContent,
   PageTitle,
 } from '@components/ui/page-container'
+import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { useUpdateScientificArticle } from './use-update-scientific-article.hook'
@@ -78,6 +79,8 @@ export default function EditarArtigo() {
             )}
           />
 
+          <Separator />
+
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FormField
               control={form.control}
@@ -113,6 +116,8 @@ export default function EditarArtigo() {
               )}
             />
           </div>
+
+          <Separator />
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <FormField
@@ -168,6 +173,8 @@ export default function EditarArtigo() {
             />
           </div>
 
+          <Separator />
+
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FormField
               control={form.control}
@@ -218,6 +225,8 @@ export default function EditarArtigo() {
             />
           </div>
 
+          <Separator />
+
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FormField
               control={form.control}
@@ -251,6 +260,8 @@ export default function EditarArtigo() {
               )}
             />
           </div>
+
+          <Separator />
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <FormField
@@ -296,6 +307,8 @@ export default function EditarArtigo() {
             />
           </div>
 
+          <Separator />
+
           <FormField
             control={form.control}
             name="accessUrl"
@@ -311,6 +324,8 @@ export default function EditarArtigo() {
               </FormItem>
             )}
           />
+
+          <Separator />
 
           <FormField
             control={form.control}

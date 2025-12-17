@@ -80,42 +80,6 @@ function PageMain({ children, ...props }: React.HTMLAttributes<HTMLElement>) {
   )
 }
 
-function PageForm({
-  children,
-  ...props
-}: React.DetailedHTMLProps<
-  React.FormHTMLAttributes<HTMLFormElement>,
-  HTMLFormElement
->) {
-  return (
-    <form className="flex flex-col gap-4" {...props}>
-      {children}
-    </form>
-  )
-}
-
-function PageFormContent({
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className="grid grid-cols-1 gap-8" {...props}>
-      {children}
-    </div>
-  )
-}
-
-function PageFormContentField({
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className="space-y-2" {...props}>
-      {children}
-    </div>
-  )
-}
-
 function PageFooter({ children, ...props }: React.HTMLAttributes<HTMLElement>) {
   return (
     <footer className="w-full" {...props}>
@@ -129,9 +93,6 @@ export {
   PageContainer,
   PageDescription,
   PageFooter,
-  PageForm,
-  PageFormContent,
-  PageFormContentField,
   PageHeader,
   PageHeaderContent,
   PageMain,

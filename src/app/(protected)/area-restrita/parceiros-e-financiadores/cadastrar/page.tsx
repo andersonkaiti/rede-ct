@@ -22,9 +22,7 @@ import {
 } from '@components/ui/page-container'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useCreatePartner } from './use-create-partner'
-
-const MAX_IMAGE_SIZE_MB = 2
+import { MAX_LOGO_SIZE_BYTES, useCreatePartner } from './use-create-partner'
 
 export default function CreatePartner() {
   const { form, submit, serverError } = useCreatePartner()
@@ -40,7 +38,7 @@ export default function CreatePartner() {
       </PageHeaderContent>
 
       <Form {...form}>
-        <form className="space-y-8" onSubmit={submit}>
+        <form className="space-y-6" onSubmit={submit}>
           {serverError && (
             <Alert className="mb-6 border-primary" variant="destructive">
               <AlertCircle className="size-4" />
@@ -132,16 +130,33 @@ export default function CreatePartner() {
                               ref={field.ref}
                             />
                             <div className="space-y-1">
-                              <div className="font-medium text-sm">
-                                {field.value ? 'Ativo' : 'Inativo'}
-                              </div>
-                              <div className="text-muted-foreground text-xs">
+                              <div className="text-sm">
                                 {field.value
                                   ? 'Visível na plataforma'
                                   : 'Oculto na plataforma'}
                               </div>
                             </div>
                           </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="lg:col-span-2">
+                  <FormField
+                    control={form.control}
+                    name="description"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Descrição</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            className="min-h-[120px] resize-none"
+                            placeholder="Digite uma breve descrição sobre o parceiro ou financiador, incluindo informações relevantes sobre a parceria..."
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -156,20 +171,12 @@ export default function CreatePartner() {
                   name="logo"
                   render={({ field }) => (
                     <FormItem className="space-y-4">
-                      <div className="space-y-2">
-                        <FormLabel className="font-medium text-base">
-                          Logo <span className="text-primary">*</span>
-                        </FormLabel>
-                        <p className="text-muted-foreground text-sm">
-                          Faça upload do logo do parceiro/financiador
-                        </p>
-                        <p className="text-muted-foreground text-xs">
-                          Máximo {MAX_IMAGE_SIZE_MB}MB
-                        </p>
-                      </div>
+                      <FormLabel className="font-medium text-base">
+                        Logo <span className="text-primary">*</span>
+                      </FormLabel>
                       <FormControl>
                         <CoverUploader
-                          maxSize={MAX_IMAGE_SIZE_MB}
+                          maxSize={MAX_LOGO_SIZE_BYTES}
                           onImageChange={field.onChange}
                         />
                       </FormControl>
@@ -179,33 +186,6 @@ export default function CreatePartner() {
                 />
               </div>
             </div>
-          </div>
-
-          <div className="space-y-6">
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="pb-4">
-                    <h3 className="font-semibold text-foreground text-lg">
-                      Descrição
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      Informações adicionais sobre o parceiro ou financiador
-                    </p>
-                  </div>
-                  <FormControl>
-                    <Textarea
-                      className="min-h-[120px] resize-none"
-                      placeholder="Digite uma breve descrição sobre o parceiro ou financiador, incluindo informações relevantes sobre a parceria..."
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </div>
 
           <div className="flex justify-end pt-6">

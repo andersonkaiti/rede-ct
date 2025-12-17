@@ -1,81 +1,64 @@
 import {
   PageContainer,
-  PageDescription,
-  PageForm,
-  PageFormContent,
-  PageFormContentField,
   PageHeader,
   PageHeaderContent,
-  PageTitle,
 } from '@components/ui/page-container'
 import { Skeleton } from '@components/ui/skeleton'
-import { ImageUpIcon } from 'lucide-react'
 
 export default function Loading() {
   return (
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Editar Curso</PageTitle>
-          <PageDescription>
-            Preencha os campos abaixo para atualizar o curso
-          </PageDescription>
+          <Skeleton className="h-9 w-2/4" />
+          <Skeleton className="h-5 w-1/4" />
         </PageHeaderContent>
       </PageHeader>
 
-      <div>
-        <PageForm>
-          <PageFormContent>
-            <PageFormContentField>
-              <Skeleton className="h-4 w-16 rounded-md" />
-              <Skeleton className="h-9 w-full rounded-md" />
-            </PageFormContentField>
+      <div className="space-y-6">
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-16 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
 
-            <PageFormContentField>
-              <Skeleton className="h-4 w-28 rounded-md" />
-              <Skeleton className="h-9 w-full rounded-md" />
-            </PageFormContentField>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-28 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
 
-            <PageFormContentField>
-              <Skeleton className="h-4 w-16 rounded-md" />
-              <Skeleton className="h-9 w-full rounded-md" />
-            </PageFormContentField>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-16 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
 
-            <PageFormContentField>
-              <Skeleton className="h-4 w-24 rounded-md" />
-              <Skeleton className="h-9 w-full rounded-md" />
-            </PageFormContentField>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-24 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
 
-            <PageFormContentField>
-              <Skeleton className="h-4 w-20 rounded-md" />
-              <Skeleton className="flex h-79.5 w-full items-center justify-center rounded-xl">
-                <div
-                  aria-hidden="true"
-                  className="mb-2 flex size-11 items-center justify-center rounded-full"
-                >
-                  <ImageUpIcon className="size-4 opacity-60" />
-                </div>
-              </Skeleton>
-            </PageFormContentField>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-20 rounded-md" />
+            <Skeleton className="h-79.5 w-full rounded-xl" />
+          </div>
 
-            <PageFormContentField>
-              <Skeleton className="h-4 w-28 rounded-md" />
-              <Skeleton className="h-9 w-full rounded-md" />
-            </PageFormContentField>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-28 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
 
-            <PageFormContentField>
-              <Skeleton className="h-4 w-28 rounded-md" />
-              <Skeleton className="h-9 w-full rounded-md" />
-            </PageFormContentField>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-28 rounded-md" />
+            <Skeleton className="h-9 w-full rounded-md" />
+          </div>
 
-            <PageFormContentField>
-              <Skeleton className="h-4 w-20 rounded-md" />
-              <Skeleton className="h-24 w-full rounded-md" />
-            </PageFormContentField>
-          </PageFormContent>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-20 rounded-md" />
+            <Skeleton className="h-24 w-full rounded-md" />
+          </div>
+        </div>
 
-          <Skeleton className="h-9 w-full rounded-md" />
-        </PageForm>
+        <Skeleton className="h-9 w-full rounded-md" />
       </div>
     </PageContainer>
   )

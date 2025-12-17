@@ -97,9 +97,11 @@ export default function CadastrarWebinario() {
                 <FormLabel>Convidados(as)</FormLabel>
                 <FormControl>
                   <MultipleSelector
+                    placeholder="Selecione os convidados(as)"
                     onChange={(selected) =>
                       field.onChange(selected.map((item) => item.value))
                     }
+                    hidePlaceholderWhenSelected
                     value={field.value?.map((id: string) => {
                       const user = data?.users?.find((u) => u.id === id)
                       return {

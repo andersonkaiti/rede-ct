@@ -16,7 +16,6 @@ import MultipleSelector from '@components/ui/multiselect'
 import {
   PageContainer,
   PageDescription,
-  PageFormContentField,
   PageHeaderContent,
   PageTitle,
 } from '@components/ui/page-container'
@@ -26,6 +25,7 @@ import {
   SelectItem,
   SelectTrigger,
 } from '@components/ui/select'
+import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../../_components/select-member'
@@ -66,6 +66,25 @@ export default function CadastrarPesquisador() {
                   </FormLabel>
                   <FormControl>
                     <Input placeholder="Digite a matrícula" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="userId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    Usuário <span className="text-primary">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <SelectMember
+                      onChange={field.onChange}
+                      userId={field.value}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -122,7 +141,6 @@ export default function CadastrarPesquisador() {
                           Nenhum grau encontrado
                         </p>
                       }
-                      hideClearAllButton
                       hidePlaceholderWhenSelected
                       onChange={(selected) =>
                         field.onChange(selected.map((item) => item.value))
@@ -138,7 +156,27 @@ export default function CadastrarPesquisador() {
                 </FormItem>
               )}
             />
+          </div>
 
+          <Separator />
+
+          <FormField
+            control={form.control}
+            name="formations"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Formações</FormLabel>
+                <FormControl>
+                  <Textarea placeholder="Digite as formações" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Separator />
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <FormField
               control={form.control}
               name="occupations"
@@ -170,64 +208,33 @@ export default function CadastrarPesquisador() {
                 </FormItem>
               )}
             />
-
-            <FormField
-              control={form.control}
-              name="mainEtps"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>ETP(s) principal(is)</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Digite o(s) ETP(s)" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="formations"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Formações</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Digite as formações" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="userId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    Usuário <span className="text-primary">*</span>
-                  </FormLabel>
-                  <FormControl>
-                    <SelectMember
-                      onChange={field.onChange}
-                      userId={field.value}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </div>
+
+          <Separator />
+
+          <FormField
+            control={form.control}
+            name="mainEtps"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>ETP(s) principal(is)</FormLabel>
+                <FormControl>
+                  <Input placeholder="Digite o(s) ETP(s)" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <FormField
             control={form.control}
             name="biography"
             render={({ field }) => (
-              <PageFormContentField>
+              <FormItem>
                 <Label>Biografia</Label>
                 <Textarea placeholder="Digite uma breve biografia" {...field} />
                 <FormMessage />
-              </PageFormContentField>
+              </FormItem>
             )}
           />
 

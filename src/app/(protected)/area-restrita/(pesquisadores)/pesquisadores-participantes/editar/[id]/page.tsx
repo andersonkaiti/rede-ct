@@ -14,12 +14,6 @@ import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
 import MultipleSelector from '@components/ui/multiselect'
 import {
-  PageContainer,
-  PageDescription,
-  PageHeaderContent,
-  PageTitle,
-} from '@components/ui/page-container'
-import {
   Select,
   SelectContent,
   SelectItem,
@@ -29,6 +23,12 @@ import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
 import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { AlertCircle, Loader2 } from 'lucide-react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeaderContent,
+  PageTitle,
+} from '@/app/(protected)/_components/page-container'
 import { DEGREE_LABEL_MAP } from '../../_constants/degrees'
 import {
   SENIORITY_LABEL_MAP,

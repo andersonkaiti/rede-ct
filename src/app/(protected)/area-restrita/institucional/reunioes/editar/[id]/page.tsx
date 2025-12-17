@@ -13,12 +13,6 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import {
-  PageContainer,
-  PageDescription,
-  PageHeaderContent,
-  PageTitle,
-} from '@components/ui/page-container'
-import {
   Select,
   SelectContent,
   SelectItem,
@@ -27,6 +21,12 @@ import {
 import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeaderContent,
+  PageTitle,
+} from '@/app/(protected)/_components/page-container'
 import { FORMAT_OPTIONS } from '../../_constants/format'
 import { STATUS_OPTIONS } from '../../_constants/status'
 import { useUpdateMeeting } from './use-update-meeting.hook'

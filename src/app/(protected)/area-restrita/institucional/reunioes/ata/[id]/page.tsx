@@ -13,14 +13,14 @@ import {
   FormMessage,
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
+import { Separator } from '@components/ui/separator'
+import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@components/ui/page-container'
-import { Separator } from '@components/ui/separator'
-import { AlertCircle, Loader2 } from 'lucide-react'
+} from '@/app/(protected)/_components/page-container'
 import { DeleteMinuteButton } from './_components/delete-minute-button'
 import { useUpsertMinute } from './use-upsert-minute.hook'
 

@@ -15,12 +15,6 @@ import {
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
 import {
-  PageContainer,
-  PageDescription,
-  PageHeaderContent,
-  PageTitle,
-} from '@components/ui/page-container'
-import {
   Select,
   SelectContent,
   SelectItem,
@@ -28,6 +22,12 @@ import {
 } from '@components/ui/select'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeaderContent,
+  PageTitle,
+} from '@/app/(protected)/_components/page-container'
 import { useCreateInMemoriam } from './use-create-in-memoriam'
 
 const ROLE_OPTIONS = [

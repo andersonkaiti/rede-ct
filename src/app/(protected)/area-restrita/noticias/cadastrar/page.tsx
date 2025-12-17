@@ -13,14 +13,14 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
+import { Textarea } from '@components/ui/textarea'
+import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@components/ui/page-container'
-import { Textarea } from '@components/ui/textarea'
-import { AlertCircle, Loader2 } from 'lucide-react'
+} from '@/app/(protected)/_components/page-container'
 import { useCreateNews } from './use-create-news.hook'
 
 const MAX_IMAGE_SIZE_MB = 5

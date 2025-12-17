@@ -14,16 +14,16 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import MultipleSelector from '@components/ui/multiselect'
+import { Textarea } from '@components/ui/textarea'
+import { useUsers } from '@hooks/use-users.hook'
+import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from '@components/ui/page-container'
-import { Textarea } from '@components/ui/textarea'
-import { useUsers } from '@hooks/use-users.hook'
-import { AlertCircle, Loader2 } from 'lucide-react'
+} from '@/app/(protected)/_components/page-container'
 import { SelectMember } from '../../../../_components/select-member'
 import { MAX_IMAGE_SIZE_BYTES, useUpdateCourse } from './use-update-course.hook'
 

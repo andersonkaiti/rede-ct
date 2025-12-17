@@ -1,11 +1,11 @@
+import { Skeleton } from '@components/ui/skeleton'
 import {
   PageContainer,
   PageDescription,
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from '@components/ui/page-container'
-import { Skeleton } from '@components/ui/skeleton'
+} from '@/app/(protected)/_components/page-container'
 
 export default function Loading() {
   return (

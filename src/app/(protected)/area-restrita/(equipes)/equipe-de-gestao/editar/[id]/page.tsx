@@ -11,13 +11,13 @@ import {
   FormMessage,
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
+import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageHeader,
   PageMain,
   PageTitle,
-} from '@components/ui/page-container'
-import { AlertCircle, Loader2 } from 'lucide-react'
+} from '@/app/(protected)/_components/page-container'
 import { SelectMember } from '../../_components/select-member'
 import { TeamMembersTable } from '../../_components/table/team-members-table'
 import { LoadingInputSkeleton } from './_components/loading-input-skeleton'

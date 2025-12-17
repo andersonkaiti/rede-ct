@@ -1,4 +1,5 @@
 import { isAdmin } from '@auth/auth'
+import { Suspense } from 'react'
 import {
   PageActionsContainer,
   PageContainer,
@@ -7,8 +8,7 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@components/ui/page-container'
-import { Suspense } from 'react'
+} from '@/app/(protected)/_components/page-container'
 import { FilterInput } from '../../_components/filter-input'
 import { OrderByButton } from '../../_components/order-by-button'
 import { LoadingSkeleton } from './_components/loading-skeleton'

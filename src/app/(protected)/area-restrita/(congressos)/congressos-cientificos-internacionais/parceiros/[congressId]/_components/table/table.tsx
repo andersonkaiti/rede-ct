@@ -4,9 +4,9 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { useCongressPartners } from './use-congress-partners.hook'
 import { LoadingSkeleton } from './loading-skeleton'
 import { partnersTableColumns } from './partners-table-columns'
+import { useCongressPartners } from './use-congress-partners.hook'
 
 interface ICongressPartner {
   id: string

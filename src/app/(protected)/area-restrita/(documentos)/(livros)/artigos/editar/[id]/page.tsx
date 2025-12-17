@@ -12,16 +12,16 @@ import {
   FormMessage,
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
+import { Separator } from '@components/ui/separator'
+import { Textarea } from '@components/ui/textarea'
+import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from '@components/ui/page-container'
-import { Separator } from '@components/ui/separator'
-import { Textarea } from '@components/ui/textarea'
-import { AlertCircle, Loader2 } from 'lucide-react'
+} from '@/app/(protected)/_components/page-container'
 import { useUpdateScientificArticle } from './use-update-scientific-article.hook'
 
 export default function EditarArtigo() {

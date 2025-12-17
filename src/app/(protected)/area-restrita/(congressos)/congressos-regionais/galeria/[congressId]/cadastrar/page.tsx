@@ -11,15 +11,15 @@ import {
   FormLabel,
   FormMessage,
 } from '@components/ui/form'
+import { Separator } from '@components/ui/separator'
+import { Textarea } from '@components/ui/textarea'
+import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@components/ui/page-container'
-import { Separator } from '@components/ui/separator'
-import { Textarea } from '@components/ui/textarea'
-import { AlertCircle, Loader2 } from 'lucide-react'
+} from '@/app/(protected)/_components/page-container'
 import {
   MAX_IMAGE_SIZE_BYTES,
   useCreateGalleryImage,

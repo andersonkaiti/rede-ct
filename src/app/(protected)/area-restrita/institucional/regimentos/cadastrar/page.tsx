@@ -14,18 +14,18 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import {
-  PageContainer,
-  PageDescription,
-  PageHeaderContent,
-  PageTitle,
-} from '@components/ui/page-container'
-import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
 } from '@components/ui/select'
 import { AlertCircle, Loader2 } from 'lucide-react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeaderContent,
+  PageTitle,
+} from '@/app/(protected)/_components/page-container'
 import { STATUS_OPTIONS } from '../_constants/status'
 import { useCreateRegiment } from './use-create-regiment'
 

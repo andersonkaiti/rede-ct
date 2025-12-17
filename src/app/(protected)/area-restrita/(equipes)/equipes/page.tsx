@@ -4,7 +4,9 @@ import { Earth, Network, Search, Users } from 'lucide-react'
 export default function Equipes() {
   return (
     <div className="flex flex-col justify-center gap-2 space-y-3.5 p-4 py-10 sm:gap-12.5">
-      <h1 className="title-2">Equipes</h1>
+      <h1 className="whitespace-normal font-bold text-2xl lg:text-4xl">
+        Equipes
+      </h1>
       <section className="flex flex-col gap-2">
         <NavigationCard href="/area-restrita/equipe-de-gestao">
           <div className="flex items-center gap-2">

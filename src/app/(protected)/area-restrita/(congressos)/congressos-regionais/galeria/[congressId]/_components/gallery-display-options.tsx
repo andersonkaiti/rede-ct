@@ -10,17 +10,12 @@ import {
 } from '@components/ui/dropdown-menu'
 import { Funnel } from 'lucide-react'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import { internationalScientificCongressesTableColumns } from './table/international-scientific-congresses-table-columns'
+import { galleryTableColumns } from './table/gallery-table-columns'
 
-export function InternationalScientificCongressesDisplayOptions() {
+export function GalleryDisplayOptions() {
   const [columnsVisibility, setColumnsVisibility] = useQueryStates({
-    title: parseAsBoolean.withDefault(true),
-    edition: parseAsBoolean.withDefault(true),
-    startDate: parseAsBoolean.withDefault(true),
-    endDate: parseAsBoolean.withDefault(true),
-    location: parseAsBoolean.withDefault(true),
-    format: parseAsBoolean.withDefault(true),
-    status: parseAsBoolean.withDefault(true),
+    caption: parseAsBoolean.withDefault(true),
+    imageUrl: parseAsBoolean.withDefault(true),
   })
 
   return (
@@ -33,7 +28,7 @@ export function InternationalScientificCongressesDisplayOptions() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Exibir colunas</DropdownMenuLabel>
-        {internationalScientificCongressesTableColumns.map((col) => {
+        {galleryTableColumns.map((col) => {
           const columnKey = col.id as keyof typeof columnsVisibility
 
           if (col.id === 'actions') {

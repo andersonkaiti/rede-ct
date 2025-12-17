@@ -1,15 +1,18 @@
 import { api } from '@http/api-client'
+import z from 'zod'
 
-type IsAdminResponse = {
-  success: boolean
-  message?: string
-}
+export const isAdminSchemaResponse = z.object({
+  success: z.boolean().optional(),
+  message: z.string().optional(),
+})
 
 export async function isAdmin() {
   try {
-    const result: IsAdminResponse = await api.get('auth/admin').json()
+    const result = await api.get('auth/admin').json()
 
-    return !!result.success
+    const isAdminResult = isAdminSchemaResponse.parse(result)
+
+    return !!isAdminResult.success
   } catch {
     return false
   }

@@ -13,7 +13,9 @@ export default function CongressoCientificoInternacional() {
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
             <GraduationCap className="size-7" />
           </Badge>
-          <h1 className="title-2">Congresso Científico Internacional</h1>
+          <h1 className="whitespace-normal font-bold text-2xl lg:text-4xl">
+            Congresso Científico Internacional
+          </h1>
         </div>
         <p className="text-muted-foreground text-sm">
           Participe do nosso Congresso Científico Internacional, um evento

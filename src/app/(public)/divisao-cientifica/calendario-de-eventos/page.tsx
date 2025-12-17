@@ -1,7 +1,13 @@
 import { CalendarDaysIcon } from '@components/icons/calendar-days'
-import { Badge } from '@components/ui/badge'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderIcon,
+  PageHeaderTitle,
+} from '../../_components/page-container'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicEvents = dynamic(() =>
@@ -10,20 +16,20 @@ const DynamicEvents = dynamic(() =>
 
 export default function CalendarioDeEventos() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <header className="space-y-8">
-        <div className="flex items-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <CalendarDaysIcon />
-          </Badge>
-          <h1 className="title-2">Calendário de eventos</h1>
-        </div>
-        <p className="text-lg text-muted-foreground">
-          Nesta seção são divulgados os eventos científicos relacionados direta
-          ou indiretamente à pauta central da RedeCT (também os eventos que não
-          são conduzidos pelos Pesquisadores Filiados, mas de interesse destes).
-        </p>
-      </header>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderIcon>
+          <CalendarDaysIcon />
+        </PageHeaderIcon>
+
+        <PageHeaderTitle>Calendário de eventos</PageHeaderTitle>
+      </PageHeader>
+
+      <PageDescription>
+        Nesta seção são divulgados os eventos científicos relacionados direta ou
+        indiretamente à pauta central da RedeCT (também os eventos que não são
+        conduzidos pelos Pesquisadores Filiados, mas de interesse destes).
+      </PageDescription>
 
       <Suspense fallback={<LoadingSkeleton />}>
         <DynamicEvents />
@@ -38,6 +44,6 @@ export default function CalendarioDeEventos() {
           científica.
         </p>
       </footer>
-    </main>
+    </PageContainer>
   )
 }

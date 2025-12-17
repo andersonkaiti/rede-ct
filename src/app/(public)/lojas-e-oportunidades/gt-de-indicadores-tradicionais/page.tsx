@@ -1,8 +1,14 @@
-import { Badge } from '@components/ui/badge'
 import { UserCardRedLine } from '@components/ui/user-card'
 import { Award } from 'lucide-react'
 import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderIcon,
+  PageHeaderTitle,
+} from '../../_components/page-container'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicWorkGroupTeam = dynamicImport(() =>
@@ -11,27 +17,29 @@ const DynamicWorkGroupTeam = dynamicImport(() =>
 
 export default function GTDeIndicadoresTradicionais() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <header className="space-y-8">
-        <div className="flex items-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <Award />
-          </Badge>
-          <h1 className="title-2">
-            Selo de Identificação de Origem Tradicional da RedeCT
-          </h1>
-        </div>
-        <p className="text-justify text-lg text-muted-foreground">
-          Sob coordenação da Vice-coordenadoria de Extensão Universitária e
-          Cultura, a proposta é de criar e gerir um selo de qualidade e
-          procedência que possa auxiliar os Povos Tradicionais na superação do
-          desafio de autogestão e sustentação financeira a partir de suas
-          potencialidades.
-        </p>
-      </header>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderIcon>
+          <Award />
+        </PageHeaderIcon>
+
+        <PageHeaderTitle>
+          Selo de Identificação de Origem Tradicional da RedeCT
+        </PageHeaderTitle>
+      </PageHeader>
+
+      <PageDescription>
+        Sob coordenação da Vice-coordenadoria de Extensão Universitária e
+        Cultura, a proposta é de criar e gerir um selo de qualidade e
+        procedência que possa auxiliar os Povos Tradicionais na superação do
+        desafio de autogestão e sustentação financeira a partir de suas
+        potencialidades.
+      </PageDescription>
 
       <section className="space-y-8">
-        <h2 className="title-2">Apresentação da proposta</h2>
+        <h2 className="whitespace-normal font-bold text-2xl lg:text-4xl">
+          Apresentação da proposta
+        </h2>
 
         <p className="text-justify text-muted-foreground leading-relaxed">
           Considerando o desafio de geração de renda e de sustentação econômica
@@ -61,7 +69,7 @@ export default function GTDeIndicadoresTradicionais() {
 
       <section className="space-y-8">
         <div className="space-y-8">
-          <h2 className="title-2 text-center">
+          <h2 className="whitespace-normal text-center font-bold text-2xl lg:text-4xl">
             Membros do Grupo de Trabalho de Indicadores Tradicionais
           </h2>
           <UserCardRedLine />
@@ -71,6 +79,6 @@ export default function GTDeIndicadoresTradicionais() {
           <DynamicWorkGroupTeam />
         </Suspense>
       </section>
-    </main>
+    </PageContainer>
   )
 }

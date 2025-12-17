@@ -2,11 +2,11 @@
 
 import PaginatorComponent from '@components/ui/paginator'
 import { Separator } from '@components/ui/separator'
-import { useNews } from '../_hooks/use-news.hook'
 import { FilterInput } from './filter-input'
 import LoadingSkeleton from './loading-skeleton'
 import { News } from './news'
 import { SelectAuthor } from './select-author'
+import { useNews } from './use-news.hook'
 
 export function NewsList() {
   const { data, isLoading, page } = useNews()

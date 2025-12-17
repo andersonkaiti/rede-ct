@@ -14,7 +14,7 @@ export default function EquipeSDHC() {
       <BackArrow href="/quem-somos/instituto-de-pesquisas-amazonicas-e-de-povos-tradicionais" />
 
       <div className="space-y-8">
-        <h1 className="title-2 text-center">
+        <h1 className="whitespace-normal text-center font-bold text-2xl lg:text-4xl">
           Atual equipe de gestão da associação Social Desenvolvimento Humano e
           Comunitário:
         </h1>

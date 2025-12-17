@@ -16,14 +16,16 @@ export function Duties() {
     >
       <section className="space-y-14">
         <CardHeader className="space-y-7">
-          <h2 className="title-3 flex items-center gap-2">
+          <h2 className="flex items-center gap-2 whitespace-normal font-bold text-xl lg:text-2xl">
             <div className="mr-2 rounded-full bg-primary/20 p-2">
               <CheckIcon className="text-primary" ref={iconRef} />
             </div>
             POSSIBILIDADES E DEVERES DO GTC
           </h2>
 
-          <h3 className="title-3">DEVERES DO GTC JUNTO À REDECT:</h3>
+          <h3 className="whitespace-normal font-bold text-xl lg:text-2xl">
+            DEVERES DO GTC JUNTO À REDECT:
+          </h3>
         </CardHeader>
         <CardContent>
           <ol className="space-y-4">
@@ -102,7 +104,9 @@ export function Duties() {
 
       <section className="space-y-14">
         <CardHeader>
-          <h3 className="title-3">POSSIBILIDADES DO GT:</h3>
+          <h3 className="whitespace-normal font-bold text-xl lg:text-2xl">
+            POSSIBILIDADES DO GT:
+          </h3>
         </CardHeader>
         <CardContent>
           <ol className="space-y-4">

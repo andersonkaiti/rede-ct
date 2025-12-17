@@ -1,27 +1,33 @@
 import { EarthIcon } from '@components/icons/earth'
-import { Badge } from '@components/ui/badge'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderIcon,
+  PageHeaderTitle,
+} from '../../_components/page-container'
 import { WebinarList } from './_components/webinar-list'
 
 export default function WebinarioPermanente() {
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
-      <header className="flex flex-col gap-8">
-        <div className="flex items-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <EarthIcon />
-          </Badge>
-          <h1 className="title-2">Webinário Permanente da RedeCT</h1>
-        </div>
-        <p className="text-muted-foreground text-sm">
-          O Webinário Permanente da RedeCT foi criado como espaço midiático de
-          diálogo, apresentação e divulgação dos trabalhos (pesquisas, projetos,
-          livros) dos Pesquisadores Filiados e outros convidados. O acesso é
-          livre e gratuito pelo Canal do Youtube da RedeCT, programe-se,
-          participe, prestigie, veja aqui a PROGRAMAÇÃO DOS PRÓXIMOS WEBINARIOS.
-        </p>
-      </header>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderIcon>
+          <EarthIcon />
+        </PageHeaderIcon>
+
+        <PageHeaderTitle>Webinário Permanente da RedeCT</PageHeaderTitle>
+      </PageHeader>
+
+      <PageDescription>
+        O Webinário Permanente da RedeCT foi criado como espaço midiático de
+        diálogo, apresentação e divulgação dos trabalhos (pesquisas, projetos,
+        livros) dos Pesquisadores Filiados e outros convidados. O acesso é livre
+        e gratuito pelo Canal do Youtube da RedeCT, programe-se, participe,
+        prestigie, veja aqui a PROGRAMAÇÃO DOS PRÓXIMOS WEBINARIOS.
+      </PageDescription>
 
       <WebinarList />
-    </main>
+    </PageContainer>
   )
 }

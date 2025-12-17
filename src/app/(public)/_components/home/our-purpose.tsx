@@ -8,7 +8,7 @@ import { tabsData } from './purposes'
 export function OurPurpose() {
   return (
     <section className="flex flex-col space-y-12">
-      <h2 className="title-2 mx-auto inline-flex items-center gap-2 text-center">
+      <h2 className="mx-auto inline-flex items-center gap-2 whitespace-normal text-center font-bold text-2xl lg:text-4xl">
         Missão, valores, objetivos e grandes desafios da RedeCT{' '}
         <span aria-label="alvo" role="img">
           <RocketIcon className="text-primary" />

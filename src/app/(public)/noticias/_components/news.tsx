@@ -46,7 +46,6 @@ export function News({ news }: INewsProps) {
               priority
               src={news.imageUrl || ''}
             />
-            <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent dark:from-black/70 dark:to-transparent" />
           </picture>
         </header>
 

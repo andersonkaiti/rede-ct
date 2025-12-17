@@ -1,9 +1,15 @@
-import { Badge } from '@components/ui/badge'
 import { ListNumber } from '@components/ui/list-number'
 import { UserCardRedLine } from '@components/ui/user-card'
 import { BookOpen, Users } from 'lucide-react'
 import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderIcon,
+  PageHeaderTitle,
+} from '../../_components/page-container'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicReferenceCenterTeam = dynamicImport(() =>
@@ -14,26 +20,28 @@ const DynamicReferenceCenterTeam = dynamicImport(() =>
 
 export default function CentroDeReferencia() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <header className="space-y-8">
-        <div className="flex items-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <BookOpen className="size-7" />
-          </Badge>
-          <h1 className="title-2">
-            Centro de Referência sobre Povos e Comunidades Tradicionais (PCTs)
-          </h1>
-        </div>
-        <p className="text-justify text-lg text-muted-foreground">
-          Esse projeto vinculado a Universidade Estadual "Júlio de Mesquita
-          Filho" (UNESP/FAAC/Bauru) tem o objetivo de mapear docentes e
-          discentes que são de comunidades tradicionais e/ou desenvolvem
-          temáticas de ensino, pesquisa e extensão relacionadas aos PCTs.
-        </p>
-      </header>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderIcon>
+          <BookOpen className="size-7" />
+        </PageHeaderIcon>
+
+        <PageHeaderTitle>
+          Centro de Referência sobre Povos e Comunidades Tradicionais (PCTs)
+        </PageHeaderTitle>
+      </PageHeader>
+
+      <PageDescription>
+        Esse projeto vinculado a Universidade Estadual "Júlio de Mesquita Filho"
+        (UNESP/FAAC/Bauru) tem o objetivo de mapear docentes e discentes que são
+        de comunidades tradicionais e/ou desenvolvem temáticas de ensino,
+        pesquisa e extensão relacionadas aos PCTs.
+      </PageDescription>
 
       <section className="space-y-8">
-        <h2 className="title-2">Apresentação</h2>
+        <h2 className="whitespace-normal font-bold text-2xl lg:text-4xl">
+          Apresentação
+        </h2>
 
         <p className="text-justify text-muted-foreground leading-relaxed">
           Considerando a natureza multicampi da Unesp, observou-se que as
@@ -47,7 +55,9 @@ export default function CentroDeReferencia() {
       </section>
 
       <section className="space-y-8">
-        <h2 className="title-2">Finalidades</h2>
+        <h2 className="whitespace-normal font-bold text-2xl lg:text-4xl">
+          Finalidades
+        </h2>
         <div className="space-y-4">
           <div className="flex items-start gap-3">
             <ListNumber>1</ListNumber>
@@ -92,10 +102,10 @@ export default function CentroDeReferencia() {
       <section className="space-y-8">
         <div className="space-y-8">
           <div className="flex items-center gap-4">
-            <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
+            <PageHeaderIcon>
               <Users className="size-6" />
-            </Badge>
-            <h2 className="title-2">
+            </PageHeaderIcon>
+            <h2 className="whitespace-normal font-bold text-2xl lg:text-4xl">
               Equipe do Centro de Referência PCT da Unesp
             </h2>
           </div>
@@ -108,7 +118,9 @@ export default function CentroDeReferencia() {
       </section>
 
       <section className="space-y-8">
-        <h2 className="title-2">Dados Gerenciais</h2>
+        <h2 className="whitespace-normal font-bold text-2xl lg:text-4xl">
+          Dados Gerenciais
+        </h2>
         <div className="space-y-4">
           <div className="flex items-start gap-3">
             <ListNumber>1</ListNumber>
@@ -159,7 +171,9 @@ export default function CentroDeReferencia() {
       </section>
 
       <section className="space-y-8">
-        <h2 className="title-2">Parcerias</h2>
+        <h2 className="whitespace-normal font-bold text-2xl lg:text-4xl">
+          Parcerias
+        </h2>
         <div className="space-y-4">
           <div className="flex items-start gap-3">
             <ListNumber>1</ListNumber>
@@ -194,6 +208,6 @@ export default function CentroDeReferencia() {
           </div>
         </div>
       </section>
-    </main>
+    </PageContainer>
   )
 }

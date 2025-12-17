@@ -31,7 +31,7 @@ const features = [
 export function Presentation() {
   return (
     <section className="space-y-12">
-      <h2 className="title-2 text-center font-semibold">
+      <h2 className="whitespace-normal text-center font-bold text-2xl lg:text-4xl">
         Uma breve apresentação da RedeCT
       </h2>
       <div className="grid gap-10 md:grid-cols-2">

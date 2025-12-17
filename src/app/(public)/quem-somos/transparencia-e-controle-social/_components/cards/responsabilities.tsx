@@ -3,7 +3,7 @@ import { Card } from '@components/ui/card'
 export function ResponsabilitiesCard() {
   return (
     <Card className="space-y-4 rounded-md bg-background p-8 text-justify">
-      <h2 className="title-3">
+      <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
         O Comitê Legitimador tem como responsabilidades:
       </h2>
       <ol className="space-y-4">

@@ -1,7 +1,13 @@
 import { FileTextIcon } from '@components/icons/file-text'
-import { Badge } from '@components/ui/badge'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeader,
+  PageHeaderIcon,
+  PageHeaderTitle,
+} from '../../_components/page-container'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
 const DynamicScientificJournalList = dynamic(() =>
@@ -12,23 +18,24 @@ const DynamicScientificJournalList = dynamic(() =>
 
 export default function PeriodicoERevistasParceiras() {
   return (
-    <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-10 lg:p-25">
-      <header className="space-y-8">
-        <div className="flex items-center gap-4">
-          <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
-            <FileTextIcon />
-          </Badge>
-          <h1 className="title-2">Periódico Científico da RedeCT</h1>
-        </div>
-        <p className="text-lg text-muted-foreground">
-          A RedeCT está orientada para a criação de sua Revista Científica, com
-          identidade específica entre universidade, ciência e Povos
-          Tradicionais.
-        </p>
-      </header>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderIcon>
+          <FileTextIcon />
+        </PageHeaderIcon>
+
+        <PageHeaderTitle>Periódico Científico da RedeCT</PageHeaderTitle>
+      </PageHeader>
+
+      <PageDescription>
+        A RedeCT está orientada para a criação de sua Revista Científica, com
+        identidade específica entre universidade, ciência e Povos Tradicionais.
+      </PageDescription>
 
       <section className="space-y-8">
-        <h2 className="title-3">Uma breve explicação</h2>
+        <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
+          Uma breve explicação
+        </h2>
         <p className="rounded-md border border-primary/20 bg-primary/20 p-10 text-justify text-muted-foreground">
           Este é um projeto audacioso e complexo, exigindo planejamento técnico,
           editorial e político. Enquanto o periódico não está pronto,
@@ -51,6 +58,6 @@ export default function PeriodicoERevistasParceiras() {
           <DynamicScientificJournalList />
         </Suspense>
       </section>
-    </main>
+    </PageContainer>
   )
 }

@@ -13,7 +13,9 @@ export default function CongressoRegional() {
           <Badge className="rounded-full bg-primary/10 p-1.5 text-primary">
             <MapIcon className="size-7" />
           </Badge>
-          <h1 className="title-2">Congresso Regional</h1>
+          <h1 className="whitespace-normal font-bold text-2xl lg:text-4xl">
+            Congresso Regional
+          </h1>
         </div>
         <p className="text-muted-foreground text-sm">
           Participe do nosso Congresso Regional, um evento dedicado à troca de

@@ -140,18 +140,6 @@
   }
 }
 
-.title-1 {
-  @apply text-3xl font-extrabold whitespace-normal lg:text-5xl;
-}
-
-.title-2 {
-  @apply text-2xl font-bold whitespace-normal lg:text-4xl;
-}
-
-.title-3 {
-  @apply text-xl font-bold whitespace-normal lg:text-2xl;
-}
-
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;

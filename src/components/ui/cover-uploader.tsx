@@ -2,7 +2,7 @@
 
 import { Alert, AlertDescription, AlertTitle } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
-import { type FileWithPreview, useCoverUpload } from '@hooks/use-cover-upload'
+import { type FileWithPreview, useCoverUpload } from '@hooks/use-cover-uploader'
 import { cn } from '@utils/cn'
 import {
   CloudUpload,

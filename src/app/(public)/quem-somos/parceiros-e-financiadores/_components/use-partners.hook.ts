@@ -23,6 +23,7 @@ export function usePartners() {
         page,
         limit,
         filter,
+        onlyActive: true,
       }),
   })
 

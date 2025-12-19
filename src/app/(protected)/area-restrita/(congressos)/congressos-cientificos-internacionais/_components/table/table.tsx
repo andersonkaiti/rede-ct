@@ -12,8 +12,8 @@ interface IInternationalScientificCongress {
   id: string
   title: string
   edition: number
-  startDate: string
-  endDate: string
+  startDate: Date
+  endDate: Date
   description: string | null
   location: string | null
   congressLink: string | null
@@ -22,8 +22,8 @@ interface IInternationalScientificCongress {
   programUrl: string | null
   adminReportUrl: string | null
   proceedingsUrl: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
   partners: object[]
   galleries: object[]
   format?: 'ONLINE' | 'IN_PERSON'

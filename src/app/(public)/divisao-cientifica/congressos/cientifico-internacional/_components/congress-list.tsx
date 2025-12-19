@@ -19,7 +19,7 @@ export function CongressList() {
       {isLoading && <LoadingSkeleton />}
 
       {data?.congresses && (
-        <div className="flex flex-col gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {data.congresses.map((congress) => (
             <CongressCard key={congress.id} congress={congress} />
           ))}

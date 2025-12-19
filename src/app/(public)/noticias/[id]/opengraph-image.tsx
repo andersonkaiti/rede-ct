@@ -19,7 +19,7 @@ interface IImageProps {
 export default async function Image({ params }: IImageProps) {
   const { id } = await params
 
-  const { imageUrl, title } = await getNewsById(id)
+  const news = await getNewsById(id)
 
   return new ImageResponse(
     <div
@@ -34,8 +34,8 @@ export default async function Image({ params }: IImageProps) {
       }}
     >
       <img
-        alt={title}
-        src={imageUrl ?? undefined}
+        alt={news?.title}
+        src={news?.imageUrl ?? undefined}
         style={{
           width: '100%',
           height: '100%',

@@ -3,6 +3,7 @@ import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { getNewsById } from '@http/news/get-news-by-id'
 import { formatDate } from '@utils/format-date'
 import Image from 'next/image'
+import { PageContainer } from '../../_components/page-container'
 import { NotFound } from './_components/not-found'
 import { ShareButton } from './_components/share-button'
 
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: INewsPageProps) {
   const news = await getNewsById(id)
 
   return {
-    title: news.title,
+    title: news?.title,
   }
 }
 
@@ -30,7 +31,7 @@ export default async function NewsPage({ params }: INewsPageProps) {
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
+    <PageContainer>
       <BackArrow href="/noticias" />
 
       <header className="space-y-8">
@@ -70,6 +71,6 @@ export default async function NewsPage({ params }: INewsPageProps) {
       <p className="text-justify text-base/7 text-muted-foreground">
         {news.content}
       </p>
-    </main>
+    </PageContainer>
   )
 }

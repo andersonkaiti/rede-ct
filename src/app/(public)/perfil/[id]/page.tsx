@@ -9,6 +9,7 @@ import { getUser } from '@http/users/get-user'
 import { getInitials } from '@utils/get-initials'
 import { Phone } from 'lucide-react'
 import Link from 'next/link'
+import { NotFound } from './_components/not-found'
 
 interface IUserProfileProps {
   params: Promise<{
@@ -20,6 +21,10 @@ export default async function UserProfile({ params }: IUserProfileProps) {
   const { id } = await params
 
   const user = await getUser(id)
+
+  if (!user) {
+    return <NotFound />
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">

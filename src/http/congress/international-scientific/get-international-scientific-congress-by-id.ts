@@ -1,12 +1,13 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
 import z from 'zod'
 
 export const getInternationalScientificCongressByIdSchema = z.object({
   id: z.string(),
   title: z.string(),
   edition: z.number(),
-  startDate: z.string(),
-  endDate: z.string(),
+  startDate: z.coerce.date(),
+  endDate: z.coerce.date(),
   description: z.string().nullable().optional(),
   location: z.string().nullable().optional(),
   websiteUrl: z.string().nullable().optional(),
@@ -16,12 +17,34 @@ export const getInternationalScientificCongressByIdSchema = z.object({
   programUrl: z.string().nullable().optional(),
   adminReportUrl: z.string().nullable().optional(),
   proceedingsUrl: z.string().nullable().optional(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
+  galleries: z.array(
+    z.object({
+      id: z.string(),
+      congressId: z.string(),
+      caption: z.string().nullable().optional(),
+      imageUrl: z.string(),
+    }),
+  ),
+  partners: z.array(
+    z.object({
+      id: z.string(),
+      congressId: z.string(),
+      name: z.string(),
+      logoUrl: z.string(),
+    }),
+  ),
 })
 
 export async function getInternationalScientificCongressById(id: string) {
-  const data = await api.get(`international-scientific-congress/${id}`).json()
+  try {
+    const data = await api.get(`international-scientific-congress/${id}`).json()
 
-  return getInternationalScientificCongressByIdSchema.parse(data)
+    return getInternationalScientificCongressByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      return null
+    }
+  }
 }

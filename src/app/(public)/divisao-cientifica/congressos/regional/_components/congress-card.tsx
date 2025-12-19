@@ -2,35 +2,24 @@
 
 import { Badge } from '@components/ui/badge'
 import { Button } from '@components/ui/button'
-import { Card, CardContent, CardHeader } from '@components/ui/card'
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@components/ui/collapsible'
-import { HighlightedLink } from '@components/ui/highlighted-link'
-import { Separator } from '@components/ui/separator'
-import { cn } from '@utils/cn'
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@components/ui/card'
 import { format } from 'date-fns'
-import {
-  Calendar,
-  ChevronDown,
-  FileText,
-  ImageIcon,
-  MapPin,
-  Users,
-} from 'lucide-react'
-import { useState } from 'react'
-import { CongressGalleryImage } from './congress-gallery-image'
-import { Partner } from './partner'
+import { Calendar, Handshake, ImageIcon, MapPin } from 'lucide-react'
+import Link from 'next/link'
 
 interface CongressCardProps {
   congress: {
     id: string
     title: string
     edition: number
-    startDate: string
-    endDate: string
+    startDate: Date
+    endDate: Date
     description: string | null
     location: string | null
     congressLink: string | null
@@ -39,8 +28,8 @@ interface CongressCardProps {
     programUrl: string | null
     adminReportUrl: string | null
     proceedingsUrl: string | null
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
     regionalCongressPartners: {
       id: string
       name: string
@@ -57,250 +46,59 @@ interface CongressCardProps {
 }
 
 export function CongressCard({ congress }: CongressCardProps) {
-  const [openDescription, setOpenDescription] = useState(false)
-  const [openGallery, setOpenGallery] = useState(false)
-  const [openPartners, setOpenPartners] = useState(false)
-  const [openLinks, setOpenLinks] = useState(false)
-
-  const hasLinks =
-    congress.congressLink ||
-    congress.noticeUrl ||
-    congress.scheduleUrl ||
-    congress.programUrl ||
-    congress.adminReportUrl ||
-    congress.proceedingsUrl
-
   return (
-    <Card className="flex flex-col">
-      <CardHeader className="border-border border-b p-6">
-        <div className="flex flex-col gap-4">
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="font-semibold text-foreground text-xl">
-              {congress.edition}º Congresso Regional
-            </h3>
+    <Card>
+      <CardHeader className="space-y-3">
+        <div className="flex items-start justify-between gap-2">
+          <CardTitle className="font-semibold text-foreground text-xl">
+            {congress.edition}º Congresso Regional
+          </CardTitle>
 
-            <Badge variant="outline" className="whitespace-nowrap text-xs">
-              Edição {congress.edition}
-            </Badge>
-          </div>
-
-          <h4 className="text-justify font-normal text-muted-foreground text-sm">
-            {congress.title}
-          </h4>
+          <Badge className="whitespace-nowrap border-primary/20 bg-primary/20 text-primary text-xs">
+            {congress.edition}ª Edição
+          </Badge>
         </div>
+
+        <h4 className="text-justify text-sm">{congress.title}</h4>
       </CardHeader>
 
-      <CardContent className="flex flex-col gap-2">
-        {congress.description && (
-          <>
-            <Collapsible
-              open={openDescription}
-              onOpenChange={setOpenDescription}
-            >
-              <CollapsibleTrigger asChild>
-                <Button
-                  type="button"
-                  className="group flex w-full items-center justify-between gap-2"
-                  variant="ghost"
-                >
-                  <h4 className="flex gap-2 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
-                    <FileText className="size-4" />
-                    <span>Descrição</span>
-                  </h4>
-
-                  <ChevronDown
-                    className={cn(
-                      'ml-1 size-4 text-muted-foreground transition-transform group-hover:cursor-pointer',
-                      openDescription && 'rotate-180',
-                    )}
-                  />
-                </Button>
-              </CollapsibleTrigger>
-
-              <CollapsibleContent className="w-full p-4 text-justify text-muted-foreground text-sm transition-all data-[state=open]:animate-fadeIn">
-                {congress.description}
-              </CollapsibleContent>
-            </Collapsible>
-
-            <Separator />
-          </>
-        )}
-
-        <div className="flex flex-col gap-4 p-4">
-          <div className="flex items-center gap-2 text-muted-foreground text-sm">
-            <Calendar className="size-4" />
-            <span>{format(new Date(congress.startDate), 'dd/MM/yyyy')}</span>
-          </div>
-
-          {congress.location && (
-            <div className="flex items-center gap-2 text-muted-foreground text-sm">
-              <MapPin className="size-4" />
-              <span>{congress.location}</span>
-            </div>
-          )}
-
-          {congress.regionalCongressPartners.length > 0 && (
-            <div className="flex items-center gap-2 text-muted-foreground text-sm">
-              <Users className="size-4" />
-              <span>
-                {congress.regionalCongressPartners.length} parceiro(s)
-              </span>
-            </div>
-          )}
-
-          {congress.regionalCongressGalleryItems.length > 0 && (
-            <div className="flex items-center gap-2 text-muted-foreground text-sm">
-              <ImageIcon className="size-4" />
-              <span>
-                {congress.regionalCongressGalleryItems.length} foto(s) na
-                galeria
-              </span>
-            </div>
-          )}
+      <CardContent className="space-y-3">
+        <div className="flex items-center gap-1 text-sm">
+          <Calendar className="size-4" />
+          <span>{format(new Date(congress.startDate), 'dd/MM/yyyy')}</span>
         </div>
 
-        {hasLinks && (
-          <>
-            <Separator />
-
-            <Collapsible open={openLinks} onOpenChange={setOpenLinks}>
-              <CollapsibleTrigger asChild>
-                <Button
-                  type="button"
-                  className="group flex w-full items-center justify-between gap-2"
-                  variant="ghost"
-                >
-                  <h4 className="flex gap-2 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
-                    <FileText className="size-4" />
-                    <span>Documentos e Links</span>
-                  </h4>
-
-                  <ChevronDown
-                    className={cn(
-                      'ml-1 size-4 text-muted-foreground transition-transform group-hover:cursor-pointer',
-                      openLinks && 'rotate-180',
-                    )}
-                  />
-                </Button>
-              </CollapsibleTrigger>
-
-              <CollapsibleContent className="overflow-hidden transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                <div className="flex flex-col gap-2 p-4">
-                  <div className="grid grid-cols-1 gap-2">
-                    {congress.congressLink && (
-                      <HighlightedLink href={congress.congressLink}>
-                        Link do congresso
-                      </HighlightedLink>
-                    )}
-
-                    {congress.noticeUrl && (
-                      <HighlightedLink href={congress.noticeUrl}>
-                        Edital do congresso
-                      </HighlightedLink>
-                    )}
-
-                    {congress.scheduleUrl && (
-                      <HighlightedLink href={congress.scheduleUrl}>
-                        Cronograma
-                      </HighlightedLink>
-                    )}
-
-                    {congress.programUrl && (
-                      <HighlightedLink href={congress.programUrl}>
-                        Programação
-                      </HighlightedLink>
-                    )}
-
-                    {congress.adminReportUrl && (
-                      <HighlightedLink href={congress.adminReportUrl}>
-                        Relatório Administrativo
-                      </HighlightedLink>
-                    )}
-
-                    {congress.proceedingsUrl && (
-                      <HighlightedLink href={congress.proceedingsUrl}>
-                        Anais
-                      </HighlightedLink>
-                    )}
-                  </div>
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
-          </>
-        )}
-
-        {congress.regionalCongressGalleryItems.length > 0 && (
-          <>
-            <Separator />
-
-            <Collapsible open={openGallery} onOpenChange={setOpenGallery}>
-              <CollapsibleTrigger asChild>
-                <Button
-                  type="button"
-                  className="group flex w-full items-center justify-between gap-2"
-                  variant="ghost"
-                >
-                  <h4 className="flex gap-2 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
-                    <ImageIcon className="size-4" />
-                    <span>Galeria</span>
-                  </h4>
-
-                  <ChevronDown
-                    className={cn(
-                      'ml-1 size-4 text-muted-foreground transition-transform group-hover:cursor-pointer',
-                      openGallery && 'rotate-180',
-                    )}
-                  />
-                </Button>
-              </CollapsibleTrigger>
-
-              <CollapsibleContent className="overflow-hidden transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                <div className="grid grid-cols-3 gap-4 p-4">
-                  {congress.regionalCongressGalleryItems.map((gallery) => (
-                    <CongressGalleryImage key={gallery.id} image={gallery} />
-                  ))}
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
-          </>
+        {congress.location && (
+          <div className="flex items-center gap-1 text-sm">
+            <MapPin className="size-4" />
+            <span>{congress.location}</span>
+          </div>
         )}
 
         {congress.regionalCongressPartners.length > 0 && (
-          <>
-            <Separator />
+          <div className="flex items-center gap-1 text-sm">
+            <Handshake className="size-4" />
+            <span>{congress.regionalCongressPartners.length} parceiro(s)</span>
+          </div>
+        )}
 
-            <Collapsible open={openPartners} onOpenChange={setOpenPartners}>
-              <CollapsibleTrigger asChild>
-                <Button
-                  type="button"
-                  className="group flex w-full items-center justify-between gap-2"
-                  variant="ghost"
-                >
-                  <h4 className="flex gap-2 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
-                    <Users className="size-4" />
-                    <span>Parceiros</span>
-                  </h4>
-
-                  <ChevronDown
-                    className={cn(
-                      'ml-1 size-4 text-muted-foreground transition-transform group-hover:cursor-pointer',
-                      openPartners && 'rotate-180',
-                    )}
-                  />
-                </Button>
-              </CollapsibleTrigger>
-
-              <CollapsibleContent className="overflow-hidden transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                <div className="grid grid-cols-2 gap-4 p-4 sm:grid-cols-3">
-                  {congress.regionalCongressPartners.map((partner) => (
-                    <Partner key={partner.id} partner={partner} />
-                  ))}
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
-          </>
+        {congress.regionalCongressGalleryItems.length > 0 && (
+          <div className="flex items-center gap-1 text-sm">
+            <ImageIcon className="size-4" />
+            <span>
+              {congress.regionalCongressGalleryItems.length} foto(s) na galeria
+            </span>
+          </div>
         )}
       </CardContent>
+
+      <CardFooter>
+        <Button asChild className="w-full" variant="outline">
+          <Link href={`/divisao-cientifica/congressos/regional/${congress.id}`}>
+            Ver mais detalhes
+          </Link>
+        </Button>
+      </CardFooter>
     </Card>
   )
 }

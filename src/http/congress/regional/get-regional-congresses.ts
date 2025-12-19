@@ -10,13 +10,17 @@ interface IGetRegionalCongressesRequest {
 }
 
 export const getRegionalCongressesSchema = z.object({
-  data: z.array(
+  page: z.number(),
+  totalPages: z.number(),
+  offset: z.number(),
+  limit: z.number(),
+  congresses: z.array(
     z.object({
       id: z.string(),
       title: z.string(),
       edition: z.number(),
-      startDate: z.string(),
-      endDate: z.string(),
+      startDate: z.coerce.date(),
+      endDate: z.coerce.date(),
       description: z.string().nullable(),
       location: z.string().nullable(),
       congressLink: z.string().nullable(),
@@ -25,8 +29,8 @@ export const getRegionalCongressesSchema = z.object({
       programUrl: z.string().nullable(),
       adminReportUrl: z.string().nullable(),
       proceedingsUrl: z.string().nullable(),
-      createdAt: z.string(),
-      updatedAt: z.string(),
+      createdAt: z.coerce.date(),
+      updatedAt: z.coerce.date(),
       regionalCongressPartners: z.array(
         z.object({
           id: z.string(),
@@ -45,12 +49,6 @@ export const getRegionalCongressesSchema = z.object({
       ),
     }),
   ),
-  pagination: z.object({
-    page: z.number(),
-    limit: z.number(),
-    total: z.number(),
-    totalPages: z.number(),
-  }),
 })
 
 export async function getRegionalCongresses({

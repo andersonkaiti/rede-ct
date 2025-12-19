@@ -1,63 +1,46 @@
-'use client'
-
-import { Card, CardContent, CardHeader } from '@components/ui/card'
-import { Separator } from '@components/ui/separator'
+import { Card, CardContent, CardFooter, CardHeader } from '@components/ui/card'
 import { Skeleton } from '@components/ui/skeleton'
 
 const SKELETON_COUNT = 6
 
 export function LoadingSkeleton() {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
       {Array.from({ length: SKELETON_COUNT }).map((_, index) => (
-        <Card key={index} className="flex flex-col">
-          <CardHeader className="border-border border-b p-6">
+        <Card key={index}>
+          <CardHeader className="space-y-3">
             <div className="flex items-start justify-between gap-2">
-              <Skeleton className="h-7 w-1/3 rounded-md" />
-              <Skeleton className="h-5.5 w-20 shrink-0 rounded-full" />
+              <Skeleton className="h-7 w-full rounded-md" />
+              <Skeleton className="h-6 w-20 shrink-0 rounded-full" />
             </div>
-            <Skeleton className="mt-2 h-5 w-3/4 rounded-md" />
+            <Skeleton className="h-5 w-3/4 rounded-md" />
           </CardHeader>
 
-          <CardContent className="flex flex-col gap-2 px-6">
-            <div className="p-2.5">
-              <div className="flex items-center justify-between">
-                <Skeleton className="h-4 w-24 rounded-md" />
-                <Skeleton className="size-4 rounded-full" />
-              </div>
+          <CardContent className="space-y-3">
+            <div className="flex items-center gap-1">
+              <Skeleton className="size-4 rounded-sm" />
+              <Skeleton className="h-4 w-24 rounded-md" />
             </div>
 
-            <Separator />
-
-            <div className="space-y-4 p-4">
-              <div className="flex items-center gap-2">
-                <Skeleton className="size-5 rounded-sm" />
-                <Skeleton className="h-4 w-32 rounded-md" />
-              </div>
-              <div className="flex items-center gap-2">
-                <Skeleton className="size-5 rounded-sm" />
-                <Skeleton className="h-4 w-40 rounded-md" />
-              </div>
-              <div className="flex items-center gap-2">
-                <Skeleton className="size-5 rounded-sm" />
-                <Skeleton className="h-4 w-24 rounded-md" />
-              </div>
-              <div className="flex items-center gap-2">
-                <Skeleton className="size-5 rounded-sm" />
-                <Skeleton className="h-4 w-24 rounded-md" />
-              </div>
-            </div>
-
-            <Separator />
-
-            <div className="space-y-2 p-4">
+            <div className="flex items-center gap-1">
+              <Skeleton className="size-4 rounded-sm" />
               <Skeleton className="h-4 w-32 rounded-md" />
-              <div className="space-y-2">
-                <Skeleton className="h-9 w-full rounded-md" />
-                <Skeleton className="h-9 w-full rounded-md" />
-              </div>
+            </div>
+
+            <div className="flex items-center gap-1">
+              <Skeleton className="size-4 rounded-sm" />
+              <Skeleton className="h-4 w-28 rounded-md" />
+            </div>
+
+            <div className="flex items-center gap-1">
+              <Skeleton className="size-4 rounded-sm" />
+              <Skeleton className="h-4 w-36 rounded-md" />
             </div>
           </CardContent>
+
+          <CardFooter>
+            <Skeleton className="h-10 w-full rounded-md" />
+          </CardFooter>
         </Card>
       ))}
     </div>

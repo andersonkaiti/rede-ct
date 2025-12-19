@@ -8,11 +8,11 @@ interface IRegiment {
   id: string
   title: string
   version: string
-  publishedAt: string
+  publishedAt: Date
   documentUrl: string
   status: 'DRAFT' | 'IN_FORCE' | 'REVOKED'
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 const STATUS_LABEL_MAP: Record<IRegiment['status'], string> = {

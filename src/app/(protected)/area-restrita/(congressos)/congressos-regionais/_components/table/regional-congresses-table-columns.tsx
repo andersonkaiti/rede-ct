@@ -5,8 +5,8 @@ interface IRegionalCongress {
   id: string
   title: string
   edition: number
-  startDate: string
-  endDate: string
+  startDate: Date
+  endDate: Date
   description: string | null
   location: string | null
   congressLink: string | null
@@ -15,8 +15,8 @@ interface IRegionalCongress {
   programUrl: string | null
   adminReportUrl: string | null
   proceedingsUrl: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
   regionalCongressPartners: object[]
   regionalCongressGalleryItems: object[]
 }

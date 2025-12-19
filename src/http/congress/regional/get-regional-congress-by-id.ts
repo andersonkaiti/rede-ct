@@ -5,8 +5,8 @@ export const getRegionalCongressByIdSchema = z.object({
   id: z.string(),
   title: z.string(),
   edition: z.number(),
-  startDate: z.string(),
-  endDate: z.string(),
+  startDate: z.coerce.date(),
+  endDate: z.coerce.date(),
   description: z.string().nullable(),
   location: z.string().nullable(),
   congressLink: z.string().nullable(),
@@ -15,8 +15,8 @@ export const getRegionalCongressByIdSchema = z.object({
   programUrl: z.string().nullable(),
   adminReportUrl: z.string().nullable(),
   proceedingsUrl: z.string().nullable(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
   regionalCongressPartners: z.array(
     z.object({
       id: z.string(),

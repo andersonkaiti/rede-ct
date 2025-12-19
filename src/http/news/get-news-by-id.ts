@@ -1,4 +1,5 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
 import z from 'zod'
 
 export const getNewsByIdSchema = z.object({
@@ -23,7 +24,13 @@ export const getNewsByIdSchema = z.object({
 })
 
 export async function getNewsById(id: string) {
-  const data = await api.get(`news/${id}`).json()
+  try {
+    const data = await api.get(`news/${id}`).json()
 
-  return getNewsByIdSchema.parse(data)
+    return getNewsByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      return null
+    }
+  }
 }

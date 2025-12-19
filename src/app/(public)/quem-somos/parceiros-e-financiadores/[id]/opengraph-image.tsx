@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/performance/noImgElement: needed */
 
-import { getNewsById } from '@http/news/get-news-by-id'
+import { getPartnerById } from '@http/partners/get-partner-by-id'
 import { ImageResponse } from 'next/og'
 
 export const alt = 'About Acme'
@@ -19,7 +19,7 @@ interface IImageProps {
 export default async function Image({ params }: IImageProps) {
   const { id } = await params
 
-  const news = await getNewsById(id)
+  const partner = await getPartnerById(id)
 
   return new ImageResponse(
     <div
@@ -34,8 +34,8 @@ export default async function Image({ params }: IImageProps) {
       }}
     >
       <img
-        alt={news?.title}
-        src={news?.imageUrl ?? undefined}
+        alt={partner?.name}
+        src={partner?.logoUrl ?? undefined}
         style={{
           width: '100%',
           height: '100%',

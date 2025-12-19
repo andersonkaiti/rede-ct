@@ -11,22 +11,22 @@ import { useMeetings } from './use-meetings.hook'
 interface IMeeting {
   id: string
   title: string
-  scheduledAt: string
+  scheduledAt: Date
   format: 'ONLINE' | 'IN_PERSON'
   agenda: string
   meetingLink?: string | null
   location?: string | null
   status: 'PENDING' | 'CANCELLED' | 'FINISHED'
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
   minutes: {
     id: string
     title: string
     publishedAt: string
     documentUrl: string
     meetingId: string
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
   } | null
 }
 

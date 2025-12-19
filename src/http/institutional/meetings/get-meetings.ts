@@ -22,14 +22,14 @@ export const getMeetingsSchema = z.object({
     z.object({
       id: z.string(),
       title: z.string(),
-      scheduledAt: z.string(),
+      scheduledAt: z.coerce.date(),
       format: z.literal('ONLINE'),
       agenda: z.string(),
       meetingLink: z.string(),
       location: z.string().nullable(),
       status: z.enum(['CANCELLED', 'PENDING', 'FINISHED']),
-      createdAt: z.string(),
-      updatedAt: z.string(),
+      createdAt: z.coerce.date(),
+      updatedAt: z.coerce.date(),
       minutes: z
         .object({
           id: z.string(),
@@ -37,8 +37,8 @@ export const getMeetingsSchema = z.object({
           publishedAt: z.string(),
           documentUrl: z.string(),
           meetingId: z.string(),
-          createdAt: z.string(),
-          updatedAt: z.string(),
+          createdAt: z.coerce.date(),
+          updatedAt: z.coerce.date(),
         })
         .nullable(),
     }),

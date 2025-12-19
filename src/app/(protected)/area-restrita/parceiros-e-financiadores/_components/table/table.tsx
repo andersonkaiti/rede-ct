@@ -15,10 +15,10 @@ interface IPartner {
   websiteUrl: string | null
   description: string | null
   category: string | null
-  since: string
+  since: Date
   isActive: boolean
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export function Table() {

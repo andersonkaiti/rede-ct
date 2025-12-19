@@ -26,10 +26,10 @@ export const getPartnersSchema = z.object({
       websiteUrl: z.string().nullable(),
       description: z.string().nullable(),
       category: z.string().nullable(),
-      since: z.string(),
+      since: z.coerce.date(),
       isActive: z.boolean(),
-      createdAt: z.string(),
-      updatedAt: z.string(),
+      createdAt: z.coerce.date(),
+      updatedAt: z.coerce.date(),
     }),
   ),
 })

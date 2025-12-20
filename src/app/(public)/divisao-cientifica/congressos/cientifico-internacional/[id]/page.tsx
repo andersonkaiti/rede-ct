@@ -1,15 +1,10 @@
 import { BackArrow } from '@components/ui/back-arrow'
 import { Badge } from '@components/ui/badge'
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@components/ui/collapsible'
 import { HighlightedLink } from '@components/ui/highlighted-link'
 import { Separator } from '@components/ui/separator'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@components/ui/tooltip'
 import { getInternationalScientificCongressById } from '@http/congress/international-scientific/get-international-scientific-congress-by-id'
 import { formatDate } from '@utils/format-date'
-import { ChevronUp } from 'lucide-react'
 import Image from 'next/image'
 import {
   PageContainer,
@@ -59,40 +54,43 @@ export default async function CongressDetails({
     <PageContainer>
       <BackArrow href="/quem-somos/reunioes-e-atas" />
 
-      <PageHeader className="flex-col items-start">
+      <PageHeader className="flex-col items-start gap-8">
         <Badge className="whitespace-nowrap rounded-full bg-primary/20 px-4 py-1 font-semibold text-primary">
           {congress.edition}ª Edição
         </Badge>
 
-        <h1 className="mt-4 font-bold text-5xl">{congress.title}</h1>
+        <h1 className="font-bold text-5xl">{congress.title}</h1>
+
+        <div className="flex flex-col items-start gap-4 text-muted-foreground text-sm md:flex-row md:items-center">
+          <time>
+            {formatDate(String(congress.startDate))} a{' '}
+            {formatDate(String(congress.endDate))}
+          </time>
+
+          {congress.location && <span>{congress.location}</span>}
+        </div>
+
+        <div className="flex w-full flex-col gap-2">
+          <div className="flex flex-col items-center gap-2 md:flex-row">
+            <CongressButton congressLink={congress.congressLink} />
+
+            <Separator
+              orientation="vertical"
+              className="hidden h-3! sm:block"
+            />
+
+            <ShareButton congress={congress} />
+          </div>
+
+          <Separator />
+        </div>
       </PageHeader>
 
-      <div className="flex flex-col items-start gap-4 text-muted-foreground md:flex-row md:items-center">
-        <time>
-          {formatDate(String(congress.startDate))} a{' '}
-          {formatDate(String(congress.endDate))}
-        </time>
-
-        {congress.location && <span>{congress.location}</span>}
-      </div>
-
-      <div className="flex flex-col items-center gap-2 md:flex-row">
-        <CongressButton congressLink={congress.congressLink} />
-
-        <ShareButton congress={congress} />
-      </div>
-
-      <Separator />
-
-      <PageMain className="gap-8">
+      <PageMain className="gap-16">
         {congress.description && (
-          <section className="my-4 space-y-8">
-            <h1 className="font-bold text-2xl">Descrição</h1>
-
-            <p className="whitespace-pre-wrap text-justify">
-              {congress.description}
-            </p>
-          </section>
+          <p className="whitespace-pre-wrap text-justify">
+            {congress.description}
+          </p>
         )}
 
         <section className="my-4 space-y-8">
@@ -104,7 +102,7 @@ export default async function CongressDetails({
             </p>
           )}
 
-          <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {congress.noticeUrl && (
               <HighlightedLink href={congress.noticeUrl}>
                 Edital do congresso
@@ -148,28 +146,23 @@ export default async function CongressDetails({
 
           <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {congress.galleries.map((gallery) => (
-              <div className="space-y-2" key={gallery.id}>
-                <div className="relative h-60 w-full overflow-hidden rounded-md">
-                  <Image
-                    src={gallery.imageUrl}
-                    fill
-                    className="object-cover"
-                    alt={gallery.caption || gallery.id}
-                  />
-                </div>
-
-                <Collapsible>
-                  <CollapsibleTrigger className="group flex w-full cursor-pointer items-center justify-between">
-                    <span>Legenda</span>
-                    <ChevronUp className="size-4 transition-transform group-data-[state=open]:rotate-180" />
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <p className="whitespace-pre-wrap text-justify">
-                      {gallery.caption}
-                    </p>
-                  </CollapsibleContent>
-                </Collapsible>
-              </div>
+              <Tooltip key={gallery.id}>
+                <TooltipTrigger>
+                  <div className="relative h-60 w-full overflow-hidden rounded-md">
+                    <Image
+                      src={gallery.imageUrl}
+                      fill
+                      className="object-cover"
+                      alt={gallery.caption || gallery.id}
+                    />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-80">
+                  <p className="whitespace-pre-wrap text-justify">
+                    {gallery.caption}
+                  </p>
+                </TooltipContent>
+              </Tooltip>
             ))}
           </div>
         </section>
@@ -185,20 +178,23 @@ export default async function CongressDetails({
 
           <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {congress.partners.map((partner) => (
-              <div className="space-y-2" key={partner.id}>
-                <div className="relative h-60 w-full overflow-hidden rounded-md">
-                  <Image
-                    src={partner.logoUrl}
-                    fill
-                    className="object-cover"
-                    alt={partner.name}
-                  />
-                </div>
-
-                <p className="whitespace-pre-wrap text-justify">
-                  {partner.name}
-                </p>
-              </div>
+              <Tooltip key={partner.id}>
+                <TooltipTrigger>
+                  <div className="relative h-60 w-full overflow-hidden rounded-md">
+                    <Image
+                      src={partner.logoUrl}
+                      fill
+                      className="object-cover"
+                      alt={partner.name}
+                    />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-80">
+                  <p className="whitespace-pre-wrap text-justify">
+                    {partner.name}
+                  </p>
+                </TooltipContent>
+              </Tooltip>
             ))}
           </div>
         </section>

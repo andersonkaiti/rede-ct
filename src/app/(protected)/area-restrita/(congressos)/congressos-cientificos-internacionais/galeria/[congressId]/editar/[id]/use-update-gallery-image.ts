@@ -60,7 +60,7 @@ export function useUpdateGalleryImage() {
       toast.success('Imagem da galeria atualizada com sucesso.')
 
       router.push(
-        `/area-restrita/congressos-cientificos-internacionais/${congressId}/galeria/${id}`,
+        `/area-restrita/congressos-cientificos-internacionais/galeria/${congressId}`,
       )
     } catch (err) {
       if (err instanceof HTTPError) {

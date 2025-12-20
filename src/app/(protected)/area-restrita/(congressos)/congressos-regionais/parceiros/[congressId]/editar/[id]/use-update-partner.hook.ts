@@ -55,9 +55,7 @@ export function useUpdatePartner() {
 
       toast.success('Parceiro atualizado com sucesso.')
 
-      router.push(
-        `/area-restrita/congressos-regionais/${congressId}/parceiros/${id}`,
-      )
+      router.push(`/area-restrita/congressos-regionais/parceiros/${congressId}`)
     } catch (err) {
       if (err instanceof HTTPError) {
         const errorBody = await err.response.json()

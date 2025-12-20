@@ -5,7 +5,7 @@ const ARRAY_SIZE = 6
 
 export function LoadingSkeleton() {
   return (
-    <div className="grid grid-cols-1 gap-x-8 gap-y-20 sm:grid-cols-2">
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
       {[...new Array(ARRAY_SIZE)].map((_, index: number) => (
         <div className="flex flex-col gap-2" key={index}>
           <header className="h-80">
@@ -16,29 +16,17 @@ export function LoadingSkeleton() {
             </div>
           </header>
 
-          <div className="flex h-fit grow flex-col justify-between gap-4 py-2">
+          <div className="flex h-fit grow flex-col gap-4 py-2">
             <div className="space-y-4">
-              <div className="flex items-center gap-2 text-sm leading-4">
-                <Skeleton className="h-4 w-48 rounded-full" />
-              </div>
+              <Skeleton className="h-6 w-3/4 rounded-md" />
 
               <div className="flex flex-wrap gap-2">
-                <Skeleton className="h-6 w-32 rounded-lg" />
-                <Skeleton className="h-6 w-24 rounded-lg" />
-              </div>
-
-              <Skeleton className="h-8 w-2/3 rounded-md" />
-            </div>
-
-            <div className="space-y-2">
-              <Skeleton className="h-5 w-20 rounded-full" />
-              <div className="flex items-center">
-                <Skeleton className="mr-1.5 size-4 rounded-full" />
-                <Skeleton className="h-4 w-32 rounded-full" />
+                <Skeleton className="h-6 w-32 rounded-full" />
+                <Skeleton className="h-6 w-24 rounded-full" />
               </div>
             </div>
 
-            <footer>
+            <footer className="mt-4">
               <Skeleton className="h-9 w-full rounded-md" />
             </footer>
           </div>

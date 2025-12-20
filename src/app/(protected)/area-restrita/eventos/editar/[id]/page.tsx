@@ -28,11 +28,11 @@ import {
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../../../_components/page-container'
 import { MAX_IMAGE_SIZE_BYTES, useUpdateEvent } from './use-update-event.hook'
 
 export default function EditarEvento() {
-  const { form, serverError, isSubmitting, submit, event } = useUpdateEvent()
+  const { form, serverError, submit, event } = useUpdateEvent()
 
   return (
     <PageContainer>
@@ -79,7 +79,10 @@ export default function EditarEvento() {
                   <FormLabel>
                     Formato <span className="text-primary">*</span>
                   </FormLabel>
-                  <Select value={field.value} onValueChange={field.onChange}>
+                  <Select
+                    defaultValue={field.value}
+                    onValueChange={field.onChange}
+                  >
                     <FormControl>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Selecione o formato" />
@@ -101,7 +104,10 @@ export default function EditarEvento() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Status</FormLabel>
-                  <Select value={field.value} onValueChange={field.onChange}>
+                  <Select
+                    defaultValue={field.value}
+                    onValueChange={field.onChange}
+                  >
                     <FormControl>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Selecione o status" />
@@ -224,11 +230,13 @@ export default function EditarEvento() {
 
           <Button
             className="w-full cursor-pointer"
-            disabled={isSubmitting}
+            disabled={form.formState.isSubmitting}
             type="submit"
             variant="outline"
           >
-            {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
             Editar evento
           </Button>
         </form>

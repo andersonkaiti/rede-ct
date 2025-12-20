@@ -19,11 +19,11 @@ const getWebinarsSchema = z.object({
       id: z.string(),
       title: z.string(),
       description: z.string().nullable(),
-      scheduledAt: z.string(),
+      scheduledAt: z.coerce.date(),
       webinarLink: z.string().nullable(),
       thumbnailUrl: z.string(),
-      createdAt: z.string(),
-      updatedAt: z.string(),
+      createdAt: z.coerce.date(),
+      updatedAt: z.coerce.date(),
       guests: z
         .array(
           z.object({
@@ -31,8 +31,8 @@ const getWebinarsSchema = z.object({
             name: z.string(),
             emailAddress: z.email(),
             avatarUrl: z.string().nullable(),
-            createdAt: z.string(),
-            updatedAt: z.string(),
+            createdAt: z.coerce.date(),
+            updatedAt: z.coerce.date(),
             orcid: z.string().nullable(),
             phone: z.string().nullable(),
             lattesUrl: z.string().nullable(),

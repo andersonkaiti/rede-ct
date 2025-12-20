@@ -5,11 +5,11 @@ import { ActionsRow } from './actions-row'
 
 interface IWebinar {
   id: string
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
   title: string
   description: string | null
-  scheduledAt: string
+  scheduledAt: Date
   webinarLink: string | null
 }
 

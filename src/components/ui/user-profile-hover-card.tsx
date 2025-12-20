@@ -29,27 +29,23 @@ export function UserProfileHoverCard({
 }: UserProfileHoverCardProps) {
   return (
     <HoverCard>
-      <div className="flex items-center gap-2">
-        {avatarVisibility && (
-          <Avatar className="size-7 shrink-0">
-            <AvatarImage
-              alt={`Avatar de ${user.name}`}
-              src={user.avatarUrl ?? undefined}
-            />
-            <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
-          </Avatar>
-        )}
-        <div className="space-y-0.5">
-          <HoverCardTrigger asChild>
-            <Link
-              className="font-medium text-sm hover:underline"
-              href={`/perfil/${user.id}`}
-            >
-              <span className="font-medium text-sm">{user.name}</span>
-            </Link>
-          </HoverCardTrigger>
+      <HoverCardTrigger asChild>
+        <div className="flex w-fit cursor-pointer items-center gap-2 rounded-md px-2 py-1 transition hover:bg-muted">
+          {avatarVisibility && (
+            <Avatar className="size-7 shrink-0">
+              <AvatarImage
+                alt={`Avatar de ${user.name}`}
+                src={user.avatarUrl ?? undefined}
+              />
+              <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+            </Avatar>
+          )}
+          <Link className="text-sm" href={`/perfil/${user.id}`}>
+            {user.name}
+          </Link>
         </div>
-      </div>
+      </HoverCardTrigger>
+
       <HoverCardContent>
         <div className="space-y-3">
           <div className="flex items-center gap-3">
@@ -60,6 +56,7 @@ export function UserProfileHoverCard({
               />
               <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
             </Avatar>
+
             <div className="space-y-0.5 text-start">
               <span className="block font-medium text-sm">{user.name}</span>
               <span className="block text-muted-foreground text-xs">
@@ -67,6 +64,7 @@ export function UserProfileHoverCard({
               </span>
             </div>
           </div>
+
           <span className="block text-start text-muted-foreground text-xs">
             Membro desde{' '}
             {new Date(user.createdAt).toLocaleDateString('pt-BR', {

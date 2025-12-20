@@ -10,11 +10,11 @@ import { webinarTableColumns } from './webinar-table-columns'
 
 interface IWebinar {
   id: string
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
   title: string
   description: string | null
-  scheduledAt: string
+  scheduledAt: Date
   webinarLink: string | null
 }
 

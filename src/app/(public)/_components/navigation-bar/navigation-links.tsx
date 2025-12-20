@@ -148,7 +148,6 @@ export const navigationLinks: NavigationLinkType[] = [
     ],
   },
   {
-    path: '/portfolio',
     label: 'Portfólio',
     children: [
       {

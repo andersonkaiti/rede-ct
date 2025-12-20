@@ -8,7 +8,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@components/ui/card'
-import { Calendar, MapPin } from 'lucide-react'
+import { format } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 import Link from 'next/link'
 import { MeetingFormat } from './meeting-format'
 import { MeetingStatus } from './meeting-status'
@@ -38,6 +39,12 @@ interface IMeetingCardProps {
 }
 
 export function MeetingCard({ meeting }: IMeetingCardProps) {
+  const formattedScheduledAt = format(
+    meeting.scheduledAt,
+    "d 'de' MMMM 'de' yyyy 'às' HH:mm",
+    { locale: ptBR },
+  )
+
   return (
     <Card className="flex flex-col">
       <CardHeader>
@@ -52,26 +59,21 @@ export function MeetingCard({ meeting }: IMeetingCardProps) {
         </div>
       </CardHeader>
 
-      <CardContent className="flex flex-col gap-2">
-        <span className="flex items-center gap-2 text-sm">
-          <Calendar className="size-4" />
-          {meeting.scheduledAt.toLocaleDateString('pt-BR', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-          })}{' '}
-          às{' '}
-          {meeting.scheduledAt.toLocaleTimeString('pt-BR', {
-            hour: '2-digit',
-            minute: '2-digit',
-          })}
-        </span>
+      <CardContent className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="space-y-1 text-sm">
+          <h2 className="text-muted-foreground">Data e Horário</h2>
+          <p className="whitespace-pre-wrap text-justify text-sm">
+            {formattedScheduledAt}
+          </p>
+        </div>
 
         {meeting.location && (
-          <span className="flex items-center gap-2 text-sm">
-            <MapPin className="size-4" />
-            {meeting.location}
-          </span>
+          <div className="space-y-1 text-sm">
+            <h2 className="text-muted-foreground">Local</h2>
+            <p className="whitespace-pre-wrap text-justify text-sm">
+              {meeting.location}
+            </p>
+          </div>
         )}
       </CardContent>
 

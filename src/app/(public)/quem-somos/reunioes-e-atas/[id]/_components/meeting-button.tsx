@@ -19,7 +19,7 @@ export function MeetingButton({ meetingLink }: IMeetingButtonProps) {
     >
       <Link href={meetingLink} target="_blank" rel="noopener noreferrer">
         <LinkIcon />
-        Website
+        Acessar reunião
       </Link>
     </Button>
   )

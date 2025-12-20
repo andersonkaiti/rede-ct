@@ -2,8 +2,13 @@
 
 import { Badge } from '@components/ui/badge'
 import { Button } from '@components/ui/button'
-import { Card, CardContent, CardFooter, CardHeader } from '@components/ui/card'
-import { Separator } from '@components/ui/separator'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@components/ui/card'
 import { format } from 'date-fns'
 import { pt } from 'date-fns/locale'
 import { FileText, Mail } from 'lucide-react'
@@ -26,6 +31,18 @@ interface RegimentCardProps {
 const EMAIL_SUGGESTIONS = 'redect.pesquisa@gmail.com'
 
 export function RegimentCard({ regiment }: RegimentCardProps) {
+  const formattedPublishedAt = format(
+    regiment.publishedAt,
+    "dd 'de' MMM'.' 'de' yyyy",
+    { locale: pt },
+  )
+
+  const formattedUpdatedAt = format(
+    regiment.updatedAt,
+    "dd 'de' MMM'.' 'de' yyyy",
+    { locale: pt },
+  )
+
   return (
     <Card>
       <CardHeader className="flex gap-4">
@@ -34,9 +51,9 @@ export function RegimentCard({ regiment }: RegimentCardProps) {
         </Badge>
 
         <div className="space-y-2">
-          <h3 className="wrap-break-word font-semibold text-base leading-tight">
+          <CardTitle className="line-clamp-2 font-semibold text-foreground text-xl">
             {regiment.title}
-          </h3>
+          </CardTitle>
 
           <p className="mt-1.5 text-muted-foreground text-sm">
             Versão {regiment.version}
@@ -59,29 +76,19 @@ export function RegimentCard({ regiment }: RegimentCardProps) {
         </div>
       </CardHeader>
 
-      <Separator />
-
       <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5">
-          <p className="font-medium text-muted-foreground text-xs">
-            Publicado em
-          </p>
+        <div className="space-y-1 text-sm">
+          <h2 className="text-muted-foreground">Publicado em</h2>
 
-          <time className="font-medium text-sm">
-            {format(regiment.publishedAt, "dd 'de' MMM'.' 'de' yyyy", {
-              locale: pt,
-            })}
-          </time>
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <p className="font-medium text-muted-foreground text-xs">
-            Atualizado em
+          <p className="whitespace-pre-wrap text-justify text-sm">
+            {formattedPublishedAt}
           </p>
-          <time className="font-medium text-sm">
-            {format(regiment.updatedAt, "dd 'de' MMM'.' 'de' yyyy", {
-              locale: pt,
-            })}
-          </time>
+        </div>
+        <div className="space-y-1 text-sm">
+          <h2 className="text-muted-foreground">Atualizado em</h2>
+          <p className="whitespace-pre-wrap text-justify text-sm">
+            {formattedUpdatedAt}
+          </p>
         </div>
       </CardContent>
 

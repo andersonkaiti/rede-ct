@@ -1,15 +1,8 @@
 import { Button } from '@components/ui/button'
-import { CardTitle } from '@components/ui/card'
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@components/ui/collapsible'
 import { format } from 'date-fns'
-import { ArrowRight, ChevronUp, Mail } from 'lucide-react'
+import { ptBR } from 'date-fns/locale'
 import Image from 'next/image'
 import Link from 'next/link'
-import { toast } from 'sonner'
 
 interface PostGraduateProgramCardProps {
   program: {
@@ -17,26 +10,28 @@ interface PostGraduateProgramCardProps {
     title: string
     imageUrl: string | null
     description: string | null
-    startDate: string
-    endDate: string
+    startDate: Date
+    endDate: Date
     contact: string
     registrationLink: string | null
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
   }
 }
 
 export function PostGraduateProgramCard({
-  program: {
-    title,
-    imageUrl,
-    startDate,
-    endDate,
-    contact,
-    registrationLink,
-    description,
-  },
+  program: { title, imageUrl, startDate, endDate, id },
 }: PostGraduateProgramCardProps) {
+  const formattedStartDate = format(
+    startDate,
+    "d 'de' MMMM 'de' yyyy 'às' HH:mm",
+    { locale: ptBR },
+  )
+
+  const formattedEndDate = format(endDate, "d 'de' MMMM 'de' yyyy 'às' HH:mm", {
+    locale: ptBR,
+  })
+
   return (
     <div className="flex flex-col gap-2">
       <header className="h-80">
@@ -54,49 +49,20 @@ export function PostGraduateProgramCard({
 
       <div className="flex h-fit grow flex-col gap-4 py-2">
         <div className="space-y-4">
-          <div className="flex items-center gap-2 text-sm leading-4">
-            <span className="text-muted-foreground">
-              Inscrições de: {format(new Date(startDate), 'dd/MM/yyyy HH:mm')}{' '}
-              até {format(new Date(endDate), 'dd/MM/yyyy HH:mm')}
-            </span>
-          </div>
+          <time className="flex items-center gap-2 text-muted-foreground text-sm leading-4">
+            Inscrições de: {formattedStartDate} até {formattedEndDate}
+          </time>
 
-          <CardTitle className="line-clamp-2 font-semibold text-2xl">
-            {title}
-          </CardTitle>
+          <h1 className="font-semibold text-foreground text-xl">{title}</h1>
         </div>
 
-        {description && (
-          <Collapsible>
-            <CollapsibleTrigger className="group flex cursor-pointer items-center justify-between gap-2 p-0 text-sm">
-              Descrição
-              <ChevronUp className="size-4 transition-all duration-300 group-data-[state=open]:rotate-180" />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <p className="mt-2 text-justify text-sm">{description}</p>
-            </CollapsibleContent>
-          </Collapsible>
-        )}
-
-        <div className="space-y-2">
-          <div className="flex items-center gap-2 text-muted-foreground text-sm">
-            <Mail className="size-4" />
-            <span>Contato: {contact}</span>
-          </div>
-        </div>
-
-        <footer className="mt-auto">
-          <Button
-            asChild
-            className="group w-full font-bold"
-            variant="outline"
-            onClick={() =>
-              !registrationLink && toast.error('Link não disponível')
-            }
-          >
-            <Link className="w-full" href={registrationLink || '#'}>
-              Inscreva-se
-              <ArrowRight className="size-4 transition-all duration-200 group-hover:translate-x-1" />
+        <footer className="mt-4">
+          <Button asChild variant="outline">
+            <Link
+              className="w-full"
+              href={`/divisao-cientifica/pos-graduacao/${id}`}
+            >
+              Ver mais detalhes
             </Link>
           </Button>
         </footer>

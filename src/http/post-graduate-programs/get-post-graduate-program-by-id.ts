@@ -1,4 +1,5 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
 import z from 'zod'
 
 const getPostGraduateProgramByIdSchema = z
@@ -7,17 +8,23 @@ const getPostGraduateProgramByIdSchema = z
     title: z.string(),
     imageUrl: z.string().nullable(),
     description: z.string().nullable(),
-    startDate: z.string(),
-    endDate: z.string(),
+    startDate: z.coerce.date(),
+    endDate: z.coerce.date(),
     contact: z.string(),
     registrationLink: z.string().nullable(),
-    createdAt: z.string(),
-    updatedAt: z.string(),
+    createdAt: z.coerce.date(),
+    updatedAt: z.coerce.date(),
   })
   .nullable()
 
 export async function getPostGraduateProgramById(id: string) {
-  const data = await api.get(`post-graduate-programs/${id}`).json()
+  try {
+    const data = await api.get(`post-graduate-programs/${id}`).json()
 
-  return getPostGraduateProgramByIdSchema.parse(data)
+    return getPostGraduateProgramByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      return null
+    }
+  }
 }

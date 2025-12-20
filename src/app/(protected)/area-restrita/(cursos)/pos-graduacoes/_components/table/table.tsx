@@ -13,12 +13,12 @@ interface IPostGraduateProgram {
   title: string
   imageUrl: string | null
   description: string | null
-  startDate: string
-  endDate: string
+  startDate: Date
+  endDate: Date
   contact: string
   registrationLink: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export function Table() {

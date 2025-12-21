@@ -1,13 +1,6 @@
 import { Button } from '@components/ui/button'
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@components/ui/collapsible'
-import { ChevronUp, Clock, Mail, MapPin, Phone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { toast } from 'sonner'
 
 interface MuseumCardProps {
   museum: {
@@ -23,25 +16,13 @@ interface MuseumCardProps {
     phone: string | null
     address: string | null
     functioning: string | null
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
   }
 }
 
 export function MuseumCard({
-  museum: {
-    name,
-    logoUrl,
-    city,
-    state,
-    country,
-    website,
-    description,
-    email,
-    phone,
-    address,
-    functioning,
-  },
+  museum: { id, name, logoUrl, city, state, country },
 }: MuseumCardProps) {
   const location = [city, state, country].filter(Boolean).join(', ')
 
@@ -61,68 +42,16 @@ export function MuseumCard({
       </header>
 
       <div className="flex h-fit grow flex-col gap-4 py-2">
-        <div className="space-y-4">
-          {location && (
-            <span className="text-muted-foreground text-sm leading-4">
-              {location}
-            </span>
-          )}
-
+        <div className="space-y-1">
           <h1 className="font-semibold text-2xl">{name}</h1>
-        </div>
-
-        {description && (
-          <Collapsible>
-            <CollapsibleTrigger className="group flex cursor-pointer items-center justify-between gap-2 p-0 text-sm">
-              Sobre o Museu
-              <ChevronUp className="size-4 transition-all duration-300 group-data-[state=open]:rotate-180" />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <p className="mt-2 text-justify text-sm">{description}</p>
-            </CollapsibleContent>
-          </Collapsible>
-        )}
-
-        <div className="space-y-3">
-          {email && (
-            <div className="flex items-center gap-2 text-muted-foreground text-sm">
-              <Mail className="size-4" />
-              {email}
-            </div>
-          )}
-
-          {phone && (
-            <div className="flex items-center gap-2 text-muted-foreground text-sm">
-              <Phone className="size-4" />
-              <span>{phone}</span>
-            </div>
-          )}
-
-          {address && (
-            <div className="flex items-start gap-2 text-muted-foreground text-sm">
-              <MapPin className="mt-0.5 size-4" />
-              <span>{address}</span>
-            </div>
-          )}
-
-          {functioning && (
-            <div className="flex items-start gap-2 text-muted-foreground text-sm">
-              <Clock className="mt-0.5 size-4" />
-              <span>{functioning}</span>
-            </div>
+          {location && (
+            <p className="text-muted-foreground text-sm">{location}</p>
           )}
         </div>
 
         <footer className="mt-auto">
-          <Button
-            asChild
-            className="group w-full font-bold"
-            variant="outline"
-            onClick={() => !website && toast.error('Link não disponível')}
-          >
-            <Link className="w-full" href={website || '#'} target="_blank">
-              Visitar site
-            </Link>
+          <Button asChild className="w-full" variant="outline">
+            <Link href={`/portfolio/museus/${id}`}>Ver detalhes</Link>
           </Button>
         </footer>
       </div>

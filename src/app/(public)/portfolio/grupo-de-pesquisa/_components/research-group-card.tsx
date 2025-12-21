@@ -1,16 +1,8 @@
 import { Button } from '@components/ui/button'
 import { CardTitle } from '@components/ui/card'
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@components/ui/collapsible'
-import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { format } from 'date-fns'
-import { ChevronUp, Globe } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { toast } from 'sonner'
 
 interface ResearchGroupCardProps {
   researchGroup: {
@@ -20,13 +12,13 @@ interface ResearchGroupCardProps {
     description: string | null
     url: string | null
     logoUrl: string | null
-    foundedAt: string
+    foundedAt: Date
     scope: string | null
     email: string | null
     leaderId: string
     deputyLeaderId: string
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
     leader: {
       id: string
       name: string
@@ -55,18 +47,10 @@ interface ResearchGroupCardProps {
 }
 
 export function ResearchGroupCard({
-  researchGroup: {
-    name,
-    acronym,
-    logoUrl,
-    foundedAt,
-    url,
-    description,
-    scope,
-    leader,
-    deputyLeader,
-  },
+  researchGroup: { id, name, acronym, logoUrl, foundedAt, scope },
 }: ResearchGroupCardProps) {
+  const formattedFoundedAt = format(foundedAt, 'dd/MM/yyyy')
+
   return (
     <div className="flex flex-col gap-2">
       <header className="h-80">
@@ -83,64 +67,22 @@ export function ResearchGroupCard({
       </header>
 
       <div className="flex h-fit grow flex-col gap-4 py-2">
-        <div className="space-y-4">
-          <time className="flex items-center gap-2 text-sm leading-4">
-            <span className="text-muted-foreground">
-              Fundado em {format(new Date(foundedAt), 'dd/MM/yyyy')}
-            </span>
-          </time>
-
-          <div className="space-y-1">
-            <CardTitle className="font-semibold text-2xl">{name}</CardTitle>
-            {acronym && (
-              <p className="text-muted-foreground text-sm">({acronym})</p>
-            )}
-          </div>
+        <div className="space-y-1">
+          <CardTitle className="font-semibold text-2xl">{name}</CardTitle>
+          {acronym && (
+            <p className="text-muted-foreground text-sm">({acronym})</p>
+          )}
         </div>
 
-        {scope && (
-          <div className="space-y-1">
-            <h4 className="font-semibold text-sm">Escopo</h4>
-            <p className="text-muted-foreground text-sm">{scope}</p>
-          </div>
-        )}
-
-        {description && (
-          <Collapsible>
-            <CollapsibleTrigger className="group flex cursor-pointer items-center justify-between gap-2 p-0 text-sm">
-              Descrição
-              <ChevronUp className="size-4 transition-all duration-300 group-data-[state=open]:rotate-180" />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <p className="mt-2 text-justify text-sm">{description}</p>
-            </CollapsibleContent>
-          </Collapsible>
-        )}
-
-        <div className="space-y-2">
-          <h4 className="w-fit font-semibold text-sm">Líder</h4>
-          <div className="flex flex-col justify-center gap-2">
-            <UserProfileHoverCard user={leader} />
-          </div>
-        </div>
-
-        <div className="space-y-2">
-          <h4 className="w-fit font-semibold text-sm">Vice-Líder</h4>
-          <div className="flex flex-col justify-center gap-2">
-            <UserProfileHoverCard user={deputyLeader} />
-          </div>
+        <div className="space-y-1">
+          <h4 className="text-muted-foreground text-sm">Fundado em</h4>
+          <p className="text-sm">{formattedFoundedAt}</p>
         </div>
 
         <footer className="mt-auto">
-          <Button
-            asChild
-            className="group w-full font-bold"
-            variant="outline"
-            onClick={() => !url && toast.error('Link não disponível')}
-          >
-            <Link className="w-full" href={url || '#'} target="_blank">
-              <Globe className="size-4" />
-              Visitar site
+          <Button asChild className="w-full" variant="outline">
+            <Link href={`/portfolio/grupo-de-pesquisa/${id}`}>
+              Ver detalhes
             </Link>
           </Button>
         </footer>

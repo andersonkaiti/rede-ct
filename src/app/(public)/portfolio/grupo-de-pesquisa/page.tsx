@@ -1,6 +1,4 @@
 import { Users } from 'lucide-react'
-import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
 import {
   PageContainer,
   PageDescription,
@@ -8,13 +6,7 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../_components/page-container'
-import { LoadingSkeleton } from './_components/loading-skeleton'
-
-const DynamicResearchGroupList = dynamic(() =>
-  import('./_components/research-group-list').then(
-    (mod) => mod.ResearchGroupList,
-  ),
-)
+import { ResearchGroupList } from './_components/research-group-list'
 
 export default function GruposDePesquisa() {
   return (
@@ -33,11 +25,9 @@ export default function GruposDePesquisa() {
         dedicados ao estudo de povos originários e comunidades tradicionais.
       </PageDescription>
 
-      <Suspense fallback={<LoadingSkeleton />}>
-        <DynamicResearchGroupList />
-      </Suspense>
+      <ResearchGroupList />
 
-      <footer className="text-justify text-lg text-muted-foreground">
+      <footer className="text-justify">
         <p>
           Os grupos de pesquisa da RedeCT promovem a produção de conhecimento
           científico de qualidade, respeitando os saberes tradicionais e

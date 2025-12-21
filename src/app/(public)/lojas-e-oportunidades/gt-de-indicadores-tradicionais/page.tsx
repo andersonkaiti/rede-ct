@@ -1,6 +1,5 @@
 import { UserCardRedLine } from '@components/ui/user-card'
 import { Award } from 'lucide-react'
-import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'
 import {
   PageContainer,
@@ -10,10 +9,7 @@ import {
   PageHeaderTitle,
 } from '../../_components/page-container'
 import { LoadingSkeleton } from './_components/loading-skeleton'
-
-const DynamicWorkGroupTeam = dynamicImport(() =>
-  import('./_components/work-group-team').then((m) => m.WorkGroupTeam),
-)
+import { WorkGroupTeam } from './_components/work-group-team'
 
 export default function GTDeIndicadoresTradicionais() {
   return (
@@ -41,7 +37,7 @@ export default function GTDeIndicadoresTradicionais() {
           Apresentação da proposta
         </h2>
 
-        <p className="text-justify text-muted-foreground leading-relaxed">
+        <p className="text-justify">
           Considerando o desafio de geração de renda e de sustentação econômica
           comum aos Povos Tradicionais e observando que a certificação e a
           comunicação de origem tradicional de seus produtos (especialmente
@@ -51,7 +47,7 @@ export default function GTDeIndicadoresTradicionais() {
           criou, em março/2024, um grupo de estudos sobre esta temática.
         </p>
 
-        <p className="text-justify text-muted-foreground leading-relaxed">
+        <p className="text-justify">
           Em parceria com o Centro de Inovação Tecnológica de Bauru - CITeB (por
           sua vez mantido pela UNESP), a Saruê Incubadora de Empresas e
           Empreendimentos Sociais e a Whadhwani Foundation, a partir de
@@ -60,7 +56,7 @@ export default function GTDeIndicadoresTradicionais() {
           do Selo de Identificação de Origem Tradicional da RedeCT.
         </p>
 
-        <p className="text-justify text-muted-foreground leading-relaxed">
+        <p className="text-justify">
           O Grupo de Trabalho - GT é composto por 5 Pesquisadores que participam
           do processo de pré-incubação e por um grupo de professores com
           aderência ao tema.
@@ -76,7 +72,7 @@ export default function GTDeIndicadoresTradicionais() {
         </div>
 
         <Suspense fallback={<LoadingSkeleton />}>
-          <DynamicWorkGroupTeam />
+          <WorkGroupTeam />
         </Suspense>
       </section>
     </PageContainer>

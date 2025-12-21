@@ -19,8 +19,8 @@ export const getWorkGroupTeamMembersSchema = z.object({
       id: z.string(),
       role: z.string(),
       description: z.string().nullable(),
-      createdAt: z.string(),
-      updatedAt: z.string(),
+      createdAt: z.coerce.date(),
+      updatedAt: z.coerce.date(),
       userId: z.string(),
       user: z.object({
         id: z.string(),

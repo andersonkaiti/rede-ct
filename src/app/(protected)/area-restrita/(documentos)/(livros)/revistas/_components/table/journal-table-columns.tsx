@@ -11,8 +11,8 @@ interface IScientificJournal {
   logoUrl: string | null
   directors: string | null
   editorialBoard: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 const NAME_MAX_LENGTH = 30

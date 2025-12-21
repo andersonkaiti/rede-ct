@@ -29,28 +29,14 @@ const updateBookVolumeFormSchema = z.object({
     .max(2100, 'Ano muito futuro')
     .optional(),
   title: z.string().min(1, 'Título é obrigatório.').optional(),
-  author: z.string().min(1, 'Autor é obrigatório.').optional(),
+  authorId: z.string().uuid('ID do autor deve ser um UUID válido.').optional(),
   accessUrl: z.union([z.url('URL de acesso deve ser válida.'), z.literal('')]),
+  catalogSheetUrl: z.union([
+    z.url('URL da ficha catalográfica deve ser válida.'),
+    z.literal(''),
+  ]),
   description: z.string().optional(),
-  authorImage: z
-    .instanceof(File)
-    .refine((file) =>
-      validateImageFile({
-        value: file,
-        maxSize: MAX_FILE_SIZE_BYTES,
-      }),
-    )
-    .optional(),
   coverImage: z
-    .instanceof(File)
-    .refine((file) =>
-      validateImageFile({
-        value: file,
-        maxSize: MAX_FILE_SIZE_BYTES,
-      }),
-    )
-    .optional(),
-  catalogSheet: z
     .instanceof(File)
     .refine((file) =>
       validateImageFile({
@@ -80,8 +66,9 @@ export function useUpdateBookVolume() {
       volumeNumber: bookVolume?.volumeNumber ?? 1,
       year: bookVolume?.year ?? new Date().getFullYear(),
       title: bookVolume?.title ?? '',
-      author: bookVolume?.author ?? '',
+      authorId: bookVolume?.author?.id ?? '',
       accessUrl: bookVolume?.accessUrl ?? '',
+      catalogSheetUrl: bookVolume?.catalogSheetUrl ?? '',
       description: bookVolume?.description ?? '',
     },
   })

@@ -1,5 +1,4 @@
 import { GalleryHorizontal } from 'lucide-react'
-import { Suspense } from 'react'
 import {
   PageContainer,
   PageDescription,
@@ -7,7 +6,6 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../_components/page-container'
-import { LoadingSkeleton } from './_components/loading-skeleton'
 import { MuseumList } from './_components/museum-list'
 
 export default function Museus() {
@@ -28,11 +26,9 @@ export default function Museus() {
         promovendo o diálogo entre saberes tradicionais e científicos.
       </PageDescription>
 
-      <Suspense fallback={<LoadingSkeleton />}>
-        <MuseumList />
-      </Suspense>
+      <MuseumList />
 
-      <footer className="text-justify text-lg text-muted-foreground">
+      <footer className="text-justify">
         <p>
           Os museus parceiros da RedeCT desenvolvem atividades de preservação,
           pesquisa e educação patrimonial, trabalhando em colaboração com

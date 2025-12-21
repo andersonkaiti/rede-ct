@@ -9,13 +9,13 @@ interface IResearchGroup {
   description: string | null
   url: string | null
   logoUrl: string | null
-  foundedAt: string
+  foundedAt: Date
   scope: string | null
   email: string | null
   leaderId: string
   deputyLeaderId: string
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
   leader: {
     id: string
     name: string

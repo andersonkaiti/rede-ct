@@ -7,14 +7,21 @@ interface IBookVolume {
   volumeNumber: number
   year: number
   title: string
-  author: string
+  author: {
+    id: string
+    name: string
+    emailAddress: string
+    avatarUrl: string | null
+    orcid: string | null
+    lattesUrl: string | null
+    role: string
+  }
   accessUrl: string | null
-  authorImageUrl: string | null
   coverImageUrl: string | null
   catalogSheetUrl: string | null
   description: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 const TITLE_MAX_LENGTH = 40
@@ -61,9 +68,9 @@ export const bookVolumeTableColumns: ColumnDef<IBookVolume>[] = [
         original: { author },
       },
     }) =>
-      author.length > AUTHOR_MAX_LENGTH
-        ? `${author.slice(0, AUTHOR_MAX_LENGTH)}${ELLIPSIS}`
-        : author,
+      author.name.length > AUTHOR_MAX_LENGTH
+        ? `${author.name.slice(0, AUTHOR_MAX_LENGTH)}${ELLIPSIS}`
+        : author.name,
   },
   {
     id: 'description',

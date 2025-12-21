@@ -3,27 +3,25 @@ import { formatDate } from '@utils/format-date'
 import { ActionsRow } from '../../../_components/actions-row'
 import { UpdateMemberForm } from '../update-member/update-member-form'
 
-interface IWorkGroupTeamMemberUser {
-  id: string
-  name: string
-  avatarUrl: string | null
-  createdAt: string
-  updatedAt: string
-  emailAddress: string
-  orcid: string | null
-  phone: string | null
-  lattesUrl: string | null
-  role: 'ADMIN' | 'USER'
-}
-
 interface IWorkGroupTeamMember {
   id: string
   role: string
   description: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
   userId: string
-  user: IWorkGroupTeamMemberUser
+  user: {
+    id: string
+    name: string
+    avatarUrl: string | null
+    createdAt: string
+    updatedAt: string
+    emailAddress: string
+    orcid: string | null
+    phone: string | null
+    lattesUrl: string | null
+    role: 'ADMIN' | 'USER'
+  }
 }
 
 const NAME_MAX_LENGTH = 30

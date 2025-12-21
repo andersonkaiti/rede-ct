@@ -28,8 +28,8 @@ const getMuseumsSchema = z.object({
       phone: z.string().nullable(),
       address: z.string().nullable(),
       functioning: z.string().nullable(),
-      createdAt: z.string(),
-      updatedAt: z.string(),
+      createdAt: z.coerce.date(),
+      updatedAt: z.coerce.date(),
     }),
   ),
 })

@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import {
   PageActionsContainer,
   PageContainer,
@@ -7,12 +6,11 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../_components/page-container'
 import { FilterInput } from '../_components/filter-input'
 import { OrderByButton } from '../_components/order-by-button'
 import { CreateNewsButton } from './_components/create-news-button'
 import { NewsDisplayOptions } from './_components/news-display-options'
-import { LoadingSkeleton } from './_components/table/loading-skeleton'
 import { Table } from './_components/table/table'
 
 export default function Noticias() {
@@ -38,9 +36,7 @@ export default function Noticias() {
       </PageHeader>
 
       <PageMain>
-        <Suspense fallback={<LoadingSkeleton />}>
-          <Table />
-        </Suspense>
+        <Table />
       </PageMain>
     </PageContainer>
   )

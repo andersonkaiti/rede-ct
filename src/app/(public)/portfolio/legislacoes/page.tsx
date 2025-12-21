@@ -1,5 +1,4 @@
 import { Scale } from 'lucide-react'
-import { Suspense } from 'react'
 import {
   PageContainer,
   PageDescription,
@@ -8,9 +7,8 @@ import {
   PageHeaderTitle,
 } from '../../_components/page-container'
 import { LawsList } from './_components/laws-list'
-import { LoadingSkeleton } from './_components/loading-skeleton'
 
-export default async function Legislacoes() {
+export default function Legislacoes() {
   return (
     <PageContainer>
       <PageHeader>
@@ -29,9 +27,7 @@ export default async function Legislacoes() {
         territorial e reconhecimento cultural.
       </PageDescription>
 
-      <Suspense fallback={<LoadingSkeleton />}>
-        <LawsList />
-      </Suspense>
+      <LawsList />
     </PageContainer>
   )
 }

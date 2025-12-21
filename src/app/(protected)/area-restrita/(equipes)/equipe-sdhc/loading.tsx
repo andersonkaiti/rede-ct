@@ -7,7 +7,7 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../../_components/page-container'
 import { LoadingSkeleton as TableLoadingSkeleton } from './_components/table/loading-skeleton'
 
 export default function Loading() {

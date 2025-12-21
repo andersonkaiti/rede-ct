@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { AdminWrapper } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -7,13 +7,11 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { AdminWrapper } from '../../../_components/hoc/admin'
+} from '../../../_components/page-container'
 import { FilterInput } from '../../_components/filter-input'
 import { OrderByButton } from '../../_components/order-by-button'
 import { CourseDisplayOptions } from './_components/course-display-options'
 import { CreateCourseButton } from './_components/create-course-button'
-import { LoadingSkeleton } from './_components/table/loading-skeleton'
 import { Table } from './_components/table/table'
 
 export default function Cursos() {
@@ -40,9 +38,7 @@ export default function Cursos() {
         </PageHeader>
 
         <PageMain>
-          <Suspense fallback={<LoadingSkeleton />}>
-            <Table />
-          </Suspense>
+          <Table />
         </PageMain>
       </PageContainer>
     </AdminWrapper>

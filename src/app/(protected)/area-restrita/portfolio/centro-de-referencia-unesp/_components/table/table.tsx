@@ -8,27 +8,25 @@ import { LoadingSkeleton } from './loading-skeleton'
 import { referenceCenterTeamTableColumns } from './reference-center-team-table-columns'
 import { useReferenceCenterTeam } from './use-reference-center-team.hook'
 
-export interface IReferenceCenterTeamMemberUser {
-  id: string
-  name: string
-  avatarUrl: string | null
-  createdAt: string
-  updatedAt: string
-  emailAddress: string
-  orcid: string | null
-  phone: string | null
-  lattesUrl: string | null
-  role: 'ADMIN' | 'USER'
-}
-
 export interface IReferenceCenterTeamMember {
   id: string
   role: string
   description: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
   userId: string
-  user: IReferenceCenterTeamMemberUser
+  user: {
+    id: string
+    name: string
+    avatarUrl: string | null
+    createdAt: string
+    updatedAt: string
+    emailAddress: string
+    orcid: string | null
+    phone: string | null
+    lattesUrl: string | null
+    role: 'ADMIN' | 'USER'
+  }
 }
 
 export function Table() {

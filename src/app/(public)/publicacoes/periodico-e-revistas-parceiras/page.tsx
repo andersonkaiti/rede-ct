@@ -1,6 +1,4 @@
 import { FileTextIcon } from '@components/icons/file-text'
-import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
 import {
   PageContainer,
   PageDescription,
@@ -8,13 +6,7 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../_components/page-container'
-import { LoadingSkeleton } from './_components/loading-skeleton'
-
-const DynamicScientificJournalList = dynamic(() =>
-  import('./_components/scientific-journal-list').then(
-    (mod) => mod.ScientificJournalList,
-  ),
-)
+import { ScientificJournalList } from './_components/scientific-journal-list'
 
 export default function PeriodicoERevistasParceiras() {
   return (
@@ -46,17 +38,16 @@ export default function PeriodicoERevistasParceiras() {
       </section>
 
       <section className="space-y-7">
-        <h3 className="text-center font-semibold text-3xl md:text-4xl">
+        <h3 className="whitespace-normal font-bold text-2xl lg:text-4xl">
           Revistas Científicas Parceiras
         </h3>
-        <p className="text-center text-lg text-muted-foreground">
+
+        <p className="whitespace-normal text-lg text-muted-foreground">
           Colaboramos com revistas científicas renomadas para fortalecer a
           pesquisa e divulgação científica
         </p>
 
-        <Suspense fallback={<LoadingSkeleton />}>
-          <DynamicScientificJournalList />
-        </Suspense>
+        <ScientificJournalList />
       </section>
     </PageContainer>
   )

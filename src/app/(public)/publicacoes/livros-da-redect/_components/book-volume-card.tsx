@@ -1,14 +1,6 @@
 import { Button } from '@components/ui/button'
-import { CardTitle } from '@components/ui/card'
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@components/ui/collapsible'
-import { ChevronUp } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { toast } from 'sonner'
 
 interface BookVolumeCardProps {
   volume: {
@@ -16,34 +8,31 @@ interface BookVolumeCardProps {
     volumeNumber: number
     year: number
     title: string
-    author: string
+    author: {
+      id: string
+      name: string
+      emailAddress: string
+      avatarUrl: string | null
+      orcid: string | null
+      lattesUrl: string | null
+      role: string
+    }
     accessUrl: string | null
-    authorImageUrl: string | null
     coverImageUrl: string | null
     catalogSheetUrl: string | null
     description: string | null
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
   }
 }
 
 export function BookVolumeCard({
-  volume: {
-    volumeNumber,
-    year,
-    title,
-    author,
-    accessUrl,
-    authorImageUrl,
-    catalogSheetUrl,
-    coverImageUrl,
-    description,
-  },
+  volume: { id, volumeNumber, year, title, coverImageUrl },
 }: BookVolumeCardProps) {
   return (
     <div className="flex flex-col gap-2">
       <header className="h-80">
-        <picture className="v relative flex size-full overflow-hidden rounded-md">
+        <picture className="relative flex size-full overflow-hidden rounded-md">
           <Image
             alt={title}
             className="object-cover"
@@ -56,64 +45,29 @@ export function BookVolumeCard({
       </header>
 
       <div className="flex h-fit grow flex-col gap-4 py-2">
-        <div className="space-y-4">
-          <div className="flex items-center gap-2 text-sm leading-4">
-            <span className="text-muted-foreground">
-              Volume {volumeNumber} {year}
-            </span>
+        <h1 className="font-semibold text-foreground text-xl">{title}</h1>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="space-y-1">
+            <h2 className="text-muted-foreground">Volume</h2>
+            <p className="whitespace-pre-wrap text-justify">{volumeNumber}</p>
           </div>
 
-          <CardTitle className="line-clamp-2 font-semibold text-2xl">
-            {title}
-          </CardTitle>
-
-          <div className="flex items-center gap-3">
-            {authorImageUrl && (
-              <div className="relative size-12 overflow-hidden rounded-full">
-                <Image
-                  alt={author}
-                  className="object-cover"
-                  fill
-                  src={authorImageUrl}
-                />
-              </div>
-            )}
-            <p className="text-muted-foreground text-sm">
-              <span className="font-semibold">Autor:</span> {author}
-            </p>
+          <div className="space-y-1">
+            <h2 className="text-muted-foreground">Ano</h2>
+            <time className="whitespace-pre-wrap text-justify">{year}</time>
           </div>
         </div>
 
-        {description && (
-          <Collapsible>
-            <CollapsibleTrigger className="group flex cursor-pointer items-center justify-between gap-2 p-0 text-sm">
-              Descrição
-              <ChevronUp className="size-4 transition-all duration-300 group-data-[state=open]:rotate-180" />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <p className="mt-2 text-justify text-sm">{description}</p>
-            </CollapsibleContent>
-          </Collapsible>
-        )}
-
-        <footer className="mt-auto flex flex-col gap-2">
-          <Button
-            asChild
-            onClick={() => !accessUrl && toast.error('Livro indisponível')}
-            variant="outline"
-          >
-            <Link className="w-full" href={accessUrl || '#'}>
-              Acessar livro
+        <footer className="mt-4">
+          <Button asChild variant="outline">
+            <Link
+              className="w-full"
+              href={`/publicacoes/livros-da-redect/${id}`}
+            >
+              Ver mais detalhes
             </Link>
           </Button>
-
-          {catalogSheetUrl && (
-            <Button asChild variant="outline">
-              <Link className="w-full" href={catalogSheetUrl}>
-                Ver ficha catalográfica
-              </Link>
-            </Button>
-          )}
         </footer>
       </div>
     </div>

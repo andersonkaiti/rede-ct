@@ -1,4 +1,5 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
 import z from 'zod'
 
 const getResearchGroupByIdSchema = z
@@ -9,13 +10,13 @@ const getResearchGroupByIdSchema = z
     description: z.string().nullable(),
     url: z.string().nullable(),
     logoUrl: z.string().nullable(),
-    foundedAt: z.string(),
+    foundedAt: z.coerce.date(),
     scope: z.string().nullable(),
     email: z.string().nullable(),
     leaderId: z.string(),
     deputyLeaderId: z.string(),
-    createdAt: z.string(),
-    updatedAt: z.string(),
+    createdAt: z.coerce.date(),
+    updatedAt: z.coerce.date(),
     leader: z.object({
       id: z.string(),
       name: z.string(),
@@ -44,7 +45,13 @@ const getResearchGroupByIdSchema = z
   .nullable()
 
 export async function getResearchGroupById(id: string) {
-  const data = await api.get(`research-groups/${id}`).json()
+  try {
+    const data = await api.get(`research-groups/${id}`).json()
 
-  return getResearchGroupByIdSchema.parse(data)
+    return getResearchGroupByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      return null
+    }
+  }
 }

@@ -5,12 +5,11 @@ interface ICreateBookVolumeRequest {
   volumeNumber: number
   year: number
   title: string
-  author: string
+  authorId: string
   accessUrl?: string
+  catalogSheetUrl?: string
   description?: string
-  authorImage?: File
   coverImage?: File
-  catalogSheet?: File
 }
 
 export async function createBookVolume(data: ICreateBookVolumeRequest) {

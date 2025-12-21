@@ -13,7 +13,7 @@ export function WebinarButton({ webinarLink }: IWebinarButtonProps) {
   return (
     <Button
       asChild
-      className="group w-full font-bold"
+      className="group w-full"
       variant="outline"
       onClick={() => !webinarLink && toast.error('Link não disponível')}
     >

@@ -6,8 +6,8 @@ interface UserCardComponentProps {
     id: string
     role: string
     description: string | null
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
     userId: string
     user: {
       id: string

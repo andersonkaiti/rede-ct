@@ -1,5 +1,4 @@
 import { isAdmin } from '@auth/auth'
-import { Suspense } from 'react'
 import {
   PageActionsContainer,
   PageContainer,
@@ -8,11 +7,10 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../../_components/page-container'
 import { FilterInput } from '../../_components/filter-input'
 import { OrderByButton } from '../../_components/order-by-button'
 import { CertificationList } from './_components/certification-list'
-import { LoadingSkeleton } from './_components/loading-skeleton'
 import { RegisteredCertificationsButton } from './_components/registered-certifications-button'
 
 export default async function Certificados() {
@@ -36,9 +34,7 @@ export default async function Certificados() {
       </PageHeader>
 
       <PageMain>
-        <Suspense fallback={<LoadingSkeleton />}>
-          <CertificationList />
-        </Suspense>
+        <CertificationList />
       </PageMain>
     </PageContainer>
   )

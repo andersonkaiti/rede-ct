@@ -9,15 +9,9 @@ import {
 } from '@components/ui/card'
 import { UserCardRedLine } from '@components/ui/user-card'
 import { InfoIcon } from 'lucide-react'
-import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'
+import { LegitimatorCommittee } from './_components/legitimator-committee'
 import { LoadingSkeleton } from './_components/loading-skeleton'
-
-const DynamicLegitimatorCommittee = dynamicImport(() =>
-  import('./_components/legitimator-committee').then(
-    (m) => m.LegitimatorCommittee,
-  ),
-)
 
 export default function ComiteLegitimador() {
   return (
@@ -32,7 +26,7 @@ export default function ComiteLegitimador() {
       </div>
 
       <Suspense fallback={<LoadingSkeleton />}>
-        <DynamicLegitimatorCommittee />
+        <LegitimatorCommittee />
       </Suspense>
 
       <Card className="border-0 shadow-lg">

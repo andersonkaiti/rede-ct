@@ -45,12 +45,6 @@ export default async function MeetingDetails({ params }: IMeetingDetailsProps) {
     { locale: ptBR },
   )
 
-  const formattedTime = format(
-    webinar.scheduledAt,
-    "d 'de' MMMM 'de' yyyy 'às' HH:mm",
-    { locale: ptBR },
-  )
-
   return (
     <PageContainer>
       <BackArrow href="/divisao-cientifica/webinario-permanente" />
@@ -98,9 +92,7 @@ export default async function MeetingDetails({ params }: IMeetingDetailsProps) {
           <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
             <div className="space-y-1">
               <h2 className="text-muted-foreground">Data</h2>
-              <p>
-                {formattedDate} às {formattedTime}
-              </p>
+              <p>{formattedDate}</p>
             </div>
           </div>
 

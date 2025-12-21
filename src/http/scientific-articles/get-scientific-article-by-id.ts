@@ -10,8 +10,8 @@ const getScientificArticleByIdSchema = z.object({
   edition: z.string().nullable(),
   pageStart: z.number().nullable(),
   pageEnd: z.number().nullable(),
-  startDate: z.string(),
-  endDate: z.string(),
+  startDate: z.coerce.date(),
+  endDate: z.coerce.date(),
   city: z.string().nullable(),
   state: z.string().nullable(),
   country: z.string().nullable(),
@@ -19,8 +19,8 @@ const getScientificArticleByIdSchema = z.object({
   description: z.string().nullable(),
   year: z.number().nullable(),
   accessUrl: z.string().nullable(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
 })
 
 export async function getScientificArticleById(id: string) {

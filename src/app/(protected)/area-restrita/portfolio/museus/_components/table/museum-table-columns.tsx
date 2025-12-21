@@ -15,8 +15,8 @@ interface IMuseum {
   phone: string | null
   address: string | null
   functioning: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 const NAME_MAX_LENGTH = 30

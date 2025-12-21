@@ -3,7 +3,7 @@
 import PaginatorComponent from '@components/ui/paginator'
 import { Separator } from '@components/ui/separator'
 import { FilterInput } from './filter-input'
-import { LoadingSkeleton } from './loading-skeleton'
+import { ListLoadingSkeleton } from './loading-skeleton'
 import { RegimentCard } from './regiment-card'
 import { useRegiments } from './use-regiments'
 
@@ -16,7 +16,7 @@ export function RegimentsList() {
         <FilterInput />
       </div>
 
-      {isLoading && <LoadingSkeleton />}
+      {isLoading && <ListLoadingSkeleton />}
 
       {data?.regiments && (
         <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { ActionsRow } from '../../../../_components/actions-row'
 import { UpdateLawForm } from '../update-law/update-law-form'
 
-export interface ILaw {
+interface ILaw {
   id: string
   title: string
   link: string

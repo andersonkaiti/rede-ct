@@ -21,22 +21,14 @@ const createBookVolumeFormSchema = z.object({
     .positive('Deve ser um número positivo.'),
   year: z.number('Ano é obrigatório.').int('Deve ser um número inteiro.'),
   title: z.string().min(1, 'Título é obrigatório.'),
-  author: z.string().min(1, 'Autor é obrigatório.'),
+  authorId: z.string().uuid('ID do autor deve ser um UUID válido.'),
   accessUrl: z.union([z.url('URL de acesso deve ser válida.'), z.literal('')]),
+  catalogSheetUrl: z.union([
+    z.url('URL da ficha catalográfica deve ser válida.'),
+    z.literal(''),
+  ]),
   description: z.string().optional(),
-  authorImage: z.instanceof(File).refine((file) =>
-    validateImageFile({
-      value: file,
-      maxSize: MAX_FILE_SIZE_BYTES,
-    }),
-  ),
   coverImage: z.instanceof(File).refine((file) =>
-    validateImageFile({
-      value: file,
-      maxSize: MAX_FILE_SIZE_BYTES,
-    }),
-  ),
-  catalogSheet: z.instanceof(File).refine((file) =>
     validateImageFile({
       value: file,
       maxSize: MAX_FILE_SIZE_BYTES,
@@ -56,8 +48,9 @@ export function useCreateBookVolume() {
       volumeNumber: 1,
       year: new Date().getFullYear(),
       title: '',
-      author: '',
+      authorId: '',
       accessUrl: '',
+      catalogSheetUrl: '',
       description: '',
     },
   })

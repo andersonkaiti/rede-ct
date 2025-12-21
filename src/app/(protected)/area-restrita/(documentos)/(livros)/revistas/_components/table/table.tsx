@@ -17,8 +17,8 @@ interface IScientificJournal {
   logoUrl: string | null
   directors: string | null
   editorialBoard: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export function Table() {

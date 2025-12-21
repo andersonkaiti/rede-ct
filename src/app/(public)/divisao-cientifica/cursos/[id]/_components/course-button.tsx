@@ -13,7 +13,7 @@ export function CourseButton({ registrationLink }: ICourseButtonProps) {
   return (
     <Button
       asChild
-      className="group w-full font-bold"
+      className="group w-full"
       variant="outline"
       onClick={() => !registrationLink && toast.error('Link não disponível')}
     >

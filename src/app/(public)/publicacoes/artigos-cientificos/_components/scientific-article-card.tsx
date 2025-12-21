@@ -21,8 +21,8 @@ interface ScientificArticleCardProps {
     edition: string | null
     pageStart: number | null
     pageEnd: number | null
-    startDate: string
-    endDate: string
+    startDate: Date
+    endDate: Date
     city: string | null
     state: string | null
     country: string | null
@@ -30,6 +30,8 @@ interface ScientificArticleCardProps {
     description: string | null
     year: number | null
     accessUrl: string | null
+    createdAt: Date
+    updatedAt: Date
   }
 }
 
@@ -62,7 +64,7 @@ export function ScientificArticleCard({
       </CardHeader>
 
       <CardContent>
-        <p className="text-justify text-muted-foreground text-sm italic">
+        <p className="text-justify text-muted-foreground">
           {author.split(' ')[author.split(' ').length - 1].toUpperCase()},{' '}
           {author.split(' ').slice(0, -1).join(' ')}. {title}.{' '}
           {journal && (

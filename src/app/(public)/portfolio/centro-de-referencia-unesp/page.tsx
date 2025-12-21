@@ -1,7 +1,6 @@
 import { ListNumber } from '@components/ui/list-number'
 import { UserCardRedLine } from '@components/ui/user-card'
 import { BookOpen, Users } from 'lucide-react'
-import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'
 import {
   PageContainer,
@@ -11,12 +10,7 @@ import {
   PageHeaderTitle,
 } from '../../_components/page-container'
 import { LoadingSkeleton } from './_components/loading-skeleton'
-
-const DynamicReferenceCenterTeam = dynamicImport(() =>
-  import('./_components/reference-center-team').then(
-    (m) => m.ReferenceCenterTeam,
-  ),
-)
+import { ReferenceCenterTeam } from './_components/reference-center-team'
 
 export default function CentroDeReferencia() {
   return (
@@ -43,7 +37,7 @@ export default function CentroDeReferencia() {
           Apresentação
         </h2>
 
-        <p className="text-justify text-muted-foreground leading-relaxed">
+        <p className="text-justify">
           Considerando a natureza multicampi da Unesp, observou-se que as
           informações e os contatos entre professores, servidores e estudantes
           autodeclarados ou articulados por meio de projetos (ensino, pesquisa,
@@ -61,28 +55,28 @@ export default function CentroDeReferencia() {
         <div className="space-y-4">
           <div className="flex items-start gap-3">
             <ListNumber>1</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               Criar um espaço virtual de acessos e arquivos importantes para
               quem atua ou se interessa pela pauta PCT na UNESP;
             </p>
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>2</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               Mapear e potencializar trabalhos de ensino, pesquisa e extensão
               universitária sobre a pauta PCT na UNESP;
             </p>
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>3</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               Articular projetos especiais, redes temáticas e demais tipos de
               cooperação para ou sobre a pauta PCT;
             </p>
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>4</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               Melhorar o processo de sensibilização interna, de combate às
               diversas formas de violência, de desinformação acerca da pauta
               PCT;
@@ -90,7 +84,7 @@ export default function CentroDeReferencia() {
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>5</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               Contribuir para a divulgação externa e acolhimento interno de
               integrantes de Povos e Comunidades Tradicionais junto aos cursos e
               todos os tipos de atividades da UNESP.
@@ -113,7 +107,7 @@ export default function CentroDeReferencia() {
         </div>
 
         <Suspense fallback={<LoadingSkeleton />}>
-          <DynamicReferenceCenterTeam />
+          <ReferenceCenterTeam />
         </Suspense>
       </section>
 
@@ -124,21 +118,21 @@ export default function CentroDeReferencia() {
         <div className="space-y-4">
           <div className="flex items-start gap-3">
             <ListNumber>1</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               <span className="font-semibold">Coordenação:</span> Prof. Assoc.
               Nelson Russo de Moraes (DARP/FAAC/UNESP Bauru)
             </p>
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>2</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               <span className="font-semibold">Bolsista:</span> Alicya Silva de
               Oliveira (Estudante de Relações Públicas/FAAC/UNESP Bauru)
             </p>
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>3</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               <span className="font-semibold">
                 Data do início dos trabalhos:
               </span>{' '}
@@ -147,7 +141,7 @@ export default function CentroDeReferencia() {
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>4</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               <span className="font-semibold">
                 Local físico de atendimento:
               </span>{' '}
@@ -156,14 +150,14 @@ export default function CentroDeReferencia() {
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>5</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               <span className="font-semibold">Atendimento presencial:</span>{' '}
               Quartas e quintas-feiras das 8h às 12h (na sala 69)
             </p>
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>6</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               <span className="font-semibold">E-mail:</span> nononono
             </p>
           </div>
@@ -177,32 +171,32 @@ export default function CentroDeReferencia() {
         <div className="space-y-4">
           <div className="flex items-start gap-3">
             <ListNumber>1</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               RedeCT (Rede Internacional de Pesquisadores sobre Povos
               Originários e Comunidades Tradicionais)
             </p>
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>2</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               PROEC (Pró-reitoria de Extensão e Cultura da UNESP)
             </p>
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>3</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               Museu Histórico e Pedagógico Índia Vanuíre - Tupã/SP
             </p>
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>4</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               Centro de Inovação Tecnológica de Bauru (CITeB)
             </p>
           </div>
           <div className="flex items-start gap-3">
             <ListNumber>5</ListNumber>
-            <p className="text-justify text-muted-foreground leading-relaxed">
+            <p className="text-justify">
               PROADE (Pró-Reitoria de Ações Afirmativas, Diversidade e Equidade)
             </p>
           </div>

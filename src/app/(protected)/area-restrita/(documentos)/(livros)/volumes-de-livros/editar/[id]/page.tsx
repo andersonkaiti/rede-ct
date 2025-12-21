@@ -20,7 +20,8 @@ import {
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../../../../../_components/page-container'
+import { SelectMember } from '../../../../../../area-restrita/_components/select-member'
 import {
   MAX_FILE_SIZE_BYTES,
   useUpdateBookVolume,
@@ -101,14 +102,17 @@ export default function EditarCapitulo() {
 
           <FormField
             control={form.control}
-            name="author"
+            name="authorId"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
                   Autor <span className="text-primary">*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder="Digite o nome do autor" {...field} />
+                  <SelectMember
+                    userId={field.value}
+                    onChange={field.onChange}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -123,6 +127,23 @@ export default function EditarCapitulo() {
                 <FormLabel>URL de Acesso</FormLabel>
                 <FormControl>
                   <Input placeholder="https://exemplo.com/livro" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="catalogSheetUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>URL da Ficha Catalográfica</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="https://exemplo.com/ficha-catalografica"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -146,69 +167,25 @@ export default function EditarCapitulo() {
             )}
           />
 
-          <div className="space-y-4">
-            <h3 className="font-medium text-sm">Arquivos</h3>
-
-            <FormField
-              control={form.control}
-              name="authorImage"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    Imagem do Autor <span className="text-primary">*</span>
-                  </FormLabel>
-                  <FormControl>
-                    <CoverUploader
-                      defaultImage={bookVolume?.authorImageUrl}
-                      maxSize={MAX_FILE_SIZE_BYTES}
-                      onImageChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="coverImage"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    Imagem da Capa <span className="text-primary">*</span>
-                  </FormLabel>
-                  <FormControl>
-                    <CoverUploader
-                      defaultImage={bookVolume?.coverImageUrl}
-                      maxSize={MAX_FILE_SIZE_BYTES}
-                      onImageChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="catalogSheet"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    Ficha Catalográfica <span className="text-primary">*</span>
-                  </FormLabel>
-                  <FormControl>
-                    <CoverUploader
-                      defaultImage={bookVolume?.catalogSheetUrl}
-                      maxSize={MAX_FILE_SIZE_BYTES}
-                      onImageChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+          <FormField
+            control={form.control}
+            name="coverImage"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Imagem da Capa <span className="text-primary">*</span>
+                </FormLabel>
+                <FormControl>
+                  <CoverUploader
+                    defaultImage={bookVolume?.coverImageUrl}
+                    maxSize={MAX_FILE_SIZE_BYTES}
+                    onImageChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <Button
             className="w-full cursor-pointer"

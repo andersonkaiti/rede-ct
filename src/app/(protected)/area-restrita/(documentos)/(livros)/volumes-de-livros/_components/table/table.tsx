@@ -13,14 +13,21 @@ interface IBookVolume {
   volumeNumber: number
   year: number
   title: string
-  author: string
+  author: {
+    id: string
+    name: string
+    emailAddress: string
+    avatarUrl: string | null
+    orcid: string | null
+    lattesUrl: string | null
+    role: string
+  }
   accessUrl: string | null
-  authorImageUrl: string | null
   coverImageUrl: string | null
   catalogSheetUrl: string | null
   description: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export function Table() {

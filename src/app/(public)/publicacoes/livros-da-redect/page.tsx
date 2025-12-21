@@ -1,21 +1,15 @@
 import { BookTextIcon } from '@components/icons/book-text'
-import { Button } from '@components/ui/button'
-import dynamic from 'next/dynamic'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Suspense } from 'react'
 import {
   PageContainer,
   PageDescription,
   PageHeader,
   PageHeaderIcon,
   PageHeaderTitle,
+  PageMain,
 } from '../../_components/page-container'
-import { LoadingSkeleton } from './_components/loading-skeleton'
-
-const DynamicBookVolumeList = dynamic(() =>
-  import('./_components/book-volume-list').then((mod) => mod.BookVolumeList),
-)
+import { BookVolumeList } from './_components/book-volume-list'
+import { CallToPublish } from './_components/call-to-publish'
+import { PublishYourBook } from './_components/publish-your-book'
 
 const requirements = [
   'Contar sempre com ISBN e ficha catalográfica registrada;',
@@ -48,67 +42,14 @@ export default function ColetaneaRedeCT() {
         chamada para o volume 14 (2025).
       </PageDescription>
 
-      <div className="mx-auto grid max-w-5xl items-center gap-8 md:grid-cols-2">
-        <div className="space-y-4 text-left">
-          <p className="font-bold text-3xl">
-            Publique seu livro na série de livros da RedeCT
-          </p>
-          <p className="font-semibold text-primary">
-            Você só paga as taxas de edição final e hospedagem da Editora Fi, a
-            RedeCT não cobra taxas adicionais de seus filiados.
-          </p>
+      <PageMain className="gap-8">
+        <PublishYourBook />
 
-          <p className="font-bold text-3xl">Série na Editora Fi</p>
-
-          <p className="text-muted-foreground">
-            Desde 2018, a RedeCT mantém um espaço para a publicação de livros de
-            seus Pesquisadores Filiados, a série de livros intitulada{' '}
-            <span className="font-bold text-primary">
-              &quot;Estudos sobre Povos Originários e Comunidades
-              Tradicionais&quot;
-            </span>
-            , contando com comitê editorial internacional.
-          </p>
-
-          <p className="mb-2">
-            A série de livros está hospedada no website da EDITORA FI (clique na
-            figura ao lado ou acesse o link{' '}
-            <Link
-              className="font-semibold text-primary hover:underline"
-              href="https://editorafi.org/povos"
-              target="_blank"
-            >
-              editorafi.org/povos
-            </Link>
-            ) e segue a política internacional de acesso livre/gratuito aos
-            interessados na leitura da obra final (é só o leitor baixar o
-            arquivo em pdf), mas se preferir o livro físico é só fazer o pedido
-            no próprio website e não precisa comprar lote (o orçamento e a
-            remessa pode ser de apenas um exemplar).
-          </p>
-
-          <div className="rounded-md border border-primary/20 bg-primary/20 p-4 text-primary text-sm italic">
-            <span className="font-bold">Responsável:</span> Me. Isaltina Santos
-            da Costa Oliveira (TINA).
-          </div>
-        </div>
-
-        <picture className="relative h-70 w-full rounded-md border border-gray-300 p-2 shadow-lg">
-          <Image
-            alt="Série Estudos sobre Povos Originários e Comunidades Tradicionais"
-            className="overflow-hidden object-cover"
-            fill
-            src="https://redect.org/novaredect/images/2024/04/03/serie-na-fi.png"
-          />
-        </picture>
-      </div>
-
-      <main className="space-y-20">
         <section className="space-y-8">
           <h2 className="whitespace-normal font-bold text-2xl lg:text-4xl">
             Apresentação da série de livros da RedeCT
           </h2>
-          <p className="text-justify text-muted-foreground leading-relaxed">
+          <p className="text-justify">
             A RedeCT reúne uma coletânea crescente de capítulos de livros, com
             mais de 150 capítulos publicados. A série apresenta pesquisas e
             trabalhos de extensão universitária sobre Povos Originários e
@@ -117,38 +58,13 @@ export default function ColetaneaRedeCT() {
           </p>
         </section>
 
-        <section className="space-y-6 rounded-md bg-linear-to-br from-primary to-red-700 p-6 text-center text-white md:p-10">
-          <h2 className="font-semibold text-3xl text-white">
-            Chamada para publicação do volume 14 (2025)
-          </h2>
-          <p className="text-white leading-relaxed">
-            O período de submissão para propostas de capítulos do volume 14 foi
-            prorrogado até 31 de maio de 2025. O envio deve incluir o arquivo
-            completo do capítulo (Word e PDF), conforme edital oficial. Dúvidas
-            podem ser esclarecidas pelo e-mail{' '}
-            <Link
-              className="font-semibold underline"
-              href="mailto:livroredect@gmail.com"
-            >
-              livroredect@gmail.com
-            </Link>
-            .
-          </p>
-          <Button variant="secondary">
-            <Link
-              href="https://onedrive.live.com/embed?cid=6afd3e4c750a5cf9&id=6AFD3E4C750A5CF9!s6451fa92e2c3450f879aa5dbc391cdda&resid=6AFD3E4C750A5CF9!s6451fa92e2c3450f879aa5dbc391cdda&ithint=file,pdf&embed=1&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL2IvYy82YWZkM2U0Yzc1MGE1Y2Y5L0lRU0MtbEZrdy1JUFJZZWFwZHZEa2MzYUFlS2h1Tld4c0ZGRURJbjdKTnlrOHVj"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Acessar Edital do Volume 14 (2025)
-            </Link>
-          </Button>
-        </section>
+        <CallToPublish />
 
         <section className="space-y-8">
           <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
             Requisitos de qualidade do sistema CAPES-Livro atendidos
           </h2>
+
           <ol className="space-y-4">
             {requirements.map((item, index: number) => (
               <li className="flex items-start" key={index}>
@@ -159,7 +75,7 @@ export default function ColetaneaRedeCT() {
               </li>
             ))}
           </ol>
-          <p className="text-justify text-muted-foreground text-sm italic">
+          <p className="text-justify">
             Quanto mais citações destas obras, melhores tendem a ser as
             avaliações da RedeCT pela CAPES.
           </p>
@@ -169,11 +85,10 @@ export default function ColetaneaRedeCT() {
           <h2 className="whitespace-normal font-bold text-xl lg:text-2xl">
             Acesso aos volumes já publicados e índice remissivo por assunto
           </h2>
-          <Suspense fallback={<LoadingSkeleton />}>
-            <DynamicBookVolumeList />
-          </Suspense>
+
+          <BookVolumeList />
         </section>
-      </main>
+      </PageMain>
     </PageContainer>
   )
 }

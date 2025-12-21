@@ -1,5 +1,4 @@
 import { UsersIcon } from '@components/icons/users'
-import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'
 import {
   PageContainer,
@@ -9,10 +8,7 @@ import {
   PageHeaderTitle,
 } from '../../_components/page-container'
 import LoadingSkeleton from './_components/loading-skeleton'
-
-const ManagementTeamsDynamic = dynamicImport(() =>
-  import('./_components/management-teams').then((m) => m.ManagementTeams),
-)
+import { ManagementTeams } from './_components/management-teams'
 
 export default function EquipeDeGestao() {
   return (
@@ -32,7 +28,7 @@ export default function EquipeDeGestao() {
       </PageDescription>
 
       <Suspense fallback={<LoadingSkeleton />}>
-        <ManagementTeamsDynamic />
+        <ManagementTeams />
       </Suspense>
     </PageContainer>
   )

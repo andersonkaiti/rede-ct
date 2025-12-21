@@ -97,6 +97,6 @@ const timelineData: TimelineItem[] = [
   },
 ]
 
-export async function getTimelineRedeCT(): Promise<TimelineItem[]> {
-  return await new Promise((resolve) => resolve(timelineData))
+export function getTimelineRedeCT() {
+  return timelineData
 }

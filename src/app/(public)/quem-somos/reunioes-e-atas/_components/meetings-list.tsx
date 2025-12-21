@@ -3,7 +3,7 @@
 import PaginatorComponent from '@components/ui/paginator'
 import { Separator } from '@components/ui/separator'
 import { FilterInput } from './filter-input'
-import { LoadingSkeleton } from './loading-skeleton'
+import { ListLoadingSkeleton } from './loading-skeleton'
 import { MeetingCard } from './meeting-card'
 import { useMeetings } from './use-meetings'
 
@@ -16,7 +16,7 @@ export function MeetingsList() {
         <FilterInput />
       </div>
 
-      {isLoading && <LoadingSkeleton />}
+      {isLoading && <ListLoadingSkeleton />}
 
       {data?.meetings && (
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">

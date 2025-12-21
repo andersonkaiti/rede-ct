@@ -1,6 +1,4 @@
 import { UsersIcon } from '@components/icons/users'
-import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
 import {
   PageContainer,
   PageDescription,
@@ -8,11 +6,7 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../_components/page-container'
-import { LoadingSkeleton } from './_components/loading-skeleton'
-
-const DynamicPartnerList = dynamic(() =>
-  import('./_components/partner-list').then((m) => m.PartnerList),
-)
+import { PartnerList } from './_components/partner-list'
 
 export default function ParceirosEFinanciadores() {
   return (
@@ -33,9 +27,7 @@ export default function ParceirosEFinanciadores() {
         resultados alcançados.
       </PageDescription>
 
-      <Suspense fallback={<LoadingSkeleton />}>
-        <DynamicPartnerList />
-      </Suspense>
+      <PartnerList />
     </PageContainer>
   )
 }

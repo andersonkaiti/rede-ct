@@ -16,13 +16,13 @@ import {
 } from '@components/ui/timeline'
 import { Users } from 'lucide-react'
 import Image from 'next/image'
-import { getTimelineRedeCT } from '@/app/(public)/quem-somos/apresentacao-e-historia/_components/timeline-rede-ct'
 import { Countries } from './_components/countries'
+import { getTimelineRedeCT } from './_components/timeline-rede-ct'
 import { WhatAreRedeCTCard } from './_components/whats-are-cards/rede-ct'
 import { WhatAreTraditionalPeopleCard } from './_components/whats-are-cards/traditional-people'
 
-export default async function ApresentacaoEHistoria() {
-  const timelineData = await getTimelineRedeCT()
+export default function ApresentacaoEHistoria() {
+  const timelineData = getTimelineRedeCT()
 
   return (
     <>

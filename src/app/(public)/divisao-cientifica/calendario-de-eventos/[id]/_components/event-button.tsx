@@ -17,7 +17,7 @@ export function EventButton({ eventLink, format, status }: IEventButtonProps) {
 
   if (isDisabled) {
     return (
-      <Button className="w-full font-bold" variant="outline" disabled>
+      <Button className="w-full" variant="outline" disabled>
         {status === 'FINISHED' ? 'Evento Encerrado' : 'Evento Cancelado'}
       </Button>
     )

@@ -1,12 +1,8 @@
 import { BackArrow } from '@components/ui/back-arrow'
 import { UserCardRedLine } from '@components/ui/user-card'
-import dynamicImport from 'next/dynamic'
 import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
-
-const DynamicSDHCTeam = dynamicImport(() =>
-  import('./_components/sdhc-team').then((m) => m.SDHCTeam),
-)
+import { SDHCTeam } from './_components/sdhc-team'
 
 export default function EquipeSDHC() {
   return (
@@ -22,7 +18,7 @@ export default function EquipeSDHC() {
       </div>
 
       <Suspense fallback={<LoadingSkeleton />}>
-        <DynamicSDHCTeam />
+        <SDHCTeam />
       </Suspense>
     </main>
   )

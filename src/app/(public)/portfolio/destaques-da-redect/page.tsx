@@ -1,6 +1,4 @@
 import { Star } from 'lucide-react'
-import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
 import {
   PageContainer,
   PageDescription,
@@ -8,13 +6,7 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../_components/page-container'
-import { LoadingSkeleton } from './_components/loading-skeleton'
-
-const DynamicRedeCTHighlightList = dynamic(() =>
-  import('./_components/redect-highlight-list').then(
-    (mod) => mod.RedeCTHighlightList,
-  ),
-)
+import { RedeCTHighlightList } from './_components/redect-highlight-list'
 
 export default function DestaquesRedeCT() {
   return (
@@ -38,9 +30,7 @@ export default function DestaquesRedeCT() {
         diálogo intercultural e o respeito aos saberes tradicionais.
       </PageDescription>
 
-      <Suspense fallback={<LoadingSkeleton />}>
-        <DynamicRedeCTHighlightList />
-      </Suspense>
+      <RedeCTHighlightList />
     </PageContainer>
   )
 }

@@ -17,8 +17,8 @@ interface IScientificArticle {
   edition: string | null
   pageStart: number | null
   pageEnd: number | null
-  startDate: string
-  endDate: string
+  startDate: Date
+  endDate: Date
   city: string | null
   state: string | null
   country: string | null
@@ -26,8 +26,8 @@ interface IScientificArticle {
   description: string | null
   year: number | null
   accessUrl: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export function Table() {

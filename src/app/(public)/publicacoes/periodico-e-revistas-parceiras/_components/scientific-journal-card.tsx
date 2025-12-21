@@ -1,11 +1,4 @@
 import { Button } from '@components/ui/button'
-import { CardTitle } from '@components/ui/card'
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@components/ui/collapsible'
-import { ChevronUp, ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -19,26 +12,18 @@ interface ScientificJournalCardProps {
     logoUrl: string | null
     directors: string | null
     editorialBoard: string | null
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
   }
 }
 
 export function ScientificJournalCard({
-  journal: {
-    name,
-    issn,
-    description,
-    journalUrl,
-    logoUrl,
-    directors,
-    editorialBoard,
-  },
+  journal: { id, name, issn, logoUrl },
 }: ScientificJournalCardProps) {
   return (
     <div className="flex flex-col gap-2">
       <header className="h-80">
-        <picture className="v relative flex size-full overflow-hidden rounded-md">
+        <picture className="relative flex size-full overflow-hidden rounded-md">
           <Image
             alt={name}
             className="object-cover"
@@ -52,56 +37,21 @@ export function ScientificJournalCard({
 
       <div className="flex h-fit grow flex-col gap-4 py-2">
         <div className="space-y-4">
-          <div className="flex items-center gap-2 text-sm leading-4">
-            <span className="text-muted-foreground">ISSN: {issn}</span>
-          </div>
+          <h1 className="font-semibold text-foreground text-xl">{name}</h1>
 
-          <CardTitle className="line-clamp-2 font-semibold text-2xl">
-            {name}
-          </CardTitle>
+          <div className="space-y-1">
+            <h2 className="text-muted-foreground">ISSN</h2>
+            <p className="whitespace-pre-wrap text-justify">{issn}</p>
+          </div>
         </div>
 
-        {description && (
-          <Collapsible>
-            <CollapsibleTrigger className="group flex cursor-pointer items-center justify-between gap-2 p-0 text-sm">
-              Descrição
-              <ChevronUp className="size-4 transition-all duration-300 group-data-[state=open]:rotate-180" />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <p className="mt-2 text-justify text-sm">{description}</p>
-            </CollapsibleContent>
-          </Collapsible>
-        )}
-
-        {directors && (
-          <Collapsible>
-            <CollapsibleTrigger className="group flex cursor-pointer items-center justify-between gap-2 p-0 text-sm">
-              Diretores
-              <ChevronUp className="size-4 transition-all duration-300 group-data-[state=open]:rotate-180" />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <p className="mt-2 text-justify text-sm">{directors}</p>
-            </CollapsibleContent>
-          </Collapsible>
-        )}
-
-        {editorialBoard && (
-          <Collapsible>
-            <CollapsibleTrigger className="group flex cursor-pointer items-center justify-between gap-2 p-0 text-sm">
-              Conselho Editorial
-              <ChevronUp className="size-4 transition-all duration-300 group-data-[state=open]:rotate-180" />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <p className="mt-2 text-justify text-sm">{editorialBoard}</p>
-            </CollapsibleContent>
-          </Collapsible>
-        )}
-
-        <footer className="mt-auto">
-          <Button asChild className="group w-full font-bold" variant="outline">
-            <Link className="w-full" href={journalUrl} target="_blank">
-              Acessar revista
-              <ExternalLink className="size-4 transition-all duration-200 group-hover:translate-x-1" />
+        <footer className="mt-4">
+          <Button asChild variant="outline">
+            <Link
+              className="w-full"
+              href={`/publicacoes/periodico-e-revistas-parceiras/${id}`}
+            >
+              Ver mais detalhes
             </Link>
           </Button>
         </footer>

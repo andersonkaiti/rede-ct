@@ -44,9 +44,9 @@ export default function Loading() {
       <div className="flex items-center justify-between">
         <Skeleton className="h-9 w-52" />
         <div className="flex items-center gap-2">
-          <Skeleton className="h-9 w-9" />
-          <Skeleton className="h-9 w-9" />
-          <Skeleton className="h-9 w-9" />
+          <Skeleton className="size-9" />
+          <Skeleton className="size-9" />
+          <Skeleton className="size-9" />
         </div>
       </div>
     </PageContainer>

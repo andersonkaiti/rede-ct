@@ -32,12 +32,12 @@ const getCoursesSchema = z.object({
         role: z.enum(['USER', 'ADMIN']),
       }),
       email: z.string(),
-      scheduledAt: z.string(),
+      scheduledAt: z.coerce.date(),
       location: z.string(),
       registrationLink: z.string().nullable(),
       description: z.string().nullable(),
-      createdAt: z.string(),
-      updatedAt: z.string(),
+      createdAt: z.coerce.date(),
+      updatedAt: z.coerce.date(),
       instructors: z
         .array(
           z.object({

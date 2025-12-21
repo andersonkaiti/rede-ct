@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from '@components/ui/card'
 import { format } from 'date-fns'
-import { Calendar, Handshake, ImageIcon, MapPin } from 'lucide-react'
 import Link from 'next/link'
 
 interface CongressCardProps {
@@ -62,32 +61,38 @@ export function CongressCard({ congress }: CongressCardProps) {
         <h4 className="text-justify text-sm">{congress.title}</h4>
       </CardHeader>
 
-      <CardContent className="space-y-3">
-        <div className="flex items-center gap-1 text-sm">
-          <Calendar className="size-4" />
-          <span>{format(new Date(congress.startDate), 'dd/MM/yyyy')}</span>
+      <CardContent className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="space-y-1 text-sm">
+          <h2 className="text-muted-foreground">Data</h2>
+          <p className="whitespace-pre-wrap text-justify text-sm">
+            {format(congress.startDate, 'dd/MM/yyyy')}
+          </p>
         </div>
 
         {congress.location && (
-          <div className="flex items-center gap-1 text-sm">
-            <MapPin className="size-4" />
-            <span>{congress.location}</span>
+          <div className="space-y-1 text-sm">
+            <h2 className="text-muted-foreground">Local</h2>
+            <p className="whitespace-pre-wrap text-justify text-sm">
+              {congress.location}
+            </p>
           </div>
         )}
 
         {congress.regionalCongressPartners.length > 0 && (
-          <div className="flex items-center gap-1 text-sm">
-            <Handshake className="size-4" />
-            <span>{congress.regionalCongressPartners.length} parceiro(s)</span>
+          <div className="space-y-1 text-sm">
+            <h2 className="text-muted-foreground">Parceria(s)</h2>
+            <p className="whitespace-pre-wrap text-justify text-sm">
+              {congress.regionalCongressPartners.length} parceiro(s)
+            </p>
           </div>
         )}
 
         {congress.regionalCongressGalleryItems.length > 0 && (
-          <div className="flex items-center gap-1 text-sm">
-            <ImageIcon className="size-4" />
-            <span>
+          <div className="space-y-1 text-sm">
+            <h2 className="text-muted-foreground">Galeria</h2>
+            <p className="whitespace-pre-wrap text-justify text-sm">
               {congress.regionalCongressGalleryItems.length} foto(s) na galeria
-            </span>
+            </p>
           </div>
         )}
       </CardContent>

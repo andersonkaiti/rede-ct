@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
 import { Button } from '@components/ui/button'
 import { Card, CardFooter, CardHeader, CardTitle } from '@components/ui/card'
 import { format } from 'date-fns'
-import { Calendar } from 'lucide-react'
+import { ptBR } from 'date-fns/locale'
 import Link from 'next/link'
 
 interface IPartnerProps {
@@ -21,6 +21,12 @@ interface IPartnerProps {
 }
 
 export function PartnerCard({ partner }: IPartnerProps) {
+  const formattedSince = format(
+    partner.since,
+    "d 'de' MMMM 'de' yyyy 'às' HH:mm",
+    { locale: ptBR },
+  )
+
   return (
     <Card>
       <CardHeader className="flex flex-row items-center gap-4">
@@ -45,14 +51,10 @@ export function PartnerCard({ partner }: IPartnerProps) {
       </CardHeader>
 
       <CardFooter className="flex flex-col items-center gap-8">
-        <div className="w-full space-y-2 text-sm">
-          <span className="text-muted-foreground leading-tight">
-            Parceiro(a) desde
-          </span>
-
-          <div className="flex items-center gap-1 font-semibold">
-            <Calendar className="size-4" />{' '}
-            {format(partner.since, 'dd/MM/yyyy')}
+        <div className="space-y-1 text-sm">
+          <span className="text-muted-foreground">Parceiro(a) desde</span>
+          <div className="whitespace-pre-wrap text-justify text-sm">
+            {formattedSince}
           </div>
         </div>
 

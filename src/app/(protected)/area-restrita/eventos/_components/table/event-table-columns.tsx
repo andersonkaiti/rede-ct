@@ -7,14 +7,14 @@ interface IEvent {
   title: string
   description: string | null
   imageUrl: string | null
-  startDate: string
-  endDate: string
+  startDate: Date
+  endDate: Date
   location: string | null
   status: 'PENDING' | 'CANCELLED' | 'FINISHED'
   format: 'ONLINE' | 'IN_PERSON'
   eventLink: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 const TITLE_MAX_LENGTH = 30

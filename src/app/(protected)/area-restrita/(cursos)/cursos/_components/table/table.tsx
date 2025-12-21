@@ -25,12 +25,12 @@ interface ICourse {
     role: 'USER' | 'ADMIN'
   }
   email: string
-  scheduledAt: string
+  scheduledAt: Date
   location: string
   registrationLink: string | null
   description: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
   instructors?: {
     id: string
     name: string

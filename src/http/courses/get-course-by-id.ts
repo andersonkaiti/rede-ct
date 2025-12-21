@@ -1,4 +1,5 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
 import z from 'zod'
 
 const getCourseByIdSchema = z
@@ -19,12 +20,12 @@ const getCourseByIdSchema = z
       role: z.enum(['USER', 'ADMIN']),
     }),
     email: z.string(),
-    scheduledAt: z.string(),
+    scheduledAt: z.coerce.date(),
     location: z.string(),
     registrationLink: z.string().nullable(),
     description: z.string().nullable(),
-    createdAt: z.string(),
-    updatedAt: z.string(),
+    createdAt: z.coerce.date(),
+    updatedAt: z.coerce.date(),
     instructors: z.array(
       z.object({
         id: z.string(),
@@ -43,7 +44,13 @@ const getCourseByIdSchema = z
   .nullable()
 
 export async function getCourseById(id: string) {
-  const data = await api.get(`courses/${id}`).json()
+  try {
+    const data = await api.get(`courses/${id}`).json()
 
-  return getCourseByIdSchema.parse(data)
+    return getCourseByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      return null
+    }
+  }
 }

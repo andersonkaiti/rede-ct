@@ -41,7 +41,7 @@ export function MeetingStatus({ status }: { status: MeetingStatus }) {
   return (
     <Badge
       className={cn(
-        'flex items-center gap-1 rounded-lg px-2.5 py-0.5 font-medium text-xs',
+        'flex items-center gap-1 rounded-full px-3 font-medium text-xs',
         statusInfo.badgeClass,
       )}
       aria-label={statusInfo.ariaLabel}

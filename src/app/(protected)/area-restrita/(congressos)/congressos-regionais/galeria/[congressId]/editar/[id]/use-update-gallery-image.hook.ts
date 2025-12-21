@@ -52,9 +52,7 @@ export function useUpdateGalleryImage() {
 
       toast.success('Imagem atualizada com sucesso.')
 
-      router.push(
-        `/area-restrita/congressos-regionais/${congressId}/galeria/${id}`,
-      )
+      router.push(`/area-restrita/congressos-regionais/galeria/${congressId}`)
     } catch (err) {
       if (err instanceof HTTPError) {
         const errorBody = await err.response.json()

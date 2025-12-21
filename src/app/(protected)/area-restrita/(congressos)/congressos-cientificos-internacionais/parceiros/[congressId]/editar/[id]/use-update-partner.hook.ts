@@ -54,7 +54,7 @@ export function useUpdatePartner() {
       toast.success('Parceiro atualizado com sucesso')
 
       router.push(
-        `/area-restrita/congressos-cientificos-internacionais/${congressId}/parceiros/${id}`,
+        `/area-restrita/congressos-cientificos-internacionais/parceiros/${congressId}`,
       )
     } catch (err) {
       if (err instanceof HTTPError) {

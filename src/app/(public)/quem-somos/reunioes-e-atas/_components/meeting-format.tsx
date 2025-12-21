@@ -22,7 +22,10 @@ export function MeetingFormat({ format }: { format: MeetingFormat }) {
   const formatInfo = formatConfig[format]
 
   return (
-    <Badge variant="outline" className="flex items-center gap-1">
+    <Badge
+      variant="outline"
+      className="flex items-center gap-1 rounded-full px-4"
+    >
       {formatInfo.icon}
       {formatInfo.label}
     </Badge>

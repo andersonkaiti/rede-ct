@@ -6,7 +6,7 @@ import { validateImageFile } from '@utils/validate-image-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useForm, useFormState } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
@@ -71,10 +71,17 @@ export function useUpdateEvent() {
 
   const form = useForm<UpdateEventInput>({
     resolver: zodResolver(updateEventSchema),
-  })
-
-  const { isSubmitting } = useFormState({
-    control: form.control,
+    defaultValues: {
+      title: '',
+      description: '',
+      startDate: new Date(),
+      endDate: new Date(),
+      location: '',
+      format: 'ONLINE',
+      eventLink: '',
+      status: 'PENDING',
+      image: undefined,
+    },
   })
 
   useEffect(() => {
@@ -111,7 +118,6 @@ export function useUpdateEvent() {
   return {
     form,
     serverError,
-    isSubmitting,
     submit,
     event,
   }

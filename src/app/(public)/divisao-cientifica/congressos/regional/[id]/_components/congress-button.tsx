@@ -18,7 +18,7 @@ export function CongressButton({ congressLink }: ICongressButtonProps) {
       onClick={() =>
         !congressLink && toast.error('Link do congresso indisponível')
       }
-      variant="outline"
+      variant="ghost"
       onMouseEnter={() => iconRef.current?.startAnimation()}
       onMouseLeave={() => iconRef.current?.stopAnimation()}
     >

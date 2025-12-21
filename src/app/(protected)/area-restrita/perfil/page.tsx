@@ -6,7 +6,7 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../_components/page-container'
 import { UserProfile } from './_components/user-profile'
 
 export default async function UserProfilePage() {

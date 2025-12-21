@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { AdminWrapper } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -7,12 +7,10 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { AdminWrapper } from '../../../_components/hoc/admin'
+} from '../../../_components/page-container'
 import { FilterInput } from '../../_components/filter-input'
 import { CreateInMemoriamButton } from './_components/create-in-memoriam-button'
 import { InMemoriamDisplayOptions } from './_components/in-memoriam-display-options'
-import { LoadingSkeleton } from './_components/table/loading-skeleton'
 import { Table } from './_components/table/table'
 
 export default function InMemoriam() {
@@ -37,9 +35,7 @@ export default function InMemoriam() {
         </PageHeader>
 
         <PageMain>
-          <Suspense fallback={<LoadingSkeleton />}>
-            <Table />
-          </Suspense>
+          <Table />
         </PageMain>
       </PageContainer>
     </AdminWrapper>

@@ -1,3 +1,4 @@
+import { AdminWrapper } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -6,8 +7,7 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { AdminWrapper } from '../../../_components/hoc/admin'
+} from '../../../_components/page-container'
 import { FilterInput } from '../../_components/filter-input'
 import { OrderByButton } from '../../_components/order-by-button'
 import { CreateLawButton } from './_components/create-law/create-law-button'

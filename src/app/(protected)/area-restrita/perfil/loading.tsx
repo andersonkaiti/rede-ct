@@ -5,7 +5,7 @@ import {
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../_components/page-container'
 
 export default function Loading() {
   return (

@@ -21,8 +21,8 @@ interface IMuseum {
   phone: string | null
   address: string | null
   functioning: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export function Table() {

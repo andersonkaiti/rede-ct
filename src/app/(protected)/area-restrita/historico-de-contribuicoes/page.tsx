@@ -7,7 +7,7 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../_components/page-container'
 import { FilterInput } from '../_components/filter-input'
 import { OrderByButton } from '../_components/order-by-button'
 import { AllContributionsButton } from './_components/all-contributions-button'

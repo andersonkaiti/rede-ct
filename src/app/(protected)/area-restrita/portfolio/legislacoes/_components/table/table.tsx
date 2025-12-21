@@ -4,10 +4,18 @@ import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
-import type { ILaw } from './law-table-columns'
 import { lawTableColumns } from './law-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
 import { useLaws } from './use-laws.hook'
+
+interface ILaw {
+  id: string
+  title: string
+  link: string
+  country: string
+  createdAt: string
+  updatedAt: string
+}
 
 export function Table() {
   const { data, isLoading, handleRemoveLaw, page, limit } = useLaws()

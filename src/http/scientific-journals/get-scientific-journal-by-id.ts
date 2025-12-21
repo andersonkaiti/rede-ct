@@ -26,7 +26,5 @@ export async function getScientificJournalById(id: string) {
     if (error instanceof HTTPError && error.response.status === 404) {
       return null
     }
-
-    throw error
   }
 }

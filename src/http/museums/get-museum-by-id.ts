@@ -1,4 +1,5 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
 import z from 'zod'
 
 const getMuseumByIdSchema = z.object({
@@ -19,7 +20,13 @@ const getMuseumByIdSchema = z.object({
 })
 
 export async function getMuseumById(id: string) {
-  const data = await api.get(`museum/${id}`).json()
+  try {
+    const data = await api.get(`museum/${id}`).json()
 
-  return getMuseumByIdSchema.parse(data)
+    return getMuseumByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      return null
+    }
+  }
 }

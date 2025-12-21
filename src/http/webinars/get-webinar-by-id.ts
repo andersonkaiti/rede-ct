@@ -1,4 +1,5 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
 import z from 'zod'
 
 const getWebinarByIdSchema = z
@@ -29,7 +30,13 @@ const getWebinarByIdSchema = z
   .nullable()
 
 export async function getWebinarById(id: string) {
-  const data = await api.get(`webinars/${id}`).json()
+  try {
+    const data = await api.get(`webinars/${id}`).json()
 
-  return getWebinarByIdSchema.parse(data)
+    return getWebinarByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      return null
+    }
+  }
 }

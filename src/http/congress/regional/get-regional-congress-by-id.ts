@@ -1,4 +1,5 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
 import z from 'zod'
 
 export const getRegionalCongressByIdSchema = z.object({
@@ -36,7 +37,13 @@ export const getRegionalCongressByIdSchema = z.object({
 })
 
 export async function getRegionalCongressById(id: string) {
-  const data = await api.get(`regional-congress/${id}`).json()
+  try {
+    const data = await api.get(`regional-congress/${id}`).json()
 
-  return getRegionalCongressByIdSchema.parse(data)
+    return getRegionalCongressByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      return null
+    }
+  }
 }

@@ -1,4 +1,6 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
+import { notFound } from 'next/navigation'
 import z from 'zod'
 
 export const getLawByIdSchema = z.object({
@@ -11,7 +13,15 @@ export const getLawByIdSchema = z.object({
 })
 
 export async function getLawById(id: string) {
-  const data = await api.get(`law/${id}`).json()
+  try {
+    const data = await api.get(`law/${id}`).json()
 
-  return getLawByIdSchema.parse(data)
+    return getLawByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      notFound()
+    }
+
+    throw error
+  }
 }

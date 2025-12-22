@@ -11,14 +11,24 @@ import { useRedeCTHighlights } from './use-redect-highlights.hook'
 interface IRedeCTHighlight {
   id: string
   type: 'PERSON' | 'INSTITUTION'
-  name: string
+  user: {
+    name: string
+    orcid: string | null
+    phone: string | null
+    lattesUrl: string | null
+    id: string
+    avatarUrl: string | null
+    createdAt: string
+    updatedAt: string
+    emailAddress: string
+    role: 'ADMIN' | 'USER'
+  }
   description: string | null
-  honorableMention: string | null
-  imageUrl: string | null
-  honoredAt: string
+  honorableMention: boolean | null
+  honoredAt: Date
   meritUrl: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export function Table() {

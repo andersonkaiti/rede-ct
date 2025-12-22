@@ -13,19 +13,17 @@ import z from 'zod'
 const BYTES = 1024
 const MEGABYTES = BYTES * BYTES
 const MAX_FILE_SIZE_MB = 5
-const TOTAL_SIZE = MAX_FILE_SIZE_MB * MEGABYTES
+export const TOTAL_SIZE = MAX_FILE_SIZE_MB * MEGABYTES
 
 export const createNewsSchema = z.object({
   title: z.string().min(1, 'Título é obrigatório'),
   content: z.string().min(1, 'Texto é obrigatório'),
-  image: z.any().refine(
-    (value) =>
-      validateImageFile({
-        value,
-        maxSize: TOTAL_SIZE,
-        optional: false,
-      }),
-    'A imagem é obrigatória',
+  image: z.any().refine((value) =>
+    validateImageFile({
+      value,
+      maxSize: TOTAL_SIZE,
+      optional: false,
+    }),
   ),
 })
 

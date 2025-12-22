@@ -8,7 +8,6 @@ import {
   PageMain,
 } from '../../../_components/page-container'
 import { JournalButton } from './_components/journal-button'
-import { NotFound } from './_components/not-found'
 
 interface IJournalDetailsProps {
   params: Promise<{
@@ -22,7 +21,7 @@ export async function generateMetadata({ params }: IJournalDetailsProps) {
   const journal = await getScientificJournalById(id)
 
   return {
-    title: journal?.name,
+    title: journal.name,
   }
 }
 
@@ -30,10 +29,6 @@ export default async function JournalDetails({ params }: IJournalDetailsProps) {
   const { id } = await params
 
   const journal = await getScientificJournalById(id)
-
-  if (!journal) {
-    return <NotFound />
-  }
 
   return (
     <PageContainer>

@@ -3,7 +3,6 @@
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
 import { Checkbox } from '@components/ui/checkbox'
-import { CoverUploader } from '@components/ui/cover-uploader'
 import { DatePicker } from '@components/ui/date-picker'
 import {
   Form,
@@ -28,11 +27,9 @@ import {
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import {
-  MAX_IMAGE_SIZE_BYTES,
-  useCreateRedeCTHighlight,
-} from './use-create-redect-highlight.hook'
+} from '../../../../_components/page-container'
+import { SelectMember } from '../../../../area-restrita/_components/select-member'
+import { useCreateRedeCTHighlight } from './use-create-redect-highlight.hook'
 
 export default function CadastrarDestaque() {
   const { form, submit, serverError } = useCreateRedeCTHighlight()
@@ -56,53 +53,51 @@ export default function CadastrarDestaque() {
             </Alert>
           )}
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <FormField
-              control={form.control}
-              name="type"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    Tipo <span className="text-primary">*</span>
-                  </FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Selecione o tipo" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="PERSON">Pessoa</SelectItem>
-                      <SelectItem value="INSTITUTION">Instituição</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    Nome <span className="text-primary">*</span>
-                  </FormLabel>
+          <FormField
+            control={form.control}
+            name="type"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Tipo <span className="text-primary">*</span>
+                </FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
-                    <Input
-                      placeholder="Digite o nome da pessoa ou instituição"
-                      {...field}
-                    />
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Selecione o tipo" />
+                    </SelectTrigger>
                   </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+                  <SelectContent>
+                    <SelectItem value="PERSON">Pessoa</SelectItem>
+                    <SelectItem value="INSTITUTION">Instituição</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="userId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Usuário <span className="text-primary">*</span>
+                </FormLabel>
+                <FormControl>
+                  <SelectMember
+                    userId={field.value}
+                    onChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <FormField
             control={form.control}
@@ -152,23 +147,6 @@ export default function CadastrarDestaque() {
                     placeholder="https://exemplo.com/merito"
                     type="url"
                     {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="image"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Imagem</FormLabel>
-                <FormControl>
-                  <CoverUploader
-                    maxSize={MAX_IMAGE_SIZE_BYTES}
-                    onImageChange={field.onChange}
                   />
                 </FormControl>
                 <FormMessage />

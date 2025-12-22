@@ -10,7 +10,6 @@ import {
   PageHeader,
   PageMain,
 } from '../../../_components/page-container'
-import { NotFound } from './_components/not-found'
 import { ResearchGroupButton } from './_components/research-group-button'
 
 interface IResearchGroupDetailsProps {
@@ -25,7 +24,7 @@ export async function generateMetadata({ params }: IResearchGroupDetailsProps) {
   const researchGroup = await getResearchGroupById(id)
 
   return {
-    title: researchGroup?.name,
+    title: researchGroup.name,
   }
 }
 
@@ -35,10 +34,6 @@ export default async function ResearchGroupDetails({
   const { id } = await params
 
   const researchGroup = await getResearchGroupById(id)
-
-  if (!researchGroup) {
-    return <NotFound />
-  }
 
   const formattedUpdatedAt = format(
     researchGroup.updatedAt,

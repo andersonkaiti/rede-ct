@@ -13,7 +13,6 @@ import { MeetingFormat } from '../_components/meeting-format'
 import { MeetingStatus } from '../_components/meeting-status'
 import { MeetingButton } from './_components/meeting-button'
 import { MeetingMinute } from './_components/meeting-minute'
-import { NotFound } from './_components/not-found'
 
 interface IMeetingDetailsProps {
   params: Promise<{
@@ -27,7 +26,7 @@ export async function generateMetadata({ params }: IMeetingDetailsProps) {
   const meeting = await getMeetingById(id)
 
   return {
-    title: meeting?.title,
+    title: meeting.title,
   }
 }
 
@@ -35,10 +34,6 @@ export default async function MeetingDetails({ params }: IMeetingDetailsProps) {
   const { id } = await params
 
   const meeting = await getMeetingById(id)
-
-  if (!meeting) {
-    return <NotFound />
-  }
 
   const formattedDate = format(
     meeting.scheduledAt,

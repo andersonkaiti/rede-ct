@@ -1,10 +1,10 @@
 import { BackArrow } from '@components/ui/back-arrow'
+import { SafeHTML } from '@components/ui/dom-purify'
 import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { getNewsById } from '@http/news/get-news-by-id'
 import { formatDate } from '@utils/format-date'
 import Image from 'next/image'
 import { PageContainer } from '../../_components/page-container'
-import { NotFound } from './_components/not-found'
 import { ShareButton } from './_components/share-button'
 
 interface INewsPageProps {
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: INewsPageProps) {
   const news = await getNewsById(id)
 
   return {
-    title: news?.title,
+    title: news.title,
   }
 }
 
@@ -25,10 +25,6 @@ export default async function NewsPage({ params }: INewsPageProps) {
   const { id } = await params
 
   const news = await getNewsById(id)
-
-  if (!news) {
-    return <NotFound />
-  }
 
   return (
     <PageContainer>
@@ -68,9 +64,7 @@ export default async function NewsPage({ params }: INewsPageProps) {
         <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
       </picture>
 
-      <p className="text-justify text-base/7 text-muted-foreground">
-        {news.content}
-      </p>
+      <SafeHTML html={news.content} className="space-y-4 text-justify" />
     </PageContainer>
   )
 }

@@ -13,17 +13,15 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
-import { Textarea } from '@components/ui/textarea'
+import { RichTextEditor } from '@components/ui/rich-text-editor'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { useCreateNews } from './use-create-news.hook'
-
-const MAX_IMAGE_SIZE_MB = 5
+} from '../../../_components/page-container'
+import { TOTAL_SIZE, useCreateNews } from './use-create-news.hook'
 
 export default function CadastrarNoticia() {
   const { form, isSubmitting, submit, serverError } = useCreateNews()
@@ -72,7 +70,7 @@ export default function CadastrarNoticia() {
                 </FormLabel>
                 <FormControl>
                   <CoverUploader
-                    maxSize={MAX_IMAGE_SIZE_MB}
+                    maxSize={TOTAL_SIZE}
                     onImageChange={field.onChange}
                   />
                 </FormControl>
@@ -89,9 +87,9 @@ export default function CadastrarNoticia() {
                 <Label>
                   Texto <span className="text-primary">*</span>
                 </Label>
-                <Textarea
-                  placeholder="Digite o conteúdo da notícia"
-                  {...field}
+                <RichTextEditor
+                  content={field.value}
+                  onChange={field.onChange}
                 />
                 <FormMessage />
               </FormItem>

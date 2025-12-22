@@ -12,7 +12,6 @@ import {
   PageMain,
 } from '../../../_components/page-container'
 import { CatalogSheetButton } from './_components/catalog-sheet-button'
-import { NotFound } from './_components/not-found'
 
 interface IBookVolumeDetailsProps {
   params: Promise<{
@@ -26,7 +25,7 @@ export async function generateMetadata({ params }: IBookVolumeDetailsProps) {
   const volume = await getBookVolumeById(id)
 
   return {
-    title: volume?.title,
+    title: volume.title,
   }
 }
 
@@ -36,10 +35,6 @@ export default async function BookVolumeDetails({
   const { id } = await params
 
   const volume = await getBookVolumeById(id)
-
-  if (!volume) {
-    return <NotFound />
-  }
 
   return (
     <PageContainer>

@@ -1,4 +1,6 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
+import { notFound } from 'next/navigation'
 import z from 'zod'
 
 export const getResearcherByIdSchema = z.object({
@@ -30,7 +32,15 @@ export const getResearcherByIdSchema = z.object({
 })
 
 export async function getResearcherById(id: string) {
-  const data = await api.get(`researcher/${id}`).json()
+  try {
+    const data = await api.get(`researcher/${id}`).json()
 
-  return getResearcherByIdSchema.parse(data)
+    return getResearcherByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      notFound()
+    }
+
+    throw error
+  }
 }

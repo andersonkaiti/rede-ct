@@ -1,4 +1,6 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
+import { notFound } from 'next/navigation'
 import z from 'zod'
 
 const getScientificArticleByIdSchema = z.object({
@@ -24,7 +26,15 @@ const getScientificArticleByIdSchema = z.object({
 })
 
 export async function getScientificArticleById(id: string) {
-  const data = await api.get(`scientific-articles/${id}`).json()
+  try {
+    const data = await api.get(`scientific-articles/${id}`).json()
 
-  return getScientificArticleByIdSchema.parse(data)
+    return getScientificArticleByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      notFound()
+    }
+
+    throw error
+  }
 }

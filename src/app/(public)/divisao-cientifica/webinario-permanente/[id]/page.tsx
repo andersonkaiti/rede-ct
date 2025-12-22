@@ -11,7 +11,6 @@ import {
   PageHeader,
   PageMain,
 } from '../../../_components/page-container'
-import { NotFound } from './_components/not-found'
 import { WebinarButton } from './_components/webinar-button'
 
 interface IMeetingDetailsProps {
@@ -26,7 +25,7 @@ export async function generateMetadata({ params }: IMeetingDetailsProps) {
   const webinar = await getWebinarById(id)
 
   return {
-    title: webinar?.title,
+    title: webinar.title,
   }
 }
 
@@ -34,10 +33,6 @@ export default async function MeetingDetails({ params }: IMeetingDetailsProps) {
   const { id } = await params
 
   const webinar = await getWebinarById(id)
-
-  if (!webinar) {
-    return <NotFound />
-  }
 
   const formattedDate = format(
     webinar.scheduledAt,

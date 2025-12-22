@@ -5,12 +5,17 @@ const getRedeCTHighlightByIdSchema = z
   .object({
     id: z.string(),
     type: z.enum(['PERSON', 'INSTITUTION']),
-    name: z.string(),
     description: z.string().nullable(),
-    honorableMention: z.string().nullable(),
-    imageUrl: z.string().nullable(),
+    honorableMention: z.boolean().nullable(),
     honoredAt: z.string(),
     meritUrl: z.string().nullable(),
+    userId: z.string(),
+    user: z.object({
+      id: z.string(),
+      name: z.string(),
+      avatarUrl: z.string().nullable(),
+      emailAddress: z.string(),
+    }),
     createdAt: z.string(),
     updatedAt: z.string(),
   })

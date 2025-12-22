@@ -1,4 +1,6 @@
+import { UserCardRedLine } from '@components/ui/user-card'
 import { Star } from 'lucide-react'
+import { Suspense } from 'react'
 import {
   PageContainer,
   PageDescription,
@@ -6,6 +8,7 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../_components/page-container'
+import { LoadingSkeleton } from './_components/loading-skeleton'
 import { RedeCTHighlightList } from './_components/redect-highlight-list'
 
 export default function DestaquesRedeCT() {
@@ -30,7 +33,18 @@ export default function DestaquesRedeCT() {
         diálogo intercultural e o respeito aos saberes tradicionais.
       </PageDescription>
 
-      <RedeCTHighlightList />
+      <section className="space-y-8">
+        <div className="space-y-8">
+          <h2 className="whitespace-normal text-center font-bold text-2xl lg:text-4xl">
+            Pessoas e Instituições Homenageadas
+          </h2>
+          <UserCardRedLine />
+        </div>
+
+        <Suspense fallback={<LoadingSkeleton />}>
+          <RedeCTHighlightList />
+        </Suspense>
+      </section>
     </PageContainer>
   )
 }

@@ -18,14 +18,25 @@ const getRedeCTHighlightsSchema = z.object({
     z.object({
       id: z.string(),
       type: z.enum(['PERSON', 'INSTITUTION']),
-      name: z.string(),
       description: z.string().nullable(),
-      honorableMention: z.string().nullable(),
-      imageUrl: z.string().nullable(),
-      honoredAt: z.string(),
+      honorableMention: z.boolean().nullable(),
+      honoredAt: z.coerce.date(),
       meritUrl: z.string().nullable(),
-      createdAt: z.string(),
-      updatedAt: z.string(),
+      userId: z.string(),
+      user: z.object({
+        name: z.string(),
+        orcid: z.string().nullable(),
+        phone: z.string().nullable(),
+        lattesUrl: z.string().nullable(),
+        id: z.string(),
+        avatarUrl: z.string().nullable(),
+        createdAt: z.string(),
+        updatedAt: z.string(),
+        emailAddress: z.string(),
+        role: z.enum(['ADMIN', 'USER']),
+      }),
+      createdAt: z.coerce.date(),
+      updatedAt: z.coerce.date(),
     }),
   ),
 })
@@ -36,9 +47,7 @@ export async function getRedeCTHighlights({
 }: IGetRedeCTHighlightsRequest) {
   const searchParams = parseSearchParams({
     ...params,
-    name: filter,
     description: filter,
-    honorableMention: filter,
   })
 
   const data = await api

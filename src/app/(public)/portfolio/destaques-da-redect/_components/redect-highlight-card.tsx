@@ -15,38 +15,41 @@ interface RedeCTHighlightCardProps {
   highlight: {
     id: string
     type: 'PERSON' | 'INSTITUTION'
-    name: string
     description: string | null
-    honorableMention: string | null
-    imageUrl: string | null
-    honoredAt: string
+    honorableMention: boolean | null
+    honoredAt: Date
     meritUrl: string | null
-    createdAt: string
-    updatedAt: string
+    userId: string
+    user: {
+      name: string
+      orcid: string | null
+      phone: string | null
+      lattesUrl: string | null
+      id: string
+      avatarUrl: string | null
+      createdAt: string
+      updatedAt: string
+      emailAddress: string
+      role: 'ADMIN' | 'USER'
+    }
+    createdAt: Date
+    updatedAt: Date
   }
 }
 
 export function RedeCTHighlightCard({
-  highlight: {
-    name,
-    type,
-    imageUrl,
-    honoredAt,
-    meritUrl,
-    description,
-    honorableMention,
-  },
+  highlight: { type, user, honoredAt, meritUrl, description, honorableMention },
 }: RedeCTHighlightCardProps) {
   return (
     <div className="flex flex-col gap-2">
       <header className="h-80">
         <picture className="relative flex size-full overflow-hidden rounded-md">
           <Image
-            alt={name}
+            alt={user.name}
             className="object-cover"
             fill
             priority
-            src={imageUrl || '/placeholder.svg'}
+            src={user.avatarUrl || '/placeholder.svg'}
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent dark:from-black/70 dark:to-transparent" />
         </picture>
@@ -61,7 +64,9 @@ export function RedeCTHighlightCard({
           </time>
 
           <div className="space-y-1">
-            <CardTitle className="font-semibold text-2xl">{name}</CardTitle>
+            <CardTitle className="font-semibold text-2xl">
+              {user.name}
+            </CardTitle>
             <p className="text-muted-foreground text-sm">
               {type === 'PERSON' ? 'Pessoa' : 'Instituição'}
             </p>

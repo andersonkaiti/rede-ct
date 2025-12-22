@@ -5,14 +5,24 @@ import { ActionsRow } from './actions-row'
 interface IRedeCTHighlight {
   id: string
   type: 'PERSON' | 'INSTITUTION'
-  name: string
+  user: {
+    name: string
+    orcid: string | null
+    phone: string | null
+    lattesUrl: string | null
+    id: string
+    avatarUrl: string | null
+    createdAt: string
+    updatedAt: string
+    emailAddress: string
+    role: 'ADMIN' | 'USER'
+  }
   description: string | null
-  honorableMention: string | null
-  imageUrl: string | null
-  honoredAt: string
+  honorableMention: boolean | null
+  honoredAt: Date
   meritUrl: string | null
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 const NAME_MAX_LENGTH = 30
@@ -20,16 +30,16 @@ const ELLIPSIS = '...'
 
 export const redectHighlightTableColumns: ColumnDef<IRedeCTHighlight>[] = [
   {
-    id: 'name',
-    header: 'Nome',
+    id: 'user',
+    header: 'Usuário',
     cell: ({
       row: {
-        original: { name },
+        original: { user },
       },
     }) =>
-      name.length > NAME_MAX_LENGTH
-        ? `${name.slice(0, NAME_MAX_LENGTH)}${ELLIPSIS}`
-        : name,
+      user.name.length > NAME_MAX_LENGTH
+        ? `${user.name.slice(0, NAME_MAX_LENGTH)}${ELLIPSIS}`
+        : user.name,
   },
   {
     id: 'type',

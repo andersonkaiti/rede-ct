@@ -13,7 +13,7 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
-import { Textarea } from '@components/ui/textarea'
+import { RichTextEditor } from '@components/ui/rich-text-editor'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
@@ -21,10 +21,8 @@ import {
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { useUpdateNews } from './use-update-news.hook'
-
-const MAX_IMAGE_SIZE_MB = 5
+} from '../../../../_components/page-container'
+import { TOTAL_SIZE, useUpdateNews } from './use-update-news.hook'
 
 export default function UpdateForm() {
   const { form, serverError, isSubmitting, submit, news } = useUpdateNews()
@@ -76,7 +74,7 @@ export default function UpdateForm() {
                 <FormControl>
                   <CoverUploader
                     defaultImage={news?.imageUrl}
-                    maxSize={MAX_IMAGE_SIZE_MB}
+                    maxSize={TOTAL_SIZE}
                     onImageChange={field.onChange}
                   />
                 </FormControl>
@@ -93,9 +91,9 @@ export default function UpdateForm() {
                 <Label>
                   Texto <span className="text-primary">*</span>
                 </Label>
-                <Textarea
-                  placeholder="Digite o conteúdo da notícia"
-                  {...field}
+                <RichTextEditor
+                  content={field.value}
+                  onChange={field.onChange}
                 />
                 <FormMessage />
               </FormItem>

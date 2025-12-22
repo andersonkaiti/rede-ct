@@ -1,4 +1,5 @@
 import { CardTitle } from '@components/ui/card'
+import { SafeHTML } from '@components/ui/dom-purify'
 import { Separator } from '@components/ui/separator'
 import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { formatDate } from '@utils/format-date'
@@ -54,11 +55,10 @@ export function News({ news }: INewsProps) {
             {news.title}
           </CardTitle>
 
-          <div className="space-y-2">
-            <p className="line-clamp-3 text-justify text-muted-foreground text-sm leading-relaxed">
-              {news.content}
-            </p>
-          </div>
+          <SafeHTML
+            html={news.content}
+            className="line-clamp-3 text-justify text-muted-foreground text-sm leading-relaxed"
+          />
         </div>
       </Link>
 

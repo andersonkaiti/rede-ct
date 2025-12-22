@@ -4,7 +4,6 @@ import { getNewsById } from '@http/news/get-news-by-id'
 import { formatDate } from '@utils/format-date'
 import Image from 'next/image'
 import { PageContainer } from '../../_components/page-container'
-import { NotFound } from './_components/not-found'
 import { ShareButton } from './_components/share-button'
 
 interface INewsPageProps {
@@ -17,7 +16,7 @@ export async function generateMetadata({ params }: INewsPageProps) {
   const news = await getNewsById(id)
 
   return {
-    title: news?.title,
+    title: news.title,
   }
 }
 
@@ -25,10 +24,6 @@ export default async function NewsPage({ params }: INewsPageProps) {
   const { id } = await params
 
   const news = await getNewsById(id)
-
-  if (!news) {
-    return <NotFound />
-  }
 
   return (
     <PageContainer>

@@ -1,4 +1,6 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
+import { notFound } from 'next/navigation'
 import z from 'zod'
 
 export const getInternationalScientificCongressGalleryImageByIdSchema =
@@ -12,9 +14,17 @@ export const getInternationalScientificCongressGalleryImageByIdSchema =
 export async function getInternationalScientificCongressGalleryImageById(
   id: string,
 ) {
-  const data = await api
-    .get(`international-scientific-congress/gallery/${id}`)
-    .json()
+  try {
+    const data = await api
+      .get(`international-scientific-congress/gallery/${id}`)
+      .json()
 
-  return getInternationalScientificCongressGalleryImageByIdSchema.parse(data)
+    return getInternationalScientificCongressGalleryImageByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      notFound()
+    }
+
+    throw error
+  }
 }

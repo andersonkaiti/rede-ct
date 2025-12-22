@@ -12,7 +12,6 @@ import {
   PageMain,
 } from '../../../_components/page-container'
 import { CourseButton } from './_components/course-button'
-import { NotFound } from './_components/not-found'
 
 interface ICourseDetailsProps {
   params: Promise<{
@@ -26,7 +25,7 @@ export async function generateMetadata({ params }: ICourseDetailsProps) {
   const course = await getCourseById(id)
 
   return {
-    title: course?.title,
+    title: course.title,
   }
 }
 
@@ -34,10 +33,6 @@ export default async function CourseDetails({ params }: ICourseDetailsProps) {
   const { id } = await params
 
   const course = await getCourseById(id)
-
-  if (!course) {
-    return <NotFound />
-  }
 
   const formattedDate = format(
     course.scheduledAt,

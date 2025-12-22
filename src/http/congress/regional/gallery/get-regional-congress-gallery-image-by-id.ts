@@ -1,4 +1,6 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
+import { notFound } from 'next/navigation'
 import z from 'zod'
 
 export const getRegionalCongressGalleryImageByIdSchema = z.object({
@@ -9,7 +11,15 @@ export const getRegionalCongressGalleryImageByIdSchema = z.object({
 })
 
 export async function getRegionalCongressGalleryImageById(id: string) {
-  const data = await api.get(`regional-congress/gallery/${id}`).json()
+  try {
+    const data = await api.get(`regional-congress/gallery/${id}`).json()
 
-  return getRegionalCongressGalleryImageByIdSchema.parse(data)
+    return getRegionalCongressGalleryImageByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      notFound()
+    }
+
+    throw error
+  }
 }

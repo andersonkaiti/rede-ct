@@ -12,7 +12,6 @@ import {
 import { EventFormat } from '../_components/event-format'
 import { EventStatus } from '../_components/event-status'
 import { EventButton } from './_components/event-button'
-import { NotFound } from './_components/not-found'
 
 interface IEventDetailsProps {
   params: Promise<{
@@ -26,7 +25,7 @@ export async function generateMetadata({ params }: IEventDetailsProps) {
   const event = await getEventById({ id })
 
   return {
-    title: event?.title,
+    title: event.title,
   }
 }
 
@@ -34,10 +33,6 @@ export default async function EventDetails({ params }: IEventDetailsProps) {
   const { id } = await params
 
   const event = await getEventById({ id })
-
-  if (!event) {
-    return <NotFound />
-  }
 
   const formattedStartDate = format(
     event.startDate,

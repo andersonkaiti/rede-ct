@@ -12,7 +12,6 @@ import {
   PageMain,
 } from '../../../../_components/page-container'
 import { CongressButton } from './_components/congress-button'
-import { NotFound } from './_components/not-found'
 import { ShareButton } from './_components/share-button'
 
 interface ICongressDetailsProps {
@@ -27,7 +26,7 @@ export async function generateMetadata({ params }: ICongressDetailsProps) {
   const congress = await getInternationalScientificCongressById(id)
 
   return {
-    title: congress?.title,
+    title: congress.title,
   }
 }
 
@@ -37,10 +36,6 @@ export default async function CongressDetails({
   const { id } = await params
 
   const congress = await getInternationalScientificCongressById(id)
-
-  if (!congress) {
-    return <NotFound />
-  }
 
   const hasLinks =
     congress.congressLink ||

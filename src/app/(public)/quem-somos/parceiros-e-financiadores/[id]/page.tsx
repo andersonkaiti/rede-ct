@@ -5,7 +5,6 @@ import { getPartnerById } from '@http/partners/get-partner-by-id'
 import { getInitials } from '@utils/get-initials'
 import { PageContainer, PageMain } from '../../../_components/page-container'
 import { MeetingButton } from '../../reunioes-e-atas/[id]/_components/meeting-button'
-import { NotFound } from './_components/not-found'
 
 interface IMeetingDetailsProps {
   params: Promise<{
@@ -19,7 +18,7 @@ export async function generateMetadata({ params }: IMeetingDetailsProps) {
   const meeting = await getMeetingById(id)
 
   return {
-    title: meeting?.title,
+    title: meeting.title,
   }
 }
 
@@ -27,10 +26,6 @@ export default async function PartnerDetails({ params }: IMeetingDetailsProps) {
   const { id } = await params
 
   const partner = await getPartnerById(id)
-
-  if (!partner) {
-    return <NotFound />
-  }
 
   const formattedDate = partner.since.toLocaleDateString('pt-BR', {
     year: 'numeric',

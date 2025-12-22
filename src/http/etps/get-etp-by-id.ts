@@ -1,4 +1,6 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
+import { notFound } from 'next/navigation'
 
 interface IUserResponse {
   id: string
@@ -50,5 +52,13 @@ interface IGetETPByIdResponse {
 }
 
 export async function getETPById(id: string): Promise<IGetETPByIdResponse> {
-  return await api.get(`etp/${id}`).json()
+  try {
+    return await api.get(`etp/${id}`).json()
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      notFound()
+    }
+
+    throw error
+  }
 }

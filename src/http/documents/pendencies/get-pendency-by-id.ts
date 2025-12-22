@@ -1,4 +1,6 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
+import { notFound } from 'next/navigation'
 import z from 'zod'
 
 export const getRegisteredPendenciesSchema = z.object({
@@ -26,7 +28,15 @@ export const getRegisteredPendenciesSchema = z.object({
 })
 
 export async function getPendencyById(id: string) {
-  const data = await api.get(`pendency/${id}`).json()
+  try {
+    const data = await api.get(`pendency/${id}`).json()
 
-  return getRegisteredPendenciesSchema.parse(data)
+    return getRegisteredPendenciesSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      notFound()
+    }
+
+    throw error
+  }
 }

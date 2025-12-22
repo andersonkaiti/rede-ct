@@ -1,4 +1,6 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
+import { notFound } from 'next/navigation'
 import z from 'zod'
 
 export const managementTeamByIdSchema = z.object({
@@ -34,7 +36,15 @@ export const managementTeamByIdSchema = z.object({
 })
 
 export async function getManagementTeamById(id: string) {
-  const data = await api.get(`management-team/${id}`).json()
+  try {
+    const data = await api.get(`management-team/${id}`).json()
 
-  return managementTeamByIdSchema.parse(data)
+    return managementTeamByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      notFound()
+    }
+
+    throw error
+  }
 }

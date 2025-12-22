@@ -9,7 +9,6 @@ import {
   PageMain,
 } from '../../../_components/page-container'
 import { MuseumButton } from './_components/museum-button'
-import { NotFound } from './_components/not-found'
 
 interface IMuseumDetailsProps {
   params: Promise<{
@@ -23,7 +22,7 @@ export async function generateMetadata({ params }: IMuseumDetailsProps) {
   const museum = await getMuseumById(id)
 
   return {
-    title: museum?.name,
+    title: museum.name,
   }
 }
 
@@ -31,10 +30,6 @@ export default async function MuseumDetails({ params }: IMuseumDetailsProps) {
   const { id } = await params
 
   const museum = await getMuseumById(id)
-
-  if (!museum) {
-    return <NotFound />
-  }
 
   const formattedUpdatedAt = format(
     museum.updatedAt,

@@ -1,5 +1,6 @@
 import { api } from '@http/api-client'
 import { HTTPError } from 'ky'
+import { notFound } from 'next/navigation'
 import z from 'zod'
 
 export const getNewsByIdSchema = z.object({
@@ -30,7 +31,9 @@ export async function getNewsById(id: string) {
     return getNewsByIdSchema.parse(data)
   } catch (error) {
     if (error instanceof HTTPError && error.response.status === 404) {
-      return null
+      notFound()
     }
+
+    throw error
   }
 }

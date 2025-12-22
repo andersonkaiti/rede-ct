@@ -9,7 +9,6 @@ import {
   PageHeader,
   PageMain,
 } from '../../../_components/page-container'
-import { NotFound } from './_components/not-found'
 import { ProgramButton } from './_components/program-button'
 
 interface IProgramDetailsProps {
@@ -24,7 +23,7 @@ export async function generateMetadata({ params }: IProgramDetailsProps) {
   const program = await getPostGraduateProgramById(id)
 
   return {
-    title: program?.title,
+    title: program.title,
   }
 }
 
@@ -32,10 +31,6 @@ export default async function ProgramDetails({ params }: IProgramDetailsProps) {
   const { id } = await params
 
   const program = await getPostGraduateProgramById(id)
-
-  if (!program) {
-    return <NotFound />
-  }
 
   const formattedStartDate = format(
     program.startDate,

@@ -1,4 +1,6 @@
 import { api } from '@http/api-client'
+import { HTTPError } from 'ky'
+import { notFound } from 'next/navigation'
 import z from 'zod'
 
 export const getLegitimatorCommitteeMemberByIdSchema = z.object({
@@ -24,7 +26,15 @@ export const getLegitimatorCommitteeMemberByIdSchema = z.object({
 })
 
 export async function getLegitimatorCommitteeMemberById(id: string) {
-  const data = await api.get(`legitimator-committee-member/${id}`).json()
+  try {
+    const data = await api.get(`legitimator-committee-member/${id}`).json()
 
-  return getLegitimatorCommitteeMemberByIdSchema.parse(data)
+    return getLegitimatorCommitteeMemberByIdSchema.parse(data)
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.status === 404) {
+      notFound()
+    }
+
+    throw error
+  }
 }

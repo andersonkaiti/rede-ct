@@ -1,48 +1,47 @@
 import { api } from '@http/api-client'
 import { HTTPError } from 'ky'
+import { notFound } from 'next/navigation'
 import z from 'zod'
 
-const getResearchGroupByIdSchema = z
-  .object({
+const getResearchGroupByIdSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  acronym: z.string().nullable(),
+  description: z.string().nullable(),
+  url: z.string().nullable(),
+  logoUrl: z.string().nullable(),
+  foundedAt: z.coerce.date(),
+  scope: z.string().nullable(),
+  email: z.string().nullable(),
+  leaderId: z.string(),
+  deputyLeaderId: z.string(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
+  leader: z.object({
     id: z.string(),
     name: z.string(),
-    acronym: z.string().nullable(),
-    description: z.string().nullable(),
-    url: z.string().nullable(),
-    logoUrl: z.string().nullable(),
-    foundedAt: z.coerce.date(),
-    scope: z.string().nullable(),
-    email: z.string().nullable(),
-    leaderId: z.string(),
-    deputyLeaderId: z.string(),
-    createdAt: z.coerce.date(),
-    updatedAt: z.coerce.date(),
-    leader: z.object({
-      id: z.string(),
-      name: z.string(),
-      emailAddress: z.email(),
-      avatarUrl: z.string().nullable(),
-      createdAt: z.string(),
-      updatedAt: z.string(),
-      orcid: z.string().nullable(),
-      phone: z.string().nullable(),
-      lattesUrl: z.string().nullable(),
-      role: z.enum(['USER', 'ADMIN']),
-    }),
-    deputyLeader: z.object({
-      id: z.string(),
-      name: z.string(),
-      emailAddress: z.email(),
-      avatarUrl: z.string().nullable(),
-      createdAt: z.string(),
-      updatedAt: z.string(),
-      orcid: z.string().nullable(),
-      phone: z.string().nullable(),
-      lattesUrl: z.string().nullable(),
-      role: z.enum(['USER', 'ADMIN']),
-    }),
-  })
-  .nullable()
+    emailAddress: z.email(),
+    avatarUrl: z.string().nullable(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+    orcid: z.string().nullable(),
+    phone: z.string().nullable(),
+    lattesUrl: z.string().nullable(),
+    role: z.enum(['USER', 'ADMIN']),
+  }),
+  deputyLeader: z.object({
+    id: z.string(),
+    name: z.string(),
+    emailAddress: z.email(),
+    avatarUrl: z.string().nullable(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+    orcid: z.string().nullable(),
+    phone: z.string().nullable(),
+    lattesUrl: z.string().nullable(),
+    role: z.enum(['USER', 'ADMIN']),
+  }),
+})
 
 export async function getResearchGroupById(id: string) {
   try {
@@ -51,7 +50,9 @@ export async function getResearchGroupById(id: string) {
     return getResearchGroupByIdSchema.parse(data)
   } catch (error) {
     if (error instanceof HTTPError && error.response.status === 404) {
-      return null
+      notFound()
     }
+
+    throw error
   }
 }

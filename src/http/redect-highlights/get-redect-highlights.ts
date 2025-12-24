@@ -3,17 +3,17 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IGetRedeCTHighlightsRequest {
-  filter?: string
-  orderBy?: string
   page?: string
   limit?: string
+  filter?: string
+  orderBy?: string
 }
 
 const getRedeCTHighlightsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   highlights: z.array(
     z.object({
       id: z.string(),
@@ -47,6 +47,7 @@ export async function getRedeCTHighlights({
 }: IGetRedeCTHighlightsRequest) {
   const searchParams = parseSearchParams({
     ...params,
+    type: filter,
     description: filter,
   })
 

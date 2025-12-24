@@ -2,7 +2,7 @@ import { deleteInternationalScientificCongressGalleryImage } from '@http/congres
 import { getInternationalScientificCongressGalleryImages } from '@http/congress/international-scientific/gallery/get-international-scientific-congress-gallery-images'
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
-import { parseAsString, useQueryStates } from 'nuqs'
+import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 
 const DEFAULT_PAGE = 1
@@ -14,9 +14,11 @@ export function useGalleryImages() {
     congressId: string
   }>()
 
-  const [{ page, limit }] = useQueryStates({
+  const [{ page, limit, filtro: filter, orderBy }] = useQueryStates({
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
   })
 
   const QUERY_KEY = ['gallery-images', congressId, page, limit]
@@ -28,6 +30,8 @@ export function useGalleryImages() {
         id: congressId,
         page,
         limit,
+        filter,
+        orderBy,
       }),
     staleTime: 0,
   })

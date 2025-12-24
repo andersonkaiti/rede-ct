@@ -1,6 +1,7 @@
 'use client'
 
 import { DataTable } from '@components/ui/data-table'
+import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
@@ -37,7 +38,7 @@ interface ITeam {
 }
 
 export default function Table() {
-  const { data, isLoading, handleRemoveTeam } = useManagementTeam()
+  const { data, isLoading, handleRemoveTeam, page, limit } = useManagementTeam()
 
   const [{ name, quantity }] = useQueryStates({
     name: parseAsBoolean.withDefault(true),
@@ -68,6 +69,12 @@ export default function Table() {
       )}
 
       {isLoading && <LoadingSkeleton />}
+
+      <PaginatorComponent
+        currentPage={Number(page)}
+        defaultRowsPerPage={Number(limit)}
+        totalPages={data?.totalPages ?? 1}
+      />
     </>
   )
 }

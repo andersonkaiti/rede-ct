@@ -1,5 +1,6 @@
 'use client'
 
+import { PageContainer } from '@/app/(protected)/_components/page-container'
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { AvatarUploader } from '@components/ui/avatar-uploader'
 import { Button } from '@components/ui/button'
@@ -16,10 +17,9 @@ import { Label } from '@components/ui/label'
 import { format } from 'date-fns'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { PatternFormat } from 'react-number-format'
-import { PageContainer } from '@/app/(protected)/_components/page-container'
-import { ROLE_MAPPING } from '../_constants/roles'
-import { MAX_AVATAR_SIZE_BYTES } from '../_constants/zod'
+import { ROLE_MAPPING } from './roles'
 import { useUserProfile } from './use-user-profile.hook'
+import { MAX_AVATAR_SIZE_BYTES } from './zod'
 
 interface IUserProfileProps {
   user: {

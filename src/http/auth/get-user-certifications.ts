@@ -3,17 +3,17 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IAuthenticatedUserCertificationsRequest {
-  filter: string
-  orderBy: string
-  page: string
-  limit: string
+  page?: string
+  limit?: string
+  filter?: string
+  orderBy?: string
 }
 
 export const getAuthenticatedUserCertificationsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   totalCertifications: z.number(),
   certifications: z.array(
     z.object({

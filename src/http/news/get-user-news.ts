@@ -12,8 +12,8 @@ interface IGetUserNewsRequest {
 export const getUserNewsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   news: z.array(
     z.object({
       id: z.string(),

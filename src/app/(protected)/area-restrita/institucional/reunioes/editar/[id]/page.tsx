@@ -1,5 +1,11 @@
 'use client'
 
+import {
+  PageContainer,
+  PageDescription,
+  PageHeaderContent,
+  PageTitle,
+} from '@/app/(protected)/_components/page-container'
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
 import { DatePicker } from '@components/ui/date-picker'
@@ -21,14 +27,8 @@ import {
 import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import {
-  PageContainer,
-  PageDescription,
-  PageHeaderContent,
-  PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { FORMAT_OPTIONS } from '../../_constants/format'
-import { STATUS_OPTIONS } from '../../_constants/status'
+import { FORMAT_OPTIONS } from '../../_components/format'
+import { STATUS_OPTIONS } from '../../_components/status'
 import { useUpdateMeeting } from './use-update-meeting.hook'
 
 export default function EditMeeting() {

@@ -42,7 +42,7 @@ export function Table() {
       {!isLoading && (
         <DataTable
           columns={filteredTableColumns}
-          data={data?.data || []}
+          data={data?.partners}
           handleRemove={handleRemovePartner}
         />
       )}
@@ -52,7 +52,7 @@ export function Table() {
       <PaginatorComponent
         currentPage={Number(page)}
         defaultRowsPerPage={Number(limit)}
-        totalPages={data?.pagination?.totalPages || 1}
+        totalPages={data?.totalPages ?? 1}
       />
     </>
   )

@@ -9,6 +9,7 @@ import {
   PageTitle,
 } from '../../_components/page-container'
 import { FilterInput } from '../_components/filter-input'
+import { OrderByButton } from '../_components/order-by-button'
 import { Table } from './_components/table/table'
 import { UsersDisplayOptions } from './_components/users-display-options'
 
@@ -28,6 +29,8 @@ export default function Users() {
             <FilterInput />
 
             <UsersDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
         </PageHeader>
 

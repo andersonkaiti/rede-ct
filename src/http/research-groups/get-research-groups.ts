@@ -3,17 +3,17 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IGetResearchGroupsRequest {
-  filter?: string
-  orderBy?: string
   page?: string
   limit?: string
+  filter?: string
+  orderBy?: string
 }
 
 const getResearchGroupsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   researchGroups: z.array(
     z.object({
       id: z.string(),

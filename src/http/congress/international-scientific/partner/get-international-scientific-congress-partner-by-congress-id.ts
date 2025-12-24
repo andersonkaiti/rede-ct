@@ -4,16 +4,18 @@ import z from 'zod'
 
 interface GetInternationalScientificCongressPartnerByCongressIdParams {
   id: string
-  page?: number
-  limit?: number
+  page?: string
+  limit?: string
+  filter?: string
+  orderBy?: string
 }
 
 export const getInternationalScientificCongressPartnersByCongressIdSchema =
   z.object({
     page: z.number(),
     totalPages: z.number(),
-    offset: z.number(),
-    limit: z.number(),
+    offset: z.number().optional(),
+    limit: z.number().optional(),
     partners: z.array(
       z.object({
         id: z.string(),
@@ -26,9 +28,13 @@ export const getInternationalScientificCongressPartnersByCongressIdSchema =
 
 export async function getInternationalScientificCongressPartnerByCongressId({
   id,
+  filter,
   ...params
 }: GetInternationalScientificCongressPartnerByCongressIdParams) {
-  const searchParams = parseSearchParams(params)
+  const searchParams = parseSearchParams({
+    ...params,
+    name: filter,
+  })
 
   const data = await api
     .get(`international-scientific-congress/${id}/partner`, {

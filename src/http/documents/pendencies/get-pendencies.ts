@@ -3,18 +3,18 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IPendenciesRequest {
-  filter: string
-  orderBy: string
-  page: string
-  limit: string
+  page?: string
+  limit?: string
+  filter?: string
   userId?: string
+  orderBy?: string
 }
 
 export const getRegisteredPendenciesSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   pendencies: z.array(
     z.object({
       id: z.string(),
@@ -42,8 +42,15 @@ export const getRegisteredPendenciesSchema = z.object({
   ),
 })
 
-export async function getRegisteredPendencies(params: IPendenciesRequest) {
-  const searchParams = parseSearchParams(params)
+export async function getRegisteredPendencies({
+  filter,
+  ...params
+}: IPendenciesRequest) {
+  const searchParams = parseSearchParams({
+    ...params,
+    title: filter,
+    description: filter,
+  })
 
   const data = await api
     .get('pendency', {

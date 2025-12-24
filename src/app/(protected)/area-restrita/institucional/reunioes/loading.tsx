@@ -28,6 +28,8 @@ export default function Loading() {
           <Skeleton className="h-9 w-full lg:w-51" />
 
           <Skeleton className="h-9 w-20.5" />
+
+          <Skeleton className="size-9" />
         </div>
 
         <Skeleton className="h-9 w-full lg:w-34" />

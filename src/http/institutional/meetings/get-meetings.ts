@@ -2,22 +2,20 @@ import { api } from '@http/api-client'
 import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
-export type MeetingOrderBy = 'asc' | 'desc'
-
 interface IGetMeetingsRequest {
   page?: string
   limit?: string
-  title?: string
-  format?: 'ONLINE' | 'IN_PERSON'
-  status?: 'PENDING' | 'CANCELLED' | 'FINISHED'
-  orderBy?: MeetingOrderBy
+  filter?: string
+  status?: string
+  format?: string
+  orderBy?: string
 }
 
 export const getMeetingsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   meetings: z.array(
     z.object({
       id: z.string(),
@@ -45,8 +43,11 @@ export const getMeetingsSchema = z.object({
   ),
 })
 
-export async function getMeetings(params: IGetMeetingsRequest) {
-  const searchParams = parseSearchParams(params)
+export async function getMeetings({ filter, ...params }: IGetMeetingsRequest) {
+  const searchParams = parseSearchParams({
+    ...params,
+    title: filter,
+  })
 
   const data = await api
     .get('meeting', {

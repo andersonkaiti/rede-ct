@@ -9,6 +9,7 @@ import {
   PageTitle,
 } from '../../../_components/page-container'
 import { FilterInput } from '../../_components/filter-input'
+import { OrderByButton } from '../../_components/order-by-button'
 import { CreateInMemoriamButton } from './_components/create-in-memoriam-button'
 import { InMemoriamDisplayOptions } from './_components/in-memoriam-display-options'
 import { Table } from './_components/table/table'
@@ -29,6 +30,8 @@ export default function InMemoriam() {
             <FilterInput />
 
             <InMemoriamDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
 
           <CreateInMemoriamButton />

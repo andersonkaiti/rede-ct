@@ -9,6 +9,7 @@ import {
   PageTitle,
 } from '../../../_components/page-container'
 import { FilterInput } from '../../_components/filter-input'
+import { OrderByButton } from '../../_components/order-by-button'
 import { CreateInternationalScientificCongressButton } from './_components/create-international-scientific-congress-button'
 import { InternationalScientificCongressesDisplayOptions } from './_components/international-scientific-congress-display-options'
 import { Table } from './_components/table/table'
@@ -31,6 +32,8 @@ export default function InternationalScientificCongresses() {
             <FilterInput />
 
             <InternationalScientificCongressesDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
 
           <CreateInternationalScientificCongressButton />

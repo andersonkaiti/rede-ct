@@ -3,19 +3,19 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IGetEventsRequest {
+  page?: string
+  limit?: string
   filter?: string
   status?: string
   format?: string
   orderBy?: string
-  page?: string
-  limit?: string
 }
 
 const getEventsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   events: z.array(
     z.object({
       id: z.string(),

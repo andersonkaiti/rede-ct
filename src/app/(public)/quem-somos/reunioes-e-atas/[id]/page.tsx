@@ -1,5 +1,6 @@
 import { BackArrow } from '@components/ui/back-arrow'
 import { Separator } from '@components/ui/separator'
+import { ShareButton } from '@components/ui/share-button'
 import { getMeetingById } from '@http/institutional/meetings/get-meeting-by-id'
 import { formatDate } from '@utils/format-date'
 import { format } from 'date-fns'
@@ -53,10 +54,14 @@ export default async function MeetingDetails({ params }: IMeetingDetailsProps) {
         </time>
 
         <div className="flex w-full flex-col gap-4">
-          <div className="flex w-full gap-4">
-            <MeetingFormat format={meeting.format} />
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <div className="flex w-full gap-4">
+              <MeetingFormat format={meeting.format} />
 
-            <MeetingStatus status={meeting.status} />
+              <MeetingStatus status={meeting.status} />
+            </div>
+
+            <ShareButton title={meeting.title} text={meeting.title} />
           </div>
 
           <Separator />
@@ -65,7 +70,7 @@ export default async function MeetingDetails({ params }: IMeetingDetailsProps) {
 
       <PageMain className="space-y-7">
         {meeting.location && (
-          <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="space-y-1">
               <h2 className="text-muted-foreground">Local</h2>
               <p>{meeting.location}</p>
@@ -81,11 +86,9 @@ export default async function MeetingDetails({ params }: IMeetingDetailsProps) {
         {meeting.minutes && <MeetingMinute meeting={meeting} />}
 
         {meeting.agenda && (
-          <div className="space-y-1 text-sm">
+          <div className="space-y-1">
             <h2 className="text-muted-foreground">Agenda</h2>
-            <p className="whitespace-pre-wrap text-justify text-sm">
-              {meeting.agenda}
-            </p>
+            <p className="whitespace-pre-wrap text-justify">{meeting.agenda}</p>
           </div>
         )}
 

@@ -1,5 +1,6 @@
 import { BackArrow } from '@components/ui/back-arrow'
 import { Separator } from '@components/ui/separator'
+import { ShareButton } from '@components/ui/share-button'
 import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { getWebinarById } from '@http/webinars/get-webinar-by-id'
 import { formatDate } from '@utils/format-date'
@@ -47,9 +48,13 @@ export default async function MeetingDetails({ params }: IMeetingDetailsProps) {
       <PageHeader className="flex-col items-start gap-8">
         <h1 className="font-bold text-5xl tracking-tight">{webinar.title}</h1>
 
-        <time className="text-muted-foreground text-sm">
-          Última atualização em {formatDate(webinar.updatedAt)}
-        </time>
+        <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <time className="text-muted-foreground text-sm">
+            Última atualização em {formatDate(webinar.updatedAt)}
+          </time>
+
+          <ShareButton title={webinar.title} text={webinar.title} />
+        </div>
       </PageHeader>
 
       <PageMain className="gap-10">
@@ -68,7 +73,7 @@ export default async function MeetingDetails({ params }: IMeetingDetailsProps) {
         <div className="mt-4 space-y-2">
           {webinar.guests && webinar.guests.length > 0 && (
             <section className="space-y-2">
-              <h2 className="flex items-center text-muted-foreground text-sm">
+              <h2 className="flex items-center text-muted-foreground">
                 Convidados
               </h2>
 
@@ -84,7 +89,7 @@ export default async function MeetingDetails({ params }: IMeetingDetailsProps) {
         </div>
 
         <section className="space-y-10">
-          <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="space-y-1">
               <h2 className="text-muted-foreground">Data</h2>
               <p>{formattedDate}</p>

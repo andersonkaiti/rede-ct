@@ -61,36 +61,36 @@ export function CongressCard({ congress }: CongressCardProps) {
         <h4 className="text-justify text-sm">{congress.title}</h4>
       </CardHeader>
 
-      <CardContent className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div className="space-y-1 text-sm">
+      <CardContent className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
+        <div className="space-y-1">
           <h2 className="text-muted-foreground">Data</h2>
-          <p className="whitespace-pre-wrap text-justify text-sm">
+          <p className="whitespace-pre-wrap text-justify">
             {format(congress.startDate, 'dd/MM/yyyy')}
           </p>
         </div>
 
         {congress.location && (
-          <div className="space-y-1 text-sm">
+          <div className="space-y-1">
             <h2 className="text-muted-foreground">Local</h2>
-            <p className="whitespace-pre-wrap text-justify text-sm">
+            <p className="whitespace-pre-wrap text-justify">
               {congress.location}
             </p>
           </div>
         )}
 
         {congress.regionalCongressPartners.length > 0 && (
-          <div className="space-y-1 text-sm">
+          <div className="space-y-1">
             <h2 className="text-muted-foreground">Parceria(s)</h2>
-            <p className="whitespace-pre-wrap text-justify text-sm">
+            <p className="whitespace-pre-wrap text-justify">
               {congress.regionalCongressPartners.length} parceiro(s)
             </p>
           </div>
         )}
 
         {congress.regionalCongressGalleryItems.length > 0 && (
-          <div className="space-y-1 text-sm">
+          <div className="space-y-1">
             <h2 className="text-muted-foreground">Galeria</h2>
-            <p className="whitespace-pre-wrap text-justify text-sm">
+            <p className="whitespace-pre-wrap text-justify">
               {congress.regionalCongressGalleryItems.length} foto(s) na galeria
             </p>
           </div>

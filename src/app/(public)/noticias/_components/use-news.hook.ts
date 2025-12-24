@@ -7,11 +7,11 @@ const DEFAULT_LIMIT = 9
 
 export function useNews() {
   const [{ filtro: filter, orderBy, authorId, page, limit }] = useQueryStates({
-    filtro: parseAsString.withDefault(''),
-    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
     authorId: parseAsString.withDefault(''),
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
   })
 
   const result = useQuery({

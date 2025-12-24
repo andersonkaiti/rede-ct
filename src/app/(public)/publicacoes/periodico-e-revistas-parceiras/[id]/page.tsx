@@ -1,4 +1,5 @@
 import { BackArrow } from '@components/ui/back-arrow'
+import { ShareButton } from '@components/ui/share-button'
 import { getScientificJournalById } from '@http/scientific-journals/get-scientific-journal-by-id'
 import { formatDate } from '@utils/format-date'
 import Image from 'next/image'
@@ -37,9 +38,13 @@ export default async function JournalDetails({ params }: IJournalDetailsProps) {
       <PageHeader className="flex-col items-start gap-8">
         <h1 className="font-bold text-5xl tracking-tight">{journal.name}</h1>
 
-        <time className="text-muted-foreground text-sm">
-          Última atualização em {formatDate(new Date(journal.updatedAt))}
-        </time>
+        <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <time className="text-muted-foreground text-sm">
+            Última atualização em {formatDate(new Date(journal.updatedAt))}
+          </time>
+
+          <ShareButton title={journal.name} text={journal.name} />
+        </div>
       </PageHeader>
 
       <PageMain className="gap-10">

@@ -9,6 +9,9 @@ const DEFAULT_TOTAL_PAGES = 1
 export function useMeetings() {
   const [{ filtro: filter, format, status, orderBy, page, limit }] =
     useQueryStates({
+      page: parseAsString.withDefault(String(DEFAULT_PAGE)),
+      limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+      totalPages: parseAsString.withDefault(String(DEFAULT_TOTAL_PAGES)),
       filtro: parseAsString.withDefault(''),
       format: parseAsStringEnum(['ONLINE', 'IN_PERSON', 'ALL']).withDefault(
         'ALL',
@@ -20,9 +23,6 @@ export function useMeetings() {
         'ALL',
       ]).withDefault('ALL'),
       orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
-      page: parseAsString.withDefault(String(DEFAULT_PAGE)),
-      limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
-      totalPages: parseAsString.withDefault(String(DEFAULT_TOTAL_PAGES)),
     })
 
   const result = useQuery({

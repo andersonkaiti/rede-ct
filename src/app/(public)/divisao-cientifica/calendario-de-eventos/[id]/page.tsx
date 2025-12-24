@@ -1,4 +1,5 @@
 import { BackArrow } from '@components/ui/back-arrow'
+import { ShareButton } from '@components/ui/share-button'
 import { getEventById } from '@http/events/get-event-by-id'
 import { formatDate } from '@utils/format-date'
 import { format } from 'date-fns'
@@ -53,9 +54,13 @@ export default async function EventDetails({ params }: IEventDetailsProps) {
       <PageHeader className="flex-col items-start gap-8">
         <h1 className="font-bold text-5xl tracking-tight">{event.title}</h1>
 
-        <time className="text-muted-foreground text-sm">
-          Última atualização em {formatDate(new Date(event.updatedAt))}
-        </time>
+        <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <time className="text-muted-foreground text-sm">
+            Última atualização em {formatDate(new Date(event.updatedAt))}
+          </time>
+
+          <ShareButton title={event.title} text={event.title} />
+        </div>
       </PageHeader>
 
       <PageMain className="gap-10">
@@ -78,7 +83,7 @@ export default async function EventDetails({ params }: IEventDetailsProps) {
             <EventStatus status={event.status} />
           </div>
 
-          <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="space-y-1">
               <h2 className="text-muted-foreground">Início do Evento</h2>
               <p>{formattedStartDate}</p>

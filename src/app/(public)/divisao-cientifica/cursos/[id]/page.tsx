@@ -1,5 +1,6 @@
 import { BackArrow } from '@components/ui/back-arrow'
 import { Separator } from '@components/ui/separator'
+import { ShareButton } from '@components/ui/share-button'
 import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { getCourseById } from '@http/courses/get-course-by-id'
 import { formatDate } from '@utils/format-date'
@@ -53,9 +54,13 @@ export default async function CourseDetails({ params }: ICourseDetailsProps) {
       <PageHeader className="flex-col items-start gap-8">
         <h1 className="font-bold text-5xl tracking-tight">{course.title}</h1>
 
-        <time className="text-muted-foreground text-sm">
-          Última atualização em {formatDate(new Date(course.updatedAt))}
-        </time>
+        <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <time className="text-muted-foreground text-sm">
+            Última atualização em {formatDate(new Date(course.updatedAt))}
+          </time>
+
+          <ShareButton title={course.title} text={course.title} />
+        </div>
       </PageHeader>
 
       <PageMain className="gap-10">
@@ -74,7 +79,7 @@ export default async function CourseDetails({ params }: ICourseDetailsProps) {
         <div className="mt-4 space-y-2">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <section className="space-y-2">
-              <h2 className="flex items-center text-muted-foreground text-sm">
+              <h2 className="flex items-center text-muted-foreground">
                 Coordenador
               </h2>
 
@@ -83,7 +88,7 @@ export default async function CourseDetails({ params }: ICourseDetailsProps) {
 
             {course.instructors && course.instructors.length > 0 && (
               <section className="space-y-2">
-                <h2 className="flex items-center text-muted-foreground text-sm">
+                <h2 className="flex items-center text-muted-foreground">
                   Instrutores
                 </h2>
 
@@ -103,7 +108,7 @@ export default async function CourseDetails({ params }: ICourseDetailsProps) {
         </div>
 
         <section className="space-y-10">
-          <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="space-y-1">
               <h2 className="text-muted-foreground">Data</h2>
               <p>

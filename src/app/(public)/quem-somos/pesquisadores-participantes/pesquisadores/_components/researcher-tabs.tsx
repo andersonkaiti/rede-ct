@@ -1,16 +1,15 @@
 'use client'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@components/ui/tabs'
-
+import { LoadingSkeleton } from './loading-skeleton'
+import { ResearcherCard } from './researcher-card'
+import { ResearcherFilterInput } from './researcher-filter-input'
 import {
   type Seniority,
   seniorities,
   seniorityMapping,
   useResearchers,
-} from '../_hooks/use-researchers.hook'
-import { LoadingSkeleton } from './loading-skeleton'
-import { ResearcherCard } from './researcher-card'
-import { ResearcherFilterInput } from './researcher-filter-input'
+} from './use-researchers.hook'
 
 export function ResearcherTabs() {
   const { data, currentTab, isLoading, setTab } = useResearchers()

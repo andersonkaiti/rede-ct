@@ -14,7 +14,11 @@ export default function Loading() {
       <PageHeader className="flex-col items-start gap-8">
         <Skeleton className="h-14 w-full rounded-full" />
 
-        <Skeleton className="h-4 w-66 rounded-full" />
+        <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <Skeleton className="h-4 w-66 rounded-full" />
+
+          <Skeleton className="h-10 w-40 rounded-md" />
+        </div>
       </PageHeader>
 
       <PageMain className="gap-10">
@@ -40,21 +44,21 @@ export default function Loading() {
             <div className="space-y-2">
               <Skeleton className="h-6 w-24 rounded-full" />
               <div className="space-y-2">
-                <Skeleton className="h-5 w-full rounded-full" />
-                <Skeleton className="h-5 w-full rounded-full" />
-                <Skeleton className="h-5 w-2/3 rounded-full" />
+                <Skeleton className="h-6 w-full rounded-full" />
+                <Skeleton className="h-6 w-full rounded-full" />
+                <Skeleton className="h-6 w-2/3 rounded-full" />
               </div>
             </div>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Skeleton className="h-6 w-20 rounded-full" />
-                <Skeleton className="h-5 w-12 rounded-full" />
+                <Skeleton className="h-6 w-12 rounded-full" />
               </div>
 
               <div className="space-y-2">
                 <Skeleton className="h-6 w-12 rounded-full" />
-                <Skeleton className="h-5 w-16 rounded-full" />
+                <Skeleton className="h-6 w-16 rounded-full" />
               </div>
             </div>
           </div>

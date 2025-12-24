@@ -1,4 +1,5 @@
 import { BackArrow } from '@components/ui/back-arrow'
+import { ShareButton } from '@components/ui/share-button'
 import { getPostGraduateProgramById } from '@http/post-graduate-programs/get-post-graduate-program-by-id'
 import { formatDate } from '@utils/format-date'
 import { format } from 'date-fns'
@@ -51,9 +52,13 @@ export default async function ProgramDetails({ params }: IProgramDetailsProps) {
       <PageHeader className="flex-col items-start gap-8">
         <h1 className="font-bold text-5xl tracking-tight">{program.title}</h1>
 
-        <time className="text-muted-foreground text-sm">
-          Última atualização em {formatDate(program.updatedAt)}
-        </time>
+        <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <time className="text-muted-foreground text-sm">
+            Última atualização em {formatDate(program.updatedAt)}
+          </time>
+
+          <ShareButton title={program.title} text={program.title} />
+        </div>
       </PageHeader>
 
       <PageMain className="gap-10">
@@ -70,7 +75,7 @@ export default async function ProgramDetails({ params }: IProgramDetailsProps) {
         )}
 
         <section className="space-y-10">
-          <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="space-y-1">
               <h2 className="text-muted-foreground">Início das Inscrições</h2>
               <p>{formattedStartDate}</p>

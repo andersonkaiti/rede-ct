@@ -74,9 +74,9 @@ export function ResearchGroupCard({
           )}
         </div>
 
-        <div className="space-y-1">
-          <h4 className="text-muted-foreground text-sm">Fundado em</h4>
-          <p className="text-sm">{formattedFoundedAt}</p>
+        <div className="space-y-1 text-sm">
+          <h4 className="text-muted-foreground">Fundado em</h4>
+          <p>{formattedFoundedAt}</p>
         </div>
 
         <footer className="mt-auto">

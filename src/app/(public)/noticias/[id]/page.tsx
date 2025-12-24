@@ -4,8 +4,8 @@ import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { getNewsById } from '@http/news/get-news-by-id'
 import { formatDate } from '@utils/format-date'
 import Image from 'next/image'
+import { ShareButton } from '../../../../components/ui/share-button'
 import { PageContainer } from '../../_components/page-container'
-import { ShareButton } from './_components/share-button'
 
 interface INewsPageProps {
   params: Promise<{ id: string }>
@@ -50,7 +50,7 @@ export default async function NewsPage({ params }: INewsPageProps) {
             </div>
           </div>
 
-          <ShareButton news={news} />
+          <ShareButton title={news.title} text={news.content} />
         </div>
       </header>
 

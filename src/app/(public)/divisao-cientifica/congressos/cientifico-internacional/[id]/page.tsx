@@ -2,6 +2,7 @@ import { BackArrow } from '@components/ui/back-arrow'
 import { Badge } from '@components/ui/badge'
 import { HighlightedLink } from '@components/ui/highlighted-link'
 import { Separator } from '@components/ui/separator'
+import { ShareButton } from '@components/ui/share-button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@components/ui/tooltip'
 import { getInternationalScientificCongressById } from '@http/congress/international-scientific/get-international-scientific-congress-by-id'
 import { formatDate } from '@utils/format-date'
@@ -12,7 +13,6 @@ import {
   PageMain,
 } from '../../../../_components/page-container'
 import { CongressButton } from './_components/congress-button'
-import { ShareButton } from './_components/share-button'
 
 interface ICongressDetailsProps {
   params: Promise<{
@@ -74,7 +74,10 @@ export default async function CongressDetails({
               className="hidden h-3! sm:block"
             />
 
-            <ShareButton congress={congress} />
+            <ShareButton
+              title={congress.title}
+              text={congress.description || ''}
+            />
           </div>
 
           <Separator />

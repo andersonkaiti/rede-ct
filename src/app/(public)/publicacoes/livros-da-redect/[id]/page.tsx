@@ -1,6 +1,7 @@
 import { BackArrow } from '@components/ui/back-arrow'
 import { Book } from '@components/ui/book'
 import { Separator } from '@components/ui/separator'
+import { ShareButton } from '@components/ui/share-button'
 import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { getBookVolumeById } from '@http/book-volumes/get-book-volume-by-id'
 import { formatDate } from '@utils/format-date'
@@ -43,9 +44,13 @@ export default async function BookVolumeDetails({
       <PageHeader className="flex-col items-start gap-8">
         <h1 className="font-bold text-5xl tracking-tight">{volume.title}</h1>
 
-        <time className="text-muted-foreground text-sm">
-          Última atualização em {formatDate(volume.updatedAt)}
-        </time>
+        <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <time className="text-muted-foreground text-sm">
+            Última atualização em {formatDate(volume.updatedAt)}
+          </time>
+
+          <ShareButton title={volume.title} text={volume.title} />
+        </div>
       </PageHeader>
 
       <PageMain className="gap-10">

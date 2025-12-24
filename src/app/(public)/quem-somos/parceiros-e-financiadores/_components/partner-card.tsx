@@ -1,6 +1,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
 import { Button } from '@components/ui/button'
-import { Card, CardFooter, CardHeader, CardTitle } from '@components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@components/ui/card'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import Link from 'next/link'
@@ -50,14 +56,16 @@ export function PartnerCard({ partner }: IPartnerProps) {
         </div>
       </CardHeader>
 
-      <CardFooter className="flex flex-col items-center gap-8">
+      <CardContent>
         <div className="space-y-1 text-sm">
           <span className="text-muted-foreground">Parceiro(a) desde</span>
-          <div className="whitespace-pre-wrap text-justify text-sm">
+          <div className="whitespace-pre-wrap text-justify">
             {formattedSince}
           </div>
         </div>
+      </CardContent>
 
+      <CardFooter className="flex flex-col items-center gap-8">
         <Button asChild variant="outline" className="w-full">
           <Link href={`/quem-somos/parceiros-e-financiadores/${partner.id}`}>
             Ver mais detalhes

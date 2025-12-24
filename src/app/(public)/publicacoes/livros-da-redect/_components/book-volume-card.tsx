@@ -47,7 +47,7 @@ export function BookVolumeCard({
       <div className="flex h-fit grow flex-col gap-4 py-2">
         <h1 className="font-semibold text-foreground text-xl">{title}</h1>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
           <div className="space-y-1">
             <h2 className="text-muted-foreground">Volume</h2>
             <p className="whitespace-pre-wrap text-justify">{volumeNumber}</p>

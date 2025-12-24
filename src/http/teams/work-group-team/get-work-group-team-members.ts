@@ -3,17 +3,17 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IGetWorkGroupTeamMembersRequest {
-  filter?: string
-  orderBy?: string
   page?: string
   limit?: string
+  filter?: string
+  orderBy?: string
 }
 
 export const getWorkGroupTeamMembersSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   members: z.array(
     z.object({
       id: z.string(),
@@ -38,10 +38,14 @@ export const getWorkGroupTeamMembersSchema = z.object({
   ),
 })
 
-export async function getWorkGroupTeamMembers(
-  params: IGetWorkGroupTeamMembersRequest,
-) {
-  const searchParams = parseSearchParams(params)
+export async function getWorkGroupTeamMembers({
+  filter,
+  ...params
+}: IGetWorkGroupTeamMembersRequest) {
+  const searchParams = parseSearchParams({
+    ...params,
+    role: filter,
+  })
 
   const data = await api
     .get('work-group-team-member', {

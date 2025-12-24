@@ -4,7 +4,7 @@ import { updateManagementTeam } from '@http/teams/management-team/update-managem
 import { useQuery } from '@tanstack/react-query'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
@@ -52,15 +52,7 @@ export function useUpdateTeam() {
     queryFn: async () => await getManagementTeamById(teamId),
   })
 
-  const [members, setMembers] = useState<ITeamMember[]>(
-    incomingTeam?.members.map((member) => ({
-      ...member,
-      user: {
-        ...member.user,
-        role: member.user.role as 'ADMIN' | 'USER',
-      },
-    })) ?? [],
-  )
+  const [members, setMembers] = useState<ITeamMember[]>([])
 
   const form = useForm<UpdateManagementTeamInput>({
     resolver: zodResolver(managementTeamSchema),
@@ -79,6 +71,20 @@ export function useUpdateTeam() {
     control: form.control,
     name: 'members',
   })
+
+  useEffect(() => {
+    if (incomingTeam?.members) {
+      setMembers(
+        incomingTeam.members.map((member) => ({
+          ...member,
+          user: {
+            ...member.user,
+            role: member.user.role as 'ADMIN' | 'USER',
+          },
+        })),
+      )
+    }
+  }, [incomingTeam])
 
   function handleIncludeMember(member: ITeamMember) {
     membersForm.append({ userId: member.user.id, role: member.role })

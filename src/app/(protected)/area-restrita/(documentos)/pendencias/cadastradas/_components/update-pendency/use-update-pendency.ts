@@ -41,11 +41,11 @@ export function useUpdatePendency({ setIsOpen }: IUseUpdatePendencyProps) {
   const [{ pendencyId, filtro: filter, orderBy, page, limit, userId }] =
     useQueryStates({
       pendencyId: parseAsString.withDefault(''),
-      filtro: parseAsString.withDefault(''),
       userId: parseAsString.withDefault(''),
-      orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
       page: parseAsString.withDefault(String(DEFAULT_PAGE)),
       limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+      filtro: parseAsString.withDefault(''),
+      orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
     })
 
   const { data: pendency } = useQuery({

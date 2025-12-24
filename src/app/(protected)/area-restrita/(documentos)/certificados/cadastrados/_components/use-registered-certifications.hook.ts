@@ -7,11 +7,11 @@ const DEFAULT_LIMIT = 4
 
 export function useRegisteredCertifications() {
   const [{ filtro: filter, orderBy, page, limit, userId }] = useQueryStates({
-    filtro: parseAsString.withDefault(''),
-    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
     userId: parseAsString.withDefault(''),
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
   })
 
   const { data, isLoading } = useQuery({

@@ -2,7 +2,7 @@ import { deleteRegionalCongressPartner } from '@http/congress/regional/partner/d
 import { getRegionalCongressPartnerByCongressId } from '@http/congress/regional/partner/get-regional-congress-partner-by-congress-id'
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
-import { parseAsString, useQueryStates } from 'nuqs'
+import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 
 const DEFAULT_PAGE = 1
@@ -12,20 +12,31 @@ export function useCongressPartners() {
   const queryClient = useQueryClient()
   const { congressId } = useParams<{ congressId: string }>()
 
-  const [{ page, limit }] = useQueryStates({
+  const [{ page, limit, filtro: filter, orderBy }] = useQueryStates({
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
   })
 
-  const QUERY_KEY = ['regional-congress-partners', congressId, page, limit]
+  const QUERY_KEY = [
+    'regional-congress-partners',
+    congressId,
+    page,
+    limit,
+    filter,
+    orderBy,
+  ]
 
   const { isLoading, ...rest } = useSuspenseQuery({
     queryKey: QUERY_KEY,
     queryFn: async () =>
       await getRegionalCongressPartnerByCongressId({
         id: congressId,
-        page: Number(page),
-        limit: Number(limit),
+        page,
+        limit,
+        filter,
+        orderBy,
       }),
   })
 

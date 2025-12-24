@@ -1,3 +1,4 @@
+import { AdminWrapper } from '../../../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -6,8 +7,8 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { AdminWrapper } from '../../../../../_components/hoc/admin'
+} from '../../../../../_components/page-container'
+import { OrderByButton } from '../../../../../area-restrita/_components/order-by-button'
 import { FilterInput } from '../../../../_components/filter-input'
 import { CreatePartnerButton } from './_components/create-partner-button'
 import { PartnersDisplayOptions } from './_components/partners-display-options'
@@ -31,6 +32,8 @@ export default function CongressPartners() {
             <FilterInput />
 
             <PartnersDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
 
           <CreatePartnerButton />

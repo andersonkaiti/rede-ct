@@ -3,17 +3,21 @@
 import { deleteEvent } from '@http/events/delete-event'
 import { getEvents } from '@http/events/get-events'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { parseAsInteger, parseAsString, useQueryStates } from 'nuqs'
+import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
+
+const DEFAULT_FILTER = ''
+const DEFAULT_PAGE = 1
+const DEFAULT_LIMIT = 10
 
 export function useEvents() {
   const queryClient = useQueryClient()
 
   const [{ page, limit, filter, orderBy, status, format }] = useQueryStates({
-    page: parseAsInteger.withDefault(1),
-    limit: parseAsInteger.withDefault(10),
-    filter: parseAsString.withDefault(''),
-    orderBy: parseAsString.withDefault('desc'),
+    page: parseAsString.withDefault(String(DEFAULT_PAGE)),
+    limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+    filter: parseAsString.withDefault(DEFAULT_FILTER),
+    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault('desc'),
     status: parseAsString.withDefault(''),
     format: parseAsString.withDefault(''),
   })
@@ -22,8 +26,8 @@ export function useEvents() {
     queryKey: ['events', { page, limit, filter, orderBy, status, format }],
     queryFn: () =>
       getEvents({
-        page: String(page),
-        limit: String(limit),
+        page,
+        limit,
         filter,
         orderBy,
         status,

@@ -3,17 +3,17 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IContributionsRequest {
-  filter: string
-  orderBy: string
-  page: string
-  limit: string
+  page?: string
+  limit?: string
+  filter?: string
+  orderBy?: string
 }
 
 export const getAuthenticatedUserContributionsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   pendencies: z.array(
     z.object({
       id: z.string(),
@@ -41,12 +41,13 @@ export const getAuthenticatedUserContributionsSchema = z.object({
   ),
 })
 
-export async function getAuthenticatedUserContributions(
-  params: IContributionsRequest,
-) {
+export async function getAuthenticatedUserContributions({
+  filter,
+  ...params
+}: IContributionsRequest) {
   const searchParams = parseSearchParams({
     ...params,
-    status: 'PENDING',
+    status: filter,
   })
 
   const data = await api

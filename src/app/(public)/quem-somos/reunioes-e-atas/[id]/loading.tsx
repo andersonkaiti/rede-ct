@@ -18,9 +18,13 @@ export default function Loading() {
           <Skeleton className="h-4 w-66 rounded-full" />
         </time>
 
-        <div className="flex gap-4">
-          <Skeleton className="h-6 w-24 rounded-full" />
-          <Skeleton className="h-6 w-24 rounded-full" />
+        <div className="flex w-full flex-col items-center justify-between gap-4 sm:flex-row">
+          <div className="flex gap-4">
+            <Skeleton className="h-6 w-24 rounded-full" />
+            <Skeleton className="h-6 w-24 rounded-full" />
+          </div>
+
+          <Skeleton className="h-10 w-40 rounded-md" />
         </div>
 
         <Separator />

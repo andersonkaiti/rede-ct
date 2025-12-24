@@ -9,7 +9,9 @@ import {
   PageTitle,
 } from '../../_components/page-container'
 import { FilterInput } from '../_components/filter-input'
+import { OrderByButton } from '../_components/order-by-button'
 import { CreatePartnerButton } from './_components/create-partner-button'
+import { PartnersDisplayOptions } from './_components/partners-display-options'
 import { Table } from './_components/table/table'
 
 export default function PartnersAndFunders() {
@@ -28,6 +30,10 @@ export default function PartnersAndFunders() {
         <PageHeader>
           <PageActionsContainer>
             <FilterInput />
+
+            <PartnersDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
 
           <CreatePartnerButton />

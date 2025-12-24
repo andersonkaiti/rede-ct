@@ -1,6 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
 import { BackArrow } from '@components/ui/back-arrow'
-import { getMeetingById } from '@http/institutional/meetings/get-meeting-by-id'
 import { getPartnerById } from '@http/partners/get-partner-by-id'
 import { getInitials } from '@utils/get-initials'
 import { PageContainer, PageMain } from '../../../_components/page-container'
@@ -15,10 +14,10 @@ interface IMeetingDetailsProps {
 export async function generateMetadata({ params }: IMeetingDetailsProps) {
   const { id } = await params
 
-  const meeting = await getMeetingById(id)
+  const partner = await getPartnerById(id)
 
   return {
-    title: meeting.title,
+    title: partner.name,
   }
 }
 

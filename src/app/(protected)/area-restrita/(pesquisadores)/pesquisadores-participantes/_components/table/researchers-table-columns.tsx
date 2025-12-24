@@ -1,5 +1,5 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { SENIORITY_LABEL_MAP } from '../../_constants/seniority'
+import { SENIORITY_LABEL_MAP } from '../seniority'
 import { ActionsRow } from './actions-row'
 
 interface IResearcher {

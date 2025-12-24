@@ -28,7 +28,7 @@ type StatusValue = (typeof STATUS_OPTIONS)[number]['value']
 export function FilterInput() {
   const [{ filtro: filter, orderBy, status }, setQuery] = useQueryStates({
     filtro: parseAsString.withDefault(''),
-    orderBy: parseAsString.withDefault('desc'),
+    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault('desc'),
     status: parseAsStringEnum([
       'DRAFT',
       'IN_FORCE',
@@ -38,7 +38,7 @@ export function FilterInput() {
   })
 
   const setFilter = (value: string) => setQuery({ filtro: value })
-  const setOrderBy = (value: string) => setQuery({ orderBy: value })
+  const setOrderBy = (value: 'asc' | 'desc') => setQuery({ orderBy: value })
   const setStatus = (value: StatusValue) => setQuery({ status: value })
 
   function handleOrderBy() {

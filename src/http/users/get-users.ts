@@ -3,38 +3,42 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IGetUsersRequest {
-  page?: string | number
-  limit?: string | number
-  name?: string
-  emailAddress?: string
-  phone?: string
-  lattesUrl?: string
-  orcid?: string
+  page?: string
+  limit?: string
+  filter?: string
+  orderBy?: string
 }
 
-const userSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  avatarUrl: z.string().nullable(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  emailAddress: z.string(),
-  orcid: z.string().nullable(),
-  phone: z.string().nullable(),
-  lattesUrl: z.string().nullable(),
-  role: z.enum(['ADMIN', 'USER']),
-})
-
 export const getUsersSchema = z.object({
-  page: z.number().nullable(),
-  totalPages: z.number().nullable(),
-  offset: z.number().nullable(),
-  limit: z.number().nullable(),
-  users: z.array(userSchema),
+  page: z.number(),
+  totalPages: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
+  users: z.array(
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      avatarUrl: z.string().nullable(),
+      createdAt: z.string(),
+      updatedAt: z.string(),
+      emailAddress: z.string(),
+      orcid: z.string().nullable(),
+      phone: z.string().nullable(),
+      lattesUrl: z.string().nullable(),
+      role: z.enum(['ADMIN', 'USER']),
+    }),
+  ),
 })
 
-export async function getUsers(params: IGetUsersRequest) {
-  const searchParams = parseSearchParams(params)
+export async function getUsers({ filter, ...params }: IGetUsersRequest) {
+  const searchParams = parseSearchParams({
+    ...params,
+    name: filter,
+    emailAddress: filter,
+    phone: filter,
+    lattesUrl: filter,
+    orcid: filter,
+  })
 
   const data = await api
     .get('user', {

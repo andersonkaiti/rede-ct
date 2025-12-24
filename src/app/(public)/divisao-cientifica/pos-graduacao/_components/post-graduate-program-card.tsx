@@ -49,11 +49,14 @@ export function PostGraduateProgramCard({
 
       <div className="flex h-fit grow flex-col gap-4 py-2">
         <div className="space-y-4">
-          <time className="flex items-center gap-2 text-muted-foreground text-sm leading-4">
-            Inscrições de: {formattedStartDate} até {formattedEndDate}
-          </time>
-
           <h1 className="font-semibold text-foreground text-xl">{title}</h1>
+
+          <div className="space-y-1 text-sm">
+            <h2 className="text-muted-foreground">Inscrições de</h2>
+            <p className="whitespace-pre-wrap text-justify">
+              {formattedStartDate} até {formattedEndDate}
+            </p>
+          </div>
         </div>
 
         <footer className="mt-4">

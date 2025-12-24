@@ -3,10 +3,17 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IGetLegitimatorCommitteeRequest {
+  page?: string
+  limit?: string
   filter?: string
+  orderBy?: string
 }
 
 export const getLegitimatorCommitteeSchema = z.object({
+  page: z.number(),
+  totalPages: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   members: z.array(
     z.object({
       id: z.string(),
@@ -34,8 +41,10 @@ export const getLegitimatorCommitteeSchema = z.object({
 
 export async function getLegitimatorCommitteeMembers({
   filter,
+  ...params
 }: IGetLegitimatorCommitteeRequest) {
   const searchParams = parseSearchParams({
+    ...params,
     role: filter,
   })
 

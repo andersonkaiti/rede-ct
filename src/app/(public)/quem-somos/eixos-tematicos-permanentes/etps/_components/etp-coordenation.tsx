@@ -4,12 +4,35 @@ import {
   UserCardImage,
   UserCardWrapper,
 } from '@components/ui/user-card'
-import type { etpResearcherSchema } from '@http/etps/get-etps'
-import type z from 'zod'
-import { ROLE_MAPPING, type Role } from '../_contents/roles'
+import { ROLE_MAPPING, type Role } from './roles'
 
 interface IETPCoordenationProps {
-  members: z.infer<typeof etpResearcherSchema>[]
+  members: {
+    id: string
+    registrationNumber: string
+    mainEtps: string
+    formations: string
+    degrees: ('DOCTOR' | 'MASTER' | 'BACHELOR' | 'TECHNICAL' | 'POSTGRADUATE')[]
+    occupations: string
+    seniority: 'SENIOR' | 'RESEARCHER' | 'JUNIOR' | 'HONOR'
+    institutions: string
+    biography: string
+    createdAt: string
+    updatedAt: string
+    userId: string
+    user: {
+      id: string
+      name: string
+      avatarUrl: string | null
+      createdAt: string
+      updatedAt: string
+      emailAddress: string
+      orcid: string | null
+      phone: string | null
+      lattesUrl: string | null
+      role: 'ADMIN' | 'USER'
+    }
+  }[]
 }
 
 export function ETPCoordenation({ members }: IETPCoordenationProps) {
@@ -18,9 +41,10 @@ export function ETPCoordenation({ members }: IETPCoordenationProps) {
       <h3 className="mb-2 font-semibold text-muted-foreground text-sm">
         Coordenação
       </h3>
+
       <UserCardWrapper>
-        {members.map((member) => (
-          <UserCard key={member.id}>
+        {members.map((member, index) => (
+          <UserCard key={member.id + index}>
             <UserCardImage
               alt={member.user.name}
               src={member.user.avatarUrl || '/images/placeholder.png'}

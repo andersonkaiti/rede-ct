@@ -39,7 +39,7 @@ export function ScientificJournalCard({
         <div className="space-y-4">
           <h1 className="font-semibold text-foreground text-xl">{name}</h1>
 
-          <div className="space-y-1">
+          <div className="space-y-1 text-sm">
             <h2 className="text-muted-foreground">ISSN</h2>
             <p className="whitespace-pre-wrap text-justify">{issn}</p>
           </div>

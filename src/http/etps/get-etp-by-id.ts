@@ -1,59 +1,67 @@
 import { api } from '@http/api-client'
 import { HTTPError } from 'ky'
 import { notFound } from 'next/navigation'
+import z from 'zod'
 
-interface IUserResponse {
-  id: string
-  name: string
-  avatarUrl: string | null
-  createdAt: Date
-  updatedAt: Date
-  emailAddress: string
-  orcid: string | null
-  phone: string | null
-  lattesUrl: string | null
-  role: string
-}
+const etpMemberUserSchema = z.object({
+  id: z.uuid(),
+  name: z.string(),
+  avatarUrl: z.string().nullable(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  emailAddress: z.string(),
+  orcid: z.string().nullable(),
+  phone: z.string().nullable(),
+  lattesUrl: z.string().nullable(),
+  role: z.enum(['ADMIN', 'USER']),
+})
 
-interface IResearcherResponse {
-  id: string
-  registrationNumber: string
-  mainEtps: string | null
-  formations: string | null
-  degrees: string[]
-  occupations: string
-  seniority: string
-  institutions: string
-  biography: string | null
-  createdAt: Date
-  updatedAt: Date
-  user: IUserResponse
-}
+export const etpResearcherSchema = z.object({
+  id: z.uuid(),
+  registrationNumber: z.string(),
+  mainEtps: z.string(),
+  formations: z.string(),
+  degrees: z.array(
+    z.enum(['DOCTOR', 'MASTER', 'BACHELOR', 'TECHNICAL', 'POSTGRADUATE']),
+  ),
+  occupations: z.string(),
+  seniority: z.enum(['SENIOR', 'RESEARCHER', 'JUNIOR', 'HONOR']),
+  institutions: z.string(),
+  biography: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  userId: z.uuid(),
+  user: etpMemberUserSchema,
+})
 
-interface IETPResearcher {
-  etpId: string
-  id: string
-  researcher: IResearcherResponse
-  researcherId: string
-}
+const etpRoleMemberSchema = z.object({
+  id: z.uuid(),
+  etpId: z.uuid(),
+  researcherId: z.uuid(),
+  researcher: etpResearcherSchema,
+})
 
-interface IGetETPByIdResponse {
-  id: string
-  createdAt: Date
-  updatedAt: Date
-  code: string
-  title: string
-  description: string | null
-  notes: string | null
-  leader: IETPResearcher | null
-  deputyLeader: IETPResearcher | null
-  secretary: IETPResearcher | null
-  members: IResearcherResponse[]
-}
+const etpMemberSchema = etpResearcherSchema
 
-export async function getETPById(id: string): Promise<IGetETPByIdResponse> {
+export const getETPByIdSchema = z.object({
+  id: z.uuid(),
+  code: z.string(),
+  title: z.string(),
+  description: z.string().nullable(),
+  notes: z.string().nullable(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  leader: etpRoleMemberSchema,
+  deputyLeader: etpRoleMemberSchema,
+  secretary: etpRoleMemberSchema,
+  members: z.array(etpMemberSchema),
+})
+
+export async function getETPById(id: string) {
   try {
-    return await api.get(`etp/${id}`).json()
+    const data = await api.get(`etp/${id}`).json()
+
+    return getETPByIdSchema.parse(data)
   } catch (error) {
     if (error instanceof HTTPError && error.response.status === 404) {
       notFound()

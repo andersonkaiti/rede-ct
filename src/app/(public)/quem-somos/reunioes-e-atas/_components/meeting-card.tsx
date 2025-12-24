@@ -59,16 +59,16 @@ export function MeetingCard({ meeting }: IMeetingCardProps) {
         </div>
       </CardHeader>
 
-      <CardContent className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div className="space-y-1 text-sm">
+      <CardContent className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
+        <div className="space-y-1">
           <h2 className="text-muted-foreground">Data e Horário</h2>
-          <p className="whitespace-pre-wrap text-justify text-sm">
+          <p className="whitespace-pre-wrap text-justify">
             {formattedScheduledAt}
           </p>
         </div>
 
         {meeting.location && (
-          <div className="space-y-1 text-sm">
+          <div className="space-y-1">
             <h2 className="text-muted-foreground">Local</h2>
             <p className="whitespace-pre-wrap text-justify text-sm">
               {meeting.location}

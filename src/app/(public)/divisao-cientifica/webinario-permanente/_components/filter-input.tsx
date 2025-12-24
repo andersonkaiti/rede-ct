@@ -8,16 +8,16 @@ import {
 } from '@components/ui/input-group'
 import { cn } from '@utils/cn'
 import { ArrowDownUp, Search } from 'lucide-react'
-import { parseAsString, useQueryStates } from 'nuqs'
+import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 
 export function FilterInput() {
   const [{ filtro: filter, orderBy }, setQuery] = useQueryStates({
     filtro: parseAsString.withDefault(''),
-    orderBy: parseAsString.withDefault('desc'),
+    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault('desc'),
   })
 
   const setFilter = (value: string) => setQuery({ filtro: value })
-  const setOrderBy = (value: string) => setQuery({ orderBy: value })
+  const setOrderBy = (value: 'asc' | 'desc') => setQuery({ orderBy: value })
 
   function handleOrderBy() {
     setOrderBy(orderBy === 'asc' ? 'desc' : 'asc')

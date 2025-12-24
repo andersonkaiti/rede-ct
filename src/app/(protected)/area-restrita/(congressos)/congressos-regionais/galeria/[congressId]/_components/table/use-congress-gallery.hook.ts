@@ -2,7 +2,7 @@ import { deleteRegionalCongressGalleryImage } from '@http/congress/regional/gall
 import { getRegionalCongressGalleryImages } from '@http/congress/regional/gallery/get-regional-congress-gallery-images'
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
-import { parseAsString, useQueryStates } from 'nuqs'
+import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 
 const DEFAULT_PAGE = 1
@@ -13,9 +13,11 @@ export function useCongressGallery() {
 
   const queryClient = useQueryClient()
 
-  const [{ page, limit }] = useQueryStates({
+  const [{ page, limit, filtro: filter, orderBy }] = useQueryStates({
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
   })
 
   const QUERY_KEY = ['regional-congress-gallery', congressId, page, limit]
@@ -25,8 +27,10 @@ export function useCongressGallery() {
     queryFn: async () =>
       await getRegionalCongressGalleryImages({
         id: congressId,
-        page: Number(page),
-        limit: Number(limit),
+        page,
+        limit,
+        filter,
+        orderBy,
       }),
     staleTime: 0,
   })

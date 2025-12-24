@@ -3,18 +3,18 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface ICertificationsRequest {
-  filter: string
-  orderBy: string
-  page: string
-  limit: string
-  userId: string
+  page?: string
+  limit?: string
+  filter?: string
+  userId?: string
+  orderBy?: string
 }
 
 export const getRegisteredCertificationsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   certifications: z.array(
     z.object({
       id: z.string(),
@@ -40,10 +40,15 @@ export const getRegisteredCertificationsSchema = z.object({
   ),
 })
 
-export async function getRegisteredCertifications(
-  params: ICertificationsRequest,
-) {
-  const searchParams = parseSearchParams(params)
+export async function getRegisteredCertifications({
+  filter,
+  ...params
+}: ICertificationsRequest) {
+  const searchParams = parseSearchParams({
+    ...params,
+    title: filter,
+    description: filter,
+  })
 
   const data = await api
     .get('certification', {

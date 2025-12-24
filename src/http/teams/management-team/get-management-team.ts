@@ -3,10 +3,17 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IGetManagementTeamRequest {
+  page?: string
+  limit?: string
   filter?: string
+  orderBy?: string
 }
 
 export const getManagementTeamSchema = z.object({
+  page: z.number(),
+  totalPages: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   teams: z.array(
     z.object({
       id: z.string(),
@@ -42,8 +49,12 @@ export const getManagementTeamSchema = z.object({
   ),
 })
 
-export async function getManagementTeam({ filter }: IGetManagementTeamRequest) {
+export async function getManagementTeam({
+  filter,
+  ...params
+}: IGetManagementTeamRequest) {
   const searchParams = parseSearchParams({
+    ...params,
     name: filter,
     description: filter,
   })

@@ -5,19 +5,16 @@ import z from 'zod'
 export interface IGetPartnersRequest {
   page?: string
   limit?: string
-  orderBy?: 'asc' | 'desc'
+  orderBy?: string
   filter?: string
-  category?: string
-  search?: string
-  isActive?: boolean
   onlyActive?: boolean
 }
 
 export const getPartnersSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   partners: z.array(
     z.object({
       name: z.string(),

@@ -6,15 +6,15 @@ interface IGetRegimentsRequest {
   page?: string
   limit?: string
   filter?: string
-  status?: 'DRAFT' | 'IN_FORCE' | 'REVOKED'
-  orderBy?: 'asc' | 'desc'
+  status?: string
+  orderBy?: string
 }
 
 export const getRegimentsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   regiments: z.array(
     z.object({
       id: z.string(),
@@ -34,9 +34,8 @@ export async function getRegiments({
   ...params
 }: IGetRegimentsRequest) {
   const searchParams = parseSearchParams({
-    params,
+    ...params,
     title: filter,
-    version: filter,
   })
 
   const data = await api

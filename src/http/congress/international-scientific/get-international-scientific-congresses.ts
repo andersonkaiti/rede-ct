@@ -3,17 +3,17 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IGetInternationalScientificCongressesRequest {
-  filter?: string
   page?: string
   limit?: string
-  orderBy?: 'asc' | 'desc'
+  filter?: string
+  orderBy?: string
 }
 
 export const getInternationalScientificCongressesSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   congresses: z.array(
     z.object({
       id: z.string(),

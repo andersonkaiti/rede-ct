@@ -6,13 +6,14 @@ interface IGetResearchersRequest {
   page?: string
   limit?: string
   filter?: string
+  orderBy?: string
 }
 
 export const getResearchersSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   researchers: z.array(
     z.object({
       id: z.string(),
@@ -49,7 +50,7 @@ export async function getResearchers({
   ...params
 }: IGetResearchersRequest) {
   const searchParams = parseSearchParams({
-    params,
+    ...params,
     registrationNumber: filter,
     name: filter,
     emailAddress: filter,

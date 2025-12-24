@@ -7,6 +7,7 @@ import {
   PageMain,
   PageTitle,
 } from '@/app/(protected)/_components/page-container'
+import { OrderByButton } from '@/app/(protected)/area-restrita/_components/order-by-button'
 import { AdminWrapper } from '../../../../../_components/hoc/admin'
 import { FilterInput } from '../../../../_components/filter-input'
 import { CreatePartnerButton } from './_components/create-partner-button'
@@ -31,6 +32,8 @@ export default function CongressPartners() {
             <FilterInput />
 
             <PartnersDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
 
           <CreatePartnerButton />

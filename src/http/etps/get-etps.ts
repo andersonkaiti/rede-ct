@@ -3,14 +3,10 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IGetETPsRequest {
-  page?: string | number
-  limit?: string | number
-  code?: string
-  title?: string
-  description?: string
-  notes?: string
-  userId?: string
-  orderBy?: 'asc' | 'desc'
+  page?: string
+  limit?: string
+  filter?: string
+  orderBy?: string
 }
 
 const etpMemberUserSchema = z.object({
@@ -75,8 +71,15 @@ export const getEtpsSchema = z.object({
   etps: z.array(etpSchema),
 })
 
-export async function getEtps(params: IGetETPsRequest) {
-  const searchParams = parseSearchParams(params)
+export async function getEtps({ filter, ...params }: IGetETPsRequest) {
+  const searchParams = parseSearchParams({
+    ...params,
+    code: filter,
+    title: filter,
+    description: filter,
+    notes: filter,
+    userId: filter,
+  })
 
   const data = await api
     .get('etp', {

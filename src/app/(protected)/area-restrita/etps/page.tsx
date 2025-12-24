@@ -9,6 +9,7 @@ import {
   PageTitle,
 } from '../../_components/page-container'
 import { FilterInput } from '../_components/filter-input'
+import { OrderByButton } from '../_components/order-by-button'
 import { CreateEtpButton } from './_components/create-etp-button'
 import { EtpsDisplayOptions } from './_components/etps-display-options'
 import { Table } from './_components/table/table'
@@ -29,6 +30,8 @@ export default function ETPS() {
             <FilterInput />
 
             <EtpsDisplayOptions />
+
+            <OrderByButton />
           </PageActionsContainer>
 
           <CreateEtpButton />

@@ -4,12 +4,18 @@ import z from 'zod'
 
 interface GetRegionalCongressGalleryImagesParams {
   id: string
-  page?: number
-  limit?: number
+  page?: string
+  limit?: string
+  filter?: string
+  orderBy?: string
 }
 
 export const getRegionalCongressGalleryImagesSchema = z.object({
-  data: z.array(
+  page: z.number(),
+  limit: z.number().optional(),
+  total: z.number(),
+  totalPages: z.number(),
+  galleryImages: z.array(
     z.object({
       id: z.string(),
       imageUrl: z.string(),
@@ -17,19 +23,17 @@ export const getRegionalCongressGalleryImagesSchema = z.object({
       congressId: z.string(),
     }),
   ),
-  pagination: z.object({
-    page: z.number(),
-    limit: z.number(),
-    total: z.number(),
-    totalPages: z.number(),
-  }),
 })
 
 export async function getRegionalCongressGalleryImages({
   id,
+  filter,
   ...params
 }: GetRegionalCongressGalleryImagesParams) {
-  const searchParams = parseSearchParams(params)
+  const searchParams = parseSearchParams({
+    ...params,
+    caption: filter,
+  })
 
   const data = await api
     .get(`regional-congress/${id}/gallery`, {

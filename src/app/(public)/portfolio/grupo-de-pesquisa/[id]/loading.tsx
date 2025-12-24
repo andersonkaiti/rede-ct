@@ -14,9 +14,13 @@ export default function Loading() {
       <PageHeader className="flex-col items-start gap-8">
         <Skeleton className="h-14 w-full rounded-full" />
 
-        <time className="text-muted-foreground text-sm">
-          <Skeleton className="h-4 w-66 rounded-full" />
-        </time>
+        <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <time className="text-muted-foreground text-sm">
+            <Skeleton className="h-4 w-66 rounded-full" />
+          </time>
+
+          <Skeleton className="h-10 w-40 rounded-md" />
+        </div>
       </PageHeader>
 
       <PageMain className="gap-10">

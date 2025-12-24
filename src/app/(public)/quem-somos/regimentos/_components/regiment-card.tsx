@@ -46,7 +46,7 @@ export function RegimentCard({ regiment }: RegimentCardProps) {
   return (
     <Card>
       <CardHeader className="flex gap-4">
-        <Badge className="hidden bg-primary/20 p-2.5 md:flex">
+        <Badge className="hidden bg-primary/20 p-2.5 lg:flex">
           <FileText className="size-5 text-primary" />
         </Badge>
 

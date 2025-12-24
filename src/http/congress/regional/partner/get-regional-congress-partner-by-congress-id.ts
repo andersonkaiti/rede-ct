@@ -4,12 +4,18 @@ import z from 'zod'
 
 interface GetRegionalCongressPartnerByCongressIdParams {
   id: string
-  page?: number
-  limit?: number
+  page?: string
+  limit?: string
+  filter?: string
+  orderBy?: string
 }
 
 export const getRegionalCongressPartnersByCongressIdSchema = z.object({
-  data: z.array(
+  page: z.number(),
+  limit: z.number().optional(),
+  total: z.number(),
+  totalPages: z.number(),
+  partners: z.array(
     z.object({
       id: z.string(),
       name: z.string(),
@@ -17,21 +23,17 @@ export const getRegionalCongressPartnersByCongressIdSchema = z.object({
       congressId: z.string(),
     }),
   ),
-  pagination: z
-    .object({
-      page: z.number(),
-      limit: z.number(),
-      total: z.number(),
-      totalPages: z.number(),
-    })
-    .optional(),
 })
 
 export async function getRegionalCongressPartnerByCongressId({
   id,
+  filter,
   ...params
 }: GetRegionalCongressPartnerByCongressIdParams) {
-  const searchParams = parseSearchParams(params)
+  const searchParams = parseSearchParams({
+    ...params,
+    name: filter,
+  })
 
   const data = await api
     .get(`regional-congress/${id}/partner`, {

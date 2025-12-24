@@ -2,23 +2,18 @@ import { api } from '@http/api-client'
 import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
-export type InMemoriamRole = 'RESEARCHER' | 'LEADER'
-export type InMemoriamOrderBy = 'asc' | 'desc'
-
 interface IGetInMemoriamRequest {
   page?: string
   limit?: string
-  name?: string
-  biography?: string
-  role?: InMemoriamRole
-  orderBy?: InMemoriamOrderBy
+  filter?: string
+  orderBy?: string
 }
 
 export const getInMemoriamSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   inMemoriam: z.array(
     z.object({
       id: z.string(),
@@ -34,8 +29,16 @@ export const getInMemoriamSchema = z.object({
   ),
 })
 
-export async function getInMemoriam(params: IGetInMemoriamRequest) {
-  const searchParams = parseSearchParams(params)
+export async function getInMemoriam({
+  filter,
+  ...params
+}: IGetInMemoriamRequest) {
+  const searchParams = parseSearchParams({
+    ...params,
+    name: filter,
+    biography: filter,
+    role: filter,
+  })
 
   const data = await api
     .get('in-memoriam', {

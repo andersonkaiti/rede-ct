@@ -6,13 +6,15 @@ interface GetInternationalScientificCongressGalleryImagesParams {
   id: string
   page?: string
   limit?: string
+  filter?: string
+  orderBy?: string
 }
 
 const getInternationalScientificCongressGalleryImagesResponseSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   galleryImages: z.array(
     z.object({
       id: z.string(),
@@ -25,9 +27,13 @@ const getInternationalScientificCongressGalleryImagesResponseSchema = z.object({
 
 export async function getInternationalScientificCongressGalleryImages({
   id,
+  filter,
   ...params
 }: GetInternationalScientificCongressGalleryImagesParams) {
-  const searchParams = parseSearchParams(params)
+  const searchParams = parseSearchParams({
+    ...params,
+    caption: filter,
+  })
 
   const data = await api
     .get(`international-scientific-congress/${id}/gallery`, {

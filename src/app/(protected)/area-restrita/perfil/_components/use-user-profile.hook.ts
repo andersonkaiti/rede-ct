@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-import { MAX_AVATAR_SIZE_MB, ORCID_REGEX, PHONE_REGEX } from '../_constants/zod'
+import { MAX_AVATAR_SIZE_MB, ORCID_REGEX, PHONE_REGEX } from './zod'
 
 interface IUser {
   avatarUrl: string | null

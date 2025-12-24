@@ -4,24 +4,23 @@ import { Button } from '@components/ui/button'
 import { Share2 } from 'lucide-react'
 
 interface IShareButtonProps {
-  congress: {
-    title: string
-  }
+  title: string
+  text: string
 }
 
-export function ShareButton({ congress: { title } }: IShareButtonProps) {
+export function ShareButton({ title, text }: IShareButtonProps) {
   function handleShare() {
     if (navigator.share) {
       navigator.share({
         title,
-        text: title,
+        text,
         url: window.location.href,
       })
     }
   }
 
   return (
-    <Button onClick={handleShare} variant="ghost" className="w-full md:w-fit">
+    <Button onClick={handleShare} variant="ghost">
       <Share2 className="size-4" />
       Compartilhar
     </Button>

@@ -1,6 +1,7 @@
 'use client'
 
 import { DataTable } from '@components/ui/data-table'
+import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
@@ -31,7 +32,7 @@ export interface ISDHCTeamMember {
 }
 
 export function Table() {
-  const { data, isLoading, handleRemoveMember } = useSDHCTeam()
+  const { data, isLoading, handleRemoveMember, page, limit } = useSDHCTeam()
 
   const [{ name, email, role, description, createdAt, updatedAt }] =
     useQueryStates({
@@ -49,7 +50,7 @@ export function Table() {
         return name
       }
 
-      if (column.id === 'name') {
+      if (column.id === 'email') {
         return email
       }
 
@@ -83,6 +84,12 @@ export function Table() {
       )}
 
       {isLoading && <LoadingSkeleton />}
+
+      <PaginatorComponent
+        currentPage={Number(page)}
+        defaultRowsPerPage={Number(limit)}
+        totalPages={data?.totalPages ?? 1}
+      />
     </>
   )
 }

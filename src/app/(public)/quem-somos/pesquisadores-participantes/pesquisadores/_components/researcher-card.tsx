@@ -23,11 +23,8 @@ import {
   Smile,
 } from 'lucide-react'
 import Link from 'next/link'
-import { DEGREE_LABEL_MAP } from '../_constants/degrees'
-import {
-  type Seniority,
-  seniorityMapping,
-} from '../_hooks/use-researchers.hook'
+import { DEGREE_LABEL_MAP } from './degrees'
+import { type Seniority, seniorityMapping } from './use-researchers.hook'
 
 interface IResearcherCardProps {
   researcher: {

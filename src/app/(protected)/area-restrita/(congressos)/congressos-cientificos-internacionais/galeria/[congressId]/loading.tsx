@@ -6,7 +6,7 @@ import {
   PageHeaderContent,
   PageMain,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../../../../_components/page-container'
 import { LoadingSkeleton } from './_components/table/loading-skeleton'
 
 export default function Loading() {
@@ -28,6 +28,8 @@ export default function Loading() {
           <Skeleton className="h-9 w-full lg:w-51" />
 
           <Skeleton className="h-9 w-20.5" />
+
+          <Skeleton className="size-9" />
         </div>
 
         <Skeleton className="h-9 w-full lg:w-76" />

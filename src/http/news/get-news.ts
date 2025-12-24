@@ -3,18 +3,18 @@ import { parseSearchParams } from '@utils/parse-search-params'
 import z from 'zod'
 
 interface IGetNewsRequest {
+  page?: string
   filter?: string
   orderBy?: string
   authorId?: string
-  page?: string
   limit?: string
 }
 
 export const getNewsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   news: z.array(
     z.object({
       id: z.string(),

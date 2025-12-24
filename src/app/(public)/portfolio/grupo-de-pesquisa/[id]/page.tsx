@@ -1,5 +1,6 @@
 import { BackArrow } from '@components/ui/back-arrow'
 import { Separator } from '@components/ui/separator'
+import { ShareButton } from '@components/ui/share-button'
 import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { getResearchGroupById } from '@http/research-groups/get-research-group-by-id'
 import { format } from 'date-fns'
@@ -56,9 +57,13 @@ export default async function ResearchGroupDetails({
           {researchGroup.name}
         </h1>
 
-        <time className="text-muted-foreground text-sm">
-          Última atualização em {formattedUpdatedAt}
-        </time>
+        <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <time className="text-muted-foreground text-sm">
+            Última atualização em {formattedUpdatedAt}
+          </time>
+
+          <ShareButton title={researchGroup.name} text={researchGroup.name} />
+        </div>
       </PageHeader>
 
       <PageMain className="gap-10">
@@ -77,15 +82,13 @@ export default async function ResearchGroupDetails({
         <div className="mt-4 space-y-2">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <section className="space-y-2">
-              <h2 className="flex items-center text-muted-foreground text-sm">
-                Líder
-              </h2>
+              <h2 className="flex items-center text-muted-foreground">Líder</h2>
 
               <UserProfileHoverCard user={researchGroup.leader} />
             </section>
 
             <section className="space-y-2">
-              <h2 className="flex items-center text-muted-foreground text-sm">
+              <h2 className="flex items-center text-muted-foreground">
                 Vice-Líder
               </h2>
 
@@ -97,7 +100,7 @@ export default async function ResearchGroupDetails({
         </div>
 
         <section className="space-y-10">
-          <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="space-y-1">
               <h2 className="text-muted-foreground">Fundado em</h2>
               <p>{formattedFoundedAt}</p>
@@ -119,14 +122,14 @@ export default async function ResearchGroupDetails({
           </div>
 
           {researchGroup.scope && (
-            <div className="space-y-1 text-sm">
+            <div className="space-y-1">
               <h2 className="text-muted-foreground">Escopo</h2>
               <p className="text-justify">{researchGroup.scope}</p>
             </div>
           )}
 
           {researchGroup.description && (
-            <p className="whitespace-pre-wrap text-justify text-sm">
+            <p className="whitespace-pre-wrap text-justify">
               {researchGroup.description}
             </p>
           )}

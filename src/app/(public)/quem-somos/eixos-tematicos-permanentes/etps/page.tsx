@@ -1,12 +1,6 @@
 import { BackArrow } from '@components/ui/back-arrow'
 import { Axis3DIcon } from 'lucide-react'
-import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
-import { LoadingSkeleton } from './_components/loading-skeleton'
-
-const DynamicEPTAccordion = dynamic(() =>
-  import('./_components/etp-accordion').then((m) => m.EPTAccordion),
-)
+import { EPTList } from './_components/etp-list'
 
 export default function EixosTematicosPermanentesETPs() {
   return (
@@ -28,9 +22,7 @@ export default function EixosTematicosPermanentesETPs() {
         </p>
       </header>
 
-      <Suspense fallback={<LoadingSkeleton />}>
-        <DynamicEPTAccordion />
-      </Suspense>
+      <EPTList />
     </main>
   )
 }

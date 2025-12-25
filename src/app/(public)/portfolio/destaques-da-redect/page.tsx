@@ -9,7 +9,7 @@ import {
   PageHeaderTitle,
 } from '../../_components/page-container'
 import { LoadingSkeleton } from './_components/loading-skeleton'
-import { RedeCTHighlightList } from './_components/redect-highlight-list'
+import { RedeCTHighlightsList } from './_components/redect-highlights-list'
 
 export default function DestaquesRedeCT() {
   return (
@@ -42,7 +42,7 @@ export default function DestaquesRedeCT() {
         </div>
 
         <Suspense fallback={<LoadingSkeleton />}>
-          <RedeCTHighlightList />
+          <RedeCTHighlightsList />
         </Suspense>
       </section>
     </PageContainer>

@@ -2,10 +2,10 @@ import { deleteManagementTeamById } from '@http/teams/management-team/delete-man
 import { getManagementTeam } from '@http/teams/management-team/get-management-team'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
-import { useEffect } from 'react'
 import { toast } from 'sonner'
 
 export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
 export const DEFAULT_PAGE = 1
 export const DEFAULT_LIMIT = 7
 
@@ -16,12 +16,12 @@ export function useManagementTeam() {
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
     filtro: parseAsString.withDefault(DEFAULT_FILTER),
-    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault('desc'),
+    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault(DEFAULT_ORDER_BY),
   })
 
-  const QUERY_KEY = ['equipe-de-gestao', filter, orderBy, page, limit]
+  const QUERY_KEY = ['equipe-de-gestao', page, limit, filter, orderBy]
 
-  const { refetch, isLoading, ...rest } = useQuery({
+  const result = useQuery({
     queryKey: QUERY_KEY,
     queryFn: async () =>
       getManagementTeam({
@@ -30,12 +30,7 @@ export function useManagementTeam() {
         page,
         limit,
       }),
-    staleTime: 0,
   })
-
-  useEffect(() => {
-    refetch()
-  }, [refetch])
 
   async function handleRemoveTeam(teamId: string) {
     await deleteManagementTeamById(teamId)
@@ -48,10 +43,7 @@ export function useManagementTeam() {
   }
 
   return {
-    isLoading,
     handleRemoveTeam,
-    page,
-    limit,
-    ...rest,
+    ...result,
   }
 }

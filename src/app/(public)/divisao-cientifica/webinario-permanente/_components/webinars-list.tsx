@@ -4,11 +4,11 @@ import PaginatorComponent from '@components/ui/paginator'
 import { Separator } from '@components/ui/separator'
 import { FilterInput } from './filter-input'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useWebinars } from './use-webinars'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useWebinars } from './use-webinars.hook'
 import { WebinarCard } from './webinar-card'
 
-export function WebinarList() {
-  const { data, isLoading, page, limit } = useWebinars()
+export function WebinarsList() {
+  const { data, isLoading } = useWebinars()
 
   return (
     <>
@@ -40,8 +40,8 @@ export function WebinarList() {
       <Separator />
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

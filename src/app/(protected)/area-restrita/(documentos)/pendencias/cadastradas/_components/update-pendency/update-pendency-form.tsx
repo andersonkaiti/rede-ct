@@ -28,7 +28,7 @@ import {
 } from '@components/ui/select'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useUpdatePendency } from './use-update-pendency'
+import { useUpdatePendency } from './use-update-pendency.hook'
 
 interface IUpdatePendencyFormProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>

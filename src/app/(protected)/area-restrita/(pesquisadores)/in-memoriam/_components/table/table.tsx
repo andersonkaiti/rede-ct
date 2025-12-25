@@ -3,15 +3,14 @@
 import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
-import {
-  parseAsBoolean,
-  parseAsInteger,
-  useQueryState,
-  useQueryStates,
-} from 'nuqs'
+import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { inMemoriamTableColumns } from './in-memoriam-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useInMemoriam } from './use-in-memoriam.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useInMemoriam,
+} from './use-in-memoriam.hook'
 
 interface IInMemoriam {
   id: string
@@ -35,8 +34,6 @@ export function Table() {
     birthDate: parseAsBoolean.withDefault(true),
     deathDate: parseAsBoolean.withDefault(true),
   })
-
-  const [page] = useQueryState('page', parseAsInteger.withDefault(1))
 
   const filteredTableColumns: ColumnDef<IInMemoriam>[] =
     inMemoriamTableColumns.filter((column) => {
@@ -76,8 +73,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={page}
-        defaultRowsPerPage={7}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

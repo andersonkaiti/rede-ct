@@ -22,7 +22,10 @@ import {
   PageHeaderContent,
   PageTitle,
 } from '@/app/(protected)/_components/page-container'
-import { MAX_LOGO_SIZE_BYTES, useCreatePartner } from './use-create-partner'
+import {
+  MAX_LOGO_SIZE_BYTES,
+  useCreatePartner,
+} from './use-create-partner.hook'
 
 export default function CreatePartner() {
   const { form, submit, serverError } = useCreatePartner()

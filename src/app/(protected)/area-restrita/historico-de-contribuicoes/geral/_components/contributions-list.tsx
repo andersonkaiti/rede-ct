@@ -3,10 +3,14 @@
 import PaginatorComponent from '@components/ui/paginator'
 import { Contribution } from '../../_components/contribution'
 import { LoadingSkeleton } from '../../_components/loading-skeleton'
-import { useAllContributions } from './use-contributions.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useAllContributions,
+} from './use-contributions.hook'
 
 export function ContributionsList() {
-  const { data, isLoading, page, limit } = useAllContributions()
+  const { data, isLoading } = useAllContributions()
 
   return (
     <>
@@ -29,8 +33,8 @@ export function ContributionsList() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

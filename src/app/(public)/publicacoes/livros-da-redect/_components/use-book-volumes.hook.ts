@@ -1,30 +1,28 @@
-import { getRegisteredPendencies } from '@http/documents/pendencies/get-pendencies'
+import { getBookVolumes } from '@http/book-volumes/get-book-volumes'
 import { useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 
 export const DEFAULT_FILTER = ''
 export const DEFAULT_ORDER_BY = 'desc'
 export const DEFAULT_PAGE = 1
-export const DEFAULT_LIMIT = 4
+export const DEFAULT_LIMIT = 6
 
-export function useRegisteredPendencies() {
-  const [{ filtro: filter, orderBy, page, limit, userId }] = useQueryStates({
-    userId: parseAsString.withDefault(''),
+export function useBookVolumes() {
+  const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
     filtro: parseAsString.withDefault(DEFAULT_FILTER),
-    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault(DEFAULT_ORDER_BY),
+    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault(DEFAULT_ORDER_BY),
   })
 
   const result = useQuery({
-    queryKey: ['users', 'pendencies', page, limit, filter, orderBy, userId],
+    queryKey: ['book-volumes', page, limit, filter, orderBy],
     queryFn: () =>
-      getRegisteredPendencies({
+      getBookVolumes({
         filter,
         orderBy,
         page,
         limit,
-        userId,
       }),
   })
 

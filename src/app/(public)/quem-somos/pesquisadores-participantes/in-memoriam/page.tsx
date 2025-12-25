@@ -1,18 +1,11 @@
 import { BackArrow } from '@components/ui/back-arrow'
-import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { GaleriaInMemoriamTitle } from './_components/galeria-in-memoriam-title'
 import { LoadingSkeleton } from './_components/loading-skeleton'
+import { Researchers } from './_components/researchers'
 import { ResearchersTitle } from './_components/researchers-title'
+import { TraditionalLeaders } from './_components/traditional-leaders'
 import { TraditionalLeadersTitle } from './_components/traditional-leaders-title'
-
-const DynamicPesquisadores = dynamic(() =>
-  import('./_components/researchers').then((m) => m.Researchers),
-)
-
-const DynamicPovosTradicionais = dynamic(() =>
-  import('./_components/traditional-leaders').then((m) => m.TraditionalLeaders),
-)
 
 export default function InMemorian() {
   return (
@@ -30,9 +23,11 @@ export default function InMemorian() {
           RedeCT.
         </p>
       </section>
+
       <Suspense fallback={<LoadingSkeleton />}>
-        <DynamicPesquisadores />
+        <Researchers />
       </Suspense>
+
       <section className="space-y-8">
         <TraditionalLeadersTitle />
 
@@ -43,8 +38,9 @@ export default function InMemorian() {
           comunidades.
         </p>
       </section>
+
       <Suspense fallback={<LoadingSkeleton />}>
-        <DynamicPovosTradicionais />
+        <TraditionalLeaders />
       </Suspense>
     </main>
   )

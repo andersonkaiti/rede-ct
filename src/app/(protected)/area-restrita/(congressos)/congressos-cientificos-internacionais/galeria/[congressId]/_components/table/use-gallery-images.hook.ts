@@ -5,8 +5,10 @@ import { useParams } from 'next/navigation'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 
-const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 7
+export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
+export const DEFAULT_PAGE = 1
+export const DEFAULT_LIMIT = 7
 
 export function useGalleryImages() {
   const queryClient = useQueryClient()
@@ -17,13 +19,13 @@ export function useGalleryImages() {
   const [{ page, limit, filtro: filter, orderBy }] = useQueryStates({
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
-    filtro: parseAsString.withDefault(''),
-    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    filtro: parseAsString.withDefault(DEFAULT_FILTER),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault(DEFAULT_ORDER_BY),
   })
 
-  const QUERY_KEY = ['gallery-images', congressId, page, limit]
+  const QUERY_KEY = ['gallery-images', congressId, page, limit, filter, orderBy]
 
-  const { isLoading, ...rest } = useSuspenseQuery({
+  const result = useSuspenseQuery({
     queryKey: QUERY_KEY,
     queryFn: async () =>
       await getInternationalScientificCongressGalleryImages({
@@ -33,7 +35,6 @@ export function useGalleryImages() {
         filter,
         orderBy,
       }),
-    staleTime: 0,
   })
 
   async function handleRemoveGalleryImage(id: string) {
@@ -49,10 +50,7 @@ export function useGalleryImages() {
   }
 
   return {
-    isLoading,
     handleRemoveGalleryImage,
-    page,
-    limit,
-    ...rest,
+    ...result,
   }
 }

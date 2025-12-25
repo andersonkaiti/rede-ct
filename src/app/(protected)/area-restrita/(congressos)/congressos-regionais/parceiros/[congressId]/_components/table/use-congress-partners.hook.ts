@@ -5,8 +5,10 @@ import { useParams } from 'next/navigation'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 
-const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 10
+export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
+export const DEFAULT_PAGE = 1
+export const DEFAULT_LIMIT = 10
 
 export function useCongressPartners() {
   const queryClient = useQueryClient()
@@ -15,8 +17,8 @@ export function useCongressPartners() {
   const [{ page, limit, filtro: filter, orderBy }] = useQueryStates({
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
-    filtro: parseAsString.withDefault(''),
-    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    filtro: parseAsString.withDefault(DEFAULT_FILTER),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault(DEFAULT_ORDER_BY),
   })
 
   const QUERY_KEY = [
@@ -28,7 +30,7 @@ export function useCongressPartners() {
     orderBy,
   ]
 
-  const { isLoading, ...rest } = useSuspenseQuery({
+  const result = useSuspenseQuery({
     queryKey: QUERY_KEY,
     queryFn: async () =>
       await getRegionalCongressPartnerByCongressId({
@@ -53,10 +55,7 @@ export function useCongressPartners() {
   }
 
   return {
-    isLoading,
     handleRemovePartner,
-    page,
-    limit,
-    ...rest,
+    ...result,
   }
 }

@@ -35,7 +35,7 @@ export function PendencyActions({ id }: IPendencyActionsProps) {
       await deletePendencyById(id)
 
       queryClient.invalidateQueries({
-        queryKey: ['user', 'pendencies', filter, orderBy, page, limit, userId],
+        queryKey: ['user', 'pendencies', page, limit, filter, orderBy, userId],
       })
 
       toast.success('Pendência deletada com sucesso!')

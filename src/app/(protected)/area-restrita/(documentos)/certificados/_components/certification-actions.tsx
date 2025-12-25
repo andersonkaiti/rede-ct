@@ -35,7 +35,7 @@ export function CertificationActions({ id }: ICertificationActionsProps) {
       await deleteCertificationById(id)
 
       queryClient.invalidateQueries({
-        queryKey: ['certifications', filter, orderBy, page, limit, userId],
+        queryKey: ['certifications', page, limit, filter, orderBy, userId],
       })
 
       toast.success('Certificado deletado com sucesso!')

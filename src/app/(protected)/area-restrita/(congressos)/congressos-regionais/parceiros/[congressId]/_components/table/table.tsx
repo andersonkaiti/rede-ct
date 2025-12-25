@@ -6,7 +6,11 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
 import { partnersTableColumns } from './partners-table-columns'
-import { useCongressPartners } from './use-congress-partners.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useCongressPartners,
+} from './use-congress-partners.hook'
 
 interface ICongressPartner {
   id: string
@@ -16,8 +20,7 @@ interface ICongressPartner {
 }
 
 export function Table() {
-  const { data, handleRemovePartner, isLoading, page, limit } =
-    useCongressPartners()
+  const { data, handleRemovePartner, isLoading } = useCongressPartners()
 
   const [{ name, logoUrl }] = useQueryStates({
     name: parseAsBoolean.withDefault(true),
@@ -50,8 +53,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

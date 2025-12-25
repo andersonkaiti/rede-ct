@@ -5,10 +5,10 @@ import { Separator } from '@components/ui/separator'
 import { EventCard } from './event-card'
 import { FilterInput } from './filter-input'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useEvents } from './use-events'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useEvents } from './use-events.hook'
 
-export function Events() {
-  const { data, isLoading, page, limit } = useEvents()
+export function EventsList() {
+  const { data, isLoading } = useEvents()
 
   return (
     <>
@@ -40,8 +40,8 @@ export function Events() {
       <Separator />
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

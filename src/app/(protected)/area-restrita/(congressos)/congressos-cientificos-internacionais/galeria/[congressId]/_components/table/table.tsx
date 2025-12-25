@@ -6,7 +6,11 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { galleryTableColumns } from './gallery-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useGalleryImages } from './use-gallery-images.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useGalleryImages,
+} from './use-gallery-images.hook'
 
 interface IGalleryImage {
   id: string
@@ -16,8 +20,7 @@ interface IGalleryImage {
 }
 
 export function Table() {
-  const { data, handleRemoveGalleryImage, isLoading, page, limit } =
-    useGalleryImages()
+  const { data, handleRemoveGalleryImage, isLoading } = useGalleryImages()
 
   const [{ caption, imageUrl }] = useQueryStates({
     caption: parseAsBoolean.withDefault(true),
@@ -50,8 +53,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

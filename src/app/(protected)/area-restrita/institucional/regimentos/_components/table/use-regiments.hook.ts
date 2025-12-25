@@ -4,9 +4,10 @@ import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 
-const DEFAULT_FILTER = ''
-const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 7
+export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
+export const DEFAULT_PAGE = 1
+export const DEFAULT_LIMIT = 7
 
 export function useRegiments() {
   const queryClient = useQueryClient()
@@ -15,12 +16,12 @@ export function useRegiments() {
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
     filtro: parseAsString.withDefault(DEFAULT_FILTER),
-    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault('desc'),
+    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault(DEFAULT_ORDER_BY),
   })
 
-  const QUERY_KEY = ['regiments', page, limit]
+  const QUERY_KEY = ['regiments', page, limit, orderBy, filter]
 
-  const { isLoading, ...rest } = useSuspenseQuery({
+  const result = useSuspenseQuery({
     queryKey: QUERY_KEY,
     queryFn: async () =>
       await getRegiments({
@@ -29,7 +30,6 @@ export function useRegiments() {
         filter,
         orderBy,
       }),
-    staleTime: 0,
   })
 
   async function handleRemoveRegiment(id: string) {
@@ -45,10 +45,7 @@ export function useRegiments() {
   }
 
   return {
-    isLoading,
     handleRemoveRegiment,
-    page,
-    limit,
-    ...rest,
+    ...result,
   }
 }

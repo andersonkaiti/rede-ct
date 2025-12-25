@@ -5,7 +5,11 @@ import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useWorkGroupTeam } from './use-work-group-team.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useWorkGroupTeam,
+} from './use-work-group-team.hook'
 import { workGroupTeamTableColumns } from './work-group-team-table-columns'
 
 export interface IWorkGroupTeamMember {
@@ -30,8 +34,7 @@ export interface IWorkGroupTeamMember {
 }
 
 export function Table() {
-  const { data, isLoading, handleRemoveMember, page, limit } =
-    useWorkGroupTeam()
+  const { data, isLoading, handleRemoveMember } = useWorkGroupTeam()
 
   const [{ name, email, role, description, createdAt, updatedAt }] =
     useQueryStates({
@@ -85,8 +88,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

@@ -4,9 +4,10 @@ import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 
-const DEFAULT_FILTER = ''
-const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 7
+export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
+export const DEFAULT_PAGE = 1
+export const DEFAULT_LIMIT = 7
 
 export function useInternationalScientificCongresses() {
   const queryClient = useQueryClient()
@@ -15,12 +16,18 @@ export function useInternationalScientificCongresses() {
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
     filtro: parseAsString.withDefault(DEFAULT_FILTER),
-    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault('desc'),
+    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault(DEFAULT_ORDER_BY),
   })
 
-  const QUERY_KEY = ['international-scientific-congresses', page, limit]
+  const QUERY_KEY = [
+    'international-scientific-congresses',
+    page,
+    limit,
+    filter,
+    orderBy,
+  ]
 
-  const { isLoading, ...rest } = useSuspenseQuery({
+  const result = useSuspenseQuery({
     queryKey: QUERY_KEY,
     queryFn: async () =>
       await getInternationalScientificCongresses({
@@ -45,10 +52,7 @@ export function useInternationalScientificCongresses() {
   }
 
   return {
-    isLoading,
     handleRemoveInternationalScientificCongress,
-    page,
-    limit,
-    ...rest,
+    ...result,
   }
 }

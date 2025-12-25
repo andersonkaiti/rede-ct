@@ -3,14 +3,9 @@
 import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
-import {
-  parseAsBoolean,
-  parseAsInteger,
-  useQueryState,
-  useQueryStates,
-} from 'nuqs'
+import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useUsers } from './use-users.hook'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useUsers } from './use-users.hook'
 import { usersTableColumns } from './users-table-columns'
 
 interface IUser {
@@ -35,8 +30,6 @@ export function Table() {
     role: parseAsBoolean.withDefault(true),
     createdAt: parseAsBoolean.withDefault(true),
   })
-
-  const [page] = useQueryState('page', parseAsInteger.withDefault(1))
 
   const filteredTableColumns: ColumnDef<IUser>[] = usersTableColumns.filter(
     (column) => {
@@ -74,8 +67,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={page}
-        defaultRowsPerPage={7}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

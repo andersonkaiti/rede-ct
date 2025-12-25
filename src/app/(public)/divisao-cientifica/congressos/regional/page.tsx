@@ -7,7 +7,7 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../../_components/page-container'
-import { CongressList } from './_components/congress-list'
+import { RegionalCongressesList } from './_components/regional-congresses-list'
 
 export default function CongressoRegional() {
   return (
@@ -28,7 +28,7 @@ export default function CongressoRegional() {
         regionais.
       </PageDescription>
 
-      <CongressList />
+      <RegionalCongressesList />
     </PageContainer>
   )
 }

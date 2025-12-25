@@ -6,7 +6,7 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../_components/page-container'
-import { CourseList } from './_components/course-list'
+import { CoursesList } from './_components/courses-list'
 
 export default function Cursos() {
   return (
@@ -24,7 +24,7 @@ export default function Cursos() {
         novas habilidades e conhecimentos com nossos programas de cursos.
       </PageDescription>
 
-      <CourseList />
+      <CoursesList />
     </PageContainer>
   )
 }

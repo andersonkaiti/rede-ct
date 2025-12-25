@@ -6,7 +6,7 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../_components/page-container'
-import { Events } from './_components/events'
+import { EventsList } from './_components/events-list'
 
 export default function CalendarioDeEventos() {
   return (
@@ -25,7 +25,7 @@ export default function CalendarioDeEventos() {
         conduzidos pelos Pesquisadores Filiados, mas de interesse destes).
       </PageDescription>
 
-      <Events />
+      <EventsList />
     </PageContainer>
   )
 }

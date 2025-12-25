@@ -2,20 +2,22 @@ import { getRegisteredCertifications } from '@http/documents/certifications/get-
 import { useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 
-const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 4
+export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
+export const DEFAULT_PAGE = 1
+export const DEFAULT_LIMIT = 4
 
 export function useRegisteredCertifications() {
   const [{ filtro: filter, orderBy, page, limit, userId }] = useQueryStates({
     userId: parseAsString.withDefault(''),
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
-    filtro: parseAsString.withDefault(''),
-    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    filtro: parseAsString.withDefault(DEFAULT_FILTER),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault(DEFAULT_ORDER_BY),
   })
 
-  const { data, isLoading } = useQuery({
-    queryKey: ['users', 'certifications', filter, orderBy, page, limit, userId],
+  const result = useQuery({
+    queryKey: ['users', 'certifications', page, limit, filter, orderBy, userId],
     queryFn: () =>
       getRegisteredCertifications({
         filter,
@@ -26,10 +28,5 @@ export function useRegisteredCertifications() {
       }),
   })
 
-  return {
-    data,
-    isLoading,
-    page,
-    limit,
-  }
+  return result
 }

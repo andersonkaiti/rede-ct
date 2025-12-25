@@ -6,7 +6,11 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
 import { managementTeamTableColumns } from './management-team-table-columns'
-import { useManagementTeam } from './use-management-team.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useManagementTeam,
+} from './use-management-team.hook'
 
 interface ITeam {
   id: string
@@ -38,7 +42,7 @@ interface ITeam {
 }
 
 export default function Table() {
-  const { data, isLoading, handleRemoveTeam, page, limit } = useManagementTeam()
+  const { data, isLoading, handleRemoveTeam } = useManagementTeam()
 
   const [{ name, quantity }] = useQueryStates({
     name: parseAsBoolean.withDefault(true),
@@ -71,8 +75,8 @@ export default function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

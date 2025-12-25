@@ -6,7 +6,11 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
 import { redectHighlightTableColumns } from './redect-highlight-table-columns'
-import { useRedeCTHighlights } from './use-redect-highlights.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useRedeCTHighlights,
+} from './use-redect-highlights.hook'
 
 interface IRedeCTHighlight {
   id: string
@@ -32,8 +36,7 @@ interface IRedeCTHighlight {
 }
 
 export function Table() {
-  const { data, handleRemoveRedeCTHighlight, isLoading, page, limit } =
-    useRedeCTHighlights()
+  const { data, handleRemoveRedeCTHighlight, isLoading } = useRedeCTHighlights()
 
   const [{ name, type, honoredAt, createdAt, updatedAt }] = useQueryStates({
     name: parseAsBoolean.withDefault(true),
@@ -81,8 +84,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

@@ -6,7 +6,11 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
 import { regionalCongressesTableColumns } from './regional-congresses-table-columns'
-import { useRegionalCongresses } from './use-regional-congresses.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useRegionalCongresses,
+} from './use-regional-congresses.hook'
 
 interface IRegionalCongress {
   id: string
@@ -31,7 +35,7 @@ interface IRegionalCongress {
 }
 
 export function Table() {
-  const { data, handleRemoveRegionalCongress, isLoading, page, limit } =
+  const { data, handleRemoveRegionalCongress, isLoading } =
     useRegionalCongresses()
 
   const [{ title, edition, startDate, endDate, location, format, status }] =
@@ -91,8 +95,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

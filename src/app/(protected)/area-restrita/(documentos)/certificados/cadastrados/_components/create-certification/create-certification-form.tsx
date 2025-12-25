@@ -22,7 +22,7 @@ import { Label } from '@components/ui/label'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../../../../_components/select-member'
-import { useCreateCertification } from './use-create-certification'
+import { useCreateCertification } from './use-create-certification.hook'
 
 interface ICreateCertificationFormProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>

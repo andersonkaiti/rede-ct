@@ -6,7 +6,7 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../_components/page-container'
-import { PartnerList } from './_components/partner-list'
+import { PartnersList } from './_components/partners-list'
 
 export default function ParceirosEFinanciadores() {
   return (
@@ -27,7 +27,7 @@ export default function ParceirosEFinanciadores() {
         resultados alcançados.
       </PageDescription>
 
-      <PartnerList />
+      <PartnersList />
     </PageContainer>
   )
 }

@@ -6,7 +6,7 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { courseTableColumns } from './course-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useCourses } from './use-courses.hook'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useCourses } from './use-courses.hook'
 
 interface ICourse {
   id: string
@@ -46,7 +46,7 @@ interface ICourse {
 }
 
 export function Table() {
-  const { data, handleRemoveCourse, isLoading, page, limit } = useCourses()
+  const { data, handleRemoveCourse, isLoading } = useCourses()
 
   const [{ title, coordinator, location, scheduledAt, createdAt, updatedAt }] =
     useQueryStates({
@@ -101,8 +101,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

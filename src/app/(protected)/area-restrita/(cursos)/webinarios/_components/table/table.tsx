@@ -5,7 +5,7 @@ import PaginatorComponent from '@components/ui/paginator'
 import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useWebinars } from './use-webinars.hook'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useWebinars } from './use-webinars.hook'
 import { webinarTableColumns } from './webinar-table-columns'
 
 interface IWebinar {
@@ -19,7 +19,7 @@ interface IWebinar {
 }
 
 export function Table() {
-  const { data, handleRemoveWebinar, isLoading, page, limit } = useWebinars()
+  const { data, handleRemoveWebinar, isLoading } = useWebinars()
 
   const [{ title, scheduledAt, createdAt, updatedAt }] = useQueryStates({
     title: parseAsBoolean.withDefault(true),
@@ -62,8 +62,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

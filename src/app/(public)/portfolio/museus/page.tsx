@@ -6,7 +6,7 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../_components/page-container'
-import { MuseumList } from './_components/museum-list'
+import { MuseumList } from './_components/museums-list'
 
 export default function Museus() {
   return (

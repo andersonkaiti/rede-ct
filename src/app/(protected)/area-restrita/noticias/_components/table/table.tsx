@@ -6,7 +6,7 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
 import { newsTableColumns } from './news-table-columns'
-import { useUserNews } from './use-user-news.hook'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useUserNews } from './use-user-news.hook'
 
 interface INews {
   id: string
@@ -18,7 +18,7 @@ interface INews {
 }
 
 export function Table() {
-  const { data, handleRemoveNews, isLoading, page, limit } = useUserNews()
+  const { data, handleRemoveNews, isLoading } = useUserNews()
 
   const [{ title, createdAt, updatedAt }] = useQueryStates({
     title: parseAsBoolean.withDefault(true),
@@ -57,8 +57,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

@@ -6,7 +6,7 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
 import { museumTableColumns } from './museum-table-columns'
-import { useMuseums } from './use-museums.hook'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useMuseums } from './use-museums.hook'
 
 interface IMuseum {
   id: string
@@ -26,7 +26,7 @@ interface IMuseum {
 }
 
 export function Table() {
-  const { data, handleRemoveMuseum, isLoading, page, limit } = useMuseums()
+  const { data, handleRemoveMuseum, isLoading } = useMuseums()
 
   const [{ name, city, state, country, createdAt, updatedAt }] = useQueryStates(
     {
@@ -82,8 +82,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

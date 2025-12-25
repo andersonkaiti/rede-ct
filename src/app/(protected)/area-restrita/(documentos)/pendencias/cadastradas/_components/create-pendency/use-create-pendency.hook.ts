@@ -66,7 +66,7 @@ export function useRegisterPendency({ setIsOpen }: IUseRegisterPendencyProps) {
       await createPendency(values)
 
       queryClient.invalidateQueries({
-        queryKey: ['users', 'pendencies', filter, orderBy, page, limit, userId],
+        queryKey: ['users', 'pendencies', page, limit, filter, orderBy, userId],
       })
 
       toast.success('Pendência cadastrada com sucesso!')

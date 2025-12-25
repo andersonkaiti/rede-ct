@@ -6,7 +6,11 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
 import { researchersTableColumns } from './researchers-table-columns'
-import { useResearchers } from './use-researchers.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useResearchers,
+} from './use-researchers.hook'
 
 interface IResearcher {
   id: string
@@ -35,8 +39,7 @@ interface IResearcher {
 }
 
 export function Table() {
-  const { data, handleRemoveResearcher, isLoading, page, limit } =
-    useResearchers()
+  const { data, handleRemoveResearcher, isLoading } = useResearchers()
 
   const [{ registrationNumber, name, seniority }] = useQueryStates({
     registrationNumber: parseAsBoolean.withDefault(true),
@@ -74,8 +77,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

@@ -6,7 +6,7 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { lawTableColumns } from './law-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useLaws } from './use-laws.hook'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useLaws } from './use-laws.hook'
 
 interface ILaw {
   id: string
@@ -18,7 +18,7 @@ interface ILaw {
 }
 
 export function Table() {
-  const { data, isLoading, handleRemoveLaw, page, limit } = useLaws()
+  const { data, isLoading, handleRemoveLaw } = useLaws()
 
   const [{ title, link, country, createdAt, updatedAt }] = useQueryStates({
     title: parseAsBoolean.withDefault(true),
@@ -67,8 +67,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

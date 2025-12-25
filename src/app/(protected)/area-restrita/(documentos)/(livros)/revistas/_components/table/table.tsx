@@ -6,7 +6,11 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { scientificJournalTableColumns } from './journal-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useScientificJournals } from './use-scientific-journals.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useScientificJournals,
+} from './use-scientific-journals.hook'
 
 interface IScientificJournal {
   id: string
@@ -22,8 +26,7 @@ interface IScientificJournal {
 }
 
 export function Table() {
-  const { data, handleRemoveJournal, isLoading, page, limit } =
-    useScientificJournals()
+  const { data, handleRemoveJournal, isLoading } = useScientificJournals()
 
   const [
     {
@@ -91,8 +94,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

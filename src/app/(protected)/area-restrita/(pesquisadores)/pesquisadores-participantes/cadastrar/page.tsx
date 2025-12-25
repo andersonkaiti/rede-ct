@@ -1,11 +1,5 @@
 'use client'
 
-import {
-  PageContainer,
-  PageDescription,
-  PageHeaderContent,
-  PageTitle,
-} from '@/app/(protected)/_components/page-container'
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
 import {
@@ -28,13 +22,19 @@ import {
 import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeaderContent,
+  PageTitle,
+} from '@/app/(protected)/_components/page-container'
 import { SelectMember } from '../../../_components/select-member'
 import { DEGREE_LABEL_MAP } from '../_components/degrees'
 import {
   SENIORITY_LABEL_MAP,
   SENIORITY_OPTIONS,
 } from '../_components/seniority'
-import { useCreateResearcher } from './use-create-researcher'
+import { useCreateResearcher } from './use-create-researcher.hook'
 
 export default function CadastrarPesquisador() {
   const { form, submit, serverError } = useCreateResearcher()

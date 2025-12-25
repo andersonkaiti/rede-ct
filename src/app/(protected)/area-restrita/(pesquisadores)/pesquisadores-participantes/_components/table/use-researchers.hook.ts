@@ -4,8 +4,10 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 
-const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 7
+export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
+export const DEFAULT_PAGE = 1
+export const DEFAULT_LIMIT = 7
 
 export function useResearchers() {
   const queryClient = useQueryClient()
@@ -13,13 +15,13 @@ export function useResearchers() {
   const [{ page, limit, filtro: filter, orderBy }] = useQueryStates({
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
-    filtro: parseAsString.withDefault(''),
-    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+    filtro: parseAsString.withDefault(DEFAULT_FILTER),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault(DEFAULT_ORDER_BY),
   })
 
   const QUERY_KEY = ['researchers', page, limit, filter, orderBy]
 
-  const { isLoading, ...rest } = useQuery({
+  const result = useQuery({
     queryKey: QUERY_KEY,
     queryFn: async () =>
       await getResearchers({
@@ -45,10 +47,7 @@ export function useResearchers() {
   }
 
   return {
-    isLoading,
     handleRemoveResearcher,
-    page,
-    limit,
-    ...rest,
+    ...result,
   }
 }

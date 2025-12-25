@@ -2,19 +2,21 @@ import { getAuthenticatedUserContributions } from '@http/auth/get-user-contribut
 import { useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 
-const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 4
+export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
+export const DEFAULT_PAGE = 1
+export const DEFAULT_LIMIT = 4
 
 export function useContributions() {
-  const [{ filtro: filter, order_by: orderBy, page, limit }] = useQueryStates({
-    filtro: parseAsString.withDefault(''),
-    order_by: parseAsStringEnum(['desc', 'asc']).withDefault('desc'),
+  const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
+    filtro: parseAsString.withDefault(''),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault(DEFAULT_ORDER_BY),
   })
 
-  const { data, isLoading } = useQuery({
-    queryKey: ['user', 'contributions', filter, orderBy, page, limit],
+  const result = useQuery({
+    queryKey: ['user', 'contributions', page, limit, filter, orderBy],
     queryFn: () =>
       getAuthenticatedUserContributions({
         filter,
@@ -24,10 +26,5 @@ export function useContributions() {
       }),
   })
 
-  return {
-    data,
-    isLoading,
-    page,
-    limit,
-  }
+  return result
 }

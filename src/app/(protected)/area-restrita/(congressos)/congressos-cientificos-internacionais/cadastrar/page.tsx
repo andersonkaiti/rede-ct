@@ -21,7 +21,7 @@ import {
   PageHeaderContent,
   PageTitle,
 } from '@/app/(protected)/_components/page-container'
-import { useCreateInternationalScientificCongress } from './use-create-international-scientific-congress'
+import { useCreateInternationalScientificCongress } from './use-create-international-scientific-congress.hook'
 
 export default function CreateInternationalScientificCongressPage() {
   const { form, submit, serverError } =

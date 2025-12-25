@@ -2,19 +2,21 @@ import { getLaws } from '@http/laws/get-laws'
 import { useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 
-const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 10
+export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
+export const DEFAULT_PAGE = 1
+export const DEFAULT_LIMIT = 10
 
 export function useLaws() {
   const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
-    filtro: parseAsString.withDefault(''),
-    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault('desc'),
+    filtro: parseAsString.withDefault(DEFAULT_FILTER),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault(DEFAULT_ORDER_BY),
   })
 
   const result = useQuery({
-    queryKey: ['public-laws', filter, orderBy, page, limit],
+    queryKey: ['public-laws', page, limit, filter, orderBy],
     queryFn: () =>
       getLaws({
         filter,
@@ -24,9 +26,5 @@ export function useLaws() {
       }),
   })
 
-  return {
-    ...result,
-    page,
-    limit,
-  }
+  return result
 }

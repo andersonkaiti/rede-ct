@@ -1,22 +1,24 @@
-import { getResearchGroups } from '@http/research-groups/get-research-groups'
+import { getCourses } from '@http/courses/get-courses'
 import { useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 
-const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 6
+export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
+export const DEFAULT_PAGE = 1
+export const DEFAULT_LIMIT = 6
 
-export function useResearchGroups() {
+export function useCourses() {
   const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
-    filtro: parseAsString.withDefault(''),
-    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault('desc'),
+    filtro: parseAsString.withDefault(DEFAULT_FILTER),
+    orderBy: parseAsStringEnum(['desc', 'asc']).withDefault(DEFAULT_ORDER_BY),
   })
 
   const result = useQuery({
-    queryKey: ['public-research-groups', filter, orderBy, page, limit],
+    queryKey: ['courses', page, limit, filter, orderBy],
     queryFn: () =>
-      getResearchGroups({
+      getCourses({
         filter,
         orderBy,
         page,
@@ -24,9 +26,5 @@ export function useResearchGroups() {
       }),
   })
 
-  return {
-    ...result,
-    page,
-    limit,
-  }
+  return result
 }

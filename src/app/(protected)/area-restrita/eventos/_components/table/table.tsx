@@ -6,7 +6,7 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { eventTableColumns } from './event-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useEvents } from './use-events.hook'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useEvents } from './use-events.hook'
 
 interface IEvent {
   id: string
@@ -24,7 +24,7 @@ interface IEvent {
 }
 
 export function Table() {
-  const { data, handleRemoveEvent, isLoading, page, limit } = useEvents()
+  const { data, handleRemoveEvent, isLoading } = useEvents()
 
   const [{ title, status, format, startDate, endDate, createdAt, updatedAt }] =
     useQueryStates({
@@ -84,8 +84,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

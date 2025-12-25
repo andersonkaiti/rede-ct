@@ -24,7 +24,7 @@ import {
   PageTitle,
 } from '@/app/(protected)/_components/page-container'
 import { SelectResearcher } from '../../_components/select-researcher'
-import { useCreateETP } from './use-create-etp'
+import { useCreateETP } from './use-create-etp.hook'
 
 export default function CreateETP() {
   const { form, submit, serverError, researchers } = useCreateETP()

@@ -1,10 +1,58 @@
-import type { etpSchema } from '@http/etps/get-etps'
 import type { ColumnDef } from '@tanstack/react-table'
 import { format } from 'date-fns'
-import type z from 'zod'
 import { ActionsRow } from './actions-row'
 
-interface IETP extends z.infer<typeof etpSchema> {}
+export interface ETPMemberUser {
+  id: string
+  name: string
+  avatarUrl: string | null
+  createdAt: string
+  updatedAt: string
+  emailAddress: string
+  orcid: string | null
+  phone: string | null
+  lattesUrl: string | null
+  role: 'ADMIN' | 'USER'
+}
+
+export interface ETPResearcher {
+  id: string
+  registrationNumber: string
+  mainEtps: string
+  formations: string
+  degrees: ('DOCTOR' | 'MASTER' | 'BACHELOR' | 'TECHNICAL' | 'POSTGRADUATE')[]
+  occupations: string
+  seniority: 'SENIOR' | 'RESEARCHER' | 'JUNIOR' | 'HONOR'
+  institutions: string
+  biography: string
+  createdAt: string
+  updatedAt: string
+  userId: string
+  user: ETPMemberUser
+}
+
+export interface ETPRoleMember {
+  id: string
+  etpId: string
+  researcherId: string
+  researcher: ETPResearcher
+}
+
+export type EtpMember = ETPResearcher
+
+export interface IETP {
+  id: string
+  code: string
+  title: string
+  description: string | null
+  notes: string | null
+  createdAt: string
+  updatedAt: string
+  leader: ETPRoleMember
+  deputyLeader: ETPRoleMember
+  secretary: ETPRoleMember
+  members: EtpMember[]
+}
 
 const TITLE_MAX_LENGTH = 30
 const ELLIPSIS = '...'

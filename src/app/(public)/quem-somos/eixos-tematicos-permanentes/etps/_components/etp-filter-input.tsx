@@ -1,7 +1,11 @@
 'use client'
 
-import { Input } from '@components/ui/input'
-import { Filter } from 'lucide-react'
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from '@components/ui/input-group'
+import { Search } from 'lucide-react'
 import { useQueryState } from 'nuqs'
 
 export function ETPFilterInput() {
@@ -12,18 +16,17 @@ export function ETPFilterInput() {
   }
 
   return (
-    <div className="relative w-full sm:w-fit">
-      <Input
-        autoComplete="off"
-        className="w-full ps-9 sm:w-fit"
+    <InputGroup className="w-full sm:w-fit">
+      <InputGroupAddon>
+        <Search className="size-4" />
+      </InputGroupAddon>
+      <InputGroupInput
+        className="w-full sm:w-fit"
         name="nome"
         onChange={handleFilterChange}
         placeholder="Filtrar por título, descrição..."
         value={filter || ''}
       />
-      <div className="absolute inset-0 start-0 flex w-fit items-center ps-3">
-        <Filter className="size-3" />
-      </div>
-    </div>
+    </InputGroup>
   )
 }

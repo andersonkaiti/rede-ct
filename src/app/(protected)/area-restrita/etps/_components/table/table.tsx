@@ -2,20 +2,63 @@
 
 import { DataTable } from '@components/ui/data-table'
 import PaginatorComponent from '@components/ui/paginator'
-import type { etpSchema } from '@http/etps/get-etps'
 import type { ColumnDef } from '@tanstack/react-table'
-import {
-  parseAsBoolean,
-  parseAsInteger,
-  useQueryState,
-  useQueryStates,
-} from 'nuqs'
-import type z from 'zod'
+import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { etpsTableColumns } from './etps-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useEtps } from './use-etps.hook'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useEtps } from './use-etps.hook'
 
-interface IETP extends z.infer<typeof etpSchema> {}
+export interface ETPMemberUser {
+  id: string
+  name: string
+  avatarUrl: string | null
+  createdAt: string
+  updatedAt: string
+  emailAddress: string
+  orcid: string | null
+  phone: string | null
+  lattesUrl: string | null
+  role: 'ADMIN' | 'USER'
+}
+
+export interface ETPResearcher {
+  id: string
+  registrationNumber: string
+  mainEtps: string
+  formations: string
+  degrees: ('DOCTOR' | 'MASTER' | 'BACHELOR' | 'TECHNICAL' | 'POSTGRADUATE')[]
+  occupations: string
+  seniority: 'SENIOR' | 'RESEARCHER' | 'JUNIOR' | 'HONOR'
+  institutions: string
+  biography: string
+  createdAt: string
+  updatedAt: string
+  userId: string
+  user: ETPMemberUser
+}
+
+export interface ETPRoleMember {
+  id: string
+  etpId: string
+  researcherId: string
+  researcher: ETPResearcher
+}
+
+export type EtpMember = ETPResearcher
+
+export interface IETP {
+  id: string
+  code: string
+  title: string
+  description: string | null
+  notes: string | null
+  createdAt: string
+  updatedAt: string
+  leader: ETPRoleMember
+  deputyLeader: ETPRoleMember
+  secretary: ETPRoleMember
+  members: EtpMember[]
+}
 
 export function Table() {
   const { data, handleRemoveEtp, isLoading } = useEtps()
@@ -26,8 +69,6 @@ export function Table() {
     createdAt: parseAsBoolean.withDefault(true),
     updatedAt: parseAsBoolean.withDefault(true),
   })
-
-  const [page] = useQueryState('page', parseAsInteger.withDefault(1))
 
   const filteredTableColumns: ColumnDef<IETP>[] = etpsTableColumns.filter(
     (column) => {
@@ -64,8 +105,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={page}
-        defaultRowsPerPage={7}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

@@ -66,8 +66,8 @@ export const etpSchema = z.object({
 export const getEtpsSchema = z.object({
   page: z.number(),
   totalPages: z.number(),
-  offset: z.number(),
-  limit: z.number(),
+  offset: z.number().optional(),
+  limit: z.number().optional(),
   etps: z.array(etpSchema),
 })
 

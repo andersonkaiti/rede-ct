@@ -36,6 +36,7 @@ export default function Loading() {
       <PageMain className="space-y-8">
         <div className="space-y-2">
           <Skeleton className="h-7 w-32" />
+
           <div className="space-y-2">
             <Skeleton className="h-4 w-full" />
             <Skeleton className="h-4 w-full" />
@@ -45,7 +46,7 @@ export default function Loading() {
 
         <div className="space-y-2">
           <Skeleton className="h-4 w-48 rounded-full" />
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-3 gap-4">
             <UserCardSkeleton />
             <UserCardSkeleton />
             <UserCardSkeleton />
@@ -53,22 +54,48 @@ export default function Loading() {
         </div>
 
         <div className="space-y-2">
-          <Skeleton className="h-7 w-56" />
-          <div className="grid grid-cols-3 gap-1">
-            <Skeleton className="h-4 w-full rounded-lg" />
-            <Skeleton className="h-4 w-full rounded-lg" />
-            <Skeleton className="h-4 w-full rounded-lg" />
-            <Skeleton className="h-4 w-full rounded-lg" />
-            <Skeleton className="h-4 w-full rounded-lg" />
-            <Skeleton className="h-4 w-full rounded-lg" />
-            <Skeleton className="h-4 w-full rounded-lg" />
-            <Skeleton className="h-4 w-full rounded-lg" />
-            <Skeleton className="h-4 w-full rounded-lg" />
+          <Skeleton className="h-5 w-56" />
+
+          <div className="flex w-full flex-col items-center justify-between gap-2">
+            <div className="flex w-full gap-4">
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+            </div>
+
+            <Separator />
+
+            <div className="flex w-full gap-4">
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+            </div>
+
+            <Separator />
+
+            <div className="flex w-full gap-4">
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+            </div>
+
+            <Separator />
+
+            <div className="flex w-full gap-4">
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+            </div>
           </div>
         </div>
 
         <div className="space-y-2">
-          <Skeleton className="h-4 w-64 rounded-full" />
+          <Skeleton className="h-7 w-32" />
+
           <div className="space-y-2">
             <Skeleton className="h-4 w-full" />
             <Skeleton className="h-4 w-full" />

@@ -28,12 +28,14 @@ import {
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { DEGREE_LABEL_MAP } from '../../_components/degrees'
+} from '../../../../../_components/page-container'
 import {
+  DEGREE_LABEL_MAP,
+  DEGREE_OPTIONS,
   SENIORITY_LABEL_MAP,
   SENIORITY_OPTIONS,
-} from '../../_components/seniority'
+} from '../../_components/constants'
+
 import { useUpdateResearcher } from './use-update-researcher.hook'
 
 export default function UpdateForm() {
@@ -128,13 +130,7 @@ export default function UpdateForm() {
                   </FormLabel>
                   <FormControl>
                     <MultipleSelector
-                      defaultOptions={[
-                        { value: 'DOCTOR', label: 'Doutor' },
-                        { value: 'MASTER', label: 'Mestre' },
-                        { value: 'BACHELOR', label: 'Bacharel' },
-                        { value: 'TECHNICAL', label: 'Técnico' },
-                        { value: 'POSTGRADUATE', label: 'Pós-graduação' },
-                      ]}
+                      defaultOptions={DEGREE_OPTIONS}
                       emptyIndicator={
                         <p className="text-center text-sm">
                           Nenhum grau encontrado

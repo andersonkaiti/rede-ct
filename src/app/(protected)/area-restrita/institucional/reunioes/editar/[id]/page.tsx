@@ -26,9 +26,8 @@ import {
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { FORMAT_OPTIONS } from '../../_components/format'
-import { STATUS_OPTIONS } from '../../_components/status'
+} from '../../../../../_components/page-container'
+import { FORMAT_OPTIONS, STATUS_OPTIONS } from '../../_components/constants'
 import { useUpdateMeeting } from './use-update-meeting.hook'
 
 export default function EditMeeting() {

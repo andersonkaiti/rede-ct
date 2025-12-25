@@ -1,10 +1,11 @@
 import { Button } from '@components/ui/button'
 import type { ColumnDef } from '@tanstack/react-table'
-import { Ban, Eye, FileCheck2, FileClock } from 'lucide-react'
+import { Eye } from 'lucide-react'
 import Link from 'next/link'
+import { STATUS_ICON_MAP, STATUS_LABEL_MAP } from '../constants'
 import { ActionsRow } from './actions-row'
 
-interface IRegiment {
+export interface IRegiment {
   id: string
   title: string
   version: string
@@ -13,21 +14,6 @@ interface IRegiment {
   status: 'DRAFT' | 'IN_FORCE' | 'REVOKED'
   createdAt: Date
   updatedAt: Date
-}
-
-const STATUS_LABEL_MAP: Record<IRegiment['status'], string> = {
-  DRAFT: 'Rascunho',
-  IN_FORCE: 'Em vigor',
-  REVOKED: 'Revogado',
-}
-
-const STATUS_ICON_MAP: Record<
-  IRegiment['status'],
-  { icon: React.ElementType; color: string }
-> = {
-  DRAFT: { icon: FileClock, color: 'text-muted-foreground' },
-  IN_FORCE: { icon: FileCheck2, color: 'text-emerald-600' },
-  REVOKED: { icon: Ban, color: 'text-destructive' },
 }
 
 const TITLE_MAX_LENGTH = 30

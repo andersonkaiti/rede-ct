@@ -27,18 +27,12 @@ import {
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { useCreateInMemoriam } from './use-create-in-memoriam.hook'
-
-const ROLE_OPTIONS = [
-  { value: 'RESEARCHER', label: 'Pesquisador' },
-  { value: 'LEADER', label: 'Líder' },
-]
-
-const MAX_AVATAR_SIZE_MB = 2
-const BYTES_PER_KB = 1024
-const KB_PER_MB = 1024
-const MAX_AVATAR_SIZE_BYTES = MAX_AVATAR_SIZE_MB * KB_PER_MB * BYTES_PER_KB
+} from '../../../../_components/page-container'
+import { ROLE_OPTIONS } from '../_components/constants'
+import {
+  MAX_AVATAR_SIZE_BYTES,
+  useCreateInMemoriam,
+} from './use-create-in-memoriam.hook'
 
 export default function CreateInMemoriam() {
   const { form, submit, serverError } = useCreateInMemoriam()

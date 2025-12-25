@@ -27,13 +27,14 @@ import {
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../../../_components/page-container'
 import { SelectMember } from '../../../_components/select-member'
-import { DEGREE_LABEL_MAP } from '../_components/degrees'
 import {
+  DEGREE_LABEL_MAP,
   SENIORITY_LABEL_MAP,
   SENIORITY_OPTIONS,
-} from '../_components/seniority'
+} from '../_components/constants'
+
 import { useCreateResearcher } from './use-create-researcher.hook'
 
 export default function CadastrarPesquisador() {

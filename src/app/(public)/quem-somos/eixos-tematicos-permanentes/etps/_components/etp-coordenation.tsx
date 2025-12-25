@@ -5,7 +5,7 @@ import {
   UserCardWrapper,
 } from '@components/ui/user-card'
 import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
-import { ROLE_MAPPING, type Role } from './roles'
+import { ROLE_MAPPING, type Role } from './constants'
 
 interface IETPCoordenationProps {
   members: {

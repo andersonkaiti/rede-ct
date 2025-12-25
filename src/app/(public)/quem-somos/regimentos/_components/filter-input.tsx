@@ -15,15 +15,7 @@ import {
 import { cn } from '@utils/cn'
 import { ArrowDownUp, Filter, Search } from 'lucide-react'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
-
-const STATUS_OPTIONS = [
-  { label: 'Todos', value: 'ALL' },
-  { label: 'Rascunho', value: 'DRAFT' },
-  { label: 'Em vigor', value: 'IN_FORCE' },
-  { label: 'Revogado', value: 'REVOKED' },
-] as const
-
-type StatusValue = (typeof STATUS_OPTIONS)[number]['value']
+import { STATUS_OPTIONS, type StatusValue } from './constants'
 
 export function FilterInput() {
   const [{ filtro: filter, orderBy, status }, setQuery] = useQueryStates({

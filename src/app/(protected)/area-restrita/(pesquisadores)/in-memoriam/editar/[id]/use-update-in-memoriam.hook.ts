@@ -10,7 +10,11 @@ import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
-const MAX_PHOTO_SIZE_MB = 2
+const MAX_AVATAR_SIZE_MB = 2
+const BYTES_PER_KB = 1024
+const KB_PER_MB = 1024
+export const MAX_AVATAR_SIZE_BYTES =
+  MAX_AVATAR_SIZE_MB * KB_PER_MB * BYTES_PER_KB
 
 export const updateInMemoriamSchema = z
   .object({
@@ -21,12 +25,11 @@ export const updateInMemoriamSchema = z
     biography: z.string().optional(),
     photo: z
       .any()
-      .refine(
-        (value) =>
-          validateImageFile({
-            value,
-          }),
-        `A imagem deve ter no máximo ${MAX_PHOTO_SIZE_MB}MB.`,
+      .refine((value) =>
+        validateImageFile({
+          value,
+          maxSize: MAX_AVATAR_SIZE_MB,
+        }),
       )
       .optional(),
     role: z.enum(['RESEARCHER', 'LEADER']),

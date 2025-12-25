@@ -1,8 +1,12 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { Ban, CheckCircle2, Clock } from 'lucide-react'
+import {
+  FORMAT_LABEL_MAP,
+  STATUS_ICON_MAP,
+  STATUS_LABEL_MAP,
+} from '../contants'
 import { ActionsRow } from './actions-row'
 
-interface IInternationalScientificCongress {
+export interface IInternationalScientificCongress {
   id: string
   title: string
   edition: number
@@ -22,32 +26,6 @@ interface IInternationalScientificCongress {
   galleries: object[]
   format?: 'ONLINE' | 'IN_PERSON'
   status?: 'PENDING' | 'CANCELLED' | 'FINISHED'
-}
-
-const FORMAT_LABEL_MAP: Record<
-  NonNullable<IInternationalScientificCongress['format']>,
-  string
-> = {
-  ONLINE: 'Online',
-  IN_PERSON: 'Presencial',
-}
-
-const STATUS_LABEL_MAP: Record<
-  NonNullable<IInternationalScientificCongress['status']>,
-  string
-> = {
-  PENDING: 'Pendente',
-  CANCELLED: 'Cancelado',
-  FINISHED: 'Finalizado',
-}
-
-const STATUS_ICON_MAP: Record<
-  NonNullable<IInternationalScientificCongress['status']>,
-  { icon: React.ElementType; color: string }
-> = {
-  PENDING: { icon: Clock, color: 'text-yellow-500' },
-  CANCELLED: { icon: Ban, color: 'text-destructive' },
-  FINISHED: { icon: CheckCircle2, color: 'text-emerald-600' },
 }
 
 const NAME_MAX_LENGTH = 40

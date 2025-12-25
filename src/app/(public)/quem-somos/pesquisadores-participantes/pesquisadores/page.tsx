@@ -3,7 +3,7 @@
 import { BackArrow } from '@components/ui/back-arrow'
 import { Badge } from '@components/ui/badge'
 import { GraduationCap } from 'lucide-react'
-import { ResearcherTabs } from './_components/researcher-tabs'
+import { ResearchersList } from './_components/researchers-list'
 
 export default function PesquisadoresParticipantesRedeCT() {
   return (
@@ -27,7 +27,7 @@ export default function PesquisadoresParticipantesRedeCT() {
         </p>
       </header>
 
-      <ResearcherTabs />
+      <ResearchersList />
     </main>
   )
 }

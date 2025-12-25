@@ -2,19 +2,21 @@ import { getMuseums } from '@http/museums/get-museums'
 import { useQuery } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 
-const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 6
+export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
+export const DEFAULT_PAGE = 1
+export const DEFAULT_LIMIT = 6
 
 export function useMuseums() {
   const [{ filtro: filter, orderBy, page, limit }] = useQueryStates({
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
-    filtro: parseAsString.withDefault(''),
-    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault('desc'),
+    filtro: parseAsString.withDefault(DEFAULT_FILTER),
+    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault(DEFAULT_ORDER_BY),
   })
 
   const result = useQuery({
-    queryKey: ['museums', filter, orderBy, page, limit],
+    queryKey: ['museums', page, limit, filter, orderBy],
     queryFn: () =>
       getMuseums({
         filter,
@@ -24,9 +26,5 @@ export function useMuseums() {
       }),
   })
 
-  return {
-    ...result,
-    page,
-    limit,
-  }
+  return result
 }

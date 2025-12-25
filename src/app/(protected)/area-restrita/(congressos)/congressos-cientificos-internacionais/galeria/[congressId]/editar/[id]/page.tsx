@@ -23,7 +23,7 @@ import {
 import {
   MAX_IMAGE_SIZE_BYTES,
   useUpdateGalleryImage,
-} from './use-update-gallery-image'
+} from './use-update-gallery-image.hook'
 
 export default function EditGalleryImagePage() {
   const { form, submit, serverError, image } = useUpdateGalleryImage()

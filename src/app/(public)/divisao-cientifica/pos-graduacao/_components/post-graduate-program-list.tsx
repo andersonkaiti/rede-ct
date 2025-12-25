@@ -5,10 +5,14 @@ import { Separator } from '@components/ui/separator'
 import { FilterInput } from './filter-input'
 import { LoadingSkeleton } from './loading-skeleton'
 import { PostGraduateProgramCard } from './post-graduate-program-card'
-import { usePostGraduatePrograms } from './use-post-graduate-programs'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  usePostGraduatePrograms,
+} from './use-post-graduate-programs.hook'
 
 export function PostGraduateProgramList() {
-  const { data, isLoading, page, limit } = usePostGraduatePrograms()
+  const { data, isLoading } = usePostGraduatePrograms()
 
   return (
     <>
@@ -40,8 +44,8 @@ export function PostGraduateProgramList() {
       <Separator />
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

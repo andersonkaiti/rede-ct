@@ -72,7 +72,7 @@ export function useUpdatePendency({ setIsOpen }: IUseUpdatePendencyProps) {
       await updatePendency(values)
 
       queryClient.invalidateQueries({
-        queryKey: ['users', 'pendencies', filter, orderBy, page, limit, userId],
+        queryKey: ['users', 'pendencies', page, limit, filter, orderBy, userId],
       })
 
       toast.success('Pendência atualizada com sucesso!')

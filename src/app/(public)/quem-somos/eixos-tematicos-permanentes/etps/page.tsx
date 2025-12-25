@@ -1,6 +1,6 @@
 import { BackArrow } from '@components/ui/back-arrow'
 import { Axis3DIcon } from 'lucide-react'
-import { EPTList } from './_components/etp-list'
+import { ETPsList } from './_components/etps-list'
 
 export default function EixosTematicosPermanentesETPs() {
   return (
@@ -22,7 +22,7 @@ export default function EixosTematicosPermanentesETPs() {
         </p>
       </header>
 
-      <EPTList />
+      <ETPsList />
     </main>
   )
 }

@@ -47,7 +47,7 @@ interface ResearchGroupCardProps {
 }
 
 export function ResearchGroupCard({
-  researchGroup: { id, name, acronym, logoUrl, foundedAt, scope },
+  researchGroup: { id, name, acronym, logoUrl, foundedAt },
 }: ResearchGroupCardProps) {
   const formattedFoundedAt = format(foundedAt, 'dd/MM/yyyy')
 

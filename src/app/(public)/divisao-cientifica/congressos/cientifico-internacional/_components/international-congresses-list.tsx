@@ -2,13 +2,17 @@
 
 import PaginatorComponent from '@components/ui/paginator'
 import { Separator } from '@components/ui/separator'
-import { CourseCard } from './course-card'
+import { CongressCard } from './congress-card'
 import { FilterInput } from './filter-input'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useCourses } from './use-courses'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useInternationalCongresses,
+} from './use-international-congresses.hook'
 
-export function CourseList() {
-  const { data, isLoading, page, limit } = useCourses()
+export function InternationalCongressesList() {
+  const { data, isLoading } = useInternationalCongresses()
 
   return (
     <>
@@ -18,18 +22,18 @@ export function CourseList() {
 
       {isLoading && <LoadingSkeleton />}
 
-      {data?.courses && (
-        <div className="grid grid-cols-1 gap-x-8 gap-y-20 sm:grid-cols-2">
-          {data.courses.map((course) => (
-            <CourseCard key={course.id} course={course} />
+      {data?.congresses && (
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          {data.congresses.map((congress) => (
+            <CongressCard key={congress.id} congress={congress} />
           ))}
         </div>
       )}
 
-      {!isLoading && !data?.courses.length && (
+      {!isLoading && !data?.congresses.length && (
         <div className="col-end-3 flex w-full flex-col items-center justify-center">
           <p className="font-medium text-lg text-muted-foreground">
-            Nenhum curso encontrado.
+            Nenhum congresso encontrado.
           </p>
           <span className="mt-2 text-muted-foreground text-sm">
             Tente ajustar o filtro ou pesquise por outro termo.
@@ -40,8 +44,8 @@ export function CourseList() {
       <Separator />
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

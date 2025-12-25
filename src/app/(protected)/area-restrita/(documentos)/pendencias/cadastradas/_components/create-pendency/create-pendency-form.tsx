@@ -22,7 +22,7 @@ import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../../../../_components/select-member'
-import { useRegisterPendency } from './use-create-pendency'
+import { useRegisterPendency } from './use-create-pendency.hook'
 
 interface ICreatePendencyFormProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>

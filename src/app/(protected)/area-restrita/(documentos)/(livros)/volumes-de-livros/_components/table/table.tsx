@@ -6,7 +6,11 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { bookVolumeTableColumns } from './book-volume-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useBookVolumes } from './use-book-volumes.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useBookVolumes,
+} from './use-book-volumes.hook'
 
 interface IBookVolume {
   id: string
@@ -31,8 +35,7 @@ interface IBookVolume {
 }
 
 export function Table() {
-  const { data, handleRemoveBookVolume, isLoading, page, limit } =
-    useBookVolumes()
+  const { data, handleRemoveBookVolume, isLoading } = useBookVolumes()
 
   const [
     { volumeNumber, year, title, author, description, createdAt, updatedAt },
@@ -92,8 +95,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

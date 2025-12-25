@@ -2,34 +2,38 @@
 
 import PaginatorComponent from '@components/ui/paginator'
 import { Separator } from '@components/ui/separator'
+import { CongressCard } from './congress-card'
 import { FilterInput } from './filter-input'
 import { LoadingSkeleton } from './loading-skeleton'
-import { PartnerCard } from './partner-card'
-import { usePartners } from './use-partners.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useCongresses as useRegionalCongresses,
+} from './use-regional-congresses.hook'
 
-export function PartnerList() {
-  const { data, isLoading, page, limit } = usePartners()
+export function RegionalCongressesList() {
+  const { data, isLoading } = useRegionalCongresses()
 
   return (
     <>
-      <div className="flex w-full gap-2 sm:flex-row sm:items-center sm:gap-4">
+      <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center">
         <FilterInput />
       </div>
 
       {isLoading && <LoadingSkeleton />}
 
-      {data?.partners && (
-        <section className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {data.partners.map((partner) => (
-            <PartnerCard key={partner.id} partner={partner} />
+      {data?.congresses && (
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          {data.congresses.map((congress) => (
+            <CongressCard key={congress.id} congress={congress} />
           ))}
-        </section>
+        </div>
       )}
 
-      {!isLoading && data?.partners?.length === 0 && (
+      {!isLoading && !data?.congresses.length && (
         <div className="col-end-3 flex w-full flex-col items-center justify-center">
           <p className="font-medium text-lg text-muted-foreground">
-            Nenhum parceiro encontrado.
+            Nenhum congresso encontrado.
           </p>
           <span className="mt-2 text-muted-foreground text-sm">
             Tente ajustar o filtro ou pesquise por outro termo.
@@ -40,8 +44,8 @@ export function PartnerList() {
       <Separator />
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

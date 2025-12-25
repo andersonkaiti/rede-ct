@@ -7,7 +7,7 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../../_components/page-container'
-import { CongressList } from './_components/congress-list'
+import { InternationalCongressesList } from './_components/international-congresses-list'
 
 export default function CongressoCientificoInternacional() {
   return (
@@ -28,7 +28,7 @@ export default function CongressoCientificoInternacional() {
         profissionais de diversas áreas.
       </PageDescription>
 
-      <CongressList />
+      <InternationalCongressesList />
     </PageContainer>
   )
 }

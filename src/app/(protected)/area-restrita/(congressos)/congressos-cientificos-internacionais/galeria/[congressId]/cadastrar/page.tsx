@@ -23,7 +23,7 @@ import {
 import {
   MAX_IMAGE_SIZE_BYTES,
   useCreateGalleryImage,
-} from './use-create-gallery-image'
+} from './use-create-gallery-image.hook'
 
 export default function CreateGalleryImagePage() {
   const { form, submit, serverError } = useCreateGalleryImage()

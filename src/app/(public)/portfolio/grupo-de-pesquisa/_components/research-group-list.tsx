@@ -5,10 +5,14 @@ import { Separator } from '@components/ui/separator'
 import { FilterInput } from './filter-input'
 import { LoadingSkeleton } from './loading-skeleton'
 import { ResearchGroupCard } from './research-group-card'
-import { useResearchGroups } from './use-research-groups'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useResearchGroups,
+} from './use-research-groups.hook'
 
 export function ResearchGroupList() {
-  const { data, isLoading, page, limit } = useResearchGroups()
+  const { data, isLoading } = useResearchGroups()
 
   return (
     <>
@@ -43,8 +47,8 @@ export function ResearchGroupList() {
       <Separator />
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

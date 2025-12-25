@@ -4,6 +4,7 @@ import {
   UserCardImage,
   UserCardWrapper,
 } from '@components/ui/user-card'
+import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { ROLE_MAPPING, type Role } from './roles'
 
 interface IETPCoordenationProps {
@@ -52,7 +53,10 @@ export function ETPCoordenation({ members }: IETPCoordenationProps) {
             <UserCardContent>
               <div className="flex grow flex-col items-center justify-between gap-1">
                 <h1 className="text-center font-bold text-base">
-                  {member.user.name}
+                  <UserProfileHoverCard
+                    user={member.user}
+                    avatarVisibility={false}
+                  />
                 </h1>
                 <h2 className="text-center font-semibold text-muted-foreground text-xs">
                   {ROLE_MAPPING[member.user.role as Role]}

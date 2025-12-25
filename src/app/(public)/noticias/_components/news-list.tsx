@@ -6,10 +6,10 @@ import { FilterInput } from './filter-input'
 import LoadingSkeleton from './loading-skeleton'
 import { News } from './news'
 import { SelectAuthor } from './select-author'
-import { useNews } from './use-news.hook'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useNews } from './use-news.hook'
 
 export function NewsList() {
-  const { data, isLoading, page } = useNews()
+  const { data, isLoading } = useNews()
 
   return (
     <>
@@ -43,8 +43,8 @@ export function NewsList() {
       <Separator />
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={9}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

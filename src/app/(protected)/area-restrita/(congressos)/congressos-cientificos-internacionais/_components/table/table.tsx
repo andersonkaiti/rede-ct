@@ -6,7 +6,11 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { internationalScientificCongressesTableColumns } from './international-scientific-congresses-table-columns'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useInternationalScientificCongresses } from './use-international-scientific-congresses.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useInternationalScientificCongresses,
+} from './use-international-scientific-congresses.hook'
 
 interface IInternationalScientificCongress {
   id: string
@@ -31,13 +35,8 @@ interface IInternationalScientificCongress {
 }
 
 export function Table() {
-  const {
-    data,
-    handleRemoveInternationalScientificCongress,
-    isLoading,
-    page,
-    limit,
-  } = useInternationalScientificCongresses()
+  const { data, handleRemoveInternationalScientificCongress, isLoading } =
+    useInternationalScientificCongresses()
 
   const [{ title, edition, startDate, endDate, location, format, status }] =
     useQueryStates({
@@ -96,8 +95,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

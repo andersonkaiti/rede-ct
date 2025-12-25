@@ -5,6 +5,7 @@ import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 
 export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
 export const DEFAULT_PAGE = 1
 export const DEFAULT_LIMIT = 7
 
@@ -15,12 +16,12 @@ export function useSDHCTeam() {
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
     filtro: parseAsString.withDefault(DEFAULT_FILTER),
-    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault('desc'),
+    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault(DEFAULT_ORDER_BY),
   })
 
-  const QUERY_KEY = ['equipe-sdhc', filter, orderBy, page, limit]
+  const QUERY_KEY = ['equipe-sdhc', page, limit, filter, orderBy]
 
-  const { isLoading, ...rest } = useQuery({
+  const result = useQuery({
     queryKey: QUERY_KEY,
     queryFn: async () =>
       await getSDHCTeamMembers({
@@ -29,7 +30,6 @@ export function useSDHCTeam() {
         page,
         limit,
       }),
-    staleTime: 0,
   })
 
   async function handleRemoveMember(teamMemberId: string) {
@@ -47,10 +47,7 @@ export function useSDHCTeam() {
   }
 
   return {
-    isLoading,
     handleRemoveMember,
-    page,
-    limit,
-    ...rest,
+    ...result,
   }
 }

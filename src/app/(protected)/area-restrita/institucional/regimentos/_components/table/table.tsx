@@ -6,7 +6,7 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
 import { regimentsTableColumns } from './regiments-table-columns'
-import { useRegiments } from './use-regiments.hook'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useRegiments } from './use-regiments.hook'
 
 interface IRegiment {
   id: string
@@ -20,7 +20,7 @@ interface IRegiment {
 }
 
 export function Table() {
-  const { data, handleRemoveRegiment, isLoading, page, limit } = useRegiments()
+  const { data, handleRemoveRegiment, isLoading } = useRegiments()
 
   const [{ title, version, publishedAt, status, documentUrl }] = useQueryStates(
     {
@@ -70,8 +70,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

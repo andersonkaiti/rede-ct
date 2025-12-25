@@ -6,10 +6,10 @@ import { Scale } from 'lucide-react'
 import Link from 'next/link'
 import { FilterInput } from './filter-input'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useLaws } from './use-laws'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useLaws } from './use-laws.hook'
 
 export function LawsList() {
-  const { data, isLoading, page, limit } = useLaws()
+  const { data, isLoading } = useLaws()
 
   return (
     <>
@@ -51,8 +51,8 @@ export function LawsList() {
       <Separator />
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

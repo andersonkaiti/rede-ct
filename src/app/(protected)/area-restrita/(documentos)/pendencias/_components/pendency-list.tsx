@@ -3,10 +3,14 @@
 import PaginatorComponent from '@components/ui/paginator'
 import { LoadingSkeleton } from './loading-skeleton'
 import { Pendency } from './pendency'
-import { usePendencies } from './use-pendencies.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  usePendencies,
+} from './use-pendencies.hook'
 
 export function PendencyList() {
-  const { data, isLoading, page, limit } = usePendencies()
+  const { data, isLoading } = usePendencies()
 
   const pendencies =
     data?.pendencies.filter((pendency) => pendency.status === 'PENDING') ?? []
@@ -32,8 +36,8 @@ export function PendencyList() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

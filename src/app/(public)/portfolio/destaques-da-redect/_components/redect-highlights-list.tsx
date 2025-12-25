@@ -2,7 +2,7 @@ import { UserCardWrapper } from '@components/ui/user-card'
 import { getRedeCTHighlights } from '@http/redect-highlights/get-redect-highlights'
 import { UserCardComponent } from './user-card'
 
-export async function RedeCTHighlightList() {
+export async function RedeCTHighlightsList() {
   const { highlights } = await getRedeCTHighlights({})
 
   if (!highlights.length) {

@@ -6,7 +6,11 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
 import { referenceCenterTeamTableColumns } from './reference-center-team-table-columns'
-import { useReferenceCenterTeam } from './use-reference-center-team.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useReferenceCenterTeam,
+} from './use-reference-center-team.hook'
 
 export interface IReferenceCenterTeamMember {
   id: string
@@ -30,8 +34,7 @@ export interface IReferenceCenterTeamMember {
 }
 
 export function Table() {
-  const { data, isLoading, handleRemoveMember, page, limit } =
-    useReferenceCenterTeam()
+  const { data, isLoading, handleRemoveMember } = useReferenceCenterTeam()
 
   const [{ name, email, role, description, createdAt, updatedAt }] =
     useQueryStates({
@@ -85,8 +88,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

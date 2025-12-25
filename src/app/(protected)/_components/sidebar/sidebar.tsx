@@ -9,17 +9,13 @@ import {
   SidebarHeader,
   SidebarMenu,
 } from '@components/ui/sidebar'
-import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import type { NavigationLink } from '@/@types/navigation-link'
 import { SidebarBackButton } from './sidebar-back-button'
 import { SidebarItem } from './sidebar-item'
 import { sidebarLinks } from './sidebar-links'
 import { LoadingSkeleton } from './user-profile/loading-skeleton'
-
-const DynamicUserProfile = dynamic(() =>
-  import('./user-profile/user-profile').then((mod) => mod.UserProfile),
-)
+import { UserProfile } from './user-profile/user-profile'
 
 export async function SidebarContainer() {
   const isAdmin = await isAdm()
@@ -28,7 +24,7 @@ export async function SidebarContainer() {
     <Sidebar side="left" variant="sidebar">
       <SidebarHeader className="py-4">
         <Suspense fallback={<LoadingSkeleton />}>
-          <DynamicUserProfile />
+          <UserProfile />
         </Suspense>
       </SidebarHeader>
       <Separator />

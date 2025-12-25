@@ -28,7 +28,7 @@ import {
   PageHeaderContent,
   PageTitle,
 } from '@/app/(protected)/_components/page-container'
-import { useCreateInMemoriam } from './use-create-in-memoriam'
+import { useCreateInMemoriam } from './use-create-in-memoriam.hook'
 
 const ROLE_OPTIONS = [
   { value: 'RESEARCHER', label: 'Pesquisador' },

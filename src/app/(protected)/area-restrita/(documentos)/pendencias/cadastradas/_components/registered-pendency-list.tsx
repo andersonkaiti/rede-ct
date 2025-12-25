@@ -3,10 +3,14 @@
 import PaginatorComponent from '@components/ui/paginator'
 import { LoadingSkeleton } from '../../_components/loading-skeleton'
 import { Pendency } from '../../_components/pendency'
-import { useRegisteredPendencies } from './use-registered-pendencies.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useRegisteredPendencies,
+} from './use-registered-pendencies.hook'
 
 export function RegisteredPendencyList() {
-  const { data, isLoading, page, limit } = useRegisteredPendencies()
+  const { data, isLoading } = useRegisteredPendencies()
 
   return (
     <>
@@ -29,8 +33,8 @@ export function RegisteredPendencyList() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

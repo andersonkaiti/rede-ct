@@ -5,10 +5,14 @@ import { Separator } from '@components/ui/separator'
 import { FilterInput } from './filter-input'
 import { LoadingSkeleton } from './loading-skeleton'
 import { ScientificJournalCard } from './scientific-journal-card'
-import { useScientificJournals } from './use-scientific-journals'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useScientificJournals,
+} from './use-scientific-journals.hook'
 
 export function ScientificJournalList() {
-  const { data, isLoading, page, limit } = useScientificJournals()
+  const { data, isLoading } = useScientificJournals()
 
   return (
     <>
@@ -40,8 +44,8 @@ export function ScientificJournalList() {
       <Separator />
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

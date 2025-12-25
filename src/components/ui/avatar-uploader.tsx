@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@components/ui/button'
-import { formatBytes, useAvatarUploader } from '@hooks/use-avatar-uploader'
+import { formatBytes, useAvatarUploader } from '@hooks/use-avatar-uploader.hook'
 import { cn } from '@utils/cn'
 import { User, X } from 'lucide-react'
 import Image from 'next/image'

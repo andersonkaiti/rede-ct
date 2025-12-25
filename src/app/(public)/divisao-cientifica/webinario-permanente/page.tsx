@@ -6,7 +6,7 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../_components/page-container'
-import { WebinarList } from './_components/webinar-list'
+import { WebinarsList } from './_components/webinars-list'
 
 export default function WebinarioPermanente() {
   return (
@@ -27,7 +27,7 @@ export default function WebinarioPermanente() {
         prestigie, veja aqui a PROGRAMAÇÃO DOS PRÓXIMOS WEBINARIOS.
       </PageDescription>
 
-      <WebinarList />
+      <WebinarsList />
     </PageContainer>
   )
 }

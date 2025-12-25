@@ -20,7 +20,7 @@ import {
 import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import { useUpdateCertification } from './use-update-certification'
+import { useUpdateCertification } from './use-update-certification.hook'
 
 interface IUpdateCertificationFormProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>

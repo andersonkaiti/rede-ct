@@ -6,7 +6,7 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
 import { sdhcTeamTableColumns } from './sdhc-team-table-columns'
-import { useSDHCTeam } from './use-sdhc-team.hook'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useSDHCTeam } from './use-sdhc-team.hook'
 
 export interface ISDHCTeamMemberUser {
   id: string
@@ -32,7 +32,7 @@ export interface ISDHCTeamMember {
 }
 
 export function Table() {
-  const { data, isLoading, handleRemoveMember, page, limit } = useSDHCTeam()
+  const { data, isLoading, handleRemoveMember } = useSDHCTeam()
 
   const [{ name, email, role, description, createdAt, updatedAt }] =
     useQueryStates({
@@ -86,8 +86,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

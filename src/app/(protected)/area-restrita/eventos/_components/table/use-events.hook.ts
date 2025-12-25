@@ -2,13 +2,14 @@
 
 import { deleteEvent } from '@http/events/delete-event'
 import { getEvents } from '@http/events/get-events'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { toast } from 'sonner'
 
-const DEFAULT_FILTER = ''
-const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 10
+export const DEFAULT_FILTER = ''
+export const DEFAULT_ORDER_BY = 'desc'
+export const DEFAULT_PAGE = 1
+export const DEFAULT_LIMIT = 10
 
 export function useEvents() {
   const queryClient = useQueryClient()
@@ -17,13 +18,15 @@ export function useEvents() {
     page: parseAsString.withDefault(String(DEFAULT_PAGE)),
     limit: parseAsString.withDefault(String(DEFAULT_LIMIT)),
     filter: parseAsString.withDefault(DEFAULT_FILTER),
-    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault('desc'),
+    orderBy: parseAsStringEnum(['asc', 'desc']).withDefault(DEFAULT_ORDER_BY),
     status: parseAsString.withDefault(''),
     format: parseAsString.withDefault(''),
   })
 
-  const { data, isLoading } = useQuery({
-    queryKey: ['events', { page, limit, filter, orderBy, status, format }],
+  const QUERY_KEY = ['events', page, limit, filter, orderBy, status, format]
+
+  const result = useQuery({
+    queryKey: QUERY_KEY,
     queryFn: () =>
       getEvents({
         page,
@@ -35,29 +38,20 @@ export function useEvents() {
       }),
   })
 
-  const { mutateAsync: deleteEventMutation } = useMutation({
-    mutationFn: deleteEvent,
-    onError: () => {
-      toast.error('Erro ao remover o evento.')
-    },
-    onSuccess: async () => {
-      toast.success('Evento removido com sucesso.')
+  async function handleRemoveEvent(id: string) {
+    try {
+      await deleteEvent(id)
 
-      await queryClient.invalidateQueries({
-        queryKey: ['events'],
-      })
-    },
-  })
+      await queryClient.invalidateQueries({ queryKey: QUERY_KEY })
 
-  async function handleRemoveEvent(eventId: string) {
-    await deleteEventMutation({ id: eventId })
+      toast.success('Evento removido com sucesso!')
+    } catch {
+      toast.error('Erro ao remover evento.')
+    }
   }
 
   return {
-    data,
     handleRemoveEvent,
-    isLoading,
-    page,
-    limit,
+    ...result,
   }
 }

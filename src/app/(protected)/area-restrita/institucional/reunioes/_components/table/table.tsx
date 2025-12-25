@@ -6,7 +6,7 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
 import { LoadingSkeleton } from './loading-skeleton'
 import { meetingsTableColumns } from './meetings-table-columns'
-import { useMeetings } from './use-meetings.hook'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useMeetings } from './use-meetings.hook'
 
 interface IMeeting {
   id: string
@@ -31,7 +31,7 @@ interface IMeeting {
 }
 
 export function Table() {
-  const { data, handleRemoveMeeting, isLoading, page, limit } = useMeetings()
+  const { data, handleRemoveMeeting, isLoading } = useMeetings()
 
   const [{ title, scheduledAt, format, status }] = useQueryStates({
     title: parseAsBoolean.withDefault(true),
@@ -73,8 +73,8 @@ export function Table() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

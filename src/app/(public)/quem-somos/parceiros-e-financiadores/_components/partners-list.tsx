@@ -4,32 +4,32 @@ import PaginatorComponent from '@components/ui/paginator'
 import { Separator } from '@components/ui/separator'
 import { FilterInput } from './filter-input'
 import { LoadingSkeleton } from './loading-skeleton'
-import { MuseumCard } from './museum-card'
-import { useMuseums } from './use-museums'
+import { PartnerCard } from './partner-card'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, usePartners } from './use-partners.hook'
 
-export function MuseumList() {
-  const { data, isLoading, page, limit } = useMuseums()
+export function PartnersList() {
+  const { data, isLoading } = usePartners()
 
   return (
     <>
-      <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center">
+      <div className="flex w-full gap-2 sm:flex-row sm:items-center sm:gap-4">
         <FilterInput />
       </div>
 
       {isLoading && <LoadingSkeleton />}
 
-      {data?.museums && (
-        <div className="grid grid-cols-1 gap-x-8 gap-y-20 sm:grid-cols-2">
-          {data.museums.map((museum) => (
-            <MuseumCard key={museum.id} museum={museum} />
+      {data?.partners && (
+        <section className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {data.partners.map((partner) => (
+            <PartnerCard key={partner.id} partner={partner} />
           ))}
-        </div>
+        </section>
       )}
 
-      {!isLoading && !data?.museums.length && (
+      {!isLoading && data?.partners?.length === 0 && (
         <div className="col-end-3 flex w-full flex-col items-center justify-center">
           <p className="font-medium text-lg text-muted-foreground">
-            Nenhum museu encontrado.
+            Nenhum parceiro encontrado.
           </p>
           <span className="mt-2 text-muted-foreground text-sm">
             Tente ajustar o filtro ou pesquise por outro termo.
@@ -40,8 +40,8 @@ export function MuseumList() {
       <Separator />
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

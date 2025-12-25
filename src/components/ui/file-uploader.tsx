@@ -5,7 +5,7 @@ import {
   type FileMetadata,
   formatBytes,
   useFileUpload,
-} from '@hooks/use-file-uploader'
+} from '@hooks/use-file-uploader.hook'
 import { cn } from '@utils/cn'
 import { AlertCircleIcon, PaperclipIcon, UploadIcon, XIcon } from 'lucide-react'
 import React, { useEffect, useMemo } from 'react'

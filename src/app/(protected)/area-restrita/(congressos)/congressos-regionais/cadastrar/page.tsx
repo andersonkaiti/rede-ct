@@ -21,7 +21,7 @@ import {
   PageHeaderContent,
   PageTitle,
 } from '@/app/(protected)/_components/page-container'
-import { useCreateRegionalCongress } from './use-create-regional-congress'
+import { useCreateRegionalCongress } from './use-create-regional-congress.hook'
 
 export default function CreateRegionalCongressPage() {
   const { form, submit, serverError } = useCreateRegionalCongress()

@@ -5,10 +5,10 @@ import { Separator } from '@components/ui/separator'
 import { FilterInput } from './filter-input'
 import { ListLoadingSkeleton } from './loading-skeleton'
 import { RegimentCard } from './regiment-card'
-import { useRegiments } from './use-regiments'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useRegiments } from './use-regiments.hook'
 
 export function RegimentsList() {
-  const { data, isLoading, page, limit } = useRegiments()
+  const { data, isLoading } = useRegiments()
 
   return (
     <>
@@ -40,8 +40,8 @@ export function RegimentsList() {
       <Separator />
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

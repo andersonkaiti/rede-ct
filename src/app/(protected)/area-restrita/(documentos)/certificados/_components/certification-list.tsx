@@ -3,10 +3,14 @@
 import PaginatorComponent from '@components/ui/paginator'
 import { Certification } from './certification'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useCertifications } from './use-certifications.hook'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_PAGE,
+  useCertifications,
+} from './use-certifications.hook'
 
 export function CertificationList() {
-  const { data, isLoading, page, limit } = useCertifications()
+  const { data, isLoading } = useCertifications()
 
   return (
     <>
@@ -29,8 +33,8 @@ export function CertificationList() {
       {isLoading && <LoadingSkeleton />}
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

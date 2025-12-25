@@ -2,13 +2,13 @@
 
 import PaginatorComponent from '@components/ui/paginator'
 import { Separator } from '@components/ui/separator'
-import { CongressCard } from './congress-card'
+import { CourseCard } from './course-card'
 import { FilterInput } from './filter-input'
 import { LoadingSkeleton } from './loading-skeleton'
-import { useCongresses } from './use-congresses'
+import { DEFAULT_LIMIT, DEFAULT_PAGE, useCourses } from './use-courses.hook'
 
-export function CongressList() {
-  const { data, isLoading, page, limit } = useCongresses()
+export function CoursesList() {
+  const { data, isLoading } = useCourses()
 
   return (
     <>
@@ -18,18 +18,18 @@ export function CongressList() {
 
       {isLoading && <LoadingSkeleton />}
 
-      {data?.congresses && (
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {data.congresses.map((congress) => (
-            <CongressCard key={congress.id} congress={congress} />
+      {data?.courses && (
+        <div className="grid grid-cols-1 gap-x-8 gap-y-20 sm:grid-cols-2">
+          {data.courses.map((course) => (
+            <CourseCard key={course.id} course={course} />
           ))}
         </div>
       )}
 
-      {!isLoading && !data?.congresses.length && (
+      {!isLoading && !data?.courses.length && (
         <div className="col-end-3 flex w-full flex-col items-center justify-center">
           <p className="font-medium text-lg text-muted-foreground">
-            Nenhum congresso encontrado.
+            Nenhum curso encontrado.
           </p>
           <span className="mt-2 text-muted-foreground text-sm">
             Tente ajustar o filtro ou pesquise por outro termo.
@@ -40,8 +40,8 @@ export function CongressList() {
       <Separator />
 
       <PaginatorComponent
-        currentPage={Number(page)}
-        defaultRowsPerPage={Number(limit)}
+        currentPage={data?.page ?? DEFAULT_PAGE}
+        defaultRowsPerPage={data?.limit ?? DEFAULT_LIMIT}
         totalPages={data?.totalPages ?? 1}
       />
     </>

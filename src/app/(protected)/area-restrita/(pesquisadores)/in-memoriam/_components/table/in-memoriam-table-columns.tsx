@@ -1,5 +1,5 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { ROLE_LABEL_MAP } from '../role'
+import { ROLE_LABEL_MAP } from '../constants'
 import { ActionsRow } from './actions-row'
 
 interface IInMemoriam {

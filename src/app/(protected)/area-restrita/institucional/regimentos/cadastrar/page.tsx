@@ -1,5 +1,11 @@
 'use client'
 
+import {
+  PageContainer,
+  PageDescription,
+  PageHeaderContent,
+  PageTitle,
+} from '@/app/(protected)/_components/page-container'
 import { Alert, AlertDescription } from '@components/ui/alert'
 import { Button } from '@components/ui/button'
 import { DatePicker } from '@components/ui/date-picker'
@@ -20,13 +26,7 @@ import {
   SelectTrigger,
 } from '@components/ui/select'
 import { AlertCircle, Loader2 } from 'lucide-react'
-import {
-  PageContainer,
-  PageDescription,
-  PageHeaderContent,
-  PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { STATUS_OPTIONS } from '../_components/status'
+import { STATUS_OPTIONS } from '../_components/constants'
 import { useCreateRegiment } from './use-create-regiment.hook'
 
 export default function CreateRegiment() {

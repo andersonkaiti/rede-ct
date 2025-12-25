@@ -15,23 +15,12 @@ import {
 import { cn } from '@utils/cn'
 import { ArrowDownUp, ListFilter, Search, Users } from 'lucide-react'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
-
-const STATUS_OPTIONS = [
-  { label: 'Todos', value: 'ALL' },
-  { label: 'Pendente', value: 'PENDING' },
-  { label: 'Cancelada', value: 'CANCELLED' },
-  { label: 'Finalizada', value: 'FINISHED' },
-] as const
-
-type StatusValue = (typeof STATUS_OPTIONS)[number]['value']
-
-const FORMAT_OPTIONS = [
-  { label: 'Todos', value: 'ALL' },
-  { label: 'Online', value: 'ONLINE' },
-  { label: 'Presencial', value: 'IN_PERSON' },
-] as const
-
-type FormatValue = (typeof FORMAT_OPTIONS)[number]['value']
+import {
+  FORMAT_OPTIONS,
+  type FormatValue,
+  STATUS_OPTIONS,
+  type StatusValue,
+} from './constants'
 
 export function FilterInput() {
   const [{ filtro: filter, orderBy, status, format }, setQuery] =

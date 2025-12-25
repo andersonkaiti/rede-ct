@@ -13,4 +13,25 @@ export const STATUS_CONFIG = {
     label: 'Revogado',
     className: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
   },
-}
+} as const
+
+export const STATUS_OPTIONS = [
+  {
+    label: 'Todos',
+    value: 'ALL',
+  },
+  {
+    label: 'Rascunho',
+    value: 'DRAFT',
+  },
+  {
+    label: 'Em vigor',
+    value: 'IN_FORCE',
+  },
+  {
+    label: 'Revogado',
+    value: 'REVOKED',
+  },
+] as const
+
+export type StatusValue = (typeof STATUS_OPTIONS)[number]['value']

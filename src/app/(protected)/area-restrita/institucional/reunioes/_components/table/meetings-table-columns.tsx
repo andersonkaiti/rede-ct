@@ -1,8 +1,12 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { Ban, CheckCircle2, Clock } from 'lucide-react'
+import {
+  FORMAT_LABEL_MAP,
+  STATUS_ICON_MAP,
+  STATUS_LABEL_MAP,
+} from '../constants'
 import { ActionsRow } from './actions-row'
 
-interface IMeeting {
+export interface IMeeting {
   id: string
   title: string
   scheduledAt: Date
@@ -22,26 +26,6 @@ interface IMeeting {
     createdAt: Date
     updatedAt: Date
   } | null
-}
-
-const FORMAT_LABEL_MAP: Record<IMeeting['format'], string> = {
-  ONLINE: 'Online',
-  IN_PERSON: 'Presencial',
-}
-
-const STATUS_LABEL_MAP: Record<IMeeting['status'], string> = {
-  PENDING: 'Pendente',
-  CANCELLED: 'Cancelada',
-  FINISHED: 'Finalizada',
-}
-
-const STATUS_ICON_MAP: Record<
-  IMeeting['status'],
-  { icon: React.ElementType; color: string }
-> = {
-  PENDING: { icon: Clock, color: 'text-yellow-500' },
-  CANCELLED: { icon: Ban, color: 'text-destructive' },
-  FINISHED: { icon: CheckCircle2, color: 'text-emerald-600' },
 }
 
 const TITLE_MAX_LENGTH = 30

@@ -2,6 +2,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@components/ui/tooltip'
 import { UserCard, UserCardImage } from '@components/ui/user-card'
 import { UserProfileHoverCard } from '@components/ui/user-profile-hover-card'
 import { Award } from 'lucide-react'
+import { TYPE_MAPPING } from './constants'
 
 interface UserCardComponentProps {
   member: {
@@ -28,11 +29,6 @@ interface UserCardComponentProps {
     updatedAt: Date
   }
 }
-
-const TYPE_MAPPING = {
-  PERSON: 'Pessoa',
-  INSTITUTION: 'Instituição',
-} as const
 
 export function UserCardComponent({ member }: UserCardComponentProps) {
   return (

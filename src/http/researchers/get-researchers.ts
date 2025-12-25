@@ -7,6 +7,7 @@ interface IGetResearchersRequest {
   limit?: string
   filter?: string
   orderBy?: string
+  seniority?: string
 }
 
 export const getResearchersSchema = z.object({
@@ -47,6 +48,7 @@ export const getResearchersSchema = z.object({
 
 export async function getResearchers({
   filter,
+  seniority,
   ...params
 }: IGetResearchersRequest) {
   const searchParams = parseSearchParams({
@@ -59,6 +61,7 @@ export async function getResearchers({
     occupations: filter,
     institutions: filter,
     biography: filter,
+    seniority: seniority === 'ALL' ? undefined : seniority,
   })
 
   const data = await api

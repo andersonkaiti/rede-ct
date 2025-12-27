@@ -22,6 +22,7 @@ import {
   Search,
   Star,
   Users,
+  Wallet,
 } from 'lucide-react'
 import type { NavigationLink } from '@/@types/navigation-link'
 
@@ -255,6 +256,12 @@ export const sidebarLinks: NavigationLink[] = [
         icon: FileText,
         isProtected: true,
         path: '/area-restrita/financeiro/extratos-detalhados',
+      },
+      {
+        label: 'Conta Corrente',
+        icon: Wallet,
+        isProtected: true,
+        path: '/area-restrita/financeiro/conta-corrente',
       },
     ],
   },

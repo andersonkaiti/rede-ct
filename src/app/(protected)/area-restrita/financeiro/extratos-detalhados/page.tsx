@@ -1,5 +1,6 @@
 import { AdminWrapper } from '../../../_components/hoc/admin'
 import {
+  PageActionsContainer,
   PageContainer,
   PageDescription,
   PageHeader,
@@ -7,7 +8,9 @@ import {
   PageMain,
   PageTitle,
 } from '../../../_components/page-container'
+import { OrderByButton } from '../../_components/order-by-button'
 import { CreateStatementButton } from './_components/create-statement-button'
+import { Table } from './_components/table/table'
 
 export default function FinancialTransactionStatements() {
   return (
@@ -23,10 +26,16 @@ export default function FinancialTransactionStatements() {
         </PageHeader>
 
         <PageHeader>
+          <PageActionsContainer>
+            <OrderByButton />
+          </PageActionsContainer>
+
           <CreateStatementButton />
         </PageHeader>
 
-        <PageMain>Extratos Detalhados</PageMain>
+        <PageMain>
+          <Table />
+        </PageMain>
       </PageContainer>
     </AdminWrapper>
   )

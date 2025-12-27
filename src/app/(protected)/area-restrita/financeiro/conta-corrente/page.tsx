@@ -1,5 +1,6 @@
 import { AdminWrapper } from '../../../_components/hoc/admin'
 import {
+  PageActionsContainer,
   PageContainer,
   PageDescription,
   PageHeader,
@@ -7,7 +8,10 @@ import {
   PageMain,
   PageTitle,
 } from '../../../_components/page-container'
+import { OrderByButton } from '../../_components/order-by-button'
 import { CreateAccountButton } from './_components/create-account-button'
+import { Table } from './_components/table/table'
+import { TypeFilter } from './_components/type-filter'
 
 export default function CheckingAccounts() {
   return (
@@ -23,10 +27,18 @@ export default function CheckingAccounts() {
         </PageHeader>
 
         <PageHeader>
+          <PageActionsContainer>
+            <TypeFilter />
+
+            <OrderByButton />
+          </PageActionsContainer>
+
           <CreateAccountButton />
         </PageHeader>
 
-        <PageMain>Contas Correntes</PageMain>
+        <PageMain>
+          <Table />
+        </PageMain>
       </PageContainer>
     </AdminWrapper>
   )

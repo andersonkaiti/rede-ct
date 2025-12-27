@@ -11,6 +11,7 @@ import {
   GalleryHorizontal,
   Globe,
   GraduationCap,
+  HandCoins,
   Handshake,
   Heart,
   History,
@@ -243,5 +244,18 @@ export const sidebarLinks: NavigationLink[] = [
     path: '/area-restrita/usuarios',
     icon: Users,
     isProtected: true,
+  },
+  {
+    label: 'Financeiro',
+    icon: HandCoins,
+    isProtected: true,
+    children: [
+      {
+        label: 'Extratos Detalhados',
+        icon: FileText,
+        isProtected: true,
+        path: '/area-restrita/financeiro/extratos-detalhados',
+      },
+    ],
   },
 ]

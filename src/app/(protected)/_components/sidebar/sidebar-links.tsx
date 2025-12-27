@@ -11,6 +11,7 @@ import {
   GalleryHorizontal,
   Globe,
   GraduationCap,
+  HandCoins,
   Handshake,
   Heart,
   History,
@@ -21,6 +22,7 @@ import {
   Search,
   Star,
   Users,
+  Wallet,
 } from 'lucide-react'
 import type { NavigationLink } from '@/@types/navigation-link'
 
@@ -243,5 +245,24 @@ export const sidebarLinks: NavigationLink[] = [
     path: '/area-restrita/usuarios',
     icon: Users,
     isProtected: true,
+  },
+  {
+    label: 'Financeiro',
+    icon: HandCoins,
+    isProtected: true,
+    children: [
+      {
+        label: 'Extratos Detalhados',
+        icon: FileText,
+        isProtected: true,
+        path: '/area-restrita/financeiro/extratos-detalhados',
+      },
+      {
+        label: 'Conta Corrente',
+        icon: Wallet,
+        isProtected: true,
+        path: '/area-restrita/financeiro/conta-corrente',
+      },
+    ],
   },
 ]

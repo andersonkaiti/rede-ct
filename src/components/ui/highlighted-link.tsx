@@ -17,6 +17,8 @@ export function HighlightedLink({ children, ...rest }: HighlightedLinkProps) {
       {...rest}
       onMouseEnter={() => iconRef.current?.startAnimation()}
       onMouseLeave={() => iconRef.current?.stopAnimation()}
+      target="_blank"
+      rel="noopener noreferrer"
     >
       <LinkIcon className="opacity-80" ref={iconRef} size={20} />
       <span className="font-medium">{children}</span>

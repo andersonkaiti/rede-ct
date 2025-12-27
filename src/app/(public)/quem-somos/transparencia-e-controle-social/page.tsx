@@ -8,9 +8,9 @@ import {
   PageHeaderIcon,
   PageHeaderTitle,
 } from '../../_components/page-container'
-import { CurrentBalanceCard } from './_components/accounting/current-balance'
-import { DetailedExtractCard } from './_components/accounting/detailed-extract'
-import { TotalBalanceCard } from './_components/accounting/total-balance'
+import { CurrentBalanceCard } from './_components/accounting/current-balance/current-balance'
+import { DetailedExtractCard } from './_components/accounting/detailed-extract/detailed-extract'
+import { TotalBalanceCard } from './_components/accounting/total-balance/total-balance'
 import { ResponsabilitiesCard } from './_components/cards/responsabilities'
 import { CommitteeLegitimator } from './_components/navigation-cards/committee-legitimator'
 

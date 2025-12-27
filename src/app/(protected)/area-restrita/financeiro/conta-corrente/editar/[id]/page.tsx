@@ -1,0 +1,114 @@
+'use client'
+
+import { Alert, AlertDescription } from '@components/ui/alert'
+import { Button } from '@components/ui/button'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@components/ui/form'
+import { Input } from '@components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@components/ui/select'
+import { AlertCircle, Loader2 } from 'lucide-react'
+import {
+  PageContainer,
+  PageDescription,
+  PageHeaderContent,
+  PageTitle,
+} from '../../../../../_components/page-container'
+import { ACCOUNT_TYPE_LABELS } from '../../_components/constants'
+import { useUpdateAccount } from './use-update-account.hook'
+
+export default function UpdateAccountPage() {
+  const { form, serverError, submit } = useUpdateAccount()
+
+  return (
+    <PageContainer>
+      <PageHeaderContent>
+        <PageTitle>Editar Conta Corrente</PageTitle>
+        <PageDescription>
+          Atualize as informações da conta corrente.
+        </PageDescription>
+      </PageHeaderContent>
+
+      <Form {...form}>
+        <form className="space-y-6" onSubmit={submit}>
+          {serverError && (
+            <Alert className="mb-4 border-primary" variant="destructive">
+              <AlertCircle className="size-4" />
+              <AlertDescription>{serverError}</AlertDescription>
+            </Alert>
+          )}
+
+          <FormField
+            control={form.control}
+            name="type"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Tipo</FormLabel>
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Selecione o tipo" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {Object.entries(ACCOUNT_TYPE_LABELS).map(
+                      ([value, label]) => (
+                        <SelectItem key={value} value={value}>
+                          {label}
+                        </SelectItem>
+                      ),
+                    )}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="balance"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Saldo (R$)</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="0.00"
+                    step="0.01"
+                    type="number"
+                    {...field}
+                    onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button
+            className="w-full cursor-pointer"
+            disabled={form.formState.isSubmitting}
+            type="submit"
+            variant="outline"
+          >
+            {form.formState.isSubmitting && (
+              <Loader2 className="size-4 animate-spin" />
+            )}
+            Salvar alterações
+          </Button>
+        </form>
+      </Form>
+    </PageContainer>
+  )
+}

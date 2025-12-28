@@ -17,16 +17,20 @@ interface AvatarUploaderProps {
   maxSize?: number
   className?: string
   onFileChange?: (file: File | null) => void
+  onRemove?: () => void
   defaultAvatar?: string
   name: string
+  showRemoveButton?: boolean
 }
 
 export function AvatarUploader({
   maxSize = DEFAULT_MAX_AVATAR_SIZE,
   className,
   onFileChange,
+  onRemove,
   defaultAvatar,
   name,
+  showRemoveButton = false,
 }: AvatarUploaderProps) {
   const [
     { files, isDragging },
@@ -63,8 +67,10 @@ export function AvatarUploader({
   const handleRemove = React.useCallback(() => {
     if (currentFile) {
       removeFile(currentFile.id)
+    } else if (defaultAvatar && onRemove) {
+      onRemove()
     }
-  }, [currentFile, removeFile])
+  }, [currentFile, removeFile, defaultAvatar, onRemove])
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.key === 'Enter' || event.key === ' ') {
@@ -116,13 +122,14 @@ export function AvatarUploader({
           )}
         </button>
 
-        {currentFile && (
+        {(currentFile || (showRemoveButton && defaultAvatar)) && (
           <Button
             aria-label="Remover avatar"
             className="absolute end-0 top-0 size-6 rounded-full"
             onClick={handleRemove}
             size="icon"
             tabIndex={0}
+            type="button"
             variant="outline"
           >
             <X className="size-3.5" />

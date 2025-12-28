@@ -7,6 +7,7 @@ interface IUpdateUserRequest {
   phone?: string
   lattesUrl?: string
   avatarImage?: File
+  removeAvatarImage?: boolean
 }
 
 export async function updateUser(data: IUpdateUserRequest): Promise<void> {

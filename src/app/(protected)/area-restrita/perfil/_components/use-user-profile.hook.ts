@@ -45,9 +45,11 @@ export const userProfileSchema = z.object({
     .refine((file) =>
       validateImageFile({
         file,
+        optional: true,
       }),
     )
     .optional(),
+  removeAvatarImage: z.boolean().optional(),
 })
 
 export type UserProfileInput = z.infer<typeof userProfileSchema>
@@ -63,6 +65,7 @@ export function useUserProfile(user?: IUser) {
       orcid: user?.orcid ?? undefined,
       phone: user?.phone ?? undefined,
       avatarImage: undefined,
+      removeAvatarImage: false,
     },
   })
 

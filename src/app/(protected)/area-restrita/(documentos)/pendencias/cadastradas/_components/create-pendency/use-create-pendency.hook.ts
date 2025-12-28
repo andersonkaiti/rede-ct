@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createPendency } from '@http/documents/pendencies/create-pendency'
 import { useQueryClient } from '@tanstack/react-query'
+import { validatePdfFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { useState } from 'react'
@@ -14,12 +15,11 @@ const registerPendencySchema = z.object({
   description: z.string().min(1, 'Descrição é obrigatória'),
   status: z.enum(['PENDING', 'PAID']),
   dueDate: z.date().optional(),
-  document: z
-    .any()
-    .refine(
-      (file) => file instanceof File && file.size > 0,
-      'Documento é obrigatório',
-    ),
+  document: z.any().refine((file) =>
+    validatePdfFile({
+      file,
+    }),
+  ),
 })
 
 export type RegisterPendencyInput = z.infer<typeof registerPendencySchema>

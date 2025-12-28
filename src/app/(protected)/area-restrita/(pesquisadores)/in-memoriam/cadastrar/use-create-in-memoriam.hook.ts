@@ -1,18 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createInMemoriam } from '@http/in-memorian/create-in-memoriam'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-
-const MAX_AVATAR_SIZE_MB = 2
-const BYTES_PER_KB = 1024
-const KB_PER_MB = 1024
-export const MAX_AVATAR_SIZE_BYTES =
-  MAX_AVATAR_SIZE_MB * KB_PER_MB * BYTES_PER_KB
 
 export const createInMemoriamSchema = z
   .object({
@@ -22,10 +16,9 @@ export const createInMemoriamSchema = z
     biography: z.string().optional(),
     photo: z
       .any()
-      .refine((value) =>
+      .refine((file) =>
         validateImageFile({
-          value,
-          maxSize: MAX_AVATAR_SIZE_BYTES,
+          file,
         }),
       )
       .optional(),

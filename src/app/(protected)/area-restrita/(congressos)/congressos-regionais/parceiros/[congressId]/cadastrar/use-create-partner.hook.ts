@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createRegionalCongressPartner } from '@http/congress/regional/partner/create-regional-congress-partner'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -8,16 +8,11 @@ import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
-const MAX_IMAGE_SIZE_MB = 2
-const KILOBYTE = 1024
-const MEGABYTE = KILOBYTE * KILOBYTE
-export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
-
 export const createPartnerSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório'),
-  logo: z.any().refine((value) =>
+  logo: z.any().refine((file) =>
     validateImageFile({
-      value,
+      file,
       optional: false,
     }),
   ),

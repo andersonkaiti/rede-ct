@@ -2,6 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getRegimentById } from '@http/institutional/regiments/get-regiment-by-id'
 import { updateRegiment } from '@http/institutional/regiments/update-regiment'
 import { useSuspenseQuery } from '@tanstack/react-query'
+import {
+  FILE_VALIDATION_CONSTANTS,
+  validatePdfFile,
+} from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -16,11 +20,14 @@ export const updateRegimentSchema = z.object({
   publishedAt: z.date('Data de publicação é obrigatória.'),
   document: z
     .any()
-    .optional()
-    .refine(
-      (file) => file === undefined || file === null || file instanceof File,
-      'Documento deve ser um arquivo válido',
-    ),
+    .refine((file) =>
+      validatePdfFile({
+        file,
+        maxSize: FILE_VALIDATION_CONSTANTS.MAX_PDF_SIZE_BYTES,
+        optional: true,
+      }),
+    )
+    .optional(),
   status: z.enum(['DRAFT', 'IN_FORCE', 'REVOKED']),
 })
 

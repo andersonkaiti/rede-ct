@@ -2,6 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getCertificationById } from '@http/documents/certifications/get-certification-by-id'
 import { updateCertification } from '@http/documents/certifications/update-certification'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  FILE_VALIDATION_CONSTANTS,
+  validatePdfFile,
+} from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { useState } from 'react'
@@ -15,9 +19,12 @@ const updateCertificationSchema = z.object({
   description: z.string().min(1, 'Descrição é obrigatória.'),
   certification: z
     .any()
-    .refine(
-      (file) => file.size === 0 || (file instanceof File && file.size > 0),
-      'Arquivo do certificado é inválido',
+    .refine((file) =>
+      validatePdfFile({
+        file,
+        maxSize: FILE_VALIDATION_CONSTANTS.MAX_PDF_SIZE_BYTES,
+        optional: true,
+      }),
     )
     .optional(),
 })

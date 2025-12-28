@@ -14,6 +14,7 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
@@ -21,12 +22,9 @@ import {
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../../../../_components/page-container'
 import { SelectMember } from '../../../../_components/select-member'
-import {
-  MAX_IMAGE_SIZE_BYTES,
-  useUpdateResearchGroup,
-} from './use-update-research-group.hook'
+import { useUpdateResearchGroup } from './use-update-research-group.hook'
 
 export default function EditarGrupoDePesquisa() {
   const { form, serverError, submit, researchGroup } = useUpdateResearchGroup()
@@ -191,7 +189,7 @@ export default function EditarGrupoDePesquisa() {
                 <FormControl>
                   <CoverUploader
                     defaultImage={researchGroup?.logoUrl}
-                    maxSize={MAX_IMAGE_SIZE_BYTES}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

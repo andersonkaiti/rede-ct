@@ -13,6 +13,7 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
@@ -21,10 +22,7 @@ import {
   PageTitle,
 } from '../../../../../_components/page-container'
 import { SelectMember } from '../../../../../area-restrita/_components/select-member'
-import {
-  MAX_FILE_SIZE_BYTES,
-  useCreateBookVolume,
-} from './use-create-book-volume.hook'
+import { useCreateBookVolume } from './use-create-book-volume.hook'
 
 export default function CadastrarCapitulo() {
   const { form, submit, serverError } = useCreateBookVolume()
@@ -174,7 +172,7 @@ export default function CadastrarCapitulo() {
                 </FormLabel>
                 <FormControl>
                   <CoverUploader
-                    maxSize={MAX_FILE_SIZE_BYTES}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

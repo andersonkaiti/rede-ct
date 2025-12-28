@@ -13,6 +13,7 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
@@ -20,11 +21,8 @@ import {
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import {
-  MAX_IMAGE_SIZE_BYTES,
-  useUpdateScientificJournal,
-} from './use-update-scientific-journal.hook'
+} from '../../../../../../_components/page-container'
+import { useUpdateScientificJournal } from './use-update-scientific-journal.hook'
 
 export default function EditarRevista() {
   const { form, serverError, submit, journal } = useUpdateScientificJournal()
@@ -108,7 +106,7 @@ export default function EditarRevista() {
                 <FormControl>
                   <CoverUploader
                     defaultImage={journal?.logoUrl}
-                    maxSize={MAX_IMAGE_SIZE_BYTES}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

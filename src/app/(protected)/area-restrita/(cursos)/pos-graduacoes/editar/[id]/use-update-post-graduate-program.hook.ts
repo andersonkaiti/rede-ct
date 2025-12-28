@@ -2,18 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getPostGraduateProgramById } from '@http/post-graduate-programs/get-post-graduate-program-by-id'
 import { updatePostGraduateProgram } from '@http/post-graduate-programs/update-post-graduate-program'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-
-export const MAX_IMAGE_SIZE_MB = 2
-const KILOBYTE = 1024
-const MEGABYTE = KILOBYTE * KILOBYTE
-export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
 
 const updatePostGraduateProgramSchema = z.object({
   title: z.string().min(1, 'Título é obrigatório.'),
@@ -22,14 +17,11 @@ const updatePostGraduateProgramSchema = z.object({
   endDate: z.date('Data de término é obrigatória.'),
   contact: z.string().min(1, 'Contato é obrigatório.'),
   registrationLink: z.union([z.url('Link inválido'), z.literal('')]),
-  image: z.any().refine(
-    (value) =>
-      validateImageFile({
-        value,
-        maxSize: MAX_IMAGE_SIZE_BYTES,
-        optional: true,
-      }),
-    'A imagem é obrigatória',
+  image: z.any().refine((file) =>
+    validateImageFile({
+      file,
+      optional: true,
+    }),
   ),
 })
 

@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createPartner } from '@http/partners/create-partner'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -8,17 +8,11 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
-export const MAX_LOGO_SIZE_MB = 2
-export const KILOBYTE = 1024
-export const MEGABYTE = KILOBYTE * KILOBYTE
-export const MAX_LOGO_SIZE_BYTES = MAX_LOGO_SIZE_MB * MEGABYTE
-
 export const createPartnerSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório'),
-  logo: z.any().refine((value) =>
+  logo: z.any().refine((file) =>
     validateImageFile({
-      value,
-      optional: false,
+      file,
     }),
   ),
   websiteUrl: z.url('URL do site deve ser válida').optional().or(z.literal('')),

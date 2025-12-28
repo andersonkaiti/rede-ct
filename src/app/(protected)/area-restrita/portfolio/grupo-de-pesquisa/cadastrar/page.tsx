@@ -14,18 +14,16 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../../../_components/page-container'
 import { SelectMember } from '../../../_components/select-member'
-import {
-  MAX_IMAGE_SIZE_BYTES,
-  useCreateResearchGroup,
-} from './use-create-research-group.hook'
+import { useCreateResearchGroup } from './use-create-research-group.hook'
 
 export default function CadastrarGrupoDePesquisa() {
   const { form, submit, serverError } = useCreateResearchGroup()
@@ -187,7 +185,7 @@ export default function CadastrarGrupoDePesquisa() {
                 <FormLabel>Logo</FormLabel>
                 <FormControl>
                   <CoverUploader
-                    maxSize={MAX_IMAGE_SIZE_BYTES}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

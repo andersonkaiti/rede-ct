@@ -27,6 +27,7 @@ import {
   SelectValue,
 } from '@components/ui/select'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { useUpdatePendency } from './use-update-pendency.hook'
 
@@ -115,6 +116,7 @@ export function UpdatePendencyForm({ setIsOpen }: IUpdatePendencyFormProps) {
                 <FormControl>
                   <Input
                     accept="application/pdf,image/*"
+                    maxLength={FILE_VALIDATION_CONSTANTS.MAX_PDF_SIZE_BYTES}
                     onChange={(e) => field.onChange(e.target.files?.[0])}
                     type="file"
                   />

@@ -21,14 +21,15 @@ import {
   SelectValue,
 } from '@components/ui/select'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { MAX_IMAGE_SIZE_BYTES, useCreateEvent } from './use-create-event.hook'
+} from '../../../_components/page-container'
+import { useCreateEvent } from './use-create-event.hook'
 
 export default function CadastrarEvento() {
   const { form, isSubmitting, submit, serverError } = useCreateEvent()
@@ -164,7 +165,7 @@ export default function CadastrarEvento() {
                 </FormLabel>
                 <FormControl>
                   <CoverUploader
-                    maxSize={MAX_IMAGE_SIZE_BYTES}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

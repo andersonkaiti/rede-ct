@@ -16,6 +16,7 @@ import { Input } from '@components/ui/input'
 import MultipleSelector from '@components/ui/multiselect'
 import { Textarea } from '@components/ui/textarea'
 import { useUsers } from '@hooks/use-users.hook'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
@@ -23,9 +24,9 @@ import {
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
+} from '../../../../../_components/page-container'
 import { SelectMember } from '../../../../_components/select-member'
-import { MAX_IMAGE_SIZE_BYTES, useUpdateCourse } from './use-update-course.hook'
+import { useUpdateCourse } from './use-update-course.hook'
 
 export default function EditarCurso() {
   const { data: users } = useUsers()
@@ -134,7 +135,7 @@ export default function EditarCurso() {
                 <FormControl>
                   <CoverUploader
                     defaultImage={course?.imageUrl}
-                    maxSize={MAX_IMAGE_SIZE_BYTES}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

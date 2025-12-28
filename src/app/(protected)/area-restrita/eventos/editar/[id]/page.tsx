@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from '@components/ui/select'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
@@ -29,7 +30,7 @@ import {
   PageHeaderContent,
   PageTitle,
 } from '../../../../_components/page-container'
-import { MAX_IMAGE_SIZE_BYTES, useUpdateEvent } from './use-update-event.hook'
+import { useUpdateEvent } from './use-update-event.hook'
 
 export default function EditarEvento() {
   const { form, serverError, submit, event } = useUpdateEvent()
@@ -168,7 +169,7 @@ export default function EditarEvento() {
                 <FormControl>
                   <CoverUploader
                     defaultImage={event?.imageUrl}
-                    maxSize={MAX_IMAGE_SIZE_BYTES}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

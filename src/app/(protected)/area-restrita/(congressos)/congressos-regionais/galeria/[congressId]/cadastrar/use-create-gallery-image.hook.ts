@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createRegionalCongressGalleryImage } from '@http/congress/regional/gallery/create-regional-congress-gallery-image'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -8,20 +8,12 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
-export const MAX_IMAGE_SIZE_MB = 2
-const KILOBYTE = 1024
-const MEGABYTE = KILOBYTE * KILOBYTE
-export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
-
 export const createGalleryImageSchema = z.object({
   caption: z.string().optional(),
-  image: z.any().refine(
-    (value) =>
-      validateImageFile({
-        value,
-        optional: false,
-      }),
-    `Deve haver uma imagem de no máximo ${MAX_IMAGE_SIZE_MB}MB.`,
+  image: z.any().refine((file) =>
+    validateImageFile({
+      file,
+    }),
   ),
 })
 

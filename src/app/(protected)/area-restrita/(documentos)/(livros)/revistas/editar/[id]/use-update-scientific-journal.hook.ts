@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getScientificJournalById } from '@http/scientific-journals/get-scientific-journal-by-id'
 import { updateScientificJournal } from '@http/scientific-journals/update-scientific-journal'
 import { useSuspenseQuery } from '@tanstack/react-query'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -9,26 +10,20 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
-const MAX_IMAGE_SIZE_MB = 5
-const KILOBYTE = 1024
-const MEGABYTE = KILOBYTE * KILOBYTE
-
-export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
-
 const updateScientificJournalFormSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório.').optional(),
   issn: z.string().min(1, 'ISSN é obrigatório.').optional(),
   description: z.string().min(1, 'Descrição é obrigatória.').optional(),
-  journalUrl: z.string().url('URL da revista deve ser válida.').optional(),
+  journalUrl: z.url('URL da revista deve ser válida.').optional(),
   directors: z.string().optional(),
   editorialBoard: z.string().optional(),
   logo: z
-    .instanceof(File, {
-      message: 'Logo deve ser um arquivo.',
-    })
-    .refine(
-      (file) => file.size <= MAX_IMAGE_SIZE_BYTES,
-      `O logo deve ter no máximo ${MAX_IMAGE_SIZE_MB}MB.`,
+    .any()
+    .refine((file) =>
+      validateImageFile({
+        file,
+        optional: true,
+      }),
     )
     .optional(),
 })

@@ -2,18 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getResearchGroupById } from '@http/research-groups/get-research-group-by-id'
 import { updateResearchGroup } from '@http/research-groups/update-research-group'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-
-export const MAX_IMAGE_SIZE_MB = 5
-const KILOBYTE = 1024
-const MEGABYTE = KILOBYTE * KILOBYTE
-export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
 
 const updateResearchGroupSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório.'),
@@ -25,14 +20,11 @@ const updateResearchGroupSchema = z.object({
   email: z.union([z.email('E-mail inválido'), z.literal('')]).optional(),
   leaderId: z.string().min(1, 'Líder é obrigatório.'),
   deputyLeaderId: z.string().min(1, 'Vice-líder é obrigatório.'),
-  logo: z.any().refine(
-    (value) =>
-      validateImageFile({
-        value,
-        maxSize: MAX_IMAGE_SIZE_BYTES,
-        optional: true,
-      }),
-    'O logo deve ser uma imagem válida de no máximo 5MB.',
+  logo: z.any().refine((file) =>
+    validateImageFile({
+      file,
+      optional: true,
+    }),
   ),
 })
 

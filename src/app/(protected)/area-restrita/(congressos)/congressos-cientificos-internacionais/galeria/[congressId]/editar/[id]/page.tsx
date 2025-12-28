@@ -13,17 +13,15 @@ import {
 } from '@components/ui/form'
 import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import {
-  MAX_IMAGE_SIZE_BYTES,
-  useUpdateGalleryImage,
-} from './use-update-gallery-image.hook'
+} from '../../../../../../../_components/page-container'
+import { useUpdateGalleryImage } from './use-update-gallery-image.hook'
 
 export default function EditGalleryImagePage() {
   const { form, submit, serverError, image } = useUpdateGalleryImage()
@@ -57,7 +55,7 @@ export default function EditGalleryImagePage() {
                   <FormControl>
                     <CoverUploader
                       accept="image/jpeg,image/jpg,image/png,image/webp"
-                      maxSize={MAX_IMAGE_SIZE_BYTES}
+                      maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                       defaultImage={image?.imageUrl}
                       onImageChange={(file) => onChange(file)}
                       {...field}

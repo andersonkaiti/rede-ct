@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getRegionalCongressGalleryImageById } from '@http/congress/regional/gallery/get-regional-congress-gallery-image-by-id'
 import { updateRegionalCongressGalleryImage } from '@http/congress/regional/gallery/update-regional-congress-gallery-image'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -10,18 +10,12 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
-export const MAX_PHOTO_SIZE_MB = 2
-const KILOBYTE = 1024
-const MEGABYTE = KILOBYTE * KILOBYTE
-export const MAX_IMAGE_SIZE_BYTES = MAX_PHOTO_SIZE_MB * MEGABYTE
-
 export const updateGalleryImageSchema = z.object({
   caption: z.string().optional(),
-  image: z.any().refine((value) =>
+  image: z.any().refine((file) =>
     validateImageFile({
-      value,
+      file,
       optional: true,
-      maxSize: MAX_IMAGE_SIZE_BYTES,
     }),
   ),
 })

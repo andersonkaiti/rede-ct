@@ -13,6 +13,7 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
@@ -22,10 +23,7 @@ import {
   PageTitle,
 } from '../../../../../../_components/page-container'
 import { SelectMember } from '../../../../../../area-restrita/_components/select-member'
-import {
-  MAX_FILE_SIZE_BYTES,
-  useUpdateBookVolume,
-} from './use-update-book-volume.hook'
+import { useUpdateBookVolume } from './use-update-book-volume.hook'
 
 export default function EditarCapitulo() {
   const { form, serverError, submit, bookVolume } = useUpdateBookVolume()
@@ -178,7 +176,7 @@ export default function EditarCapitulo() {
                 <FormControl>
                   <CoverUploader
                     defaultImage={bookVolume?.coverImageUrl}
-                    maxSize={MAX_FILE_SIZE_BYTES}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

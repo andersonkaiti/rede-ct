@@ -19,7 +19,6 @@ export const getSDHCTeamMembersSchema = z.object({
       id: z.string(),
       role: z.string(),
       description: z.string().nullable(),
-      order: z.number(),
       createdAt: z.string(),
       updatedAt: z.string(),
       userId: z.string(),

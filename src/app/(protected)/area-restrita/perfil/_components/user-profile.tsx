@@ -13,13 +13,13 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { format } from 'date-fns'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { PatternFormat } from 'react-number-format'
 import { PageContainer } from '../../../_components/page-container'
 import { ROLE_MAPPING } from './constants'
 import { useUserProfile } from './use-user-profile.hook'
-import { MAX_AVATAR_SIZE_BYTES } from './zod'
 
 interface IUserProfileProps {
   user: {
@@ -39,7 +39,7 @@ interface IUserProfileProps {
 export function UserProfile({ user }: IUserProfileProps) {
   const { form, submit, serverError } = useUserProfile(user)
 
-  const role = ROLE_MAPPING[user.role as keyof typeof ROLE_MAPPING]
+  const role = ROLE_MAPPING[user.role]
 
   return (
     <PageContainer>
@@ -61,10 +61,20 @@ export function UserProfile({ user }: IUserProfileProps) {
                   <FormItem>
                     <FormControl>
                       <AvatarUploader
-                        defaultAvatar={field.value || user.avatarUrl}
-                        maxSize={MAX_AVATAR_SIZE_BYTES}
+                        defaultAvatar={
+                          field.value ||
+                          (!form.watch('removeAvatarImage')
+                            ? user.avatarUrl
+                            : undefined)
+                        }
+                        maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                         name={field.name}
                         onFileChange={field.onChange}
+                        onRemove={() => {
+                          form.setValue('removeAvatarImage', true)
+                          field.onChange(null)
+                        }}
+                        showRemoveButton={true}
                       />
                     </FormControl>
                     <FormMessage />

@@ -4,12 +4,7 @@ export function parseFormData<T extends object>(params: T): FormData {
   for (const key of Object.keys(params) as Array<keyof T>) {
     const value = params[key]
 
-    if (
-      value !== undefined &&
-      value !== null &&
-      value !== '' &&
-      value !== false
-    ) {
+    if (value !== undefined && value !== null && value !== '') {
       if (
         (typeof File !== 'undefined' && value instanceof File) ||
         (typeof Blob !== 'undefined' && value instanceof Blob)

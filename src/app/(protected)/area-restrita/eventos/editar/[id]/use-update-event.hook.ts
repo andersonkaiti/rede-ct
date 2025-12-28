@@ -2,18 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getEventById } from '@http/events/get-event-by-id'
 import { updateEvent } from '@http/events/update-event'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-
-export const MAX_IMAGE_SIZE_MB = 2
-const KILOBYTE = 1024
-const MEGABYTE = KILOBYTE * KILOBYTE
-export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
 
 const updateEventSchema = z
   .object({
@@ -28,14 +23,11 @@ const updateEventSchema = z
       .enum(['PENDING', 'CANCELLED', 'FINISHED'])
       .default('PENDING')
       .optional(),
-    image: z.any().refine(
-      (value) =>
-        validateImageFile({
-          value,
-          maxSize: MAX_IMAGE_SIZE_BYTES,
-          optional: true,
-        }),
-      'A imagem deve ser válida',
+    image: z.any().refine((file) =>
+      validateImageFile({
+        file,
+        optional: true,
+      }),
     ),
   })
   .refine(

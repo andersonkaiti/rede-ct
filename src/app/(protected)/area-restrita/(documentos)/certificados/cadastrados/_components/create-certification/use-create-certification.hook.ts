@@ -1,6 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createCertification } from '@http/documents/certifications/create-certification'
 import { useQueryClient } from '@tanstack/react-query'
+import {
+  FILE_VALIDATION_CONSTANTS,
+  validatePdfFile,
+} from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { useState } from 'react'
@@ -12,12 +16,12 @@ const registerCertificationSchema = z.object({
   userId: z.uuid('id do usuário inválido'),
   title: z.string().min(1, 'Título é obrigatório'),
   description: z.string().min(1, 'Descrição é obrigatória'),
-  certification: z
-    .any()
-    .refine(
-      (file) => file instanceof File && file.size > 0,
-      'Arquivo do certificado é obrigatório',
-    ),
+  certification: z.any().refine((file) =>
+    validatePdfFile({
+      file,
+      maxSize: FILE_VALIDATION_CONSTANTS.MAX_PDF_SIZE_BYTES,
+    }),
+  ),
 })
 
 export type RegisterCertificationInput = z.infer<
@@ -65,10 +69,10 @@ export function useCreateCertification({
           queryKey: [
             'users',
             'certifications',
-            filter,
-            orderBy,
             page,
             limit,
+            filter,
+            orderBy,
             userId,
           ],
         })

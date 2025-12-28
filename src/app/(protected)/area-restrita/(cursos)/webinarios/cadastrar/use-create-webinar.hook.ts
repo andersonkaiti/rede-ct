@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createWebinar } from '@http/webinars/create-webinar'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -8,24 +8,15 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
-export const MAX_IMAGE_SIZE_MB = 2
-const KILOBYTE = 1024
-const MEGABYTE = KILOBYTE * KILOBYTE
-export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
-
 const createWebinarSchema = z.object({
   title: z.string().min(1, 'Título é obrigatório.'),
   description: z.string().optional(),
   scheduledAt: z.date('Data e hora são obrigatórias.'),
   webinarLink: z.union([z.url('Link inválido'), z.literal('')]),
-  thumbnail: z.any().refine(
-    (value) =>
-      validateImageFile({
-        value,
-        maxSize: MAX_IMAGE_SIZE_BYTES,
-        optional: false,
-      }),
-    'A thumbnail é obrigatória',
+  thumbnail: z.any().refine((file) =>
+    validateImageFile({
+      file,
+    }),
   ),
   guestIds: z
     .array(z.uuid())

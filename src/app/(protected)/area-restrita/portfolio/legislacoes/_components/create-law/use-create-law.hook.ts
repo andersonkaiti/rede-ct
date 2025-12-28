@@ -9,7 +9,7 @@ import { z } from 'zod'
 
 const createLawFormSchema = z.object({
   title: z.string().min(1, 'Título é obrigatório'),
-  link: z.string().url('Link deve ser uma URL válida'),
+  link: z.url('Link deve ser uma URL válida'),
   country: z.string().min(1, 'País é obrigatório'),
 })
 

@@ -12,7 +12,7 @@ import z from 'zod'
 export const updateResearcherSchema = z.object({
   id: z.string().min(1, 'ID é obrigatório.'),
   registrationNumber: z.string().min(1, 'Matrícula é obrigatória.'),
-  curriculumUrl: z.string().url('URL do currículo inválida.').optional(),
+  curriculumUrl: z.url('URL do currículo inválida.').optional(),
   orcid: z.string().optional(),
   mainEtps: z.string().optional(),
   formations: z.string().optional(),

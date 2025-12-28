@@ -2,19 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getInMemoriamById } from '@http/in-memorian/get-in-memoriam-by-id'
 import { updateInMemoriam } from '@http/in-memorian/update-in-memoriam'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-
-const MAX_AVATAR_SIZE_MB = 2
-const BYTES_PER_KB = 1024
-const KB_PER_MB = 1024
-export const MAX_AVATAR_SIZE_BYTES =
-  MAX_AVATAR_SIZE_MB * KB_PER_MB * BYTES_PER_KB
 
 export const updateInMemoriamSchema = z
   .object({
@@ -25,10 +19,9 @@ export const updateInMemoriamSchema = z
     biography: z.string().optional(),
     photo: z
       .any()
-      .refine((value) =>
+      .refine((file) =>
         validateImageFile({
-          value,
-          maxSize: MAX_AVATAR_SIZE_MB,
+          file,
         }),
       )
       .optional(),

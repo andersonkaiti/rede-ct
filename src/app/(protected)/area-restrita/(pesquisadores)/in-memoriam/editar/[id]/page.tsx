@@ -21,6 +21,7 @@ import {
   SelectTrigger,
 } from '@components/ui/select'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
@@ -29,10 +30,7 @@ import {
   PageTitle,
 } from '../../../../../_components/page-container'
 import { ROLE_OPTIONS } from '../../_components/constants'
-import {
-  MAX_AVATAR_SIZE_BYTES,
-  useUpdateInMemoriam,
-} from './use-update-in-memoriam.hook'
+import { useUpdateInMemoriam } from './use-update-in-memoriam.hook'
 
 export default function UpdateInMemoriamForm() {
   const { form, isSubmitting, serverError, submit, inMemoriam } =
@@ -67,7 +65,7 @@ export default function UpdateInMemoriamForm() {
                     <FormControl>
                       <AvatarUploader
                         defaultAvatar={field.value || inMemoriam.photoUrl}
-                        maxSize={MAX_AVATAR_SIZE_BYTES}
+                        maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                         name={field.name}
                         onFileChange={field.onChange}
                       />

@@ -20,6 +20,7 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import { SelectMember } from '../../../../../_components/select-member'
 import { useRegisterPendency } from './use-create-pendency.hook'
@@ -126,6 +127,7 @@ export function CreatePendencyForm({ setIsOpen }: ICreatePendencyFormProps) {
                 <FormControl>
                   <Input
                     accept="application/pdf,image/*"
+                    maxLength={FILE_VALIDATION_CONSTANTS.MAX_PDF_SIZE_BYTES}
                     onChange={(e) => field.onChange(e.target.files?.[0])}
                     type="file"
                   />

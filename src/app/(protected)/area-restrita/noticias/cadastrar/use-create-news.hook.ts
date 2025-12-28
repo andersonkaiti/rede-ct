@@ -2,7 +2,10 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createNews } from '@http/news/create-news'
-import { validateImageFile } from '@utils/validate-image-file'
+import {
+  FILE_VALIDATION_CONSTANTS,
+  validateImageFile,
+} from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -10,19 +13,13 @@ import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
 
-const BYTES = 1024
-const MEGABYTES = BYTES * BYTES
-const MAX_FILE_SIZE_MB = 5
-export const TOTAL_SIZE = MAX_FILE_SIZE_MB * MEGABYTES
-
 export const createNewsSchema = z.object({
   title: z.string().min(1, 'Título é obrigatório'),
   content: z.string().min(1, 'Texto é obrigatório'),
   image: z.any().refine((value) =>
     validateImageFile({
-      value,
-      maxSize: TOTAL_SIZE,
-      optional: false,
+      file: value,
+      maxSize: FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES,
     }),
   ),
 })

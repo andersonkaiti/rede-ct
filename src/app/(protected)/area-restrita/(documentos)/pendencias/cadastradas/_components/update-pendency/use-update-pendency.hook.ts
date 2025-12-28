@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getPendencyById } from '@http/documents/pendencies/get-pendency-by-id'
 import { updatePendency } from '@http/documents/pendencies/update-pendency'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { validatePdfFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs'
 import { useState } from 'react'
@@ -17,9 +18,11 @@ const updatePendencySchema = z.object({
   dueDate: z.date().optional(),
   document: z
     .any()
-    .refine(
-      (file) => !file || (file instanceof File && file.size > 0),
-      'Documento é inválido',
+    .refine((file) =>
+      validatePdfFile({
+        file,
+        optional: true,
+      }),
     )
     .optional(),
 })

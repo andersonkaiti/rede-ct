@@ -14,6 +14,7 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
@@ -21,11 +22,8 @@ import {
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import {
-  MAX_IMAGE_SIZE_BYTES,
-  useUpdatePostGraduateProgram,
-} from './use-update-post-graduate-program.hook'
+} from '../../../../../_components/page-container'
+import { useUpdatePostGraduateProgram } from './use-update-post-graduate-program.hook'
 
 export default function EditarPosGraduacao() {
   const { form, serverError, submit, program } = useUpdatePostGraduateProgram()
@@ -96,7 +94,7 @@ export default function EditarPosGraduacao() {
                 <FormControl>
                   <CoverUploader
                     defaultImage={program?.imageUrl}
-                    maxSize={MAX_IMAGE_SIZE_BYTES}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

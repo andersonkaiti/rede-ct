@@ -4,6 +4,7 @@ import { deleteMeetingMinute } from '@http/institutional/meetings/minutes/delete
 import { getMeetingMinuteByMeetingId } from '@http/institutional/meetings/minutes/get-minute-by-meeting-id'
 import { updateMeetingMinute } from '@http/institutional/meetings/minutes/update-minute'
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query'
+import { validatePdfFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -14,9 +15,11 @@ import z from 'zod'
 export const createMinuteSchema = z.object({
   title: z.string().min(1, 'Título é obrigatório'),
   publishedAt: z.date('Data de publicação é obrigatória'),
-  document: z
-    .instanceof(File, { message: 'Arquivo é obrigatório' })
-    .refine((file) => !!file && file.size > 0, 'Arquivo é obrigatório'),
+  document: z.any().refine((file) =>
+    validatePdfFile({
+      file,
+    }),
+  ),
   meetingId: z.string().min(1, 'ID da reunião é obrigatório'),
 })
 
@@ -24,13 +27,13 @@ export const updateMinuteSchema = z.object({
   title: z.string().min(1, 'Título é obrigatório'),
   publishedAt: z.date('Data de publicação é obrigatória'),
   document: z
-    .union([
-      z
-        .instanceof(File)
-        .refine((file) => !!file && file.size > 0, 'Arquivo inválido')
-        .optional(),
-      z.undefined(),
-    ])
+    .any()
+    .refine((file) =>
+      validatePdfFile({
+        file,
+        optional: true,
+      }),
+    )
     .optional(),
   meetingId: z.string().min(1, 'ID da reunião é obrigatório'),
 })

@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getFinancialTransactionStatementById } from '@http/financial/financial-transaction-statement/get-financial-transaction-statement-by-id'
 import { updateFinancialTransactionStatement } from '@http/financial/financial-transaction-statement/update-financial-transaction-statement'
 import { useSuspenseQuery } from '@tanstack/react-query'
+import { validatePdfFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -13,13 +14,13 @@ import { z } from 'zod'
 
 const updateStatementSchema = z.object({
   document: z
-    .instanceof(File, { message: 'O documento é obrigatório' })
-    .refine((file) => file.size <= 10 * 1024 * 1024, {
-      message: 'O documento deve ter no máximo 10MB',
-    })
-    .refine((file) => file.type === 'application/pdf', {
-      message: 'O documento deve ser um PDF',
-    })
+    .any()
+    .refine((file) =>
+      validatePdfFile({
+        file,
+        optional: true,
+      }),
+    )
     .optional(),
 })
 

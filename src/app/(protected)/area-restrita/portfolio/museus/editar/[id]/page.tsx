@@ -13,6 +13,7 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
@@ -20,8 +21,8 @@ import {
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import { MAX_IMAGE_SIZE_BYTES, useUpdateMuseum } from './use-update-museum.hook'
+} from '../../../../../_components/page-container'
+import { useUpdateMuseum } from './use-update-museum.hook'
 
 export default function EditarMuseu() {
   const { form, serverError, submit, museum } = useUpdateMuseum()
@@ -71,7 +72,7 @@ export default function EditarMuseu() {
                 <FormControl>
                   <CoverUploader
                     defaultImage={museum?.logoUrl}
-                    maxSize={MAX_IMAGE_SIZE_BYTES}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

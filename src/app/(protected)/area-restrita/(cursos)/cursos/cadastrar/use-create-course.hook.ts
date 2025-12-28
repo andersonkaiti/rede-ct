@@ -1,17 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createCourse } from '@http/courses/create-course'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-
-export const MAX_IMAGE_SIZE_MB = 2
-const KILOBYTE = 1024
-const MEGABYTE = KILOBYTE * KILOBYTE
-export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
 
 const createCourseSchema = z.object({
   title: z.string().min(1, 'Título é obrigatório.'),
@@ -21,14 +16,10 @@ const createCourseSchema = z.object({
   scheduledAt: z.date('Data e hora são obrigatórias.'),
   registrationLink: z.union([z.url('Link inválido'), z.literal('')]),
   description: z.string().optional(),
-  image: z.any().refine(
-    (value) =>
-      validateImageFile({
-        value,
-        maxSize: MAX_IMAGE_SIZE_BYTES,
-        optional: false,
-      }),
-    'A imagem é obrigatória',
+  image: z.any().refine((file) =>
+    validateImageFile({
+      file,
+    }),
   ),
   instructorIds: z
     .array(z.uuid())

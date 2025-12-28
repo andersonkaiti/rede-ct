@@ -13,17 +13,15 @@ import {
 } from '@components/ui/form'
 import { Separator } from '@components/ui/separator'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import {
-  MAX_IMAGE_SIZE_BYTES,
-  useCreateGalleryImage,
-} from './use-create-gallery-image.hook'
+} from '../../../../../../_components/page-container'
+import { useCreateGalleryImage } from './use-create-gallery-image.hook'
 
 export default function CreateGalleryImagePage() {
   const { form, submit, serverError } = useCreateGalleryImage()
@@ -58,7 +56,7 @@ export default function CreateGalleryImagePage() {
                   <FormControl>
                     <CoverUploader
                       accept="image/jpeg,image/jpg,image/png,image/webp"
-                      maxSize={MAX_IMAGE_SIZE_BYTES}
+                      maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                       onImageChange={(file) =>
                         onChange(file || new File([], ''))
                       }

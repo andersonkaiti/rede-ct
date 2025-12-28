@@ -16,17 +16,15 @@ import { Input } from '@components/ui/input'
 import MultipleSelector from '@components/ui/multiselect'
 import { Textarea } from '@components/ui/textarea'
 import { useUsers } from '@hooks/use-users.hook'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import {
-  MAX_IMAGE_SIZE_BYTES,
-  useCreateWebinar,
-} from './use-create-webinar.hook'
+} from '../../../../_components/page-container'
+import { useCreateWebinar } from './use-create-webinar.hook'
 
 export default function CadastrarWebinario() {
   const { data } = useUsers()
@@ -80,7 +78,7 @@ export default function CadastrarWebinario() {
                 </FormLabel>
                 <FormControl>
                   <CoverUploader
-                    maxSize={MAX_IMAGE_SIZE_BYTES}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

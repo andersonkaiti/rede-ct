@@ -13,17 +13,15 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Separator } from '@components/ui/separator'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import {
-  MAX_IMAGE_SIZE_BYTES,
-  useUpdatePartner,
-} from './use-update-partner.hook'
+} from '../../../../../../../_components/page-container'
+import { useUpdatePartner } from './use-update-partner.hook'
 
 export default function UpdatePartnerForm() {
   const { form, submit, serverError, partner } = useUpdatePartner()
@@ -75,7 +73,7 @@ export default function UpdatePartnerForm() {
                 <FormControl>
                   <CoverUploader
                     defaultImage={partner?.logoUrl || null}
-                    maxSize={MAX_IMAGE_SIZE_BYTES}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

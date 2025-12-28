@@ -2,6 +2,10 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createFinancialTransactionStatement } from '@http/financial/financial-transaction-statement/create-financial-transaction-statement'
+import {
+  FILE_VALIDATION_CONSTANTS,
+  validatePdfFile,
+} from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -10,14 +14,12 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 const createStatementSchema = z.object({
-  document: z
-    .instanceof(File, { message: 'O documento é obrigatório' })
-    .refine((file) => file.size <= 10 * 1024 * 1024, {
-      message: 'O documento deve ter no máximo 10MB',
-    })
-    .refine((file) => file.type === 'application/pdf', {
-      message: 'O documento deve ser um PDF',
+  document: z.any().refine((file) =>
+    validatePdfFile({
+      file,
+      maxSize: FILE_VALIDATION_CONSTANTS.MAX_PDF_SIZE_BYTES,
     }),
+  ),
 })
 
 type CreateStatementFormData = z.infer<typeof createStatementSchema>

@@ -2,18 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getMuseumById } from '@http/museums/get-museum-by-id'
 import { updateMuseum } from '@http/museums/update-museum'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-
-export const MAX_IMAGE_SIZE_MB = 2
-const KILOBYTE = 1024
-const MEGABYTE = KILOBYTE * KILOBYTE
-export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
 
 const updateMuseumSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório.'),
@@ -26,14 +21,11 @@ const updateMuseumSchema = z.object({
   phone: z.string().optional(),
   address: z.string().optional(),
   functioning: z.string().optional(),
-  logo: z.any().refine(
-    (value) =>
-      validateImageFile({
-        value,
-        maxSize: MAX_IMAGE_SIZE_BYTES,
-        optional: true,
-      }),
-    'O logo deve ser uma imagem válida de no máximo 2MB.',
+  logo: z.any().refine((file) =>
+    validateImageFile({
+      file,
+      optional: true,
+    }),
   ),
 })
 

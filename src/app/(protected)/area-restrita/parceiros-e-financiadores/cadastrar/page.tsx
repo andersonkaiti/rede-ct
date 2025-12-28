@@ -15,17 +15,15 @@ import {
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
 import { Textarea } from '@components/ui/textarea'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
   PageDescription,
   PageHeaderContent,
   PageTitle,
-} from '@/app/(protected)/_components/page-container'
-import {
-  MAX_LOGO_SIZE_BYTES,
-  useCreatePartner,
-} from './use-create-partner.hook'
+} from '../../../_components/page-container'
+import { useCreatePartner } from './use-create-partner.hook'
 
 export default function CreatePartner() {
   const { form, submit, serverError } = useCreatePartner()
@@ -179,7 +177,9 @@ export default function CreatePartner() {
                       </FormLabel>
                       <FormControl>
                         <CoverUploader
-                          maxSize={MAX_LOGO_SIZE_BYTES}
+                          maxSize={
+                            FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES
+                          }
                           onImageChange={field.onChange}
                         />
                       </FormControl>

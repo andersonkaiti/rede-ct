@@ -1,12 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { updateUser } from '@http/auth/update-user'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-import { MAX_AVATAR_SIZE_MB, ORCID_REGEX, PHONE_REGEX } from './zod'
 
 interface IUser {
   avatarUrl: string | null
@@ -20,6 +19,9 @@ interface IUser {
   role: 'ADMIN' | 'USER'
   updatedAt: string
 }
+
+const ORCID_REGEX = /^\d{4}-\d{4}-\d{4}-\d{4}$/
+const PHONE_REGEX = /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/
 
 export const userProfileSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório'),
@@ -40,12 +42,10 @@ export const userProfileSchema = z.object({
     ),
   avatarImage: z
     .any()
-    .refine(
-      (value) =>
-        validateImageFile({
-          value,
-        }),
-      `A imagem deve ser um arquivo PNG, JPG ou WEBP com no máximo ${MAX_AVATAR_SIZE_MB}MB.`,
+    .refine((file) =>
+      validateImageFile({
+        file,
+      }),
     )
     .optional(),
 })

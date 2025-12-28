@@ -1,17 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createEvent } from '@http/events/create-event'
-import { validateImageFile } from '@utils/validate-image-file'
+import { validateImageFile } from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm, useFormState } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
-
-export const MAX_IMAGE_SIZE_MB = 2
-const KILOBYTE = 1024
-const MEGABYTE = KILOBYTE * KILOBYTE
-export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * MEGABYTE
 
 const createEventSchema = z
   .object({
@@ -26,14 +21,10 @@ const createEventSchema = z
       .enum(['PENDING', 'CANCELLED', 'FINISHED'])
       .default('PENDING')
       .optional(),
-    image: z.any().refine(
-      (value) =>
-        validateImageFile({
-          value,
-          maxSize: MAX_IMAGE_SIZE_BYTES,
-          optional: false,
-        }),
-      'A imagem é obrigatória',
+    image: z.any().refine((file) =>
+      validateImageFile({
+        file,
+      }),
     ),
   })
   .refine(

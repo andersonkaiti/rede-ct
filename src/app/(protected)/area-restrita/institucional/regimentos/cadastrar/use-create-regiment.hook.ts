@@ -1,5 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createRegiment } from '@http/institutional/regiments/create-regiment'
+import {
+  FILE_VALIDATION_CONSTANTS,
+  validatePdfFile,
+} from '@utils/validate-file'
 import { HTTPError } from 'ky'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -11,12 +15,12 @@ export const createRegimentSchema = z.object({
   title: z.string().min(1, 'Nome é obrigatório'),
   version: z.string().min(1, 'Versão é obrigatória'),
   publishedAt: z.date('Data de publicação é obrigatória.'),
-  document: z
-    .any()
-    .refine(
-      (file) => file instanceof File && file.size > 0,
-      'Documento é obrigatório',
-    ),
+  document: z.any().refine((file) =>
+    validatePdfFile({
+      file,
+      maxSize: FILE_VALIDATION_CONSTANTS.MAX_PDF_SIZE_BYTES,
+    }),
+  ),
   status: z.enum(['DRAFT', 'IN_FORCE', 'REVOKED']),
 })
 

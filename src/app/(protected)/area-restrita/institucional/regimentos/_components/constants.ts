@@ -1,5 +1,5 @@
-import { Ban, FileCheck2, FileClock } from 'lucide-react';
-import type { IRegiment } from './table/regiments-table-columns';
+import { Ban, FileCheck2, FileClock } from 'lucide-react'
+import type { IRegiment } from './table/regiments-table-columns'
 
 export const STATUS_LABEL_MAP: Record<IRegiment['status'], string> = {
   DRAFT: 'Rascunho',

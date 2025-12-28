@@ -14,6 +14,7 @@ import {
 import { Input } from '@components/ui/input'
 import { Label } from '@components/ui/label'
 import { RichTextEditor } from '@components/ui/rich-text-editor'
+import { FILE_VALIDATION_CONSTANTS } from '@utils/validate-file'
 import { AlertCircle, Loader2 } from 'lucide-react'
 import {
   PageContainer,
@@ -21,7 +22,7 @@ import {
   PageHeaderContent,
   PageTitle,
 } from '../../../_components/page-container'
-import { TOTAL_SIZE, useCreateNews } from './use-create-news.hook'
+import { useCreateNews } from './use-create-news.hook'
 
 export default function CadastrarNoticia() {
   const { form, isSubmitting, submit, serverError } = useCreateNews()
@@ -70,7 +71,7 @@ export default function CadastrarNoticia() {
                 </FormLabel>
                 <FormControl>
                   <CoverUploader
-                    maxSize={TOTAL_SIZE}
+                    maxSize={FILE_VALIDATION_CONSTANTS.MAX_IMAGE_SIZE_BYTES}
                     onImageChange={field.onChange}
                   />
                 </FormControl>

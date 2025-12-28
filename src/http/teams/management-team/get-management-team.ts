@@ -19,7 +19,6 @@ export const getManagementTeamSchema = z.object({
       id: z.string(),
       name: z.string(),
       description: z.string().nullable(),
-      order: z.number().optional(),
       createdAt: z.string(),
       updatedAt: z.string(),
       members: z.array(

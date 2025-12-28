@@ -14,7 +14,6 @@ export const managementTeamByIdSchema = z.object({
       id: z.string(),
       role: z.string(),
       description: z.string().nullable(),
-      order: z.number(),
       createdAt: z.string(),
       updatedAt: z.string(),
       teamId: z.string(),

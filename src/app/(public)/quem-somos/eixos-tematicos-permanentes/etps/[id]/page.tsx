@@ -9,8 +9,8 @@ import {
   PageHeader,
   PageMain,
 } from '../../../../_components/page-container'
-import { ETPCoordenation } from '../_components/etp-coordenation'
-import { GTMembers } from '../_components/gt-members'
+import { ETPCoordenation } from './_components/etp-coordenation'
+import { GTMembers } from './_components/gt-members'
 
 interface IETPDetailsProps {
   params: Promise<{

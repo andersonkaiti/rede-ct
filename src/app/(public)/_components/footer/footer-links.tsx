@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import type { NavigationLink } from '@/@types/navigation-link'
-import { getAllLinks } from '../_helpers/links'
+import { getAllLinks } from './links'
 
-export default function Links() {
+export function FooterLinks() {
   const { firstColumn, secondColumn } = getAllLinks()
 
   return (

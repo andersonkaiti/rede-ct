@@ -1,7 +1,7 @@
 import { BackArrow } from '@components/ui/back-arrow'
 import { Separator } from '@components/ui/separator'
 import { Skeleton } from '@components/ui/skeleton'
-import { UserCardSkeleton } from '@components/ui/user-card'
+import { UserCardSkeleton, UserCardWrapper } from '@components/ui/user-card'
 import {
   PageContainer,
   PageHeader,
@@ -46,11 +46,11 @@ export default function Loading() {
 
         <div className="space-y-2">
           <Skeleton className="h-4 w-48 rounded-full" />
-          <div className="grid grid-cols-3 gap-4">
+          <UserCardWrapper>
             <UserCardSkeleton />
             <UserCardSkeleton />
             <UserCardSkeleton />
-          </div>
+          </UserCardWrapper>
         </div>
 
         <div className="space-y-2">

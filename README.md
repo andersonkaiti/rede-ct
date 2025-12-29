@@ -6,13 +6,13 @@
 
 **Uma rede independente que conecta pesquisadores, povos tradicionais e a academia**
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.5.4-000000?style=flat&logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.1.0-000000?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-19.1.1-61DAFB?style=flat&logo=react)](https://reactjs.org/)
+[![React](https://img.shields.io/badge/React-19.2.3-61DAFB?style=flat&logo=react)](https://reactjs.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=flat&logo=node.js)](https://nodejs.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791?style=flat&logo=postgresql)](https://www.postgresql.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=flat&logo=prisma)](https://www.prisma.io/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.13-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.18-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 [![Firebase](https://img.shields.io/badge/Firebase-Storage-FFCA28?style=flat&logo=firebase)](https://firebase.google.com/)
 
 [![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -53,62 +53,189 @@ Contribuir para a melhoria contínua das produções científicas e das relaçõ
 ## 🚀 Funcionalidades
 
 ### 🌐 Área Pública
-- **🏠 Homepage**: Apresentação da RedeCT com timeline histórica interativa
-- **👥 Quem Somos**: História, missão, valores e objetivos da rede
-- **💼 Portfólio**: Projetos e iniciativas da rede com galeria de imagens
-- **📰 Notícias**: Sistema completo de notícias e atualizações
-- **📚 Publicações**: Livros, artigos e revistas parceiras
-- **📅 Eventos**: Calendário de eventos científicos com filtros
-- **🔬 Pesquisadores**: Diretório completo de pesquisadores participantes
-- **📊 Estatísticas**: Dados e métricas da rede
+
+#### 🏠 Homepage
+- Timeline histórica interativa da RedeCT
+- Apresentação institucional
+- Destaques e notícias recentes
+
+#### 👥 Quem Somos
+- **Apresentação e História**: Linha do tempo, missão, valores e objetivos
+- **Equipe de Gestão**: Membros da equipe de gestão da rede
+- **Pesquisadores Participantes**: Diretório completo com filtros por senioridade
+- **Eixos Temáticos Permanentes (ETPs)**: Gestão e visualização de ETPs
+- **Instituto de Pesquisas Amazônicas e de Povos Tradicionais**: Informações institucionais
+- **Parceiros e Financiadores**: Lista de parceiros e apoiadores
+- **Regimentos**: Acesso aos regimentos da rede
+- **Reuniões e Atas**: Histórico de reuniões com atas
+- **Transparência e Controle Social**: Demonstrativos financeiros, contas correntes e extratos
+
+#### 📰 Notícias
+- Sistema completo de notícias com paginação
+- Visualização individual de notícias
+- Filtros e busca
+
+#### 💼 Portfólio
+- **Centro de Referência UNESP**: Informações sobre o centro
+- **Destaques da RedeCT**: Membros e instituições homenageadas
+- **Grupos de Pesquisa**: Cadastro e visualização de grupos
+- **Legislações**: Banco de legislações relevantes
+- **Museus**: Diretório de museus parceiros
+
+#### 📚 Publicações
+- **Livros da RedeCT**: Volumes publicados pela rede
+- **Artigos Científicos**: Repositório de artigos
+- **Periódicos e Revistas Parceiras**: Revistas científicas parceiras
+
+#### 🎓 Divisão Científica
+- **Congressos**: Científicos Internacionais e Regionais com galerias
+- **Webinário Permanente**: Programação e arquivo de webinários
+- **Cursos**: Cursos oferecidos pela rede
+- **Pós-Graduação**: Programas de pós-graduação
+- **Calendário de Eventos**: Eventos científicos com filtros
+- **Selo de Qualidade em Extensão Universitária**: Informações sobre o selo
+
+#### 👤 Perfil Público
+- Visualização de perfil de usuários e pesquisadores
+
+#### 🔐 Autenticação
+- **Sign In**: Login de usuários
+- **Sign Up**: Cadastro de novos usuários
+
+#### 🛍️ Lojas e Oportunidades
+- Área dedicada a oportunidades e parcerias
+
+---
 
 ### 🔐 Área Restrita (Admin)
-- **👤 Gestão de Usuários**: Cadastro, edição e controle de usuários
-- **📝 Gestão de Notícias**: Criação, edição e publicação de notícias
-- **👥 Gestão de Equipes**: Administração completa de equipes de pesquisa
-- **🏆 Certificados**: Controle de certificações e documentos
-- **⏳ Pendências**: Gestão de pendências e documentos
-- **📈 Histórico de Contribuições**: Acompanhamento detalhado de contribuições
-- **⚙️ Perfil do Usuário**: Gerenciamento completo de perfil pessoal
-- **📊 Dashboard**: Painel administrativo com métricas e relatórios
 
-### 👥 Gestão de Equipes
-- **🎯 Equipe de Gestão**: Administração da equipe principal
-- **⚖️ Comitê Legitimador**: Gestão do comitê de legitimação
-- **🌱 Equipe SDHC**: Gestão da equipe de sustentabilidade
-- **🔬 Grupos de Pesquisa**: Administração de grupos de pesquisa
-- **📋 Membros**: Gestão de membros e suas funções
-- **📊 Relatórios**: Geração de relatórios de equipes
+#### 📊 Dashboard
+- Painel administrativo com métricas gerais
+- Resumo de atividades e estatísticas
+
+#### � Gestão de Usuários
+- Cadastro, edição e exclusão de usuários
+- Promoção e rebaixamento de permissões
+- Controle de roles (Admin/User)
+- Visualização de perfis completos
+
+#### 📝 Gestão de Notícias
+- Criação de notícias com editor rico (Tiptap)
+- Edição e exclusão de notícias
+- Upload de imagens para notícias
+- Gestão completa de conteúdo
+
+#### 🎓 Gestão de Congressos
+- **Congressos Científicos Internacionais**: CRUD completo
+- **Congressos Regionais**: CRUD completo
+- **Galerias**: Upload e gestão de imagens de congressos
+- **Parceiros de Congressos**: Gestão de parceiros por congresso
+- Documentos: editais, programações, anais, relatórios
+
+#### 📚 Gestão de Cursos e Programas
+- **Cursos**: Criação e gestão de cursos
+- **Programas de Pós-Graduação**: CRUD de programas
+- Coordenadores e instrutores
+- Links de inscrição e materiais
+
+#### 👥 Gestão de Equipes
+- **Equipe de Gestão**: Membros e funções
+- **Comitê Legitimador**: Gestão de membros
+- **Equipe SDHC**: Sustentabilidade e Desenvolvimento
+- **Grupo de Trabalho**: Gestão de GT
+- **Centro de Referência UNESP**: Equipe do centro
+
+#### 🔬 Gestão de Pesquisadores
+- Cadastro completo de pesquisadores
+- Senioridade, formação e ocupações
+- ORCID e Lattes
+- Biografias e instituições
+- Vinculação a ETPs
+
+#### 🎯 Gestão de ETPs
+- Criação e edição de Eixos Temáticos Permanentes
+- Designação de líderes, vice-líderes e secretários
+- Gestão de membros
+- Códigos e descrições
+
+#### � Gestão de Eventos
+- Criação de eventos (online/presencial)
+- Status: pendente, finalizado, cancelado
+- Links e localizações
+- Calendário integrado
+
+#### 🎬 Gestão de Webinários
+- Programação de webinários
+- Upload de thumbnails
+- Convidados e links
+- Arquivo de webinários anteriores
+
+#### 📄 Gestão de Documentos
+- **Certificações**: Upload e gestão de certificados
+- **Pendências**: Controle de pendências com documentos
+- **Regimentos**: Versões e status de regimentos
+- **Reuniões e Atas**: Atas de reuniões
+
+#### 🏆 Gestão Institucional
+- **Destaques da RedeCT**: Homenagens e menções honrosas
+- **In Memoriam**: Registro de homenageados falecidos
+- **Parceiros e Financiadores**: Gestão de parceiros
+- **Grupos de Pesquisa**: CRUD de grupos
+- **Legislações**: Banco de leis
+- **Museus**: Diretório de museus
+
+#### 💰 Gestão Financeira
+- **Contas Correntes**: Gestão de contas (RedeCT, Eventos, Colóquios)
+- **Extratos de Transações**: Upload e controle de extratos
+- Saldos e movimentações
+
+#### 📚 Gestão de Publicações
+- **Livros da RedeCT**: Volumes com capas e fichas catalográficas
+- **Artigos Científicos**: Repositório completo
+- **Revistas Científicas**: Parceiras e dados editoriais
+
+#### 📈 Histórico de Contribuições
+- Acompanhamento detalhado de atividades
+- Logs de contribuições por usuário
+
+#### ⚙️ Perfil do Usuário
+- Edição de dados pessoais
+- Upload de avatar
+- Atualização de ORCID e Lattes
+- Alteração de senha
+
 
 ## 🛠 Tecnologias
 
 ### 🎨 Frontend
 | Tecnologia | Versão | Descrição |
 |------------|--------|-----------|
-| **Next.js** | 15.5.4 | Framework React com App Router e Server Components |
-| **React** | 19.1.1 | Biblioteca de interface de usuário |
+| **Next.js** | 16.1.0 | Framework React com App Router, Server Components e Turbopack |
+| **React** | 19.2.3 | Biblioteca de interface de usuário com React Compiler |
 | **TypeScript** | 5.0+ | Tipagem estática para JavaScript |
-| **Tailwind CSS** | 4.1.13 | Framework de CSS utilitário |
+| **Tailwind CSS** | 4.1.18 | Framework de CSS utilitário |
 | **Radix UI** | 1.4.3 | Componentes acessíveis e customizáveis |
-| **React Hook Form** | 7.62.0 | Gerenciamento de formulários performático |
-| **TanStack Query** | 5.80.7 | Gerenciamento de estado do servidor |
+| **Tiptap** | 3.14.0 | Editor de texto rico WYSIWYG |
+| **React Hook Form** | 7.68.0 | Gerenciamento de formulários performático |
+| **TanStack Query** | 5.90.12 | Gerenciamento de estado do servidor |
 | **TanStack Table** | 8.21.3 | Tabelas avançadas e interativas |
-| **Lucide React** | 0.515.0 | Biblioteca de ícones |
-| **Motion** | 12.23.12 | Animações e transições |
-| **Zod** | 4.1.8 | Validação de schemas |
+| **Lucide React** | 0.561.0 | Biblioteca de ícones |
+| **Motion** | 12.23.26 | Animações e transições |
+| **Zod** | 4.1.13 | Validação de schemas |
 
 ### ⚙️ Backend
 | Tecnologia | Versão | Descrição |
 |------------|--------|-----------|
 | **Node.js** | 18+ | Runtime JavaScript |
-| **Express.js** | 5.1.0 | Framework web minimalista |
-| **TypeScript** | 5.8.3 | Tipagem estática |
-| **Prisma** | 6.9.0 | ORM moderno para banco de dados |
-| **PostgreSQL** | 14+ | Banco de dados relacional |
-| **JWT** | 9.0.2 | Autenticação baseada em tokens |
-| **Bcrypt** | 3.0.2 | Criptografia de senhas |
-| **Multer** | 2.0.0 | Upload de arquivos |
-| **Firebase Admin** | 13.4.0 | Armazenamento de arquivos |
+| **Express.js** | 5.2.1 | Framework web minimalista |
+| **TypeScript** | 5.9.3 | Tipagem estática |
+| **Prisma** | 7.1.0 | ORM moderno para banco de dados |
+| **PostgreSQL** | 17 | Banco de dados relacional |
+| **JWT** | 9.0.3 | Autenticação baseada em tokens |
+| **Bcrypt** | 3.0.3 | Criptografia de senhas |
+| **Multer** | 2.0.2 | Upload de arquivos |
+| **Firebase Admin** | 13.6.0 | Armazenamento de arquivos |
+| **Sharp** | 0.34.5 | Processamento de imagens (WebP) |
 | **CORS** | 2.8.5 | Cross-Origin Resource Sharing |
 
 ### 🔧 DevOps & Ferramentas
@@ -191,7 +318,7 @@ cd rede-ct
 ```bash
 # Frontend
 cd rede-ct
-npm install
+pnpm install
 ```
 
 #### 3. Configure as variáveis de ambiente
@@ -206,7 +333,7 @@ cp .env.example .env.local
 ```bash
 # Frontend
 cd rede-ct
-npm run dev
+pnpm run dev
 ```
 
 ## ⚙️ Configuração
@@ -228,7 +355,7 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```bash
 # Frontend
 cd rede-ct
-npm run dev
+pnpm run dev
 ```
 
 ### 🏭 Produção
@@ -236,10 +363,10 @@ npm run dev
 ```bash
 # Build
 cd rede-ct
-npm run build
+pnpm run build
 
 # Start
-npm start
+pnpm start
 ```
 
 <div align="center">

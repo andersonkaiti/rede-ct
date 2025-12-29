@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import Links from './_components/links'
-import { SocialMedia } from './_components/social-media'
+import { FooterLinks } from './footer-links'
+import { SocialMedia } from './social-media'
 
 export function Footer() {
   return (
@@ -27,7 +27,7 @@ export function Footer() {
 
           <div>
             <h2 className="mb-6 text-lg">Navegação</h2>
-            <Links />
+            <FooterLinks />
           </div>
 
           <div>

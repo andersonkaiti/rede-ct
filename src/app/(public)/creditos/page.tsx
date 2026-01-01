@@ -33,13 +33,13 @@ export default function Creditos() {
   ]
 
   return (
-    <PageContainer className="md:py-30 py-20 lg:p-40">
+    <PageContainer className="py-20 md:py-30 lg:p-40">
       <PageHeader className="justify-center">
         <PageHeaderTitle>Creditos</PageHeaderTitle>
       </PageHeader>
 
       <PageMain>
-        <section className="md:py-20 mb-10 text-center md:space-y-14">
+        <section className="mb-10 text-center md:space-y-14 md:py-20">
           <div className="mx-auto grid max-w-2xl grid-cols-1 place-items-start gap-8 sm:place-items-center md:grid-cols-2">
             {teamMembers.map((member) => (
               <div key={member.name} className="flex items-center gap-4">

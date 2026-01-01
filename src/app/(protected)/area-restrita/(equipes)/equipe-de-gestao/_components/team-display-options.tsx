@@ -47,7 +47,7 @@ export function TeamDisplayOptions() {
               }}
               onSelect={(event) => event.preventDefault()}
             >
-              <span className="ml-5">{col.header as string}</span>
+              {col.header as string}
             </DropdownMenuCheckboxItem>
           )
         })}

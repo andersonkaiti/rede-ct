@@ -1,18 +1,19 @@
 'use client'
 
 import { Button } from '@components/ui/button'
-import { Checkbox } from '@components/ui/checkbox'
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuLabel,
   DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu'
-import { Label } from '@components/ui/label'
 import { Funnel } from 'lucide-react'
 import { parseAsBoolean, useQueryStates } from 'nuqs'
+import { lawTableColumns } from './table/law-table-columns'
 
 export function LawDisplayOptions() {
-  const [displayOptions, setDisplayOptions] = useQueryStates({
+  const [columnsVisibility, setColumnsVisibility] = useQueryStates({
     title: parseAsBoolean.withDefault(true),
     link: parseAsBoolean.withDefault(true),
     country: parseAsBoolean.withDefault(true),
@@ -28,72 +29,31 @@ export function LawDisplayOptions() {
           Exibir
         </Button>
       </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuLabel>Exibir colunas</DropdownMenuLabel>
+        {lawTableColumns.map((col) => {
+          const columnKey = col.id as keyof typeof columnsVisibility
 
-      <DropdownMenuContent className="w-fit space-y-2 p-4">
-        <div className="flex items-center gap-2">
-          <Checkbox
-            checked={displayOptions.title}
-            id="title"
-            onCheckedChange={(checked) =>
-              setDisplayOptions({
-                title: Boolean(checked),
-              })
-            }
-          />
-          <Label htmlFor="title">Título</Label>
-        </div>
+          if (col.id === 'actions') {
+            return null
+          }
 
-        <div className="flex items-center gap-2">
-          <Checkbox
-            checked={displayOptions.link}
-            id="link"
-            onCheckedChange={(checked) =>
-              setDisplayOptions({
-                link: Boolean(checked),
-              })
-            }
-          />
-          <Label htmlFor="link">Link</Label>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Checkbox
-            checked={displayOptions.country}
-            id="country"
-            onCheckedChange={(checked) =>
-              setDisplayOptions({
-                country: Boolean(checked),
-              })
-            }
-          />
-          <Label htmlFor="country">País</Label>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Checkbox
-            checked={displayOptions.createdAt}
-            id="createdAt"
-            onCheckedChange={(checked) =>
-              setDisplayOptions({
-                createdAt: Boolean(checked),
-              })
-            }
-          />
-          <Label htmlFor="createdAt">Criado em</Label>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Checkbox
-            checked={displayOptions.updatedAt}
-            id="updatedAt"
-            onCheckedChange={(checked) =>
-              setDisplayOptions({
-                updatedAt: Boolean(checked),
-              })
-            }
-          />
-          <Label htmlFor="updatedAt">Atualizado em</Label>
-        </div>
+          return (
+            <DropdownMenuCheckboxItem
+              checked={columnsVisibility[columnKey]}
+              key={col.id}
+              onCheckedChange={(value) => {
+                setColumnsVisibility((prev) => ({
+                  ...prev,
+                  [columnKey]: value,
+                }))
+              }}
+              onSelect={(event) => event.preventDefault()}
+            >
+              {col.header as string}
+            </DropdownMenuCheckboxItem>
+          )
+        })}
       </DropdownMenuContent>
     </DropdownMenu>
   )

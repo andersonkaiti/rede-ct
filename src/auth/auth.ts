@@ -1,19 +1,21 @@
 import { api } from '@http/api-client'
 import { cookies } from 'next/headers'
+import z from 'zod'
 
 export async function isAuthenticated() {
   return !!(await cookies()).get('token')?.value
 }
 
-type IsAdminResponse = {
-  success: boolean
-  message?: string
-}
+const isAdminResponseSchema = z.object({
+  success: z.boolean().optional(),
+  message: z.string().optional(),
+})
 
 export async function isAdmin() {
   try {
-    const result: IsAdminResponse = await api.get('auth/admin').json()
-    return !!result.success
+    const data = await api.get('auth/admin').json()
+
+    return !!isAdminResponseSchema.parse(data).success
   } catch {
     return false
   }

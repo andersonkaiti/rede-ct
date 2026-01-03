@@ -14,7 +14,7 @@ import { CreateResearcherButton } from './_components/create-researcher-button'
 import { ResearchersDisplayOptions } from './_components/researchers-display-options'
 import { Table } from './_components/table/table'
 
-function PesquisadoresParticipantes() {
+function ParticipatingResearchers() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function PesquisadoresParticipantes() {
   )
 }
 
-export default AdminHOC(PesquisadoresParticipantes)
+export default AdminHOC(ParticipatingResearchers)

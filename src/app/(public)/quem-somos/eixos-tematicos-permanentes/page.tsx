@@ -12,7 +12,7 @@ import { Duties } from './_components/cards/duties'
 import { ETPCard } from './_components/cards/etp-card'
 import { GTCCard } from './_components/cards/gtc-card'
 
-export default function EixosTematicosPermanentes() {
+export default function PermanentThematicAxes() {
   return (
     <PageContainer>
       <PageHeader>

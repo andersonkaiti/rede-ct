@@ -14,7 +14,7 @@ import { CourseDisplayOptions } from './_components/course-display-options'
 import { CreateCourseButton } from './_components/create-course-button'
 import { Table } from './_components/table/table'
 
-function Cursos() {
+function Courses() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function Cursos() {
   )
 }
 
-export default AdminHOC(Cursos)
+export default AdminHOC(Courses)

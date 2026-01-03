@@ -14,7 +14,7 @@ import { CreateJournalButton } from './_components/create-journal-button'
 import { JournalDisplayOptions } from './_components/journal-display-options'
 import { Table } from './_components/table/table'
 
-function Revistas() {
+function Journals() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function Revistas() {
   )
 }
 
-export default AdminHOC(Revistas)
+export default AdminHOC(Journals)

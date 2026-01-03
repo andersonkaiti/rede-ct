@@ -9,7 +9,7 @@ import {
 } from '../../../_components/page-container'
 import { RegionalCongressesList } from './_components/regional-congresses-list'
 
-export default function CongressoRegional() {
+export default function RegionalCongress() {
   return (
     <PageContainer>
       <BackArrow href="/divisao-cientifica/congressos" />

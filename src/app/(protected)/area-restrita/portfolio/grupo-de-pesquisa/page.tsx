@@ -14,7 +14,7 @@ import { CreateResearchGroupButton } from './_components/create-research-group-b
 import { ResearchGroupDisplayOptions } from './_components/research-group-display-options'
 import { Table } from './_components/table/table'
 
-function GruposDePesquisa() {
+function ResearchGroups() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function GruposDePesquisa() {
   )
 }
 
-export default AdminHOC(GruposDePesquisa)
+export default AdminHOC(ResearchGroups)

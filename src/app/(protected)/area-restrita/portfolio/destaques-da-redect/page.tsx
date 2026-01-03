@@ -14,7 +14,7 @@ import { CreateRedeCTHighlightButton } from './_components/create-redect-highlig
 import { RedeCTHighlightDisplayOptions } from './_components/redect-highlight-display-options'
 import { Table } from './_components/table/table'
 
-function DestaquesRedeCT() {
+function RedeCTHighlights() {
   return (
     <PageContainer>
       <PageHeader>
@@ -45,4 +45,4 @@ function DestaquesRedeCT() {
   )
 }
 
-export default AdminHOC(DestaquesRedeCT)
+export default AdminHOC(RedeCTHighlights)

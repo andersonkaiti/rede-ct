@@ -10,7 +10,7 @@ import {
 import LoadingSkeleton from './_components/loading-skeleton'
 import { ManagementTeams } from './_components/management-teams'
 
-export default function EquipeDeGestao() {
+export default function ManagementTeam() {
   return (
     <PageContainer>
       <PageHeader>

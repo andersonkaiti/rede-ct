@@ -8,7 +8,7 @@ import {
 } from '../../_components/page-container'
 import { PostGraduateProgramList } from './_components/post-graduate-program-list'
 
-export default function PosGraduacao() {
+export default function PostGraduate() {
   return (
     <PageContainer>
       <PageHeader>

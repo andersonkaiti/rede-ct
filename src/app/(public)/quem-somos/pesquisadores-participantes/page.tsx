@@ -10,7 +10,7 @@ import {
 import { InMemoriamNavigationCard } from './_components/navigation-cards/in-memoriam'
 import { ResearchersNavigationCard } from './_components/navigation-cards/researchers-navigation-card'
 
-export default function PesquisadoresParticipantes() {
+export default function ParticipatingResearchers() {
   return (
     <PageContainer>
       <PageHeader>

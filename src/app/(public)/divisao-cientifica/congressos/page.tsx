@@ -9,7 +9,7 @@ import {
 import { InternationalCongressCard } from './_components/international-congress'
 import { RegionalCongressCard } from './_components/regional-congress'
 
-export default function Congressos() {
+export default function Congresses() {
   return (
     <PageContainer>
       <PageHeader>

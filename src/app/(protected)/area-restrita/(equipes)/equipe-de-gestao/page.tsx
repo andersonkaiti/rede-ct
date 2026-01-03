@@ -14,7 +14,7 @@ import { CreateManagementTeamButton } from './_components/create-management-team
 import Table from './_components/table/table'
 import { TeamDisplayOptions } from './_components/team-display-options'
 
-function EquipeDeGestao() {
+function ManagementTeam() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function EquipeDeGestao() {
   )
 }
 
-export default AdminHOC(EquipeDeGestao)
+export default AdminHOC(ManagementTeam)

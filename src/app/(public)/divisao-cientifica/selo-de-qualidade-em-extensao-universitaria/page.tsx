@@ -8,7 +8,7 @@ import {
   PageHeaderTitle,
 } from '../../_components/page-container'
 
-export default function SeloDeQualidadeEmExtensaoUniversitaria() {
+export default function UniversityExtensionQualitySeal() {
   return (
     <PageContainer>
       <PageHeader>

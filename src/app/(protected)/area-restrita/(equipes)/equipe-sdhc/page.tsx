@@ -14,7 +14,7 @@ import { CreateMemberButton } from './_components/create-member/create-member-bu
 import { Table } from './_components/table/table'
 import { TeamMemberDisplayOptions } from './_components/team-member-display-options'
 
-function EquipeSDHC() {
+function SDHCTeam() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function EquipeSDHC() {
   )
 }
 
-export default AdminHOC(EquipeSDHC)
+export default AdminHOC(SDHCTeam)

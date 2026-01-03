@@ -14,7 +14,7 @@ import { CreateProgramButton } from './_components/create-program-button'
 import { ProgramDisplayOptions } from './_components/program-display-options'
 import { Table } from './_components/table/table'
 
-function PosGraduacoes() {
+function PostGraduatePrograms() {
   return (
     <PageContainer>
       <PageHeader>
@@ -45,4 +45,4 @@ function PosGraduacoes() {
   )
 }
 
-export default AdminHOC(PosGraduacoes)
+export default AdminHOC(PostGraduatePrograms)

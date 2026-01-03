@@ -14,7 +14,7 @@ import { CreateRegionalCongressButton } from './_components/create-regional-cong
 import { RegionalCongressesDisplayOptions } from './_components/regional-congress-display-options'
 import { Table } from './_components/table/table'
 
-function CongressosRegionais() {
+function RegionalCongresses() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function CongressosRegionais() {
   )
 }
 
-export default AdminHOC(CongressosRegionais)
+export default AdminHOC(RegionalCongresses)

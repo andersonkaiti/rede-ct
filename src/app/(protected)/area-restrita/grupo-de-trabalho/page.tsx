@@ -14,7 +14,7 @@ import { CreateMemberButton } from './_components/create-member/create-member-bu
 import { Table } from './_components/table/table'
 import { TeamMemberDisplayOptions } from './_components/team-member-display-options'
 
-function GrupoDeTrabalho() {
+function WorkGroup() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function GrupoDeTrabalho() {
   )
 }
 
-export default AdminHOC(GrupoDeTrabalho)
+export default AdminHOC(WorkGroup)

@@ -8,7 +8,7 @@ import {
 } from '../../_components/page-container'
 import { ScientificArticleList } from './_components/scientific-article-list'
 
-export default function ArtigosCientificos() {
+export default function ScientificArticles() {
   return (
     <PageContainer>
       <PageHeader>

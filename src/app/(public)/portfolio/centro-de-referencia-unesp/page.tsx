@@ -12,7 +12,7 @@ import {
 import { LoadingSkeleton } from './_components/loading-skeleton'
 import { ReferenceCenterTeam } from './_components/reference-center-team'
 
-export default function CentroDeReferencia() {
+export default function ReferenceCenter() {
   return (
     <PageContainer>
       <PageHeader>

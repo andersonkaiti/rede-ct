@@ -14,7 +14,7 @@ import { CreateWebinarButton } from './_components/create-webinar-button'
 import { Table } from './_components/table/table'
 import { WebinarDisplayOptions } from './_components/webinar-display-options'
 
-function Webinarios() {
+function Webinars() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function Webinarios() {
   )
 }
 
-export default AdminHOC(Webinarios)
+export default AdminHOC(Webinars)

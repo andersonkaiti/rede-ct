@@ -5,7 +5,7 @@ import { Badge } from '@components/ui/badge'
 import { GraduationCap } from 'lucide-react'
 import { ResearchersList } from './_components/researchers-list'
 
-export default function PesquisadoresParticipantesRedeCT() {
+export default function ParticipatingResearchers() {
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-14 p-6 py-10 lg:p-28">
       <BackArrow href="/quem-somos/pesquisadores-participantes" />

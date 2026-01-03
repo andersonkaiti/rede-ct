@@ -8,7 +8,7 @@ import {
 } from '../../_components/page-container'
 import { PartnersList } from './_components/partners-list'
 
-export default function ParceirosEFinanciadores() {
+export default function PartnersAndFunders() {
   return (
     <PageContainer>
       <PageHeader>

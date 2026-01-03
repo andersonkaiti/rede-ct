@@ -14,7 +14,7 @@ import { CreateLawButton } from './_components/create-law/create-law-button'
 import { LawDisplayOptions } from './_components/law-display-options'
 import { Table } from './_components/table/table'
 
-function Legislacoes() {
+function Legislations() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function Legislacoes() {
   )
 }
 
-export default AdminHOC(Legislacoes)
+export default AdminHOC(Legislations)

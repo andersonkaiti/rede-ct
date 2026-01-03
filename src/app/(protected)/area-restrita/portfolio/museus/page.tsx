@@ -14,7 +14,7 @@ import { CreateMuseumButton } from './_components/create-museum-button'
 import { MuseumDisplayOptions } from './_components/museum-display-options'
 import { Table } from './_components/table/table'
 
-function Museus() {
+function Museums() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function Museus() {
   )
 }
 
-export default AdminHOC(Museus)
+export default AdminHOC(Museums)

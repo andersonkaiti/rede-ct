@@ -8,7 +8,7 @@ import { ContactEmail } from './_components/contact-email'
 import { Coordinator } from './_components/coordinator'
 import { Presidency } from './_components/presidency'
 
-export default function Filiacao() {
+export default function Affiliation() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <BackArrow href="/quem-somos/apresentacao-e-historia" />

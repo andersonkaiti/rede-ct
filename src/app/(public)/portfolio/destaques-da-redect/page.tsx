@@ -11,7 +11,7 @@ import {
 import { LoadingSkeleton } from './_components/loading-skeleton'
 import { RedeCTHighlightsList } from './_components/redect-highlights-list'
 
-export default function DestaquesRedeCT() {
+export default function RedeCTHighlights() {
   return (
     <PageContainer>
       <PageHeader>

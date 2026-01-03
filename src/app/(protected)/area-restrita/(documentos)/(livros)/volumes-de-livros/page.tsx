@@ -14,7 +14,7 @@ import { BookVolumeDisplayOptions } from './_components/book-volume-display-opti
 import { CreateBookVolumeButton } from './_components/create-book-volume-button'
 import { Table } from './_components/table/table'
 
-function VolumesDeLivros() {
+function BookVolumes() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function VolumesDeLivros() {
   )
 }
 
-export default AdminHOC(VolumesDeLivros)
+export default AdminHOC(BookVolumes)

@@ -2,7 +2,7 @@ import { BackArrow } from '@components/ui/back-arrow'
 import { Axis3DIcon } from 'lucide-react'
 import { ETPsList } from './_components/etps-list'
 
-export default function EixosTematicosPermanentesETPs() {
+export default function ETPsPage() {
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-14 p-6 py-10 lg:p-28">
       <BackArrow href="/quem-somos/eixos-tematicos-permanentes" />

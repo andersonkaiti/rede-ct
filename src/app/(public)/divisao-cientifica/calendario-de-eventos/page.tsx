@@ -8,7 +8,7 @@ import {
 } from '../../_components/page-container'
 import { EventsList } from './_components/events-list'
 
-export default function CalendarioDeEventos() {
+export default function EventsCalendar() {
   return (
     <PageContainer>
       <PageHeader>

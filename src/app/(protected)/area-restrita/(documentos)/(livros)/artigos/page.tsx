@@ -14,7 +14,7 @@ import { ArticleDisplayOptions } from './_components/article-display-options'
 import { CreateArticleButton } from './_components/create-article-button'
 import { Table } from './_components/table/table'
 
-function Artigos() {
+function Articles() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function Artigos() {
   )
 }
 
-export default AdminHOC(Artigos)
+export default AdminHOC(Articles)

@@ -14,7 +14,7 @@ import { CreateEventButton } from './_components/create-event-button'
 import { EventDisplayOptions } from './_components/event-display-options'
 import { Table } from './_components/table/table'
 
-function Eventos() {
+function Events() {
   return (
     <PageContainer>
       <PageHeader>
@@ -43,4 +43,4 @@ function Eventos() {
   )
 }
 
-export default AdminHOC(Eventos)
+export default AdminHOC(Events)

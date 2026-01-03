@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,35 +14,33 @@ import { CreateResearcherButton } from './_components/create-researcher-button'
 import { ResearchersDisplayOptions } from './_components/researchers-display-options'
 import { Table } from './_components/table/table'
 
-export default function PesquisadoresParticipantes() {
+function PesquisadoresParticipantes() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Pesquisadores Participantes</PageTitle>
-            <PageDescription>
-              Gerencie os pesquisadores da RedeCT
-            </PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Pesquisadores Participantes</PageTitle>
+          <PageDescription>Gerencie os pesquisadores da RedeCT</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <ResearchersDisplayOptions />
+          <ResearchersDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateResearcherButton />
-        </PageHeader>
+        <CreateResearcherButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(PesquisadoresParticipantes)

@@ -1,4 +1,4 @@
-import { isAdmin as isAdm } from '@auth/auth'
+import { checkIsAdmin } from '@auth/auth'
 import { Separator } from '@components/ui/separator'
 import {
   Sidebar,
@@ -18,7 +18,7 @@ import { LoadingSkeleton } from './user-profile/loading-skeleton'
 import { UserProfile } from './user-profile/user-profile'
 
 export async function SidebarContainer() {
-  const isAdmin = await isAdm()
+  const isAdmin = await checkIsAdmin()
 
   return (
     <Sidebar side="left" variant="sidebar">

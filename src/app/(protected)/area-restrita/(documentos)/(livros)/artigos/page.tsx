@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../../_components/hoc/admin'
+import { AdminHOC } from '../../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,33 +14,33 @@ import { ArticleDisplayOptions } from './_components/article-display-options'
 import { CreateArticleButton } from './_components/create-article-button'
 import { Table } from './_components/table/table'
 
-export default function Artigos() {
+function Artigos() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Artigos</PageTitle>
-            <PageDescription>Gerencie os artigos científicos</PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Artigos</PageTitle>
+          <PageDescription>Gerencie os artigos científicos</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <ArticleDisplayOptions />
+          <ArticleDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateArticleButton />
-        </PageHeader>
+        <CreateArticleButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(Artigos)

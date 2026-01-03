@@ -1,4 +1,4 @@
-import { isAdmin } from '@auth/auth'
+import { checkIsAdmin } from '@auth/auth'
 import {
   PageContainer,
   PageDescription,
@@ -35,7 +35,7 @@ export default async function AreaRestrita() {
 
           <HistoryNavigationCard />
 
-          {(await isAdmin()) && <TeamsNavigationCard />}
+          {(await checkIsAdmin()) && <TeamsNavigationCard />}
         </section>
       </PageMain>
     </PageContainer>

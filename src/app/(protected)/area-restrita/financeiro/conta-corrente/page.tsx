@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -13,33 +13,33 @@ import { CreateAccountButton } from './_components/create-account-button'
 import { Table } from './_components/table/table'
 import { TypeFilter } from './_components/type-filter'
 
-export default function CheckingAccounts() {
+function CheckingAccounts() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Contas Correntes</PageTitle>
-            <PageDescription>
-              Gerencie as contas correntes da organização
-            </PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Contas Correntes</PageTitle>
+          <PageDescription>
+            Gerencie as contas correntes da organização
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <TypeFilter />
+      <PageHeader>
+        <PageActionsContainer>
+          <TypeFilter />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateAccountButton />
-        </PageHeader>
+        <CreateAccountButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(CheckingAccounts)

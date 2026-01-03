@@ -1,4 +1,4 @@
-import { isAdmin } from '@auth/auth'
+import { checkIsAdmin } from '@auth/auth'
 import {
   PageActionsContainer,
   PageContainer,
@@ -30,7 +30,7 @@ export default async function Certificados() {
           <OrderByButton />
         </PageActionsContainer>
 
-        {(await isAdmin()) && <RegisteredCertificationsButton />}
+        {(await checkIsAdmin()) && <RegisteredCertificationsButton />}
       </PageHeader>
 
       <PageMain>

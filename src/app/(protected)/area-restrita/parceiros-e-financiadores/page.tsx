@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../_components/hoc/admin'
+import { AdminHOC } from '../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,35 +14,35 @@ import { CreatePartnerButton } from './_components/create-partner-button'
 import { PartnersDisplayOptions } from './_components/partners-display-options'
 import { Table } from './_components/table/table'
 
-export default function PartnersAndFunders() {
+function PartnersAndFunders() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Parceiros e Financiadores</PageTitle>
-            <PageDescription>
-              Gerencie os parceiros e financiadores
-            </PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Parceiros e Financiadores</PageTitle>
+          <PageDescription>
+            Gerencie os parceiros e financiadores
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <PartnersDisplayOptions />
+          <PartnersDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreatePartnerButton />
-        </PageHeader>
+        <CreatePartnerButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(PartnersAndFunders)

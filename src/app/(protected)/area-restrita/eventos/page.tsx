@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../_components/hoc/admin'
+import { AdminHOC } from '../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,33 +14,33 @@ import { CreateEventButton } from './_components/create-event-button'
 import { EventDisplayOptions } from './_components/event-display-options'
 import { Table } from './_components/table/table'
 
-export default function Eventos() {
+function Eventos() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Eventos</PageTitle>
-            <PageDescription>Gerencie os eventos</PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Eventos</PageTitle>
+          <PageDescription>Gerencie os eventos</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <EventDisplayOptions />
+          <EventDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateEventButton />
-        </PageHeader>
+        <CreateEventButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(Eventos)

@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../../_components/hoc/admin'
+import { AdminHOC } from '../../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,33 +14,33 @@ import { BookVolumeDisplayOptions } from './_components/book-volume-display-opti
 import { CreateBookVolumeButton } from './_components/create-book-volume-button'
 import { Table } from './_components/table/table'
 
-export default function VolumesDeLivros() {
+function VolumesDeLivros() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Volumes de Livros</PageTitle>
-            <PageDescription>Gerencie os volumes de livros</PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Volumes de Livros</PageTitle>
+          <PageDescription>Gerencie os volumes de livros</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <BookVolumeDisplayOptions />
+          <BookVolumeDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateBookVolumeButton />
-        </PageHeader>
+        <CreateBookVolumeButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(VolumesDeLivros)

@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../_components/hoc/admin'
+import { AdminHOC } from '../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -13,31 +13,31 @@ import { OrderByButton } from '../_components/order-by-button'
 import { Table } from './_components/table/table'
 import { UsersDisplayOptions } from './_components/users-display-options'
 
-export default function Users() {
+function Users() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Usuários</PageTitle>
-            <PageDescription>Gerencie os usuários do sistema</PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Usuários</PageTitle>
+          <PageDescription>Gerencie os usuários do sistema</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <UsersDisplayOptions />
+          <UsersDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
-        </PageHeader>
+          <OrderByButton />
+        </PageActionsContainer>
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(Users)

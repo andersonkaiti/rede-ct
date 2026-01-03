@@ -36,6 +36,7 @@ const SIDEBAR_COOKIE_MAX_AGE =
 function setCookie(name: string, value: string, maxAge: number) {
   const cookieValue = `${name}=${value}; path=/; max-age=${maxAge}`
   if (typeof document !== 'undefined') {
+    // biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API not widely supported yet
     document.cookie = cookieValue
   }
 }

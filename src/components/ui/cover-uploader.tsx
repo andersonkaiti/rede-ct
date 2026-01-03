@@ -241,7 +241,6 @@ export function CoverUploader({
                   size="sm"
                   variant="secondary"
                 >
-                  {/* biome-ignore lint: cannot render a <button> inside another <button> */}
                   <span
                     className="inline-flex items-center gap-2"
                     role="button"
@@ -257,7 +256,6 @@ export function CoverUploader({
                   size="sm"
                   variant="outline"
                 >
-                  {/* biome-ignore lint: cannot render a <button> inside another <button> */}
                   <span
                     className="inline-flex items-center gap-2"
                     role="button"

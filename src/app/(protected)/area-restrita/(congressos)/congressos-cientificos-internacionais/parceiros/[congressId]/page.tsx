@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../../../_components/hoc/admin'
+import { AdminHOC } from '../../../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,35 +14,35 @@ import { CreatePartnerButton } from './_components/create-partner-button'
 import { PartnersDisplayOptions } from './_components/partners-display-options'
 import { Table } from './_components/table/table'
 
-export default function CongressPartners() {
+function CongressPartners() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Parceiros do Congresso</PageTitle>
-            <PageDescription>
-              Gerencie os parceiros do congresso científico internacional
-            </PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Parceiros do Congresso</PageTitle>
+          <PageDescription>
+            Gerencie os parceiros do congresso científico internacional
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <PartnersDisplayOptions />
+          <PartnersDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreatePartnerButton />
-        </PageHeader>
+        <CreatePartnerButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(CongressPartners)

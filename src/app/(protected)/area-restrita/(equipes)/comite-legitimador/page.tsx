@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,33 +14,33 @@ import { CreateMemberButton } from './_components/create-member/create-member-bu
 import { Table } from './_components/table/table'
 import { TeamMemberDisplayOptions } from './_components/team-member-display-options'
 
-export default function LegitimatorCommittee() {
+function LegitimatorCommittee() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Comitê Legitimador</PageTitle>
-            <PageDescription>Gerencie o Comitê Legitimador</PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Comitê Legitimador</PageTitle>
+          <PageDescription>Gerencie o Comitê Legitimador</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <TeamMemberDisplayOptions />
+          <TeamMemberDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateMemberButton>Adicionar membro</CreateMemberButton>
-        </PageHeader>
+        <CreateMemberButton>Adicionar membro</CreateMemberButton>
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(LegitimatorCommittee)

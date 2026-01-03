@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,33 +14,33 @@ import { CreateWebinarButton } from './_components/create-webinar-button'
 import { Table } from './_components/table/table'
 import { WebinarDisplayOptions } from './_components/webinar-display-options'
 
-export default function Webinarios() {
+function Webinars() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Webinários</PageTitle>
-            <PageDescription>Gerencie os seus webinários</PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Webinários</PageTitle>
+          <PageDescription>Gerencie os seus webinários</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <WebinarDisplayOptions />
+          <WebinarDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateWebinarButton />
-        </PageHeader>
+        <CreateWebinarButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(Webinars)

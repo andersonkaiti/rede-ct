@@ -8,7 +8,7 @@ import {
 } from '../../_components/page-container'
 import { ResearchGroupList } from './_components/research-group-list'
 
-export default function GruposDePesquisa() {
+export default function ResearchGroups() {
   return (
     <PageContainer>
       <PageHeader>

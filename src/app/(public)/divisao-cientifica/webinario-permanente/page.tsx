@@ -8,7 +8,7 @@ import {
 } from '../../_components/page-container'
 import { WebinarsList } from './_components/webinars-list'
 
-export default function WebinarioPermanente() {
+export default function PermanentWebinar() {
   return (
     <PageContainer>
       <PageHeader>

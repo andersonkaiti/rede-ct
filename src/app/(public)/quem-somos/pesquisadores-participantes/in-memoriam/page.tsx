@@ -7,7 +7,7 @@ import { ResearchersTitle } from './_components/researchers-title'
 import { TraditionalLeaders } from './_components/traditional-leaders'
 import { TraditionalLeadersTitle } from './_components/traditional-leaders-title'
 
-export default function InMemorian() {
+export default function InMemoriam() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <BackArrow href="/quem-somos/pesquisadores-participantes" />

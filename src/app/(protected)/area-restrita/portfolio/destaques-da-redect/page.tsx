@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,35 +14,35 @@ import { CreateRedeCTHighlightButton } from './_components/create-redect-highlig
 import { RedeCTHighlightDisplayOptions } from './_components/redect-highlight-display-options'
 import { Table } from './_components/table/table'
 
-export default function DestaquesRedeCT() {
+function RedeCTHighlights() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Destaques RedeCT</PageTitle>
-            <PageDescription>
-              Gerencie as pessoas e instituições homenageadas pela RedeCT
-            </PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Destaques RedeCT</PageTitle>
+          <PageDescription>
+            Gerencie as pessoas e instituições homenageadas pela RedeCT
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <RedeCTHighlightDisplayOptions />
+          <RedeCTHighlightDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateRedeCTHighlightButton />
-        </PageHeader>
+        <CreateRedeCTHighlightButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(RedeCTHighlights)

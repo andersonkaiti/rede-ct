@@ -53,7 +53,7 @@ export type FileUploadActions = {
   getInputProps: (
     props?: InputHTMLAttributes<HTMLInputElement>,
   ) => InputHTMLAttributes<HTMLInputElement> & {
-    ref: any
+    ref: React.RefObject<HTMLInputElement>
   }
 }
 
@@ -269,8 +269,7 @@ export const useFileUpload = (
       setState((prev) => {
         const fileToRemove = prev.files.find((file) => file.id === id)
         if (
-          fileToRemove &&
-          fileToRemove.preview &&
+          fileToRemove?.preview &&
           fileToRemove.file instanceof File &&
           fileToRemove.file.type.startsWith('image/')
         ) {
@@ -364,7 +363,7 @@ export const useFileUpload = (
         onChange: handleFileChange,
         accept: props.accept || accept,
         multiple: props.multiple !== undefined ? props.multiple : multiple,
-        ref: inputRef as any,
+        ref: inputRef as unknown as React.RefObject<HTMLInputElement>,
       }
     },
     [accept, multiple, handleFileChange],

@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,33 +14,33 @@ import { CreateResearchGroupButton } from './_components/create-research-group-b
 import { ResearchGroupDisplayOptions } from './_components/research-group-display-options'
 import { Table } from './_components/table/table'
 
-export default function GruposDePesquisa() {
+function ResearchGroups() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Grupos de Pesquisa</PageTitle>
-            <PageDescription>Gerencie os grupos de pesquisa</PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Grupos de Pesquisa</PageTitle>
+          <PageDescription>Gerencie os grupos de pesquisa</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <ResearchGroupDisplayOptions />
+          <ResearchGroupDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateResearchGroupButton />
-        </PageHeader>
+        <CreateResearchGroupButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(ResearchGroups)

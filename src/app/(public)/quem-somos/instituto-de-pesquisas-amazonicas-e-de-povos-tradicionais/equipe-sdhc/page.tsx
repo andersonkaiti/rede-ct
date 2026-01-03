@@ -2,9 +2,9 @@ import { BackArrow } from '@components/ui/back-arrow'
 import { UserCardRedLine } from '@components/ui/user-card'
 import { Suspense } from 'react'
 import { LoadingSkeleton } from './_components/loading-skeleton'
-import { SDHCTeam } from './_components/sdhc-team'
+import { SDHCTeam as SDHCTeamContent } from './_components/sdhc-team'
 
-export default function EquipeSDHC() {
+export default function SDHCTeam() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-12.5 p-5 py-8 lg:p-25">
       <BackArrow href="/quem-somos/instituto-de-pesquisas-amazonicas-e-de-povos-tradicionais" />
@@ -18,7 +18,7 @@ export default function EquipeSDHC() {
       </div>
 
       <Suspense fallback={<LoadingSkeleton />}>
-        <SDHCTeam />
+        <SDHCTeamContent />
       </Suspense>
     </main>
   )

@@ -12,7 +12,7 @@ interface ITeamMember {
   role: string
 }
 
-export default function Creditos() {
+export default function Credits() {
   const teamMembers: ITeamMember[] = [
     {
       name: 'Anderson Kaiti',

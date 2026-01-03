@@ -21,7 +21,7 @@ import { getTimelineRedeCT } from './_components/timeline-rede-ct'
 import { WhatAreRedeCTCard } from './_components/whats-are-cards/rede-ct'
 import { WhatAreTraditionalPeopleCard } from './_components/whats-are-cards/traditional-people'
 
-export default function ApresentacaoEHistoria() {
+export default function PresentationAndHistory() {
   const timelineData = getTimelineRedeCT()
 
   return (

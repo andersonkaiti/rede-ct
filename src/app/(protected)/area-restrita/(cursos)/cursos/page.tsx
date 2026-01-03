@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,33 +14,33 @@ import { CourseDisplayOptions } from './_components/course-display-options'
 import { CreateCourseButton } from './_components/create-course-button'
 import { Table } from './_components/table/table'
 
-export default function Cursos() {
+function Courses() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Cursos</PageTitle>
-            <PageDescription>Gerencie os cursos</PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Cursos</PageTitle>
+          <PageDescription>Gerencie os cursos</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <CourseDisplayOptions />
+          <CourseDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateCourseButton />
-        </PageHeader>
+        <CreateCourseButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(Courses)

@@ -10,10 +10,10 @@ import {
 import { UserCardRedLine } from '@components/ui/user-card'
 import { InfoIcon } from 'lucide-react'
 import { Suspense } from 'react'
-import { LegitimatorCommittee } from './_components/legitimator-committee'
+import { LegitimatorCommittee as LegitimatorCommitteeContent } from './_components/legitimator-committee'
 import { LoadingSkeleton } from './_components/loading-skeleton'
 
-export default function ComiteLegitimador() {
+export default function LegitimatorCommittee() {
   return (
     <main className="mx-auto flex max-w-7xl flex-col justify-center gap-7 p-5 py-8 lg:p-25">
       <BackArrow href="/quem-somos/transparencia-e-controle-social" />
@@ -26,7 +26,7 @@ export default function ComiteLegitimador() {
       </div>
 
       <Suspense fallback={<LoadingSkeleton />}>
-        <LegitimatorCommittee />
+        <LegitimatorCommitteeContent />
       </Suspense>
 
       <Card className="border-0 shadow-lg">

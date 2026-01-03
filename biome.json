@@ -29,7 +29,13 @@
       },
       "a11y": {
         "noNoninteractiveElementInteractions": "off",
-        "noStaticElementInteractions": "off"
+        "noStaticElementInteractions": "off",
+        "useKeyWithClickEvents": "off",
+        "noRedundantRoles": "off",
+        "useSemanticElements": "off"
+      },
+      "correctness": {
+        "noUnknownTypeSelector": "off"
       },
       "nursery": {
         "useSortedClasses": {
@@ -51,6 +57,12 @@
       "source": {
         "organizeImports": "on"
       }
+    }
+  },
+  "css": {
+    "parser": {
+      "cssModules": false,
+      "tailwindDirectives": true
     }
   }
 }

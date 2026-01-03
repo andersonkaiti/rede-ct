@@ -175,17 +175,20 @@ function MultipleSelector(props: MultipleSelectorProps) {
   const [inputValue, setInputValue] = React.useState('')
   const debouncedSearchTerm = useDebounce(inputValue, delay || 500)
 
-  function handleClickOutside(event: MouseEvent | TouchEvent) {
-    if (
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node) &&
-      inputRef.current &&
-      !inputRef.current.contains(event.target as Node)
-    ) {
-      setOpen(false)
-      inputRef.current.blur()
-    }
-  }
+  const handleClickOutside = React.useCallback(
+    (event: MouseEvent | TouchEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        inputRef.current &&
+        !inputRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false)
+        inputRef.current?.blur()
+      }
+    },
+    [],
+  )
 
   const handleUnselect = React.useCallback(
     (option: Option) => {
@@ -231,7 +234,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
       document.removeEventListener('mousedown', handleClickOutside)
       document.removeEventListener('touchend', handleClickOutside)
     }
-  }, [open])
+  }, [open, handleClickOutside])
 
   useEffect(() => {
     if (value) {
@@ -247,7 +250,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
     if (JSON.stringify(newOption) !== JSON.stringify(options)) {
       setOptions(newOption)
     }
-  }, [arrayDefaultOptions, arrayOptions, groupBy, onSearch, options])
+  }, [arrayOptions, groupBy, onSearch, options])
 
   useEffect(() => {
     function doSearchSync() {
@@ -270,7 +273,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
     }
 
     exec()
-  }, [debouncedSearchTerm, groupBy, open, triggerSearchOnFocus])
+  }, [debouncedSearchTerm, groupBy, open, triggerSearchOnFocus, onSearchSync])
 
   useEffect(() => {
     async function doSearch() {
@@ -295,7 +298,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
     }
 
     exec()
-  }, [debouncedSearchTerm, groupBy, open, triggerSearchOnFocus])
+  }, [debouncedSearchTerm, groupBy, open, triggerSearchOnFocus, onSearch])
 
   function CreatableItem() {
     if (!creatable) {
@@ -439,6 +442,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
                   e.preventDefault()
                   e.stopPropagation()
                 }}
+                type="button"
               >
                 <XIcon aria-hidden="true" size={14} />
               </button>
@@ -524,7 +528,7 @@ function MultipleSelector(props: MultipleSelectorProps) {
               }}
             >
               {isLoading ? (
-                <>{loadingIndicator}</>
+                loadingIndicator
               ) : (
                 <>
                   {EmptyItem()}
@@ -538,36 +542,34 @@ function MultipleSelector(props: MultipleSelectorProps) {
                       heading={key}
                       key={key}
                     >
-                      <>
-                        {dropdowns.map((option) => (
-                          <CommandItem
-                            className={cn(
-                              'cursor-pointer',
-                              option.disable &&
-                                'pointer-events-none cursor-not-allowed opacity-50',
-                            )}
-                            disabled={option.disable}
-                            key={option.value}
-                            onMouseDown={(e) => {
-                              e.preventDefault()
-                              e.stopPropagation()
-                            }}
-                            onSelect={() => {
-                              if (selected.length >= maxSelected) {
-                                onMaxSelected?.(selected.length)
-                                return
-                              }
-                              setInputValue('')
-                              const newOptions = [...selected, option]
-                              setSelected(newOptions)
-                              onChange?.(newOptions)
-                            }}
-                            value={option.value}
-                          >
-                            {option.label}
-                          </CommandItem>
-                        ))}
-                      </>
+                      {dropdowns.map((option) => (
+                        <CommandItem
+                          className={cn(
+                            'cursor-pointer',
+                            option.disable &&
+                              'pointer-events-none cursor-not-allowed opacity-50',
+                          )}
+                          disabled={option.disable}
+                          key={option.value}
+                          onMouseDown={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                          }}
+                          onSelect={() => {
+                            if (selected.length >= maxSelected) {
+                              onMaxSelected?.(selected.length)
+                              return
+                            }
+                            setInputValue('')
+                            const newOptions = [...selected, option]
+                            setSelected(newOptions)
+                            onChange?.(newOptions)
+                          }}
+                          value={option.value}
+                        >
+                          {option.label}
+                        </CommandItem>
+                      ))}
                     </CommandGroup>
                   ))}
                 </>

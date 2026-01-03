@@ -8,7 +8,7 @@ import {
   PageHeaderTitle,
 } from '../../_components/page-container'
 
-export default function LojaDaRedeCT() {
+export default function RedeCTStore() {
   return (
     <PageContainer>
       <PageHeader>

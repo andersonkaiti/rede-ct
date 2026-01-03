@@ -14,7 +14,7 @@ import { TotalBalanceCard } from './_components/accounting/total-balance/total-b
 import { ResponsabilitiesCard } from './_components/cards/responsabilities'
 import { CommitteeLegitimator } from './_components/navigation-cards/committee-legitimator'
 
-export default function TransparenciaEControleSocial() {
+export default function TransparencyAndSocialControl() {
   return (
     <PageContainer>
       <PageHeader>

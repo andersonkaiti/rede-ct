@@ -9,7 +9,7 @@ import {
 } from '../../../_components/page-container'
 import { InternationalCongressesList } from './_components/international-congresses-list'
 
-export default function CongressoCientificoInternacional() {
+export default function InternationalScientificCongress() {
   return (
     <PageContainer>
       <BackArrow href="/divisao-cientifica/congressos" />

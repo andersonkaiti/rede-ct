@@ -9,7 +9,7 @@ import {
 import { InstituteDataCard } from './_components/institute-data'
 import { SDHCTeamNavigationCard } from './_components/sdhc-team-navigation-card'
 
-export default function InstitutoDePesquisasAmazonicas() {
+export default function AmazonianResearchInstitute() {
   return (
     <PageContainer>
       <PageHeader>

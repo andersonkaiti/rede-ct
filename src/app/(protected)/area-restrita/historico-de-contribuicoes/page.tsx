@@ -1,4 +1,4 @@
-import { isAdmin } from '@auth/auth'
+import { checkIsAdmin } from '@auth/auth'
 import {
   PageActionsContainer,
   PageContainer,
@@ -32,7 +32,7 @@ export default async function HistoricoDeContribuicoes() {
           <OrderByButton />
         </PageActionsContainer>
 
-        {(await isAdmin()) && <AllContributionsButton />}
+        {(await checkIsAdmin()) && <AllContributionsButton />}
       </PageHeader>
 
       <PageMain>

@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,33 +14,33 @@ import { CreateManagementTeamButton } from './_components/create-management-team
 import Table from './_components/table/table'
 import { TeamDisplayOptions } from './_components/team-display-options'
 
-export default function EquipeDeGestao() {
+function ManagementTeam() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Equipe de Gestão</PageTitle>
-            <PageDescription>Gerencie as equipes de gestão</PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Equipe de Gestão</PageTitle>
+          <PageDescription>Gerencie as equipes de gestão</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <TeamDisplayOptions />
+          <TeamDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateManagementTeamButton />
-        </PageHeader>
+        <CreateManagementTeamButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(ManagementTeam)

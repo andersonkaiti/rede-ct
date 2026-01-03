@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../_components/hoc/admin'
+import { AdminHOC } from '../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,33 +14,33 @@ import { CreateEtpButton } from './_components/create-etp-button'
 import { EtpsDisplayOptions } from './_components/etps-display-options'
 import { Table } from './_components/table/table'
 
-export default function ETPS() {
+function ETPS() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>ETPs</PageTitle>
-            <PageDescription>Gerencie os ETPs cadastrados</PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>ETPs</PageTitle>
+          <PageDescription>Gerencie os ETPs cadastrados</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <EtpsDisplayOptions />
+          <EtpsDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateEtpButton />
-        </PageHeader>
+        <CreateEtpButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(ETPS)

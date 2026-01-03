@@ -11,7 +11,7 @@ const isAdminResponseSchema = z.object({
   message: z.string().optional(),
 })
 
-export async function isAdmin() {
+export async function checkIsAdmin() {
   try {
     const data = await api.get('auth/admin').json()
 

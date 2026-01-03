@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../../../_components/hoc/admin'
+import { AdminHOC } from '../../../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,35 +14,35 @@ import { CreateGalleryImageButton } from './_components/create-gallery-image-but
 import { GalleryDisplayOptions } from './_components/gallery-display-options'
 import { Table } from './_components/table/table'
 
-export default function CongressGallery() {
+function CongressGallery() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Galeria do Congresso Regional</PageTitle>
-            <PageDescription>
-              Gerencie as imagens da galeria do congresso regional
-            </PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Galeria do Congresso Regional</PageTitle>
+          <PageDescription>
+            Gerencie as imagens da galeria do congresso regional
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <GalleryDisplayOptions />
+          <GalleryDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateGalleryImageButton />
-        </PageHeader>
+        <CreateGalleryImageButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(CongressGallery)

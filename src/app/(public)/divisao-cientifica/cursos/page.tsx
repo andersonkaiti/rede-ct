@@ -8,7 +8,7 @@ import {
 } from '../../_components/page-container'
 import { CoursesList } from './_components/courses-list'
 
-export default function Cursos() {
+export default function Courses() {
   return (
     <PageContainer>
       <PageHeader>

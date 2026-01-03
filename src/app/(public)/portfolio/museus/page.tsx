@@ -8,7 +8,7 @@ import {
 } from '../../_components/page-container'
 import { MuseumList } from './_components/museums-list'
 
-export default function Museus() {
+export default function Museums() {
   return (
     <PageContainer>
       <PageHeader>

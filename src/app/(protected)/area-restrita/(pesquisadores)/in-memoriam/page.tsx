@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,33 +14,33 @@ import { CreateInMemoriamButton } from './_components/create-in-memoriam-button'
 import { InMemoriamDisplayOptions } from './_components/in-memoriam-display-options'
 import { Table } from './_components/table/table'
 
-export default function InMemoriam() {
+function InMemoriam() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>In Memoriam</PageTitle>
-            <PageDescription>Gerencie os In Memoriam</PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>In Memoriam</PageTitle>
+          <PageDescription>Gerencie os In Memoriam</PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <InMemoriamDisplayOptions />
+          <InMemoriamDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateInMemoriamButton />
-        </PageHeader>
+        <CreateInMemoriamButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(InMemoriam)

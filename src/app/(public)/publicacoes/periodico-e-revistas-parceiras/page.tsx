@@ -8,7 +8,7 @@ import {
 } from '../../_components/page-container'
 import { ScientificJournalList } from './_components/scientific-journal-list'
 
-export default function PeriodicoERevistasParceiras() {
+export default function JournalsAndPartnerMagazines() {
   return (
     <PageContainer>
       <PageHeader>

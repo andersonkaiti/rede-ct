@@ -7,39 +7,39 @@ import {
   PageMain,
   PageTitle,
 } from '@/app/(protected)/_components/page-container'
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '../../../_components/hoc/admin'
 import { FilterInput } from '../../_components/filter-input'
 import { FilterSelectUser } from '../../_components/filter-select-user'
 import { OrderByButton } from '../../_components/order-by-button'
 import { ContributionsList } from './_components/contributions-list'
 
-export default function AllContributions() {
+function AllContributions() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Todas as Contribuições</PageTitle>
-            <PageDescription>
-              Visualize todas as contribuições cadastradas
-            </PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Todas as Contribuições</PageTitle>
+          <PageDescription>
+            Visualize todas as contribuições cadastradas
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <FilterSelectUser />
-        </PageHeader>
+        <FilterSelectUser />
+      </PageHeader>
 
-        <PageMain>
-          <ContributionsList />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <ContributionsList />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(AllContributions)

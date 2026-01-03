@@ -1,4 +1,4 @@
-import { isAdmin } from '@auth/auth'
+import { checkIsAdmin } from '@auth/auth'
 import {
   PageActionsContainer,
   PageContainer,
@@ -30,7 +30,7 @@ export default async function Pendencias() {
           <OrderByButton />
         </PageActionsContainer>
 
-        {(await isAdmin()) && <RegisteredPendenciesButton />}
+        {(await checkIsAdmin()) && <RegisteredPendenciesButton />}
       </PageHeader>
 
       <PageMain>

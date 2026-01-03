@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '@/app/(protected)/_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,35 +14,35 @@ import { CreateInternationalScientificCongressButton } from './_components/creat
 import { InternationalScientificCongressesDisplayOptions } from './_components/international-scientific-congress-display-options'
 import { Table } from './_components/table/table'
 
-export default function InternationalScientificCongresses() {
+function InternationalScientificCongresses() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Congressos Científicos Internacionais</PageTitle>
-            <PageDescription>
-              Gerencie os congressos científicos internacionais
-            </PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Congressos Científicos Internacionais</PageTitle>
+          <PageDescription>
+            Gerencie os congressos científicos internacionais
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <InternationalScientificCongressesDisplayOptions />
+          <InternationalScientificCongressesDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateInternationalScientificCongressButton />
-        </PageHeader>
+        <CreateInternationalScientificCongressButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(InternationalScientificCongresses)

@@ -8,7 +8,7 @@ import {
 } from '../../_components/page-container'
 import { LawsList } from './_components/laws-list'
 
-export default function Legislacoes() {
+export default function Legislations() {
   return (
     <PageContainer>
       <PageHeader>

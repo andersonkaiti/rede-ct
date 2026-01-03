@@ -25,7 +25,7 @@ const requirements = [
   'Exigência de (no mínimo) um doutor no corpo autoral de cada capítulo.',
 ]
 
-export default function ColetaneaRedeCT() {
+export default function RedeCTCollection() {
   return (
     <PageContainer>
       <PageHeader>

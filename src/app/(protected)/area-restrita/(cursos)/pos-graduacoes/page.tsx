@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -14,35 +14,35 @@ import { CreateProgramButton } from './_components/create-program-button'
 import { ProgramDisplayOptions } from './_components/program-display-options'
 import { Table } from './_components/table/table'
 
-export default function PosGraduacoes() {
+function PostGraduatePrograms() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Programas de Pós-Graduação</PageTitle>
-            <PageDescription>
-              Gerencie os programas de pós-graduação
-            </PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Programas de Pós-Graduação</PageTitle>
+          <PageDescription>
+            Gerencie os programas de pós-graduação
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <FilterInput />
+      <PageHeader>
+        <PageActionsContainer>
+          <FilterInput />
 
-            <ProgramDisplayOptions />
+          <ProgramDisplayOptions />
 
-            <OrderByButton />
-          </PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateProgramButton />
-        </PageHeader>
+        <CreateProgramButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(PostGraduatePrograms)

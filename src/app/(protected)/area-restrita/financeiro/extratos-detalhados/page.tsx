@@ -1,4 +1,4 @@
-import { AdminWrapper } from '../../../_components/hoc/admin'
+import { AdminHOC } from '../../../_components/hoc/admin'
 import {
   PageActionsContainer,
   PageContainer,
@@ -12,31 +12,31 @@ import { OrderByButton } from '../../_components/order-by-button'
 import { CreateStatementButton } from './_components/create-statement-button'
 import { Table } from './_components/table/table'
 
-export default function FinancialTransactionStatements() {
+function FinancialTransactionStatements() {
   return (
-    <AdminWrapper>
-      <PageContainer>
-        <PageHeader>
-          <PageHeaderContent>
-            <PageTitle>Extratos Detalhados</PageTitle>
-            <PageDescription>
-              Gerencie os extratos de transações financeiras
-            </PageDescription>
-          </PageHeaderContent>
-        </PageHeader>
+    <PageContainer>
+      <PageHeader>
+        <PageHeaderContent>
+          <PageTitle>Extratos Detalhados</PageTitle>
+          <PageDescription>
+            Gerencie os extratos de transações financeiras
+          </PageDescription>
+        </PageHeaderContent>
+      </PageHeader>
 
-        <PageHeader>
-          <PageActionsContainer>
-            <OrderByButton />
-          </PageActionsContainer>
+      <PageHeader>
+        <PageActionsContainer>
+          <OrderByButton />
+        </PageActionsContainer>
 
-          <CreateStatementButton />
-        </PageHeader>
+        <CreateStatementButton />
+      </PageHeader>
 
-        <PageMain>
-          <Table />
-        </PageMain>
-      </PageContainer>
-    </AdminWrapper>
+      <PageMain>
+        <Table />
+      </PageMain>
+    </PageContainer>
   )
 }
+
+export default AdminHOC(FinancialTransactionStatements)

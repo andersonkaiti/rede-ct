@@ -35,7 +35,7 @@ export default function Credits() {
   return (
     <PageContainer className="py-20 md:py-30 lg:p-40">
       <PageHeader className="justify-center">
-        <PageHeaderTitle>Creditos</PageHeaderTitle>
+        <PageHeaderTitle>Créditos</PageHeaderTitle>
       </PageHeader>
 
       <PageMain>
